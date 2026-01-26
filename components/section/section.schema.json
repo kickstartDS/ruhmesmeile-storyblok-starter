@@ -25,6 +25,9 @@
               },
               {
                 "$ref": "http://cms.mydesignsystem.com/prompter.schema.json"
+              },
+              {
+                "$ref": "http://schema.mydesignsystem.com/energy-calculator.schema.json"
               }
             ]
           }

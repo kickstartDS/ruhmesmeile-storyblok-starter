@@ -1,0 +1,22 @@
+export default {
+  component: "energy-calculator",
+  energyType: "electricity",
+  postalCode: "",
+  householdSize: 1,
+  annualConsumption: 1000,
+  submitLabel: "Jetzt Angebot einholen",
+  headlineText: "Für welche Energieart interessierst du dich?",
+  electricityLabel: "ÖKOSTROM",
+  gasLabel: "ERDGAS",
+  postalCodeLabel: "DEINE POSTLEITZAHL",
+  householdSizeLabel: "PERSONEN IM HAUSHALT",
+  consumptionLabel: "DEIN JAHRESVERBRAUCH IN KWH",
+  descriptionHeadline: "Energie von sparstrom. In nur 4 Minuten wechseln!",
+  descriptionItems: [
+    { number: 1, text: "Strom oder Gas auswählen" },
+    { number: 2, text: "Postleitzahl eingeben" },
+    { number: 3, text: "Jahresverbrauch eintragen" },
+    { number: 4, text: "Angebot einholen" },
+    { number: 5, text: "Tarif auswählen" },
+  ],
+};

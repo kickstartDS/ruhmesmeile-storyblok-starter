@@ -139,9 +139,7 @@ export const components = {
   ),
   button: editable(
     dynamic(() =>
-      import("@kickstartds/ds-agency-premium/button").then(
-        (mod) => mod.Button
-      )
+      import("@kickstartds/ds-agency-premium/button").then((mod) => mod.Button)
     )
   ),
   contact: editable(
@@ -346,4 +344,11 @@ export const components = {
     )
   ),
   slider: editable(Slider, "components"),
+  "energy-calculator": editable(
+    dynamic(() =>
+      import("./energy-calculator/EnergyCalculatorComponent").then(
+        (mod) => mod.EnergyCalculator
+      )
+    )
+  ),
 };

@@ -1,0 +1,59 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as EnergyCalculatorStories from "./EnergyCalculator.stories";
+
+<Meta of={EnergyCalculatorStories} />
+
+# Energy Calculator
+
+An interactive energy calculator form component for collecting user information about their energy needs.
+
+## Features
+
+- **Energy Type Selection**: Toggle between electricity (ÖKOSTROM) and gas (ERDGAS)
+- **Postal Code Input**: Text field for entering postal code
+- **Household Size Slider**: Interactive slider for selecting number of people (1-4+)
+- **Annual Consumption**: Number input for yearly energy consumption in kWh
+- **Description Section**: Shows a step-by-step process with numbered steps
+- **Gradient Background**: Modern gradient background from primary to positive color
+
+## Usage
+
+```tsx
+import { EnergyCalculator } from "./components/energy-calculator/EnergyCalculatorComponent";
+
+<EnergyCalculator
+  headlineText="Für welche Energieart interessierst du dich?"
+  submitLabel="Jetzt Angebot einholen"
+/>;
+```
+
+## Design Tokens
+
+The component uses the following token architecture:
+
+- `--dsa-energy-calculator--background`: Gradient background
+- `--dsa-energy-calculator--text-color`: Text color on gradient
+- `--dsa-energy-calculator--form-bg`: Form card background
+- `--dsa-energy-calculator--input-bg`: Input field background
+- `--dsa-energy-calculator--button-bg`: Submit button background
+- `--dsa-energy-calculator--button-hover-bg`: Submit button hover state
+
+## Examples
+
+<Canvas of={EnergyCalculatorStories.Default} />
+
+### With Gas Selected
+
+<Canvas of={EnergyCalculatorStories.WithGasSelected} />
+
+### With Prefilled Data
+
+<Canvas of={EnergyCalculatorStories.WithPrefilledData} />
+
+### Custom Labels
+
+<Canvas of={EnergyCalculatorStories.CustomLabels} />
+
+## Customization
+
+All labels and text can be customized via props. The component is fully responsive and follows BEM naming conventions.

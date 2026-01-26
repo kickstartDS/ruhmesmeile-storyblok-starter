@@ -1,0 +1,18 @@
+// Component tokens for EnergyCalculator
+// These should be extracted and documented
+.dsa-energy-calculator {
+  --dsa-energy-calculator--background: var(--ks-background-color-accent);
+  --dsa-energy-calculator--text-color: var(--ks-text-color-primary);
+  --dsa-energy-calculator--form-bg: var(--ks-background-color-default);
+  --dsa-energy-calculator--input-bg: var(--ks-background-color-interface);
+  --dsa-energy-calculator--input-border: var(--ks-border-color-interface);
+  --dsa-energy-calculator--input-focus-border: var(--ks-border-color-primary);
+  --dsa-energy-calculator--button-bg: var(--ks-background-color-primary);
+  --dsa-energy-calculator--button-hover-bg: var(
+    --ks-background-color-primary-interactive-hover
+  );
+  --dsa-energy-calculator--button-text: var(--ks-text-color-on-primary);
+  --dsa-energy-calculator--spacing: var(--ks-spacing-m);
+  --dsa-energy-calculator--spacing-l: var(--ks-spacing-l);
+  --dsa-energy-calculator--spacing-xl: var(--ks-spacing-xl);
+}

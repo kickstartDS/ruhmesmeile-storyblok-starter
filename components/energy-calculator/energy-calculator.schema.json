@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/energy-calculator.schema.json",
+  "title": "Energy Calculator",
+  "description": "Energy calculator form with postal code, household size slider, and annual consumption inputs",
+  "type": "object",
+  "properties": {
+    "component": {
+      "type": "string",
+      "enum": ["energy-calculator"],
+      "default": "energy-calculator"
+    },
+    "energyType": {
+      "type": "string",
+      "title": "Energy Type",
+      "description": "Type of energy to calculate",
+      "enum": ["electricity", "gas"],
+      "default": "electricity"
+    },
+    "postalCode": {
+      "type": "string",
+      "title": "Postal Code",
+      "description": "User's postal code",
+      "default": ""
+    },
+    "householdSize": {
+      "type": "number",
+      "title": "Household Size",
+      "description": "Number of people in household",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 1
+    },
+    "annualConsumption": {
+      "type": "number",
+      "title": "Annual Consumption",
+      "description": "Annual energy consumption in kWh",
+      "minimum": 0,
+      "default": 1000
+    },
+    "submitLabel": {
+      "type": "string",
+      "title": "Submit Button Label",
+      "description": "Label for the submit button",
+      "default": "Jetzt Angebot einholen"
+    },
+    "headlineText": {
+      "type": "string",
+      "title": "Headline",
+      "description": "Main headline text",
+      "default": "Für welche Energieart interessierst du dich?"
+    },
+    "electricityLabel": {
+      "type": "string",
+      "title": "Electricity Label",
+      "description": "Label for electricity option",
+      "default": "ÖKOSTROM"
+    },
+    "gasLabel": {
+      "type": "string",
+      "title": "Gas Label",
+      "description": "Label for gas option",
+      "default": "ERDGAS"
+    },
+    "postalCodeLabel": {
+      "type": "string",
+      "title": "Postal Code Label",
+      "description": "Label for postal code field",
+      "default": "DEINE POSTLEITZAHL"
+    },
+    "householdSizeLabel": {
+      "type": "string",
+      "title": "Household Size Label",
+      "description": "Label for household size field",
+      "default": "PERSONEN IM HAUSHALT"
+    },
+    "consumptionLabel": {
+      "type": "string",
+      "title": "Consumption Label",
+      "description": "Label for consumption field",
+      "default": "DEIN JAHRESVERBRAUCH IN KWH"
+    },
+    "descriptionHeadline": {
+      "type": "string",
+      "title": "Description Headline",
+      "description": "Headline for the description section",
+      "default": "Energie von sparstrom. In nur 4 Minuten wechseln!"
+    },
+    "descriptionItems": {
+      "type": "array",
+      "title": "Description Items",
+      "description": "Step-by-step description items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "number",
+            "title": "Step Number"
+          },
+          "text": {
+            "type": "string",
+            "title": "Step Text"
+          }
+        },
+        "required": ["number", "text"]
+      },
+      "default": [
+        { "number": 1, "text": "Strom oder Gas auswählen" },
+        { "number": 2, "text": "Postleitzahl eingeben" },
+        { "number": 3, "text": "Jahresverbrauch eintragen" },
+        { "number": 4, "text": "Angebot einholen" },
+        { "number": 5, "text": "Tarif auswählen" }
+      ]
+    },
+    "onSubmit": {
+      "type": "string",
+      "title": "Submit Handler",
+      "description": "JavaScript function name for form submission"
+    }
+  },
+  "required": ["component"],
+  "additionalProperties": false
+}

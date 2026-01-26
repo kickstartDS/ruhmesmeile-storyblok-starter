@@ -1,0 +1,229 @@
+@use "energy-calculator-tokens";
+
+.dsa-energy-calculator {
+  background: var(--dsa-energy-calculator--background);
+  color: var(--dsa-energy-calculator--text-color);
+  padding: var(--dsa-energy-calculator--spacing-xl);
+  border-radius: var(--ks-border-radius-m);
+
+  @media (max-width: 768px) {
+    padding: var(--dsa-energy-calculator--spacing-l);
+  }
+}
+
+.dsa-energy-calculator__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--dsa-energy-calculator--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: var(--dsa-energy-calculator--spacing-l);
+  }
+}
+
+.dsa-energy-calculator__form-section {
+  background: var(--dsa-energy-calculator--form-bg);
+  padding: var(--dsa-energy-calculator--spacing-l);
+  border-radius: var(--ks-border-radius-m);
+}
+
+.dsa-energy-calculator__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-energy-calculator--spacing-l);
+}
+
+.dsa-energy-calculator__headline {
+  font-size: var(--ks-font-size-l);
+  font-weight: var(--ks-font-weight-bold);
+  color: var(--ks-text-color-primary);
+  margin: 0;
+}
+
+.dsa-energy-calculator__energy-type {
+  display: flex;
+  gap: var(--dsa-energy-calculator--spacing);
+}
+
+.dsa-energy-calculator__type-button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ks-spacing-s);
+  padding: var(--ks-spacing-inset-m);
+  background: var(--dsa-energy-calculator--input-bg);
+  border: 2px solid transparent;
+  border-radius: var(--ks-border-radius-s);
+  cursor: pointer;
+  transition: var(--ks-transition-default);
+  font-size: var(--ks-font-size-xs);
+  font-weight: var(--ks-font-weight-bold);
+  color: var(--ks-text-color-primary);
+
+  &:hover {
+    border-color: var(--ks-border-color-interactive-hover);
+  }
+
+  &--active {
+    border-color: var(--ks-color-primary);
+    background: var(--ks-background-color-accent);
+  }
+}
+
+.dsa-energy-calculator__icon {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+}
+
+.dsa-energy-calculator__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-energy-calculator--spacing-l);
+}
+
+.dsa-energy-calculator__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-s);
+}
+
+.dsa-energy-calculator__label {
+  font-size: var(--ks-font-size-xs);
+  font-weight: var(--ks-font-weight-bold);
+  color: var(--ks-text-color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dsa-energy-calculator__input {
+  padding: var(--ks-spacing-inset-squish-m);
+  background: var(--dsa-energy-calculator--input-bg);
+  border: 1px solid var(--dsa-energy-calculator--input-border);
+  border-radius: var(--ks-border-radius-s);
+  font-size: var(--ks-font-size-m);
+  color: var(--ks-text-color-primary);
+  transition: var(--ks-transition-default);
+
+  &:focus {
+    outline: none;
+    border-color: var(--dsa-energy-calculator--input-focus-border);
+  }
+
+  &::placeholder {
+    color: var(--ks-text-color-tertiary);
+  }
+}
+
+.dsa-energy-calculator__slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-xs);
+}
+
+.dsa-energy-calculator__range {
+  width: 100%;
+  height: 8px;
+  background: var(--dsa-energy-calculator--input-bg);
+  border-radius: var(--ks-border-radius-s);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--ks-color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--ks-color-primary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.dsa-energy-calculator__slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ks-font-size-s);
+  color: var(--ks-text-color-secondary);
+  padding: 0 var(--ks-spacing-xs);
+}
+
+.dsa-energy-calculator__submit {
+  padding: var(--ks-spacing-inset-squish-l);
+  background: var(--dsa-energy-calculator--button-bg);
+  color: var(--dsa-energy-calculator--button-text);
+  border: none;
+  border-radius: var(--ks-border-radius-s);
+  font-size: var(--ks-font-size-m);
+  font-weight: var(--ks-font-weight-bold);
+  cursor: pointer;
+  transition: var(--ks-transition-default);
+
+  &:hover {
+    background: var(--dsa-energy-calculator--button-hover-bg);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.dsa-energy-calculator__description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-energy-calculator--spacing);
+  padding: var(--dsa-energy-calculator--spacing);
+}
+
+.dsa-energy-calculator__description-headline {
+  font-size: var(--ks-font-size-xl);
+  font-weight: var(--ks-font-weight-bold);
+  line-height: var(--ks-line-height-tight);
+  margin: 0;
+}
+
+.dsa-energy-calculator__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-s);
+}
+
+.dsa-energy-calculator__step {
+  display: flex;
+  align-items: center;
+  gap: var(--ks-spacing-m);
+}
+
+.dsa-energy-calculator__step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--ks-background-color-default);
+  color: var(--ks-text-color-primary);
+  border-radius: 50%;
+  font-weight: var(--ks-font-weight-bold);
+  flex-shrink: 0;
+}
+
+.dsa-energy-calculator__step-text {
+  font-size: var(--ks-font-size-m);
+}
