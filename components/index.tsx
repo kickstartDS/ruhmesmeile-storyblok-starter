@@ -351,4 +351,9 @@ export const components = {
     )
   ),
   slider: editable(Slider, "components"),
+  "meter-form": editable(
+    dynamic(() =>
+      import("./meter-form/MeterFormComponent").then((mod) => mod.MeterForm)
+    )
+  ),
 };

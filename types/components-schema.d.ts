@@ -128,6 +128,17 @@ export interface BusinessCardStoryblok {
   component: "business-card";
 }
 
+export interface ButtonStoryblok {
+  label: string;
+  url?: MultilinkStoryblok;
+  variant?: "" | "primary" | "secondary" | "tertiary";
+  size?: "" | "small" | "medium" | "large";
+  disabled?: boolean;
+  type?: "" | "button" | "submit" | "reset";
+  _uid: string;
+  component: "button";
+}
+
 export interface ButtonsStoryblok {
   label?: string;
   url?: MultilinkStoryblok;
@@ -156,7 +167,7 @@ export interface ContactStoryblok {
 }
 
 export interface ContentNavStoryblok {
-  image_src?: MultilinkStoryblok;
+  image_src?: AssetStoryblok;
   image_alt?: string;
   topic?: string;
   links?: LinksStoryblok[];
@@ -183,6 +194,7 @@ export interface CtaStoryblok {
   textAlign?: "" | "left" | "center";
   align?: "" | "center" | "top" | "bottom";
   padding?: boolean;
+  inverted?: boolean;
   _uid: string;
   component: "cta";
 }
@@ -196,6 +208,13 @@ export interface DatesStoryblok {
   ariaLabel?: string;
   _uid: string;
   component: "dates";
+}
+
+export interface DescriptionItemsStoryblok {
+  number?: string;
+  text?: string;
+  _uid: string;
+  component: "descriptionItems";
 }
 
 export interface DividerStoryblok {
@@ -220,6 +239,25 @@ export interface DownloadsStoryblok {
   download?: DownloadStoryblok[];
   _uid: string;
   component: "downloads";
+}
+
+export interface EnergyCalculatorStoryblok {
+  energyType?: "" | "electricity" | "gas";
+  postalCode?: string;
+  householdSize?: string;
+  annualConsumption?: string;
+  submitLabel?: string;
+  headlineText?: string;
+  electricityLabel?: string;
+  gasLabel?: string;
+  postalCodeLabel?: string;
+  householdSizeLabel?: string;
+  consumptionLabel?: string;
+  descriptionHeadline?: string;
+  descriptionItems?: DescriptionItemsStoryblok[];
+  onSubmit?: string;
+  _uid: string;
+  component: "energy-calculator";
 }
 
 export interface EventDetailStoryblok {
@@ -342,19 +380,39 @@ export interface GalleryStoryblok {
 
 export interface GlobalStoryblok {
   global?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
     | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
     | FeaturesStoryblok
     | GalleryStoryblok
+    | HeadlineStoryblok
     | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
     | ImageTextStoryblok
     | InfoTableStoryblok
     | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
     | SplitEvenStoryblok
     | SplitWeightedStoryblok
     | StatsStoryblok
     | TeaserCardStoryblok
     | TestimonialsStoryblok
     | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
   )[];
   _uid: string;
   component: "global";
@@ -384,7 +442,7 @@ export interface HeaderStoryblok {
 }
 
 export interface HeadlineStoryblok {
-  text?: string;
+  text: string;
   sub?: string;
   switchOrder?: boolean;
   align?: "" | "left" | "center" | "right";
@@ -416,6 +474,7 @@ export interface HeroStoryblok {
   image_indent?: "" | "none" | "left" | "right";
   image_alt?: string;
   textPosition?: "" | "center" | "below" | "offset" | "left" | "right" | "corner" | "bottom";
+  mobileTextBelow?: boolean;
   _uid: string;
   component: "hero";
 }
@@ -547,6 +606,46 @@ export interface MatchesStoryblok {
   component: "matches";
 }
 
+export interface MeterFormStoryblok {
+  title?: string;
+  submitButtonText?: string;
+  uploadInfo?: string;
+  privacyText?: string;
+  privacyLink?: string;
+  _uid: string;
+  component: "meter-form";
+}
+
+export interface MeterReadingFormStoryblok {
+  title?: string;
+  billingTypeLabel?: string;
+  customerNumberLabel?: string;
+  salutationLabel?: string;
+  firstNameLabel?: string;
+  lastNameLabel?: string;
+  streetLabel?: string;
+  cityLabel?: string;
+  emailLabel?: string;
+  phoneLabel?: string;
+  electricityHeading?: string;
+  electricityMeterNumberLabel?: string;
+  electricityMeterTypeLabel?: string;
+  electricityReadingLabel?: string;
+  electricityFeedInLabel?: string;
+  electricitySecondMeterLabel?: string;
+  electricityThirdMeterLabel?: string;
+  electricityFourthMeterLabel?: string;
+  waterHeading?: string;
+  waterMeterNumberLabel?: string;
+  waterReadingLabel?: string;
+  uploadLabel?: string;
+  uploadButtonLabel?: string;
+  consentLabel?: string;
+  submitButtonLabel?: string;
+  _uid: string;
+  component: "meter-reading-form";
+}
+
 export interface MosaicStoryblok {
   layout?: "" | "alternate" | "textLeft" | "textRight";
   largeHeadlines?: boolean;
@@ -565,14 +664,28 @@ export interface NavItemsStoryblok {
 }
 
 export interface PageStoryblok {
-  section?: SectionStoryblok[];
+  section?: (SectionStoryblok | PrompterStoryblok)[];
   header_floating?: boolean;
   header_inverted?: boolean;
   footer_inverted?: boolean;
   seo?: SeoStoryblok[];
+  token?: string;
+  header_logo?: AssetStoryblok;
+  footer_logo?: AssetStoryblok;
   _uid: string;
   component: "page";
   uuid?: string;
+}
+
+export interface PrompterStoryblok {
+  sections?: string;
+  includeStory?: boolean;
+  useIdea?: boolean;
+  relatedStories?: unknown[];
+  userPrompt?: string;
+  systemPrompt?: string;
+  _uid: string;
+  component: "prompter";
 }
 
 export interface QuestionsStoryblok {
@@ -580,6 +693,12 @@ export interface QuestionsStoryblok {
   answer?: string;
   _uid: string;
   component: "questions";
+}
+
+export interface RelatedStoriesStoryblok {
+  entry?: string;
+  _uid: string;
+  component: "relatedStories";
 }
 
 export interface SearchStoryblok {
@@ -621,16 +740,54 @@ export interface SearchResultsStoryblok {
 }
 
 export interface SectionStoryblok {
+  aiDraft?: boolean;
   width?: "" | "full" | "max" | "wide" | "default" | "narrow";
   style?: "" | "default" | "framed" | "deko";
   backgroundColor?: "" | "default" | "accent" | "bold";
-  transition?: "" | "none" | "to_default" | "to_accent" | "to_bold" | "to_inverted";
+  transition?: "" | "none" | "to-default" | "to-accent" | "to-bold" | "to-inverted";
   backgroundImage?: AssetStoryblok;
   spotlight?: boolean;
   spaceBefore?: "" | "default" | "small" | "none";
   spaceAfter?: "" | "default" | "small" | "none";
   inverted?: boolean;
   headerSpacing?: boolean;
+  components?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
+    | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
+    | FeaturesStoryblok
+    | GalleryStoryblok
+    | HeadlineStoryblok
+    | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
+    | ImageTextStoryblok
+    | InfoTableStoryblok
+    | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
+    | SplitEvenStoryblok
+    | SplitWeightedStoryblok
+    | StatsStoryblok
+    | TeaserCardStoryblok
+    | TestimonialsStoryblok
+    | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
+  )[];
+  buttons?: ButtonsStoryblok[];
   headline_text?: string;
   headline_large?: boolean;
   headline_width?: "" | "unset" | "narrow" | "default" | "wide";
@@ -643,23 +800,6 @@ export interface SectionStoryblok {
   content_gutter?: "" | "large" | "default" | "small" | "none";
   content_mode?: "" | "default" | "tile" | "list" | "slider";
   content_tileWidth?: "" | "smallest" | "default" | "medium" | "large" | "largest" | "full";
-  components?: (
-    | CtaStoryblok
-    | FeaturesStoryblok
-    | GalleryStoryblok
-    | HeroStoryblok
-    | ImageTextStoryblok
-    | InfoTableStoryblok
-    | LogosStoryblok
-    | SplitEvenStoryblok
-    | SplitWeightedStoryblok
-    | StatsStoryblok
-    | TeaserCardStoryblok
-    | TestimonialsStoryblok
-    | TextStoryblok
-    | GlobalReferenceStoryblok
-  )[];
-  buttons?: ButtonsStoryblok[];
   _uid: string;
   component: "section";
 }
@@ -694,19 +834,40 @@ export interface SliderStoryblok {
   variant?: "" | "slider" | "carousel";
   className?: string;
   components?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
     | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
     | FeaturesStoryblok
     | GalleryStoryblok
+    | HeadlineStoryblok
     | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
     | ImageTextStoryblok
     | InfoTableStoryblok
     | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
     | SplitEvenStoryblok
     | SplitWeightedStoryblok
     | StatsStoryblok
     | TeaserCardStoryblok
     | TestimonialsStoryblok
     | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
   )[];
   _uid: string;
   component: "slider";
@@ -729,19 +890,80 @@ export interface SplitEvenStoryblok {
   firstComponents?: (
     | BlogTeaserStoryblok
     | BusinessCardStoryblok
+    | ButtonStoryblok
     | ContentNavStoryblok
+    | CtaStoryblok
     | DividerStoryblok
     | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
     | EventLatestTeaserStoryblok
     | EventListTeaserStoryblok
     | FaqStoryblok
+    | FeaturesStoryblok
+    | GalleryStoryblok
+    | HeadlineStoryblok
+    | HeroStoryblok
     | HtmlStoryblok
     | ImageStoryStoryblok
+    | ImageTextStoryblok
+    | InfoTableStoryblok
+    | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
     | MosaicStoryblok
+    | PrompterStoryblok
     | SliderStoryblok
+    | SplitEvenStoryblok
+    | SplitWeightedStoryblok
+    | StatsStoryblok
+    | TeaserCardStoryblok
+    | TestimonialsStoryblok
+    | TextStoryblok
+    | TimelineStoryblok
     | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
   )[];
-  secondComponents?: never[];
+  secondComponents?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
+    | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
+    | FeaturesStoryblok
+    | GalleryStoryblok
+    | HeadlineStoryblok
+    | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
+    | ImageTextStoryblok
+    | InfoTableStoryblok
+    | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
+    | SplitEvenStoryblok
+    | SplitWeightedStoryblok
+    | StatsStoryblok
+    | TeaserCardStoryblok
+    | TestimonialsStoryblok
+    | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
+  )[];
+  firstLayout_layout?: "" | "smallTiles" | "largeTiles" | "list";
+  firstLayout_stretchVertically?: boolean;
+  secondLayout_layout?: "" | "smallTiles" | "largeTiles" | "list";
+  secondLayout_stretchVertically?: boolean;
+  stretchContent?: boolean;
   _uid: string;
   component: "split-even";
 }
@@ -756,8 +978,82 @@ export interface SplitWeightedStoryblok {
   asideLayout_minWidth?: "" | "narrow" | "default" | "wide";
   order_mobile?: "" | "mainFirst" | "asideFirst";
   order_desktop?: "" | "mainFirst" | "asideFirst";
-  mainComponents?: never[];
-  asideComponents?: never[];
+  mainComponents?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
+    | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
+    | FeaturesStoryblok
+    | GalleryStoryblok
+    | HeadlineStoryblok
+    | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
+    | ImageTextStoryblok
+    | InfoTableStoryblok
+    | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
+    | SplitEvenStoryblok
+    | SplitWeightedStoryblok
+    | StatsStoryblok
+    | TeaserCardStoryblok
+    | TestimonialsStoryblok
+    | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
+  )[];
+  asideComponents?: (
+    | BlogTeaserStoryblok
+    | BusinessCardStoryblok
+    | ButtonStoryblok
+    | ContentNavStoryblok
+    | CtaStoryblok
+    | DividerStoryblok
+    | DownloadsStoryblok
+    | EnergyCalculatorStoryblok
+    | EventLatestTeaserStoryblok
+    | EventListTeaserStoryblok
+    | FaqStoryblok
+    | FeaturesStoryblok
+    | GalleryStoryblok
+    | HeadlineStoryblok
+    | HeroStoryblok
+    | HtmlStoryblok
+    | ImageStoryStoryblok
+    | ImageTextStoryblok
+    | InfoTableStoryblok
+    | LogosStoryblok
+    | MeterFormStoryblok
+    | MeterReadingFormStoryblok
+    | MosaicStoryblok
+    | PrompterStoryblok
+    | SliderStoryblok
+    | SplitEvenStoryblok
+    | SplitWeightedStoryblok
+    | StatsStoryblok
+    | TeaserCardStoryblok
+    | TestimonialsStoryblok
+    | TextStoryblok
+    | TimelineStoryblok
+    | VideoCurtainStoryblok
+    | GlobalReferenceStoryblok
+  )[];
+  mainLayout_stretchVertically?: boolean;
+  mainLayout_layout?: "" | "smallTiles" | "largeTiles" | "list";
+  asideLayout_stretchVertically?: boolean;
+  asideLayout_layout?: "" | "smallTiles" | "largeTiles" | "list";
   _uid: string;
   component: "split-weighted";
 }
@@ -772,6 +1068,7 @@ export interface StatStoryblok {
 
 export interface StatsStoryblok {
   stat?: StatStoryblok[];
+  align?: "" | "center" | "left";
   _uid: string;
   component: "stats";
 }
@@ -786,7 +1083,7 @@ export interface TeaserCardStoryblok {
   headline?: string;
   text?: string;
   label?: string;
-  layout?: "" | "stack" | "row";
+  layout?: "" | "stack" | "row" | "compact";
   centered?: boolean;
   url?: MultilinkStoryblok;
   button_label?: string;
@@ -840,6 +1137,22 @@ export interface TileStoryblok {
   textColor?: string;
   _uid: string;
   component: "tile";
+}
+
+export interface TimelineStoryblok {
+  timelineItems?: TimelineItemsStoryblok[];
+  _uid: string;
+  component: "timeline";
+}
+
+export interface TimelineItemsStoryblok {
+  year?: string;
+  textLeft?: string;
+  textRight?: string;
+  image_src?: AssetStoryblok;
+  image_alt?: string;
+  _uid: string;
+  component: "timelineItems";
 }
 
 export interface VideoCurtainStoryblok {

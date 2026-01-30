@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://cms.mydesignsystem.com/meter-form.schema.json",
+  "title": "Meter Form",
+  "description": "Form for reporting electricity and water meter readings (Zählerstandsmeldung)",
+  "type": "object",
+  "properties": {
+    "title": {
+      "title": "Form Title",
+      "description": "Main title of the form",
+      "type": "string",
+      "default": "Formular Zählerstandsmeldung Strom und Wasser"
+    },
+    "submitButtonText": {
+      "title": "Submit Button Text",
+      "description": "Text for the submit button",
+      "type": "string",
+      "default": "Absenden"
+    },
+    "uploadInfo": {
+      "title": "Upload Information",
+      "description": "Information text about file upload",
+      "type": "string"
+    },
+    "privacyText": {
+      "title": "Privacy Consent Text",
+      "description": "Text for the privacy consent checkbox",
+      "type": "string"
+    },
+    "privacyLink": {
+      "title": "Privacy Link Text",
+      "description": "Text for the privacy policy link",
+      "type": "string",
+      "default": "Datenschutz"
+    }
+  },
+  "additionalProperties": false
+}

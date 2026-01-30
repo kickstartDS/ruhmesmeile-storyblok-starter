@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://visibility.mydesignsystem.com/meter-form.schema.json",
+  "type": "object",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "title": {
+          "x-cms-hidden": false
+        },
+        "submitButtonText": {
+          "x-cms-hidden": false
+        },
+        "uploadInfo": {
+          "x-cms-hidden": false
+        },
+        "privacyText": {
+          "x-cms-hidden": false
+        },
+        "privacyLink": {
+          "x-cms-hidden": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "$ref": "http://cms.mydesignsystem.com/meter-form.schema.json"
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,28 @@
+// Component tokens for meter-form
+:root {
+  // Spacing
+  --dsa-meter-form--spacing-section: var(--ks-spacing-stack-xl);
+  --dsa-meter-form--spacing-field: var(--ks-spacing-stack-m);
+  --dsa-meter-form--spacing-row: var(--ks-spacing-stack-s);
+  --dsa-meter-form--spacing-inline: var(--ks-spacing-inline-m);
+  --dsa-meter-form--spacing-padding: var(--ks-spacing-inset-l);
+
+  // Colors
+  --dsa-meter-form--background-color: var(--ks-background-color-default);
+  --dsa-meter-form--background-color-highlight: var(
+    --ks-background-color-interface
+  );
+  --dsa-meter-form--border-color: var(--ks-border-color-default);
+  --dsa-meter-form--text-color: var(--ks-text-color-default);
+  --dsa-meter-form--text-color-muted: var(--ks-text-color-muted);
+
+  // Typography
+  --dsa-meter-form--font-size-title: var(--ks-font-size-display-s);
+  --dsa-meter-form--font-size-section: var(--ks-font-size-copy-l);
+  --dsa-meter-form--font-size-label: var(--ks-font-size-interface-m);
+  --dsa-meter-form--font-size-small: var(--ks-font-size-interface-s);
+
+  // Border
+  --dsa-meter-form--border-width: var(--ks-border-width-m);
+  --dsa-meter-form--border-radius: var(--ks-border-radius-m);
+}
