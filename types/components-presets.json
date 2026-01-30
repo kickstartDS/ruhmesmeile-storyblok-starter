@@ -1370,7 +1370,7 @@
       "description": null
     },
     {
-      "id": 134345827484771,
+      "id": 139576085495868,
       "name": "Default",
       "preset": {
         "_uid": "84429485-6948-4b5a-bdfc-e0b141a31aba",
@@ -1402,10 +1402,10 @@
         "image_fullWidth": false,
         "image_aspectRatio": "square"
       },
-      "component_id": 134345827081321,
+      "component_id": 139576082433842,
       "space_id": 289871530294721,
-      "created_at": "2026-01-15T14:54:34.286Z",
-      "updated_at": "2026-01-15T14:54:34.286Z",
+      "created_at": "2026-01-30T09:36:32.746Z",
+      "updated_at": "2026-01-30T09:36:32.746Z",
       "image": "//a.storyblok.com/f/289871530294721/390x436/e105973045/blog-blog-author-default.png",
       "color": null,
       "icon": null,
@@ -1535,6 +1535,48 @@
       "created_at": "2026-01-15T14:54:35.295Z",
       "updated_at": "2026-01-15T14:54:35.295Z",
       "image": "//a.storyblok.com/f/289871530294721/390x494/1066e345fe/blog-blog-aside-default.png",
+      "color": null,
+      "icon": null,
+      "description": null
+    },
+    {
+      "id": 134345827484771,
+      "name": "Default",
+      "preset": {
+        "_uid": "84429485-6948-4b5a-bdfc-e0b141a31aba",
+        "name": "Jane Smith",
+        "links": [
+          {
+            "url": "tel:+4922868896620",
+            "_uid": "99db5c44-61e9-473f-93ec-7bf1ab1b8404",
+            "icon": "twitter",
+            "label": "jane_smith",
+            "newTab": false,
+            "ariaLabel": "Link to Isabella Doe's social media profile",
+            "component": "links"
+          },
+          {
+            "url": "mailto:mail@example.com",
+            "_uid": "ea193821-6efa-4db8-86db-07b0507a2cf2",
+            "icon": "email",
+            "label": "jane.smith@example.com",
+            "newTab": false,
+            "ariaLabel": "Link to Isabella Doe's social media profile",
+            "component": "links"
+          }
+        ],
+        "byline": "CEO at Company",
+        "component": "blog-author",
+        "image_alt": "Picture of Isabella Doe",
+        "image_src": "//a.storyblok.com/f/289871530294721/246x244/703b33a088/author-emily.png",
+        "image_fullWidth": false,
+        "image_aspectRatio": "square"
+      },
+      "component_id": 134345827081321,
+      "space_id": 289871530294721,
+      "created_at": "2026-01-15T14:54:34.286Z",
+      "updated_at": "2026-01-15T14:54:34.286Z",
+      "image": "//a.storyblok.com/f/289871530294721/390x436/e105973045/blog-blog-author-default.png",
       "color": null,
       "icon": null,
       "description": null

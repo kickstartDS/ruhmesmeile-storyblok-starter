@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://cms.mydesignsystem.com/meter-reading-form.schema.json",
+  "title": "Meter Reading Form",
+  "description": "Form component for submitting utility meter readings for electricity and water",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Form Title",
+      "description": "Main heading of the form",
+      "default": "Formular Zählerstandsmeldung Strom und Wasser"
+    },
+    "billingTypeLabel": {
+      "type": "string",
+      "title": "Billing Type Label",
+      "default": "Ablesung"
+    },
+    "customerNumberLabel": {
+      "type": "string",
+      "title": "Customer Number Label",
+      "default": "Kundennummer (falls bekannt)"
+    },
+    "salutationLabel": {
+      "type": "string",
+      "title": "Salutation Label",
+      "default": "Anrede"
+    },
+    "firstNameLabel": {
+      "type": "string",
+      "title": "First Name Label",
+      "default": "Vorname"
+    },
+    "lastNameLabel": {
+      "type": "string",
+      "title": "Last Name Label",
+      "default": "Name"
+    },
+    "streetLabel": {
+      "type": "string",
+      "title": "Street Label",
+      "default": "Straße, Nummer"
+    },
+    "cityLabel": {
+      "type": "string",
+      "title": "City Label",
+      "default": "PLZ, Ort"
+    },
+    "emailLabel": {
+      "type": "string",
+      "title": "Email Label",
+      "default": "E-Mail"
+    },
+    "phoneLabel": {
+      "type": "string",
+      "title": "Phone Label",
+      "default": "Telefonnummer für Rückfragen"
+    },
+    "electricityHeading": {
+      "type": "string",
+      "title": "Electricity Section Heading",
+      "default": "Strom"
+    },
+    "electricityMeterNumberLabel": {
+      "type": "string",
+      "title": "Electricity Meter Number Label",
+      "default": "Zählernummer"
+    },
+    "electricityMeterTypeLabel": {
+      "type": "string",
+      "title": "Electricity Meter Type Label",
+      "default": "Zählerart"
+    },
+    "electricityReadingLabel": {
+      "type": "string",
+      "title": "Electricity Reading Label",
+      "default": "Zählerstand Eintarifzähler (kWh) OBIS 1.8.0"
+    },
+    "electricityFeedInLabel": {
+      "type": "string",
+      "title": "Electricity Feed-in Label",
+      "default": "mit Einspeisung"
+    },
+    "electricitySecondMeterLabel": {
+      "type": "string",
+      "title": "Second Meter Label",
+      "default": "Zweiten Stromzähler angeben"
+    },
+    "electricityThirdMeterLabel": {
+      "type": "string",
+      "title": "Third Meter Label",
+      "default": "Dritten Stromzähler angeben"
+    },
+    "electricityFourthMeterLabel": {
+      "type": "string",
+      "title": "Fourth Meter Label",
+      "default": "Vierten Stromzähler angeben"
+    },
+    "waterHeading": {
+      "type": "string",
+      "title": "Water Section Heading",
+      "default": "Wasser"
+    },
+    "waterMeterNumberLabel": {
+      "type": "string",
+      "title": "Water Meter Number Label",
+      "default": "Zählernummer Wasser"
+    },
+    "waterReadingLabel": {
+      "type": "string",
+      "title": "Water Reading Label",
+      "default": "Zählerstand (m³)"
+    },
+    "uploadLabel": {
+      "type": "string",
+      "title": "Upload Description",
+      "default": "Sie haben hier die Möglichkeit Bilder Ihrer Zählerstände hochzuladen (*.jpg/*.jpeg Format)"
+    },
+    "uploadButtonLabel": {
+      "type": "string",
+      "title": "Upload Button Label",
+      "default": "Hochladen"
+    },
+    "consentLabel": {
+      "type": "string",
+      "title": "Consent Text",
+      "format": "html",
+      "default": "Ich willige ein, dass meine im Einwilligungsformular nach den in der Ein­willigung­serklärung genannten Bedingungen ver­arbeitet werden. Ich habe die Datenschutz­erklärung gelesen. Ich kann diese Einwilligungs­erklärung, auch Teile davon, jederzeit widerrufen."
+    },
+    "submitButtonLabel": {
+      "type": "string",
+      "title": "Submit Button Label",
+      "default": "Absenden"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+.meter-reading-form {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: var(--ks-spacing-inset-xl);
+  background-color: var(--ks-background-color-default);
+
+  &__title {
+    font: var(--ks-font-display-l);
+    font-weight: var(--ks-brand-font-weight-semi-bold);
+    color: var(--ks-text-color-primary);
+    margin-bottom: var(--ks-spacing-stack-xl);
+  }
+
+  &__section {
+    margin-bottom: var(--ks-spacing-stack-xl);
+  }
+
+  &__section-heading {
+    font: var(--ks-font-display-m);
+    font-weight: var(--ks-brand-font-weight-semi-bold);
+    color: var(--ks-text-color-primary);
+    margin-bottom: var(--ks-spacing-stack-s);
+  }
+
+  &__section-description {
+    font: var(--ks-font-copy-s);
+    color: var(--ks-text-color-secondary);
+    margin-bottom: var(--ks-spacing-stack-m);
+  }
+
+  &__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 var(--ks-spacing-stack-l) 0;
+  }
+
+  &__legend {
+    font: var(--ks-font-interface-m);
+    font-weight: var(--ks-brand-font-weight-medium);
+    color: var(--ks-text-color-primary);
+    margin-bottom: var(--ks-spacing-stack-s);
+    padding: 0;
+  }
+
+  &__radio-group {
+    display: flex;
+    gap: var(--ks-spacing-inline-m);
+  }
+
+  &__field {
+    margin-bottom: var(--ks-spacing-stack-m);
+  }
+
+  &__field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ks-spacing-inline-m);
+    margin-bottom: var(--ks-spacing-stack-m);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__checkbox {
+    margin-bottom: var(--ks-spacing-stack-m);
+  }
+
+  &__divider {
+    border-top: 1px dotted var(--ks-border-color-default);
+    margin: var(--ks-spacing-stack-l) 0;
+  }
+
+  &__upload-label {
+    font: var(--ks-font-copy-s);
+    color: var(--ks-text-color-secondary);
+    margin-bottom: var(--ks-spacing-stack-s);
+  }
+
+  &__upload-note {
+    font: var(--ks-font-copy-xs);
+    color: var(--ks-text-color-secondary);
+    margin-top: var(--ks-spacing-stack-xs);
+  }
+
+  &__submit {
+    margin-top: var(--ks-spacing-stack-xl);
+    display: flex;
+    justify-content: flex-start;
+  }
+}

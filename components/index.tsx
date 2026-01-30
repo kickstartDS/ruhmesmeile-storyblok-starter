@@ -284,6 +284,13 @@ export const components = {
       )
     )
   ),
+  "meter-reading-form": editable(
+    dynamic(() =>
+      import("./meter-reading-form/MeterReadingFormComponent").then(
+        (mod) => mod.MeterReadingFormContextDefault
+      )
+    )
+  ),
   "teaser-card": editable(
     dynamic(() =>
       import("@kickstartds/ds-agency-premium/teaser-card").then(

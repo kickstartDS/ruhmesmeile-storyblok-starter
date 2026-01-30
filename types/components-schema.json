@@ -5735,6 +5735,292 @@
       "metadata": {}
     },
     {
+      "name": "meter-reading-form",
+      "display_name": "Meter Reading Form",
+      "description": null,
+      "created_at": "2026-01-30T09:36:31.998Z",
+      "updated_at": "2026-01-30T09:36:31.998Z",
+      "id": 139576082433842,
+      "schema": {
+        "title": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "Title",
+          "key": "title",
+          "type": "text",
+          "default_value": "Formular Zählerstandsmeldung Strom und Wasser",
+          "description": "Main heading of the form",
+          "required": false
+        },
+        "billingTypeLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "BillingTypeLabel",
+          "key": "billingTypeLabel",
+          "type": "text",
+          "default_value": "Ablesung",
+          "description": "Billing Type Label",
+          "required": false
+        },
+        "customerNumberLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "CustomerNumberLabel",
+          "key": "customerNumberLabel",
+          "type": "text",
+          "default_value": "Kundennummer (falls bekannt)",
+          "description": "Customer Number Label",
+          "required": false
+        },
+        "salutationLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "SalutationLabel",
+          "key": "salutationLabel",
+          "type": "text",
+          "default_value": "Anrede",
+          "description": "Salutation Label",
+          "required": false
+        },
+        "firstNameLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "FirstNameLabel",
+          "key": "firstNameLabel",
+          "type": "text",
+          "default_value": "Vorname",
+          "description": "First Name Label",
+          "required": false
+        },
+        "lastNameLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "LastNameLabel",
+          "key": "lastNameLabel",
+          "type": "text",
+          "default_value": "Name",
+          "description": "Last Name Label",
+          "required": false
+        },
+        "streetLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "StreetLabel",
+          "key": "streetLabel",
+          "type": "text",
+          "default_value": "Straße, Nummer",
+          "description": "Street Label",
+          "required": false
+        },
+        "cityLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "CityLabel",
+          "key": "cityLabel",
+          "type": "text",
+          "default_value": "PLZ, Ort",
+          "description": "City Label",
+          "required": false
+        },
+        "emailLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "EmailLabel",
+          "key": "emailLabel",
+          "type": "text",
+          "default_value": "E-Mail",
+          "description": "Email Label",
+          "required": false
+        },
+        "phoneLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "PhoneLabel",
+          "key": "phoneLabel",
+          "type": "text",
+          "default_value": "Telefonnummer für Rückfragen",
+          "description": "Phone Label",
+          "required": false
+        },
+        "electricityHeading": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityHeading",
+          "key": "electricityHeading",
+          "type": "text",
+          "default_value": "Strom",
+          "description": "Electricity Section Heading",
+          "required": false
+        },
+        "electricityMeterNumberLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityMeterNumberLabel",
+          "key": "electricityMeterNumberLabel",
+          "type": "text",
+          "default_value": "Zählernummer",
+          "description": "Electricity Meter Number Label",
+          "required": false
+        },
+        "electricityMeterTypeLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityMeterTypeLabel",
+          "key": "electricityMeterTypeLabel",
+          "type": "text",
+          "default_value": "Zählerart",
+          "description": "Electricity Meter Type Label",
+          "required": false
+        },
+        "electricityReadingLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityReadingLabel",
+          "key": "electricityReadingLabel",
+          "type": "text",
+          "default_value": "Zählerstand Eintarifzähler (kWh) OBIS 1.8.0",
+          "description": "Electricity Reading Label",
+          "required": false
+        },
+        "electricityFeedInLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityFeedInLabel",
+          "key": "electricityFeedInLabel",
+          "type": "text",
+          "default_value": "mit Einspeisung",
+          "description": "Electricity Feed-in Label",
+          "required": false
+        },
+        "electricitySecondMeterLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricitySecondMeterLabel",
+          "key": "electricitySecondMeterLabel",
+          "type": "text",
+          "default_value": "Zweiten Stromzähler angeben",
+          "description": "Second Meter Label",
+          "required": false
+        },
+        "electricityThirdMeterLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityThirdMeterLabel",
+          "key": "electricityThirdMeterLabel",
+          "type": "text",
+          "default_value": "Dritten Stromzähler angeben",
+          "description": "Third Meter Label",
+          "required": false
+        },
+        "electricityFourthMeterLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ElectricityFourthMeterLabel",
+          "key": "electricityFourthMeterLabel",
+          "type": "text",
+          "default_value": "Vierten Stromzähler angeben",
+          "description": "Fourth Meter Label",
+          "required": false
+        },
+        "waterHeading": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "WaterHeading",
+          "key": "waterHeading",
+          "type": "text",
+          "default_value": "Wasser",
+          "description": "Water Section Heading",
+          "required": false
+        },
+        "waterMeterNumberLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "WaterMeterNumberLabel",
+          "key": "waterMeterNumberLabel",
+          "type": "text",
+          "default_value": "Zählernummer Wasser",
+          "description": "Water Meter Number Label",
+          "required": false
+        },
+        "waterReadingLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "WaterReadingLabel",
+          "key": "waterReadingLabel",
+          "type": "text",
+          "default_value": "Zählerstand (m³)",
+          "description": "Water Reading Label",
+          "required": false
+        },
+        "uploadLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "UploadLabel",
+          "key": "uploadLabel",
+          "type": "text",
+          "default_value": "Sie haben hier die Möglichkeit Bilder Ihrer Zählerstände hochzuladen (*.jpg/*.jpeg Format)",
+          "description": "Upload Description",
+          "required": false
+        },
+        "uploadButtonLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "UploadButtonLabel",
+          "key": "uploadButtonLabel",
+          "type": "text",
+          "default_value": "Hochladen",
+          "description": "Upload Button Label",
+          "required": false
+        },
+        "consentLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "ConsentLabel",
+          "key": "consentLabel",
+          "type": "text",
+          "default_value": "Ich willige ein, dass meine im Einwilligungsformular nach den in der Ein­willigung­serklärung genannten Bedingungen ver­arbeitet werden. Ich habe die Datenschutz­erklärung gelesen. Ich kann diese Einwilligungs­erklärung, auch Teile davon, jederzeit widerrufen.",
+          "description": "Consent Text",
+          "required": false
+        },
+        "submitButtonLabel": {
+          "id": 0,
+          "pos": 0,
+          "display_name": "SubmitButtonLabel",
+          "key": "submitButtonLabel",
+          "type": "text",
+          "default_value": "Absenden",
+          "description": "Submit Button Label",
+          "required": false
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [
+        {
+          "id": 139576085495868,
+          "name": "Default",
+          "component_id": 139576082433842,
+          "image": "//a.storyblok.com/f/289871530294721/390x436/e105973045/blog-blog-author-default.png",
+          "icon": null,
+          "color": null,
+          "description": null
+        }
+      ],
+      "preset_id": null,
+      "real_name": "Meter Reading Form",
+      "component_group_uuid": "b2d71812-e4b5-4525-9832-549eb8322725",
+      "color": "#05566a",
+      "icon": "block-wallet",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "metadata": {},
+      "component_group_name": "Components"
+    },
+    {
       "name": "mosaic",
       "display_name": "Mosaic",
       "description": null,
@@ -6025,7 +6311,7 @@
       "display_name": "Prompter",
       "description": null,
       "created_at": "2026-01-15T19:46:18.127Z",
-      "updated_at": "2026-01-28T11:27:13.782Z",
+      "updated_at": "2026-01-28T18:55:59.277Z",
       "id": 134417523213033,
       "schema": {
         "sections": {
@@ -6088,7 +6374,7 @@
           "display_name": "SystemPrompt",
           "key": "systemPrompt",
           "type": "textarea",
-          "default_value": "You are a helpful assistant that generates high-quality website content based on the provided context and user instructions. Ensure the content is engaging, relevant, and well-structured.\n\nSections that include multiple, different components should always be set to `mode` equals `list`, sections including multiple of the same, smaller components (like teaser cards) should always use the list `mode` of `tile`.\n\nGenerally, only use `stacked` as an option in an enum, if it's really obviously the right choice. Most of the time it's not.\n\nFor images you use placehold.co:\n- the format reads as follows: https://placehold.co/1200x600?text=Dynamic+Web+Evolution, where after the domain you follow up with the dimensions (width x height) and then the `text` parameter to specify the text shown on the placeholder image\n- as the text, use a description for a good fitting image, that should be shown here. It should theoretically work as the alt text for the image\n- if the property getting such an image URL is called `backgroundImage` or `image` inside the Hero component, add `transparent/999999` after the dimensions (e.g. https://placehold.co/1200x600/transparent/999999?text=Dynamic+Web+Evolution)\n- never append or use any other parameters of path segments than the ones described here when constructing such image URLs",
+          "default_value": "You are a helpful assistant that generates high-quality website content based on the provided context and user instructions. Ensure the content is engaging, relevant, and well-structured.\n\nSections that include multiple, different components should always be set to `mode` equals `list`, sections including multiple of the same, smaller components (like teaser cards) should always use the list `mode` of `tile`.\n\nGenerally, only use `stacked` as an option in an enum, if it's really obviously the right choice. Most of the time it's not.\n\nFor images you use placehold.co:\n- the format reads as follows: https://placehold.co/1200x600?text=Dynamic+Web+Evolution, where after the domain you follow up with the dimensions (width x height) and then the `text` parameter to specify the text shown on the placeholder image\n- as the text, use a description for a good fitting image, that should be shown here. It should theoretically work as the alt text for the image\n- if the property getting such an image URL is called `backgroundImage` in general, or specifically `image` inside the Hero component, add `transparent/999999` after the dimensions (e.g. https://placehold.co/1200x600/transparent/999999?text=Dynamic+Web+Evolution)\n- never append or use any other parameters of path segments than the ones described here when constructing such image URLs",
           "description": "System-level instructions for content generation",
           "required": false
         }
@@ -6530,12 +6816,19 @@
       "display_name": "Section",
       "description": null,
       "created_at": "2026-01-15T14:54:29.304Z",
-      "updated_at": "2026-01-20T10:51:17.451Z",
+      "updated_at": "2026-01-30T09:08:24.588Z",
       "id": 134345807084646,
       "schema": {
+        "aiDraft": {
+          "type": "boolean",
+          "pos": 0,
+          "display_name": "AI Draft?",
+          "description": "If true, the section is marked as an AI-generated draft",
+          "id": "CGeFqt3mSq6IrWkNCqjJRg"
+        },
         "width": {
           "id": 0,
-          "pos": 0,
+          "pos": 1,
           "display_name": "Width",
           "key": "width",
           "type": "option",
@@ -6572,7 +6865,7 @@
         },
         "style": {
           "id": 0,
-          "pos": 0,
+          "pos": 2,
           "display_name": "Style",
           "key": "style",
           "type": "option",
@@ -6599,7 +6892,7 @@
         },
         "backgroundColor": {
           "id": 0,
-          "pos": 0,
+          "pos": 3,
           "display_name": "BackgroundColor",
           "key": "backgroundColor",
           "type": "option",
@@ -6626,7 +6919,7 @@
         },
         "transition": {
           "id": 0,
-          "pos": 0,
+          "pos": 4,
           "display_name": "Transition",
           "key": "transition",
           "type": "option",
@@ -6663,7 +6956,7 @@
         },
         "backgroundImage": {
           "id": 0,
-          "pos": 0,
+          "pos": 5,
           "display_name": "BackgroundImage",
           "key": "backgroundImage",
           "type": "asset",
@@ -6675,7 +6968,7 @@
         },
         "spotlight": {
           "id": 0,
-          "pos": 0,
+          "pos": 6,
           "display_name": "Spotlight",
           "key": "spotlight",
           "type": "boolean",
@@ -6684,7 +6977,7 @@
         },
         "spaceBefore": {
           "id": 0,
-          "pos": 0,
+          "pos": 7,
           "display_name": "SpaceBefore",
           "key": "spaceBefore",
           "type": "option",
@@ -6711,7 +7004,7 @@
         },
         "spaceAfter": {
           "id": 0,
-          "pos": 0,
+          "pos": 8,
           "display_name": "SpaceAfter",
           "key": "spaceAfter",
           "type": "option",
@@ -6738,7 +7031,7 @@
         },
         "inverted": {
           "id": 0,
-          "pos": 0,
+          "pos": 9,
           "display_name": "Inverted",
           "key": "inverted",
           "type": "boolean",
@@ -6747,16 +7040,43 @@
         },
         "headerSpacing": {
           "id": 0,
-          "pos": 0,
+          "pos": 10,
           "display_name": "HeaderSpacing",
           "key": "headerSpacing",
           "type": "boolean",
           "description": "Soll zusätzlicher Platz für einen schwebenden Header berücksichtigt werden?",
           "required": false
         },
+        "components": {
+          "id": 0,
+          "pos": 11,
+          "display_name": "Components",
+          "key": "components",
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_group_whitelist": [
+            "b2d71812-e4b5-4525-9832-549eb8322725",
+            "92914027-98be-4347-a164-f55476b59eee"
+          ],
+          "description": "Abstracts a blog overview concept into JSON schema",
+          "required": false
+        },
+        "buttons": {
+          "id": 0,
+          "pos": 12,
+          "display_name": "Buttons",
+          "key": "buttons",
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "buttons"
+          ]
+        },
         "tab-f01c7174-dd08-4cbb-8dfe-0491e36cf210": {
           "id": "8BxxdN0ITLuN_gSR42zyEA",
-          "pos": 0,
+          "pos": 13,
           "display_name": "Headline",
           "key": "tab-f01c7174-dd08-4cbb-8dfe-0491e36cf210",
           "keys": [
@@ -6774,7 +7094,7 @@
         },
         "headline_text": {
           "id": 0,
-          "pos": 0,
+          "pos": 14,
           "display_name": "Text",
           "key": "headline_text",
           "type": "markdown",
@@ -6783,7 +7103,7 @@
         },
         "headline_large": {
           "id": 0,
-          "pos": 0,
+          "pos": 15,
           "display_name": "Large",
           "key": "headline_large",
           "type": "boolean",
@@ -6792,7 +7112,7 @@
         },
         "headline_width": {
           "id": 0,
-          "pos": 0,
+          "pos": 16,
           "display_name": "Width",
           "key": "headline_width",
           "type": "option",
@@ -6824,7 +7144,7 @@
         },
         "headline_textAlign": {
           "id": 0,
-          "pos": 0,
+          "pos": 17,
           "display_name": "TextAlign",
           "key": "headline_textAlign",
           "type": "option",
@@ -6850,7 +7170,7 @@
         },
         "headline_align": {
           "id": 0,
-          "pos": 0,
+          "pos": 18,
           "display_name": "Align",
           "key": "headline_align",
           "type": "option",
@@ -6876,7 +7196,7 @@
         },
         "headline_sub": {
           "id": 0,
-          "pos": 0,
+          "pos": 19,
           "display_name": "Sub",
           "key": "headline_sub",
           "type": "markdown",
@@ -6885,7 +7205,7 @@
         },
         "headline_switchOrder": {
           "id": 0,
-          "pos": 0,
+          "pos": 20,
           "display_name": "SwitchOrder",
           "key": "headline_switchOrder",
           "type": "boolean",
@@ -6894,7 +7214,7 @@
         },
         "tab-e8c8fd1c-73d1-4a81-b0f1-72f633083cc7": {
           "id": "6Mj9HHPRSoGw8XL2Mwg8xw",
-          "pos": 0,
+          "pos": 21,
           "display_name": "Content",
           "key": "tab-e8c8fd1c-73d1-4a81-b0f1-72f633083cc7",
           "keys": [
@@ -6910,7 +7230,7 @@
         },
         "content_width": {
           "id": 0,
-          "pos": 0,
+          "pos": 22,
           "display_name": "Width",
           "key": "content_width",
           "type": "option",
@@ -6942,7 +7262,7 @@
         },
         "content_align": {
           "id": 0,
-          "pos": 0,
+          "pos": 23,
           "display_name": "Align",
           "key": "content_align",
           "type": "option",
@@ -6969,7 +7289,7 @@
         },
         "content_gutter": {
           "id": 0,
-          "pos": 0,
+          "pos": 24,
           "display_name": "Gutter",
           "key": "content_gutter",
           "type": "option",
@@ -7001,7 +7321,7 @@
         },
         "content_mode": {
           "id": 0,
-          "pos": 0,
+          "pos": 25,
           "display_name": "Mode",
           "key": "content_mode",
           "type": "option",
@@ -7033,7 +7353,7 @@
         },
         "content_tileWidth": {
           "id": 0,
-          "pos": 0,
+          "pos": 26,
           "display_name": "TileWidth",
           "key": "content_tileWidth",
           "type": "option",
@@ -7072,46 +7392,12 @@
             }
           ],
           "required": false
-        },
-        "components": {
-          "id": 0,
-          "pos": 0,
-          "display_name": "Components",
-          "key": "components",
-          "type": "bloks",
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_group_whitelist": [
-            "b2d71812-e4b5-4525-9832-549eb8322725",
-            "92914027-98be-4347-a164-f55476b59eee"
-          ],
-          "description": "Abstracts a blog overview concept into JSON schema",
-          "required": false
-        },
-        "buttons": {
-          "id": 0,
-          "pos": 0,
-          "display_name": "Buttons",
-          "key": "buttons",
-          "type": "bloks",
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "buttons"
-          ]
-        },
-        "aiDraft": {
-          "type": "boolean",
-          "pos": 26,
-          "display_name": "AI Draft?",
-          "description": "If true, the section is marked as an AI-generated draft",
-          "id": "CGeFqt3mSq6IrWkNCqjJRg"
         }
       },
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{@each(it.components) =&gt; val, index}}\n  {{@if(index === 0)}}\n    {{@if(val.type)}}{{val.type}}\n    {{#else}}global reference\n    {{/if}}\n  {{#else}}\n    {{@if(val.type)}}, {{val.type}}\n    {{#else}}, global reference\n    {{/if}}\n  {{/if}}\n{{/each}}",
       "is_nestable": true,
       "all_presets": [
         {

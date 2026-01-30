@@ -28,6 +28,9 @@
               },
               {
                 "$ref": "http://cms.mydesignsystem.com/timeline.schema.json"
+              },
+              {
+                "$ref": "http://cms.mydesignsystem.com/meter-reading-form.schema.json"
               }
             ]
           }
