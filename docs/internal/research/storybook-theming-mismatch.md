@@ -1,21 +1,20 @@
-# Storybook Theming Mismatch Analysis
+# Storybook & Editor Theming Mismatch Analysis
 
 ## Problem
 
-The Storybook **manager chrome** (sidebar, toolbar, panels) shows a different theme than the **preview canvas** (rendered components). The preview displays the correct project branding, but the chrome uses stale default kickstartDS values.
+The Storybook **manager chrome** (sidebar, toolbar, panels), the **Design Tokens Editor**, and the **Schema Layer Editor** all showed a different theme than the **preview canvas** (rendered components). The preview displayed the correct project branding, but the chrome and both editors used stale default kickstartDS values.
 
 ## Root Cause
 
-Two completely separate token pipelines feed each layer, and they have diverged.
+Two completely separate token pipelines existed, and they had diverged.
 
-### Manager / Chrome Pipeline
+### Stale Pipeline (Style Dictionary)
 
 1. **Source**: `src/token/dictionary/*.json` (Style Dictionary format)
-2. **Build step**: `build-tokens` (`kickstartDS tokens compile`) → generates `src/token/tokens.js`
-3. **Consumed by**: `.storybook/themes.ts` imports static JS constants from `tokens.js`
-4. **Values**: Original kickstartDS defaults — **never updated** when the project branding was customized
+2. **Build step**: `build-tokens` (`kickstartDS tokens compile`) → generates `src/token/tokens.js` + `tokens.css`
+3. **Values**: Original kickstartDS defaults — **never updated** when the project branding was customized
 
-### Preview / Components Pipeline
+### Correct Pipeline (W3C DTCG Branding Tokens)
 
 1. **Source**: `src/token/branding-tokens.json` (W3C DTCG format)
 2. **Build step**: `branding-tokens` (`node scripts/buildBrandingTokens.mjs`) → generates `src/token/branding-tokens.css`
@@ -24,67 +23,72 @@ Two completely separate token pipelines feed each layer, and they have diverged.
 
 ### Value Comparison
 
-| Token             | Manager (tokens.js)          | Preview (branding-tokens.css)   |
-| ----------------- | ---------------------------- | ------------------------------- |
-| Primary color     | `#3065c0` (blue)             | `#007e6f` (teal)                |
-| Foreground        | `#06081f`                    | `#151515`                       |
-| Font (interface)  | `system-ui, -apple-system, …` (system stack) | `Inter`            |
+| Token            | Stale (tokens.js / tokens.css)               | Correct (branding-tokens) |
+| ---------------- | -------------------------------------------- | ------------------------- |
+| Primary color    | `#3065c0` (blue)                             | `#007e6f` (teal)          |
+| Foreground       | `#06081f`                                    | `#151515`                 |
+| Font (interface) | `system-ui, -apple-system, …` (system stack) | `Inter`                   |
 
-## Data Flow Diagram
+### Affected Consumers
+
+| Consumer                 | Before (stale source)               | After (fixed)                               |
+| ------------------------ | ----------------------------------- | ------------------------------------------- |
+| Storybook Manager Chrome | `tokens.js` via `themes.ts`         | `branding-tokens.json` via `themes.ts`      |
+| Design Tokens Editor     | `tokens.js` via MUI `createTheme()` | `branding-tokens.json` via `createTheme()`  |
+| Schema Layer Editor      | `tokens.css` via CSS `:root` vars   | `branding-tokens.css` via CSS `color-mix()` |
+| Storybook Preview Canvas | _(was already correct)_             | _(unchanged)_                               |
+
+## Resolution
+
+**Option B was implemented** — all three consumers now import `branding-tokens.json` (or `.css`) directly and derive their theme values from the W3C DTCG source, using helper functions to convert sRGB components to hex/rgba.
+
+### Changes Made
+
+1. **`.storybook/themes.ts`** — Replaced `tokens.js` import with `branding-tokens.json` import. Uses `componentsToHex()`, `componentsToRgba()`, and `mixToHex()` helpers to derive Storybook theme colors from DTCG values.
+
+2. **`packages/design-tokens-editor/src/main.tsx`** — Replaced `tokens.js` + `tokens.css` imports with `branding-tokens.json` import. Uses the same helper pattern to compute MUI `createTheme()` palette, typography, and component overrides.
+
+3. **`packages/schema-layer-editor/src/app/main.tsx`** — Replaced `tokens.css` import with `branding-tokens.css` import.
+
+4. **`packages/schema-layer-editor/src/app/styles/editor.css`** — Updated all `:root` CSS custom properties to use `--ks-brand-*` variables with CSS `color-mix()` for derived values (hover states, alpha tints, border colors).
+
+5. **`packages/schema-layer-editor/vite.config.ts`** — Added `publicDir` pointing to `@kickstartds/design-system/dist/static` (same as Design Tokens Editor) so logo and favicons are sourced from the design system.
+
+6. **Removed `packages/schema-layer-editor/src/app/public/`** — Stale local logo.svg and favicons, now served from the design system.
+
+## Data Flow Diagram (After Fix)
 
 ```
-src/token/dictionary/*.json                src/token/branding-tokens.json
-  (Style Dictionary format)                   (W3C DTCG format)
-         │                                           │
-    build-tokens                              branding-tokens
-  (kickstartDS tokens compile)            (node scripts/buildBrandingTokens.mjs)
-         │                                           │
-         ▼                                           ▼
-  src/token/tokens.js                      src/token/branding-tokens.css
-  (ES6 named exports)                     (CSS custom properties --ks-brand-*)
-         │                                           │
-         ▼                                           ▼
-  .storybook/themes.ts                    Component SCSS (runtime cascade)
-  → create({ colorPrimary: ... })         → var(--ks-brand-color-primary)
-         │                                           │
-         ▼                                           ▼
-  Storybook Manager Chrome                Storybook Preview Canvas
-  (sidebar, toolbar, panels)              (rendered components)
-  ─────────────────────────               ────────────────────────
-  Blue theme (#3065c0)                    Teal theme (#007e6f) ✅
+src/token/branding-tokens.json (W3C DTCG — single source of truth)
+         │
+    branding-tokens
+  (node scripts/buildBrandingTokens.mjs)
+         │
+         ├─────────────────────────────────────────────────────────┐
+         ▼                                                         ▼
+  branding-tokens.css                                    branding-tokens.json
+  (CSS custom properties)                                (imported as JS object)
+         │                                                         │
+         ├──────────────────┐                    ┌─────────────────┼──────────────┐
+         ▼                  ▼                    ▼                 ▼              ▼
+  Component SCSS       Schema Layer         Storybook        Design Tokens    Storybook
+  (runtime cascade)    Editor CSS           themes.ts        Editor MUI       Preview
+  var(--ks-brand-*)    color-mix()          create()         createTheme()    theme ✅
+         │                  │                    │                 │
+         ▼                  ▼                    ▼                 ▼
+  Preview Canvas ✅   Editor UI ✅         Manager Chrome ✅  Editor UI ✅
 ```
 
 ## Key Files
 
-- `src/token/dictionary/color.json` — Style Dictionary color source (stale defaults)
-- `src/token/tokens.js` — Generated JS token exports (consumed by themes.ts)
-- `src/token/branding-tokens.json` — W3C DTCG branding source (correct project values)
-- `src/token/branding-tokens.css` — Generated CSS custom properties (correct)
-- `.storybook/themes.ts` — Storybook chrome theme definition (reads stale tokens.js)
-- `.storybook/manager.tsx` — Applies theme to manager chrome
-- `.storybook/preview.tsx` — Preview decorator (components use CSS vars from branding-tokens.css)
-- `sd.config.cjs` — Style Dictionary config (produces tokens.js)
-- `scripts/buildBrandingTokens.mjs` — Branding token CSS generator
+- `src/token/branding-tokens.json` — W3C DTCG branding source (single source of truth)
+- `src/token/branding-tokens.css` — Generated CSS custom properties
+- `.storybook/themes.ts` — Storybook chrome theme (reads branding-tokens.json)
+- `packages/design-tokens-editor/src/main.tsx` — Design Tokens Editor MUI theme (reads branding-tokens.json)
+- `packages/schema-layer-editor/src/app/styles/editor.css` — Schema Layer Editor CSS vars (reads branding-tokens.css)
+- `packages/schema-layer-editor/src/app/main.tsx` — Schema Layer Editor entry (imports branding-tokens.css)
 
-## Possible Fixes
+### Legacy (still exists but no longer drives UI theming)
 
-### Option A: Sync dictionary tokens from branding tokens
-
-Update `src/token/dictionary/*.json` to match the values in `src/token/branding-tokens.json`, so both pipelines produce consistent output. This would require either a manual update or an automated sync script.
-
-**Pros**: No code changes to themes.ts or Storybook config.
-**Cons**: Two sources of truth remain; drift can recur.
-
-### Option B: Generate themes.ts from branding tokens directly
-
-Rewrite `.storybook/themes.ts` to import and parse `branding-tokens.json` (or `branding-tokens.css`) instead of `tokens.js`. The `tokensToCss.mjs` script already knows how to convert DTCG JSON to hex values — a similar utility could produce the JS values needed by `create()`.
-
-**Pros**: Single source of truth (branding-tokens.json drives both layers).
-**Cons**: Requires a build step or runtime parsing for the manager theme; the Style Dictionary pipeline still exists for other consumers so dictionary tokens may still need updating for non-Storybook uses.
-
-### Option C: Build tokens.js from branding-tokens.json
-
-Add a step that derives the Style Dictionary `dictionary/*.json` files from the W3C DTCG `branding-tokens.json`, making the DTCG file the sole source of truth. Then `build-tokens` produces a `tokens.js` that matches.
-
-**Pros**: Unifies the source of truth; all downstream consumers (Storybook, components, website) stay in sync automatically.
-**Cons**: Requires building the DTCG → Style Dictionary format converter.
+- `src/token/dictionary/*.json` — Style Dictionary source (stale defaults, used by other build steps)
+- `src/token/tokens.js` / `tokens.css` — Style Dictionary output (no longer imported by any UI consumer)

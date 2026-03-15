@@ -5,6 +5,10 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react()],
   root: resolve(__dirname, "src/app"),
+  publicDir: resolve(
+    __dirname,
+    "node_modules/@kickstartds/design-system/dist/static",
+  ),
   build: {
     outDir: resolve(__dirname, "dist/app"),
     emptyOutDir: true,

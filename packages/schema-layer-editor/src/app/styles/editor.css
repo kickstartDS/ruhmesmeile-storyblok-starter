@@ -1,30 +1,86 @@
 /* ── Schema Layer Editor — Minimal, functional CSS ─────────────────────── */
-/* Token values sourced from @kickstartds/design-system tokens.css              */
-/* DS token CSS is imported in main.tsx — all --ks-* properties are available   */
+/* Token values sourced from branding-tokens.css (W3C DTCG, single source)      */
+/* Branding CSS is imported in main.tsx — all --ks-brand-* properties available  */
 
 :root {
-  --color-bg: var(--ks-background-color-accent-base);
-  --color-surface: var(--ks-background-color-default-base);
-  --color-surface-hover: var(--ks-color-primary-to-bg-8-base);
-  --color-surface-active: var(--ks-color-primary-to-bg-7-base);
-  --color-border: var(--ks-color-fg-to-bg-7-base);
-  --color-text: var(--ks-text-color-default-base);
-  --color-text-muted: var(--ks-color-fg-alpha-5-base);
-  --color-primary: var(--ks-color-primary-base);
-  --color-primary-hover: var(--ks-color-primary-to-bg-2-base);
-  --color-primary-bg: var(--ks-color-primary-alpha-8-base);
-  --color-danger: var(--ks-color-negative-base);
-  --color-danger-bg: var(--ks-color-negative-alpha-8-base);
-  --color-danger-bg-subtle: var(--ks-color-negative-alpha-9-base);
-  --color-success: var(--ks-color-positive-base);
-  --color-success-darker: var(--ks-color-positive-to-fg-1-base);
-  --color-success-bg: var(--ks-color-positive-alpha-8-base);
-  --color-warning: var(--ks-color-notice-base);
-  --color-warning-darker: var(--ks-color-notice-to-fg-2-base);
-  --color-warning-bg: var(--ks-color-notice-alpha-8-base);
-  --color-hidden-bg: var(--ks-color-negative-alpha-9-base);
-  --font-mono: var(--ks-font-family-mono);
-  --font-sans: var(--ks-font-family-interface);
+  --color-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-primary) var(--ks-brand-color-scale-9),
+    var(--ks-brand-color-bg)
+  );
+  --color-surface: var(--ks-brand-color-bg);
+  --color-surface-hover: color-mix(
+    in srgb,
+    var(--ks-brand-color-primary) var(--ks-brand-color-scale-8),
+    var(--ks-brand-color-bg)
+  );
+  --color-surface-active: color-mix(
+    in srgb,
+    var(--ks-brand-color-primary) var(--ks-brand-color-scale-7),
+    var(--ks-brand-color-bg)
+  );
+  --color-border: color-mix(
+    in srgb,
+    var(--ks-brand-color-fg) var(--ks-brand-color-scale-7),
+    var(--ks-brand-color-bg)
+  );
+  --color-text: var(--ks-brand-color-fg);
+  --color-text-muted: color-mix(
+    in srgb,
+    var(--ks-brand-color-fg) var(--ks-brand-color-scale-5),
+    transparent
+  );
+  --color-primary: var(--ks-brand-color-primary);
+  --color-primary-hover: color-mix(
+    in srgb,
+    var(--ks-brand-color-primary) var(--ks-brand-color-scale-2),
+    var(--ks-brand-color-bg)
+  );
+  --color-primary-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-primary) var(--ks-brand-color-scale-8),
+    transparent
+  );
+  --color-danger: var(--ks-brand-color-negative);
+  --color-danger-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-negative) var(--ks-brand-color-scale-8),
+    transparent
+  );
+  --color-danger-bg-subtle: color-mix(
+    in srgb,
+    var(--ks-brand-color-negative) var(--ks-brand-color-scale-9),
+    transparent
+  );
+  --color-success: var(--ks-brand-color-positive);
+  --color-success-darker: color-mix(
+    in srgb,
+    var(--ks-brand-color-positive) var(--ks-brand-color-scale-1),
+    var(--ks-brand-color-fg)
+  );
+  --color-success-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-positive) var(--ks-brand-color-scale-8),
+    transparent
+  );
+  --color-warning: var(--ks-brand-color-notice);
+  --color-warning-darker: color-mix(
+    in srgb,
+    var(--ks-brand-color-notice) var(--ks-brand-color-scale-2),
+    var(--ks-brand-color-fg)
+  );
+  --color-warning-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-notice) var(--ks-brand-color-scale-8),
+    transparent
+  );
+  --color-hidden-bg: color-mix(
+    in srgb,
+    var(--ks-brand-color-negative) var(--ks-brand-color-scale-9),
+    transparent
+  );
+  --font-mono: var(--ks-brand-font-family-mono);
+  --font-sans: var(--ks-brand-font-family-interface);
 }
 
 * {
