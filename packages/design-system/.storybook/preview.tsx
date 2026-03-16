@@ -30,10 +30,40 @@ const STATIC_THEME_FILES: Record<string, string> = {
 
 const THEME_LINK_ID = "storybook-theme-override-link";
 const THEME_STYLE_ID = "storybook-theme-override-style";
+const THEME_FONT_LINK_ID = "storybook-theme-font-link";
+const GENERIC_FONT_RE =
+  /^(system-ui|ui-monospace|ui-serif|ui-sans-serif|ui-rounded|monospace|sans-serif|serif|cursive|fantasy)$/i;
+
+/** Extract first font-family name per role from CSS text, load from Google Fonts. */
+function loadFontsFromCss(css: string) {
+  document.getElementById(THEME_FONT_LINK_ID)?.remove();
+  const families = new Set<string>();
+  for (const role of ["display", "copy", "interface", "mono"]) {
+    const match = css.match(
+      new RegExp(`--ks-brand-font-family-${role}:\\s*([^;]+)`),
+    );
+    if (!match) continue;
+    // First family: strip quotes, ignore fallbacks after comma
+    const first = match[1].split(",")[0].trim().replace(/^["']|["']$/g, "");
+    if (first && !GENERIC_FONT_RE.test(first)) {
+      families.add(first);
+    }
+  }
+  if (families.size === 0) return;
+  const params = [...families]
+    .map((f) => `family=${encodeURIComponent(f)}:wght@300;400;500;600;700`)
+    .join("&");
+  const link = document.createElement("link");
+  link.id = THEME_FONT_LINK_ID;
+  link.rel = "stylesheet";
+  link.href = `https://fonts.googleapis.com/css2?${params}&display=swap`;
+  document.head.appendChild(link);
+}
 
 function clearThemeOverrides() {
   document.getElementById(THEME_LINK_ID)?.remove();
   document.getElementById(THEME_STYLE_ID)?.remove();
+  document.getElementById(THEME_FONT_LINK_ID)?.remove();
 }
 
 function injectThemeLink(href: string) {
@@ -43,6 +73,11 @@ function injectThemeLink(href: string) {
   link.id = THEME_LINK_ID;
   link.href = href;
   document.head.appendChild(link);
+  // Fetch the CSS to extract font families and load from Google Fonts
+  fetch(href)
+    .then((r) => r.text())
+    .then((css) => loadFontsFromCss(css))
+    .catch(() => {});
 }
 
 function injectThemeStyle(css: string) {
@@ -51,6 +86,7 @@ function injectThemeStyle(css: string) {
   style.id = THEME_STYLE_ID;
   style.textContent = css;
   document.head.appendChild(style);
+  loadFontsFromCss(css);
 }
 
 // Pre-fetch CMS themes so the preview can apply them by ID

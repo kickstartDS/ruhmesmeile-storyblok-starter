@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import { LoginPage } from "./LoginPage";
+import "@kickstartds/design-system/tokens/fonts.css";
 import brandingTokens from "@kickstartds/design-system/tokens/branding-tokens.json";
 
 // Convert W3C DTCG color components [R, G, B] (0–1 range) to hex

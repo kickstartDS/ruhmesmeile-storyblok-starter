@@ -3,11 +3,7 @@
 /* Branding CSS is imported in main.tsx — all --ks-brand-* properties available  */
 
 :root {
-  --color-bg: color-mix(
-    in srgb,
-    var(--ks-brand-color-primary) var(--ks-brand-color-scale-9),
-    var(--ks-brand-color-bg)
-  );
+  --color-bg: var(--ks-brand-color-bg);
   --color-surface: var(--ks-brand-color-bg);
   --color-surface-hover: color-mix(
     in srgb,
