@@ -20,6 +20,8 @@ COPY packages/design-system/dist/ ./packages/design-system/dist/
 COPY packages/design-tokens-editor/package.json ./packages/design-tokens-editor/
 COPY packages/design-tokens-mcp/package.json ./packages/design-tokens-mcp/
 COPY packages/schema-layer-editor/package.json ./packages/schema-layer-editor/
+COPY packages/shared-auth/package.json ./packages/shared-auth/
+COPY packages/storyblok-icon-sprite-picker-field-plugin/package.json ./packages/storyblok-icon-sprite-picker-field-plugin/
 COPY packages/storyblok-mcp/package.json ./packages/storyblok-mcp/
 COPY packages/storyblok-n8n/package.json ./packages/storyblok-n8n/
 COPY packages/storyblok-services/package.json ./packages/storyblok-services/
