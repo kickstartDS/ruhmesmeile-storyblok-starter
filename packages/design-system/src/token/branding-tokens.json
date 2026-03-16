@@ -5,22 +5,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.1882,
-            0.3961,
-            0.7529
-          ]
+          "components": [0.1882, 0.3961, 0.7529]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.3059,
-            0.5137,
-            0.8784
-          ]
+          "components": [0.3059, 0.5137, 0.8784]
         }
       }
     },
@@ -29,22 +21,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            1,
-            1,
-            1
-          ]
+          "components": [1, 1, 1]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            1,
-            1,
-            1
-          ]
+          "components": [1, 1, 1]
         }
       }
     },
@@ -53,22 +37,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            1,
-            1,
-            1
-          ]
+          "components": [1, 1, 1]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.0588,
-            0.1255,
-            0.2431
-          ]
+          "components": [0.0588, 0.1255, 0.2431]
         }
       }
     },
@@ -77,22 +53,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.0235,
-            0.0314,
-            0.1216
-          ]
+          "components": [0.0235, 0.0314, 0.1216]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            1,
-            1,
-            1
-          ]
+          "components": [1, 1, 1]
         }
       }
     },
@@ -101,22 +69,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.1882,
-            0.3961,
-            0.7529
-          ]
+          "components": [0.1882, 0.3961, 0.7529]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.5961,
-            0.698,
-            0.8784
-          ]
+          "components": [0.5961, 0.698, 0.8784]
         }
       }
     },
@@ -125,22 +85,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.1373,
-            0.5137,
-            0.1059
-          ]
+          "components": [0.1373, 0.5137, 0.1059]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.4314,
-            0.8588,
-            0.3922
-          ]
+          "components": [0.4314, 0.8588, 0.3922]
         }
       }
     },
@@ -149,22 +101,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            1,
-            0.102,
-            0.3412
-          ]
+          "components": [1, 0.102, 0.3412]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.8235,
-            0.1137,
-            0.2824
-          ]
+          "components": [0.8235, 0.1137, 0.2824]
         }
       }
     },
@@ -173,22 +117,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.3922,
-            0.7608,
-            0.8588
-          ]
+          "components": [0.3922, 0.7608, 0.8588]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0,
-            0.4431,
-            0.5608
-          ]
+          "components": [0, 0.4431, 0.5608]
         }
       }
     },
@@ -197,22 +133,14 @@
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0.3922,
-            0.7608,
-            0.8588
-          ]
+          "components": [0.3922, 0.7608, 0.8588]
         }
       },
       "inverted": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
-          "components": [
-            0,
-            0.4431,
-            0.5608
-          ]
+          "components": [0, 0.4431, 0.5608]
         }
       }
     },
@@ -271,6 +199,7 @@
       "copy": {
         "$type": "fontFamily",
         "$value": [
+          "Montserrat",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -296,6 +225,7 @@
       "interface": {
         "$type": "fontFamily",
         "$value": [
+          "Montserrat",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
