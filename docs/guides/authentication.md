@@ -4,12 +4,12 @@ All hosted services — 3 MCP servers and the Design Tokens Editor — support *
 
 ## Overview
 
-| Service               | Auth method       | Required header / UX          |
-| --------------------- | ----------------- | ----------------------------- |
-| Storyblok MCP         | Bearer token      | `Authorization: Bearer <jwt>` |
-| Design Tokens MCP     | Bearer token      | `Authorization: Bearer <jwt>` |
-| Component Builder MCP | Bearer token      | `Authorization: Bearer <jwt>` |
-| Design Tokens Editor  | Token-paste login | Paste JWT into login form     |
+| Service               | Auth method           | Required header / UX                        |
+| --------------------- | --------------------- | ------------------------------------------- |
+| Storyblok MCP         | Bearer token or OAuth | `Authorization: Bearer <jwt>` or OAuth flow |
+| Design Tokens MCP     | Bearer token or OAuth | `Authorization: Bearer <jwt>` or OAuth flow |
+| Component Builder MCP | Bearer token or OAuth | `Authorization: Bearer <jwt>` or OAuth flow |
+| Design Tokens Editor  | Token-paste login     | Paste JWT into login form                   |
 
 All services share the same `MCP_JWT_SECRET`, so a single JWT works everywhere.
 
@@ -178,6 +178,37 @@ curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..." \
   https://mcp.your-domain.com/mcp \
   -d '{"jsonrpc":"2.0","method":"tools/list","id":1}'
 ```
+
+### OAuth clients (claude.ai)
+
+Clients that require **OAuth 2.1** (e.g. claude.ai) are supported automatically. Every MCP server exposes a thin OAuth authorization layer alongside the `/mcp` endpoint — no external OAuth provider needed.
+
+#### How it works
+
+1. The client discovers OAuth metadata via `/.well-known/oauth-protected-resource` → `/.well-known/oauth-authorization-server-metadata`
+2. If needed, the client registers dynamically via `POST /register` (RFC 7591)
+3. The client redirects the user to `/authorize` with PKCE (`code_challenge`, `S256`)
+4. The user sees a **token-paste form** — paste the same pre-issued JWT used for other clients
+5. The server verifies the JWT, issues an authorization code, and redirects back
+6. The client exchanges the code at `POST /token` for an access token (which _is_ the JWT)
+7. The client sends `Authorization: Bearer <jwt>` on all subsequent MCP requests
+
+No additional configuration is required — the OAuth endpoints are served automatically when the MCP server runs in HTTP mode.
+
+#### Endpoints
+
+| Endpoint                                           | Method | Purpose                                                           |
+| -------------------------------------------------- | ------ | ----------------------------------------------------------------- |
+| `/.well-known/oauth-protected-resource`            | GET    | Resource metadata (RFC 9728) — points to the authorization server |
+| `/.well-known/oauth-authorization-server-metadata` | GET    | Authorization server metadata (RFC 8414)                          |
+| `/authorize`                                       | GET    | Shows the token-paste authorization form                          |
+| `/authorize`                                       | POST   | Validates the JWT, issues a code, redirects                       |
+| `/token`                                           | POST   | Exchanges authorization code + PKCE verifier for access token     |
+| `/register`                                        | POST   | Dynamic client registration (RFC 7591)                            |
+
+#### No-auth mode
+
+When `MCP_JWT_SECRET` is not set (local development), the OAuth flow still works but auto-approves without showing the form — claude.ai can connect to dev servers without tokens.
 
 ---
 

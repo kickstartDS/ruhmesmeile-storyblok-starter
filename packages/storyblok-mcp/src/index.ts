@@ -12,6 +12,8 @@ import {
   verifyToken,
   extractBearerToken,
   isAuthEnabled,
+  createOAuthMiddleware,
+  wwwAuthenticateHeader,
 } from "@kickstartds/shared-auth";
 import { loadConfig } from "./config.js";
 import {
@@ -278,6 +280,8 @@ async function main() {
   if (transportMode === "http") {
     const PORT = parseInt(process.env.MCP_PORT || "8080", 10);
 
+    const handleOAuth = createOAuthMiddleware({ serviceName: "Storyblok MCP" });
+
     const httpServer = createServer(async (req, res) => {
       const url = new URL(req.url || "/", `http://${req.headers.host}`);
 
@@ -287,6 +291,9 @@ async function main() {
         res.end(JSON.stringify({ status: "ok" }));
         return;
       }
+
+      // ── OAuth endpoints (authorize, token, registration, metadata) ──
+      if (await handleOAuth(req, res)) return;
 
       // Only handle /mcp path
       if (url.pathname !== "/mcp") {
@@ -319,7 +326,10 @@ async function main() {
         const token = extractBearerToken(req);
         const user = token ? verifyToken(token) : null;
         if (!user) {
-          res.writeHead(401, { "Content-Type": "application/json" });
+          res.writeHead(401, {
+            "Content-Type": "application/json",
+            "WWW-Authenticate": wwwAuthenticateHeader(req),
+          });
           res.end(
             JSON.stringify({
               jsonrpc: "2.0",

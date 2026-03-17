@@ -577,8 +577,19 @@ All hosted services (3 MCP servers + Design Tokens Editor) use **JWT authenticat
 
 - Bearer token in `Authorization` header: `Authorization: Bearer <jwt>`
 - Auth guard runs after CORS/OPTIONS handling but before body parsing
-- Returns JSON-RPC error `{code: -32001, message: "Unauthorized"}` on 401
+- Returns JSON-RPC error `{code: -32001, message: "Unauthorized"}` on 401 with `WWW-Authenticate` header pointing to resource metadata
 - MCP client config adds the header via `requestInit.headers`
+
+### OAuth 2.1 Layer (claude.ai compatibility)
+
+All three MCP servers expose a thin **OAuth 2.1 authorization code + PKCE** layer for clients like claude.ai that require OAuth instead of static Bearer tokens. Implemented in `packages/shared-auth/src/oauth.ts` via `createOAuthMiddleware()`.
+
+- **Discovery**: `/.well-known/oauth-protected-resource` (RFC 9728) + `/.well-known/oauth-authorization-server-metadata` (RFC 8414)
+- **Authorization**: `/authorize` — shows a token-paste form where the user pastes their pre-issued JWT
+- **Token exchange**: `/token` — exchanges authorization code + PKCE `code_verifier` for the original JWT as `access_token`
+- **Client registration**: `/register` — dynamic registration (RFC 7591), accepts any client
+- The `access_token` returned by `/token` IS the pre-issued JWT — the existing auth guard handles it unchanged
+- When `MCP_JWT_SECRET` is unset, the OAuth flow auto-approves without showing the form
 
 ### Design Tokens Editor Auth
 
@@ -591,6 +602,7 @@ All hosted services (3 MCP servers + Design Tokens Editor) use **JWT authenticat
 
 - [packages/shared-auth/src/verify.ts](packages/shared-auth/src/verify.ts) — `verifyToken()`, `extractBearerToken()`, `isAuthEnabled()`
 - [packages/shared-auth/src/revocation.ts](packages/shared-auth/src/revocation.ts) — `isRevoked()` via `MCP_REVOKED_TOKENS`
+- [packages/shared-auth/src/oauth.ts](packages/shared-auth/src/oauth.ts) — `createOAuthMiddleware()`, `wwwAuthenticateHeader()` — OAuth 2.1 layer for claude.ai
 - [scripts/issue-token.mjs](scripts/issue-token.mjs) — CLI for issuing JWTs (`--user`, `--role`, `--expires`, `--generate-secret`)
 - [packages/design-tokens-editor/src/server/auth.ts](packages/design-tokens-editor/src/server/auth.ts) — Editor auth routes + middleware
 - [packages/design-tokens-editor/src/LoginPage.tsx](packages/design-tokens-editor/src/LoginPage.tsx) — Token-paste login UI
