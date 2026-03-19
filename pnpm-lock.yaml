@@ -653,6 +653,37 @@ importers:
         specifier: ^5.0.0
         version: 5.1.6
 
+  packages/storyblok-sharepoint-folder-picker-field-plugin:
+    dependencies:
+      '@storyblok/field-plugin':
+        specifier: ^1.0.0
+        version: 1.7.1(typescript@5.9.3)
+      react:
+        specifier: ^19.2.1
+        version: 19.2.1
+      react-dom:
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.2
+        version: 5.1.4(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.2.7
+        version: 7.3.1(@types/node@25.5.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
+      vite-plugin-css-injected-by-js:
+        specifier: ^4.0.1
+        version: 4.0.1(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+
   packages/storyblok-theme-select-field-plugin:
     dependencies:
       '@storyblok/field-plugin':

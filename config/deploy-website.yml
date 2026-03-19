@@ -57,6 +57,9 @@ env:
     - NEXT_STORYBLOK_OAUTH_TOKEN
     - NEXT_STORYBLOK_SPACE_ID
     - NEXT_OPENAI_API_KEY
+    - AZURE_TENANT_ID
+    - AZURE_CLIENT_ID
+    - AZURE_CLIENT_SECRET
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
 #
