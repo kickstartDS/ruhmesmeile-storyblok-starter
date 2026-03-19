@@ -172,17 +172,24 @@ export function processForStoryblok(
 
   // Final safety pass: strip `type` from any node that already has
   // `component` set — Storyblok content must never carry both.
+  // Also strip numeric `component` values — these are internal column
+  // indices from Storyblok's table field type, not real component names.
+  // Leaving them in causes the Visual Editor to crash when it calls
+  // `.indexOf()` on a number instead of a string.
   objectTraverse(
     result,
     ({ value }) => {
       if (
         typeof value === "object" &&
         value !== null &&
-        !Array.isArray(value) &&
-        value.component &&
-        value.type !== undefined
+        !Array.isArray(value)
       ) {
-        delete value.type;
+        if (value.component && value.type !== undefined) {
+          delete value.type;
+        }
+        if (typeof value.component === "number") {
+          delete value.component;
+        }
       }
     },
     { traversalType: "breadth-first" }
