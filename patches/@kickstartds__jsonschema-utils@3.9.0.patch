@@ -2,14 +2,15 @@ diff --git a/lib/helpers.js b/lib/helpers.js
 index cb67330..e07d6b8 100644
 --- a/lib/helpers.js
 +++ b/lib/helpers.js
-@@ -39,7 +39,9 @@ export function getSchemaRegistry({ support2019 = false } = {}) {
+@@ -39,7 +39,10 @@ export function getSchemaRegistry({ support2019 = false } = {}) {
          'uuid',
          'date-time',
          'icon',
 -        'table'
 +        'table',
 +        'textarea',
-+        'theme'
++        'theme',
++        'sharepoint-folder'
      ];
      ignoredFormats.forEach((ignoredFormat) => ajv.addFormat(ignoredFormat, { validate: () => true }));
      ajv.addKeyword({

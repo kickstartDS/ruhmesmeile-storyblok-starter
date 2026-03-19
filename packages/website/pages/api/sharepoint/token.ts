@@ -21,7 +21,8 @@ export default async function handler(
   const origin = req.headers.origin;
   if (
     origin &&
-    (origin.endsWith(".storyblok.com") || origin === "https://app.storyblok.com")
+    (origin.endsWith(".storyblok.com") ||
+      origin === "https://app.storyblok.com")
   ) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");

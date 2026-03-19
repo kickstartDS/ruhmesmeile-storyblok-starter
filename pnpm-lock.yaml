@@ -17,10 +17,10 @@ patchedDependencies:
     hash: cebbe13791236b358cd4018afb3c91b80149ff0c93ddf1b3d797e3dbbd8126bb
     path: patches/@kickstartds__base@4.2.0.patch
   '@kickstartds/jsonschema-utils@3.9.0':
-    hash: 16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c
+    hash: 8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf
     path: patches/@kickstartds__jsonschema-utils@3.9.0.patch
   '@kickstartds/jsonschema2storyblok':
-    hash: 60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456
+    hash: a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076
     path: patches/@kickstartds__jsonschema2storyblok.patch
   storybook-addon-playroom:
     hash: 0c3588a5e18aaf64b97e5e0d383b2db50f31ab0a41736054f8da5f3511ccabb9
@@ -88,7 +88,7 @@ importers:
         version: 4.2.0(@kickstartds/base@4.2.0(patch_hash=cebbe13791236b358cd4018afb3c91b80149ff0c93ddf1b3d797e3dbbd8126bb)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@5.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(storybook@10.2.15(patch_hash=9fc02117c2392276c66b7c2bf4f9d99038187b9af8a0201c2886d4f4b3a5db57)(@testing-library/dom@9.3.4)(prettier@3.8.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.105.3(@swc/core@1.15.18)(esbuild@0.27.3))))(react@19.2.1))(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@5.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(storybook@10.2.15(patch_hash=9fc02117c2392276c66b7c2bf4f9d99038187b9af8a0201c2886d4f4b3a5db57)(@testing-library/dom@9.3.4)(prettier@3.8.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.105.3(@swc/core@1.15.18)(esbuild@0.27.3))))(react@19.2.1)
       '@kickstartds/jsonschema-utils':
         specifier: ^3.9.0
-        version: 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+        version: 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/jsonschema2types':
         specifier: ^1.2.7
         version: 1.2.7(714b024ce2080f276c61cf6f9cb90cea)
@@ -181,7 +181,7 @@ importers:
         version: 6.5.1(jest@30.2.0(@types/node@20.4.5)(babel-plugin-macros@3.1.0)(esbuild-register@3.6.0(esbuild@0.27.3))(ts-node@10.9.2(@swc/core@1.15.18)(@types/node@20.4.5)(typescript@5.9.3)))
       kickstartds:
         specifier: 3.5.0--canary.62.324.0
-        version: 3.5.0--canary.62.324.0(67dc4a56b318d4f099b1820c7fb5eead)
+        version: 3.5.0--canary.62.324.0(45a014729221c8521a0cac9312fd4b04)
       lazysizes:
         specifier: ^5.3.2
         version: 5.3.2
@@ -825,10 +825,10 @@ importers:
         version: 1.0.5
       '@kickstartds/jsonschema-utils':
         specifier: ^3.9.0
-        version: 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+        version: 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2storyblok':
         specifier: ^1.7.0
-        version: 1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(d709c3f130a7d7b0207f797b84b34684)
+        version: 1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2types':
         specifier: ^1.2.8
         version: 1.2.8(d709c3f130a7d7b0207f797b84b34684)
@@ -900,7 +900,7 @@ importers:
         version: 5.0.1
       kickstartds:
         specifier: 3.5.0--canary.62.324.0
-        version: 3.5.0--canary.62.324.0(@babel/core@7.29.0)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608)))(@kickstartds/jsonschema-utils@3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2stackbit@1.7.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2staticcms@2.9.39(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2types@1.2.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2uniform@1.4.26(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/style-dictionary@4.0.4(style-dictionary@3.9.2))(@types/node@20.4.5)(chokidar@3.6.0)
+        version: 3.5.0--canary.62.324.0(@babel/core@7.29.0)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608)))(@kickstartds/jsonschema-utils@3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2stackbit@1.7.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2staticcms@2.9.39(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2types@1.2.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2uniform@1.4.26(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/style-dictionary@4.0.4(style-dictionary@3.9.2))(@types/node@20.4.5)(chokidar@3.6.0)
       local-ssl-proxy:
         specifier: ^2.0.5
         version: 2.0.5
@@ -16310,7 +16310,7 @@ snapshots:
       mkdirp: 1.0.4
       prettier: 2.8.8
 
-  '@kickstartds/jsonschema-utils@3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)':
+  '@kickstartds/jsonschema-utils@3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
       '@bcherny/json-schema-ref-parser': 10.0.5-fork
       '@kickstartds/base': 4.2.0(patch_hash=cebbe13791236b358cd4018afb3c91b80149ff0c93ddf1b3d797e3dbbd8126bb)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@5.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(storybook@10.2.15(patch_hash=9fc02117c2392276c66b7c2bf4f9d99038187b9af8a0201c2886d4f4b3a5db57)(@testing-library/dom@9.3.4)(prettier@3.8.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.105.3(@swc/core@1.15.18)(esbuild@0.27.3))))(react@19.2.1)
@@ -16327,7 +16327,7 @@ snapshots:
       json-schema-traverse: 1.0.0
       jsonpointer: 5.0.1
 
-  '@kickstartds/jsonschema-utils@3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)':
+  '@kickstartds/jsonschema-utils@3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
       '@bcherny/json-schema-ref-parser': 10.0.5-fork
       '@kickstartds/base': 4.2.0(patch_hash=cebbe13791236b358cd4018afb3c91b80149ff0c93ddf1b3d797e3dbbd8126bb)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608)))(react@19.2.1)
@@ -16346,7 +16346,7 @@ snapshots:
 
   '@kickstartds/jsonschema2stackbit@1.7.8(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       ajv: 8.18.0
       object-traversal: 1.0.1
       pluralize-esm: 9.0.5
@@ -16359,7 +16359,7 @@ snapshots:
 
   '@kickstartds/jsonschema2stackbit@1.7.8(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       ajv: 8.18.0
       object-traversal: 1.0.1
       pluralize-esm: 9.0.5
@@ -16372,7 +16372,7 @@ snapshots:
 
   '@kickstartds/jsonschema2staticcms@2.9.39(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       ajv: 8.18.0
       object-traversal: 1.0.1
       pluralize: 8.0.0
@@ -16385,7 +16385,7 @@ snapshots:
 
   '@kickstartds/jsonschema2staticcms@2.9.39(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       ajv: 8.18.0
       object-traversal: 1.0.1
       pluralize: 8.0.0
@@ -16396,9 +16396,9 @@ snapshots:
       - '@kickstartds/core'
       - '@kickstartds/form'
 
-  '@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(714b024ce2080f276c61cf6f9cb90cea)':
+  '@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       ajv: 8.18.0
       object-traversal: 1.0.1
       uuid: 9.0.1
@@ -16409,9 +16409,9 @@ snapshots:
       - '@kickstartds/core'
       - '@kickstartds/form'
 
-  '@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(d709c3f130a7d7b0207f797b84b34684)':
+  '@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       ajv: 8.18.0
       object-traversal: 1.0.1
       uuid: 9.0.1
@@ -16425,7 +16425,7 @@ snapshots:
   '@kickstartds/jsonschema2types@1.2.7(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
       '@kickstartds/json-schema-to-typescript': 13.1.20
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       ajv: 8.18.0
       object-traversal: 1.0.1
     transitivePeerDependencies:
@@ -16438,7 +16438,7 @@ snapshots:
   '@kickstartds/jsonschema2types@1.2.8(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
       '@kickstartds/json-schema-to-typescript': 13.1.20
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       ajv: 8.18.0
       object-traversal: 1.0.1
     transitivePeerDependencies:
@@ -16450,7 +16450,7 @@ snapshots:
 
   '@kickstartds/jsonschema2uniform@1.4.26(714b024ce2080f276c61cf6f9cb90cea)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       ajv: 8.18.0
       change-case: 5.4.4
     transitivePeerDependencies:
@@ -16462,7 +16462,7 @@ snapshots:
 
   '@kickstartds/jsonschema2uniform@1.4.26(d709c3f130a7d7b0207f797b84b34684)':
     dependencies:
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       ajv: 8.18.0
       change-case: 5.4.4
     transitivePeerDependencies:
@@ -24161,17 +24161,17 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kickstartds@3.5.0--canary.62.324.0(67dc4a56b318d4f099b1820c7fb5eead):
+  kickstartds@3.5.0--canary.62.324.0(45a014729221c8521a0cac9312fd4b04):
     dependencies:
       '@apidevtools/json-schema-ref-parser': 9.1.2
       '@babel/preset-react': 7.28.5(@babel/core@7.29.0)
       '@influxdata/influxdb-client': 1.35.0
       '@influxdata/influxdb-client-apis': 1.35.0(@influxdata/influxdb-client@1.35.0)
       '@kickstartds/core': 4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@5.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(storybook@10.2.15(patch_hash=9fc02117c2392276c66b7c2bf4f9d99038187b9af8a0201c2886d4f4b3a5db57)(@testing-library/dom@9.3.4)(prettier@3.8.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(webpack@5.105.3(@swc/core@1.15.18)(esbuild@0.27.3)))
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/jsonschema2stackbit': 1.7.8(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/jsonschema2staticcms': 2.9.39(714b024ce2080f276c61cf6f9cb90cea)
-      '@kickstartds/jsonschema2storyblok': 1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(714b024ce2080f276c61cf6f9cb90cea)
+      '@kickstartds/jsonschema2storyblok': 1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/jsonschema2types': 1.2.7(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/jsonschema2uniform': 1.4.26(714b024ce2080f276c61cf6f9cb90cea)
       '@kickstartds/style-dictionary': 4.0.4(style-dictionary@3.9.2)
@@ -24220,17 +24220,17 @@ snapshots:
       - debug
       - supports-color
 
-  kickstartds@3.5.0--canary.62.324.0(@babel/core@7.29.0)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608)))(@kickstartds/jsonschema-utils@3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2stackbit@1.7.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2staticcms@2.9.39(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2types@1.2.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2uniform@1.4.26(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/style-dictionary@4.0.4(style-dictionary@3.9.2))(@types/node@20.4.5)(chokidar@3.6.0):
+  kickstartds@3.5.0--canary.62.324.0(@babel/core@7.29.0)(@kickstartds/core@4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608)))(@kickstartds/jsonschema-utils@3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2stackbit@1.7.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2staticcms@2.9.39(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2storyblok@1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2types@1.2.8(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/jsonschema2uniform@1.4.26(d709c3f130a7d7b0207f797b84b34684))(@kickstartds/style-dictionary@4.0.4(style-dictionary@3.9.2))(@types/node@20.4.5)(chokidar@3.6.0):
     dependencies:
       '@apidevtools/json-schema-ref-parser': 9.1.2
       '@babel/preset-react': 7.28.5(@babel/core@7.29.0)
       '@influxdata/influxdb-client': 1.35.0
       '@influxdata/influxdb-client-apis': 1.35.0(@influxdata/influxdb-client@1.35.0)
       '@kickstartds/core': 4.1.0(@storybook/types@7.6.24)(react@19.2.1)(storybook-design-token@3.0.0-beta.3(bef48b934e1d9984605ca58e4a294608))
-      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=16e9a7c1e9a2e62ea953080122db0de5befbbfae5368163fe8e62d50854ca35c)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema-utils': 3.9.0(patch_hash=8d20b4af32f415f4a4c76a227797c6dc8582a3b6351b98613d484b36cec67acf)(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2stackbit': 1.7.8(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2staticcms': 2.9.39(d709c3f130a7d7b0207f797b84b34684)
-      '@kickstartds/jsonschema2storyblok': 1.7.0(patch_hash=60c2371db315f9bb187f271bde9abd471aaa1d89c5e27117cffb6e05d2d25456)(d709c3f130a7d7b0207f797b84b34684)
+      '@kickstartds/jsonschema2storyblok': 1.7.0(patch_hash=a1e640e0173f51acd9ae1e32f0ebe8809090ea241574b01c2658b29eea266076)(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2types': 1.2.8(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/jsonschema2uniform': 1.4.26(d709c3f130a7d7b0207f797b84b34684)
       '@kickstartds/style-dictionary': 4.0.4(style-dictionary@3.9.2)

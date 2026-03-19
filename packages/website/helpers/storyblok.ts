@@ -13,6 +13,7 @@ import { ISbLinkURLObject } from "storyblok-js-client";
 import { components } from "@/components";
 import { TraversalCallbackContext, traverse } from "object-traversal";
 import { IStoryblokBlock } from "@kickstartds/jsonschema2storyblok";
+import { resolveSharePointFolders } from "@/helpers/sharepoint";
 import {
   GlobalReferenceStoryblok,
   GlobalStoryblok,
@@ -375,6 +376,11 @@ export async function fetchPageProps(
     } catch {
       // Theme story not found — ignore
     }
+  }
+
+  // Resolve SharePoint folder references in downloads components
+  if (pageData.story?.content) {
+    await resolveSharePointFolders(pageData.story.content);
   }
 
   // Resolve page-level theme override

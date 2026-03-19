@@ -51,6 +51,7 @@ import {
 import { StoryblokSubComponent } from "./StoryblokSubComponent";
 import { TeaserProvider } from "./TeaserProvider";
 import { IconProvider } from "./icon/IconProvider";
+import { DownloadsProvider } from "./downloads/DownloadsProvider";
 
 import { useBlurHashes } from "./BlurHashContext";
 import { useImagePriority } from "./ImagePriorityContext";
@@ -89,7 +90,7 @@ const Picture = forwardRef<
 
   useImperativeHandle<HTMLImageElement | null, HTMLImageElement | null>(
     ref,
-    () => internalRef.current
+    () => internalRef.current,
   );
 
   useEffect(() => {
@@ -314,47 +315,49 @@ const StorytellingProvider: FC<PropsWithChildren> = (props) => (
 
 const ComponentProviders = (props: PropsWithChildren) => (
   <IconProvider>
-    <StorytellingProvider>
-      <PictureProvider>
-        <SplitEvenProvider>
-          <SplitWeightedProvider>
-            <HeroProvider>
-              <LinkProvider>
-                <TeaserProvider>
-                  <CtaContext.Provider value={StoryblokSubComponent}>
-                    <FeatureContext.Provider value={StoryblokSubComponent}>
-                      <StatContext.Provider value={StoryblokSubComponent}>
-                        <TestimonialContext.Provider
-                          value={StoryblokSubComponent}
-                        >
-                          <BlogHeadContext.Provider
+    <DownloadsProvider>
+      <StorytellingProvider>
+        <PictureProvider>
+          <SplitEvenProvider>
+            <SplitWeightedProvider>
+              <HeroProvider>
+                <LinkProvider>
+                  <TeaserProvider>
+                    <CtaContext.Provider value={StoryblokSubComponent}>
+                      <FeatureContext.Provider value={StoryblokSubComponent}>
+                        <StatContext.Provider value={StoryblokSubComponent}>
+                          <TestimonialContext.Provider
                             value={StoryblokSubComponent}
                           >
-                            <BlogAsideContext.Provider
+                            <BlogHeadContext.Provider
                               value={StoryblokSubComponent}
                             >
-                              <BlogTeaserContext.Provider
+                              <BlogAsideContext.Provider
                                 value={StoryblokSubComponent}
                               >
-                                <BlogAuthorContext.Provider
+                                <BlogTeaserContext.Provider
                                   value={StoryblokSubComponent}
                                 >
-                                  {props.children}
-                                </BlogAuthorContext.Provider>
-                              </BlogTeaserContext.Provider>
-                            </BlogAsideContext.Provider>
-                          </BlogHeadContext.Provider>
-                        </TestimonialContext.Provider>
-                      </StatContext.Provider>
-                    </FeatureContext.Provider>
-                  </CtaContext.Provider>
-                </TeaserProvider>
-              </LinkProvider>
-            </HeroProvider>
-          </SplitWeightedProvider>
-        </SplitEvenProvider>
-      </PictureProvider>
-    </StorytellingProvider>
+                                  <BlogAuthorContext.Provider
+                                    value={StoryblokSubComponent}
+                                  >
+                                    {props.children}
+                                  </BlogAuthorContext.Provider>
+                                </BlogTeaserContext.Provider>
+                              </BlogAsideContext.Provider>
+                            </BlogHeadContext.Provider>
+                          </TestimonialContext.Provider>
+                        </StatContext.Provider>
+                      </FeatureContext.Provider>
+                    </CtaContext.Provider>
+                  </TeaserProvider>
+                </LinkProvider>
+              </HeroProvider>
+            </SplitWeightedProvider>
+          </SplitEvenProvider>
+        </PictureProvider>
+      </StorytellingProvider>
+    </DownloadsProvider>
   </IconProvider>
 );
 
