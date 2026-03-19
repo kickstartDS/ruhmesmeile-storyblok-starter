@@ -3,8 +3,28 @@ import localFont from "next/font/local";
 const displayFont = localFont({
   src: [
     {
-      path: "../token/fonts/novelpro-regular.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Regular.woff2",
       weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Bold.woff2",
+      weight: "700",
       style: "normal",
     },
   ],
@@ -12,11 +32,14 @@ const displayFont = localFont({
   display: "swap",
   variable: "--ks-brand-font-family-display",
   fallback: [
-    "Baskerville",
-    "'Baskerville Old Face'",
-    "'Hoefler Text'",
-    "'Times New Roman'",
-    "serif",
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "'Segoe UI'",
+    "'Helvetica Neue'",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
   ],
   adjustFontFallback: false,
 });
@@ -24,12 +47,27 @@ const displayFont = localFont({
 const copyFont = localFont({
   src: [
     {
-      path: "../token/fonts/novelsanspro-regular.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../token/fonts/novelsanspro-bold.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Bold.woff2",
       weight: "700",
       style: "normal",
     },
@@ -37,15 +75,44 @@ const copyFont = localFont({
   preload: true,
   display: "swap",
   variable: "--ks-brand-font-family-copy",
-  fallback: ["'Helvetica Neue'", "Helvetica", "Arial", "sans-serif"],
+  fallback: [
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "'Segoe UI'",
+    "'Helvetica Neue'",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
+  ],
   adjustFontFallback: false,
 });
 
 const displayFontPreview = localFont({
   src: [
     {
-      path: "../token/fonts/novelpro-regular.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Regular.woff2",
       weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Bold.woff2",
+      weight: "700",
       style: "normal",
     },
   ],
@@ -53,11 +120,14 @@ const displayFontPreview = localFont({
   display: "auto",
   variable: "--ks-brand-font-family-display",
   fallback: [
-    "Baskerville",
-    "'Baskerville Old Face'",
-    "'Hoefler Text'",
-    "'Times New Roman'",
-    "serif",
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "'Segoe UI'",
+    "'Helvetica Neue'",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
   ],
   adjustFontFallback: false,
 });
@@ -65,12 +135,27 @@ const displayFontPreview = localFont({
 const copyFontPreview = localFont({
   src: [
     {
-      path: "../token/fonts/novelsanspro-regular.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../token/fonts/novelsanspro-bold.woff",
+      path: "../../design-system/dist/static/fonts/Montserrat-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../design-system/dist/static/fonts/Montserrat-Bold.woff2",
       weight: "700",
       style: "normal",
     },
@@ -78,7 +163,16 @@ const copyFontPreview = localFont({
   preload: false,
   display: "auto",
   variable: "--ks-brand-font-family-copy",
-  fallback: ["'Helvetica Neue'", "Helvetica", "Arial", "sans-serif"],
+  fallback: [
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "'Segoe UI'",
+    "'Helvetica Neue'",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
+  ],
   adjustFontFallback: false,
 });
 
