@@ -1,17 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import {
-  useStoryblokState,
-  StoryblokComponent,
-  ISbStory,
-  ISbStoryData,
-} from "@storyblok/react";
-import {
-  fetchPageProps,
-  fetchPaths,
-  INDEX_SLUG,
-  resolvableRelations,
-  storyProcessing,
-} from "@/helpers/storyblok";
+import { StoryblokComponent, ISbStory, ISbStoryData } from "@storyblok/react";
+import { fetchPageProps, fetchPaths, INDEX_SLUG } from "@/helpers/storyblok";
 import { fontClassNamesPreview } from "@/helpers/fonts";
 import { locale } from "@/components";
 import { HeadlineLevelProvider } from "@/components/headline/HeadlineLevelContext";
@@ -21,13 +10,7 @@ type PageProps = ISbStory["data"] & {
   language: typeof locale;
 };
 
-const Page: NextPage<PageProps> = ({ story: initialStory }) => {
-  const story = useStoryblokState(initialStory, {
-    resolveRelations: resolvableRelations.join(","),
-  });
-
-  if (story && story.content) storyProcessing(story.content, true);
-
+const Page: NextPage<PageProps> = ({ story }) => {
   return story ? (
     <HeadlineLevelProvider>
       <StoryblokComponent
@@ -65,7 +48,7 @@ export const getStaticProps = (async ({ params, previewData }) => {
   }
 
   const StoryblokClient = await import("storyblok-js-client").then(
-    (mod) => mod.default
+    (mod) => mod.default,
   );
   const previewStoryblokApi = new StoryblokClient({ accessToken: previewData });
   const slug = params?.slug?.join("/") || INDEX_SLUG;
@@ -73,7 +56,7 @@ export const getStaticProps = (async ({ params, previewData }) => {
   try {
     const { pageData, settingsData } = await fetchPageProps(
       slug,
-      previewStoryblokApi
+      previewStoryblokApi,
     );
 
     const settingsStory = settingsData.stories.reduce(
@@ -94,8 +77,8 @@ export const getStaticProps = (async ({ params, previewData }) => {
             ? story
             : shortest;
         },
-        { full_slug: "" } as ISbStoryData
-      )
+        { full_slug: "" } as ISbStoryData,
+      ),
     );
 
     return {

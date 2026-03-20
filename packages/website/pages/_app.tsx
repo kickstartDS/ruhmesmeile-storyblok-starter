@@ -10,7 +10,11 @@ import DsaProviders from "@kickstartds/design-system/providers";
 import { Header } from "@kickstartds/design-system/header";
 import { Footer } from "@kickstartds/design-system/footer";
 import { Breadcrumb } from "@kickstartds/design-system/breadcrumb";
-import { initStoryblok } from "@/helpers/storyblok";
+import {
+  initStoryblok,
+  storyProcessing,
+  resolvableRelations,
+} from "@/helpers/storyblok";
 import { unflatten } from "@/helpers/unflatten";
 import Meta from "@/components/Meta";
 import "lazysizes/plugins/attrchange/ls.attrchange";
@@ -26,7 +30,7 @@ import "@/components/prompter/prompter.scss";
 import { BlurHashProvider } from "@/components/BlurHashContext";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { Section } from "@kickstartds/design-system/components/section/index.js";
-import { StoryblokComponent } from "@storyblok/react";
+import { StoryblokComponent, useStoryblokState } from "@storyblok/react";
 
 initStoryblok(process.env.NEXT_STORYBLOK_API_TOKEN);
 if (typeof window !== "undefined") {
@@ -63,7 +67,23 @@ export default function App({
 }: AppProps & {
   Component: NextPage;
 }) {
-  const { settings, story, blurHashes, language } = pageProps;
+  const router = useRouter();
+  const isPreview = router.pathname.startsWith("/_preview");
+
+  // In preview mode, get live story updates from the Storyblok Visual Editor bridge.
+  // This ensures hero extraction below always operates on the latest data,
+  // preventing a stale hero from appearing above the breadcrumb while
+  // the page component renders the updated hero again below it.
+  const liveStory = useStoryblokState(pageProps.story ?? null, {
+    resolveRelations: resolvableRelations.join(","),
+  });
+  const story = liveStory || pageProps.story;
+
+  if (isPreview && story?.content) {
+    storyProcessing(story.content, true);
+  }
+
+  const { settings, blurHashes, language } = pageProps;
   const headerProps = settings?.header ? unflatten(settings?.header) : {};
   const footerProps = settings?.footer ? unflatten(settings?.footer) : {};
   const storyProps = story?.content ? unflatten(story?.content) : {};
@@ -74,8 +94,6 @@ export default function App({
   const tokenOverrides = storyProps?.token || settings?.token || "";
   // Combined token string: theme CSS + manual overrides
   const token = [themeCss, tokenOverrides].filter(Boolean).join("\n");
-
-  const router = useRouter();
 
   const invertHeader = storyProps?.header?.inverted
     ? !headerProps?.inverted
@@ -103,7 +121,7 @@ export default function App({
     label: segment.charAt(0).toUpperCase() + segment.slice(1),
     url: path.join(
       "/",
-      ...pathSegments.slice(0, pathSegments.indexOf(segment) + 1)
+      ...pathSegments.slice(0, pathSegments.indexOf(segment) + 1),
     ),
   }));
   if (
@@ -117,21 +135,21 @@ export default function App({
   }
 
   let heroSection;
-  let newPageProps = pageProps;
+  let newPageProps =
+    story !== pageProps.story ? { ...pageProps, story } : pageProps;
   const heroSectionFirst =
-    pageProps.story?.content?.section?.[0]?.components?.[0]?.component ===
-    "hero";
+    story?.content?.section?.[0]?.components?.[0]?.component === "hero";
   if (heroSectionFirst) {
-    const [firstSection, ...restSections] = pageProps.story?.content?.section;
+    const [firstSection, ...restSections] = story?.content?.section;
 
     heroSection = firstSection;
 
     newPageProps = {
       ...pageProps,
       story: {
-        ...pageProps.story,
+        ...story,
         content: {
-          ...pageProps.story?.content,
+          ...story?.content,
           section: restSections,
         },
       },
@@ -186,7 +204,7 @@ export default function App({
                               item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}${
                                 item.url
                               }`,
-                            })
+                            }),
                           ),
                         }}
                       />
