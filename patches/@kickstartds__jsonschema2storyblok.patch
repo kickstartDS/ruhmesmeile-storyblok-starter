@@ -4,7 +4,7 @@ index 4b0cfbe..3b0b8e7 100644
 +++ b/lib/index.js
 @@ -488,6 +488,19 @@ function processBasic({ name, title, label, description, subSchema, rootSchema }
          field.field_type = 'storyblok-icon-sprite-picker-field-plugin';
-         field.options = [{ name: 'allowedIcons', value: JSON.stringify(subSchema.enum), _uid: uuidv4() }];
+         field.options = [{ name: 'allowedIcons', value: JSON.stringify(subSchema.enum || []), _uid: uuidv4() }];
      }
 +    if (subSchema.type === 'string' && subSchema.format && subSchema.format === 'theme') {
 +        field.type = 'custom';
