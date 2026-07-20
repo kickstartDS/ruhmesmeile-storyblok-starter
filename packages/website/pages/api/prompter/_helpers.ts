@@ -7,6 +7,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Cors from "cors";
 import { resolve } from "path";
+import { existsSync } from "fs";
 import {
   createOpenAiClient,
   createStoryblokClient,
@@ -110,7 +111,11 @@ let _registry: SchemaRegistry | null = null;
  */
 export function getRegistry(): SchemaRegistry {
   if (!_registry) {
-    const schemasDir = resolve(process.cwd(), "..", "mcp-server", "schemas");
+    // Dev: process.cwd() = packages/website/ → ../storyblok-mcp/schemas resolves correctly.
+    // Docker: process.cwd() = /app (WORKDIR) → need packages/storyblok-mcp/schemas instead.
+    const fromParent = resolve(process.cwd(), "..", "storyblok-mcp", "schemas");
+    const fromRoot = resolve(process.cwd(), "packages", "storyblok-mcp", "schemas");
+    const schemasDir = existsSync(fromParent) ? fromParent : fromRoot;
     _registry = createRegistryFromSchemaDir(schemasDir);
   }
   return _registry;

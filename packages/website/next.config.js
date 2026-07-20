@@ -7,7 +7,7 @@ const cspHeader = `
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://journeyengine.production.wlp.cloud;
     frame-src 'self' https://youtube.com https://www.youtube.com https://player.vimeo.com *.google.com;
     img-src 'self' blob: data: https://a.storyblok.com https://placehold.co https://journeyengine.production.wlp.cloud;
-    media-src 'self' blob: data: https://a.storyblok.com;
+    media-src 'self' blob: data: https://a.storyblok.com https://placehold.co;
     font-src 'self' https://fonts.gstatic.com;
     object-src 'none';
     base-uri 'self';
@@ -35,7 +35,7 @@ const nextConfig = {
     // "./dist/*", but @kickstartds/content imports from "./src/*".
     // Alias the subpath to the actual filesystem location to bypass exports.
     const glideDir = path.dirname(
-      require.resolve("@glidejs/glide/dist/glide.esm.js")
+      require.resolve("@glidejs/glide/dist/glide.esm.js"),
     );
     config.resolve.alias["@glidejs/glide/src"] = path.join(glideDir, "../src");
 
@@ -49,7 +49,7 @@ const nextConfig = {
       config.externals.push(({ request }, callback) => {
         if (
           serverOnlyPackages.some(
-            (pkg) => request === pkg || request.startsWith(pkg + "/")
+            (pkg) => request === pkg || request.startsWith(pkg + "/"),
           )
         ) {
           return callback(null, `commonjs ${request}`);

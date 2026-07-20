@@ -47,8 +47,9 @@ COPY --from=deps /app ./
 # Pass --build-arg CACHEBUST=$(date +%s) to force a fresh build.
 ARG CACHEBUST=0
 
-# Copy source for shared lib and website
+# Copy source for shared lib, MCP schemas, and website
 COPY packages/storyblok-services/ ./packages/storyblok-services/
+COPY packages/storyblok-mcp/schemas/ ./packages/storyblok-mcp/schemas/
 COPY packages/website/ ./packages/website/
 
 # Build shared lib first, then re-inject so the website can resolve it
@@ -70,6 +71,7 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder --chown=1001:1001 /app/packages/website/.next/standalone ./
 COPY --from=builder --chown=1001:1001 /app/packages/website/.next/static ./packages/website/.next/static
 COPY --from=builder --chown=1001:1001 /app/packages/website/public ./packages/website/public
+COPY --from=builder --chown=1001:1001 /app/packages/storyblok-mcp/schemas ./packages/storyblok-mcp/schemas
 
 USER nextjs
 
