@@ -5,6 +5,14 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      "@kickstartds/design-system/tokens/token-graph.json": resolve(
+        __dirname,
+        "../design-system/dist/tokens/token-graph.json",
+      ),
+    },
+  },
   build: {
     outDir: "dist/app",
     rollupOptions: {

@@ -286,7 +286,9 @@ export function getToolDefinitions(): Tool[] {
       description:
         "Get the W3C DTCG branding token schema with field descriptions and reference values. " +
         "Returns the schema mapping (field path → human-readable description) and the current default " +
-        "branding tokens as a reference. Use this to understand the token structure before building " +
+        "branding tokens as a reference. Also includes component token catalog summary for use with " +
+        "the Storyblok MCP create_theme/update_theme `componentTokens` parameter. " +
+        "Use this to understand the token structure before building " +
         "a theme object for validate_theme or the Storyblok MCP create_theme/update_theme tools.",
       inputSchema: {
         type: "object",
@@ -313,6 +315,7 @@ export function getToolDefinitions(): Tool[] {
       name: "validate_theme",
       description:
         "Validate a W3C DTCG branding token object against the branding-tokens schema. " +
+        "Optionally validates component token overrides against the component token catalog. " +
         "Returns pass/fail with field-level errors. Call this before using the Storyblok MCP " +
         "create_theme/update_theme tools to catch structural issues early.",
       inputSchema: {
@@ -322,6 +325,12 @@ export function getToolDefinitions(): Tool[] {
             type: "object",
             description:
               "The W3C DTCG branding token object to validate (same structure as branding-tokens.json)",
+          },
+          componentTokens: {
+            type: "object",
+            description:
+              "Optional sparse component token overrides to validate against the component catalog. " +
+              "Format: { [componentId]: { [tokenName]: value, [query]: { [tokenName]: value } } }",
           },
         },
         required: ["tokens"],

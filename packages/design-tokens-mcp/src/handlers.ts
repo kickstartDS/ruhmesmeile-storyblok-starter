@@ -561,6 +561,43 @@ export async function dispatch(
         const schemaDescription = getBrandingSchemaDescription();
         const tokens = await readBrandingTokensW3C();
 
+        // Load component token catalog summary
+        let componentTokenSummary: Record<string, unknown> | undefined;
+        try {
+          const catalogPath = require("path").resolve(
+            __dirname,
+            "..",
+            "tokens",
+            "component-token-catalog.json",
+          );
+          const catalogData = JSON.parse(
+            require("fs").readFileSync(catalogPath, "utf8"),
+          );
+          componentTokenSummary = {};
+          for (const [id, entry] of Object.entries(
+            catalogData as Record<
+              string,
+              {
+                displayName: string;
+                tokens: Record<string, unknown>;
+                responsiveTokens: Record<string, Record<string, unknown>>;
+              }
+            >,
+          )) {
+            const baseCount = Object.keys(entry.tokens).length;
+            const responsiveCount = Object.values(
+              entry.responsiveTokens || {},
+            ).reduce((sum, q) => sum + Object.keys(q).length, 0);
+            (componentTokenSummary as Record<string, unknown>)[id] = {
+              displayName: entry.displayName,
+              baseTokenCount: baseCount,
+              responsiveTokenCount: responsiveCount,
+            };
+          }
+        } catch {
+          // catalog not synced yet — omit from response
+        }
+
         let result: Record<string, unknown>;
         if (args.section && args.section !== "all") {
           const sectionData = (tokens as Record<string, unknown>)[
@@ -588,6 +625,14 @@ export async function dispatch(
             sections: Object.keys(tokens),
             schemaDescription,
             referenceTokens: tokens,
+            ...(componentTokenSummary
+              ? {
+                  componentTokens: {
+                    note: "Component tokens can be overridden per-theme via the Storyblok MCP create_theme/update_theme tools using the componentTokens parameter. Format: { [componentId]: { [tokenName]: value } }",
+                    components: componentTokenSummary,
+                  },
+                }
+              : {}),
             note: "Use the 'section' parameter to get specific sections like 'color', 'font', 'spacing', etc. Token values follow W3C DTCG format. To create or update themes, use the Storyblok MCP create_theme/update_theme tools.",
           };
         }
@@ -606,8 +651,81 @@ export async function dispatch(
           args.tokens as Record<string, unknown>,
         );
 
+        // Validate component token overrides if provided
+        let componentValidation:
+          | { valid: boolean; errors: string[] }
+          | undefined;
+        if (args.componentTokens && typeof args.componentTokens === "object") {
+          const errors: string[] = [];
+          try {
+            const catalogPath = require("path").resolve(
+              __dirname,
+              "..",
+              "tokens",
+              "component-token-catalog.json",
+            );
+            const catalogData = JSON.parse(
+              require("fs").readFileSync(catalogPath, "utf8"),
+            ) as Record<
+              string,
+              {
+                tokens: Record<string, unknown>;
+                responsiveTokens: Record<string, Record<string, unknown>>;
+              }
+            >;
+
+            for (const [compId, overrides] of Object.entries(
+              args.componentTokens as Record<string, Record<string, unknown>>,
+            )) {
+              const catalogEntry = catalogData[compId];
+              if (!catalogEntry) {
+                errors.push(`Unknown component: "${compId}"`);
+                continue;
+              }
+              for (const [key, val] of Object.entries(overrides)) {
+                if (typeof val === "string") {
+                  // Base token override
+                  if (!catalogEntry.tokens[key]) {
+                    errors.push(
+                      `Unknown token "${key}" on component "${compId}"`,
+                    );
+                  }
+                } else if (typeof val === "object" && val !== null) {
+                  // Responsive query override
+                  if (!catalogEntry.responsiveTokens[key]) {
+                    errors.push(
+                      `Unknown responsive query "${key}" on component "${compId}"`,
+                    );
+                  } else {
+                    for (const tokenName of Object.keys(
+                      val as Record<string, string>,
+                    )) {
+                      if (!catalogEntry.responsiveTokens[key][tokenName]) {
+                        errors.push(
+                          `Unknown responsive token "${tokenName}" in query "${key}" on component "${compId}"`,
+                        );
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          } catch {
+            errors.push(
+              "Component token catalog not available — component validation skipped",
+            );
+          }
+          componentValidation = {
+            valid: errors.length === 0,
+            errors,
+          };
+        }
+
         return text({
           ...validationResult,
+          ...(componentValidation
+            ? { componentTokenValidation: componentValidation }
+            : {}),
           note: validationResult.valid
             ? "Tokens are valid. Use Storyblok MCP create_theme/update_theme to persist."
             : "Fix the errors above and re-validate before creating/updating a theme.",

@@ -38,6 +38,7 @@
     "@kickstartds/design-system": "workspace:*",
     "@kickstartds/form": "^4.0.2",
     "@kickstartds/shared-auth": "workspace:*",
+    "@kickstartds/token-graph": "workspace:*",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
     "@mui/x-date-pickers": "^8.19.0",

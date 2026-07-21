@@ -44,12 +44,12 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch C — Component Token Editor
 
-- [ ] C.0 Create branch
-- [ ] C.1 Port `design-tokens-editor/src/{component-editor,graph,preview-page}/**`
-- [ ] C.2 Review remaining `design-tokens-editor` + `design-tokens-mcp` diffs
-- [ ] C.3 Port ADR/PRD/checklist docs
-- [ ] C.4 Build + validate
-- [ ] C.5 Changeset + PR
+- [x] C.0 Create branch — `upstream/batch-c-component-token-editor` (off main after A+B merged)
+- [x] C.1 Port `design-tokens-editor/src/{component-editor,graph,preview-page}/**` — 7 new files (5 component-editor, GraphView, ComponentPreviewPage)
+- [x] C.2 Review remaining `design-tokens-editor` (15 mod) + `design-tokens-mcp` (3 mod) diffs — `get_theme_schema`/`validate_theme` gain `componentTokens` catalog validation; `sync-tokens.mjs` adds component + semantic catalogs; `vite.config.ts` alias to `token-graph.json`
+- [x] C.3 Port ADR/PRD/checklist docs — `adr-component-token-editor.md`, `component-token-editor-prd.md`, `component-token-editor-checklist.md`
+- [x] C.4 Build + validate — editor build ✓ (18.12s), editor typecheck ✓, design-tokens-mcp build ✓. Excluded `design-tokens-mcp/tokens/branding-tokens.css` (optoma brand values) — regenerated via `sync-tokens` to template `#3065c0`; catalogs gitignored (generated). Sanitised 3 optoma sample TeaserCards in `ComponentPreviewPage.tsx` → brand-neutral DS Agency content
+- [~] C.5 Changeset + PR — changeset added (`@kickstartds/design-tokens-mcp` minor); PR pending
 
 ## Batch D — Design-system component fixes
 
@@ -98,3 +98,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-21 | A     | Investigated diffs (A.1 done). Split off token-graph wiring → Batch B (ADR-004). Excluded Storybook font/favicon brand changes (ADR-006). Catalogs to be regenerated, not copied (ADR-005). |
 | 2026-07-21 | A     | Ported tooling; regenerated catalogs (component: 49 comps/776 tokens; semantic: 950 tokens, brand-neutral). Full DS build green (presets 136 passed). Changeset added. Ready to commit/PR.  |
 | 2026-07-21 | B     | Ported `packages/token-graph` (18 files) + cosmos docs; stacked on Batch A branch (ADR-007). Wired token-graph build step + workspace dep + rollup copy (completes deferred A.y). DS build green; token-graph.json 1708 nodes/1988 edges (matches optoma); typecheck green. Changeset added.                    |
+| 2026-07-21 | A+B   | Merged PR #6 (Batch A) + #7 (Batch B) into main locally (`gh` API auth broken → local merge commits + branch delete; deviation from ADR-007 squash noted). Merged-main DS build green. `main` pushed `446f2220..09026ec5`.                                                                                     |
+| 2026-07-21 | C     | Ported Component Token Editor (7 new + 15 editor + 3 mcp files) + 3 docs off updated main. Excluded `design-tokens-mcp/tokens/branding-tokens.css` (regenerated via sync-tokens → template `#3065c0`); sanitised 3 optoma sample TeaserCards in `ComponentPreviewPage.tsx`. Editor build ✓/typecheck ✓; design-tokens-mcp build ✓. Brand scan clean. Changeset added (`@kickstartds/design-tokens-mcp` minor). Ready to commit/PR. |

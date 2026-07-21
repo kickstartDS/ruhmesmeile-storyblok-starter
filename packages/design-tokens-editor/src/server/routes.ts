@@ -44,12 +44,28 @@ export function createRoutes(config: StoryblokConfig): Router {
         res.status(404).json("Not Found");
         return;
       }
-      // Return the stored tokens JSON — parse it so the client gets an object
-      try {
-        res.json(JSON.parse(data));
-      } catch {
-        res.send(data);
+      // Return both branding tokens and componentTokens as a combined object
+      const result: Record<string, unknown> = {};
+
+      // Parse branding tokens
+      if (data.tokens) {
+        try {
+          Object.assign(result, { tokens: JSON.parse(data.tokens) });
+        } catch {
+          result.tokens = data.tokens;
+        }
       }
+
+      // Parse component tokens if present
+      if (data.componentTokens) {
+        try {
+          result.componentTokens = JSON.parse(data.componentTokens);
+        } catch {
+          result.componentTokens = data.componentTokens;
+        }
+      }
+
+      res.json(result);
     } catch (err) {
       console.error("Error fetching theme:", err);
       res
@@ -68,16 +84,43 @@ export function createRoutes(config: StoryblokConfig): Router {
         return;
       }
 
-      const tokensJson = JSON.stringify(body);
+      // Support both flat (legacy) and structured body
+      const brandingTokens = body.tokens || body;
+      const componentTokens = body.componentTokens || undefined;
+      const tokensJson = JSON.stringify(brandingTokens);
 
-      // Compute CSS from tokens — import dynamically since it's an ESM module
+      // Compute branding CSS
       let css = "";
       try {
         const { tokensToCss } =
           await import("@kickstartds/design-system/tokens/tokensToCss.mjs");
-        css = tokensToCss(body);
+        css = tokensToCss(brandingTokens);
       } catch (e) {
         console.warn("Could not compute CSS from tokens:", e);
+      }
+
+      // Compute component CSS if overrides are present
+      let componentTokensJson: string | undefined;
+      let componentCss: string | undefined;
+      if (
+        componentTokens &&
+        typeof componentTokens === "object" &&
+        Object.keys(componentTokens).length > 0
+      ) {
+        componentTokensJson = JSON.stringify(componentTokens);
+        try {
+          const { componentTokensToCss } =
+            await import("@kickstartds/design-system/tokens/componentTokensToCss.mjs");
+          const catalog = (
+            await import(
+              "@kickstartds/design-system/tokens/component-token-catalog.json",
+              { with: { type: "json" } }
+            )
+          ).default;
+          componentCss = componentTokensToCss(componentTokens, catalog);
+        } catch (e) {
+          console.warn("Could not compute component CSS:", e);
+        }
       }
 
       const created = await createTheme(
@@ -85,6 +128,8 @@ export function createRoutes(config: StoryblokConfig): Router {
         req.params.name,
         tokensJson,
         css,
+        componentTokensJson,
+        componentCss,
       );
       if (!created) {
         res.status(409).json("Token name already exists");
@@ -120,16 +165,42 @@ export function createRoutes(config: StoryblokConfig): Router {
         return;
       }
 
-      const tokensJson = JSON.stringify(body);
+      // Support both flat (legacy) and structured body
+      const brandingTokens = body.tokens || body;
+      const componentTokens = body.componentTokens || undefined;
+      const tokensJson = JSON.stringify(brandingTokens);
 
-      // Compute CSS from tokens
+      // Compute branding CSS
       let css = "";
       try {
         const { tokensToCss } =
           await import("@kickstartds/design-system/tokens/tokensToCss.mjs");
-        css = tokensToCss(body);
+        css = tokensToCss(brandingTokens);
       } catch (e) {
         console.warn("Could not compute CSS from tokens:", e);
+      }
+
+      // Compute component CSS if overrides are present
+      let componentTokensJson: string | undefined;
+      let componentCss: string | undefined;
+      if (componentTokens && typeof componentTokens === "object") {
+        componentTokensJson =
+          Object.keys(componentTokens).length > 0
+            ? JSON.stringify(componentTokens)
+            : "";
+        try {
+          const { componentTokensToCss } =
+            await import("@kickstartds/design-system/tokens/componentTokensToCss.mjs");
+          const catalog = (
+            await import(
+              "@kickstartds/design-system/tokens/component-token-catalog.json",
+              { with: { type: "json" } }
+            )
+          ).default;
+          componentCss = componentTokensToCss(componentTokens, catalog);
+        } catch (e) {
+          console.warn("Could not compute component CSS:", e);
+        }
       }
 
       const updated = await updateTheme(
@@ -137,10 +208,19 @@ export function createRoutes(config: StoryblokConfig): Router {
         req.params.name,
         tokensJson,
         css,
+        componentTokensJson,
+        componentCss,
       );
       if (!updated) {
         // If the theme doesn't exist yet, create it (PUT is idempotent)
-        await createTheme(config, req.params.name, tokensJson, css);
+        await createTheme(
+          config,
+          req.params.name,
+          tokensJson,
+          css,
+          componentTokensJson,
+          componentCss,
+        );
       }
 
       res.status(200).json(body);

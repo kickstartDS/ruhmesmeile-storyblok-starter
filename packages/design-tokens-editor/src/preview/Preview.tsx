@@ -13,6 +13,8 @@ import { Restore } from "../editor/toolbar/Restore";
 import { Save } from "../editor/toolbar/Save";
 import { SaveAs } from "../editor/toolbar/SaveAs";
 
+type ViewMode = "branding" | "components";
+
 const widths = ["100%", "400px", "800px"];
 const pages = [
   { value: "demo", label: "Demo" },
@@ -31,6 +33,9 @@ const useIframeSrc = () => {
 
   const hash = useMemo(() => {
     if (pageParam) {
+      if (pageParam.startsWith("component/")) {
+        return pageParam;
+      }
       switch (pageParam) {
         case "demo":
           switch (categoryParam) {
@@ -58,8 +63,13 @@ const useIframeSrc = () => {
   return `./preview.html#!${hash}${invertedParam ? "?inverted=1" : ""}`;
 };
 
-export const Preview = () => {
+interface PreviewProps {
+  viewMode?: ViewMode;
+}
+
+export const Preview = ({ viewMode = "branding" }: PreviewProps) => {
   const searchParams = useSearchParams();
+  const isComponentMode = viewMode === "components";
 
   const [width, setWidth] = useState(widths[0]);
   const [page, setPage] = useState(searchParams.get("page") || pages[0].value);
@@ -82,7 +92,14 @@ export const Preview = () => {
     <div className="preview">
       <AppBar position="static" elevation={0} className="preview__toolbar">
         <Toolbar variant="dense">
-          <Select options={pages} value={page} onChange={setPage} label="preview:" />
+          {!isComponentMode && (
+            <Select
+              options={pages}
+              value={page}
+              onChange={setPage}
+              label="preview:"
+            />
+          )}
           <Select
             options={widths.map((w) => ({ value: w, label: w }))}
             value={width}
@@ -99,7 +116,12 @@ export const Preview = () => {
               />
             }
             label="Inverted?"
-            sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.875rem', color: 'text.secondary' } }}
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: "0.875rem",
+                color: "text.secondary",
+              },
+            }}
           />
           <Box sx={{ flexGrow: 1 }} />
           <Restore />
@@ -111,8 +133,16 @@ export const Preview = () => {
         </Toolbar>
       </AppBar>
       <Box className="preview__content">
-        <Box className="preview__iframe-container" sx={{ backgroundColor: "grey.200" }}>
-          <iframe className="preview__iframe" src={iframeSrc} title="Preview" style={{ width }} />
+        <Box
+          className="preview__iframe-container"
+          sx={{ backgroundColor: "grey.200" }}
+        >
+          <iframe
+            className="preview__iframe"
+            src={iframeSrc}
+            title="Preview"
+            style={{ width }}
+          />
         </Box>
       </Box>
     </div>

@@ -25,6 +25,8 @@ interface StoryblokStory {
     name?: string;
     tokens?: string;
     css?: string;
+    componentTokens?: string;
+    componentCss?: string;
     [key: string]: unknown;
   };
 }
@@ -230,11 +232,16 @@ export async function isSystemTheme(
   return story.content?.system === true;
 }
 
-/** Get a single token theme by slug. Returns the tokens JSON string or null. */
+export interface ThemeData {
+  tokens: string | null;
+  componentTokens: string | null;
+}
+
+/** Get a single token theme by slug. Returns tokens and componentTokens, or null if not found. */
 export async function getTheme(
   config: StoryblokConfig,
   slug: string,
-): Promise<string | null> {
+): Promise<ThemeData | null> {
   const url = `${getApiBase(config)}/spaces/${
     config.spaceId
   }/stories?starts_with=settings/themes/${encodeURIComponent(
@@ -243,7 +250,6 @@ export async function getTheme(
   const res = await rateLimitedFetch(url, { headers: headers(config) });
 
   if (res.status === 404) {
-    // Folder or content type doesn't exist yet — treat as "not found"
     return null;
   }
   if (!res.ok) {
@@ -256,18 +262,21 @@ export async function getTheme(
   if (!story) return null;
 
   // The list endpoint may not include `content` — fetch the full story if needed
-  if (!story.content) {
+  let content = story.content;
+  if (!content) {
     const fullRes = await rateLimitedFetch(
       `${getApiBase(config)}/spaces/${config.spaceId}/stories/${story.id}`,
       { headers: headers(config) },
     );
     if (!fullRes.ok) return null;
     const fullData = (await fullRes.json()) as StoryblokSingleResponse;
-    return fullData.story.content?.tokens || null;
+    content = fullData.story.content;
   }
 
-  // Return the tokens field content as parsed JSON (it's stored as a JSON string)
-  return story.content.tokens || null;
+  return {
+    tokens: content?.tokens || null,
+    componentTokens: content?.componentTokens || null,
+  };
 }
 
 /** Create a new token theme. Returns true if created, false if already exists. */
@@ -276,12 +285,23 @@ export async function createTheme(
   slug: string,
   tokens: string,
   css: string,
+  componentTokens?: string,
+  componentCss?: string,
 ): Promise<boolean> {
   // Check if it already exists
   const existing = await getTheme(config, slug);
   if (existing !== null) return false;
 
   const folderId = await ensureThemesFolder(config);
+
+  const content: Record<string, unknown> = {
+    component: "token-theme",
+    name: slug,
+    tokens,
+    css,
+  };
+  if (componentTokens) content.componentTokens = componentTokens;
+  if (componentCss) content.componentCss = componentCss;
 
   const res = await rateLimitedFetch(
     `${getApiBase(config)}/spaces/${config.spaceId}/stories`,
@@ -293,12 +313,7 @@ export async function createTheme(
           name: slug,
           slug,
           parent_id: folderId,
-          content: {
-            component: "token-theme",
-            name: slug,
-            tokens,
-            css,
-          },
+          content,
         },
         publish: 1,
       }),
@@ -319,6 +334,8 @@ export async function updateTheme(
   slug: string,
   tokens: string,
   css: string,
+  componentTokens?: string,
+  componentCss?: string,
 ): Promise<boolean> {
   // Find the story by slug
   const url = `${getApiBase(config)}/spaces/${
@@ -329,7 +346,6 @@ export async function updateTheme(
   const res = await rateLimitedFetch(url, { headers: headers(config) });
 
   if (res.status === 404) {
-    // Folder or content type doesn't exist yet — treat as "not found"
     return false;
   }
   if (!res.ok) {
@@ -341,6 +357,15 @@ export async function updateTheme(
 
   if (!story) return false;
 
+  const content: Record<string, unknown> = {
+    component: "token-theme",
+    name: slug,
+    tokens,
+    css,
+  };
+  if (componentTokens !== undefined) content.componentTokens = componentTokens;
+  if (componentCss !== undefined) content.componentCss = componentCss;
+
   const updateRes = await rateLimitedFetch(
     `${getApiBase(config)}/spaces/${config.spaceId}/stories/${story.id}`,
     {
@@ -348,12 +373,7 @@ export async function updateTheme(
       headers: headers(config),
       body: JSON.stringify({
         story: {
-          content: {
-            component: "token-theme",
-            name: slug,
-            tokens,
-            css,
-          },
+          content,
         },
         publish: 1,
       }),

@@ -12,6 +12,7 @@ COPY patches/ ./patches/
 COPY packages/design-tokens-editor/package.json ./packages/design-tokens-editor/
 COPY packages/shared-auth/package.json ./packages/shared-auth/
 COPY packages/design-system/package.json ./packages/design-system/
+COPY packages/token-graph/package.json ./packages/token-graph/
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile --ignore-scripts
@@ -22,6 +23,7 @@ ARG CACHEBUST=0
 # Copy source code for both packages
 COPY packages/shared-auth/ ./packages/shared-auth/
 COPY packages/design-system/ ./packages/design-system/
+COPY packages/token-graph/ ./packages/token-graph/
 COPY packages/design-tokens-editor/ ./packages/design-tokens-editor/
 
 # Build shared auth and design system first (tokens needed for tokensToCss)
