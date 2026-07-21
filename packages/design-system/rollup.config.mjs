@@ -114,6 +114,26 @@ export default {
           dest: "dist/tokens",
         },
         {
+          src: "scripts/tokensToCss.d.mts",
+          dest: "dist/tokens",
+        },
+        {
+          src: "src/token/component-token-catalog.json",
+          dest: "dist/tokens",
+        },
+        {
+          src: "scripts/componentTokensToCss.mjs",
+          dest: "dist/tokens",
+        },
+        {
+          src: "scripts/componentTokensToCss.d.mts",
+          dest: "dist/tokens",
+        },
+        {
+          src: "src/token/semantic-token-catalog.json",
+          dest: "dist/tokens",
+        },
+        {
           src: "static",
           dest: "dist",
         },

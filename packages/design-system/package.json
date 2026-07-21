@@ -51,7 +51,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run branding-tokens && rollup -c && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
+    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run component-token-catalog && pnpm run semantic-token-catalog && pnpm run branding-tokens && rollup -c && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
     "prepack": "pnpm run build",
     "build-storybook": "pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run search && pnpm run copy-theme-css && storybook build",
     "copy-theme-css": "mkdir -p static/tokens && cp src/token/branding-tokens*.css static/tokens/",
@@ -75,6 +75,8 @@
     "test:server": "npx http-server storybook-static --port 6006 --silent",
     "test:suite": "npx wait-on http://127.0.0.1:6006 && test-storybook --maxWorkers=8",
     "token": "node scripts/customPropertyExtract.cjs",
+    "component-token-catalog": "node scripts/extractComponentTokenCatalog.cjs",
+    "semantic-token-catalog": "node scripts/extractSemanticTokenCatalog.cjs",
     "branding-tokens": "node scripts/buildBrandingTokens.mjs",
     "typecheck": "tsc --noEmit",
     "watch:schema": "pnpm run schema && chokidar \"src/**/*.schema.json\" -c \"pnpm run schema\"",
