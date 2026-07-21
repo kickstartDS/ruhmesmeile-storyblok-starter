@@ -90,8 +90,8 @@ Branch: `upstream/batch-a-token-tooling`
 
 ## Progress log
 
-| Date | Batch | Note |
-| ---- | ----- | ---- |
-| 2026-07-21 | — | Checklist + ADR created; starting Batch A. |
-| 2026-07-21 | A | Investigated diffs (A.1 done). Split off token-graph wiring → Batch B (ADR-004). Excluded Storybook font/favicon brand changes (ADR-006). Catalogs to be regenerated, not copied (ADR-005). |
-| 2026-07-21 | A | Ported tooling; regenerated catalogs (component: 49 comps/776 tokens; semantic: 950 tokens, brand-neutral). Full DS build green (presets 136 passed). Changeset added. Ready to commit/PR. |
+| Date       | Batch | Note                                                                                                                                                                                        |
+| ---------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-21 | —     | Checklist + ADR created; starting Batch A.                                                                                                                                                  |
+| 2026-07-21 | A     | Investigated diffs (A.1 done). Split off token-graph wiring → Batch B (ADR-004). Excluded Storybook font/favicon brand changes (ADR-006). Catalogs to be regenerated, not copied (ADR-005). |
+| 2026-07-21 | A     | Ported tooling; regenerated catalogs (component: 49 comps/776 tokens; semantic: 950 tokens, brand-neutral). Full DS build green (presets 136 passed). Changeset added. Ready to commit/PR.  |
