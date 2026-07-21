@@ -99,4 +99,47 @@ belongs in a deliberate branding review, not the generic tooling batch.
 (the template emphasizes a11y audits). Tracked in the checklist REVIEW backlog.
 
 ---
+
+## ADR-007: Branch & merge workflow (one PR per batch, squash, dependency-ordered)
+
+**Decision:** Adopt the following workflow for landing the upstreaming batches:
+
+- **One PR per batch.** Each batch is a branch off the latest `main`
+  (`upstream/batch-<x>-<topic>`) carrying its own Changeset.
+- **Tracking docs live on `main`.** The inventory, checklist, and this ADR are pushed to `main`
+  directly (first commit `acf19f2d`), so every batch branch inherits the current tracking state
+  instead of each PR re-adding them.
+- **Squash-merge each batch PR** into `main`, then delete the branch. One squash → one Changeset →
+  one version bump, keeping `main` history one-commit-per-batch.
+- **Dependency-aware ordering:**
+  - **Batch A merges first, standalone** — it is self-contained (the `token-graph` build wiring was
+    deliberately deferred per ADR-004 so A builds green without B).
+  - **Batch B follows A** — it introduces `packages/token-graph` _and_ re-adds the deferred wiring
+    (build step + `@kickstartds/token-graph` `workspace:*` dep + `token-graph.json` rollup copy),
+    thereby completing A.
+  - **Batches C–F** branch off `main` **after** the prior batch merges, so each inherits updated
+    tracking docs and a non-stale base. Rough chain: A → {B → C, D → E → F}.
+- **Per-PR gate:** local/CI build green (`pnpm --filter @kickstartds/design-system build`) +
+  Changeset present → review → squash-merge.
+
+**Rationale:** Sequential, squash-merged batch PRs keep each change reviewable and revertable
+(reinforcing ADR-001), align cleanly with the Changesets release flow, and respect the A→B tooling
+dependency without breaking the build at any point.
+
+**Consequence — shared checklist conflicts:** every batch edits
+`optoma-upstreaming-checklist.md`, so parallel batch branches will conflict there. Mitigation: work
+batches **sequentially** (branch the next batch only after the prior merges), keeping the checklist
+linear; if batches must be prepared in parallel, restrict each branch's checklist edits to its own
+rows and resolve the trivial conflict at merge time.
+
+**Alternatives considered:**
+
+- **Merge-commit (no squash)** per batch — preserves intra-batch commits but clutters `main` and
+  complicates the one-changeset-per-release mapping.
+- **A single long-lived `upstreaming` integration branch** collecting all batches — defeats the
+  per-batch reviewability goal and grows an unwieldy conflict surface, same failure mode as ADR-001.
+- **Tracking docs re-added in each PR** instead of on `main` — causes guaranteed cross-PR conflicts
+  on every batch; putting them on `main` once avoids this.
+
+---
 <!-- Append new ADRs below as decisions are made during each batch. -->
