@@ -28,7 +28,7 @@ Branch: `upstream/batch-a-token-tooling`
 - [x] A.9 Regenerate `component-token-catalog.json` + `semantic-token-catalog.json` in-template (ADR-005)
 - [x] A.10 Build design-system; confirm catalogs generate + build stays green
 - [x] A.11 Add changeset
-- [~] A.12 Committed (`bd6f437e`); push + open PR pending user go-ahead
+- [x] A.12 Committed (`bd6f437e`), pushed, PR [#6](https://github.com/kickstartDS/ruhmesmeile-storyblok-starter/pull/6) opened
 - [-] A.x `.storybook` font/favicon swap — **excluded** (brand, ADR-006)
 - [ ] A.y `token-graph` build wiring + workspace dep + `token-graph.json` copy — **moved to Batch B**
 
