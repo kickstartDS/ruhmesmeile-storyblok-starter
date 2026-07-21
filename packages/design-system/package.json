@@ -51,7 +51,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run component-token-catalog && pnpm run semantic-token-catalog && pnpm run branding-tokens && rollup -c && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
+    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run component-token-catalog && pnpm run semantic-token-catalog && pnpm run branding-tokens && pnpm run token-graph && rollup -c && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
     "prepack": "pnpm run build",
     "build-storybook": "pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run search && pnpm run copy-theme-css && storybook build",
     "copy-theme-css": "mkdir -p static/tokens && cp src/token/branding-tokens*.css static/tokens/",
@@ -78,6 +78,7 @@
     "component-token-catalog": "node scripts/extractComponentTokenCatalog.cjs",
     "semantic-token-catalog": "node scripts/extractSemanticTokenCatalog.cjs",
     "branding-tokens": "node scripts/buildBrandingTokens.mjs",
+    "token-graph": "node ../token-graph/scripts/extractTokenGraph.mjs . src/token/token-graph.json",
     "typecheck": "tsc --noEmit",
     "watch:schema": "pnpm run schema && chokidar \"src/**/*.schema.json\" -c \"pnpm run schema\"",
     "watch:token": "pnpm run token && chokidar \"src/**/*-tokens.scss\" -c \"pnpm run token {path}\"",
@@ -102,6 +103,7 @@
     "@kickstartds/storybook-addon-html": "^1.0.0",
     "@kickstartds/storybook-addon-jsonschema": "^4.0.0",
     "@kickstartds/style-dictionary": "^4.0.2",
+    "@kickstartds/token-graph": "workspace:*",
     "@rollup/plugin-typescript": "^12.3.0",
     "@rollup/plugin-json": "^6.1.0",
     "@storybook/addon-a11y": "^10.2.0-beta.1",

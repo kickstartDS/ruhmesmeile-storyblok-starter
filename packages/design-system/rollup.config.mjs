@@ -134,6 +134,10 @@ export default {
           dest: "dist/tokens",
         },
         {
+          src: "src/token/token-graph.json",
+          dest: "dist/tokens",
+        },
+        {
           src: "static",
           dest: "dist",
         },

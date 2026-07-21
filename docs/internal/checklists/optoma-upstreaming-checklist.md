@@ -30,15 +30,17 @@ Branch: `upstream/batch-a-token-tooling`
 - [x] A.11 Add changeset
 - [x] A.12 Committed (`bd6f437e`), pushed, PR [#6](https://github.com/kickstartDS/ruhmesmeile-storyblok-starter/pull/6) opened
 - [-] A.x `.storybook` font/favicon swap — **excluded** (brand, ADR-006)
-- [ ] A.y `token-graph` build wiring + workspace dep + `token-graph.json` copy — **moved to Batch B**
+- [x] A.y `token-graph` build wiring + workspace dep + `token-graph.json` copy — **done in Batch B**
 
 ## Batch B — Cosmos Token Graph (new package)
 
-- [ ] B.0 Create branch
-- [ ] B.1 Port `packages/token-graph/**`
-- [ ] B.2 Port ADR/PRD/checklist docs
-- [ ] B.3 Wire workspace + build; validate
-- [ ] B.4 Changeset + PR
+Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooling`, ADR-007)
+
+- [x] B.0 Create branch (off Batch A branch — stacked PR, A not yet merged)
+- [x] B.1 Port `packages/token-graph/**` (18 files, verified brand-neutral)
+- [x] B.2 Port ADR/PRD/checklist docs (cosmos-token-graph)
+- [x] B.3 Wire workspace dep + `token-graph` build step + rollup copy; `pnpm install`; DS build green (token-graph.json: 1708 nodes / 1988 edges — matches optoma exactly); package typecheck green
+- [x] B.4 Changeset + PR
 
 ## Batch C — Component Token Editor
 
@@ -95,3 +97,4 @@ Branch: `upstream/batch-a-token-tooling`
 | 2026-07-21 | —     | Checklist + ADR created; starting Batch A.                                                                                                                                                  |
 | 2026-07-21 | A     | Investigated diffs (A.1 done). Split off token-graph wiring → Batch B (ADR-004). Excluded Storybook font/favicon brand changes (ADR-006). Catalogs to be regenerated, not copied (ADR-005). |
 | 2026-07-21 | A     | Ported tooling; regenerated catalogs (component: 49 comps/776 tokens; semantic: 950 tokens, brand-neutral). Full DS build green (presets 136 passed). Changeset added. Ready to commit/PR.  |
+| 2026-07-21 | B     | Ported `packages/token-graph` (18 files) + cosmos docs; stacked on Batch A branch (ADR-007). Wired token-graph build step + workspace dep + rollup copy (completes deferred A.y). DS build green; token-graph.json 1708 nodes/1988 edges (matches optoma); typecheck green. Changeset added.                    |
