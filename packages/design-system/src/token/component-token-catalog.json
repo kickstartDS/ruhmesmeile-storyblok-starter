@@ -1786,6 +1786,71 @@
         "defaultValue": "16/9",
         "valueType": "literal",
         "referencedToken": null
+      },
+      "--dsa-gallery--slider-height": {
+        "defaultValue": "300px",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery--slider-gap": {
+        "defaultValue": "var(--ks-spacing-inline-m)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-inline-m"
+      },
+      "--dsa-gallery__slider-arrow--size": {
+        "defaultValue": "2.5rem",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-arrow--padding": {
+        "defaultValue": "var(--ks-spacing-xs)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-xs"
+      },
+      "--dsa-gallery__slider-arrow--color": {
+        "defaultValue": "var(--ks-color-fg)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-color-fg"
+      },
+      "--dsa-gallery__slider-arrow--background": {
+        "defaultValue": "var(--ks-background-color-default)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-background-color-default"
+      },
+      "--dsa-gallery__slider-arrow--opacity": {
+        "defaultValue": "0.8",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-arrow--opacity_hover": {
+        "defaultValue": "1",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-arrow--opacity_disabled": {
+        "defaultValue": "0.3",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-arrow--shadow": {
+        "defaultValue": "0 2px 8px rgba(0, 0, 0, 0.15)",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-progress--height": {
+        "defaultValue": "4px",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-gallery__slider-progress--background": {
+        "defaultValue": "var(--ks-color-fg-alpha-8)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-color-fg-alpha-8"
+      },
+      "--dsa-gallery__slider-progress-bar--background": {
+        "defaultValue": "var(--ks-color-fg)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-color-fg"
       }
     }
   },
@@ -1803,13 +1868,18 @@
         "valueType": "semantic-ref",
         "referencedToken": "--ks-background-color-default"
       },
+      "--dsa-header--z-index": {
+        "defaultValue": "var(--ks-depth-modal)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-depth-modal"
+      },
       "--dsa-header_floating--background": {
-        "defaultValue": "var(--dsa-overlay-box_opaque--background-color)",
+        "defaultValue": "var(\n    --dsa-overlay-box_opaque--background-color\n  )",
         "valueType": "component-ref",
         "referencedToken": "--dsa-overlay-box_opaque--background-color"
       },
       "--dsa-header_floating--backdrop-filter": {
-        "defaultValue": "var(--dsa-overlay-box_opaque--backdrop-filter)",
+        "defaultValue": "var(\n    --dsa-overlay-box_opaque--backdrop-filter\n  )",
         "valueType": "component-ref",
         "referencedToken": "--dsa-overlay-box_opaque--backdrop-filter"
       },
@@ -2323,29 +2393,39 @@
     "selector": ":root",
     "tokens": {
       "--dsa-lightbox--background-color": {
-        "defaultValue": "var(--ks-background-color-default)",
+        "defaultValue": "var(--ks-background-color-default-inverted)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-background-color-default"
+        "referencedToken": "--ks-background-color-default-inverted"
+      },
+      "--dsa-lightbox--root-z-index": {
+        "defaultValue": "1100",
+        "valueType": "literal",
+        "referencedToken": null
       },
       "--dsa-lightbox__placeholder--background": {
         "defaultValue": "var(--ks-color-fg-to-bg-1)",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-color-fg-to-bg-1"
       },
-      "--dsa-lightbox--root-z-index": {
-        "defaultValue": "var(--ks-depth-modal)",
-        "valueType": "semantic-ref",
-        "referencedToken": "--ks-depth-modal"
-      },
       "--dsa-lightbox__button--color": {
         "defaultValue": "var(--ks-text-color-on-primary)",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-text-color-on-primary"
       },
-      "--dsa-lightbox__counter--shadow": {
-        "defaultValue": "var(--ks-color-fg-inverted)",
+      "--dsa-lightbox__stroke--color": {
+        "defaultValue": "var(--ks-color-fg)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-color-fg-inverted"
+        "referencedToken": "--ks-color-fg"
+      },
+      "--dsa-lightbox__stroke--width": {
+        "defaultValue": "2px",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-lightbox__counter--shadow": {
+        "defaultValue": "var(--ks-color-fg-to-bg-7)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-color-fg-to-bg-7"
       },
       "--dsa-lightbox__counter--font": {
         "defaultValue": "var(--ks-font-interface-s)",
@@ -2353,9 +2433,14 @@
         "referencedToken": "--ks-font-interface-s"
       },
       "--dsa-lightbox__counter--color": {
-        "defaultValue": "var(--ks-color-fg)",
+        "defaultValue": "var(--ks-color-fg-inverted)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-color-fg"
+        "referencedToken": "--ks-color-fg-inverted"
+      },
+      "--dsa-lightbox__thumb--hover-filter": {
+        "defaultValue": "brightness(40%)",
+        "valueType": "literal",
+        "referencedToken": null
       }
     }
   },
@@ -3598,7 +3683,7 @@
         "referencedToken": "--ks-background-color-card-interactive"
       },
       "--dsa-teaser-card--background_hover": {
-        "defaultValue": "var(--ks-background-color-card-interactive-hover)",
+        "defaultValue": "var(\n    --ks-background-color-card-interactive-hover\n  )",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-background-color-card-interactive-hover"
       },
@@ -3613,7 +3698,7 @@
         "referencedToken": "--ks-border-card-interactive"
       },
       "--dsa-teaser-card--border-color_hover": {
-        "defaultValue": "var(--ks-border-color-card-interactive-hover)",
+        "defaultValue": "var(\n    --ks-border-color-card-interactive-hover\n  )",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-border-color-card-interactive-hover"
       },
@@ -3657,8 +3742,18 @@
         "valueType": "literal",
         "referencedToken": null
       },
+      "--dsa-teaser-card__image--padding": {
+        "defaultValue": "var(--dsa-teaser-card--padding)",
+        "valueType": "component-ref",
+        "referencedToken": "--dsa-teaser-card--padding"
+      },
+      "--dsa-teaser-card__image--border-radius": {
+        "defaultValue": "var(\n    --dsa-teaser-card--border-radius\n  )",
+        "valueType": "component-ref",
+        "referencedToken": "--dsa-teaser-card--border-radius"
+      },
       "--dsa-teaser-card__body--gap": {
-        "defaultValue": "var(--ks-spacing-stack-s) var(--ks-spacing-inline-m)",
+        "defaultValue": "var(--ks-spacing-stack-s)\n    var(--ks-spacing-inline-m)",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-spacing-stack-s"
       },
@@ -3683,7 +3778,7 @@
         "referencedToken": "--ks-text-color-primary"
       },
       "--dsa-teaser-card__label--background-color": {
-        "defaultValue": "var(--ks-background-color-default)",
+        "defaultValue": "var(\n    --ks-background-color-default\n  )",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-background-color-default"
       },
@@ -3698,7 +3793,7 @@
         "referencedToken": "--ks-border-radius-pill"
       },
       "--dsa-teaser-card__label--border": {
-        "defaultValue": "var(--ks-border-width-default) solid var(--ks-border-color-primary)",
+        "defaultValue": "var(--ks-border-width-default) solid\n    var(--ks-border-color-primary)",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-border-width-default"
       },

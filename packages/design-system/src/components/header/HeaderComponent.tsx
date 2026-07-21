@@ -22,7 +22,7 @@ export const HeaderContextDefault = forwardRef<
       dropdownInverted = false,
       navItems = [],
     },
-    ref
+    ref,
   ) => (
     <>
       <header
@@ -45,7 +45,7 @@ export const HeaderContextDefault = forwardRef<
       </header>
       {floating && <div className="dsa-header--overlay" />}
     </>
-  )
+  ),
 );
 
 export const HeaderContext = createContext(HeaderContextDefault);

@@ -8,6 +8,7 @@ declare module "@kickstartds/base/lib/section/typing" {
 
 import type {BlogTeaserProps} from "@kickstartds/blog-teaser.schema.json/lib/blog-teaser/typing";
 import type {BusinessCardProps} from "@kickstartds/business-card.schema.json/lib/business-card/typing";
+import type {ButtonProps} from "@kickstartds/base/lib/button/typing";
 import type {ContactProps} from "@kickstartds/base/lib/contact/typing";
 import type {ContentNavProps} from "@kickstartds/content-nav.schema.json/lib/content-nav/typing";
 import type {CtaProps} from "@kickstartds/cta.schema.json/lib/cta/typing";
@@ -33,7 +34,6 @@ import type {TeaserCardProps} from "@kickstartds/teaser-card.schema.json/lib/tea
 import type {TestimonialsProps} from "@kickstartds/testimonials.schema.json/lib/testimonials/typing";
 import type {TextProps} from "@kickstartds/text.schema.json/lib/text/typing";
 import type {VideoCurtainProps} from "@kickstartds/video-curtain.schema.json/lib/video-curtain/typing";
-import type {ButtonProps} from "@kickstartds/base/lib/button/typing";
 
 /**
  * Width of section to use
@@ -129,6 +129,7 @@ export type TileWidth = "smallest" | "default" | "medium" | "large" | "largest" 
 export type Content = (
   | BlogTeaserProps
   | BusinessCardProps
+  | ButtonProps
   | ContactProps
   | ContentNavProps
   | CtaProps

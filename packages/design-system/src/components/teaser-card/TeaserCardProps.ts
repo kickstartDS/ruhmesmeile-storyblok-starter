@@ -45,6 +45,10 @@ export type Image = string;
  * Alternative text for the image, used for accessibility
  */
 export type ImageAlt = string;
+/**
+ * Whether the image zooms in slightly when hovering over the card
+ */
+export type ImageHoverEffect = boolean;
 
 /**
  * Component used to tease content
@@ -70,4 +74,5 @@ export interface TeaserCardProps {
    * Aspect ratio of the image
    */
   imageRatio?: "wide" | "landscape" | "square" | "unset";
+  imageHoverEffect?: ImageHoverEffect;
 }

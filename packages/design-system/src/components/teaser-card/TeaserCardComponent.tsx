@@ -23,23 +23,32 @@ export type { TeaserCardProps };
 export const TeaserCardContextDefault = forwardRef<
   HTMLDivElement,
   TeaserCardProps & HTMLAttributes<HTMLDivElement>
->(
-  (
-    {
-      headline,
-      text,
-      button,
-      url,
-      image,
-      imageRatio = "wide",
-      imageAlt,
-      label,
-      layout = "stack",
-      centered = false,
-      ...rest
-    },
-    ref
-  ) => (
+>((props, ref) => {
+  // `newTab` is resolved at story-processing time from Storyblok's multilink
+  // target-blank toggle and isn't part of the generated schema type. The
+  // base Teaser's client-side "js-linked" whole-card click behavior reads
+  // the rendered anchor's `target` attribute, so forwarding `newTab` to the
+  // Button here makes both the visible link and the card-wide click respect it.
+  const { newTab, ...typedProps } = props as TeaserCardProps &
+    HTMLAttributes<HTMLDivElement> & { newTab?: boolean };
+  const {
+    headline,
+    text,
+    button,
+    url,
+    image,
+    imageRatio = "wide",
+    imageAlt,
+    imageHoverEffect = true,
+    label,
+    layout = "stack",
+    centered = false,
+    ...rest
+  } = typedProps;
+
+  const hasLink = Boolean(url?.trim()) && url !== "#";
+
+  return (
     <Container name="teaser-card">
       <div
         ks-inverted={layout === "compact" && "true"}
@@ -49,7 +58,9 @@ export const TeaserCardContextDefault = forwardRef<
           `dsa-teaser-card--${imageRatio}`,
           label && `dsa-teaser-card--with-label`,
           centered && `dsa-teaser-card--centered`,
-          !image && "dsa-teaser-card--no-image"
+          !image && "dsa-teaser-card--no-image",
+          !imageHoverEffect && "dsa-teaser-card--no-image-hover",
+          !hasLink && "dsa-teaser-card--no-link",
         )}
       >
         {label && layout !== "compact" && (
@@ -69,11 +80,14 @@ export const TeaserCardContextDefault = forwardRef<
             </>
           )}
           link={{
-            hidden: button?.hidden,
+            hidden: button?.hidden || !hasLink,
             label: button.label,
             variant: "primary",
             url: url,
             icon: button?.chevron ? "chevron-right" : undefined,
+            // `newTab` isn't part of the base package's generated `link` type
+            // resolved here, but the underlying Button primitive supports it.
+            ...({ newTab } as any),
           }}
           image={image}
           alt={imageAlt}
@@ -81,8 +95,8 @@ export const TeaserCardContextDefault = forwardRef<
         />
       </div>
     </Container>
-  )
-);
+  );
+});
 
 export const TeaserCardContext = createContext(TeaserCardContextDefault);
 export const TeaserCard = forwardRef<

@@ -27,12 +27,22 @@ export const HtmlContextDefault = forwardRef<
       component = "dsa.html",
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
-        className={classNames("dsa-html", className)}
+        className={classNames(
+          "dsa-html",
+          "test",
+          {
+            "dsa-html--sixteen-to-nine": consentAspectRatio === "16:9",
+            "dsa-html--sixteen-to-ten": consentAspectRatio === "16:10",
+            "dsa-html--four-to-three": consentAspectRatio === "4:3",
+            "dsa-html--square": consentAspectRatio === "1:1",
+          },
+          className,
+        )}
         ks-component={component}
         ks-inverted={inverted ? "true" : undefined}
         {...props}
@@ -65,7 +75,7 @@ export const HtmlContextDefault = forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 
 export const HtmlContext = createContext(HtmlContextDefault);

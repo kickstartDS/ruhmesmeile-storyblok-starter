@@ -18,11 +18,13 @@
       "properties": {
         "src": {
           "type": "string",
-          "format": "uri",
+          "title": "Image Source",
+          "format": "image",
           "description": "URL of the background image shown on the business card."
         },
         "alt": {
           "type": "string",
+          "title": "Image Alt Text",
           "description": "Alternative text describing the background image."
         }
       },
@@ -35,16 +37,19 @@
       "properties": {
         "src": {
           "type": "string",
-          "format": "uri",
+          "format": "image",
+          "title": "Logo Image",
           "description": "URL of the company or organization logo."
         },
         "alt": {
           "type": "string",
+          "title": "Logo Alt Text",
           "description": "Alternative text describing the logo."
         },
         "url": {
           "type": "string",
           "format": "uri",
+          "title": "Logo Target",
           "description": "URL to the company's website or landing page."
         }
       },
@@ -67,17 +72,19 @@
       "properties": {
         "src": {
           "type": "string",
-          "format": "uri",
+          "format": "image",
+          "title": "Avatar Image",
           "description": "URL of the person's avatar or profile image."
         },
         "alt": {
           "type": "string",
+          "title": "Avatar Alt Text",
           "description": "Alternative text describing the avatar."
         }
       },
       "required": ["src"]
     },
-    "contact": {
+    "contactLinks": {
       "type": "array",
       "title": "Contact Information",
       "description": "A list of contact methods for the person or business (e.g., email, phone, website).",
@@ -86,15 +93,19 @@
         "properties": {
           "label": {
             "type": "string",
+            "title": "Contact Label",
             "description": "Label describing the contact method (e.g., 'Email', 'Phone')."
           },
           "icon": {
             "type": "string",
+            "format": "icon",
+            "title": "Contact Icon",
             "description": "Icon name or identifier representing the contact method."
           },
           "url": {
             "type": "string",
             "format": "uri",
+            "title": "Contact URL",
             "description": "URL or link for the contact method, if applicable."
           }
         },
@@ -110,11 +121,13 @@
         "properties": {
           "label": {
             "type": "string",
+            "title": "Button Label",
             "description": "Text label for the link."
           },
           "url": {
             "type": "string",
             "format": "uri",
+            "title": "Button URL",
             "description": "URL the link points to."
           }
         },

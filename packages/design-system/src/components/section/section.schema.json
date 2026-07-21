@@ -78,7 +78,6 @@
           "type": "string",
           "title": "Headline",
           "description": "Headline Text for the section",
-          "format": "markdown",
           "examples": ["Section headline"]
         },
         "large": {
@@ -109,8 +108,7 @@
         "sub": {
           "type": "string",
           "title": "Subheadline",
-          "description": "Subheadline for the section",
-          "format": "markdown"
+          "description": "Subheadline for the section"
         },
         "switchOrder": {
           "type": "boolean",
@@ -172,6 +170,9 @@
           },
           {
             "$ref": "http://schema.mydesignsystem.com/business-card.schema.json"
+          },
+          {
+            "$ref": "http://schema.mydesignsystem.com/button.schema.json"
           },
           {
             "$ref": "http://schema.mydesignsystem.com/contact.schema.json"

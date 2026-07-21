@@ -8,14 +8,12 @@
     "text": {
       "type": "string",
       "title": "Text",
-      "description": "Text content of headline",
-      "format": "markdown"
+      "description": "Text content of headline"
     },
     "sub": {
       "type": "string",
       "title": "Sub",
-      "description": "Subheadline content",
-      "format": "markdown"
+      "description": "Subheadline content"
     },
     "switchOrder": {
       "type": "boolean",
