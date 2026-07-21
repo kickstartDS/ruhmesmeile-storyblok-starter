@@ -169,6 +169,17 @@ parked for a dedicated future batch that ports the component **and** a brand-neu
 rewrite of its story together. Template stories remain the source of truth for Storybook
 and the search index.
 
+**Follow-up audit (story diffs):** A per-file audit of all 44 differing `*.stories.*`
+confirmed 42 are pure brand-content swaps (line-for-line placeholder → client image/text,
+or simply more brand items) with no component-logic or coverage value. Two carried
+brand-neutral, fix-coupled value and were **folded into Batch D** with placeholder content:
+(a) gallery gains a new `SliderGallery` variant exercising the ported `slider` layout —
+which otherwise had **no** Storybook coverage in the template; (b) the business-card story's
+non-existent `contact:` prop was renamed to `contactLinks:`, fixing a *latent template bug*
+(both schema and props already use `contactLinks`, so contacts didn't render). No exclusion
+caused a build break: no removed schema prop is still referenced by a retained story, and
+the `contact` case predated Batch D.
+
 **Alternatives considered:**
 
 - **Port stories too, then sanitise brand content in-place** — high-effort, error-prone

@@ -42,7 +42,7 @@ export const Default: Story = {
       src: "img/placeholder/avatar-business-card-round.svg",
       alt: "Emily Johnson",
     },
-    contact: [
+    contactLinks: [
       { icon: "phone", label: "+1 234 567 890", url: "tel:+1234567890" },
       {
         icon: "email",
@@ -83,7 +83,7 @@ export const Centered: Story = {
       src: "img/placeholder/avatar-business-card-round.svg",
       alt: "Emily Johnson",
     },
-    contact: [
+    contactLinks: [
       { icon: "phone", label: "+1 234 567 890", url: "tel:+1234567890" },
       {
         icon: "email",
@@ -120,7 +120,7 @@ export const WithoutImage: Story = {
       src: "img/placeholder/avatar-business-card-round.svg",
       alt: "Emily Johnson",
     },
-    contact: [
+    contactLinks: [
       { icon: "phone", label: "+1 234 567 890", url: "tel:+1234567890" },
       {
         icon: "email",
