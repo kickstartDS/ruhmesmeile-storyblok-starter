@@ -33,7 +33,10 @@ const getValue = (name, $type, $value) => {
 
     case "fontFamily":
       return $value
-        .map((f) => (f.includes(" ") ? JSON.stringify(f) : f))
+        .map((f) => {
+          const clean = f.replace(/^["']|["']$/g, "").trim();
+          return clean.includes(" ") ? `"${clean}"` : clean;
+        })
         .join();
 
     case "dimension":
