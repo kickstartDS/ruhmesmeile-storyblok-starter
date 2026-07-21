@@ -32,6 +32,18 @@ body {
         width: 0;
       }
     }
+
+    &--wide {
+      width: 60vw;
+
+      @include breakpoints.phone {
+        width: 60vw;
+
+        &.content__editor-pane--hidden {
+          width: 0;
+        }
+      }
+    }
   }
 
   &__preview-pane {

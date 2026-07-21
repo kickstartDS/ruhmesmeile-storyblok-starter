@@ -18,7 +18,10 @@ export interface PresetListEntry {
 
 export interface IPresetContext {
   presetName: string | undefined;
+  /** Branding tokens from the loaded preset. */
   preset: any | undefined;
+  /** Component token overrides from the loaded preset. */
+  componentTokenPreset: any | undefined;
   presetNames: PresetListEntry[] | null | undefined;
   isSystemPreset: boolean;
   getPresetList: (
@@ -26,12 +29,16 @@ export interface IPresetContext {
     options?: RequestInit,
   ) => Promise<PresetListEntry[] | null>;
   selectPreset: (name: string) => void;
-  savePreset: (tokens: any, name?: string | null) => Promise<void>;
+  savePreset: (
+    data: { tokens: any; componentTokens?: any },
+    name?: string | null,
+  ) => Promise<void>;
 }
 
 const PresetContext = createContext<IPresetContext>({
   presetName: undefined,
   preset: undefined,
+  componentTokenPreset: undefined,
   presetNames: undefined,
   isSystemPreset: false,
   async getPresetList() {
@@ -47,7 +54,12 @@ export const PresetContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const [presetName, setPresetName] = useState<string>();
 
-  const { execute: getPreset, data: preset } = useGet();
+  const { execute: getPreset, data: rawPreset } = useGet();
+
+  // The GET response is { tokens: {...}, componentTokens?: {...} }
+  // Extract branding tokens and component tokens separately
+  const preset = rawPreset?.tokens ?? rawPreset;
+  const componentTokenPreset = rawPreset?.componentTokens;
   const { execute: putPreset } = usePut();
   const { execute: getPresetList, data: presetNames } =
     useGet<PresetListEntry[]>("/api/tokens/");
@@ -75,17 +87,21 @@ export const PresetContextProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         presetName,
         preset,
+        componentTokenPreset,
         getPresetList,
         presetNames,
         isSystemPreset,
         selectPreset(name) {
           if (name !== tokenParam) searchParams.set("t", name);
         },
-        async savePreset(tokens: any, name = tokenParam) {
-          if (tokens && name)
+        async savePreset(
+          data: { tokens: any; componentTokens?: any },
+          name = tokenParam,
+        ) {
+          if (data?.tokens && name)
             return putPreset(`/api/tokens/${name}`, {
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(tokens),
+              body: JSON.stringify(data),
             });
         },
       }}

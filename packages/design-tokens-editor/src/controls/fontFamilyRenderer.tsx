@@ -101,7 +101,22 @@ export const renderer = withJsonFormsControlProps(
                 error={!isValid}
                 fullWidth
                 onFocus={onFocus}
-                onBlur={onBlur}
+                onBlur={(event) => {
+                  onBlur();
+                  // Commit freeform text when the user leaves the field.
+                  // Without this, typed values are lost on tab/blur because
+                  // freeSolo only calls onChange when a dropdown item is picked.
+                  const typed = event.target.value;
+                  if (typed !== value) {
+                    handleChange(path, {
+                      $type: "fontFamily",
+                      $value: typed
+                        .split(",")
+                        .map((s) => s.trim().replace(/^["']|["']$/g, ""))
+                        .filter(Boolean),
+                    });
+                  }
+                }}
                 focused={focused}
               />
             );

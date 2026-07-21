@@ -284,6 +284,9 @@ importers:
       '@kickstartds/shared-auth':
         specifier: workspace:*
         version: link:../shared-auth
+      '@kickstartds/token-graph':
+        specifier: workspace:*
+        version: link:../token-graph
       '@mui/icons-material':
         specifier: ^7.3.5
         version: 7.3.9(@mui/material@7.3.9(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.1))(@types/react@19.2.14)(react@19.2.1))(@types/react@19.2.14)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@types/react@19.2.14)(react@19.2.1)

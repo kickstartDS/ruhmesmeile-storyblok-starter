@@ -49,6 +49,8 @@ const GLOBAL_TOKEN_FILES = [
   "spacing-token.scss",
   "text-color-token.scss",
   "transition-token.scss",
+  "component-token-catalog.json",
+  "semantic-token-catalog.json",
 ];
 
 // ── Main ────────────────────────────────────────────────────────────────────

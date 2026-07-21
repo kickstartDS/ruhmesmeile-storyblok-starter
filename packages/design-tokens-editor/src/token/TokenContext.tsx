@@ -6,9 +6,11 @@ import {
   FC,
   PropsWithChildren,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
 } from "react";
 import { usePreset } from "../presets/PresetContext";
 import { useLocalStorage } from "../utils/useLocalStorage";
@@ -19,6 +21,8 @@ export interface ITokenContext {
   css: string;
   resetTokens: () => void;
   savePreset: (name?: string) => Promise<void>;
+  /** Provides componentTokens to include when saving a preset. */
+  setComponentTokensGetter: (getter: () => any) => void;
 }
 
 const TokenContext = createContext<ITokenContext>({
@@ -27,12 +31,19 @@ const TokenContext = createContext<ITokenContext>({
   css: tokensToCss(initialTokens),
   resetTokens() {},
   async savePreset() {},
+  setComponentTokensGetter() {},
 });
 
 export const TokenContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [tokens, setTokens] = useLocalStorage<object>("tokens", initialTokens);
   const { preset, savePreset } = usePreset();
   const css = useMemo(() => tokensToCss(tokens), [tokens]);
+
+  // Ref for getting component tokens when saving
+  const componentTokensGetterRef = useRef<(() => any) | null>(null);
+  const setComponentTokensGetter = useCallback((getter: () => any) => {
+    componentTokensGetterRef.current = getter;
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("css", css);
@@ -52,8 +63,14 @@ export const TokenContextProvider: FC<PropsWithChildren> = ({ children }) => {
           setTokens(preset || initialTokens);
         },
         savePreset(name) {
-          return savePreset(tokens, name);
+          const componentTokens = componentTokensGetterRef.current?.();
+          const data: { tokens: any; componentTokens?: any } = { tokens };
+          if (componentTokens && Object.keys(componentTokens).length > 0) {
+            data.componentTokens = componentTokens;
+          }
+          return savePreset(data, name);
         },
+        setComponentTokensGetter,
       }}
     >
       {children}

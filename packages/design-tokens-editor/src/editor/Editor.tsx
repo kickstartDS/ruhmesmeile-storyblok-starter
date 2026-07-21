@@ -12,7 +12,6 @@ import * as fontFamilyRenderer from "../controls/fontFamilyRenderer";
 import * as fontWeightRenderer from "../controls/fontWeightRenderer";
 import * as numberRenderer from "../controls/numberRenderer";
 import { useToken } from "../token/TokenContext";
-import { EditorToolbar } from "./Toolbar";
 import { uischema } from "./uiSchema";
 
 const schema = { type: "object", properties: tokenSchema.properties };
@@ -22,7 +21,6 @@ export const Editor = () => {
   const { tokens, setTokens } = useToken();
   return (
     <>
-      <EditorToolbar />
       <JsonForms
         schema={schema}
         uischema={uischema}
