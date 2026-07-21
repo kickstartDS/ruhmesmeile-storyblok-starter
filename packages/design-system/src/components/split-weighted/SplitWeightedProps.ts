@@ -7,6 +7,7 @@
 
 import type {BlogTeaserProps} from "../blog-teaser/BlogTeaserProps";
 import type {BusinessCardProps} from "../business-card/BusinessCardProps";
+import type {ButtonProps} from "../button/ButtonProps";
 import type {ContactProps} from "../contact/ContactProps";
 import type {ContentNavProps} from "../content-nav/ContentNavProps";
 import type {CtaProps} from "../cta/CtaProps";
@@ -17,6 +18,7 @@ import type {EventListTeaserProps} from "../event-list-teaser/EventListTeaserPro
 import type {FaqProps} from "../faq/FaqProps";
 import type {FeaturesProps} from "../features/FeaturesProps";
 import type {GalleryProps} from "../gallery/GalleryProps";
+import type {HeadlineProps} from "../headline/HeadlineProps";
 import type {HeroProps} from "../hero/HeroProps";
 import type {HtmlProps} from "../html/HtmlProps";
 import type {ImageStoryProps} from "../image-story/ImageStoryProps";
@@ -29,8 +31,6 @@ import type {TeaserCardProps} from "../teaser-card/TeaserCardProps";
 import type {TestimonialsProps} from "../testimonials/TestimonialsProps";
 import type {TextProps} from "../text/TextProps";
 import type {VideoCurtainProps} from "../video-curtain/VideoCurtainProps";
-import type {ButtonProps} from "../button/ButtonProps";
-import type {HeadlineProps} from "../headline/HeadlineProps";
 
 /**
  * Sets the vertical space between the content of the split layout
@@ -90,6 +90,7 @@ export type DesktopOrder = "mainFirst" | "asideFirst";
 export type Main = (
   | BlogTeaserProps
   | BusinessCardProps
+  | ButtonProps
   | ContactProps
   | ContentNavProps
   | CtaProps
@@ -100,6 +101,7 @@ export type Main = (
   | FaqProps
   | FeaturesProps
   | GalleryProps
+  | HeadlineProps
   | HeroProps
   | HtmlProps
   | ImageStoryProps

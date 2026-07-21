@@ -10,6 +10,26 @@
  */
 export type Centered = boolean;
 /**
+ * URL of the background image shown on the business card.
+ */
+export type ImageSource = string;
+/**
+ * Alternative text describing the background image.
+ */
+export type ImageAltText = string;
+/**
+ * URL of the company or organization logo.
+ */
+export type LogoImage = string;
+/**
+ * Alternative text describing the logo.
+ */
+export type LogoAltText = string;
+/**
+ * URL to the company's website or landing page.
+ */
+export type LogoTarget = string;
+/**
  * A headline or main topic for the business card, such as a job title or department.
  */
 export type Topic = string;
@@ -18,34 +38,47 @@ export type Topic = string;
  */
 export type Address = string;
 /**
+ * URL of the person's avatar or profile image.
+ */
+export type AvatarImage = string;
+/**
+ * Alternative text describing the avatar.
+ */
+export type AvatarAltText = string;
+/**
+ * Label describing the contact method (e.g., 'Email', 'Phone').
+ */
+export type ContactLabel = string;
+/**
+ * Icon name or identifier representing the contact method.
+ */
+export type ContactIcon = string;
+/**
+ * URL or link for the contact method, if applicable.
+ */
+export type ContactURL = string;
+/**
  * A list of contact methods for the person or business (e.g., email, phone, website).
  */
 export type ContactInformation = {
-  /**
-   * Label describing the contact method (e.g., 'Email', 'Phone').
-   */
-  label: string;
-  /**
-   * Icon name or identifier representing the contact method.
-   */
-  icon?: string;
-  /**
-   * URL or link for the contact method, if applicable.
-   */
-  url?: string;
+  label: ContactLabel;
+  icon?: ContactIcon;
+  url?: ContactURL;
 }[];
+/**
+ * Text label for the link.
+ */
+export type ButtonLabel = string;
+/**
+ * URL the link points to.
+ */
+export type ButtonURL = string;
 /**
  * A list of action buttons shown on the business card.
  */
 export type Buttons = {
-  /**
-   * Text label for the link.
-   */
-  label: string;
-  /**
-   * URL the link points to.
-   */
-  url: string;
+  label: ButtonLabel;
+  url: ButtonURL;
 }[];
 
 /**
@@ -58,49 +91,28 @@ export interface BusinessCardProps {
   topic?: Topic;
   address?: Address;
   avatar?: Avatar;
-  contact?: ContactInformation;
+  contactLinks?: ContactInformation;
   buttons?: Buttons;
 }
 /**
  * A background or feature image displayed on the business card.
  */
 export interface BackgroundImage {
-  /**
-   * URL of the background image shown on the business card.
-   */
-  src: string;
-  /**
-   * Alternative text describing the background image.
-   */
-  alt?: string;
+  src: ImageSource;
+  alt?: ImageAltText;
 }
 /**
  * The logo of the company or organization displayed on the business card.
  */
 export interface CompanyLogo {
-  /**
-   * URL of the company or organization logo.
-   */
-  src: string;
-  /**
-   * Alternative text describing the logo.
-   */
-  alt?: string;
-  /**
-   * URL to the company's website or landing page.
-   */
-  url?: string;
+  src: LogoImage;
+  alt?: LogoAltText;
+  url?: LogoTarget;
 }
 /**
  * A profile image or avatar representing the person on the business card.
  */
 export interface Avatar {
-  /**
-   * URL of the person's avatar or profile image.
-   */
-  src: string;
-  /**
-   * Alternative text describing the avatar.
-   */
-  alt?: string;
+  src: AvatarImage;
+  alt?: AvatarAltText;
 }

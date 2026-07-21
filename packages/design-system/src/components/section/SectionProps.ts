@@ -7,6 +7,7 @@
 
 import type {BlogTeaserProps} from "../blog-teaser/BlogTeaserProps";
 import type {BusinessCardProps} from "../business-card/BusinessCardProps";
+import type {ButtonProps} from "../button/ButtonProps";
 import type {ContactProps} from "../contact/ContactProps";
 import type {ContentNavProps} from "../content-nav/ContentNavProps";
 import type {CtaProps} from "../cta/CtaProps";
@@ -32,7 +33,6 @@ import type {TeaserCardProps} from "../teaser-card/TeaserCardProps";
 import type {TestimonialsProps} from "../testimonials/TestimonialsProps";
 import type {TextProps} from "../text/TextProps";
 import type {VideoCurtainProps} from "../video-curtain/VideoCurtainProps";
-import type {ButtonProps} from "../button/ButtonProps";
 
 /**
  * Width of section to use
@@ -128,6 +128,7 @@ export type TileWidth = "smallest" | "default" | "medium" | "large" | "largest" 
 export type Content = (
   | BlogTeaserProps
   | BusinessCardProps
+  | ButtonProps
   | ContactProps
   | ContentNavProps
   | CtaProps

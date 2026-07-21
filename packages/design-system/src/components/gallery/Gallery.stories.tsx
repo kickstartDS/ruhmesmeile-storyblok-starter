@@ -195,3 +195,53 @@ export const StackLandscape: Story = {
     layout: "stack",
   }),
 };
+
+export const SliderGallery: Story = {
+  parameters: {
+    viewport: {
+      width: 1200,
+      height: 600,
+    },
+  },
+  args: pack({
+    layout: "slider",
+    lightbox: true,
+    images: [
+      {
+        src: "img/placeholder/image-gallery-01.svg",
+        caption: "Caption Image 1",
+        alt: "Alt text Image 1",
+      },
+      {
+        src: "img/placeholder/image-gallery-02.svg",
+        caption: "Caption Image 2",
+        alt: "Alt text Image 2",
+      },
+      {
+        src: "img/placeholder/image-gallery-03.svg",
+        caption: "Caption Image 3",
+        alt: "Alt text Image 3",
+      },
+      {
+        src: "img/placeholder/image-gallery-04.svg",
+        caption: "Caption Image 4",
+        alt: "Alt text Image 4",
+      },
+      {
+        src: "img/placeholder/image-gallery-05.svg",
+        caption: "Caption Image 5",
+        alt: "Alt text Image 5",
+      },
+      {
+        src: "img/placeholder/image-gallery-06.svg",
+        caption: "Caption Image 6",
+        alt: "Alt text Image 6",
+      },
+      {
+        src: "img/placeholder/image-gallery-01.svg",
+        caption: "Caption Image 7",
+        alt: "Alt text Image 7",
+      },
+    ],
+  }),
+};

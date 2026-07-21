@@ -25,43 +25,62 @@ export const LogosContextDefault = forwardRef<
       logosPerRow = "6",
       ...rest
     },
-    ref
-  ) => (
-    <div {...rest} ref={ref}>
-      <Container name="logos">
-        <div className={classnames(`dsa-logos dsa-logos--align-${align}`)}>
-          {tagline && <div className="dsa-logos__tagline">{tagline}</div>}
+    ref,
+  ) => {
+    // `newTab` is resolved at story-processing time from Storyblok's
+    // multilink target-blank toggle and isn't part of the generated schema type.
+    const ctaWithNewTab = cta as LogosProps["cta"] & { newTab?: boolean };
 
-          <LogoTiles
-            className={classnames(
-              `dsa-logo-tiles dsa-logo-tiles--cols-${logosPerRow}`
-            )}
-            logos={logos}
-          />
-          {cta?.toggle ? (
-            <div className="dsa-logos__cta">
-              <div className="dsa-logos__cta__text">
-                {cta?.text}
-                {cta?.style === "text" && (
-                  <>
-                    &#32;
-                    <Link className="dsa-logos__cta__link" href={cta.link}>
-                      {cta.label}
-                    </Link>
-                  </>
+    return (
+      <div {...rest} ref={ref}>
+        <Container name="logos">
+          <div className={classnames(`dsa-logos dsa-logos--align-${align}`)}>
+            {tagline && <div className="dsa-logos__tagline">{tagline}</div>}
+
+            <LogoTiles
+              className={classnames(
+                `dsa-logo-tiles dsa-logo-tiles--cols-${logosPerRow}`,
+              )}
+              logos={logos}
+            />
+            {cta?.toggle ? (
+              <div className="dsa-logos__cta">
+                <div className="dsa-logos__cta__text">
+                  {cta?.text}
+                  {cta?.style === "text" && (
+                    <>
+                      &#32;
+                      <Link
+                        className="dsa-logos__cta__link"
+                        href={cta.link}
+                        target={ctaWithNewTab?.newTab ? "_blank" : undefined}
+                        rel={
+                          ctaWithNewTab?.newTab
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                      >
+                        {cta.label}
+                      </Link>
+                    </>
+                  )}
+                </div>
+                {cta?.style === "button" && (
+                  <Button
+                    href={cta.link}
+                    label={cta.label}
+                    {...({ newTab: ctaWithNewTab?.newTab } as any)}
+                  />
                 )}
               </div>
-              {cta?.style === "button" && (
-                <Button href={cta.link} label={cta.label} />
-              )}
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      </Container>
-    </div>
-  )
+            ) : (
+              ""
+            )}
+          </div>
+        </Container>
+      </div>
+    );
+  },
 );
 
 export const LogosContext = createContext(LogosContextDefault);

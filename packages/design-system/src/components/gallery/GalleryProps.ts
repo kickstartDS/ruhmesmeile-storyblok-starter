@@ -322,7 +322,7 @@ export type Caption = string;
 /**
  * The layout of the gallery images
  */
-export type Layout = "stack" | "smallTiles" | "largeTiles";
+export type Layout = "stack" | "smallTiles" | "largeTiles" | "slider";
 /**
  * The aspect ratio of the gallery images
  */

@@ -3,11 +3,15 @@
 
 .dsa-teaser-card {
   --dsa-teaser-card--background: var(--ks-background-color-card-interactive);
-  --dsa-teaser-card--background_hover: var(--ks-background-color-card-interactive-hover);
+  --dsa-teaser-card--background_hover: var(
+    --ks-background-color-card-interactive-hover
+  );
 
   --dsa-teaser-card--border-radius: var(--ks-border-radius-card);
   --dsa-teaser-card--border: var(--ks-border-card-interactive);
-  --dsa-teaser-card--border-color_hover: var(--ks-border-color-card-interactive-hover);
+  --dsa-teaser-card--border-color_hover: var(
+    --ks-border-color-card-interactive-hover
+  );
 
   --dsa-teaser-card_compact--border: 0;
   --dsa-teaser-card_compact--border-color_hover: unset;
@@ -27,18 +31,26 @@
 
   --dsa-teaser-card__image--transform_hover: scale(1.05);
   --dsa-teaser-card__image--transition: transform var(--ks-transition-fade);
+  --dsa-teaser-card__image--padding: var(--dsa-teaser-card--padding);
+  --dsa-teaser-card__image--border-radius: var(
+    --dsa-teaser-card--border-radius
+  );
 
-  --dsa-teaser-card__body--gap: var(--ks-spacing-stack-s) var(--ks-spacing-inline-m);
+  --dsa-teaser-card__body--gap: var(--ks-spacing-stack-s)
+    var(--ks-spacing-inline-m);
 
   --dsa-teaser-card__topic--color: var(--dsa-topic--color);
 
   --dsa-teaser-card__label--font: var(--ks-font-interface-s);
   --dsa-teaser-card__label--font-weight: var(--ks-font-weight-semi-bold);
   --dsa-teaser-card__label--color: var(--ks-text-color-primary);
-  --dsa-teaser-card__label--background-color: var(--ks-background-color-default);
+  --dsa-teaser-card__label--background-color: var(
+    --ks-background-color-default
+  );
   --dsa-teaser-card__label--padding: 0.5em 1em;
   --dsa-teaser-card__label--border-radius: var(--ks-border-radius-pill);
-  --dsa-teaser-card__label--border: var(--ks-border-width-default) solid var(--ks-border-color-primary);
+  --dsa-teaser-card__label--border: var(--ks-border-width-default) solid
+    var(--ks-border-color-primary);
 
   --dsa-teaser-card__button--font: var(--ks-font-interface-m);
 

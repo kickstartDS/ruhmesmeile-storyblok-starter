@@ -117,6 +117,7 @@ export type First = (
 export type Second = (
   | BlogTeaserProps
   | BusinessCardProps
+  | ButtonProps
   | ContactProps
   | ContentNavProps
   | CtaProps
@@ -127,6 +128,7 @@ export type Second = (
   | FaqProps
   | FeaturesProps
   | GalleryProps
+  | HeadlineProps
   | HeroProps
   | HtmlProps
   | ImageStoryProps

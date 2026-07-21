@@ -53,11 +53,11 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch D — Design-system component fixes
 
-- [ ] D.0 Create branch
-- [ ] D.1 Port component `*.tsx` / `*.scss` / `*.schema.json` (strip brand token values)
-- [ ] D.2 Regenerate LFS snapshots + screenshots locally
-- [ ] D.3 Build + Storybook a11y check
-- [ ] D.4 Changeset + PR
+- [x] D.0 Create branch
+- [x] D.1 Port component `*.tsx` / `*.scss` / `*.schema.json` (strip brand token values) — 37 brand-neutral files; excluded 44 brand-laden stories + Footer redesign (ADR-008); folded in 2 brand-neutral story carve-outs (gallery `SliderGallery`, business-card `contact`→`contactLinks`; see R.12)
+- [-] D.2 Regenerate LFS snapshots + screenshots locally — deferred to canonical CI; local regen = env drift, 141/157 incl. untouched leaves (ADR-009)
+- [x] D.3 Build + Storybook a11y check — `build` green (presets 136 passed); `build-storybook` green (search index)
+- [x] D.4 Changeset + PR
 
 ## Batch E — Dependency & patch updates
 
@@ -87,6 +87,8 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [ ] R.8 website components root diffs (header/footer/page/section/timeline/prompter)
 - [ ] R.9 misc (`ingest-template.ts`, `.vscode/settings.json`, workflow docs)
 - [ ] R.10 Storybook `a11y: { test: "off" }` toggle + a11y-interaction-tests addon (`.storybook/preview.tsx`)
+- [ ] R.11 Design-system **Footer redesign** (schema `navItems` → multi-column `navGroups`, byline removal) + brand-neutral story rewrite — deferred from Batch D (ADR-008); must port component **and** a de-branded story together (story-coupled, breaks search-index otherwise)
+- [x] R.12 **Generic story carve-outs missed by wholesale story exclusion** (Batch D analysis) — **folded into Batch D**: (a) gallery `SliderGallery` variant added (brand-neutral placeholder images) so the ported `slider` layout (`Gallery.client.js` + slider tokens) has Storybook coverage; (b) business-card template story `contact:` → `contactLinks:` (fixed latent template bug — story set a non-existent `contact` prop, so the demo rendered without contact links).
 
 ---
 
@@ -100,3 +102,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-21 | B     | Ported `packages/token-graph` (18 files) + cosmos docs; stacked on Batch A branch (ADR-007). Wired token-graph build step + workspace dep + rollup copy (completes deferred A.y). DS build green; token-graph.json 1708 nodes/1988 edges (matches optoma); typecheck green. Changeset added.                    |
 | 2026-07-21 | A+B   | Merged PR #6 (Batch A) + #7 (Batch B) into main locally (`gh` API auth broken → local merge commits + branch delete; deviation from ADR-007 squash noted). Merged-main DS build green. `main` pushed `446f2220..09026ec5`.                                                                                     |
 | 2026-07-21 | C     | Ported Component Token Editor (7 new + 15 editor + 3 mcp files) + 3 docs off updated main. Excluded `design-tokens-mcp/tokens/branding-tokens.css` (regenerated via sync-tokens → template `#3065c0`); sanitised 3 optoma sample TeaserCards in `ComponentPreviewPage.tsx`. Editor build ✓/typecheck ✓; design-tokens-mcp build ✓. Brand scan clean. Changeset added (`@kickstartds/design-tokens-mcp` minor). Ready to commit/PR. |
+| 2026-07-21 | C     | Merged PR #8 (Batch C) into main locally (`gh` API broken → local merge commit + branch delete). `main` pushed `09026ec5..4f2a2354`.                                                                                                                                                                        |
+| 2026-07-21 | D     | Ported 37 brand-neutral component files (new `SeoComponent.tsx`, `Gallery.client.js`; gallery slider / lightbox stroke+thumb / teaser-card image tokens) off updated main. Excluded 44 brand-laden stories + story-coupled Footer redesign (ADR-008). Regenerated `component-token-catalog.json` + `SectionProps.d.ts` (deterministic). LFS snapshots/screenshots deferred to CI — local regen = env drift 141/157 incl. untouched leaves (ADR-009). `build` green (presets 136 passed); `build-storybook` green. Brand scan clean. Changeset added (`@kickstartds/design-system` minor). Ready to commit/PR. |

@@ -142,4 +142,83 @@ rows and resolve the trivial conflict at merge time.
   on every batch; putting them on `main` once avoids this.
 
 ---
+
+## ADR-008: Exclude brand-laden Storybook stories and story-coupled component redesigns from component-fix batches
+
+**Decision:** When porting design-system component fixes (Batch D), port only the
+brand-neutral component sources — `*.tsx`, `*.scss`, `*.schema.json`, client behaviour
+(`*.client.js`), and prop types — and **exclude** the accompanying `*.stories.ts(x)`
+files. Where a ported schema redesign is structurally coupled to the fork's rewritten
+stories (the Footer: `navItems` → multi-column `navGroups`, byline removed), **defer the
+entire redesign** rather than partially porting it.
+
+**Rationale:** The fork's 44 component stories are saturated with client demo content
+(optoma / Sussex Learning Trust / Creative Touch / IFPD product names, `@optoma.co.uk`
+addresses, brand imagery). They are demo fixtures, not component logic, and the template
+already ships its own DS Agency stories that exercise the same components. Porting the
+fork's stories would reintroduce brand content the whole effort exists to strip (ADR-001).
+The Footer schema redesign additionally broke the template's `generateSearchIndex.test.ts`
+(the retained old `Footer.stories` no longer matched the new `navGroups` schema), proving
+the redesign cannot land without also porting its story — which is brand-laden. Deferring
+it keeps Batch D green and reviewable.
+
+**Consequence:** Batch D lands 37 brand-neutral component files (incl. new `SeoComponent.tsx`
+and `Gallery.client.js`) plus the two deterministic regenerated artifacts
+(`component-token-catalog.json`, `SectionProps.d.ts`). The Footer multi-column redesign is
+parked for a dedicated future batch that ports the component **and** a brand-neutral
+rewrite of its story together. Template stories remain the source of truth for Storybook
+and the search index.
+
+**Follow-up audit (story diffs):** A per-file audit of all 44 differing `*.stories.*`
+confirmed 42 are pure brand-content swaps (line-for-line placeholder → client image/text,
+or simply more brand items) with no component-logic or coverage value. Two carried
+brand-neutral, fix-coupled value and were **folded into Batch D** with placeholder content:
+(a) gallery gains a new `SliderGallery` variant exercising the ported `slider` layout —
+which otherwise had **no** Storybook coverage in the template; (b) the business-card story's
+non-existent `contact:` prop was renamed to `contactLinks:`, fixing a *latent template bug*
+(both schema and props already use `contactLinks`, so contacts didn't render). No exclusion
+caused a build break: no removed schema prop is still referenced by a retained story, and
+the `contact` case predated Batch D.
+
+**Alternatives considered:**
+
+- **Port stories too, then sanitise brand content in-place** — high-effort, error-prone
+  (44 files of dense fixtures), and duplicates stories the template already maintains.
+- **Port the Footer schema without its story** — rejected: breaks the search-index build;
+  the redesign is only coherent alongside its rewritten story.
+
+---
+
+## ADR-009: Defer LFS snapshot/screenshot regeneration to the canonical CI environment
+
+**Decision:** Do **not** commit locally regenerated Storybook visual snapshots
+(`__snapshots__/*.png`) or component preview screenshots (`static/img/screenshots/*.png`)
+as part of component-fix batches. Validate component changes via the deterministic
+`build` (tsc + presets) and `build-storybook` (search index) instead, and leave LFS
+visual-artifact regeneration to the canonical CI environment (or a dedicated visual-refresh
+run there).
+
+**Rationale:** Regenerating previews locally (`create-component-previews`) rewrote
+**141 of 157** snapshots — including untouched leaf components (`text`, `stats`,
+`video-curtain`, `testimonials`, `mosaic`, `slider`) — while leaving several components
+that _were_ edited (`headline`, `logos`) unchanged. That signature is environment drift
+(chromium/font antialiasing differences between this machine and the environment that
+produced the committed baselines), not a legitimate component-change cascade. Committing
+those binaries would pollute LFS history with non-deterministic noise that misrepresents
+what Batch D actually changed, and would churn on the next machine regardless.
+
+**Consequence:** Component-fix PRs carry source + deterministic generated artifacts only.
+Visual snapshots/screenshots are refreshed in one canonical environment so their diffs
+stay meaningful. This reinforces ADR-002 (never copy the fork's LFS blobs) with the
+corollary that we also don't commit environment-drifted _local_ regenerations.
+
+**Alternatives considered:**
+
+- **Commit the local regeneration** — rejected: pollutes LFS with env-drift binaries,
+  obscures real visual diffs, re-churns on every different machine.
+- **Regenerate against a clean-`main` baseline to isolate genuine diffs** — rejected:
+  still environment-dependent (the drift is machine-level, not base-level) and expensive
+  per batch.
+
+---
 <!-- Append new ADRs below as decisions are made during each batch. -->
