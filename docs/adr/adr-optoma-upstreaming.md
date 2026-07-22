@@ -338,3 +338,32 @@ broad "system" items; narrow new-feature items (plugins, components) are unambig
 
 ---
 <!-- Append new ADRs below as decisions are made during each batch. -->
+
+## ADR-013: Port self-contained UI components ahead of their settings-driven wiring
+
+**Status:** Accepted (2026-07-22, during Batch I)
+
+**Context:** The `book-a-demo` component (R.4) is a self-contained, brand-neutral floating
+"Book a Demo" button (`BookADemoComponent.tsx` + 2 SCSS files, all `--ks-`/`--dsa-` tokens). But
+its _activation_ is settings-driven: on the fork it is rendered in `_app.tsx` via
+`settings?.bookDemoButton_*` + a `hideBookDemoButton` page prop, both of which belong to the
+settings/token-theme feature (R.5) that is entangled in the `_app.tsx` (+174/−84) /
+`ComponentProviders.tsx` (+291/−66) refactor and deferred to **Batch L**.
+
+**Decision:** Port the component and its global SCSS `@use` (`index.scss`) **now** in Batch I, and
+defer the render/prop wiring to Batch L (where the settings feature lands whole). The component
+ships **dormant** — exported and styled but not rendered — until Batch L wires it. This keeps each
+batch coherent (one feature area per batch) and avoids dragging the settings refactor into Batch I.
+
+**Rationale:** A dormant exported component + one unused CSS `@use` are harmless (no runtime cost,
+compiles clean), whereas splitting the settings refactor across two batches would couple them.
+Verified diff direction first (ADR-012): all 3 files are insertions. No Storybook story / schema
+exists (it is a website component, not a Storyblok blok), and the default label is already generic,
+so there was nothing to de-brand.
+
+**Alternatives considered:**
+
+- **Fold book-a-demo into Batch L** — rejected: the component is cleanly separable and belongs to a
+  distinct feature area; keeping it standalone keeps Batch L focused on the settings refactor.
+- **Port the `_app.tsx` render wiring in Batch I too** — rejected: it depends on settings props that
+  do not yet exist on `main`, so it would either break the build or force the settings refactor early.
