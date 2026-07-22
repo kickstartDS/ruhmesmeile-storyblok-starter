@@ -147,10 +147,10 @@ Notable additions here that are clearly generic:
   — all 3 files are insertions (verified diff direction, ADR-012); no story/schema (website component, not a Storyblok blok / no Storybook); default label `"Book a Demo"` already generic → nothing to de-brand
   — functional render wiring (`_app.tsx` `<BookADemo>` + `settings`/`page` props) is settings-driven → **deferred to Batch L**; no changeset (website is changeset-`ignore`d)
 
-### Batch J — Footer redesign _(decided 2026-07-22, ADR-011; deferred from Batch D)_
+### Batch J — Footer redesign ✅ _(done 2026-07-22, ADR-014; deferred from Batch D)_
 
-- `packages/design-system/src/components/footer/**` (`navItems` → `navGroups`, byline removal) + de-branded story (R.11)
-- may absorb website-level `packages/website/components/footer/FooterComponent.tsx` + `footer.scss` (R.8 subset)
+- `packages/design-system/src/components/footer/**` — ported the redesign and went further per ADR-014: upstreamed the website footer's generic _rendering_ into the DS. Schema migrated (removed `byline` + `navItems`; added `navGroups`, `copyright`, `legalLink`, `socialLinks`). `socialLinks` redesigned icon-driven (`{icon,url,ariaLabel}`, mirrors `ContactComponent`) instead of optoma's `platform` enum — reuses the icon sprite, no new logo assets. Rewrote component + `footer.scss`/`_footer-tokens.scss` (grid columns, social row, bottom bar) + brand-neutral story. `FooterProps.ts` regenerated (tracked); `component-token-catalog.json` updated. `build` (presets 137) + `build-storybook` green. Changeset = `@kickstartds/design-system` minor (documents breaking `navItems`→`navGroups`). (R.11)
+- Website-level `packages/website/components/footer/FooterComponent.tsx` (`CustomFooter`) + `footer.scss` + `ComponentProviders` wiring **deferred to Batch L** — coupled to `LanguageContext` EN/DE switcher; the DS now covers all generic rendering, so the website override should shrink to just the language switcher (R.8 subset)
 
 ### Batch K — SharePoint integration _(decided 2026-07-22, ADR-011)_
 
@@ -215,11 +215,11 @@ Notable additions here that are clearly generic:
 | `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch L** _(re-scoped from G)_. Self-contained, but wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor. |
 | `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                        |
 | `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**           | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`. |
-| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits; footer files likely fold into Batch J. Manual read.   |
+| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits. Footer rendering upstreamed into DS in Batch J — website footer shrinks to the LanguageContext switcher. Manual read for the rest. |
 | `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
 | `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
 | `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ✅ **PORT**           | **Batch G**. Generic MCP/tooling feedback, no brand content; mark historical.            |
-| Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                             |     4 | ✅ **PORT**           | **Batch J** — deferred from Batch D (ADR-008); port component + de-branded story together. |
+| Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                             |     4 | ✅ **DONE**           | **Batch J** — ported + went further (ADR-014): upstreamed website footer rendering into DS; `socialLinks` icon-driven; lang switcher → L. |
 
 ---
 
@@ -233,7 +233,7 @@ Notable additions here that are clearly generic:
 6. **Batch G** ✅ _done_ (editor/infra config: a11y toggle, `.vscode/settings.json`, hero-slider doc; R.5 re-scoped to L).
 7. **Batch H** ✅ _done_ (visibility generator script only — `cms/language`/`cms/visibility` already on main; `--layer` default de-branded → `visibility`).
 8. ✅ **Batch I** (book-a-demo component; render wiring deferred to L).
-9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
+9. ✅ **Batch J** (Footer redesign; upstreamed website footer rendering into DS per ADR-014; website lang-switcher override → L).
 10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
 11. **Batch L** (R.5 settings/token-theme wiring + R.8 remaining website component diffs, after closer manual read).
 

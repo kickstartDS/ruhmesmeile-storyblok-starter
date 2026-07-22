@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://schema.mydesignsystem.com/footer.schema.json",
   "title": "Footer",
-  "description": "Footer component for displaying site logo, byline, and navigation items at the bottom of the page.",
+  "description": "Footer component for displaying site logo, grouped navigation links, social links and a legal bottom bar at the bottom of the page.",
   "type": "object",
   "properties": {
     "logo": {
@@ -29,20 +29,103 @@
         }
       }
     },
-    "byline": {
-      "title": "Byline",
-      "description": "Small line of text displayed below the logo",
-      "type": "string",
-      "default": "© 2024 systemics Inc. All rights reserved."
-    },
     "inverted": {
       "type": "boolean",
       "title": "Inverted",
       "description": "Invert the color scheme of the footer",
       "default": false
     },
-    "navItems": {
-      "$ref": "http://schema.mydesignsystem.com/nav-main.schema.json#/properties/items"
+    "navGroups": {
+      "type": "array",
+      "title": "Navigation Groups",
+      "description": "Groups of navigation links with headings, displayed as columns in the footer",
+      "items": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Column Heading",
+            "description": "Heading displayed above the navigation links in this column"
+          },
+          "items": {
+            "type": "array",
+            "title": "Links",
+            "description": "Navigation links in this column",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label"
+                },
+                "url": {
+                  "type": "string",
+                  "title": "URL",
+                  "format": "uri"
+                },
+                "newTab": {
+                  "type": "boolean",
+                  "title": "Open in New Tab",
+                  "default": false
+                }
+              },
+              "required": ["label", "url"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "copyright": {
+      "type": "string",
+      "title": "Copyright",
+      "description": "Copyright notice displayed in the footer bottom bar"
+    },
+    "legalLink": {
+      "type": "object",
+      "title": "Legal Link",
+      "description": "Link to the legal/privacy page displayed in the footer bottom bar",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label",
+          "default": "Legal"
+        },
+        "url": {
+          "type": "string",
+          "title": "URL",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "socialLinks": {
+      "type": "array",
+      "title": "Social Links",
+      "description": "Social media links displayed in the footer, rendered with icons from the icon sprite",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string",
+            "title": "Icon",
+            "description": "Icon identifier from the icon sprite (e.g. facebook, twitter, linkedin, xing)"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL",
+            "format": "uri"
+          },
+          "ariaLabel": {
+            "type": "string",
+            "title": "Accessible Label",
+            "description": "Accessible label for the social link (announced by screen readers)"
+          }
+        },
+        "required": ["icon", "url"],
+        "additionalProperties": false
+      }
     }
   },
   "required": ["logo"],
