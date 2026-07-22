@@ -286,13 +286,6 @@ export const components = {
       ),
     ),
   ),
-  timeline: editable(
-    dynamic(() =>
-      import("./timeline/TimelineComponent").then(
-        (mod) => mod.TimelineContextDefault,
-      ),
-    ),
-  ),
   "teaser-card": editable(
     dynamic(() =>
       import("@kickstartds/design-system/teaser-card").then(
