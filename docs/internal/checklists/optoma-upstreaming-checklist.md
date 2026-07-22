@@ -83,8 +83,8 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [x] R.3 spec-group / download-category / downloads → ⛔ **EXCLUDED** — Optoma-specific (product spec/download tables)
 - [ ] R.4 book-a-demo → **PORT** → **Batch I** (+ de-branded story)
 - [ ] R.5 settings / token-theme / infra contexts → **PORT** → **Batch L** _(re-scoped from G, 2026-07-22 — functional wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor; ports whole with R.8)_
-- [ ] R.6 `cms/language` i18n system → **PORT** → **Batch H**
-- [ ] R.7 `cms/visibility` system → **PORT** → **Batch H** — de-brand only: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` (2 lines) → change default to `visibility` (no built-in customization layer); rest is brand-neutral infra
+- [x] R.6 `cms/language` i18n system → **already on `main`** (present since the mono-repo move, predates the fork; optoma *deleted* it) — **nothing to port**
+- [x] R.7 `cms/visibility` system → `cms/visibility/**` output **already on `main`**; only the generator **script** `generateVisibilityFromPatterns.ts` is new on optoma → **PORTED in Batch H** with `--layer` default de-branded `"optoma"` → `visibility`
 - [ ] R.8 website component root diffs (header/footer/Page/section/timeline/prompter) → 🔍 **CLOSER LOOK** — 10 files, 0 brand-keyword hits but needs a manual read to disentangle. Working assumption: new website-level `footer/FooterComponent.tsx` + `footer.scss` fold into **Batch J** (paired with R.11); `header/nav-header-cta.scss`, `section/*`, `timeline/TimelineProps.ts`, `prompter/*` prop+schema tweaks reviewed individually before promotion
 - [x] R.9 **SPLIT**: `.vscode/settings.json` (inotify/watcher/search excludes — generic) + `docs/internal/plans/hero-slider-workflow-improvements.md` (generic MCP/tooling feedback, no brand content — despite the title) → **PORTED in Batch G**; `helpers/ingest-template.ts` → ⛔ **EXCLUDED** (Optoma-specific content ingest helper)
 - [x] R.10 Storybook `a11y: { test: "off" }` toggle (`.storybook/preview.tsx`, 3-line addition) → **PORTED in Batch G**
@@ -104,11 +104,11 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch H — i18n + visibility systems
 
-- [ ] H.0 Create branch
-- [ ] H.1 Port `cms/language/**` i18n system (R.6, 37 files)
-- [ ] H.2 Port `cms/visibility/**` + `scripts/generateVisibilityFromPatterns.ts` (R.7, 38 files)
-- [ ] H.3 De-brand: change `--layer` default `"optoma"` → `visibility` (no built-in customization layer) in `generateVisibilityFromPatterns.ts`
-- [ ] H.4 Validate build/types; brand-scan; Changeset + PR
+- [x] H.0 Create branch
+- [x] H.1 R.6 `cms/language/**` — **already on `main`** (predates the fork; optoma deleted it). No port needed.
+- [x] H.2 R.7 `cms/visibility/**` — **already on `main`**. Ported only the new generic generator `scripts/generateVisibilityFromPatterns.ts` (744 lines, self-contained: `fs`/`path` only, `mydesignsystem.com` placeholder IDs).
+- [x] H.3 De-brand: `--layer` default `"optoma"` → `visibility` (2 lines; only brand refs in the file).
+- [x] H.4 Typecheck green (single-file `tsc --noEmit`), brand-scan clean. **No changeset** — only changed package is the website (`@kickstartds/ruhmesmeile-storyblok-starter`), which is in the changeset `ignore` list. PR.
 
 ## Batch I — book-a-demo
 
@@ -161,4 +161,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-22 | F     | Merged PR #11 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `29ca0650..c9056003`. Discarded recurring format-on-save churn (emphasis `*`→`_`, trailing-comma removal) on 4 unrelated files before merge. |
 | 2026-07-22 | —     | REVIEW backlog dispositions decided (ADR-011). **PORT:** R.1 SharePoint (→K), R.4 book-a-demo (→I), R.5 infra contexts (→G), R.6 i18n (→H), R.7 visibility (→H, de-brand `--layer` default), R.9 `.vscode/settings.json` (→G), R.10 a11y toggle (→G), R.11 footer redesign (→J). **EXCLUDE (Optoma-specific):** R.2 datasheet, R.3 spec/downloads, R.9 `ingest-template.ts` + hero-slider workflow doc. **CLOSER LOOK:** R.8 (→L). New batch plan G→L added above. |
 | 2026-07-22 | —     | Two refinements after reviewing the files: (1) `hero-slider-workflow-improvements.md` re-classified **EXCLUDE → PORT (→G)** — despite the title it is generic MCP/tooling feedback (no brand content); mark historical (several points already resolved here). Only `ingest-template.ts` stays excluded from R.9. (2) R.7 de-brand target fixed: `--layer` default `"optoma"` → **`visibility`** (no built-in customization layer). |
-| 2026-07-22 | G     | Ported 3 standalone items: `.storybook/preview.tsx` a11y `test: "off"` toggle (R.10), `.vscode/settings.json` watcher/search/explorer excludes (R.9), `hero-slider-workflow-improvements.md` + historical banner (R.9). Brand-scan clean. **No changeset** — zero published-package impact (storybook config not shipped in `dist`, repo-root config, docs). **R.5 re-scoped G → L**: settings/token-theme/context modules are self-contained but their functional wiring lives in the entangled `_app.tsx` (+174/−84) + `ComponentProviders.tsx` (+291/−66) refactors (coupled to book-a-demo/Batch I); `index.tsx` diff is pure product-catalog (excluded). Settings feature will port whole in Batch L. |
+| 2026-07-22 | G     | Ported 3 standalone items: `.storybook/preview.tsx` a11y `test: "off"` toggle (R.10), `.vscode/settings.json` watcher/search/explorer excludes (R.9), `hero-slider-workflow-improvements.md` + historical banner (R.9). Brand-scan clean. **No changeset** — zero published-package impact (storybook config not shipped in `dist`, repo-root config, docs). **R.5 re-scoped G → L**: settings/token-theme/context modules are self-contained but their functional wiring lives in the entangled `_app.tsx` (+174/−84) + `ComponentProviders.tsx` (+291/−66) refactors (coupled to book-a-demo/Batch I); `index.tsx` diff is pure product-catalog (excluded). Settings feature will port whole in Batch L. Merged PR #12 locally; `main` `ac611525..a03d4607`. |
+| 2026-07-22 | H     | **Scope collapsed ~75 files → 1.** Diff-direction correction: `cms/language/**` (37) and `cms/visibility/**` (37) already exist on `main` (added at the mono-repo move `214d70fd`, predating the fork base `6e67004a`); optoma **deleted** the generic layers and replaced them with the brand layer `cms/optoma/**` (excluded). The only genuinely-new generic artifact is the generator script `scripts/generateVisibilityFromPatterns.ts` (+744, not on main, not wired into package.json — run via `npx tsx`). Ported it; de-branded `--layer` default `"optoma"` → `visibility` (the file's only brand refs). Single-file typecheck green; brand-scan clean. **No changeset** (website is changeset-`ignore`d). |

@@ -263,9 +263,10 @@ change is local-only and identical in kind). Future patch-only batches follow th
   published-package impact.)_ R.5 settings/token-theme/infra contexts were **initially assigned to
   Batch G but re-scoped to Batch L** — the modules are self-contained, but their functional wiring
   lives inside the entangled `_app.tsx`/`ComponentProviders.tsx` refactor (see the CLOSER LOOK item).
-- **PORT** — R.6 `cms/language` i18n and R.7 `cms/visibility` → **Batch H**. R.7 requires a
-  one-line de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` → change
-  to `visibility` (no built-in customization layer).
+- **PORT** — R.6 `cms/language` i18n and R.7 `cms/visibility` → **Batch H**. _(On execution, R.6/R.7
+  turned out to already be on `main`; only the generator script was new — see ADR-012.)_ The one
+  de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` → changed to
+  `visibility` (no built-in customization layer).
 - **PORT** — R.4 `book-a-demo` (+ de-branded story) → **Batch I**.
 - **PORT** — R.11 design-system Footer redesign (`navItems` → `navGroups`, byline removal) +
   de-branded story → **Batch J** (deferred from Batch D per ADR-008).
@@ -303,6 +304,37 @@ one-PR mechanic (ADR-007) with the local-merge workaround for the broken `gh` AP
   rework to decouple from the product catalog; revisit only if a generic need arises.
 - **Blind-port R.8 with the rest** — rejected: footer additions are story/redesign-coupled and could
   reintroduce brand markup or break the search index without a manual read.
+
+---
+## ADR-012: Verify diff direction before porting — generic layers already on `main`
+
+**Decision:** Before porting any "PORT" item, confirm the files are actually **new on optoma** (added
+on the fork side), not already present on `main`. Check `git diff HEAD optoma/main -- <path>`: **`+`
+(insertions)** = new on optoma (portable); **`-` (deletions)** = present on `main` but removed on
+optoma (nothing to port — do **not** re-add).
+
+**Context:** Batch H was planned as "port `cms/language/**` (37) + `cms/visibility/**` (37) + the
+generator script" (~75 files). On execution, the diff showed those 74 CMS files as **deletions**: they
+were added at the mono-repo move (`214d70fd`) and exist at the fork base (`6e67004a`) and on `main`
+today. Optoma **deleted** the generic `cms/language`/`cms/visibility` layers and replaced them with the
+brand layer `cms/optoma/**` (31 files, excluded). Only the generator script
+`scripts/generateVisibilityFromPatterns.ts` (+744) was genuinely new. Batch H therefore collapsed to a
+**single file**.
+
+**Rationale:** The original inventory counted files that *differ* between `main` and optoma as "to
+port", without distinguishing add-on-optoma from delete-on-optoma. Re-adding delete-on-optoma files
+would be a no-op at best (already present) or a regression at worst (resurrecting something optoma
+intentionally dropped). The insertion/deletion sign is the reliable signal.
+
+**Consequence:** For the remaining backlog (Batches I–L), each item's diff direction is checked before
+porting. Items already on `main` are marked **ALREADY ON MAIN** rather than PORT. This mainly affects
+broad "system" items; narrow new-feature items (plugins, components) are unambiguous.
+
+**Alternatives considered:**
+
+- **Trust the inventory file counts** — rejected: they conflate add/delete and inflate scope.
+- **Blind `git checkout optoma/main -- <path>` for the whole dir** — rejected: for delete-on-optoma
+  paths this would *delete* the generic layer from the template (the opposite of the intent).
 
 ---
 <!-- Append new ADRs below as decisions are made during each batch. -->
