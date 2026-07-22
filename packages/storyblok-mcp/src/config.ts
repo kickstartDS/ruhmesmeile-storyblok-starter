@@ -740,6 +740,14 @@ export const schemas = {
           "Structure: { color: { primary: { $root: { $type: 'color', $value: { colorSpace: 'srgb', components: [r, g, b] } } } } }. " +
           "Validated and compiled to CSS custom properties server-side.",
       ),
+    componentTokens: z
+      .record(z.unknown())
+      .optional()
+      .describe(
+        "Optional sparse per-component token overrides. " +
+          "Structure: { hero: { base: { '--dsa-hero--spacing': 'var(--ks-spacing-m)' } } }. " +
+          "Compiled to scoped CSS server-side using the component token catalog.",
+      ),
     publish: z
       .boolean()
       .optional()
@@ -758,6 +766,13 @@ export const schemas = {
       .describe(
         "Updated W3C Design Token Community Group (DTCG) format branding tokens object. " +
           "Replaces all existing tokens. CSS is recompiled automatically.",
+      ),
+    componentTokens: z
+      .record(z.unknown())
+      .optional()
+      .describe(
+        "Optional sparse per-component token overrides. " +
+          "Replaces all existing component token overrides. Scoped CSS is recompiled automatically.",
       ),
     publish: z
       .boolean()

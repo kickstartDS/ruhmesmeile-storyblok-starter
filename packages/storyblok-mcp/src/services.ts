@@ -2,6 +2,8 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { OpenAI } from "openai";
 import { tokensToCss } from "@kickstartds/design-system/tokens/tokensToCss.mjs";
+import { componentTokensToCss } from "@kickstartds/design-system/tokens/componentTokensToCss.mjs";
+import componentTokenCatalog from "@kickstartds/design-system/tokens/component-token-catalog.json" with { type: "json" };
 import { StoryblokConfig } from "./config.js";
 import {
   createStoryblokClient,
@@ -771,13 +773,24 @@ export class StoryblokService {
   async createTheme(options: {
     name: string;
     tokens: Record<string, unknown>;
+    componentTokens?: Record<string, unknown>;
     publish?: boolean;
   }): Promise<CreateThemeResult> {
     return sharedCreateTheme(
       this.managementClient,
       this.contentClient,
       this.spaceId,
-      { ...options, tokensToCss },
+      {
+        ...options,
+        tokensToCss,
+        ...(options.componentTokens && {
+          componentTokensToCss,
+          componentTokenCatalog: componentTokenCatalog as Record<
+            string,
+            unknown
+          >,
+        }),
+      },
     );
   }
 
@@ -788,13 +801,24 @@ export class StoryblokService {
   async updateTheme(options: {
     slugOrUuid: string;
     tokens: Record<string, unknown>;
+    componentTokens?: Record<string, unknown>;
     publish?: boolean;
   }): Promise<UpdateThemeResult> {
     return sharedUpdateTheme(
       this.managementClient,
       this.contentClient,
       this.spaceId,
-      { ...options, tokensToCss },
+      {
+        ...options,
+        tokensToCss,
+        ...(options.componentTokens && {
+          componentTokensToCss,
+          componentTokenCatalog: componentTokenCatalog as Record<
+            string,
+            unknown
+          >,
+        }),
+      },
     );
   }
 }

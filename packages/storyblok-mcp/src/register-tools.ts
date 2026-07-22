@@ -593,11 +593,12 @@ the global settings.`;
 
 TOOL_DESCRIPTIONS.get_theme = `Get the full configuration for a specific design token theme.
 
-Returns the theme's branding tokens (JSON) and compiled CSS custom properties.
+Returns the theme's branding tokens (JSON), compiled CSS custom properties,
+and optional component token overrides with their compiled scoped CSS.
 Supports lookup by slug (e.g. "dark-mode") or UUID.
 
-Use this to inspect what a theme contains — colors, fonts, spacing — before
-deciding whether to apply it.`;
+Use this to inspect what a theme contains — colors, fonts, spacing,
+and per-component token overrides — before deciding whether to apply it.`;
 
 TOOL_DESCRIPTIONS.apply_theme = `Apply a design token theme to a page or settings story.
 
@@ -619,9 +620,10 @@ This is equivalent to calling \`apply_theme\` with no theme UUID.`;
 
 TOOL_DESCRIPTIONS.create_theme = `Create a new design token theme from W3C DTCG branding tokens.
 
-Accepts a theme name and a W3C Design Token Community Group (DTCG) format
-branding tokens object. Compiles the tokens to CSS custom properties server-side,
-creates a \`token-theme\` story under \`settings/themes/\`, and publishes it.
+Accepts a theme name, a W3C Design Token Community Group (DTCG) format
+branding tokens object, and optional per-component token overrides.
+Compiles the tokens to CSS custom properties server-side, creates a
+\`token-theme\` story under \`settings/themes/\`, and publishes it.
 
 The theme slug is derived from the name (e.g. "Brand Blue" → "brand-blue").
 System-managed themes cannot be overwritten.
@@ -632,6 +634,7 @@ the theme to a page or the global settings.`;
 TOOL_DESCRIPTIONS.update_theme = `Update an existing design token theme with new W3C DTCG branding tokens.
 
 Replaces all tokens on the theme story and recompiles the CSS custom properties.
+Optionally replaces per-component token overrides and recompiles scoped CSS.
 System-managed themes are protected and cannot be updated — to customize a
 system theme, use \`get_theme\` to load it, modify the tokens, then \`create_theme\`
 with a new name.
@@ -2370,6 +2373,9 @@ async function handleCreateTheme(
   const result = await deps.storyblokService.createTheme({
     name: validated.name,
     tokens: validated.tokens as Record<string, unknown>,
+    ...(validated.componentTokens && {
+      componentTokens: validated.componentTokens as Record<string, unknown>,
+    }),
     publish: validated.publish,
   });
   return {
@@ -2386,6 +2392,9 @@ async function handleUpdateTheme(
   const result = await deps.storyblokService.updateTheme({
     slugOrUuid: validated.slugOrUuid,
     tokens: validated.tokens as Record<string, unknown>,
+    ...(validated.componentTokens && {
+      componentTokens: validated.componentTokens as Record<string, unknown>,
+    }),
     publish: validated.publish,
   });
   return {
