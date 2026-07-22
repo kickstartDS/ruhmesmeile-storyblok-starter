@@ -251,4 +251,49 @@ change is local-only and identical in kind). Future patch-only batches follow th
   patch and churns unrelated package versions.
 
 ---
+
+## ADR-011: REVIEW backlog dispositions and Batch G–L plan
+
+**Decision:** After completing Batches A–F, the `🔍 REVIEW` backlog items were dispositioned
+(2026-07-22) and grouped into Batches G–L:
+
+- **PORT** — R.10 Storybook `a11y: { test: "off" }` toggle, R.5 settings/token-theme/infra
+  contexts, and the R.9 `.vscode/settings.json` watcher/search excludes → **Batch G**.
+- **PORT** — R.6 `cms/language` i18n and R.7 `cms/visibility` → **Batch H**. R.7 requires a
+  one-line de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"`.
+- **PORT** — R.4 `book-a-demo` (+ de-branded story) → **Batch I**.
+- **PORT** — R.11 design-system Footer redesign (`navItems` → `navGroups`, byline removal) +
+  de-branded story → **Batch J** (deferred from Batch D per ADR-008).
+- **PORT** — R.1 SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**`
+  → **Batch K**. The template *will* ship the SharePoint integration.
+- **EXCLUDE (Optoma-specific)** — R.2 datasheet PDF generation, R.3 spec-group /
+  download-category / downloads (product-wired), and the R.9 remainder
+  (`helpers/ingest-template.ts`, `hero-slider-workflow-improvements.md`).
+- **CLOSER LOOK** — R.8 website component root diffs (header/footer/Page/section/timeline/prompter,
+  10 files, 0 brand-keyword hits) → **Batch L**, pending a manual read to disentangle generic
+  fixes from brand markup. The new website-level `footer/FooterComponent.tsx` + `footer.scss` are
+  expected to fold into Batch J alongside the design-system footer redesign.
+
+**Rationale:** The remaining backlog mixed clearly-generic infra (config, i18n, visibility, marketing
+CTA) with product-coupled features (datasheets, spec/download tables tied to the product catalog).
+The product owner confirmed SharePoint is wanted in the template, while datasheet/spec/download
+features are Optoma product catalog concerns. R.9 is genuinely split: the editor `.vscode/settings.json`
+performance excludes are generic, but the content-ingest helper and its workflow doc are Optoma-specific.
+R.8 has no brand-keyword hits but its footer additions are structurally coupled to the R.11 redesign, so
+it is held for a manual disentangling pass rather than a blind port.
+
+**Consequence:** Batches G–L defined in the inventory and checklist. Datasheet/spec/download/ingest
+paths moved to the ⛔ OPTOMA-SPECIFIC list. Each batch keeps the established one-branch/one-Changeset/
+one-PR mechanic (ADR-007) with the local-merge workaround for the broken `gh` API.
+
+**Alternatives considered:**
+
+- **Ship SharePoint as an opt-in package excluded by default** — rejected: owner wants it in the
+  template proper.
+- **De-productize datasheet/spec/download into generic tables** — rejected for now: significant
+  rework to decouple from the product catalog; revisit only if a generic need arises.
+- **Blind-port R.8 with the rest** — rejected: footer additions are story/redesign-coupled and could
+  reintroduce brand markup or break the search index without a manual read.
+
+---
 <!-- Append new ADRs below as decisions are made during each batch. -->

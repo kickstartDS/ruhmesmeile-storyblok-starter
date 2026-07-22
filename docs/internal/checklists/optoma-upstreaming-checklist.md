@@ -76,20 +76,68 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [x] F.2 Review + port `storyblok-mcp` / `storyblok-services` hunks — 5 files: per-component token overrides for theme create/update (config.ts, register-tools.ts, services.ts, index.ts, themes.ts). `transform.ts` numeric-`component` fix already on `main`. All brand-neutral.
 - [x] F.3 Changeset + PR — minor bump `@kickstartds/storyblok-services` + `@kickstartds/storyblok-mcp-server`. Both packages build green; no generated churn.
 
-## REVIEW backlog (promote to a batch after decision)
+## REVIEW backlog — dispositions decided 2026-07-22 (ADR-011)
 
-- [ ] R.1 SharePoint folder-picker plugin + helpers/api
-- [ ] R.2 Datasheet PDF generation
-- [ ] R.3 spec-group / download-category / downloads
-- [ ] R.4 book-a-demo
-- [ ] R.5 settings / token-theme / infra contexts
-- [ ] R.6 `cms/language` i18n system
-- [ ] R.7 `cms/visibility` system
-- [ ] R.8 website components root diffs (header/footer/page/section/timeline/prompter)
-- [ ] R.9 misc (`ingest-template.ts`, `.vscode/settings.json`, workflow docs)
-- [ ] R.10 Storybook `a11y: { test: "off" }` toggle + a11y-interaction-tests addon (`.storybook/preview.tsx`)
-- [ ] R.11 Design-system **Footer redesign** (schema `navItems` → multi-column `navGroups`, byline removal) + brand-neutral story rewrite — deferred from Batch D (ADR-008); must port component **and** a de-branded story together (story-coupled, breaks search-index otherwise)
+- [ ] R.1 SharePoint folder-picker plugin + helpers/api → **PORT** → **Batch K** (template will ship the SharePoint integration)
+- [x] R.2 Datasheet PDF generation → ⛔ **EXCLUDED** — Optoma-specific (product datasheet PDFs)
+- [x] R.3 spec-group / download-category / downloads → ⛔ **EXCLUDED** — Optoma-specific (product spec/download tables)
+- [ ] R.4 book-a-demo → **PORT** → **Batch I** (+ de-branded story)
+- [ ] R.5 settings / token-theme / infra contexts → **PORT** → **Batch G**
+- [ ] R.6 `cms/language` i18n system → **PORT** → **Batch H**
+- [ ] R.7 `cms/visibility` system → **PORT** → **Batch H** — de-brand only: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` (2 lines) → change to a generic default; rest is brand-neutral infra
+- [ ] R.8 website component root diffs (header/footer/Page/section/timeline/prompter) → 🔍 **CLOSER LOOK** — 10 files, 0 brand-keyword hits but needs a manual read to disentangle. Working assumption: new website-level `footer/FooterComponent.tsx` + `footer.scss` fold into **Batch J** (paired with R.11); `header/nav-header-cta.scss`, `section/*`, `timeline/TimelineProps.ts`, `prompter/*` prop+schema tweaks reviewed individually before promotion
+- [ ] R.9 **SPLIT**: `.vscode/settings.json` (inotify/watcher/search excludes — generic) → **PORT** → **Batch G**; `helpers/ingest-template.ts` + `docs/internal/plans/hero-slider-workflow-improvements.md` → ⛔ **EXCLUDED** (Optoma-specific)
+- [ ] R.10 Storybook `a11y: { test: "off" }` toggle (`.storybook/preview.tsx`, 3-line addition) → **PORT** → **Batch G**
+- [ ] R.11 Design-system **Footer redesign** (schema `navItems` → multi-column `navGroups`, byline removal) + brand-neutral story rewrite → **PORT** → **Batch J** — deferred from Batch D (ADR-008); must port component **and** a de-branded story together (story-coupled, breaks search-index otherwise)
 - [x] R.12 **Generic story carve-outs missed by wholesale story exclusion** (Batch D analysis) — **folded into Batch D**: (a) gallery `SliderGallery` variant added (brand-neutral placeholder images) so the ported `slider` layout (`Gallery.client.js` + slider tokens) has Storybook coverage; (b) business-card template story `contact:` → `contactLinks:` (fixed latent template bug — story set a non-existent `contact` prop, so the demo rendered without contact links).
+
+---
+
+## Batch G — Editor / infra config
+
+- [ ] G.0 Create branch
+- [ ] G.1 Port `.storybook/preview.tsx` `a11y: { test: "off" }` toggle (R.10)
+- [ ] G.2 Port `components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5)
+- [ ] G.3 Port `.vscode/settings.json` watcher/search excludes (R.9 partial)
+- [ ] G.4 Validate build; brand-scan; Changeset + PR
+
+## Batch H — i18n + visibility systems
+
+- [ ] H.0 Create branch
+- [ ] H.1 Port `cms/language/**` i18n system (R.6, 37 files)
+- [ ] H.2 Port `cms/visibility/**` + `scripts/generateVisibilityFromPatterns.ts` (R.7, 38 files)
+- [ ] H.3 De-brand: change `--layer` default `"optoma"` → generic in `generateVisibilityFromPatterns.ts`
+- [ ] H.4 Validate build/types; brand-scan; Changeset + PR
+
+## Batch I — book-a-demo
+
+- [ ] I.0 Create branch
+- [ ] I.1 Port `components/book-a-demo/**` (R.4, 3 files)
+- [ ] I.2 De-brand any story/demo content
+- [ ] I.3 Validate build; brand-scan; Changeset + PR
+
+## Batch J — Footer redesign
+
+- [ ] J.0 Create branch
+- [ ] J.1 Port design-system `components/footer/**` redesign (`navItems` → `navGroups`, byline removal) (R.11, 4 files)
+- [ ] J.2 Rewrite Footer story brand-neutral (placeholder nav groups) — story-coupled, required for search-index
+- [ ] J.3 Fold in website-level `components/footer/FooterComponent.tsx` + `footer.scss` (R.8 subset) if paired
+- [ ] J.4 Validate `build` + `build-storybook` (search-index); Changeset + PR
+
+## Batch K — SharePoint integration
+
+- [ ] K.0 Create branch
+- [ ] K.1 Port `packages/storyblok-sharepoint-folder-picker-field-plugin/**` (R.1, 11 files)
+- [ ] K.2 Port `website/helpers/sharepoint.ts` + `pages/api/sharepoint/**` (R.1, 2 files)
+- [ ] K.3 Port SharePoint ADR/PRD/checklist docs if brand-neutral
+- [ ] K.4 De-brand any Optoma-specific config/defaults; brand-scan
+- [ ] K.5 Validate build; Changeset + PR
+
+## Batch L — R.8 remaining website component diffs (after closer look)
+
+- [ ] L.0 Manual read of `header/nav-header-cta.scss`, `header/header.scss`, `Page.tsx`, `section/**`, `timeline/TimelineProps.ts`, `prompter/**` to disentangle generic vs brand
+- [ ] L.1 Promote confirmed-generic hunks to a branch
+- [ ] L.2 Validate build; brand-scan; Changeset + PR
 
 ---
 
@@ -108,3 +156,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-21 | E     | Ported 3 pnpm patches (new `unpic@3.22.0` Storyblok filter-parser fix, new `kickstartds@3.5.0--canary.62.324.0` storyblok-task rc-config fix, extended `jsonschema-utils@3.9.0` allOf title/desc/required preservation) + 2 `patchedDependencies` entries. Both new versions resolve in lockfile; `pnpm install` registered patch hashes. All patches brand-neutral. DS build green (presets 137), no output churn. Changeset = `@kickstartds/design-system` patch; pnpm-patch-only batch changeset policy recorded (ADR-010). |
 | 2026-07-22 | E     | Merged PR #10 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `6f1f47e4..29ca0650`. |
 | 2026-07-22 | F     | Scoped Batch F to 5 brand-neutral files: per-component token overrides for theme create/update (`storyblok-mcp` config/register-tools/services, `storyblok-services` index/themes). Icon-picker plugin (`App.tsx` `allowedIcons` filter + dist) and `transform.ts` numeric-`component` fix were **already on `main`** from earlier batches (`main` == `optoma` for those). Both packages build green, no generated churn. Changeset = minor bump `@kickstartds/storyblok-services` + `@kickstartds/storyblok-mcp-server`. |
+| 2026-07-22 | F     | Merged PR #11 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `29ca0650..c9056003`. Discarded recurring format-on-save churn (emphasis `*`→`_`, trailing-comma removal) on 4 unrelated files before merge. |
+| 2026-07-22 | —     | REVIEW backlog dispositions decided (ADR-011). **PORT:** R.1 SharePoint (→K), R.4 book-a-demo (→I), R.5 infra contexts (→G), R.6 i18n (→H), R.7 visibility (→H, de-brand `--layer` default), R.9 `.vscode/settings.json` (→G), R.10 a11y toggle (→G), R.11 footer redesign (→J). **EXCLUDE (Optoma-specific):** R.2 datasheet, R.3 spec/downloads, R.9 `ingest-template.ts` + hero-slider workflow doc. **CLOSER LOOK:** R.8 (→L). New batch plan G→L added above. |

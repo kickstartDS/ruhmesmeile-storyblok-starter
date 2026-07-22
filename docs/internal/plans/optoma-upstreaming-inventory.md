@@ -124,6 +124,37 @@ Notable additions here that are clearly generic:
 - `packages/storyblok-icon-sprite-picker-field-plugin/**`
 - `packages/storyblok-mcp/**`, `packages/storyblok-services/**` _(review each hunk)_
 
+### Batch G — Editor / infra config _(decided 2026-07-22, ADR-011)_
+
+- `packages/design-system/.storybook/preview.tsx` — `a11y: { test: "off" }` toggle (R.10)
+- `packages/website/components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5)
+- `.vscode/settings.json` — watcher/search/explorer excludes (R.9 partial)
+
+### Batch H — i18n + visibility systems _(decided 2026-07-22, ADR-011)_
+
+- `packages/website/cms/language/**` (37) + i18n wiring (R.6)
+- `packages/website/cms/visibility/**` + `scripts/generateVisibilityFromPatterns.ts` (R.7)
+  — de-brand `--layer` default `"optoma"` → generic
+
+### Batch I — book-a-demo _(decided 2026-07-22, ADR-011)_
+
+- `packages/website/components/book-a-demo/**` (3) + de-branded story (R.4)
+
+### Batch J — Footer redesign _(decided 2026-07-22, ADR-011; deferred from Batch D)_
+
+- `packages/design-system/src/components/footer/**` (`navItems` → `navGroups`, byline removal) + de-branded story (R.11)
+- may absorb website-level `packages/website/components/footer/FooterComponent.tsx` + `footer.scss` (R.8 subset)
+
+### Batch K — SharePoint integration _(decided 2026-07-22, ADR-011)_
+
+- `packages/storyblok-sharepoint-folder-picker-field-plugin/**` (11) (R.1)
+- `packages/website/helpers/sharepoint.ts` + `pages/api/sharepoint/**` (R.1)
+- SharePoint ADR/PRD/checklist docs _(if brand-neutral)_
+
+### Batch L — R.8 remaining website component diffs _(after closer manual read)_
+
+- `packages/website/components/{header,Page,section,timeline,prompter}` root diffs — promote confirmed-generic hunks
+
 ---
 
 ## ⛔ OPTOMA-SPECIFIC — never upstream
@@ -137,6 +168,12 @@ Notable additions here that are clearly generic:
 - **Product catalog:** `packages/website/public/products/**`, `pages/products/**`,
   `components/ProductDetail.tsx`, `components/cms/product-detail.schema.json` + `ProductDetailProps.ts`,
   `scripts/ingest-products*.ts`, `scripts/ingest-products-csv.ts`.
+- **Product datasheet/spec/downloads** _(decided 2026-07-22, ADR-011):_
+  `packages/website/components/datasheet/**` (PDF generation + `datasheet-pdf-plan.md`),
+  `components/spec-group/**`, `components/download-category/**`, `components/downloads/**` —
+  product-wired, not generic.
+- **Content ingest:** `packages/website/helpers/ingest-template.ts`,
+  `docs/internal/plans/hero-slider-workflow-improvements.md` _(decided 2026-07-22, ADR-011)._
 - **NetSuite integration:** `packages/website/helpers/netsuite/**` (8).
 - **Generated content:** `packages/website/public/blurhashes/**` (47).
 - **Analytics/config:** `packages/umami-analytics/{.env,.env.local.example}`, `config/deploy-*.yml`,
@@ -159,21 +196,22 @@ Notable additions here that are clearly generic:
 
 ---
 
-## 🔍 REVIEW — decide per item
+## 🔍 REVIEW — dispositions decided 2026-07-22 (ADR-011)
 
-| Item                                                                                                | Files | Lean                 | Rationale                                                                                                     |
-| --------------------------------------------------------------------------------------------------- | ----: | -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | Keep as optional pkg | Reusable field plugin, but SharePoint is an enterprise integration; upstream only if template should ship it. |
-| `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | Generic-able         | Nice generic feature, but currently wired to product datasheets.                                              |
-| `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | Review               | Product spec/download tables — generic pattern, product-driven content.                                       |
-| `book-a-demo/**`                                                                                    |     3 | Likely generic       | Marketing CTA component.                                                                                      |
-| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | Likely generic       | Infra contexts.                                                                                               |
-| `cms/language/**` (37) + i18n wiring                                                                |    37 | Likely generic       | Multi-language infra — valuable for the template.                                                             |
-| `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | Likely generic       | Conditional-visibility system.                                                                                |
-| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~12 | Review               | Mixed generic fixes + brand markup.                                                                           |
-| `helpers/ingest-template.ts`                                                                        |     1 | Review               | Content ingest helper.                                                                                        |
-| `.vscode/settings.json`                                                                             |     1 | Review               | Editor config — usually safe/generic.                                                                         |
-| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | Likely generic       | Workflow doc.                                                                                                 |
+| Item                                                                                                | Files | Decision              | Target batch / notes                                                                     |
+| --------------------------------------------------------------------------------------------------- | ----: | --------------------- | ---------------------------------------------------------------------------------------- |
+| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **PORT**           | **Batch K** — template will ship the SharePoint integration. De-brand any client config.  |
+| `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
+| `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
+| `book-a-demo/**`                                                                                    |     3 | ✅ **PORT**           | **Batch I** (+ de-branded story).                                                        |
+| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch G**. Infra contexts, brand-scan clean.                                           |
+| `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **PORT**           | **Batch H**. Brand-scan clean.                                                           |
+| `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | ✅ **PORT**           | **Batch H**. De-brand only: `--layer` default `"optoma"` → generic (2 lines).            |
+| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits; footer files likely fold into Batch J. Manual read.   |
+| `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
+| `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
+| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ⛔ **EXCLUDE**        | Optoma-specific workflow doc.                                                             |
+| Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                             |     4 | ✅ **PORT**           | **Batch J** — deferred from Batch D (ADR-008); port component + de-branded story together. |
 
 ---
 
@@ -184,7 +222,12 @@ Notable additions here that are clearly generic:
 3. **Batch D** (component fixes) → then regenerate LFS snapshots/screenshots.
 4. **Batch B** (token-graph) and **Batch C** (component-token-editor) → independent features.
 5. **Batch F** (plugins/MCP) → review hunks.
-6. Work the **🔍 REVIEW** list, promoting items to GENERIC as decided.
+6. **Batch G** (editor/infra config: a11y toggle, settings/token-theme/contexts, `.vscode/settings.json`).
+7. **Batch H** (i18n `cms/language` + `cms/visibility`; de-brand `--layer` default).
+8. **Batch I** (book-a-demo + de-branded story).
+9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
+10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
+11. **Batch L** (R.8 remaining website component diffs after closer manual read).
 
 Each batch = its own branch off clean `main` + a Changeset + one PR. Per-file mechanic:
 
