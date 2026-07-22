@@ -157,11 +157,11 @@ Notable additions here that are clearly generic:
 - **Collapsed like Batch H** via diff-direction check (ADR-012). The folder-picker plugin (`packages/storyblok-sharepoint-folder-picker-field-plugin/**`, 11 files incl. `dist/`), `pages/api/sharepoint/token.ts`, the generic `helpers/sharepoint.ts` base, and all 3 folder-picker docs are **byte-identical** on `main` and optoma — already ported. (R.1)
 - The only diff is `helpers/sharepoint.ts` (+544/−24) = the **excluded "Convention-based product downloads" feature** (`resolveProductRoot`/`SHAREPOINT_PRODUCT_ROOT_PATH`, `buildSkuIndex`/SKU folders, `buildDownloadCategoryBlok`/`mergeDownloadCategories`/`matchMaskedSku`). The generic `resolveSharePointFolders` export is identical on both sides. ⛔ **EXCLUDED** — nothing ported; zero code change (docs-only recording).
 
-### Batch L — settings/token-theme wiring + R.8 remaining website component diffs _(after closer manual read)_
+### Batch L — settings/i18n wiring + R.8 remaining website component diffs ✅ _(done 2026-07-22, ADR-016; final batch)_
 
-- `packages/website/components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5) — self-contained modules, ported **with** their wiring
-- settings/token-theme wiring hunks from `pages/_app.tsx` (+174/−84) + `components/ComponentProviders.tsx` (+291/−66) — coordinate book-a-demo pieces with Batch I; **exclude** `index.tsx` product-catalog hunks (`product-detail`, `downloads`)
-- `packages/website/components/{header,Page,section,timeline,prompter}` root diffs — promote confirmed-generic hunks
+- **PORTED** (20 brand-clean website files): `settings/**` (`headerButton`/`bookDemoButton` + regen `SettingsProps`), `page.schema.json` `hideBookDemoButton` + regen `PageProps`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`, `LanguageContext` `AlternatesProvider`, `Meta` hreflang/x-default, `_app.tsx` lang-aware breadcrumbs/href + `<BookADemo>`/header-CTA wiring, `ComponentProviders` `NavMainWithCta` (EN/DE switcher + header CTA) + Hero focal-point injection + image quality filter, `section` `anchorId`→`id`, header `z-index` token, umami gallery exclusion, prompter `useEffect` dep fix, removed unused `TeaserProvider`
+- ⛔ **EXCLUDED:** `product-detail` hero guard (`_app.tsx`), `CustomFooter`/`FooterProvider` (DS footer renders — ADR-014), `SectionProps` local-`downloads` re-point (product-coupled), `TimelineProps` union entry (Timeline demo removed in PR #16)
+- **No DS change / no changeset** — Hero `--dsa-hero-focus-position` + `--dsa-header--z-index` already on `main`; all changed files in the changeset-`ignore`d `website` package. Generated `Page`/`Settings`Props sourced from `optoma/main` (local regeneration diverged destructively — ADR-016 §4). PR #17 → `main` `212ae2d1..8954c7d8`
 
 ---
 
@@ -211,10 +211,10 @@ Notable additions here that are clearly generic:
 | `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
 | `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
 | `book-a-demo/**`                                                                                    |     3 | ✅ **DONE**           | **Batch I** — 3 files + `index.scss` `@use`; no story (website component); wiring → L.    |
-| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch L** _(re-scoped from G)_. Self-contained, but wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor. |
+| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **DONE**           | **Batch L** — ported with settings/i18n wiring (ADR-016). |
 | `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                        |
 | `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**           | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`. |
-| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits. Footer rendering upstreamed into DS in Batch J — website footer shrinks to the LanguageContext switcher. Manual read for the rest. |
+| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | ✅ **DONE**           | **Batch L** — generic hunks ported (ADR-016); footer = DS (ADR-014), `product-detail` guard + Timeline union excluded, Timeline demo removed in PR #16. |
 | `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
 | `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
 | `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ✅ **PORT**           | **Batch G**. Generic MCP/tooling feedback, no brand content; mark historical.            |
@@ -234,7 +234,7 @@ Notable additions here that are clearly generic:
 8. ✅ **Batch I** (book-a-demo component; render wiring deferred to L).
 9. ✅ **Batch J** (Footer redesign; upstreamed website footer rendering into DS per ADR-014; website lang-switcher override → L).
 10. ✅ **Batch K** (no-op — SharePoint infra already on main; product-downloads delta excluded per ADR-015).
-11. **Batch L** (R.5 settings/token-theme wiring + R.8 remaining website component diffs, after closer manual read).
+11. ✅ **Batch L** (final — settings/i18n wiring + R.8 website component diffs, ADR-016). **Upstreaming effort complete.**
 
 Each batch = its own branch off clean `main` + a Changeset + one PR. Per-file mechanic:
 

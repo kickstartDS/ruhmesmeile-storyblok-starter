@@ -458,3 +458,58 @@ no hardcoded tenant/site GUIDs), but clean ≠ generic: the logic is product-cat
   conventions (`isReadyForCms`, SKU masking) that only make sense for the excluded feature.
 - **Ship the product-downloads feature in the template** — rejected: explicitly on the excluded list (product
   catalog / download-category / downloads are Optoma-specific business logic, not generic template capability).
+
+## ADR-016: Batch L (final) — settings/i18n wiring ported; footer, `product-detail` guard, and Timeline union excluded; generated types sourced from the fork, not local regeneration
+
+**Status:** Accepted (2026-07-22, during Batch L)
+
+**Context:** Batch L is the final upstreaming batch — R.5 (settings / token-theme / context wiring) plus the R.8
+"closer look" website component root diffs (`_app.tsx`, `ComponentProviders.tsx`, `header/**`, `section/**`,
+`umami.client.js`, `prompter/**`). These were deferred from Batches G/I/J because the generic feature code is
+entangled with the settings-driven functional wiring in the two large refactors (`_app.tsx` and
+`ComponentProviders.tsx`).
+
+**Decisions:**
+
+1. **Ported (generic, 20 brand-clean website files):** `SettingsContext` (logo URL), `HeaderButtonContext`,
+   `settings.schema.json` `headerButton`/`bookDemoButton` objects + regenerated `SettingsProps.ts`,
+   `page.schema.json` `hideBookDemoButton` + regenerated `PageProps.ts`, `LanguageContext`
+   `AlternatesProvider`/`useAlternates`, `Meta.tsx` hreflang/x-default `<link>` tags, `_app.tsx` lang-aware
+   breadcrumbs + homepage href + settings-driven `<BookADemo>`/header-CTA wiring, `ComponentProviders`
+   `NavMainWithCta` (EN/DE switcher + header CTA) + Hero focal-point injection + image quality filter,
+   `section.schema.json` `anchorId` → rendered `id`, header `z-index` token, umami gallery-anchor exclusion,
+   prompter `useEffect` dependency fix, removal of the unused `TeaserProvider`.
+
+2. **Excluded (product/brand-coupled):**
+   - the `story?.content?.component !== "product-detail"` hero guard in `_app.tsx` (product-detail is an excluded
+     content type);
+   - `CustomFooter` / `FooterProvider` from `ComponentProviders` and the website `footer/FooterComponent.tsx` +
+     `footer.scss` (per ADR-014 the DS footer now renders all generic footer markup; the website override merely
+     duplicated it and re-introduced the rejected `{platform,url}` social schema — the DS footer renders, the
+     language switcher lives header-side in `NavMainWithCta`);
+   - the `SectionProps` local-`downloads` re-point (product-coupled) — the DS `downloads` import is retained;
+   - the `TimelineProps` `Content`-union entry — the Timeline demo component was removed entirely in PR #16
+     (it originated in the base template merge-base `6e67004a`, not optoma; the user confirmed removal regardless).
+
+3. **No DS change / no changeset.** The Hero focal-point `object-position: var(--dsa-hero-focus-position, 50% 50%)`
+   support and the `--dsa-header--z-index` token are **already present in the design-system on `main`**, so Batch L
+   consumes them without touching `packages/design-system`. Every changed file lives in the changeset-`ignore`d
+   `website` package → no Changeset.
+
+4. **Generated prop types are sourced from the fork's committed generations, not a local regeneration.** Running
+   the local `generate-props` pipeline (`dereference-schemas` → `kickstartDS schema types` against the workspace
+   DS `dist`) produced **destructively divergent** output — it stripped fields from `PrompterProps.ts` and removed
+   imports from `SectionProps.ts` — because the local generator / DS-`dist` version differs from the toolchain that
+   produced `main`'s committed generated files. Therefore `PageProps.ts` and `SettingsProps.ts` were taken from
+   `optoma/main` (schema-consistent, purely additive catch-ups: +82 / +75 lines, no deletions, brand-clean) and
+   `SectionProps.ts` / `PrompterProps.ts` were left exactly as they are on `main`. `anchorId` needs no
+   `SectionProps.ts` entry — the section provider consumes it at runtime via `any`-typed props (matching optoma).
+
+5. **Live-Storyblok mirror types are a follow-up.** `types/components-schema.d.ts`/`.json` are pulled from the
+   live space (`generate-content-types`, needs API tokens) and are not locally regenerable; the new
+   `headerButton`/`bookDemoButton`/`hideBookDemoButton`/`anchorId` schema fields surface there only after a CMS
+   sync (`update-storyblok-config` + `generate-content-types`).
+
+**Outcome:** PR #17 merged locally (`gh` API broken → `--no-ff` merge + branch delete); `main` `212ae2d1..8954c7d8`.
+Batch L closes the Optoma generic-upstreaming effort. (Preceded by PR #16 — removal of the base-template Timeline
+demo component — `main` `1f1a6309..212ae2d1`.)
