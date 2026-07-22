@@ -3,8 +3,8 @@ import { events as lazyEvents } from "@kickstartds/core/lib/core";
 if (window.location.hash === "#disable-umami")
   localStorage.setItem("umami.disabled", 1);
 
-document.querySelectorAll("a").forEach((a) => {
-  if (!a.dataset.umamiEvent) {
+document.querySelectorAll("a:not([data-gallery^=gallery-])").forEach((a) => {
+  if (!a.dataset.umamiEvent && !a.dataset.gallery) {
     a.dataset.umamiEvent =
       a.host !== window.location.host
         ? "click.link.outbound"

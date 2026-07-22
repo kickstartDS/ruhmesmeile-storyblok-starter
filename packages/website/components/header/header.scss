@@ -1,4 +1,4 @@
 .dsa-header {
   position: relative;
-  z-index: 9999999;
+  z-index: var(--dsa-header--z-index);
 }

@@ -60,7 +60,7 @@ const GalleryProvider: FC<PropsWithChildren> = (props) => {
           </ImageRatioProvider>
         );
       }),
-    [UpstreamGallery]
+    [UpstreamGallery],
   );
 
   return <GalleryContext.Provider {...props} value={Gallery} />;
@@ -93,7 +93,7 @@ const ImageStoryProvider: FC<PropsWithChildren> = (props) => {
           </ImageRatioProvider>
         );
       }),
-    [UpstreamImageStory]
+    [UpstreamImageStory],
   );
 
   return <ImageStoryContext.Provider {...props} value={ImageStory} />;
@@ -125,7 +125,7 @@ const ContactProvider: FC<PropsWithChildren> = (props) => {
           </ImageRatioProvider>
         );
       }),
-    [UpstreamContact]
+    [UpstreamContact],
   );
 
   return <ContactContext.Provider {...props} value={Contact} />;
@@ -155,7 +155,7 @@ const TeaserCardProvider: FC<PropsWithChildren> = (props) => {
           </ImageRatioProvider>
         );
       }),
-    [UpstreamTeaserCard]
+    [UpstreamTeaserCard],
   );
 
   return <TeaserCardContext.Provider {...props} value={TeaserCard} />;
@@ -177,7 +177,7 @@ const PostMetaProvider: FC<PropsWithChildren> = (props) => {
           </ImageRatioProvider>
         );
       }),
-    [UpstreamPostMeta]
+    [UpstreamPostMeta],
   );
 
   return <PostMetaContext.Provider {...props} value={PostMeta} />;

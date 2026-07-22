@@ -28,7 +28,14 @@ import "@kickstartds/design-system/global.css";
 import "@/index.scss";
 import "@/components/prompter/prompter.scss";
 import { BlurHashProvider } from "@/components/BlurHashContext";
-import { LanguageProvider } from "@/components/LanguageContext";
+import { nextFontFamilies, localFontFamilyName } from "@/helpers/fonts";
+import {
+  LanguageProvider,
+  AlternatesProvider,
+} from "@/components/LanguageContext";
+import { BookADemo } from "@/components/book-a-demo/BookADemoComponent";
+import HeaderButtonContext from "@/components/HeaderButtonContext";
+import { SettingsContext } from "@/components/SettingsContext";
 import { Section } from "@kickstartds/design-system/components/section/index.js";
 import { StoryblokComponent, useStoryblokState } from "@storyblok/react";
 
@@ -90,10 +97,48 @@ export default function App({
 
   // Theme CSS: page-level theme overrides global theme
   const themeCss = storyProps?.themeCss || settings?.themeCss || "";
+  // Component-level token overrides (scoped CSS from Design Tokens Editor)
+  const componentCss = storyProps?.componentCss || settings?.componentCss || "";
   // Manual token overrides layer on top of the selected theme
   const tokenOverrides = storyProps?.token || settings?.token || "";
-  // Combined token string: theme CSS + manual overrides
-  const token = [themeCss, tokenOverrides].filter(Boolean).join("\n");
+  // Combined token string: theme CSS + component overrides + manual overrides.
+  // Rewrite --ks-brand-font-family-* values in theme CSS: if the stored value starts
+  // with the same font that next/font manages locally, replace it with next/font's
+  // internal synthetic name (e.g. "__displayFont_0ac8ec"). This ensures the browser
+  // uses next/font's optimised @font-face rather than looking up a name with no
+  // declaration. Themes using a different font (e.g. a Google Font) are unaffected.
+  const resolveNextFontFamilies = (css: string) => {
+    // Match property + value up to the semicolon so we replace the whole value
+    return css
+      .replace(/(--ks-brand-font-family-display\s*:)[^;]+/g, (match, prop) => {
+        const val = match.slice(prop.length).trim();
+        const firstFont = val.split(",")[0].replace(/["']/g, "").trim();
+        return firstFont === localFontFamilyName
+          ? `${prop} ${nextFontFamilies.display}`
+          : match;
+      })
+      .replace(/(--ks-brand-font-family-copy\s*:)[^;]+/g, (match, prop) => {
+        const val = match.slice(prop.length).trim();
+        const firstFont = val.split(",")[0].replace(/["']/g, "").trim();
+        return firstFont === localFontFamilyName
+          ? `${prop} ${nextFontFamilies.copy}`
+          : match;
+      })
+      .replace(
+        /(--ks-brand-font-family-interface\s*:)[^;]+/g,
+        (match, prop) => {
+          const val = match.slice(prop.length).trim();
+          const firstFont = val.split(",")[0].replace(/["']/g, "").trim();
+          return firstFont === localFontFamilyName
+            ? `${prop} ${nextFontFamilies.interface}`
+            : match;
+        },
+      );
+  };
+  const token = [themeCss, componentCss, tokenOverrides]
+    .filter(Boolean)
+    .map(resolveNextFontFamilies)
+    .join("\n");
 
   const invertHeader = storyProps?.header?.inverted
     ? !headerProps?.inverted
@@ -106,32 +151,38 @@ export default function App({
     : footerProps?.inverted;
   const hideBreadcrumbs =
     settings?.hideBreadcrumbs || storyProps?.hidePageBreadcrumbs || false;
+  const hideBookDemoButton = storyProps?.hideBookDemoButton || false;
 
   setActiveNavItem(headerProps?.navItems, router.asPath);
-  setActiveNavItem(footerProps?.navItems, router.asPath);
 
   useEffect(() => {
     router.events.on("routeChangeStart", handleRouteChange);
     return () => router.events.off("routeChangeStart", handleRouteChange);
   }, [router.events]);
 
+  const SUPPORTED_LANGS = ["en", "de"];
   const url = new URL(router.asPath, "http://dummy-base");
-  const pathSegments = url.pathname.split("/").filter(Boolean);
-  const breadcrumbItems = pathSegments.map((segment) => ({
+  let pathSegments = url.pathname.split("/").filter(Boolean);
+  // Strip _preview prefix (internal preview route)
+  if (pathSegments[0] === "_preview") pathSegments = pathSegments.slice(1);
+  // Detect language prefix so breadcrumbs don't expose it
+  const langPrefix = SUPPORTED_LANGS.includes(pathSegments[0])
+    ? pathSegments[0]
+    : null;
+  const contentSegments = langPrefix ? pathSegments.slice(1) : pathSegments;
+  const breadcrumbItems = contentSegments.map((segment, index) => ({
     label: segment.charAt(0).toUpperCase() + segment.slice(1),
     url: path.join(
       "/",
-      ...pathSegments.slice(0, pathSegments.indexOf(segment) + 1),
+      ...(langPrefix ? [langPrefix] : []),
+      ...contentSegments.slice(0, index + 1),
     ),
   }));
-  if (
-    breadcrumbItems.length > 0 &&
-    breadcrumbItems[0]?.label.toLowerCase() === "_preview"
-  ) {
-    breadcrumbItems.shift();
-  }
-  if (breadcrumbItems[0]?.label !== "Home") {
-    breadcrumbItems.unshift({ label: "Home", url: "/" });
+  if (breadcrumbItems[0]?.label.toLowerCase() !== "home") {
+    breadcrumbItems.unshift({
+      label: "Home",
+      url: langPrefix ? `/${langPrefix}/home` : "/",
+    });
   }
 
   let heroSection;
@@ -156,76 +207,114 @@ export default function App({
     };
   }
 
+  const logoUrl: string | undefined =
+    storyProps?.header?.logo || (headerProps as any)?.logo?.src || undefined;
+
   return (
-    <LanguageProvider language={language}>
-      <BlurHashProvider blurHashes={blurHashes}>
-        <DsaProviders>
-          <ComponentProviders>
-            <ImageSizeProviders>
-              <ImageRatioProviders>
-                <Meta
-                  globalSeo={settings?.seo}
-                  pageSeo={story?.content.seo}
-                  fallbackName={story?.name}
-                />
-                {token && (
-                  <style
-                    data-tokens
-                    dangerouslySetInnerHTML={{ __html: token }}
-                  ></style>
-                )}
-                {headerProps && (
-                  <Header
-                    {...headerProps}
-                    inverted={invertHeader}
-                    floating={floatHeader}
-                    logo={{
-                      ...headerProps?.logo,
-                      src: storyProps?.header?.logo || headerProps?.logo?.src,
-                    }}
-                  />
-                )}
-                {heroSection && <StoryblokComponent blok={heroSection} />}
-                {!hideBreadcrumbs &&
-                  breadcrumbItems &&
-                  breadcrumbItems.length > 1 && (
-                    <Section width="wide" spaceAfter="none" spaceBefore="none">
-                      <Breadcrumb pages={breadcrumbItems} />
-                      <JsonLd<BreadcrumbList>
-                        item={{
-                          "@context": "https://schema.org",
-                          "@type": "BreadcrumbList",
-                          name: "Breadcrumbs",
-                          itemListElement: breadcrumbItems.map(
-                            (item, index) => ({
-                              "@type": "ListItem",
-                              position: index + 1,
-                              name: item.label,
-                              item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}${
-                                item.url
-                              }`,
-                            }),
-                          ),
-                        }}
+    <SettingsContext.Provider value={{ logoUrl }}>
+      <LanguageProvider language={language ?? "en"}>
+        <AlternatesProvider alternates={story?.alternates ?? []}>
+          <BlurHashProvider blurHashes={blurHashes}>
+            <DsaProviders>
+              <HeaderButtonContext.Provider
+                value={{
+                  enabled: settings?.headerButton_enabled,
+                  label: settings?.headerButton_label,
+                  url: settings?.headerButton_url,
+                }}
+              >
+                <ComponentProviders>
+                  <ImageSizeProviders>
+                    <ImageRatioProviders>
+                      <Meta
+                        globalSeo={settings?.seo}
+                        pageSeo={story?.content.seo}
+                        fallbackName={story?.name}
+                        currentSlug={story?.full_slug}
+                        currentLang={language}
+                        alternates={story?.alternates}
                       />
-                    </Section>
-                  )}
-                <Component {...newPageProps} />
-                {footerProps && (
-                  <Footer
-                    {...footerProps}
-                    inverted={invertFooter || false}
-                    logo={{
-                      ...footerProps?.logo,
-                      src: storyProps?.footer?.logo || footerProps?.logo?.src,
-                    }}
-                  />
-                )}
-              </ImageRatioProviders>
-            </ImageSizeProviders>
-          </ComponentProviders>
-        </DsaProviders>
-      </BlurHashProvider>
-    </LanguageProvider>
+                      {token && (
+                        <style
+                          data-tokens
+                          dangerouslySetInnerHTML={{ __html: token }}
+                        ></style>
+                      )}
+                      {headerProps && (
+                        <Header
+                          {...headerProps}
+                          inverted={invertHeader}
+                          floating={floatHeader}
+                          logo={{
+                            ...headerProps?.logo,
+                            src:
+                              storyProps?.header?.logo ||
+                              headerProps?.logo?.src,
+                            homepageHref: headerProps?.logo?.homepageHref
+                              ? `/${headerProps.logo.homepageHref}`
+                              : `/${language}/`,
+                          }}
+                        />
+                      )}
+                      {heroSection && <StoryblokComponent blok={heroSection} />}
+                      {!hideBreadcrumbs &&
+                        breadcrumbItems &&
+                        breadcrumbItems.length > 1 && (
+                          <Section
+                            width="wide"
+                            spaceAfter="none"
+                            spaceBefore="none"
+                          >
+                            <Breadcrumb pages={breadcrumbItems} />
+                            <JsonLd<BreadcrumbList>
+                              item={{
+                                "@context": "https://schema.org",
+                                "@type": "BreadcrumbList",
+                                name: "Breadcrumbs",
+                                itemListElement: breadcrumbItems.map(
+                                  (item, index) => ({
+                                    "@type": "ListItem",
+                                    position: index + 1,
+                                    name: item.label,
+                                    item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}${
+                                      item.url
+                                    }`,
+                                  }),
+                                ),
+                              }}
+                            />
+                          </Section>
+                        )}
+                      <Component {...newPageProps} />
+                      {footerProps && (
+                        <Footer
+                          {...footerProps}
+                          inverted={invertFooter || false}
+                          logo={{
+                            ...footerProps?.logo,
+                            src:
+                              storyProps?.footer?.logo ||
+                              footerProps?.logo?.src,
+                          }}
+                        />
+                      )}
+                      <BookADemo
+                        enabled={
+                          settings?.bookDemoButton_enabled &&
+                          !hideBookDemoButton
+                        }
+                        label={settings?.bookDemoButton_label}
+                        url={settings?.bookDemoButton_url}
+                        variant={settings?.bookDemoButton_variant}
+                      />
+                    </ImageRatioProviders>
+                  </ImageSizeProviders>
+                </ComponentProviders>
+              </HeaderButtonContext.Provider>
+            </DsaProviders>
+          </BlurHashProvider>
+        </AlternatesProvider>
+      </LanguageProvider>
+    </SettingsContext.Provider>
   );
 }

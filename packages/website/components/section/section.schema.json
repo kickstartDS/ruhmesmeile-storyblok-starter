@@ -14,6 +14,11 @@
           "description": "If true, the section is marked as an AI-generated draft",
           "default": false
         },
+        "anchorId": {
+          "type": "string",
+          "title": "Anchor ID",
+          "description": "Optional unique ID for this section, enabling direct anchor links (e.g. /page#my-section)"
+        },
         "components": {
           "type": "array",
           "title": "Content",

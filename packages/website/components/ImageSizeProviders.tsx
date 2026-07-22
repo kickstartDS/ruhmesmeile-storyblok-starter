@@ -30,6 +30,11 @@ import {
   BlogTeaserContext,
   BlogTeaserContextDefault,
 } from "@kickstartds/design-system/blog-teaser";
+import {
+  DownloadsContext,
+  DownloadsContextDefault,
+} from "@kickstartds/design-system/downloads";
+import { DownloadsProps } from "@kickstartds/design-system/downloads";
 import calculated from "@/token/calculated";
 
 const SectionProvider: FC<PropsWithChildren> = (props) => {
@@ -49,9 +54,9 @@ const SectionProvider: FC<PropsWithChildren> = (props) => {
           props.content?.width === "unset" || !props.content?.width
             ? props.width || "default"
             : calculated.sectionWidths[props.content?.width || "default"] >
-              calculated.sectionWidths[props.width || "default"]
-            ? props.width || "default"
-            : props.content?.width || "default";
+                calculated.sectionWidths[props.width || "default"]
+              ? props.width || "default"
+              : props.content?.width || "default";
 
         const sectionWidth =
           calculated.sectionWidths[sectionWidthName] *
@@ -61,8 +66,8 @@ const SectionProvider: FC<PropsWithChildren> = (props) => {
           props.content?.mode === "list"
             ? sectionWidth
             : props.content?.mode === "slider"
-            ? sectionWidth
-            : sectionWidth / childCount;
+              ? sectionWidth
+              : sectionWidth / childCount;
 
         return (
           <ImageSizeProvider size={componentWidth}>
@@ -70,7 +75,7 @@ const SectionProvider: FC<PropsWithChildren> = (props) => {
           </ImageSizeProvider>
         );
       }),
-    [UpstreamSection]
+    [UpstreamSection],
   );
 
   return <SectionContext.Provider {...props} value={Section} />;
@@ -89,7 +94,8 @@ const LogosProvider: FC<PropsWithChildren> = (props) => {
         const size = useImageSize();
         const gapSize = calculated.desktop["--dsa-logos__grid--gap-horizontal"];
         const logoSize = Math.ceil(
-          (size - gapSize * (props.logosPerRow || 3)) / (props.logosPerRow || 3)
+          (size - gapSize * (props.logosPerRow || 3)) /
+            (props.logosPerRow || 3),
         );
 
         return (
@@ -98,7 +104,7 @@ const LogosProvider: FC<PropsWithChildren> = (props) => {
           </ImageSizeProvider>
         );
       }),
-    [UpstreamLogos]
+    [UpstreamLogos],
   );
 
   return <LogosContext.Provider {...props} value={Logos} />;
@@ -125,7 +131,7 @@ const ImageStoryProvider: FC<PropsWithChildren> = (props) => {
           </ImageSizeProvider>
         );
       }),
-    [UpstreamImageStory]
+    [UpstreamImageStory],
   );
 
   return <ImageStoryContext.Provider {...props} value={ImageStory} />;
@@ -152,7 +158,7 @@ const BlogTeaserProvider: FC<PropsWithChildren> = (props) => {
           </ImageSizeProvider>
         );
       }),
-    [UpstreamBlogTeaser]
+    [UpstreamBlogTeaser],
   );
 
   return <BlogTeaserContext.Provider {...props} value={BlogTeaser} />;
@@ -176,10 +182,34 @@ const PostMetaProvider: FC<PropsWithChildren> = (props) => {
           </ImageSizeProvider>
         );
       }),
-    [UpstreamPostMeta]
+    [UpstreamPostMeta],
   );
 
   return <PostMetaContext.Provider {...props} value={PostMeta} />;
+};
+
+const DownloadsImageSizeProvider: FC<PropsWithChildren> = (props) => {
+  const UpstreamDownloads = useContext(DownloadsContext);
+
+  const Downloads = useMemo(
+    () =>
+      forwardRef<
+        HTMLDivElement,
+        ComponentProps<typeof DownloadsContextDefault> &
+          HTMLAttributes<HTMLDivElement>
+      >(function DownloadsImageSize(props, ref) {
+        const iconSize =
+          calculated.desktop["--dsa-downloads-item__placeholder-icon--size"];
+        return (
+          <ImageSizeProvider size={iconSize}>
+            <UpstreamDownloads {...props} ref={ref} />
+          </ImageSizeProvider>
+        );
+      }),
+    [UpstreamDownloads],
+  );
+
+  return <DownloadsContext.Provider {...props} value={Downloads} />;
 };
 
 const ImageSizeProviders = (props: PropsWithChildren) => (
@@ -187,7 +217,11 @@ const ImageSizeProviders = (props: PropsWithChildren) => (
     <LogosProvider>
       <PostMetaProvider>
         <BlogTeaserProvider>
-          <ImageStoryProvider>{props.children}</ImageStoryProvider>
+          <ImageStoryProvider>
+            <DownloadsImageSizeProvider>
+              {props.children}
+            </DownloadsImageSizeProvider>
+          </ImageStoryProvider>
         </BlogTeaserProvider>
       </PostMetaProvider>
     </LogosProvider>

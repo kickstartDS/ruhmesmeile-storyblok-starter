@@ -7,11 +7,12 @@ export const SectionProvider: FC<PropsWithChildren<any>> = (props) => {
   const PrevSection = useContext(SectionContext);
   // eslint-disable-next-line react/display-name
   const Section = forwardRef<HTMLDivElement, any>(
-    ({ aiDraft, children, ...props }, ref) => {
+    ({ aiDraft, anchorId, children, ...props }, ref) => {
       return (
         <HeadlineLevelProvider>
           <PrevSection
             {...props}
+            id={anchorId || undefined}
             ref={ref}
             data-ai-draft={aiDraft || undefined}
           >
