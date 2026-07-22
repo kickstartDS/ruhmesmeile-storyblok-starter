@@ -131,11 +131,15 @@ Notable additions here that are clearly generic:
 - `docs/internal/plans/hero-slider-workflow-improvements.md` — generic MCP/tooling feedback, no brand content (R.9 partial; historical banner added)
 - _R.5 settings/token-theme/contexts **re-scoped → Batch L** (wiring entanglement); no changeset (zero published-package impact)._
 
-### Batch H — i18n + visibility systems _(decided 2026-07-22, ADR-011)_
+### Batch H — visibility generator script _(decided 2026-07-22, ADR-011; ✅ PORTED 2026-07-22)_
 
-- `packages/website/cms/language/**` (37) + i18n wiring (R.6)
-- `packages/website/cms/visibility/**` + `scripts/generateVisibilityFromPatterns.ts` (R.7)
-  — de-brand `--layer` default `"optoma"` → `visibility` (no built-in customization layer)
+> **Scope correction:** `cms/language/**` (37) and `cms/visibility/**` (37) are **already on `main`**
+> (added at the mono-repo move, predate the fork base; optoma *deleted* them in favour of the brand
+> layer `cms/optoma/**`). Nothing to port there. The only new generic artifact is the generator script.
+
+- `packages/website/scripts/generateVisibilityFromPatterns.ts` (744 lines; `fs`/`path` only, `mydesignsystem.com` placeholder IDs) (R.7)
+  — de-branded `--layer` default `"optoma"` → `visibility` (the file's only brand refs)
+  — not wired into package.json (run via `npx tsx`); no changeset (website is changeset-`ignore`d)
 
 ### Batch I — book-a-demo _(decided 2026-07-22, ADR-011)_
 
@@ -207,8 +211,8 @@ Notable additions here that are clearly generic:
 | `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
 | `book-a-demo/**`                                                                                    |     3 | ✅ **PORT**           | **Batch I** (+ de-branded story).                                                        |
 | `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch L** _(re-scoped from G)_. Self-contained, but wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor. |
-| `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **PORT**           | **Batch H**. Brand-scan clean.                                                           |
-| `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | ✅ **PORT**           | **Batch H**. De-brand only: `--layer` default `"optoma"` → `visibility` (2 lines).       |
+| `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                        |
+| `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**           | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`. |
 | `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits; footer files likely fold into Batch J. Manual read.   |
 | `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
 | `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
@@ -225,7 +229,7 @@ Notable additions here that are clearly generic:
 4. **Batch B** (token-graph) and **Batch C** (component-token-editor) → independent features.
 5. **Batch F** (plugins/MCP) → review hunks.
 6. **Batch G** ✅ _done_ (editor/infra config: a11y toggle, `.vscode/settings.json`, hero-slider doc; R.5 re-scoped to L).
-7. **Batch H** (i18n `cms/language` + `cms/visibility`; de-brand `--layer` default → `visibility`).
+7. **Batch H** ✅ _done_ (visibility generator script only — `cms/language`/`cms/visibility` already on main; `--layer` default de-branded → `visibility`).
 8. **Batch I** (book-a-demo + de-branded story).
 9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
 10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
