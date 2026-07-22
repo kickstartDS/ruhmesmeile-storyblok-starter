@@ -53,7 +53,7 @@ The website supports **7 content types** with full Visual Editor integration:
 
 Over 30 components from `@kickstartds/design-system` are registered, including:
 
-`blog-teaser` · `business-card` · `contact` · `content-nav` · `cta` · `divider` · `downloads` · `faq` · `features` · `gallery` · `headline` · `hero` · `html` · `image-story` · `image-text` · `logos` · `mosaic` · `section` · `slider` · `split-even` · `split-weighted` · `stats` · `teaser-card` · `testimonials` · `text` · `timeline` · `video-curtain`
+`blog-teaser` · `business-card` · `contact` · `content-nav` · `cta` · `divider` · `downloads` · `faq` · `features` · `gallery` · `headline` · `hero` · `html` · `image-story` · `image-text` · `logos` · `mosaic` · `section` · `slider` · `split-even` · `split-weighted` · `stats` · `teaser-card` · `testimonials` · `text` · `video-curtain`
 
 Plus custom local components: `prompter` · `info-table`
 
