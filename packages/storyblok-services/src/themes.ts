@@ -41,6 +41,10 @@ export interface ThemeDetail extends ThemeSummary {
   tokens: string | null;
   /** Compiled CSS custom properties. */
   css: string | null;
+  /** JSON string of sparse per-component token overrides. */
+  componentTokens: string | null;
+  /** Compiled scoped CSS for component token overrides. */
+  componentCss: string | null;
 }
 
 /** Result of applying or removing a theme. */
@@ -82,6 +86,15 @@ export interface UpdateThemeResult {
  * Injected by the caller to avoid a hard dependency on the Design System package.
  */
 export type TokensToCssFn = (tokens: Record<string, unknown>) => string;
+
+/**
+ * Compiler function that converts sparse component overrides to scoped CSS.
+ * Injected by the caller to avoid a hard dependency on the Design System package.
+ */
+export type ComponentTokensToCssFn = (
+  componentTokens: Record<string, unknown>,
+  catalog: Record<string, unknown>,
+) => string;
 
 // ─── List Themes ──────────────────────────────────────────────────────
 
@@ -242,6 +255,9 @@ export async function createTheme(
     name: string;
     tokens: Record<string, unknown>;
     tokensToCss: TokensToCssFn;
+    componentTokens?: Record<string, unknown>;
+    componentTokensToCss?: ComponentTokensToCssFn;
+    componentTokenCatalog?: Record<string, unknown>;
     publish?: boolean;
   },
 ): Promise<CreateThemeResult> {
@@ -259,6 +275,21 @@ export async function createTheme(
   // Compile W3C tokens to CSS
   const css = options.tokensToCss(options.tokens);
   const tokensJson = JSON.stringify(options.tokens);
+
+  // Compile component token overrides to scoped CSS (if provided)
+  let componentTokensJson: string | undefined;
+  let componentCss: string | undefined;
+  if (
+    options.componentTokens &&
+    options.componentTokensToCss &&
+    options.componentTokenCatalog
+  ) {
+    componentTokensJson = JSON.stringify(options.componentTokens);
+    componentCss = options.componentTokensToCss(
+      options.componentTokens,
+      options.componentTokenCatalog,
+    );
+  }
 
   // Ensure the settings/themes/ folder hierarchy exists
   const parentId = await ensurePath(
@@ -279,6 +310,8 @@ export async function createTheme(
       name: options.name,
       tokens: tokensJson,
       css,
+      ...(componentTokensJson && { componentTokens: componentTokensJson }),
+      ...(componentCss && { componentCss }),
     },
     skipValidation: true,
   });
@@ -315,6 +348,9 @@ export async function updateTheme(
     slugOrUuid: string;
     tokens: Record<string, unknown>;
     tokensToCss: TokensToCssFn;
+    componentTokens?: Record<string, unknown>;
+    componentTokensToCss?: ComponentTokensToCssFn;
+    componentTokenCatalog?: Record<string, unknown>;
     publish?: boolean;
   },
 ): Promise<UpdateThemeResult> {
@@ -338,6 +374,21 @@ export async function updateTheme(
   const css = options.tokensToCss(options.tokens);
   const tokensJson = JSON.stringify(options.tokens);
 
+  // Compile component token overrides to scoped CSS (if provided)
+  let componentTokensJson: string | undefined;
+  let componentCss: string | undefined;
+  if (
+    options.componentTokens &&
+    options.componentTokensToCss &&
+    options.componentTokenCatalog
+  ) {
+    componentTokensJson = JSON.stringify(options.componentTokens);
+    componentCss = options.componentTokensToCss(
+      options.componentTokens,
+      options.componentTokenCatalog,
+    );
+  }
+
   // Fetch via Management API for the write
   const story = await getStoryManagement(
     managementClient,
@@ -349,6 +400,12 @@ export async function updateTheme(
   // Update tokens and CSS
   content.tokens = tokensJson;
   content.css = css;
+  if (componentTokensJson !== undefined) {
+    content.componentTokens = componentTokensJson;
+  }
+  if (componentCss !== undefined) {
+    content.componentCss = componentCss;
+  }
 
   await saveStory(managementClient, spaceId, String(story.id), {
     content,
@@ -429,6 +486,8 @@ function storyToThemeDetail(story: Record<string, any>): ThemeDetail {
     fullSlug: story.full_slug,
     tokens: story.content?.tokens || null,
     css: story.content?.css || null,
+    componentTokens: story.content?.componentTokens || null,
+    componentCss: story.content?.componentCss || null,
     ...(story.content?.system && { system: true }),
   };
 }

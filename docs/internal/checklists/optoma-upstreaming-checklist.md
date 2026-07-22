@@ -71,10 +71,10 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch F — Generic plugins/tooling
 
-- [ ] F.0 Create branch
-- [ ] F.1 Port `storyblok-icon-sprite-picker-field-plugin/**`
-- [ ] F.2 Review + port `storyblok-mcp` / `storyblok-services` hunks
-- [ ] F.3 Changeset + PR
+- [x] F.0 Create branch
+- [x] F.1 `storyblok-icon-sprite-picker-field-plugin/**` — already on `main` (App.tsx `allowedIcons` filter + dist ported in an earlier batch; `main` == `optoma` for this plugin, no delta)
+- [x] F.2 Review + port `storyblok-mcp` / `storyblok-services` hunks — 5 files: per-component token overrides for theme create/update (config.ts, register-tools.ts, services.ts, index.ts, themes.ts). `transform.ts` numeric-`component` fix already on `main`. All brand-neutral.
+- [x] F.3 Changeset + PR — minor bump `@kickstartds/storyblok-services` + `@kickstartds/storyblok-mcp-server`. Both packages build green; no generated churn.
 
 ## REVIEW backlog (promote to a batch after decision)
 
@@ -106,3 +106,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-21 | D     | Ported 37 brand-neutral component files (new `SeoComponent.tsx`, `Gallery.client.js`; gallery slider / lightbox stroke+thumb / teaser-card image tokens) off updated main. Excluded 44 brand-laden stories + story-coupled Footer redesign (ADR-008 → backlog R.11). Regenerated `component-token-catalog.json` + `SectionProps.d.ts` (deterministic). LFS snapshots/screenshots deferred to CI — local regen = env drift 141/157 incl. untouched leaves (ADR-009). `build` green (presets 136 passed); `build-storybook` green. Brand scan clean. Changeset added (`@kickstartds/design-system` minor). |
 | 2026-07-21 | D     | Story-diff audit: 42/44 pure brand-content swaps; 2 brand-neutral carve-outs **folded into Batch D** (R.12) — gallery `SliderGallery` (covers ported slider layout) + business-card `contact:`→`contactLinks:` (latent template-story bug). `build` green (presets 137); search-index green (108). Merged PR #9 into main locally (`gh` API broken → merge commit + branch delete). `main` pushed `4f2a2354..f920f881`. |
 | 2026-07-21 | E     | Ported 3 pnpm patches (new `unpic@3.22.0` Storyblok filter-parser fix, new `kickstartds@3.5.0--canary.62.324.0` storyblok-task rc-config fix, extended `jsonschema-utils@3.9.0` allOf title/desc/required preservation) + 2 `patchedDependencies` entries. Both new versions resolve in lockfile; `pnpm install` registered patch hashes. All patches brand-neutral. DS build green (presets 137), no output churn. Changeset = `@kickstartds/design-system` patch; pnpm-patch-only batch changeset policy recorded (ADR-010). |
+| 2026-07-22 | E     | Merged PR #10 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `6f1f47e4..29ca0650`. |
+| 2026-07-22 | F     | Scoped Batch F to 5 brand-neutral files: per-component token overrides for theme create/update (`storyblok-mcp` config/register-tools/services, `storyblok-services` index/themes). Icon-picker plugin (`App.tsx` `allowedIcons` filter + dist) and `transform.ts` numeric-`component` fix were **already on `main`** from earlier batches (`main` == `optoma` for those). Both packages build green, no generated churn. Changeset = minor bump `@kickstartds/storyblok-services` + `@kickstartds/storyblok-mcp-server`. |

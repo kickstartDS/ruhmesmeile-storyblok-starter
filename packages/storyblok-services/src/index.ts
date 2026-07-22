@@ -246,4 +246,5 @@ export type {
   CreateThemeResult,
   UpdateThemeResult,
   TokensToCssFn,
+  ComponentTokensToCssFn,
 } from "./themes.js";
