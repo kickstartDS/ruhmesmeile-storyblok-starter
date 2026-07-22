@@ -258,17 +258,19 @@ change is local-only and identical in kind). Future patch-only batches follow th
 (2026-07-22) and grouped into Batches G–L:
 
 - **PORT** — R.10 Storybook `a11y: { test: "off" }` toggle, R.5 settings/token-theme/infra
-  contexts, and the R.9 `.vscode/settings.json` watcher/search excludes → **Batch G**.
+  contexts, the R.9 `.vscode/settings.json` watcher/search excludes, and the R.9
+  `hero-slider-workflow-improvements.md` (generic MCP/tooling feedback, no brand content) → **Batch G**.
 - **PORT** — R.6 `cms/language` i18n and R.7 `cms/visibility` → **Batch H**. R.7 requires a
-  one-line de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"`.
+  one-line de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` → change
+  to `visibility` (no built-in customization layer).
 - **PORT** — R.4 `book-a-demo` (+ de-branded story) → **Batch I**.
 - **PORT** — R.11 design-system Footer redesign (`navItems` → `navGroups`, byline removal) +
   de-branded story → **Batch J** (deferred from Batch D per ADR-008).
 - **PORT** — R.1 SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**`
   → **Batch K**. The template *will* ship the SharePoint integration.
 - **EXCLUDE (Optoma-specific)** — R.2 datasheet PDF generation, R.3 spec-group /
-  download-category / downloads (product-wired), and the R.9 remainder
-  (`helpers/ingest-template.ts`, `hero-slider-workflow-improvements.md`).
+  download-category / downloads (product-wired), and the R.9 content-ingest helper
+  (`helpers/ingest-template.ts`).
 - **CLOSER LOOK** — R.8 website component root diffs (header/footer/Page/section/timeline/prompter,
   10 files, 0 brand-keyword hits) → **Batch L**, pending a manual read to disentangle generic
   fixes from brand markup. The new website-level `footer/FooterComponent.tsx` + `footer.scss` are
@@ -277,8 +279,10 @@ change is local-only and identical in kind). Future patch-only batches follow th
 **Rationale:** The remaining backlog mixed clearly-generic infra (config, i18n, visibility, marketing
 CTA) with product-coupled features (datasheets, spec/download tables tied to the product catalog).
 The product owner confirmed SharePoint is wanted in the template, while datasheet/spec/download
-features are Optoma product catalog concerns. R.9 is genuinely split: the editor `.vscode/settings.json`
-performance excludes are generic, but the content-ingest helper and its workflow doc are Optoma-specific.
+features are Optoma product catalog concerns. R.9 is split three ways: the editor `.vscode/settings.json`
+performance excludes and the `hero-slider-workflow-improvements.md` notes (which, despite the title,
+contain only generic MCP/tooling feedback with no brand content) are generic → Batch G, while the
+content-ingest helper (`ingest-template.ts`) is Optoma-specific → excluded.
 R.8 has no brand-keyword hits but its footer additions are structurally coupled to the R.11 redesign, so
 it is held for a manual disentangling pass rather than a blind port.
 

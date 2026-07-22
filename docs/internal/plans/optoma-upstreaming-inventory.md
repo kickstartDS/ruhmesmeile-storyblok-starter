@@ -129,12 +129,13 @@ Notable additions here that are clearly generic:
 - `packages/design-system/.storybook/preview.tsx` — `a11y: { test: "off" }` toggle (R.10)
 - `packages/website/components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5)
 - `.vscode/settings.json` — watcher/search/explorer excludes (R.9 partial)
+- `docs/internal/plans/hero-slider-workflow-improvements.md` — generic MCP/tooling feedback, no brand content (R.9 partial; mark historical)
 
 ### Batch H — i18n + visibility systems _(decided 2026-07-22, ADR-011)_
 
 - `packages/website/cms/language/**` (37) + i18n wiring (R.6)
 - `packages/website/cms/visibility/**` + `scripts/generateVisibilityFromPatterns.ts` (R.7)
-  — de-brand `--layer` default `"optoma"` → generic
+  — de-brand `--layer` default `"optoma"` → `visibility` (no built-in customization layer)
 
 ### Batch I — book-a-demo _(decided 2026-07-22, ADR-011)_
 
@@ -172,8 +173,7 @@ Notable additions here that are clearly generic:
   `packages/website/components/datasheet/**` (PDF generation + `datasheet-pdf-plan.md`),
   `components/spec-group/**`, `components/download-category/**`, `components/downloads/**` —
   product-wired, not generic.
-- **Content ingest:** `packages/website/helpers/ingest-template.ts`,
-  `docs/internal/plans/hero-slider-workflow-improvements.md` _(decided 2026-07-22, ADR-011)._
+- **Content ingest:** `packages/website/helpers/ingest-template.ts` _(decided 2026-07-22, ADR-011)._
 - **NetSuite integration:** `packages/website/helpers/netsuite/**` (8).
 - **Generated content:** `packages/website/public/blurhashes/**` (47).
 - **Analytics/config:** `packages/umami-analytics/{.env,.env.local.example}`, `config/deploy-*.yml`,
@@ -206,11 +206,11 @@ Notable additions here that are clearly generic:
 | `book-a-demo/**`                                                                                    |     3 | ✅ **PORT**           | **Batch I** (+ de-branded story).                                                        |
 | `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch G**. Infra contexts, brand-scan clean.                                           |
 | `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **PORT**           | **Batch H**. Brand-scan clean.                                                           |
-| `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | ✅ **PORT**           | **Batch H**. De-brand only: `--layer` default `"optoma"` → generic (2 lines).            |
+| `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | ✅ **PORT**           | **Batch H**. De-brand only: `--layer` default `"optoma"` → `visibility` (2 lines).       |
 | `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits; footer files likely fold into Batch J. Manual read.   |
 | `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
 | `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
-| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ⛔ **EXCLUDE**        | Optoma-specific workflow doc.                                                             |
+| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ✅ **PORT**           | **Batch G**. Generic MCP/tooling feedback, no brand content; mark historical.            |
 | Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                             |     4 | ✅ **PORT**           | **Batch J** — deferred from Batch D (ADR-008); port component + de-branded story together. |
 
 ---
@@ -223,7 +223,7 @@ Notable additions here that are clearly generic:
 4. **Batch B** (token-graph) and **Batch C** (component-token-editor) → independent features.
 5. **Batch F** (plugins/MCP) → review hunks.
 6. **Batch G** (editor/infra config: a11y toggle, settings/token-theme/contexts, `.vscode/settings.json`).
-7. **Batch H** (i18n `cms/language` + `cms/visibility`; de-brand `--layer` default).
+7. **Batch H** (i18n `cms/language` + `cms/visibility`; de-brand `--layer` default → `visibility`).
 8. **Batch I** (book-a-demo + de-branded story).
 9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
 10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
