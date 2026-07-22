@@ -1683,24 +1683,49 @@
         "referencedToken": "--dsa-content--width_wide"
       },
       "--dsa-footer--gap-vertical": {
-        "defaultValue": "var(--ks-spacing-stack-m)",
+        "defaultValue": "var(--ks-spacing-stack-l)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-spacing-stack-m"
+        "referencedToken": "--ks-spacing-stack-l"
       },
-      "--dsa-footer__byline--font": {
-        "defaultValue": "var(--ks-font-copy-xs)",
+      "--dsa-footer__columns--gap": {
+        "defaultValue": "var(--ks-spacing-stack-l) var(--ks-spacing-inline-xl)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-font-copy-xs"
+        "referencedToken": "--ks-spacing-stack-l"
       },
-      "--dsa-footer__byline--color": {
+      "--dsa-footer__column--gap": {
+        "defaultValue": "var(--ks-spacing-stack-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-stack-s"
+      },
+      "--dsa-footer__column-heading--font": {
+        "defaultValue": "var(--ks-font-interface-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-font-interface-s"
+      },
+      "--dsa-footer__column-heading--font-weight": {
+        "defaultValue": "var(--ks-font-weight-bold)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-font-weight-bold"
+      },
+      "--dsa-footer__column-heading--text-transform": {
+        "defaultValue": "uppercase",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-footer__column-heading--letter-spacing": {
+        "defaultValue": "0.05em",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-footer__column-heading--color": {
         "defaultValue": "var(--ks-text-color-default)",
         "valueType": "semantic-ref",
         "referencedToken": "--ks-text-color-default"
       },
-      "--dsa-footer__links--gap": {
-        "defaultValue": "var(--ks-spacing-stack-s) var(--ks-spacing-inline-m)",
+      "--dsa-footer__nav-list--gap": {
+        "defaultValue": "var(--ks-spacing-stack-xs)",
         "valueType": "semantic-ref",
-        "referencedToken": "--ks-spacing-stack-s"
+        "referencedToken": "--ks-spacing-stack-xs"
       },
       "--dsa-footer__link--font": {
         "defaultValue": "var(--ks-font-interface-s)",
@@ -1728,23 +1753,69 @@
         "referencedToken": null
       },
       "--dsa-footer__link--text-decoration_hover": {
-        "defaultValue": "none",
+        "defaultValue": "underline",
         "valueType": "literal",
         "referencedToken": null
       },
-      "--dsa-footer__logo--height": {
+      "--dsa-footer__social--gap": {
+        "defaultValue": "var(--ks-spacing-inline-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-inline-s"
+      },
+      "--dsa-footer__social-link--size": {
         "defaultValue": "1.5rem",
         "valueType": "literal",
         "referencedToken": null
-      }
-    },
-    "responsiveTokens": {
-      "@media (min-width: 62em)": {
-        "--dsa-footer__logo--height": {
-          "defaultValue": "4rem",
-          "valueType": "literal",
-          "referencedToken": null
-        }
+      },
+      "--dsa-footer__social-link--color": {
+        "defaultValue": "var(--ks-text-color-interface-interactive)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-text-color-interface-interactive"
+      },
+      "--dsa-footer__social-link--color_hover": {
+        "defaultValue": "var(--ks-text-color-interface-interactive-hover)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-text-color-interface-interactive-hover"
+      },
+      "--dsa-footer__bottom--gap": {
+        "defaultValue": "var(--ks-spacing-stack-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-stack-s"
+      },
+      "--dsa-footer__bottom--padding-top": {
+        "defaultValue": "var(--ks-spacing-stack-m)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-stack-m"
+      },
+      "--dsa-footer__bottom--border-top": {
+        "defaultValue": "var(--ks-border-width-default) solid var(--ks-border-color-default)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-border-width-default"
+      },
+      "--dsa-footer__copyright--font": {
+        "defaultValue": "var(--ks-font-copy-xs)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-font-copy-xs"
+      },
+      "--dsa-footer__copyright--color": {
+        "defaultValue": "var(--ks-text-color-default)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-text-color-default"
+      },
+      "--dsa-footer__legal-link--color": {
+        "defaultValue": "var(--ks-text-color-interface-interactive)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-text-color-interface-interactive"
+      },
+      "--dsa-footer__legal-link--color_hover": {
+        "defaultValue": "var(--ks-text-color-interface-interactive-hover)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-text-color-interface-interactive-hover"
+      },
+      "--dsa-footer__legal-link--text-decoration": {
+        "defaultValue": "underline",
+        "valueType": "literal",
+        "referencedToken": null
       }
     }
   },

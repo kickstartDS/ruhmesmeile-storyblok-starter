@@ -26,31 +26,65 @@ export type Width = number;
  */
 export type Height = number;
 /**
- * Small line of text displayed below the logo
- */
-export type Byline = string;
-/**
  * Invert the color scheme of the footer
  */
 export type Inverted = boolean;
+/**
+ * Heading displayed above the navigation links in this column
+ */
+export type ColumnHeading = string;
+export type Label = string;
+export type URL = string;
+export type OpenInNewTab = boolean;
+/**
+ * Navigation links in this column
+ */
+export type Links = {
+  label: Label;
+  url: URL;
+  newTab?: OpenInNewTab;
+}[];
+/**
+ * Groups of navigation links with headings, displayed as columns in the footer
+ */
+export type NavigationGroups = {
+  heading?: ColumnHeading;
+  items?: Links;
+}[];
+/**
+ * Copyright notice displayed in the footer bottom bar
+ */
+export type Copyright = string;
+export type Label1 = string;
+export type URL1 = string;
+/**
+ * Icon identifier from the icon sprite (e.g. facebook, twitter, linkedin, xing)
+ */
+export type Icon = string;
+export type URL2 = string;
+/**
+ * Accessible label for the social link (announced by screen readers)
+ */
+export type AccessibleLabel = string;
+/**
+ * Social media links displayed in the footer, rendered with icons from the icon sprite
+ */
+export type SocialLinks = {
+  icon: Icon;
+  url: URL2;
+  ariaLabel?: AccessibleLabel;
+}[];
 
 /**
- * Footer component for displaying site logo, byline, and navigation items at the bottom of the page.
+ * Footer component for displaying site logo, grouped navigation links, social links and a legal bottom bar at the bottom of the page.
  */
 export interface FooterProps {
   logo: Logo;
-  byline?: Byline;
   inverted?: Inverted;
-  navItems?: {
-    url: string;
-    label: string;
-    active?: boolean;
-    items?: {
-      url?: string;
-      label?: string;
-      active?: boolean;
-    }[];
-  }[];
+  navGroups?: NavigationGroups;
+  copyright?: Copyright;
+  legalLink?: LegalLink;
+  socialLinks?: SocialLinks;
 }
 export interface Logo {
   src?: Source;
@@ -59,4 +93,11 @@ export interface Logo {
   homepageHref?: string;
   width?: Width;
   height?: Height;
+}
+/**
+ * Link to the legal/privacy page displayed in the footer bottom bar
+ */
+export interface LegalLink {
+  label?: Label1;
+  url?: URL1;
 }

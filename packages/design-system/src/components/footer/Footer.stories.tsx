@@ -18,6 +18,46 @@ export const footerProps = {
     width: 176,
     height: 40,
   },
+  navGroups: [
+    {
+      heading: "Product",
+      items: [
+        { label: "Features", url: "#" },
+        { label: "Pricing", url: "#" },
+        { label: "Integrations", url: "#" },
+        { label: "Changelog", url: "#" },
+      ],
+    },
+    {
+      heading: "Company",
+      items: [
+        { label: "About", url: "#" },
+        { label: "Careers", url: "#" },
+        { label: "Blog", url: "#" },
+        { label: "Contact", url: "#" },
+      ],
+    },
+    {
+      heading: "Resources",
+      items: [
+        { label: "Documentation", url: "#" },
+        { label: "Support", url: "#" },
+        { label: "Community", url: "#" },
+        { label: "Status", url: "https://example.com", newTab: true },
+      ],
+    },
+  ],
+  socialLinks: [
+    { icon: "facebook", url: "https://example.com", ariaLabel: "Facebook" },
+    { icon: "twitter", url: "https://example.com", ariaLabel: "Twitter" },
+    { icon: "linkedin", url: "https://example.com", ariaLabel: "LinkedIn" },
+    { icon: "xing", url: "https://example.com", ariaLabel: "Xing" },
+  ],
+  copyright: "© 2026 Systemics Inc. All rights reserved.",
+  legalLink: {
+    label: "Legal",
+    url: "#",
+  },
 };
 
 const meta: Meta = {
