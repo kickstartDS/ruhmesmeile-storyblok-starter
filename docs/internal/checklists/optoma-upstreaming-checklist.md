@@ -61,12 +61,13 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch E — Dependency & patch updates
 
-- [ ] E.0 Create branch
-- [ ] E.1 Port `patches/unpic@3.22.0.patch`
-- [ ] E.2 Port `patches/kickstartds@3.5.0--canary.62.324.0.patch`
-- [ ] E.3 Update `package.json` `patchedDependencies`
-- [ ] E.4 `pnpm install` to regenerate lockfile
-- [ ] E.5 Changeset + PR
+- [x] E.0 Create branch
+- [x] E.1 Port `patches/unpic@3.22.0.patch` (Storyblok filter-parser fix)
+- [x] E.2 Port `patches/kickstartds@3.5.0--canary.62.324.0.patch` (storyblok-task rc-config fix)
+- [x] E.2b Extend `patches/@kickstartds__jsonschema-utils@3.9.0.patch` (preserve title/description/required in `reduceSchemaAllOfs`)
+- [x] E.3 Update `package.json` `patchedDependencies` (+2 entries)
+- [x] E.4 `pnpm install` to regenerate lockfile (patch hashes registered; versions resolve in lockfile)
+- [x] E.5 Changeset + PR — patch bump `@kickstartds/design-system` (pnpm patches are local-only; ADR-010). DS build green (presets 137)
 
 ## Batch F — Generic plugins/tooling
 
@@ -104,3 +105,4 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-21 | C     | Merged PR #8 (Batch C) into main locally (`gh` API broken → local merge commit + branch delete). `main` pushed `09026ec5..4f2a2354`.                                                                                                                                                                        |
 | 2026-07-21 | D     | Ported 37 brand-neutral component files (new `SeoComponent.tsx`, `Gallery.client.js`; gallery slider / lightbox stroke+thumb / teaser-card image tokens) off updated main. Excluded 44 brand-laden stories + story-coupled Footer redesign (ADR-008 → backlog R.11). Regenerated `component-token-catalog.json` + `SectionProps.d.ts` (deterministic). LFS snapshots/screenshots deferred to CI — local regen = env drift 141/157 incl. untouched leaves (ADR-009). `build` green (presets 136 passed); `build-storybook` green. Brand scan clean. Changeset added (`@kickstartds/design-system` minor). |
 | 2026-07-21 | D     | Story-diff audit: 42/44 pure brand-content swaps; 2 brand-neutral carve-outs **folded into Batch D** (R.12) — gallery `SliderGallery` (covers ported slider layout) + business-card `contact:`→`contactLinks:` (latent template-story bug). `build` green (presets 137); search-index green (108). Merged PR #9 into main locally (`gh` API broken → merge commit + branch delete). `main` pushed `4f2a2354..f920f881`. |
+| 2026-07-21 | E     | Ported 3 pnpm patches (new `unpic@3.22.0` Storyblok filter-parser fix, new `kickstartds@3.5.0--canary.62.324.0` storyblok-task rc-config fix, extended `jsonschema-utils@3.9.0` allOf title/desc/required preservation) + 2 `patchedDependencies` entries. Both new versions resolve in lockfile; `pnpm install` registered patch hashes. All patches brand-neutral. DS build green (presets 137), no output churn. Changeset = `@kickstartds/design-system` patch; pnpm-patch-only batch changeset policy recorded (ADR-010). |
