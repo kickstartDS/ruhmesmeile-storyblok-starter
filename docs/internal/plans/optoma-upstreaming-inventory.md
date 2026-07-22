@@ -134,7 +134,7 @@ Notable additions here that are clearly generic:
 ### Batch H — visibility generator script _(decided 2026-07-22, ADR-011; ✅ PORTED 2026-07-22)_
 
 > **Scope correction:** `cms/language/**` (37) and `cms/visibility/**` (37) are **already on `main`**
-> (added at the mono-repo move, predate the fork base; optoma *deleted* them in favour of the brand
+> (added at the mono-repo move, predate the fork base; optoma _deleted_ them in favour of the brand
 > layer `cms/optoma/**`). Nothing to port there. The only new generic artifact is the generator script.
 
 - `packages/website/scripts/generateVisibilityFromPatterns.ts` (744 lines; `fs`/`path` only, `mydesignsystem.com` placeholder IDs) (R.7)
@@ -205,20 +205,20 @@ Notable additions here that are clearly generic:
 
 ## 🔍 REVIEW — dispositions decided 2026-07-22 (ADR-011)
 
-| Item                                                                                                | Files | Decision              | Target batch / notes                                                                     |
-| --------------------------------------------------------------------------------------------------- | ----: | --------------------- | ---------------------------------------------------------------------------------------- |
-| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **DONE (no-op)**   | **Batch K** — plugin/api/generic helper/docs already on `main` (identical). Only delta = excluded product-downloads feature (ADR-015). |
-| `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
-| `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
-| `book-a-demo/**`                                                                                    |     3 | ✅ **DONE**           | **Batch I** — 3 files + `index.scss` `@use`; no story (website component); wiring → L.    |
-| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **DONE**           | **Batch L** — ported with settings/i18n wiring (ADR-016). |
-| `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                        |
-| `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**           | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`. |
-| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | ✅ **DONE**           | **Batch L** — generic hunks ported (ADR-016); footer = DS (ADR-014), `product-detail` guard + Timeline union excluded, Timeline demo removed in PR #16. |
-| `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**           | **Batch G**. Watcher/search/explorer excludes (inotify perf).                            |
-| `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**        | Optoma-specific content ingest helper.                                                    |
-| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ✅ **PORT**           | **Batch G**. Generic MCP/tooling feedback, no brand content; mark historical.            |
-| Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                             |     4 | ✅ **DONE**           | **Batch J** — ported + went further (ADR-014): upstreamed website footer rendering into DS; `socialLinks` icon-driven; lang switcher → L. |
+| Item                                                                                                | Files | Decision               | Target batch / notes                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------- | ----: | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **DONE (no-op)**    | **Batch K** — plugin/api/generic helper/docs already on `main` (identical). Only delta = excluded product-downloads feature (ADR-015).                  |
+| `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**         | Optoma-specific (product datasheet PDFs).                                                                                                               |
+| `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**         | Optoma-specific (product spec/download tables).                                                                                                         |
+| `book-a-demo/**`                                                                                    |     3 | ✅ **DONE**            | **Batch I** — 3 files + `index.scss` `@use`; no story (website component); wiring → L.                                                                  |
+| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **DONE**            | **Batch L** — ported with settings/i18n wiring (ADR-016).                                                                                               |
+| `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                                                                                        |
+| `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**            | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`.                                                               |
+| `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | ✅ **DONE**            | **Batch L** — generic hunks ported (ADR-016); footer = DS (ADR-014), `product-detail` guard + Timeline union excluded, Timeline demo removed in PR #16. |
+| `.vscode/settings.json`                                                                             |     1 | ✅ **PORT**            | **Batch G**. Watcher/search/explorer excludes (inotify perf).                                                                                           |
+| `helpers/ingest-template.ts`                                                                        |     1 | ⛔ **EXCLUDE**         | Optoma-specific content ingest helper.                                                                                                                  |
+| `docs/internal/plans/hero-slider-workflow-improvements.md`                                          |     1 | ✅ **PORT**            | **Batch G**. Generic MCP/tooling feedback, no brand content; mark historical.                                                                           |
+| Design-system `components/footer/**` redesign (`navItems` → `navGroups`)                            |     4 | ✅ **DONE**            | **Batch J** — ported + went further (ADR-014): upstreamed website footer rendering into DS; `socialLinks` icon-driven; lang switcher → L.               |
 
 ---
 
@@ -249,3 +249,108 @@ git diff --cached -- <path>          # inspect; strip optoma specifics
 - Never `git merge optoma main` — it drags in all client content and re-triggers the LFS 404.
 - Never copy LFS blobs (`__snapshots__`, `screenshots`) from optoma — regenerate locally.
 - Strip brand **values** from any ported token/scss files; keep only structural/logic changes.
+
+---
+
+# Changelog — Upstreamed changes (Optoma → template)
+
+All notable **generic, brand-neutral** changes upstreamed from the `optoma/main` client fork into the template
+`main`, curated as category batches (A–L). Grouped in [Keep a Changelog](https://keepachangelog.com/) style.
+Everything Optoma-specific (product catalog, datasheets, spec-groups, download-categories, brand imagery/fonts/
+token values, `cms/optoma/**`, NetSuite/ingest workflows) was **deliberately excluded** — see the
+"⛔ OPTOMA-SPECIFIC — never upstream" section above.
+
+Effort completed 2026-07-22. Merged via PRs #6–#17 (`gh` API was broken → local `--no-ff` merge commits).
+`main` progressed `0de5d770` (Batch A) → `8954c7d8` (Batch L) → `22c5338d` (docs).
+
+## Added
+
+### Features
+
+- **Cosmos Token Graph** — new `packages/token-graph` package (18 files) + cosmos docs: interactive design-token
+  relationship graph (1708 nodes / 1988 edges), wired into the design-system build + rollup copy. _(Batch B, PR #7)_
+- **Component Token Editor** — new browser-based visual token editor feature. _(Batch C, PR #8)_
+- **Book-a-Demo** — floating fixed-position "Book a Demo" call-to-action button (`components/book-a-demo/**`,
+  brand-neutral default label, all `--ks-`/`--dsa-` tokens). _(Batch I, PR #14)_
+- **Settings-driven header CTA & Book-a-Demo** — `settings.schema.json` `headerButton` and `bookDemoButton`
+  objects (enabled/label/url/variant) + per-page `hideBookDemoButton` toggle, rendered via `SettingsContext`
+  and `HeaderButtonContext`. _(Batch L, PR #17)_
+- **Internationalization (hreflang)** — `AlternatesProvider`/`useAlternates` in `LanguageContext`, `hreflang` +
+  `x-default` `<link>` tags in `Meta.tsx`, and language-aware breadcrumbs + homepage href in `_app.tsx` (EN/DE).
+  _(Batch L, PR #17)_
+- **Header language switcher** — EN/DE switcher rendered header-side via `NavMainWithCta` in `ComponentProviders`.
+  _(Batch L, PR #17)_
+- **Section anchor links** — `section.schema.json` `anchorId` field rendered as the section `id`, enabling
+  in-page anchor links (`/page#my-section`). _(Batch L, PR #17)_
+- **Visibility-layer generator** — new `scripts/generateVisibilityFromPatterns.ts` script. _(Batch H, PR #13)_
+- **Per-component token overrides in themes** — theme create/update now supports per-component token overrides
+  across `storyblok-mcp` and `storyblok-services`. _(Batch F, PR #11)_
+
+### Design system
+
+- **Footer redesign** — schema migrated from `byline` + `navItems` to multi-column `navGroups`
+  (`heading` + `{label,url,newTab}` items), plus `copyright`, `legalLink` (`{label,url}`), and icon-driven
+  `socialLinks` (`{icon,url,ariaLabel}`, reusing the DS icon sprite — no new brand assets). Website footer
+  _rendering_ was upstreamed into the DS (grouped columns + social-icon row + copyright/legal bottom bar).
+  _(Batch J, PR #15; ADR-014)_
+
+## Changed
+
+- **Token catalogs regenerated** — component token catalog (49 components / 776 tokens) + semantic tokens
+  (950 tokens), brand-neutral, wired into the build. _(Batch A, PR #6)_
+- **Hero focal point** — hero image honours a Storyblok-editor-chosen focal point via
+  `--dsa-hero-focus-position` (`object-position`), injected by the `ComponentProviders` Hero wrapper.
+  _(Batch L, PR #17; DS token already present on `main`)_
+- **Image quality filter** — image helper applies a quality filter in `ComponentProviders`. _(Batch L, PR #17)_
+- **Header z-index** — hard-coded `z-index: 9999999` replaced with the `--dsa-header--z-index` token.
+  _(Batch L, PR #17)_
+- **Visibility layer default** — generator `--layer` default de-branded from `optoma` → `visibility`.
+  _(Batch H, PR #13)_
+- **Editor / infra config** — Storybook a11y `test: "off"` toggle, `.vscode/settings.json` watcher/search/
+  explorer excludes, MCP notes + hero-slider workflow doc. _(Batch G, PR #12)_
+
+## Fixed
+
+- **Component fixes** — 37 brand-neutral component files: new `SeoComponent.tsx` and `Gallery.client.js`;
+  gallery slider / lightbox stroke + thumbnail; teaser-card image tokens; business-card
+  `contact:` → `contactLinks:` (latent template-story bug). _(Batch D, PR #9)_
+- **Dependency patches** — refreshed 3 pnpm patches: `unpic@3.22.0` (Storyblok filter-parser),
+  `kickstartds@3.5.0--canary.62.324.0` (storyblok-task rc-config), and extended
+  `jsonschema-utils@3.9.0` (allOf title/desc/required preservation). _(Batch E, PR #10)_
+- **Umami analytics** — exclude gallery anchors (`a[data-gallery^=gallery-]`) from outbound/internal link
+  tracking. _(Batch L, PR #17)_
+- **Prompter** — stable `useEffect` dependency (`detectPrompterUid`) to avoid unnecessary re-runs.
+  _(Batch L, PR #17)_
+
+## Removed
+
+- **Timeline demo component** — deleted `components/timeline/**` (7 files) + all wiring. This was an unwanted
+  AI-generated demo originating in the base template (merge-base `6e67004a`), not from the Optoma fork.
+  _(PR #16)_
+- **Unused `TeaserProvider`** — removed dead provider. _(Batch L, PR #17)_
+
+## Notable exclusions (not upstreamed)
+
+- `product-detail` hero guard, `product-catalog`/`product-downloads`/`download-category` logic, datasheet PDFs,
+  spec-groups, SKU handling (`helpers/sharepoint.ts` product scanner), `ingest-template.ts`, NetSuite workflows.
+- Website `CustomFooter` override — superseded by the DS footer rendering (ADR-014); the language switcher lives
+  header-side instead.
+- Brand imagery, Helvetica Neue fonts, and all branding **token values** (structure kept, values stripped).
+
+## Package release impact (Changesets)
+
+| Package                          | Bump  | Batches                                                     |
+| -------------------------------- | ----- | ---------------------------------------------------------- |
+| `@kickstartds/design-system`     | minor | A (token tooling), B (token-graph), C, D (fixes), J (footer) |
+| `@kickstartds/design-system`     | patch | E (dependency patches)                                     |
+| `@kickstartds/storyblok-services`| minor | F (per-component token overrides)                          |
+| `@kickstartds/storyblok-mcp-server` | minor | F (per-component token overrides)                       |
+
+> The `website`, `design-tokens-editor`, and `schema-layer-editor` packages are in the Changesets `ignore`
+> list, so Batches G, H, I, K, and L (website-only, no design-system change) required **no changeset**.
+
+## Follow-up (non-code, needs Storyblok API tokens)
+
+- Run a CMS sync (`pnpm --filter website update-storyblok-config` + `generate-content-types`) to (a) purge the
+  removed Timeline blok from the live-mirror types (`types/components-schema.*`) and (b) surface the new Batch-L
+  schema fields (`headerButton`, `bookDemoButton`, `hideBookDemoButton`, `anchorId`) in those generated mirrors.
