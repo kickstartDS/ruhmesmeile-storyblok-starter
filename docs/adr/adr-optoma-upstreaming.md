@@ -257,9 +257,12 @@ change is local-only and identical in kind). Future patch-only batches follow th
 **Decision:** After completing Batches A–F, the `🔍 REVIEW` backlog items were dispositioned
 (2026-07-22) and grouped into Batches G–L:
 
-- **PORT** — R.10 Storybook `a11y: { test: "off" }` toggle, R.5 settings/token-theme/infra
-  contexts, the R.9 `.vscode/settings.json` watcher/search excludes, and the R.9
-  `hero-slider-workflow-improvements.md` (generic MCP/tooling feedback, no brand content) → **Batch G**.
+- **PORT** — R.10 Storybook `a11y: { test: "off" }` toggle, the R.9 `.vscode/settings.json`
+  watcher/search excludes, and the R.9 `hero-slider-workflow-improvements.md` (generic MCP/tooling
+  feedback, no brand content) → **Batch G**. _(Executed 2026-07-22; no changeset — zero
+  published-package impact.)_ R.5 settings/token-theme/infra contexts were **initially assigned to
+  Batch G but re-scoped to Batch L** — the modules are self-contained, but their functional wiring
+  lives inside the entangled `_app.tsx`/`ComponentProviders.tsx` refactor (see the CLOSER LOOK item).
 - **PORT** — R.6 `cms/language` i18n and R.7 `cms/visibility` → **Batch H**. R.7 requires a
   one-line de-brand: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` → change
   to `visibility` (no built-in customization layer).
@@ -274,7 +277,9 @@ change is local-only and identical in kind). Future patch-only batches follow th
 - **CLOSER LOOK** — R.8 website component root diffs (header/footer/Page/section/timeline/prompter,
   10 files, 0 brand-keyword hits) → **Batch L**, pending a manual read to disentangle generic
   fixes from brand markup. The new website-level `footer/FooterComponent.tsx` + `footer.scss` are
-  expected to fold into Batch J alongside the design-system footer redesign.
+  expected to fold into Batch J alongside the design-system footer redesign. **Batch L also absorbs
+  R.5** (settings/token-theme/contexts + their `_app.tsx`/`ComponentProviders.tsx` wiring), which was
+  found to be inseparable from this refactor; `index.tsx`'s diff is pure product-catalog and excluded.
 
 **Rationale:** The remaining backlog mixed clearly-generic infra (config, i18n, visibility, marketing
 CTA) with product-coupled features (datasheets, spec/download tables tied to the product catalog).

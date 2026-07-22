@@ -82,12 +82,12 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [x] R.2 Datasheet PDF generation → ⛔ **EXCLUDED** — Optoma-specific (product datasheet PDFs)
 - [x] R.3 spec-group / download-category / downloads → ⛔ **EXCLUDED** — Optoma-specific (product spec/download tables)
 - [ ] R.4 book-a-demo → **PORT** → **Batch I** (+ de-branded story)
-- [ ] R.5 settings / token-theme / infra contexts → **PORT** → **Batch G**
+- [ ] R.5 settings / token-theme / infra contexts → **PORT** → **Batch L** _(re-scoped from G, 2026-07-22 — functional wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor; ports whole with R.8)_
 - [ ] R.6 `cms/language` i18n system → **PORT** → **Batch H**
 - [ ] R.7 `cms/visibility` system → **PORT** → **Batch H** — de-brand only: `generateVisibilityFromPatterns.ts` defaults `--layer` to `"optoma"` (2 lines) → change default to `visibility` (no built-in customization layer); rest is brand-neutral infra
 - [ ] R.8 website component root diffs (header/footer/Page/section/timeline/prompter) → 🔍 **CLOSER LOOK** — 10 files, 0 brand-keyword hits but needs a manual read to disentangle. Working assumption: new website-level `footer/FooterComponent.tsx` + `footer.scss` fold into **Batch J** (paired with R.11); `header/nav-header-cta.scss`, `section/*`, `timeline/TimelineProps.ts`, `prompter/*` prop+schema tweaks reviewed individually before promotion
-- [ ] R.9 **SPLIT**: `.vscode/settings.json` (inotify/watcher/search excludes — generic) + `docs/internal/plans/hero-slider-workflow-improvements.md` (generic MCP/tooling feedback, no brand content — despite the title) → **PORT** → **Batch G**; `helpers/ingest-template.ts` → ⛔ **EXCLUDED** (Optoma-specific content ingest helper)
-- [ ] R.10 Storybook `a11y: { test: "off" }` toggle (`.storybook/preview.tsx`, 3-line addition) → **PORT** → **Batch G**
+- [x] R.9 **SPLIT**: `.vscode/settings.json` (inotify/watcher/search excludes — generic) + `docs/internal/plans/hero-slider-workflow-improvements.md` (generic MCP/tooling feedback, no brand content — despite the title) → **PORTED in Batch G**; `helpers/ingest-template.ts` → ⛔ **EXCLUDED** (Optoma-specific content ingest helper)
+- [x] R.10 Storybook `a11y: { test: "off" }` toggle (`.storybook/preview.tsx`, 3-line addition) → **PORTED in Batch G**
 - [ ] R.11 Design-system **Footer redesign** (schema `navItems` → multi-column `navGroups`, byline removal) + brand-neutral story rewrite → **PORT** → **Batch J** — deferred from Batch D (ADR-008); must port component **and** a de-branded story together (story-coupled, breaks search-index otherwise)
 - [x] R.12 **Generic story carve-outs missed by wholesale story exclusion** (Batch D analysis) — **folded into Batch D**: (a) gallery `SliderGallery` variant added (brand-neutral placeholder images) so the ported `slider` layout (`Gallery.client.js` + slider tokens) has Storybook coverage; (b) business-card template story `contact:` → `contactLinks:` (fixed latent template bug — story set a non-existent `contact` prop, so the demo rendered without contact links).
 
@@ -95,12 +95,12 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch G — Editor / infra config
 
-- [ ] G.0 Create branch
-- [ ] G.1 Port `.storybook/preview.tsx` `a11y: { test: "off" }` toggle (R.10)
-- [ ] G.2 Port `components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5)
-- [ ] G.3 Port `.vscode/settings.json` watcher/search excludes (R.9 partial)
-- [ ] G.4 Port `docs/internal/plans/hero-slider-workflow-improvements.md` (generic MCP/tooling feedback; mark historical — several points already resolved in this repo) (R.9 partial)
-- [ ] G.5 Validate build; brand-scan; Changeset + PR
+- [x] G.0 Create branch
+- [x] G.1 Port `.storybook/preview.tsx` `a11y: { test: "off" }` toggle (R.10)
+- [x] G.2 Port `.vscode/settings.json` watcher/search excludes (R.9 partial)
+- [x] G.3 Port `docs/internal/plans/hero-slider-workflow-improvements.md` (generic MCP/tooling feedback; marked historical) (R.9 partial)
+- [x] G.4 Brand-scan (clean); no Changeset (zero published-package impact: storybook config + repo-root config + docs); PR
+- [ ] ~~R.5 settings/token-theme/contexts~~ → **moved to Batch L** (wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor; see progress log 2026-07-22)
 
 ## Batch H — i18n + visibility systems
 
@@ -134,11 +134,12 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [ ] K.4 De-brand any Optoma-specific config/defaults; brand-scan
 - [ ] K.5 Validate build; Changeset + PR
 
-## Batch L — R.8 remaining website component diffs (after closer look)
+## Batch L — settings/token-theme wiring + R.8 remaining website component diffs (after closer look)
 
-- [ ] L.0 Manual read of `header/nav-header-cta.scss`, `header/header.scss`, `Page.tsx`, `section/**`, `timeline/TimelineProps.ts`, `prompter/**` to disentangle generic vs brand
-- [ ] L.1 Promote confirmed-generic hunks to a branch
-- [ ] L.2 Validate build; brand-scan; Changeset + PR
+- [ ] L.0 Manual read of `_app.tsx` (+174/−84) and `ComponentProviders.tsx` (+291/−66) refactors, plus `header/nav-header-cta.scss`, `header/header.scss`, `Page.tsx`, `section/**`, `timeline/TimelineProps.ts`, `prompter/**`, to disentangle generic vs brand
+- [ ] L.1 Port R.5 self-contained modules (`SettingsContext.tsx`, `HeaderButtonContext.tsx`, `settings/**`, `token-theme/**`) **with** their settings/token-theme wiring hunks from `_app.tsx`/`ComponentProviders.tsx` (coordinate book-a-demo pieces with Batch I; exclude `index.tsx` product-catalog hunks)
+- [ ] L.2 Promote remaining confirmed-generic hunks to the branch
+- [ ] L.3 Validate build; brand-scan; Changeset + PR
 
 ---
 
@@ -160,3 +161,4 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-22 | F     | Merged PR #11 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `29ca0650..c9056003`. Discarded recurring format-on-save churn (emphasis `*`→`_`, trailing-comma removal) on 4 unrelated files before merge. |
 | 2026-07-22 | —     | REVIEW backlog dispositions decided (ADR-011). **PORT:** R.1 SharePoint (→K), R.4 book-a-demo (→I), R.5 infra contexts (→G), R.6 i18n (→H), R.7 visibility (→H, de-brand `--layer` default), R.9 `.vscode/settings.json` (→G), R.10 a11y toggle (→G), R.11 footer redesign (→J). **EXCLUDE (Optoma-specific):** R.2 datasheet, R.3 spec/downloads, R.9 `ingest-template.ts` + hero-slider workflow doc. **CLOSER LOOK:** R.8 (→L). New batch plan G→L added above. |
 | 2026-07-22 | —     | Two refinements after reviewing the files: (1) `hero-slider-workflow-improvements.md` re-classified **EXCLUDE → PORT (→G)** — despite the title it is generic MCP/tooling feedback (no brand content); mark historical (several points already resolved here). Only `ingest-template.ts` stays excluded from R.9. (2) R.7 de-brand target fixed: `--layer` default `"optoma"` → **`visibility`** (no built-in customization layer). |
+| 2026-07-22 | G     | Ported 3 standalone items: `.storybook/preview.tsx` a11y `test: "off"` toggle (R.10), `.vscode/settings.json` watcher/search/explorer excludes (R.9), `hero-slider-workflow-improvements.md` + historical banner (R.9). Brand-scan clean. **No changeset** — zero published-package impact (storybook config not shipped in `dist`, repo-root config, docs). **R.5 re-scoped G → L**: settings/token-theme/context modules are self-contained but their functional wiring lives in the entangled `_app.tsx` (+174/−84) + `ComponentProviders.tsx` (+291/−66) refactors (coupled to book-a-demo/Batch I); `index.tsx` diff is pure product-catalog (excluded). Settings feature will port whole in Batch L. |
