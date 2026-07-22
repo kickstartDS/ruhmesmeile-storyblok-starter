@@ -124,12 +124,12 @@ Notable additions here that are clearly generic:
 - `packages/storyblok-icon-sprite-picker-field-plugin/**`
 - `packages/storyblok-mcp/**`, `packages/storyblok-services/**` _(review each hunk)_
 
-### Batch G — Editor / infra config _(decided 2026-07-22, ADR-011)_
+### Batch G — Editor / infra config _(decided 2026-07-22, ADR-011; ✅ PORTED 2026-07-22)_
 
 - `packages/design-system/.storybook/preview.tsx` — `a11y: { test: "off" }` toggle (R.10)
-- `packages/website/components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5)
 - `.vscode/settings.json` — watcher/search/explorer excludes (R.9 partial)
-- `docs/internal/plans/hero-slider-workflow-improvements.md` — generic MCP/tooling feedback, no brand content (R.9 partial; mark historical)
+- `docs/internal/plans/hero-slider-workflow-improvements.md` — generic MCP/tooling feedback, no brand content (R.9 partial; historical banner added)
+- _R.5 settings/token-theme/contexts **re-scoped → Batch L** (wiring entanglement); no changeset (zero published-package impact)._
 
 ### Batch H — i18n + visibility systems _(decided 2026-07-22, ADR-011)_
 
@@ -152,8 +152,10 @@ Notable additions here that are clearly generic:
 - `packages/website/helpers/sharepoint.ts` + `pages/api/sharepoint/**` (R.1)
 - SharePoint ADR/PRD/checklist docs _(if brand-neutral)_
 
-### Batch L — R.8 remaining website component diffs _(after closer manual read)_
+### Batch L — settings/token-theme wiring + R.8 remaining website component diffs _(after closer manual read)_
 
+- `packages/website/components/settings/**`, `components/token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx` (R.5) — self-contained modules, ported **with** their wiring
+- settings/token-theme wiring hunks from `pages/_app.tsx` (+174/−84) + `components/ComponentProviders.tsx` (+291/−66) — coordinate book-a-demo pieces with Batch I; **exclude** `index.tsx` product-catalog hunks (`product-detail`, `downloads`)
 - `packages/website/components/{header,Page,section,timeline,prompter}` root diffs — promote confirmed-generic hunks
 
 ---
@@ -204,7 +206,7 @@ Notable additions here that are clearly generic:
 | `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
 | `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
 | `book-a-demo/**`                                                                                    |     3 | ✅ **PORT**           | **Batch I** (+ de-branded story).                                                        |
-| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch G**. Infra contexts, brand-scan clean.                                           |
+| `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch L** _(re-scoped from G)_. Self-contained, but wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor. |
 | `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **PORT**           | **Batch H**. Brand-scan clean.                                                           |
 | `cms/visibility/**` (22) + `scripts/generateVisibilityFromPatterns.ts`                              |    23 | ✅ **PORT**           | **Batch H**. De-brand only: `--layer` default `"optoma"` → `visibility` (2 lines).       |
 | `website/components/{header,footer,page,section,timeline,prompter}` root diffs                      |   ~10 | 🔍 **CLOSER LOOK**    | **Batch L**. 0 brand-keyword hits; footer files likely fold into Batch J. Manual read.   |
@@ -222,12 +224,12 @@ Notable additions here that are clearly generic:
 3. **Batch D** (component fixes) → then regenerate LFS snapshots/screenshots.
 4. **Batch B** (token-graph) and **Batch C** (component-token-editor) → independent features.
 5. **Batch F** (plugins/MCP) → review hunks.
-6. **Batch G** (editor/infra config: a11y toggle, settings/token-theme/contexts, `.vscode/settings.json`).
+6. **Batch G** ✅ _done_ (editor/infra config: a11y toggle, `.vscode/settings.json`, hero-slider doc; R.5 re-scoped to L).
 7. **Batch H** (i18n `cms/language` + `cms/visibility`; de-brand `--layer` default → `visibility`).
 8. **Batch I** (book-a-demo + de-branded story).
 9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
 10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
-11. **Batch L** (R.8 remaining website component diffs after closer manual read).
+11. **Batch L** (R.5 settings/token-theme wiring + R.8 remaining website component diffs, after closer manual read).
 
 Each batch = its own branch off clean `main` + a Changeset + one PR. Per-file mechanic:
 

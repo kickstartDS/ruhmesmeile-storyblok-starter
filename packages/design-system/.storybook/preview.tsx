@@ -140,6 +140,9 @@ const preview: Preview = {
         method: "alphabetical",
       },
     },
+    a11y: {
+      test: "off",
+    },
     designToken: {
       disable: true,
     },
