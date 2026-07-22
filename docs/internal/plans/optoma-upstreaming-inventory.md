@@ -152,11 +152,10 @@ Notable additions here that are clearly generic:
 - `packages/design-system/src/components/footer/**` — ported the redesign and went further per ADR-014: upstreamed the website footer's generic _rendering_ into the DS. Schema migrated (removed `byline` + `navItems`; added `navGroups`, `copyright`, `legalLink`, `socialLinks`). `socialLinks` redesigned icon-driven (`{icon,url,ariaLabel}`, mirrors `ContactComponent`) instead of optoma's `platform` enum — reuses the icon sprite, no new logo assets. Rewrote component + `footer.scss`/`_footer-tokens.scss` (grid columns, social row, bottom bar) + brand-neutral story. `FooterProps.ts` regenerated (tracked); `component-token-catalog.json` updated. `build` (presets 137) + `build-storybook` green. Changeset = `@kickstartds/design-system` minor (documents breaking `navItems`→`navGroups`). (R.11)
 - Website-level `packages/website/components/footer/FooterComponent.tsx` (`CustomFooter`) + `footer.scss` + `ComponentProviders` wiring **deferred to Batch L** — coupled to `LanguageContext` EN/DE switcher; the DS now covers all generic rendering, so the website override should shrink to just the language switcher (R.8 subset)
 
-### Batch K — SharePoint integration _(decided 2026-07-22, ADR-011)_
+### Batch K — SharePoint integration ✅ _(no-op — infra already on main; product-downloads excluded, ADR-015)_
 
-- `packages/storyblok-sharepoint-folder-picker-field-plugin/**` (11) (R.1)
-- `packages/website/helpers/sharepoint.ts` + `pages/api/sharepoint/**` (R.1)
-- SharePoint ADR/PRD/checklist docs _(if brand-neutral)_
+- **Collapsed like Batch H** via diff-direction check (ADR-012). The folder-picker plugin (`packages/storyblok-sharepoint-folder-picker-field-plugin/**`, 11 files incl. `dist/`), `pages/api/sharepoint/token.ts`, the generic `helpers/sharepoint.ts` base, and all 3 folder-picker docs are **byte-identical** on `main` and optoma — already ported. (R.1)
+- The only diff is `helpers/sharepoint.ts` (+544/−24) = the **excluded "Convention-based product downloads" feature** (`resolveProductRoot`/`SHAREPOINT_PRODUCT_ROOT_PATH`, `buildSkuIndex`/SKU folders, `buildDownloadCategoryBlok`/`mergeDownloadCategories`/`matchMaskedSku`). The generic `resolveSharePointFolders` export is identical on both sides. ⛔ **EXCLUDED** — nothing ported; zero code change (docs-only recording).
 
 ### Batch L — settings/token-theme wiring + R.8 remaining website component diffs _(after closer manual read)_
 
@@ -208,7 +207,7 @@ Notable additions here that are clearly generic:
 
 | Item                                                                                                | Files | Decision              | Target batch / notes                                                                     |
 | --------------------------------------------------------------------------------------------------- | ----: | --------------------- | ---------------------------------------------------------------------------------------- |
-| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **PORT**           | **Batch K** — template will ship the SharePoint integration. De-brand any client config.  |
+| SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **DONE (no-op)**   | **Batch K** — plugin/api/generic helper/docs already on `main` (identical). Only delta = excluded product-downloads feature (ADR-015). |
 | `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
 | `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
 | `book-a-demo/**`                                                                                    |     3 | ✅ **DONE**           | **Batch I** — 3 files + `index.scss` `@use`; no story (website component); wiring → L.    |
@@ -234,7 +233,7 @@ Notable additions here that are clearly generic:
 7. **Batch H** ✅ _done_ (visibility generator script only — `cms/language`/`cms/visibility` already on main; `--layer` default de-branded → `visibility`).
 8. ✅ **Batch I** (book-a-demo component; render wiring deferred to L).
 9. ✅ **Batch J** (Footer redesign; upstreamed website footer rendering into DS per ADR-014; website lang-switcher override → L).
-10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
+10. ✅ **Batch K** (no-op — SharePoint infra already on main; product-downloads delta excluded per ADR-015).
 11. **Batch L** (R.5 settings/token-theme wiring + R.8 remaining website component diffs, after closer manual read).
 
 Each batch = its own branch off clean `main` + a Changeset + one PR. Per-file mechanic:

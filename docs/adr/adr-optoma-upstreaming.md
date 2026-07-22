@@ -416,3 +416,45 @@ brand assets and consistent with `ContactComponent`'s established icon-link patt
   this batch: the icon-sprite generation is opaque tooling and adding brand-logo assets expands scope; the
   icon-driven shape is cleaner, asset-free, and consistent with `ContactComponent`. (Revisit if a
   platform-locked social component is later required.)
+
+## ADR-015: Batch K is a no-op — SharePoint infrastructure already on `main`; the product-downloads delta is excluded
+
+**Status:** Accepted (2026-07-22, during Batch K)
+
+**Context:** R.1 earmarked the SharePoint integration for Batch K ("the template will ship SharePoint").
+On a diff-direction check (ADR-012), the entire folder-picker infrastructure turned out to be **already on
+`main`, byte-identical to optoma**: the plugin package (`packages/storyblok-sharepoint-folder-picker-field-plugin/**`,
+11 files incl. `dist/`), the API route (`packages/website/pages/api/sharepoint/token.ts`), the generic helper
+(`packages/website/helpers/sharepoint.ts` — the `resolveSharePointFolders` export that walks the content tree,
+finds `downloads` bloks with a `sharepointFolder` value, and populates their `download` arrays), and all three
+folder-picker docs (`adr-sharepoint-folder-picker.md`, `sharepoint-folder-picker-prd.md`,
+`sharepoint-folder-picker-checklist.md`). This mirrors Batch H's collapse.
+
+The **only** difference is `helpers/sharepoint.ts` (+544/−24), and that delta is **entirely** the
+"Convention-based product downloads" feature: `resolveProductRoot` (`SHAREPOINT_PRODUCT_ROOT_PATH`, default
+`"Product"`), `buildSkuIndex` walking `Product/<Category>/<SKU>/<FileCategory>` folders, and
+`buildDownloadCategoryBlok` / `mergeDownloadCategories` / `matchMaskedSku` that synthesize `download-category`
+bloks from a product-catalog SharePoint tree. This is the same **product-catalog / download-category / downloads**
+functionality already on the ⛔ excluded list (alongside R.2 datasheet, R.3 spec/downloads, `ingest-template.ts`).
+
+**Decision:** Port **nothing** in Batch K. The generic SharePoint folder-picker is already shipped on `main`; the
+optoma delta is the excluded product-downloads business logic. Record the finding (this ADR + tracking-doc rows)
+and move on. Zero code change → docs-only, committed to `main` directly (no branch / PR / Changeset).
+
+**Rationale:** The generic `resolveSharePointFolders` export is identical on both sides, so there is no generic
+behaviour to upstream. The incidental utilities in optoma's version (`graphGet` 429-retry wrapper,
+`mapWithConcurrency`, `stableUid`, `encodeGraphPath`, `$expand=listItem($expand=fields)` + `isReadyForCms`
+filtering) exist **solely** to serve the excluded product-catalog scanner — porting them into the template would
+add unused abstractions (violating "no unused helpers") with no consumer, purely to refactor a code path that
+already works. Brand-scan of the optoma helper is clean (config comes from `AZURE_*` / `SHAREPOINT_*` env vars,
+no hardcoded tenant/site GUIDs), but clean ≠ generic: the logic is product-catalog-specific regardless of branding.
+
+**Alternatives considered:**
+
+- **Cherry-pick the generic utilities (`graphGet` retry, `mapWithConcurrency`, etc.) into the template helper** —
+  rejected: they have no caller on the template without the excluded product scanner; they would be dead code.
+- **Port the whole optoma helper and just delete the product-catalog functions** — rejected: that is effectively
+  re-authoring the file, not upstreaming a generic change, and would still drag in the product-workflow
+  conventions (`isReadyForCms`, SKU masking) that only make sense for the excluded feature.
+- **Ship the product-downloads feature in the template** — rejected: explicitly on the excluded list (product
+  catalog / download-category / downloads are Optoma-specific business logic, not generic template capability).

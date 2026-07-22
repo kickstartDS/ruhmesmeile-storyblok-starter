@@ -78,7 +78,7 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## REVIEW backlog — dispositions decided 2026-07-22 (ADR-011)
 
-- [ ] R.1 SharePoint folder-picker plugin + helpers/api → **PORT** → **Batch K** (template will ship the SharePoint integration)
+- [x] R.1 SharePoint folder-picker plugin + helpers/api → **already on `main`** (plugin, `api/sharepoint/token.ts`, generic `helpers/sharepoint.ts`, and the 3 folder-picker docs are all identical to optoma). The optoma `helpers/sharepoint.ts` delta is the **excluded product-downloads feature** → **Batch K = no-op** (ADR-015)
 - [x] R.2 Datasheet PDF generation → ⛔ **EXCLUDED** — Optoma-specific (product datasheet PDFs)
 - [x] R.3 spec-group / download-category / downloads → ⛔ **EXCLUDED** — Optoma-specific (product spec/download tables)
 - [x] R.4 book-a-demo → **PORTED in Batch I** — 3 self-contained files (`BookADemoComponent.tsx` + 2 SCSS) + `index.scss` `@use`. No story/schema (website component, not a Storyblok blok / no Storybook); default label `"Book a Demo"` already generic → nothing to de-brand. Functional render wiring (`_app.tsx` `<BookADemo>`, settings/page props) is settings-driven → **deferred to Batch L**
@@ -126,14 +126,14 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [x] J.4 Validated `build` (presets 137 passed) + `build-storybook` (search-index OK); discarded `token-graph.json` coord churn; `component-token-catalog.json` updated (tracked). Changeset `footer-redesign.md` (`@kickstartds/design-system` minor, documents the breaking `navItems`→`navGroups` migration). PR
 
 
-## Batch K — SharePoint integration
+## Batch K — SharePoint integration ✅ _(no-op port — infra already on main; product-downloads delta excluded)_
 
-- [ ] K.0 Create branch
-- [ ] K.1 Port `packages/storyblok-sharepoint-folder-picker-field-plugin/**` (R.1, 11 files)
-- [ ] K.2 Port `website/helpers/sharepoint.ts` + `pages/api/sharepoint/**` (R.1, 2 files)
-- [ ] K.3 Port SharePoint ADR/PRD/checklist docs if brand-neutral
-- [ ] K.4 De-brand any Optoma-specific config/defaults; brand-scan
-- [ ] K.5 Validate build; Changeset + PR
+- [x] K.0 Verified diff direction (ADR-012) across all SharePoint paths — **collapsed like Batch H**
+- [x] K.1 `packages/storyblok-sharepoint-folder-picker-field-plugin/**` — **already on `main`, byte-identical to optoma** (11 files, incl. `dist/`). Nothing to port.
+- [x] K.2 `pages/api/sharepoint/token.ts` — **already on `main`, identical**. `website/helpers/sharepoint.ts` — the only diff (+544/−24), but the delta is **entirely the excluded "Convention-based product downloads" feature** (`resolveProductRoot`/`SHAREPOINT_PRODUCT_ROOT_PATH`, `buildSkuIndex`/SKU folders, `buildDownloadCategoryBlok`/`mergeDownloadCategories`/`matchMaskedSku`, `Product/<Category>/<SKU>/<FileCategory>` convention). The generic `resolveSharePointFolders` export is **identical** on both sides. ⛔ **EXCLUDED** (product-catalog/downloads, ADR-015).
+- [x] K.3 SharePoint folder-picker docs (`adr-sharepoint-folder-picker.md`, `sharepoint-folder-picker-prd.md`, `sharepoint-folder-picker-checklist.md`) — **already on `main`, identical**. Nothing to port. (The product-downloads PRD/ADR referenced in optoma's code were never committed anywhere.)
+- [x] K.4 No de-brand needed (no port). Brand-scan of optoma helper: 0 `optoma`/`helvetica`/`netsuite` hits (config via `AZURE_*`/`SHAREPOINT_*` env vars, no hardcoded tenant/site GUIDs).
+- [x] K.5 No build/Changeset/PR — **zero code change**. Docs-only recording committed to `main` directly (ADR-015). The only excluded remainder is the product-downloads business logic.
 
 ## Batch L — settings/token-theme wiring + R.8 remaining website component diffs (after closer look)
 
@@ -169,3 +169,4 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-22 | I     | Merged PR #14 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `04e5ca28..eab8c9c5`. |
 | 2026-07-22 | J     | **Footer redesign — upstreamed website footer rendering into the DS (ADR-014).** Migrated `footer.schema.json`: removed `byline` + `navItems`; added `navGroups` (heading + `{label,url,newTab}` items), `copyright`, `legalLink` (`{label,url}`), `socialLinks`. Redesigned `socialLinks` to icon-driven (`{icon,url,ariaLabel}`, mirroring `ContactComponent`) instead of optoma's `platform` enum — reuses the DS icon sprite (facebook/twitter/linkedin/xing), no new logo assets, avoids embedding 3rd-party base64 PNG blobs (as the website did). Rewrote `FooterComponent.tsx` (navGroups columns + social-icon row + copyright/legal bottom bar, **no** language switcher), `footer.scss` + `_footer-tokens.scss` (grid columns, social row, bottom bar; all `--ks-`/`--dsa-` tokens), `Footer.stories.tsx` (brand-neutral sample data, kept template "Systemics" placeholder). Regenerated `FooterProps.ts` (tracked) + `FooterDefaults`/dereffed/tokens JSON (untracked). `build` green (presets 137); `build-storybook` green (search-index). Discarded `token-graph.json` coord churn; `component-token-catalog.json` updated. Website `CustomFooter` + `footer.scss` + `ComponentProviders` wiring **deferred → Batch L** (LanguageContext EN/DE switcher). Changeset = `@kickstartds/design-system` minor (documents breaking `navItems`→`navGroups` migration). Brand-scan clean. PR. |
 | 2026-07-22 | J     | Merged PR #15 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `52232845..171d3d96`. |
+| 2026-07-22 | K     | **No-op port — SharePoint infra already on `main`; product-downloads delta excluded (ADR-015).** Diff direction (ADR-012) collapsed Batch K like H: the folder-picker plugin (`packages/storyblok-sharepoint-folder-picker-field-plugin/**`, 11 files incl. `dist/`), `pages/api/sharepoint/token.ts`, the generic `helpers/sharepoint.ts` base, and all 3 folder-picker docs are **byte-identical** on `main` and optoma. The only diff is `helpers/sharepoint.ts` (+544/−24), which is **entirely** the excluded "Convention-based product downloads" feature (`resolveProductRoot`/`SHAREPOINT_PRODUCT_ROOT_PATH`, `buildSkuIndex`/SKU folders, `buildDownloadCategoryBlok`/`mergeDownloadCategories`/`matchMaskedSku`, `Product/<Category>/<SKU>/<FileCategory>` convention). The generic `resolveSharePointFolders` export is identical on both sides; the incidental generic utilities (`graphGet` retry, `mapWithConcurrency`, `stableUid`) exist only to serve the excluded product scanner, so cherry-picking them would add unused abstractions. **Nothing ported.** Zero code change → docs-only recording to `main` directly (no branch/PR/Changeset). Brand-scan clean. |
