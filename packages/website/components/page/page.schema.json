@@ -13,6 +13,12 @@
           "format": "theme",
           "title": "Theme",
           "description": "Select a token theme for this page — overrides the global theme setting"
+        },
+        "hideBookDemoButton": {
+          "type": "boolean",
+          "title": "Hide Book a Demo Button",
+          "description": "Hide the Book a Demo button on this page",
+          "default": false
         }
       }
     },

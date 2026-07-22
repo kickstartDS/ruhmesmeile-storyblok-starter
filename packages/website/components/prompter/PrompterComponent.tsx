@@ -282,10 +282,12 @@ export const PrompterComponent = forwardRef<
       uploadAssets,
     });
 
+    const { detectPrompterUid } = prompter;
+
     // Detect the prompter UID once mounted
     useEffect(() => {
-      prompter.detectPrompterUid();
-    }, [prompter.detectPrompterUid]);
+      detectPrompterUid();
+    }, [detectPrompterUid]);
 
     const {
       mode,
