@@ -81,7 +81,7 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 - [ ] R.1 SharePoint folder-picker plugin + helpers/api → **PORT** → **Batch K** (template will ship the SharePoint integration)
 - [x] R.2 Datasheet PDF generation → ⛔ **EXCLUDED** — Optoma-specific (product datasheet PDFs)
 - [x] R.3 spec-group / download-category / downloads → ⛔ **EXCLUDED** — Optoma-specific (product spec/download tables)
-- [ ] R.4 book-a-demo → **PORT** → **Batch I** (+ de-branded story)
+- [x] R.4 book-a-demo → **PORTED in Batch I** — 3 self-contained files (`BookADemoComponent.tsx` + 2 SCSS) + `index.scss` `@use`. No story/schema (website component, not a Storyblok blok / no Storybook); default label `"Book a Demo"` already generic → nothing to de-brand. Functional render wiring (`_app.tsx` `<BookADemo>`, settings/page props) is settings-driven → **deferred to Batch L**
 - [ ] R.5 settings / token-theme / infra contexts → **PORT** → **Batch L** _(re-scoped from G, 2026-07-22 — functional wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor; ports whole with R.8)_
 - [x] R.6 `cms/language` i18n system → **already on `main`** (present since the mono-repo move, predates the fork; optoma *deleted* it) — **nothing to port**
 - [x] R.7 `cms/visibility` system → `cms/visibility/**` output **already on `main`**; only the generator **script** `generateVisibilityFromPatterns.ts` is new on optoma → **PORTED in Batch H** with `--layer` default de-branded `"optoma"` → `visibility`
@@ -112,10 +112,10 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 
 ## Batch I — book-a-demo
 
-- [ ] I.0 Create branch
-- [ ] I.1 Port `components/book-a-demo/**` (R.4, 3 files)
-- [ ] I.2 De-brand any story/demo content
-- [ ] I.3 Validate build; brand-scan; Changeset + PR
+- [x] I.0 Create branch (`upstream/batch-i-book-a-demo`)
+- [x] I.1 Port `components/book-a-demo/**` (R.4, 3 files: `BookADemoComponent.tsx`, `book-a-demo.scss`, `book-a-demo-tokens.scss`) + `packages/website/index.scss` `@use` line (global SCSS include, per repo convention)
+- [x] I.2 No story/demo content to de-brand — website component (no Storybook, no schema); default label `"Book a Demo"` already generic. Verified diff direction first (ADR-012): all 3 files are **insertions** (new on optoma, absent on main)
+- [x] I.3 Brand-scan clean; component mirrors existing `TimelineComponent.tsx` (`classnames` transitive dep resolves). **No changeset** (only changed package = website, changeset-`ignore`d). PR. Render wiring (`_app.tsx` + settings/page props) is settings-driven → **Batch L**
 
 ## Batch J — Footer redesign
 
@@ -163,3 +163,5 @@ Branch: `upstream/batch-b-token-graph` (stacked on `upstream/batch-a-token-tooli
 | 2026-07-22 | —     | Two refinements after reviewing the files: (1) `hero-slider-workflow-improvements.md` re-classified **EXCLUDE → PORT (→G)** — despite the title it is generic MCP/tooling feedback (no brand content); mark historical (several points already resolved here). Only `ingest-template.ts` stays excluded from R.9. (2) R.7 de-brand target fixed: `--layer` default `"optoma"` → **`visibility`** (no built-in customization layer). |
 | 2026-07-22 | G     | Ported 3 standalone items: `.storybook/preview.tsx` a11y `test: "off"` toggle (R.10), `.vscode/settings.json` watcher/search/explorer excludes (R.9), `hero-slider-workflow-improvements.md` + historical banner (R.9). Brand-scan clean. **No changeset** — zero published-package impact (storybook config not shipped in `dist`, repo-root config, docs). **R.5 re-scoped G → L**: settings/token-theme/context modules are self-contained but their functional wiring lives in the entangled `_app.tsx` (+174/−84) + `ComponentProviders.tsx` (+291/−66) refactors (coupled to book-a-demo/Batch I); `index.tsx` diff is pure product-catalog (excluded). Settings feature will port whole in Batch L. Merged PR #12 locally; `main` `ac611525..a03d4607`. |
 | 2026-07-22 | H     | **Scope collapsed ~75 files → 1.** Diff-direction correction: `cms/language/**` (37) and `cms/visibility/**` (37) already exist on `main` (added at the mono-repo move `214d70fd`, predating the fork base `6e67004a`); optoma **deleted** the generic layers and replaced them with the brand layer `cms/optoma/**` (excluded). The only genuinely-new generic artifact is the generator script `scripts/generateVisibilityFromPatterns.ts` (+744, not on main, not wired into package.json — run via `npx tsx`). Ported it; de-branded `--layer` default `"optoma"` → `visibility` (the file's only brand refs). Single-file typecheck green; brand-scan clean. **No changeset** (website is changeset-`ignore`d). |
+| 2026-07-22 | H     | Merged PR #13 into `main` locally (`gh` API broken → `--no-ff` merge commit + branch delete). `main` pushed `a03d4607..04e5ca28`. |
+| 2026-07-22 | I     | Ported book-a-demo as a self-contained, brand-neutral component: `components/book-a-demo/**` (3 files — floating "Book a Demo" fixed-position button, all `--ks-`/`--dsa-` tokens) + `index.scss` `@use`. Verified diff direction first (ADR-012): all 3 files are insertions (new on optoma). No story/schema (website component, not a Storyblok blok) — default label already generic, nothing to de-brand. Functional render wiring (`_app.tsx` `<BookADemo>` driven by `settings?.bookDemoButton_*` + `hideBookDemoButton`) and the `settings`/`page` prop additions are **settings-coupled → deferred to Batch L** (component ships dormant until then). Brand-scan clean. **No changeset** (only changed package = website, changeset-`ignore`d). |

@@ -54,7 +54,7 @@ Every path below is bucketed into one of three categories:
 | `packages/website/helpers/netsuite/**`                                                                                                       |     8 | ⛔       | NetSuite product ingest.                                                           |
 | `packages/website/helpers/sharepoint.ts`, `pages/api/sharepoint/**`                                                                          |     2 | 🔍       | Paired with SharePoint plugin.                                                     |
 | `packages/website/components/{datasheet,spec-group,download-category,downloads}/**`                                                          |   ~14 | 🔍       | Product datasheet/spec/download features.                                          |
-| `packages/website/components/book-a-demo/**`                                                                                                 |     3 | 🔍       | Marketing component — generic-able.                                                |
+| `packages/website/components/book-a-demo/**`                                                                                                 |     3 | ✅       | **PORTED Batch I** — brand-neutral component (+ `index.scss` `@use`); wiring → L.  |
 | `packages/website/components/{ProductDetail,cms/product-detail*}`, `pages/products/**`, `scripts/ingest-*`                                   |    ~8 | ⛔       | Product catalog.                                                                   |
 | `packages/website/components/{settings,token-theme,HeaderButtonContext,SettingsContext}`                                                     |    ~6 | 🔍       | Infra contexts — likely generic.                                                   |
 | `patches/{unpic,kickstartds canary}.patch`, `pnpm-lock.yaml`, `package.json`                                                                 |     4 | ✅       | Dependency/patch updates.                                                          |
@@ -141,9 +141,11 @@ Notable additions here that are clearly generic:
   — de-branded `--layer` default `"optoma"` → `visibility` (the file's only brand refs)
   — not wired into package.json (run via `npx tsx`); no changeset (website is changeset-`ignore`d)
 
-### Batch I — book-a-demo _(decided 2026-07-22, ADR-011)_
+### Batch I — book-a-demo _(decided 2026-07-22, ADR-011; DONE 2026-07-22)_
 
-- `packages/website/components/book-a-demo/**` (3) + de-branded story (R.4)
+- ✅ `packages/website/components/book-a-demo/**` (3: `BookADemoComponent.tsx` + `book-a-demo.scss` + `book-a-demo-tokens.scss`) + `packages/website/index.scss` `@use` (R.4)
+  — all 3 files are insertions (verified diff direction, ADR-012); no story/schema (website component, not a Storyblok blok / no Storybook); default label `"Book a Demo"` already generic → nothing to de-brand
+  — functional render wiring (`_app.tsx` `<BookADemo>` + `settings`/`page` props) is settings-driven → **deferred to Batch L**; no changeset (website is changeset-`ignore`d)
 
 ### Batch J — Footer redesign _(decided 2026-07-22, ADR-011; deferred from Batch D)_
 
@@ -209,7 +211,7 @@ Notable additions here that are clearly generic:
 | SharePoint folder-picker plugin + `helpers/sharepoint.ts` + `api/sharepoint/**` + ADR/PRD/checklist |   ~15 | ✅ **PORT**           | **Batch K** — template will ship the SharePoint integration. De-brand any client config.  |
 | `datasheet/**` (PDF generation) + `datasheet-pdf-plan.md`                                           |    ~7 | ⛔ **EXCLUDE**        | Optoma-specific (product datasheet PDFs).                                                 |
 | `spec-group/**`, `download-category/**`, `downloads/**`                                             |    ~8 | ⛔ **EXCLUDE**        | Optoma-specific (product spec/download tables).                                           |
-| `book-a-demo/**`                                                                                    |     3 | ✅ **PORT**           | **Batch I** (+ de-branded story).                                                        |
+| `book-a-demo/**`                                                                                    |     3 | ✅ **DONE**           | **Batch I** — 3 files + `index.scss` `@use`; no story (website component); wiring → L.    |
 | `settings/**`, `token-theme/**`, `SettingsContext.tsx`, `HeaderButtonContext.tsx`                   |    ~6 | ✅ **PORT**           | **Batch L** _(re-scoped from G)_. Self-contained, but wiring lives in the `_app.tsx`/`ComponentProviders.tsx` refactor. |
 | `cms/language/**` (37) + i18n wiring                                                                |    37 | ✅ **ALREADY ON MAIN** | Predates fork; optoma deleted it. **Nothing to port** (Batch H).                        |
 | `cms/visibility/**` (37, already on main) + `scripts/generateVisibilityFromPatterns.ts` (new)       |     1 | ✅ **PORT**           | **Batch H**. Only the generator script is new. De-brand `--layer` default → `visibility`. |
@@ -230,7 +232,7 @@ Notable additions here that are clearly generic:
 5. **Batch F** (plugins/MCP) → review hunks.
 6. **Batch G** ✅ _done_ (editor/infra config: a11y toggle, `.vscode/settings.json`, hero-slider doc; R.5 re-scoped to L).
 7. **Batch H** ✅ _done_ (visibility generator script only — `cms/language`/`cms/visibility` already on main; `--layer` default de-branded → `visibility`).
-8. **Batch I** (book-a-demo + de-branded story).
+8. ✅ **Batch I** (book-a-demo component; render wiring deferred to L).
 9. **Batch J** (Footer redesign + de-branded story; may absorb website-level footer files from R.8).
 10. **Batch K** (SharePoint integration plugin + helpers/api + docs).
 11. **Batch L** (R.5 settings/token-theme wiring + R.8 remaining website component diffs, after closer manual read).
