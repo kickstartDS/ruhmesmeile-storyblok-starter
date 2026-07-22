@@ -221,4 +221,34 @@ corollary that we also don't commit environment-drifted _local_ regenerations.
   per batch.
 
 ---
+
+## ADR-010: pnpm `patchedDependencies` batches get a patch-level changeset on the primary consuming package
+
+**Decision:** For a batch that only ports pnpm `patchedDependencies` (patches to
+third-party/transitive packages) plus the lockfile regeneration, add a single **patch**-level
+Changeset attributed to the primary published package that declares the patched dependencies
+(Batch E → `@kickstartds/design-system`), and describe each patch in the Changeset body.
+
+**Rationale:** pnpm patches live in `patches/` and apply only within *this* monorepo's
+`node_modules` at install time — they are **not** bundled into published artifacts, so no
+downstream consumer of our published packages sees a behavioural change. Strictly, that argues
+for *no* Changeset. But ADR-007 established one Changeset per batch as the release-tracking
+unit, and these patches do change how our packages build and run locally (schema toolchain,
+Storyblok image parsing, CLI rc-config handling). A patch-level bump on the primary consumer
+keeps the release history one-entry-per-batch without overstating impact (no minor/major), and
+the Changeset body documents the local-only nature.
+
+**Consequence:** Batch E bumps `@kickstartds/design-system` by a patch. The website starter and
+other consumers that also declare the patched deps are not separately bumped (their behaviour
+change is local-only and identical in kind). Future patch-only batches follow the same rule.
+
+**Alternatives considered:**
+
+- **No Changeset** (most literally correct, since patches don't ship) — rejected: breaks the
+  ADR-007 one-Changeset-per-batch tracking invariant and leaves the batch invisible to the
+  release flow.
+- **Minor bump / bump every consuming package** — rejected: overstates impact for a local-only
+  patch and churns unrelated package versions.
+
+---
 <!-- Append new ADRs below as decisions are made during each batch. -->

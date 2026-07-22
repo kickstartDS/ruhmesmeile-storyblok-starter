@@ -28,7 +28,9 @@
       "@kickstartds/jsonschema-utils@3.9.0": "patches/@kickstartds__jsonschema-utils@3.9.0.patch",
       "storybook@10.2.15": "patches/storybook@10.2.15.patch",
       "storybook-addon-playroom": "patches/storybook-addon-playroom.patch",
-      "@kickstartds/jsonschema2storyblok": "patches/@kickstartds__jsonschema2storyblok.patch"
+      "@kickstartds/jsonschema2storyblok": "patches/@kickstartds__jsonschema2storyblok.patch",
+      "kickstartds@3.5.0--canary.62.324.0": "patches/kickstartds@3.5.0--canary.62.324.0.patch",
+      "unpic@3.22.0": "patches/unpic@3.22.0.patch"
     },
     "onlyBuiltDependencies": [
       "@parcel/watcher",
