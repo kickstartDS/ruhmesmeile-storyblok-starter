@@ -28,8 +28,12 @@ const nextConfig = {
     "@kickstartds/design-system",
   ],
   output: "standalone",
-  // Point to monorepo root so Next.js can trace dependencies hoisted by pnpm
-  outputFileTracingRoot: path.join(__dirname, "../../"),
+  // Point to monorepo root so Next.js can trace dependencies hoisted by pnpm.
+  // On Next.js 13 this option only exists under `experimental` (it was
+  // promoted to a top-level, stable option in later Next.js major versions).
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
   webpack: (config, { isServer }) => {
     // @glidejs/glide@3.7+ has a restrictive exports map that only exposes
     // "./dist/*", but @kickstartds/content imports from "./src/*".

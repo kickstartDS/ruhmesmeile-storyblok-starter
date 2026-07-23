@@ -14,6 +14,7 @@ const required = {
   desktop: [
     "--dsa-logos__grid--gap-horizontal",
     "--dsa-blog-teaser__avatar--size",
+    "--dsa-downloads-item__placeholder-icon--size",
   ],
   phone: ["--dsa-image-story--horizontal-padding"],
   sectionWidths: ["narrow", "default", "wide", "max", "full"],
