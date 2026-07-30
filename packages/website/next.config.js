@@ -39,7 +39,7 @@ const nextConfig = {
     // "./dist/*", but @kickstartds/content imports from "./src/*".
     // Alias the subpath to the actual filesystem location to bypass exports.
     const glideDir = path.dirname(
-      require.resolve("@glidejs/glide/dist/glide.esm.js"),
+      require.resolve("@glidejs/glide/dist/glide.esm.js")
     );
     config.resolve.alias["@glidejs/glide/src"] = path.join(glideDir, "../src");
 
@@ -53,7 +53,7 @@ const nextConfig = {
       config.externals.push(({ request }, callback) => {
         if (
           serverOnlyPackages.some(
-            (pkg) => request === pkg || request.startsWith(pkg + "/"),
+            (pkg) => request === pkg || request.startsWith(pkg + "/")
           )
         ) {
           return callback(null, `commonjs ${request}`);

@@ -44,13 +44,14 @@ next-env.d.ts
 *.pem
 
 # storyblok
+.storyblok/
 packages/website/types/components.*.json
 packages/website/tmp/*
-.storyblok/
 packages/website/cms/merged/
 packages/website/cms/components.generated.json
 packages/website/cms/presets.generated.json
 packages/website/cms/merge-report.json
+packages/website/types/logs
 
 # kickstartDS
 *.dereffed.json
@@ -66,6 +67,7 @@ packages/website/token/storybook/icons.svg
 packages/website/token/components.js
 packages/website/token/calculated.js
 packages/website/token/InlineIcon.tsx
+build-storybook.log
 
 # Next
 packages/website/public/sitemap*

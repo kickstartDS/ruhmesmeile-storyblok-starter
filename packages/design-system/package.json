@@ -51,7 +51,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run component-token-catalog && pnpm run semantic-token-catalog && pnpm run branding-tokens && pnpm run token-graph && rollup -c && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
+    "build": "rm -rf dist && pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run component-token-catalog && pnpm run semantic-token-catalog && pnpm run branding-tokens && rollup -c && pnpm run token-graph && cp src/token/token-graph.json dist/tokens/token-graph.json && tsc --emitDeclarationOnly --noCheck -p tsconfig.build.json && node scripts/generateDtsBarrels.mjs && pnpm run presets && cp snippets.json dist/components/presets.json",
     "prepack": "pnpm run build",
     "build-storybook": "pnpm run build-tokens && pnpm run schema && pnpm run token && pnpm run search && pnpm run copy-theme-css && storybook build",
     "copy-theme-css": "mkdir -p static/tokens && cp src/token/branding-tokens*.css static/tokens/",
