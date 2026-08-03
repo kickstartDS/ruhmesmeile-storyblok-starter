@@ -1,0 +1,50 @@
+title: Faq
+anatomy:
+  root:
+    type: container
+    detectedIn: .dsa-faq
+  summary:
+    type: text
+    detectedIn: .dsa-faq summary
+  answer:
+    type: text
+    detectedIn: .dsa-faq answer
+  icon:
+    type: glyph
+    detectedIn: .dsa-faq icon
+  questions:
+    type: slot
+    detectedIn: prop:questions
+props:
+  questions:
+    type: slot
+    minChildren: 1
+    $extensions:
+      com.kickstartds:
+        title: Questions
+        description: The questions and answers in the Faq section
+        required: true
+        itemShape: [question, answer]
+        originalType: array
+default:
+  configuration: {}
+  elements:
+    root:
+      parent: null
+      children: [answer, icon, questions, summary]
+    summary:
+      parent: root
+    answer:
+      parent: root
+    icon:
+      parent: root
+      styles:
+        textColor:
+          $token: ks.text.color.primary.interactive
+          $type: color
+    questions:
+      parent: root
+      children:
+        $binding: "#/props/questions"
+  layout:
+    - root: [answer, icon, questions, summary]

@@ -69,6 +69,8 @@
     "schema:layer-types": "kickstartDS schema layer",
     "schema:create-defaults": "kickstartDS schema defaults",
     "start": "run-p watch:* storybook",
+    "specs-spike": "node scripts/specs-spike/run.mjs",
+    "contract-spike": "node scripts/contract-spike/run.mjs",
     "storybook": "pnpm run copy-theme-css && storybook dev -p 6006",
     "create-component-previews": "pnpm run test && rimraf static/img/screenshots && mkdir -p static/img/screenshots && cp __snapshots__/*.png static/img/screenshots",
     "test": "rimraf __snapshots__ && run-p -r test:*",

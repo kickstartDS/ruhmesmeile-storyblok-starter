@@ -1,0 +1,198 @@
+title: Blog Aside
+anatomy:
+  root:
+    type: container
+    detectedIn: .dsa-blog-aside
+  author:
+    type: container
+    detectedIn: .dsa-blog-aside author
+  title:
+    type: text
+    detectedIn: .dsa-blog-aside title
+  subtitle:
+    type: text
+    detectedIn: .dsa-blog-aside subtitle
+  image:
+    type: rectangle
+    detectedIn: .dsa-blog-aside image
+  body:
+    type: container
+    detectedIn: .dsa-blog-aside body
+  link:
+    type: instance
+    detectedIn: .dsa-blog-aside link
+  meta:
+    type: container
+    detectedIn: .dsa-blog-aside meta
+  item:
+    type: container
+    detectedIn: .dsa-blog-aside item
+  icon:
+    type: glyph
+    detectedIn: .dsa-blog-aside icon
+  share-bar:
+    type: container
+    detectedIn: .dsa-blog-aside share-bar
+  sharebar:
+    type: container
+    detectedIn: .dsa-blog-aside sharebar
+  author_links:
+    type: slot
+    detectedIn: prop:author.links
+  socialSharing:
+    type: slot
+    detectedIn: prop:socialSharing
+props:
+  author.name:
+    type: string
+    examples: [John Doe]
+    $extensions:
+      com.kickstartds:
+        title: Name
+        description: The name of the author
+        required: true
+        shape: object:author
+  author.byline:
+    type: string
+    examples: [CEO at Company]
+    $extensions:
+      com.kickstartds:
+        title: Byline
+        description: The byline of the author
+  author.image.src:
+    type: image
+    $extensions:
+      com.kickstartds:
+        title: Image Source
+        description: URL of the image to display
+        shape: object:author.image
+  author.image.alt:
+    type: string
+    examples: [Picture of Isabella Doe]
+    $extensions:
+      com.kickstartds:
+        title: Alt Text
+        description: Alt text of the image
+  author.image.fullWidth:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Full Width
+        description: Image uses all the horizontal space vailable
+  author.image.aspectRatio:
+    type: string
+    enum: [wide, square, vertical]
+    default: square
+    $extensions:
+      com.kickstartds:
+        title: aspectRatio
+        description: Aspect Ratio of the Images
+  author.links:
+    type: slot
+    $extensions:
+      com.kickstartds:
+        itemShape: [icon, label, url, newTab, ariaLabel]
+        originalType: array
+  socialSharing:
+    type: slot
+    $extensions:
+      com.kickstartds:
+        title: Social Sharing
+        description: The social sharing links for the blog post
+        itemShape: [icon, url, title]
+        originalType: array
+  readingTime:
+    type: string
+    examples: [5 min read]
+    $extensions:
+      com.kickstartds:
+        title: Reading Time
+        description: The reading time for the blog post
+  date:
+    type: string
+    examples: [12/30/2022]
+    $extensions:
+      com.kickstartds:
+        title: Published Date
+        description: The date when the blog post was published
+        required: true
+        format: date
+  className:
+    type: string
+    examples: []
+default:
+  configuration:
+    author.image.fullWidth: false
+    author.image.aspectRatio: square
+  elements:
+    root:
+      parent: null
+      children: [author, author_links, meta, share-bar, sharebar, socialSharing]
+      styles:
+        itemSpacing:
+          $token: ks.spacing.stack.s
+          $type: dimension
+    author:
+      parent: root
+      children: [body, image, link, subtitle, title]
+    title:
+      parent: author
+      styles:
+        typography:
+          $token: ks.font.copy.m
+          $type: typography
+    subtitle:
+      parent: author
+      styles:
+        typography:
+          $token: ks.font.copy.s
+          $type: typography
+    image:
+      parent: author
+    body:
+      parent: author
+    link:
+      parent: author
+      styles:
+        typography:
+          $token: ks.font.interface.s
+          $type: typography
+    meta:
+      parent: root
+      children: [item]
+    item:
+      parent: meta
+      children: [icon]
+      styles:
+        textColor:
+          $token: ks.text.color.interface
+          $type: color
+        typography:
+          $token: ks.font.interface.s
+          $type: typography
+    icon:
+      parent: item
+    share-bar:
+      parent: root
+      children: [icon]
+    sharebar:
+      parent: root
+      children: [link]
+    author_links:
+      parent: root
+      children:
+        $binding: "#/props/author.links"
+    socialSharing:
+      parent: root
+      children:
+        $binding: "#/props/socialSharing"
+  layout:
+    - root:
+        - author: [body, image, link, subtitle, title]
+        - author_links
+        - meta:
+            - item: [icon]
+        - share-bar: [icon]
+        - sharebar: [link]
+        - socialSharing

@@ -1,0 +1,417 @@
+{
+  "components": {
+    "blog-aside": {
+      "axes": [],
+      "contractBytes": 5477,
+      "coverage": {
+        "axes": {},
+        "combinations": {
+          "possible": 1,
+          "proven": 1
+        },
+        "parts": {
+          "conditional": 0,
+          "inDefault": 11,
+          "total": 11
+        },
+        "score": null,
+        "stories": {
+          "failed": 0,
+          "observed": 1
+        }
+      },
+      "failedStories": [],
+      "mechanisms": {
+        "content": 4,
+        "none": 1
+      },
+      "naming": {
+        "bem-class": 4,
+        "position": 1,
+        "root": 1,
+        "slot-boundary": 2,
+        "tag": 2,
+        "token-grammar": 1
+      },
+      "observed": 1,
+      "parts": {
+        "conditional": 0,
+        "inDefault": 11,
+        "total": 11
+      },
+      "props": 5,
+      "stories": 1,
+      "tokens": 14,
+      "variants": 0
+    },
+    "button": {
+      "axes": [
+        {
+          "issues": [
+            "variant:tertiary token-vocabulary-mismatch"
+          ],
+          "joined": 3,
+          "prop": "variant",
+          "total": 3
+        },
+        {
+          "issues": [],
+          "joined": 3,
+          "prop": "size",
+          "total": 3
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "disabled",
+          "total": 2
+        }
+      ],
+      "contractBytes": 8183,
+      "coverage": {
+        "axes": {
+          "disabled": {
+            "missing": [],
+            "proven": 2,
+            "total": 2
+          },
+          "size": {
+            "missing": [
+              "small",
+              "large"
+            ],
+            "proven": 1,
+            "total": 3
+          },
+          "variant": {
+            "missing": [],
+            "proven": 3,
+            "total": 3
+          }
+        },
+        "combinations": {
+          "possible": 18,
+          "proven": 4
+        },
+        "parts": {
+          "conditional": 0,
+          "inDefault": 2,
+          "total": 2
+        },
+        "score": 0.75,
+        "stories": {
+          "failed": 0,
+          "observed": 4
+        }
+      },
+      "failedStories": [],
+      "mechanisms": {
+        "attribute": 1,
+        "class-toggle": 1,
+        "content": 2,
+        "none": 2,
+        "token-swap": 1
+      },
+      "naming": {
+        "content-match": 1,
+        "root": 1
+      },
+      "observed": 4,
+      "parts": {
+        "conditional": 0,
+        "inDefault": 2,
+        "total": 2
+      },
+      "props": 7,
+      "stories": 4,
+      "tokens": 28,
+      "variants": 3
+    },
+    "faq": {
+      "axes": [],
+      "contractBytes": 2577,
+      "coverage": {
+        "axes": {},
+        "combinations": {
+          "possible": 2,
+          "proven": 2
+        },
+        "parts": {
+          "conditional": 0,
+          "inDefault": 2,
+          "total": 2
+        },
+        "score": null,
+        "stories": {
+          "failed": 0,
+          "observed": 2
+        }
+      },
+      "failedStories": [],
+      "mechanisms": {
+        "none": 1
+      },
+      "naming": {
+        "root": 1,
+        "slot-boundary": 1
+      },
+      "observed": 2,
+      "parts": {
+        "conditional": 0,
+        "inDefault": 2,
+        "total": 2
+      },
+      "props": 1,
+      "stories": 2,
+      "tokens": 10,
+      "variants": 1
+    },
+    "section": {
+      "axes": [
+        {
+          "issues": [],
+          "joined": 1,
+          "prop": "width",
+          "total": 5
+        },
+        {
+          "issues": [],
+          "joined": 1,
+          "prop": "style",
+          "total": 3
+        },
+        {
+          "issues": [],
+          "joined": 2,
+          "prop": "backgroundColor",
+          "total": 3
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "spotlight",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "inverted",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "headerSpacing",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "aiDraft",
+          "total": 2
+        }
+      ],
+      "contractBytes": 14670,
+      "coverage": {
+        "axes": {
+          "aiDraft": {
+            "missing": [
+              true
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "backgroundColor": {
+            "missing": [],
+            "proven": 3,
+            "total": 3
+          },
+          "headerSpacing": {
+            "missing": [
+              true
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "inverted": {
+            "missing": [],
+            "proven": 2,
+            "total": 2
+          },
+          "spotlight": {
+            "missing": [
+              true
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "style": {
+            "missing": [
+              "deko"
+            ],
+            "proven": 2,
+            "total": 3
+          },
+          "width": {
+            "missing": [
+              "full",
+              "max",
+              "narrow"
+            ],
+            "proven": 2,
+            "total": 5
+          }
+        },
+        "combinations": {
+          "possible": 720,
+          "proven": 10
+        },
+        "parts": {
+          "conditional": 4,
+          "inDefault": 4,
+          "total": 8
+        },
+        "score": 0.63,
+        "stories": {
+          "failed": 0,
+          "observed": 10
+        }
+      },
+      "failedStories": [],
+      "mechanisms": {
+        "class-toggle": 2,
+        "content": 6,
+        "none": 7
+      },
+      "naming": {
+        "bem-class": 5,
+        "root": 1,
+        "slot-boundary": 2
+      },
+      "observed": 10,
+      "parts": {
+        "conditional": 4,
+        "inDefault": 4,
+        "total": 8
+      },
+      "props": 15,
+      "stories": 10,
+      "tokens": 37,
+      "variants": 9
+    },
+    "slider": {
+      "axes": [
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "nav",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "teaseNeighbours",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "equalHeight",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "arrows",
+          "total": 2
+        },
+        {
+          "issues": [],
+          "joined": 0,
+          "prop": "variant",
+          "total": 2
+        }
+      ],
+      "contractBytes": 8660,
+      "coverage": {
+        "axes": {
+          "arrows": {
+            "missing": [
+              false
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "equalHeight": {
+            "missing": [
+              false
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "nav": {
+            "missing": [
+              false
+            ],
+            "proven": 1,
+            "total": 2
+          },
+          "teaseNeighbours": {
+            "missing": [],
+            "proven": 2,
+            "total": 2
+          },
+          "variant": {
+            "missing": [
+              "slider"
+            ],
+            "proven": 1,
+            "total": 2
+          }
+        },
+        "combinations": {
+          "possible": 32,
+          "proven": 3
+        },
+        "parts": {
+          "conditional": 0,
+          "inDefault": 12,
+          "total": 12
+        },
+        "score": 0.6,
+        "stories": {
+          "failed": 0,
+          "observed": 4
+        }
+      },
+      "failedStories": [],
+      "mechanisms": {
+        "class-toggle": 1,
+        "content": 1,
+        "none": 7
+      },
+      "naming": {
+        "bem-class": 8,
+        "position": 1,
+        "root": 1,
+        "slot-boundary": 1,
+        "tag": 1
+      },
+      "observed": 4,
+      "parts": {
+        "conditional": 0,
+        "inDefault": 12,
+        "total": 12
+      },
+      "props": 9,
+      "stories": 4,
+      "tokens": 13,
+      "variants": 2
+    }
+  },
+  "format": "kickstartds/component-contract@1",
+  "viewport": {
+    "height": 900,
+    "width": 1440
+  }
+}

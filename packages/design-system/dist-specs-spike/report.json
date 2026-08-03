@@ -1,0 +1,1777 @@
+[
+  {
+    "name": "button",
+    "why": "trivial baseline",
+    "valid": true,
+    "errors": [],
+    "props": {
+      "total": 7,
+      "native": 4,
+      "extended": 3,
+      "lossy": 0,
+      "nativePct": 57
+    },
+    "anatomy": {
+      "tokensTotal": 28,
+      "tokensParsed": 28,
+      "tokensUnparsed": 0,
+      "unparsed": [],
+      "elementsDerived": 0,
+      "collisions": 0
+    },
+    "collisions": [],
+    "styles": {
+      "omitted": 3,
+      "emitted": 10,
+      "displaced": 14,
+      "lossy": 1
+    },
+    "variantJoins": [
+      {
+        "variant": "large",
+        "prop": "size",
+        "joined": true
+      },
+      {
+        "variant": "medium",
+        "prop": "size",
+        "joined": true
+      },
+      {
+        "variant": "primary",
+        "prop": "variant",
+        "joined": true
+      },
+      {
+        "variant": "secondary",
+        "prop": "variant",
+        "joined": true
+      },
+      {
+        "variant": "small",
+        "prop": "size",
+        "joined": true
+      },
+      {
+        "variant": "terciary",
+        "prop": null,
+        "joined": false
+      }
+    ],
+    "records": [
+      {
+        "name": "label",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "Book a meeting"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Label",
+              "description": "Text content to display inside the button",
+              "required": true
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": []
+      },
+      {
+        "name": "url",
+        "prop": {
+          "type": "string",
+          "examples": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "URL",
+              "description": "The URL to link to when the button is clicked",
+              "format": "uri"
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": [
+          "empty examples[] emitted to disambiguate StringProp from EnumProp"
+        ]
+      },
+      {
+        "name": "variant",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ],
+          "default": "secondary",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Variant",
+              "description": "Variant of button to be used"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "icon",
+        "prop": {
+          "type": "string",
+          "examples": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Icon",
+              "description": "Choose an icon",
+              "format": "icon"
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": [
+          "empty examples[] emitted to disambiguate StringProp from EnumProp"
+        ]
+      },
+      {
+        "name": "size",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "default": "medium",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Size",
+              "description": "Size of button to use"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "disabled",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Disabled?",
+              "description": "Whether the button should be disabled"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "type",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "button",
+            "submit",
+            "reset"
+          ],
+          "default": "button",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Button Type"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "enum default synthesised from first value"
+        ]
+      }
+    ],
+    "styleDecisions": [
+      {
+        "token": "--dsa-button--padding",
+        "outcome": "omitted",
+        "reason": "literal '0.75em 1.5em' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-button--border-width",
+        "outcome": "emitted",
+        "styleProperty": "strokeWeight",
+        "$token": "ks.border.width.default",
+        "$type": "dimension",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button--border-radius",
+        "outcome": "emitted",
+        "styleProperty": "cornerRadius",
+        "$token": "ks.border.radius.control",
+        "$type": "dimension",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button--font-weight",
+        "outcome": "omitted",
+        "reason": "Specs Typography has no field for CSS 'font-weight' (Figma encodes weight in fontStyle)"
+      },
+      {
+        "token": "--dsa-button--text-transform",
+        "outcome": "omitted",
+        "reason": "literal 'default' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-button_small--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.interface.s",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_medium--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.interface.m",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_large--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.interface.l",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_primary--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.on.primary",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_primary--color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_primary--color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_primary--background-color",
+        "outcome": "emitted",
+        "styleProperty": "backgroundColor",
+        "$token": "ks.background.color.primary.interactive",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_primary--background-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_primary--background-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_secondary--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.default",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_secondary--color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_secondary--color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_secondary--background-color",
+        "outcome": "emitted",
+        "styleProperty": "backgroundColor",
+        "$token": "ks.background.color.interface.interactive",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_secondary--background-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_secondary--background-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.default",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-button_terciary--color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--border-color",
+        "outcome": "lossy",
+        "reason": "strokes is an array of paint objects; needs stroke composition"
+      },
+      {
+        "token": "--dsa-button_terciary--border-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--border-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--background-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-button_terciary--background-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      }
+    ]
+  },
+  {
+    "name": "section",
+    "why": "compositional + slots + nested objects + client behaviour",
+    "valid": true,
+    "errors": [],
+    "props": {
+      "total": 25,
+      "native": 21,
+      "extended": 1,
+      "lossy": 3,
+      "nativePct": 84
+    },
+    "anatomy": {
+      "tokensTotal": 37,
+      "tokensParsed": 37,
+      "tokensUnparsed": 0,
+      "unparsed": [],
+      "elementsDerived": 6,
+      "collisions": 0
+    },
+    "collisions": [],
+    "styles": {
+      "omitted": 18,
+      "variant": 13,
+      "unresolvable": 1,
+      "emitted": 3,
+      "displaced": 2
+    },
+    "variantJoins": [],
+    "records": [
+      {
+        "name": "width",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "full",
+            "max",
+            "wide",
+            "default",
+            "narrow"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Width",
+              "description": "Width of section to use"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "style",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "default",
+            "framed",
+            "deko"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Style",
+              "description": "Style of background"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "backgroundColor",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "default",
+            "accent",
+            "bold"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Style",
+              "description": "Color of background"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "transition",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "none",
+            "to-default",
+            "to-accent",
+            "to-bold",
+            "to-inverted"
+          ],
+          "default": "none",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Style",
+              "description": "Color of background"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "backgroundImage",
+        "prop": {
+          "type": "image",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Background image",
+              "description": "Background image for the whole section"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "spotlight",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Spotlight",
+              "description": "Show spotlight behind cursor"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "spaceBefore",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "default",
+            "small",
+            "none"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Space Before",
+              "description": "Amount of spacing before the section"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "spaceAfter",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "default",
+            "small",
+            "none"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Space After",
+              "description": "Amount of spacing after the section"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "inverted",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Inverted",
+              "description": "Whether to invert the section"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "headerSpacing",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Header Spacing",
+              "description": "Reserve additional spacing for a floating header"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "headline.text",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "Section headline"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Headline",
+              "description": "Headline Text for the section",
+              "shape": "object:headline"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "object 'headline' flattened into 7 scalar prop(s)"
+        ]
+      },
+      {
+        "name": "headline.large",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Large Headline",
+              "description": "Make the headline larger"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "headline.width",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "unset",
+            "narrow",
+            "default",
+            "wide"
+          ],
+          "default": "unset",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Headline Width",
+              "description": "Width of headline to use"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "headline.textAlign",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "default": "left",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Headline Text Alignment",
+              "description": "Choose the text alignment for the headline"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "enum default synthesised from first value"
+        ]
+      },
+      {
+        "name": "headline.align",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "default": "left",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Headline Alignment",
+              "description": "Choose an alignment for positioning the headline"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "enum default synthesised from first value"
+        ]
+      },
+      {
+        "name": "headline.sub",
+        "prop": {
+          "type": "string",
+          "examples": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Subheadline",
+              "description": "Subheadline for the section"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "empty examples[] emitted to disambiguate StringProp from EnumProp"
+        ]
+      },
+      {
+        "name": "headline.switchOrder",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Switch Headline Order",
+              "description": "Switch the order of headline and subheadline"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "default synthesised (Specs requires BooleanProp.default)"
+        ]
+      },
+      {
+        "name": "content.width",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "unset",
+            "narrow",
+            "default",
+            "wide"
+          ],
+          "default": "unset",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Content Width",
+              "description": "Width of content to use",
+              "shape": "object:content"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "object 'content' flattened into 5 scalar prop(s)"
+        ]
+      },
+      {
+        "name": "content.align",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "default": "center",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Content Alignment",
+              "description": "Choose an alignment for the content"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "content.gutter",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "large",
+            "default",
+            "small",
+            "none"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Gutter",
+              "description": "Size of gutter to use"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "content.mode",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "default",
+            "tile",
+            "list",
+            "slider"
+          ],
+          "default": "list",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Mode",
+              "description": "Layout mode used for section contents"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "content.tileWidth",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "smallest",
+            "default",
+            "medium",
+            "large",
+            "largest",
+            "full"
+          ],
+          "default": "default",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Tile Width",
+              "description": "Set min-width for the tiles in the grid"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "components",
+        "prop": {
+          "type": "slot",
+          "anyOf": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Content",
+              "description": "Allowed components for content",
+              "refs": []
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": [
+          "polymorphic slot, 0 permitted component types"
+        ]
+      },
+      {
+        "name": "buttons",
+        "prop": {
+          "type": "slot",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Buttons",
+              "description": "Buttons of the Button Group",
+              "itemShape": [
+                "label",
+                "url",
+                "variant",
+                "icon",
+                "size",
+                "disabled",
+                "type"
+              ],
+              "originalType": "array"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "array of objects; item shape {label, url, variant, icon, size, disabled, type} displaced to $extensions (candidate subcomponent)"
+        ]
+      },
+      {
+        "name": "aiDraft",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "AI Draft?",
+              "description": "If true, the section is marked as an AI-generated draft"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      }
+    ],
+    "styleDecisions": [
+      {
+        "token": "--dsa-section--space_default",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'space'"
+      },
+      {
+        "token": "--dsa-section--space_small",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'space'"
+      },
+      {
+        "token": "--dsa-section--gutter_small",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'gutter'"
+      },
+      {
+        "token": "--dsa-section--gutter_default",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'gutter'"
+      },
+      {
+        "token": "--dsa-section--gutter_large",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'gutter'"
+      },
+      {
+        "token": "--dsa-section--background-color_default",
+        "outcome": "variant",
+        "reason": "modifier 'default' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section--background-color_accent",
+        "outcome": "variant",
+        "reason": "modifier 'accent' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section--background-color_bold",
+        "outcome": "variant",
+        "reason": "modifier 'bold' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section--transition_to-default",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'transition'"
+      },
+      {
+        "token": "--dsa-section--transition_to-accent",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'transition'"
+      },
+      {
+        "token": "--dsa-section--transition_to-bold",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'transition'"
+      },
+      {
+        "token": "--dsa-section--transition_to-inverted",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'transition'"
+      },
+      {
+        "token": "--dsa-section__col--repeat",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'repeat'"
+      },
+      {
+        "token": "--dsa-section__col--max-width",
+        "outcome": "omitted",
+        "reason": "literal '1fr' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-section__col--min-width_smallest",
+        "outcome": "variant",
+        "reason": "modifier 'smallest' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__col--min-width_small",
+        "outcome": "variant",
+        "reason": "modifier 'small' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__col--min-width_medium",
+        "outcome": "variant",
+        "reason": "modifier 'medium' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__col--min-width_large",
+        "outcome": "variant",
+        "reason": "modifier 'large' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__col--min-width_largest",
+        "outcome": "variant",
+        "reason": "modifier 'largest' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__buttons--space-before",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'space-before'"
+      },
+      {
+        "token": "--dsa-section__content--width_narrow",
+        "outcome": "variant",
+        "reason": "modifier 'narrow' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__content--width_default",
+        "outcome": "variant",
+        "reason": "modifier 'default' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__content--width_wide",
+        "outcome": "variant",
+        "reason": "modifier 'wide' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__content--width_max",
+        "outcome": "variant",
+        "reason": "modifier 'max' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__content--width_full",
+        "outcome": "variant",
+        "reason": "modifier 'full' routed to variants[]"
+      },
+      {
+        "token": "--dsa-section__content--padding",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-content--horizontal-spacing', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.interface.interactive",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--size",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'size'"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--padding",
+        "outcome": "omitted",
+        "reason": "literal '0.5em' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--opacity",
+        "outcome": "emitted",
+        "styleProperty": "opacity",
+        "literal": 0.6
+      },
+      {
+        "token": "--dsa-section__slider-arrow--opacity_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--opacity_disabled",
+        "outcome": "displaced",
+        "reason": "state ':disabled' has no Styles representation"
+      },
+      {
+        "token": "--dsa-section__slider-arrow--background",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'background'"
+      },
+      {
+        "token": "--dsa-section__slider-nav--margin-top",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'margin-top'"
+      },
+      {
+        "token": "--dsa-section__spotlight--size",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'size'"
+      },
+      {
+        "token": "--dsa-section__spotlight--blur",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'blur'"
+      },
+      {
+        "token": "--dsa-section__spotlight--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.color.primary.alpha.5",
+        "$type": "color",
+        "derivation": "unverified"
+      }
+    ]
+  },
+  {
+    "name": "faq",
+    "why": "array of sub-objects",
+    "valid": true,
+    "errors": [],
+    "props": {
+      "total": 1,
+      "native": 0,
+      "extended": 0,
+      "lossy": 1,
+      "nativePct": 0
+    },
+    "anatomy": {
+      "tokensTotal": 10,
+      "tokensParsed": 10,
+      "tokensUnparsed": 0,
+      "unparsed": [],
+      "elementsDerived": 3,
+      "collisions": 0
+    },
+    "collisions": [],
+    "styles": {
+      "lossy": 1,
+      "omitted": 2,
+      "unresolvable": 6,
+      "emitted": 1
+    },
+    "variantJoins": [
+      {
+        "variant": "content",
+        "prop": null,
+        "joined": false
+      },
+      {
+        "variant": "header",
+        "prop": null,
+        "joined": false
+      }
+    ],
+    "records": [
+      {
+        "name": "questions",
+        "prop": {
+          "type": "slot",
+          "minChildren": 1,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Questions",
+              "description": "The questions and answers in the Faq section",
+              "required": true,
+              "itemShape": [
+                "question",
+                "answer"
+              ],
+              "originalType": "array"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "array of objects; item shape {question, answer} displaced to $extensions (candidate subcomponent)"
+        ]
+      }
+    ],
+    "styleDecisions": [
+      {
+        "token": "--dsa-faq--border",
+        "outcome": "lossy",
+        "reason": "strokes is an array of paint objects; needs stroke composition"
+      },
+      {
+        "token": "--dsa-faq_header--padding",
+        "outcome": "omitted",
+        "reason": "literal '1em 0' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-faq_content--padding",
+        "outcome": "omitted",
+        "reason": "literal '0em 0em 1em 0em' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-faq__summary--color",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-topic--color', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__summary--font-weight",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-topic--font-weight', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__summary--font",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-topic--font', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__summary--font-family",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-topic--font-family', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__answer--color",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-headline--color', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__answer--font",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-topic--font', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-faq__icon--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.primary.interactive",
+        "$type": "color",
+        "derivation": "unverified"
+      }
+    ]
+  },
+  {
+    "name": "slider",
+    "why": "polymorphic anyOf children",
+    "valid": true,
+    "errors": [],
+    "props": {
+      "total": 9,
+      "native": 7,
+      "extended": 1,
+      "lossy": 1,
+      "nativePct": 78
+    },
+    "anatomy": {
+      "tokensTotal": 13,
+      "tokensParsed": 13,
+      "tokensUnparsed": 0,
+      "unparsed": [],
+      "elementsDerived": 2,
+      "collisions": 0
+    },
+    "collisions": [],
+    "styles": {
+      "omitted": 4,
+      "emitted": 2,
+      "displaced": 6,
+      "lossy": 1
+    },
+    "variantJoins": [],
+    "records": [
+      {
+        "name": "autoplay",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Auto play",
+              "description": "Automatically move to next slide after 4 seconds without user interaction"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "nav",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Show Navigation",
+              "description": "Add bullet navigation"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "default synthesised (Specs requires BooleanProp.default)"
+        ]
+      },
+      {
+        "name": "teaseNeighbours",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Tease Neighbour Slides"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "equalHeight",
+        "prop": {
+          "type": "boolean",
+          "default": true,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Equalize slides heights"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "gap",
+        "prop": {
+          "type": "number",
+          "default": 0
+        },
+        "classification": "lossy",
+        "notes": [
+          "NumberProp has no $extensions; title/description dropped"
+        ]
+      },
+      {
+        "name": "arrows",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Show Arrows",
+              "description": "Add arrows on the left and right to navigate to next or previous slide"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "default synthesised (Specs requires BooleanProp.default)"
+        ]
+      },
+      {
+        "name": "variant",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "slider",
+            "carousel"
+          ],
+          "default": "carousel",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Type",
+              "description": "Type of the movement"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "className",
+        "prop": {
+          "type": "string",
+          "examples": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Class",
+              "description": "Additional css classes attached to the wrapping element"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": [
+          "empty examples[] emitted to disambiguate StringProp from EnumProp"
+        ]
+      },
+      {
+        "name": "components",
+        "prop": {
+          "type": "slot",
+          "anyOf": [],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Content",
+              "description": "Allowed components for content",
+              "refs": []
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": [
+          "polymorphic slot, 0 permitted component types"
+        ]
+      }
+    ],
+    "styleDecisions": [
+      {
+        "token": "--dsa-slider--animation-duration",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'animation-duration'"
+      },
+      {
+        "token": "--dsa-slider--autoplay-duration",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'autoplay-duration'"
+      },
+      {
+        "token": "--dsa-slider__arrow--background-color",
+        "outcome": "emitted",
+        "styleProperty": "backgroundColor",
+        "$token": "ks.color.fg.alpha.4",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-slider__arrow--background-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-slider__arrow--background-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-slider__arrow--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.color.fg.inverted",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-slider__bullet--border-color",
+        "outcome": "lossy",
+        "reason": "strokes is an array of paint objects; needs stroke composition"
+      },
+      {
+        "token": "--dsa-slider__bullet--border-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-slider__bullet--border-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      },
+      {
+        "token": "--dsa-slider__bullet--size",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'size'"
+      },
+      {
+        "token": "--dsa-slider__bullet--background-color",
+        "outcome": "omitted",
+        "reason": "literal 'transparent' has no lossless Styles representation"
+      },
+      {
+        "token": "--dsa-slider__bullet--background-color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-slider__bullet--background-color_active",
+        "outcome": "displaced",
+        "reason": "state ':active' has no Styles representation"
+      }
+    ]
+  },
+  {
+    "name": "blog-aside",
+    "why": "two-level BEM nesting + nested object prop",
+    "valid": true,
+    "errors": [],
+    "props": {
+      "total": 11,
+      "native": 6,
+      "extended": 1,
+      "lossy": 4,
+      "nativePct": 55
+    },
+    "anatomy": {
+      "tokensTotal": 14,
+      "tokensParsed": 14,
+      "tokensUnparsed": 0,
+      "unparsed": [],
+      "elementsDerived": 11,
+      "collisions": 2
+    },
+    "collisions": [
+      {
+        "name": "link",
+        "paths": [
+          "author > link",
+          "sharebar > link"
+        ]
+      },
+      {
+        "name": "icon",
+        "paths": [
+          "meta > item > icon",
+          "share-bar > icon"
+        ]
+      }
+    ],
+    "styles": {
+      "emitted": 6,
+      "omitted": 6,
+      "unresolvable": 1,
+      "displaced": 1
+    },
+    "variantJoins": [],
+    "records": [
+      {
+        "name": "author.name",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "John Doe"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Name",
+              "description": "The name of the author",
+              "required": true,
+              "shape": "object:author"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "object 'author' flattened into 7 scalar prop(s)"
+        ]
+      },
+      {
+        "name": "author.byline",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "CEO at Company"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Byline",
+              "description": "The byline of the author"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "author.image.src",
+        "prop": {
+          "type": "image",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Image Source",
+              "description": "URL of the image to display",
+              "shape": "object:author.image"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "object 'author.image' flattened into 4 scalar prop(s)"
+        ]
+      },
+      {
+        "name": "author.image.alt",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "Picture of Isabella Doe"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Alt Text",
+              "description": "Alt text of the image"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "author.image.fullWidth",
+        "prop": {
+          "type": "boolean",
+          "default": false,
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Full Width",
+              "description": "Image uses all the horizontal space vailable"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "author.image.aspectRatio",
+        "prop": {
+          "type": "string",
+          "enum": [
+            "wide",
+            "square",
+            "vertical"
+          ],
+          "default": "square",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "aspectRatio",
+              "description": "Aspect Ratio of the Images"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "author.links",
+        "prop": {
+          "type": "slot",
+          "$extensions": {
+            "com.kickstartds": {
+              "itemShape": [
+                "icon",
+                "label",
+                "url",
+                "newTab",
+                "ariaLabel"
+              ],
+              "originalType": "array"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "array of objects; item shape {icon, label, url, newTab, ariaLabel} displaced to $extensions (candidate subcomponent)"
+        ]
+      },
+      {
+        "name": "socialSharing",
+        "prop": {
+          "type": "slot",
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Social Sharing",
+              "description": "The social sharing links for the blog post",
+              "itemShape": [
+                "icon",
+                "url",
+                "title"
+              ],
+              "originalType": "array"
+            }
+          }
+        },
+        "classification": "lossy",
+        "notes": [
+          "array of objects; item shape {icon, url, title} displaced to $extensions (candidate subcomponent)"
+        ]
+      },
+      {
+        "name": "readingTime",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "5 min read"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Reading Time",
+              "description": "The reading time for the blog post"
+            }
+          }
+        },
+        "classification": "native",
+        "notes": []
+      },
+      {
+        "name": "date",
+        "prop": {
+          "type": "string",
+          "examples": [
+            "12/30/2022"
+          ],
+          "$extensions": {
+            "com.kickstartds": {
+              "title": "Published Date",
+              "description": "The date when the blog post was published",
+              "required": true,
+              "format": "date"
+            }
+          }
+        },
+        "classification": "extended",
+        "notes": []
+      },
+      {
+        "name": "className",
+        "prop": {
+          "type": "string",
+          "examples": []
+        },
+        "classification": "native",
+        "notes": [
+          "empty examples[] emitted to disambiguate StringProp from EnumProp"
+        ]
+      }
+    ],
+    "styleDecisions": [
+      {
+        "token": "--dsa-blog-aside--gap",
+        "outcome": "emitted",
+        "styleProperty": "itemSpacing",
+        "$token": "ks.spacing.stack.s",
+        "$type": "dimension",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__author--gap-horizontal",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'gap-horizontal'"
+      },
+      {
+        "token": "--dsa-blog-aside__author--gap-vertical",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'gap-vertical'"
+      },
+      {
+        "token": "--dsa-blog-aside__author__title--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.copy.m",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__author__subtitle--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.copy.s",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__author__image--flex-basis",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'flex-basis'"
+      },
+      {
+        "token": "--dsa-blog-aside__author__body--flex-basis",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'flex-basis'"
+      },
+      {
+        "token": "--dsa-blog-aside__author__link--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.interface.s",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__sharebar__link--color",
+        "outcome": "unresolvable",
+        "reason": "references component token '--dsa-link--color', which has no DTCG counterpart"
+      },
+      {
+        "token": "--dsa-blog-aside__sharebar__link--color_hover",
+        "outcome": "displaced",
+        "reason": "state ':hover' has no Styles representation"
+      },
+      {
+        "token": "--dsa-blog-aside__meta__item--font",
+        "outcome": "emitted",
+        "styleProperty": "typography.$reference",
+        "$token": "ks.font.interface.s",
+        "$type": "typography",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__meta__item--color",
+        "outcome": "emitted",
+        "styleProperty": "textColor",
+        "$token": "ks.text.color.interface",
+        "$type": "color",
+        "derivation": "unverified"
+      },
+      {
+        "token": "--dsa-blog-aside__meta__item__icon--size",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'size'"
+      },
+      {
+        "token": "--dsa-blog-aside__share-bar__icon--size",
+        "outcome": "omitted",
+        "reason": "no Styles property for CSS 'size'"
+      }
+    ]
+  }
+]

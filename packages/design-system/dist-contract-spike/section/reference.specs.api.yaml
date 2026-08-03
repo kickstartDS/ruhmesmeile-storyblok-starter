@@ -1,0 +1,274 @@
+title: Section
+anatomy:
+  root:
+    type: container
+    detectedIn: .dsa-section
+  col:
+    type: container
+    detectedIn: .dsa-section col
+  buttons:
+    type: container
+    detectedIn: .dsa-section buttons
+  content:
+    type: container
+    detectedIn: .dsa-section content
+  slider-arrow:
+    type: container
+    detectedIn: .dsa-section slider-arrow
+  slider-nav:
+    type: container
+    detectedIn: .dsa-section slider-nav
+  spotlight:
+    type: container
+    detectedIn: .dsa-section spotlight
+  components:
+    type: slot
+    detectedIn: prop:components
+props:
+  width:
+    type: string
+    enum: [full, max, wide, default, narrow]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Width
+        description: Width of section to use
+  style:
+    type: string
+    enum: [default, framed, deko]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Style
+        description: Style of background
+  backgroundColor:
+    type: string
+    enum: [default, accent, bold]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Style
+        description: Color of background
+  transition:
+    type: string
+    enum: [none, to-default, to-accent, to-bold, to-inverted]
+    default: none
+    $extensions:
+      com.kickstartds:
+        title: Style
+        description: Color of background
+  backgroundImage:
+    type: image
+    $extensions:
+      com.kickstartds:
+        title: Background image
+        description: Background image for the whole section
+  spotlight:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Spotlight
+        description: Show spotlight behind cursor
+  spaceBefore:
+    type: string
+    enum: [default, small, none]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Space Before
+        description: Amount of spacing before the section
+  spaceAfter:
+    type: string
+    enum: [default, small, none]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Space After
+        description: Amount of spacing after the section
+  inverted:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Inverted
+        description: Whether to invert the section
+  headerSpacing:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Header Spacing
+        description: Reserve additional spacing for a floating header
+  headline.text:
+    type: string
+    examples: [Section headline]
+    $extensions:
+      com.kickstartds:
+        title: Headline
+        description: Headline Text for the section
+        shape: object:headline
+  headline.large:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Large Headline
+        description: Make the headline larger
+  headline.width:
+    type: string
+    enum: [unset, narrow, default, wide]
+    default: unset
+    $extensions:
+      com.kickstartds:
+        title: Headline Width
+        description: Width of headline to use
+  headline.textAlign:
+    type: string
+    enum: [left, center, right]
+    default: left
+    $extensions:
+      com.kickstartds:
+        title: Headline Text Alignment
+        description: Choose the text alignment for the headline
+  headline.align:
+    type: string
+    enum: [left, center, right]
+    default: left
+    $extensions:
+      com.kickstartds:
+        title: Headline Alignment
+        description: Choose an alignment for positioning the headline
+  headline.sub:
+    type: string
+    examples: []
+    $extensions:
+      com.kickstartds:
+        title: Subheadline
+        description: Subheadline for the section
+  headline.switchOrder:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Switch Headline Order
+        description: Switch the order of headline and subheadline
+  content.width:
+    type: string
+    enum: [unset, narrow, default, wide]
+    default: unset
+    $extensions:
+      com.kickstartds:
+        title: Content Width
+        description: Width of content to use
+        shape: object:content
+  content.align:
+    type: string
+    enum: [left, center, right]
+    default: center
+    $extensions:
+      com.kickstartds:
+        title: Content Alignment
+        description: Choose an alignment for the content
+  content.gutter:
+    type: string
+    enum: [large, default, small, none]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Gutter
+        description: Size of gutter to use
+  content.mode:
+    type: string
+    enum: [default, tile, list, slider]
+    default: list
+    $extensions:
+      com.kickstartds:
+        title: Mode
+        description: Layout mode used for section contents
+  content.tileWidth:
+    type: string
+    enum: [smallest, default, medium, large, largest, full]
+    default: default
+    $extensions:
+      com.kickstartds:
+        title: Tile Width
+        description: Set min-width for the tiles in the grid
+  components:
+    type: slot
+    anyOf: []
+    $extensions:
+      com.kickstartds:
+        title: Content
+        description: Allowed components for content
+        refs: []
+  buttons:
+    type: slot
+    $extensions:
+      com.kickstartds:
+        title: Buttons
+        description: Buttons of the Button Group
+        itemShape: [label, url, variant, icon, size, disabled, type]
+        originalType: array
+  aiDraft:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: AI Draft?
+        description: If true, the section is marked as an AI-generated draft
+default:
+  configuration:
+    width: default
+    style: default
+    backgroundColor: default
+    transition: none
+    spotlight: false
+    spaceBefore: default
+    spaceAfter: default
+    inverted: false
+    headerSpacing: false
+    headline.large: false
+    headline.width: unset
+    headline.textAlign: left
+    headline.align: left
+    headline.switchOrder: false
+    content.width: unset
+    content.align: center
+    content.gutter: default
+    content.mode: list
+    content.tileWidth: default
+    aiDraft: false
+  elements:
+    root:
+      parent: null
+      children: [buttons, col, components, content, slider-arrow, slider-nav, spotlight]
+    col:
+      parent: root
+    buttons:
+      parent: root
+      children:
+        $binding: "#/props/buttons"
+    content:
+      parent: root
+    slider-arrow:
+      parent: root
+      styles:
+        textColor:
+          $token: ks.text.color.interface.interactive
+          $type: color
+        opacity: 0.6
+    slider-nav:
+      parent: root
+    spotlight:
+      parent: root
+      styles:
+        textColor:
+          $token: ks.color.primary.alpha.5
+          $type: color
+    components:
+      parent: root
+      children:
+        $binding: "#/props/components"
+  layout:
+    - root: [buttons, col, components, content, slider-arrow, slider-nav, spotlight]

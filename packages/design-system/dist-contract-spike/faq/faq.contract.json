@@ -1,0 +1,185 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "l-container",
+          "l-container--collapsible-box"
+        ],
+        "element": "div",
+        "instanceOf": "collapsible-box",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-faq--dropdown-list",
+          "components-faq--single-dropdown"
+        ],
+        "path": "root/collapsible-box",
+        "presence": "repeated",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "dsa-faq"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-faq--border",
+      "--dsa-faq__answer--color",
+      "--dsa-faq__answer--font",
+      "--dsa-faq__icon--color",
+      "--dsa-faq__summary--color",
+      "--dsa-faq__summary--font",
+      "--dsa-faq__summary--font-family",
+      "--dsa-faq__summary--font-weight",
+      "--dsa-faq_content--padding",
+      "--dsa-faq_header--padding"
+    ]
+  },
+  "api": {
+    "props": {
+      "questions": {
+        "required": true,
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "schema": "./faq.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "questions"
+    }
+  ],
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "answer",
+          "question"
+        ],
+        "min": 1,
+        "observedCounts": [
+          1,
+          3
+        ],
+        "part": "root",
+        "prop": "questions"
+      }
+    ]
+  },
+  "coverage": {
+    "axes": {},
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 2,
+      "total": 2
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 2
+    }
+  },
+  "default": {
+    "configuration": {},
+    "evidence": {
+      "screenshot": "img/screenshots/components-faq--dropdown-list.png",
+      "story": "components-faq--dropdown-list"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 212,
+          "width": 1440
+        },
+        "styles": {
+          "border": {
+            "computed": "0px none rgb(0, 0, 0)",
+            "resolves": "--ks-border-divider",
+            "token": "--dsa-faq--border"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-display",
+            "token": "--dsa-faq__answer--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": null,
+            "token": "--dsa-faq__answer--font"
+          },
+          "fontFamily": {
+            "computed": "Times New Roman",
+            "resolves": null,
+            "token": "--dsa-faq__summary--font-family"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": null,
+            "token": "--dsa-faq__summary--font-weight"
+          }
+        }
+      },
+      "root/collapsible-box": {
+        "box": {
+          "height": 71,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Component used to display a Faq section",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:20cbada0128f9b3f",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:399f492e5bb8cb68"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "id": "faq",
+  "issues": [],
+  "title": "Faq",
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-faq--single-dropdown.png",
+        "story": "components-faq--single-dropdown"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 71,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "212.219px",
+              "to": "71.4062px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

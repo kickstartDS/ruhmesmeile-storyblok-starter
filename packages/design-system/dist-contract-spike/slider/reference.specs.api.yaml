@@ -1,0 +1,104 @@
+title: Slider
+anatomy:
+  root:
+    type: container
+    detectedIn: .dsa-slider
+  arrow:
+    type: glyph
+    detectedIn: .dsa-slider arrow
+  bullet:
+    type: glyph
+    detectedIn: .dsa-slider bullet
+  components:
+    type: slot
+    detectedIn: prop:components
+props:
+  autoplay:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Auto play
+        description: Automatically move to next slide after 4 seconds without user interaction
+  nav:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Show Navigation
+        description: Add bullet navigation
+  teaseNeighbours:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Tease Neighbour Slides
+  equalHeight:
+    type: boolean
+    default: true
+    $extensions:
+      com.kickstartds:
+        title: Equalize slides heights
+  gap:
+    type: number
+    default: 0
+  arrows:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Show Arrows
+        description: Add arrows on the left and right to navigate to next or previous slide
+  variant:
+    type: string
+    enum: [slider, carousel]
+    default: carousel
+    $extensions:
+      com.kickstartds:
+        title: Type
+        description: Type of the movement
+  className:
+    type: string
+    examples: []
+    $extensions:
+      com.kickstartds:
+        title: Class
+        description: Additional css classes attached to the wrapping element
+  components:
+    type: slot
+    anyOf: []
+    $extensions:
+      com.kickstartds:
+        title: Content
+        description: Allowed components for content
+        refs: []
+default:
+  configuration:
+    autoplay: false
+    nav: false
+    teaseNeighbours: false
+    equalHeight: true
+    gap: 0
+    arrows: false
+    variant: carousel
+  elements:
+    root:
+      parent: null
+      children: [arrow, bullet, components]
+    arrow:
+      parent: root
+      styles:
+        backgroundColor:
+          $token: ks.color.fg.alpha.4
+          $type: color
+        textColor:
+          $token: ks.color.fg.inverted
+          $type: color
+    bullet:
+      parent: root
+    components:
+      parent: root
+      children:
+        $binding: "#/props/components"
+  layout:
+    - root: [arrow, bullet, components]

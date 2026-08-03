@@ -1,0 +1,570 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [],
+        "element": "span",
+        "namedBy": "content-match",
+        "path": "root/label",
+        "presence": "always",
+        "role": "text"
+      }
+    ],
+    "classes": [
+      "c-button",
+      "dsa-button"
+    ],
+    "element": "button",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "control",
+    "tokens": [
+      "--dsa-button--border-radius",
+      "--dsa-button--border-width",
+      "--dsa-button--font-weight",
+      "--dsa-button--padding",
+      "--dsa-button--text-transform",
+      "--dsa-button_large--font",
+      "--dsa-button_medium--font",
+      "--dsa-button_primary--background-color",
+      "--dsa-button_primary--background-color_active",
+      "--dsa-button_primary--background-color_hover",
+      "--dsa-button_primary--color",
+      "--dsa-button_primary--color_active",
+      "--dsa-button_primary--color_hover",
+      "--dsa-button_secondary--background-color",
+      "--dsa-button_secondary--background-color_active",
+      "--dsa-button_secondary--background-color_hover",
+      "--dsa-button_secondary--color",
+      "--dsa-button_secondary--color_active",
+      "--dsa-button_secondary--color_hover",
+      "--dsa-button_small--font",
+      "--dsa-button_terciary--background-color_active",
+      "--dsa-button_terciary--background-color_hover",
+      "--dsa-button_terciary--border-color",
+      "--dsa-button_terciary--border-color_active",
+      "--dsa-button_terciary--border-color_hover",
+      "--dsa-button_terciary--color",
+      "--dsa-button_terciary--color_active",
+      "--dsa-button_terciary--color_hover"
+    ]
+  },
+  "api": {
+    "props": {
+      "disabled": {
+        "default": false,
+        "role": "state",
+        "type": "boolean"
+      },
+      "icon": {
+        "format": "icon",
+        "role": "content",
+        "type": "string"
+      },
+      "label": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "size": {
+        "default": "medium",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "small",
+          "medium",
+          "large"
+        ]
+      },
+      "type": {
+        "role": "behaviour",
+        "type": "enum",
+        "values": [
+          "button",
+          "submit",
+          "reset"
+        ]
+      },
+      "url": {
+        "format": "uri",
+        "role": "behaviour",
+        "type": "string"
+      },
+      "variant": {
+        "default": "secondary",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "primary",
+          "secondary",
+          "tertiary"
+        ]
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "schema": "./button.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "secondary",
+      "prop": "variant",
+      "values": [
+        {
+          "api": "primary",
+          "class": "c-button--solid",
+          "tokenSegment": "_primary"
+        },
+        {
+          "api": "secondary",
+          "class": "c-button--clear",
+          "tokenSegment": "_secondary"
+        },
+        {
+          "api": "tertiary",
+          "class": "c-button--outline",
+          "issues": [
+            "token-vocabulary-mismatch"
+          ],
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "medium",
+      "prop": "size",
+      "values": [
+        {
+          "api": "small",
+          "class": null,
+          "proven": false,
+          "tokenSegment": "_small"
+        },
+        {
+          "api": "medium",
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": "_medium"
+        },
+        {
+          "api": "large",
+          "class": null,
+          "proven": false,
+          "tokenSegment": "_large"
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "disabled",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "attribute",
+      "parts": [
+        "root"
+      ],
+      "prop": "disabled"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "icon",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [
+        "root/label"
+      ],
+      "prop": "label"
+    },
+    {
+      "mechanism": "token-swap",
+      "parts": [
+        "root"
+      ],
+      "prop": "size",
+      "tokens": [
+        "--dsa-button_{size}--font"
+      ]
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "type"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "url"
+    },
+    {
+      "affects": [
+        "backgroundColor",
+        "borderTopColor",
+        "borderTopStyle",
+        "borderTopWidth",
+        "color",
+        "height",
+        "width"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root"
+      ],
+      "prop": "variant",
+      "tokens": [
+        "--dsa-button_{variant}--background-color",
+        "--dsa-button_{variant}--background-color_active",
+        "--dsa-button_{variant}--background-color_hover",
+        "--dsa-button_{variant}--color",
+        "--dsa-button_{variant}--color_active",
+        "--dsa-button_{variant}--color_hover"
+      ]
+    }
+  ],
+  "composition": {
+    "slots": []
+  },
+  "coverage": {
+    "axes": {
+      "disabled": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "size": {
+        "missing": [
+          "small",
+          "large"
+        ],
+        "proven": 1,
+        "total": 3
+      },
+      "variant": {
+        "missing": [],
+        "proven": 3,
+        "total": 3
+      }
+    },
+    "combinations": {
+      "possible": 18,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 2,
+      "total": 2
+    },
+    "score": 0.75,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "disabled": false,
+      "size": "medium",
+      "variant": "secondary"
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/components-button--secondary-button.png",
+      "story": "components-button--secondary-button"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 54,
+          "width": 222
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "inline-flex",
+          "justifyContent": "center"
+        },
+        "styles": {
+          "backgroundColor": {
+            "computed": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)",
+            "resolves": "--ks-background-color-interface-interactive",
+            "token": "--dsa-button_secondary--background-color"
+          },
+          "borderRadius": {
+            "computed": "7.92892px",
+            "resolves": "--ks-border-radius-control",
+            "token": "--dsa-button--border-radius"
+          },
+          "color": {
+            "computed": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+            "resolves": "--ks-text-color-default",
+            "token": "--dsa-button_secondary--color"
+          },
+          "font": {
+            "computed": "600 18.0319px 27.0478px Montserrat",
+            "resolves": "--ks-font-interface-m",
+            "token": "--dsa-button_medium--font"
+          },
+          "fontWeight": {
+            "computed": "600",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-button--font-weight"
+          },
+          "padding": {
+            "computed": "13.5239px 27.0478px 13.5239px 27.0478px",
+            "resolves": null,
+            "token": "--dsa-button--padding"
+          }
+        }
+      },
+      "root/label": {
+        "box": {
+          "height": 27,
+          "width": 168
+        }
+      }
+    }
+  },
+  "description": "Component used for user interaction",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:dc1017f3bfa05c03",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:399f492e5bb8cb68"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "id": "button",
+  "issues": [],
+  "title": "Button",
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-button--primary-button.png",
+        "story": "components-button--primary-button"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 54,
+            "width": 199
+          },
+          "classes": {
+            "add": [
+              "c-button--solid"
+            ],
+            "remove": [
+              "c-button--clear"
+            ]
+          },
+          "styles": {
+            "backgroundColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)",
+              "to": "rgb(48, 101, 192)"
+            },
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "width": {
+              "from": "222.094px",
+              "to": "199.094px"
+            }
+          }
+        },
+        "root/label": {
+          "box": {
+            "height": 27,
+            "width": 145
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "width": {
+              "from": "168px",
+              "to": "145px"
+            }
+          }
+        }
+      },
+      "when": {
+        "variant": "primary"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-button--primary-disabled-button.png",
+        "story": "components-button--primary-disabled-button"
+      },
+      "parts": {
+        "root": {
+          "attrs": {
+            "disabled": {
+              "from": null,
+              "to": ""
+            }
+          },
+          "box": {
+            "height": 54,
+            "width": 205
+          },
+          "classes": {
+            "add": [
+              "c-button--solid"
+            ],
+            "remove": [
+              "c-button--clear"
+            ]
+          },
+          "styles": {
+            "backgroundColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)",
+              "to": "rgb(48, 101, 192)"
+            },
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "opacity": {
+              "from": "1",
+              "to": "0.5"
+            },
+            "pointerEvents": {
+              "from": "auto",
+              "to": "none"
+            },
+            "width": {
+              "from": "222.094px",
+              "to": "205.094px"
+            }
+          }
+        },
+        "root/label": {
+          "box": {
+            "height": 27,
+            "width": 151
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(255, 255, 255)"
+            },
+            "pointerEvents": {
+              "from": "auto",
+              "to": "none"
+            },
+            "width": {
+              "from": "168px",
+              "to": "151px"
+            }
+          }
+        }
+      },
+      "when": {
+        "disabled": true,
+        "variant": "primary"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-button--tertiary-button.png",
+        "story": "components-button--tertiary-button"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 56,
+            "width": 198
+          },
+          "classes": {
+            "add": [
+              "c-button--outline"
+            ],
+            "remove": [
+              "c-button--clear"
+            ]
+          },
+          "styles": {
+            "backgroundColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)",
+              "to": "rgba(0, 0, 0, 0)"
+            },
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.27)"
+            },
+            "borderTopStyle": {
+              "from": "none",
+              "to": "solid"
+            },
+            "borderTopWidth": {
+              "from": "0px",
+              "to": "1px"
+            },
+            "height": {
+              "from": "54.0781px",
+              "to": "56.0781px"
+            },
+            "width": {
+              "from": "222.094px",
+              "to": "198.094px"
+            }
+          }
+        },
+        "root/label": {
+          "box": {
+            "height": 27,
+            "width": 142
+          },
+          "styles": {
+            "width": {
+              "from": "168px",
+              "to": "142px"
+            }
+          }
+        }
+      },
+      "when": {
+        "variant": "tertiary"
+      }
+    }
+  ]
+}

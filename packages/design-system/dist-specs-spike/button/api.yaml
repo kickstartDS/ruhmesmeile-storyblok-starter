@@ -1,0 +1,97 @@
+title: Button
+anatomy:
+  root:
+    type: container
+    detectedIn: .dsa-button
+props:
+  label:
+    type: string
+    examples: [Book a meeting]
+    $extensions:
+      com.kickstartds:
+        title: Label
+        description: Text content to display inside the button
+        required: true
+  url:
+    type: string
+    examples: []
+    $extensions:
+      com.kickstartds:
+        title: URL
+        description: The URL to link to when the button is clicked
+        format: uri
+  variant:
+    type: string
+    enum: [primary, secondary, tertiary]
+    default: secondary
+    $extensions:
+      com.kickstartds:
+        title: Variant
+        description: Variant of button to be used
+  icon:
+    type: string
+    examples: []
+    $extensions:
+      com.kickstartds:
+        title: Icon
+        description: Choose an icon
+        format: icon
+  size:
+    type: string
+    enum: [small, medium, large]
+    default: medium
+    $extensions:
+      com.kickstartds:
+        title: Size
+        description: Size of button to use
+  disabled:
+    type: boolean
+    default: false
+    $extensions:
+      com.kickstartds:
+        title: Disabled?
+        description: Whether the button should be disabled
+  type:
+    type: string
+    enum: [button, submit, reset]
+    default: button
+    $extensions:
+      com.kickstartds:
+        title: Button Type
+default:
+  configuration:
+    variant: secondary
+    size: medium
+    disabled: false
+    type: button
+  elements:
+    root:
+      parent: null
+      styles:
+        strokeWeight:
+          $token: ks.border.width.default
+          $type: dimension
+        cornerRadius:
+          $token: ks.border.radius.control
+          $type: dimension
+        textColor:
+          $token: ks.text.color.default
+          $type: color
+        backgroundColor:
+          $token: ks.background.color.interface.interactive
+          $type: color
+        typography:
+          $token: ks.font.interface.l
+          $type: typography
+  layout: [root]
+variants:
+  - configuration:
+      size: large
+  - configuration:
+      size: medium
+  - configuration:
+      variant: primary
+  - configuration:
+      variant: secondary
+  - configuration:
+      size: small
