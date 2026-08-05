@@ -2,6 +2,11 @@
  * The `brief` projection — a lossy, token-budgeted Markdown view generated
  * from the contract. Never authored, never edited; it has no independent
  * existence and therefore cannot drift.
+ *
+ * The optional `narrative` sidecar (§5.12) is the one model-generated input.
+ * It is merged in at render time and always marked as prose, never presented
+ * as an observation — so a brief with no narrative is still a complete brief,
+ * and a brief with one never lets generated prose masquerade as derived fact.
  */
 
 const flat = (node, out = []) => {
@@ -12,14 +17,18 @@ const flat = (node, out = []) => {
 
 const label = (v) => (typeof v === "string" ? v : JSON.stringify(v));
 
-export function buildBrief(contract) {
+export function buildBrief(contract, narrative = null) {
   const L = [];
   const parts = flat(contract.anatomy);
 
   L.push(`## ${contract.title}`);
   const rootClasses = contract.anatomy.classes.map((c) => `.${c}`).join("");
-  L.push(`\`<${contract.anatomy.element}>\`${rootClasses ? ` · \`${rootClasses}\`` : ""}`);
+  L.push(
+    `\`<${contract.anatomy.element}>\`${rootClasses ? ` · \`${rootClasses}\`` : ""}`,
+  );
   if (contract.description) L.push(`\n${contract.description}`);
+  if (narrative?.default?.description)
+    L.push(`\n_${narrative.default.description}_`);
 
   // anatomy, indented
   L.push(`\n**Anatomy**`);
@@ -29,7 +38,9 @@ export function buildBrief(contract) {
     const bits = [`\`<${n.element}>\``, n.role];
     if (n.presence === "repeated") bits.push("repeated");
     if (n.presence === "conditional")
-      bits.push(n.gate ? `only when \`${n.gate.prop}\` ${n.gate.when}` : "conditional");
+      bits.push(
+        n.gate ? `only when \`${n.gate.prop}\` ${n.gate.when}` : "conditional",
+      );
     L.push(`${pad}- **${name}** — ${bits.join(" · ")}`);
     (n.children || []).forEach((c) => line(c, depth + 1));
   };
@@ -48,10 +59,34 @@ export function buildBrief(contract) {
             .map((v) => `${label(v.api)}${v.api === axis.default ? "*" : ""}`)
             .join(" · ")
         : contract.api.props[b.prop]?.type || "";
-      const affects = (b.affects || []).join(", ") || b.parts.map((p) => p.split("/").pop()).join(", ");
-      L.push(`| ${b.prop} | ${values} | ${b.mechanism}${b.proven === false ? " *(unproven)*" : ""} | ${affects} |`);
+      const affects =
+        (b.affects || []).join(", ") ||
+        b.parts.map((p) => p.split("/").pop()).join(", ");
+      L.push(
+        `| ${b.prop} | ${values} | ${b.mechanism}${b.proven === false ? " *(unproven)*" : ""} | ${affects} |`,
+      );
     }
     L.push(`\n<small>\\* = default</small>`);
+  }
+
+  // variants — only worth spelling out when there is prose to attach, since the
+  // raw deltas are already covered by the visual-props table
+  if (narrative?.variants) {
+    const key = (v) => v.evidence?.story;
+    const described = (contract.variants || []).filter(
+      (v) => narrative.variants[key(v)]?.difference,
+    );
+    if (described.length) {
+      L.push(`\n**Variants**`);
+      for (const v of described) {
+        const when = Object.entries(v.when || {})
+          .map(([k, val]) => `\`${k}: ${label(val)}\``)
+          .join(", ");
+        L.push(
+          `- ${when || key(v)} — _${narrative.variants[key(v)].difference}_`,
+        );
+      }
+    }
   }
 
   // slots
@@ -73,19 +108,29 @@ export function buildBrief(contract) {
   // tokens, templated
   const tokenLines = contract.bindings.filter((b) => b.tokens?.length);
   const rootTokens = (contract.anatomy.tokens || []).filter(
-    (t) => !tokenLines.some((b) => b.tokens.some((x) => x.replace(/_\{\w+\}/, "") === t.replace(/_[a-z]+/, "")))
+    (t) =>
+      !tokenLines.some((b) =>
+        b.tokens.some(
+          (x) => x.replace(/_\{\w+\}/, "") === t.replace(/_[a-z]+/, ""),
+        ),
+      ),
   );
   const others = parts
     .filter((p) => p.path !== "root" && p.tokens?.length)
-    .map((p) => `- \`${p.path}\`: ${p.tokens.map((t) => `\`${t}\``).join(", ")}`);
+    .map(
+      (p) => `- \`${p.path}\`: ${p.tokens.map((t) => `\`${t}\``).join(", ")}`,
+    );
   if (tokenLines.length || rootTokens.length || others.length) {
     L.push(`\n**Tokens**`);
     for (const b of tokenLines)
       L.push(`- \`${b.prop}\`: ${b.tokens.map((t) => `\`${t}\``).join(", ")}`);
     if (rootTokens.length)
       L.push(
-        `- \`root\`: ${rootTokens.slice(0, 8).map((t) => `\`${t}\``).join(", ")}` +
-          (rootTokens.length > 8 ? ` _(+${rootTokens.length - 8} more)_` : "")
+        `- \`root\`: ${rootTokens
+          .slice(0, 8)
+          .map((t) => `\`${t}\``)
+          .join(", ")}` +
+          (rootTokens.length > 8 ? ` _(+${rootTokens.length - 8} more)_` : ""),
       );
     others.slice(0, 8).forEach((o) => L.push(o));
   }
@@ -97,13 +142,13 @@ export function buildBrief(contract) {
     .map(([k, v]) => `\`${k}: ${v.missing.map(label).join(", ")}\``);
   L.push(
     `\n**Coverage** ${cov.score ?? "n/a"} — ${cov.combinations.proven}/${cov.combinations.possible} configurations proven` +
-      (missing.length ? `; no story for ${missing.join(", ")}` : "")
+      (missing.length ? `; no story for ${missing.join(", ")}` : ""),
   );
   for (const axis of contract.axes) {
     for (const v of axis.values) {
       if (v.issues?.includes("token-vocabulary-mismatch"))
         L.push(
-          `> ⚠ \`${axis.prop}: ${label(v.api)}\` renders \`.${v.class}\` but has no matching token segment.`
+          `> ⚠ \`${axis.prop}: ${label(v.api)}\` renders \`.${v.class}\` but has no matching token segment.`,
         );
     }
   }

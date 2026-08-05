@@ -42,13 +42,16 @@ function slotBoundary(node, componentId) {
 
 /** Does this subtree contain any token defined by the component under study? */
 const definesOwnTokens = (n) =>
-  (n.definedTokens?.length ?? 0) > 0 || (n.children || []).some(definesOwnTokens);
+  (n.definedTokens?.length ?? 0) > 0 ||
+  (n.children || []).some(definesOwnTokens);
 
 /** Does a descendant carry a BEM element class matching `name`? */
 function descendantClaims(node, name) {
   const re = new RegExp(`__${name}(?:--|$)`);
   const scan = (n) =>
-    (n.children || []).some((c) => c.classes.some((cl) => re.test(cl)) || scan(c));
+    (n.children || []).some(
+      (c) => c.classes.some((cl) => re.test(cl)) || scan(c),
+    );
   return scan(node);
 }
 
@@ -58,7 +61,9 @@ const OPAQUE_TAGS = new Set(["svg", "picture", "video"]);
 function namePart(node, componentId, index, args) {
   // (a) BEM element segment — prefer the design-system's own `dsa-` classes
   const bem = [...node.classes]
-    .sort((a, b) => (b.startsWith("dsa-") ? 1 : 0) - (a.startsWith("dsa-") ? 1 : 0))
+    .sort(
+      (a, b) => (b.startsWith("dsa-") ? 1 : 0) - (a.startsWith("dsa-") ? 1 : 0),
+    )
     .map((c) => c.match(/__([a-z0-9-]+)(?:--|$)/))
     .find(Boolean);
   if (bem) return { name: bem[1], via: "bem-class" };
@@ -84,7 +89,8 @@ function namePart(node, componentId, index, args) {
   }
 
   // (d) semantic tag
-  if (SEMANTIC_TAG[node.tag]) return { name: SEMANTIC_TAG[node.tag], via: "tag" };
+  if (SEMANTIC_TAG[node.tag])
+    return { name: SEMANTIC_TAG[node.tag], via: "tag" };
 
   // (e) positional fallback
   return { name: `child-${index + 1}`, via: "position" };
@@ -93,7 +99,9 @@ function namePart(node, componentId, index, args) {
 function roleOf(node) {
   if (SEMANTIC_TAG[node.tag] === "icon") return "glyph";
   if (["img", "picture", "video"].includes(node.tag)) return "media";
-  if (["button", "a", "input", "select", "textarea", "summary"].includes(node.tag))
+  if (
+    ["button", "a", "input", "select", "textarea", "summary"].includes(node.tag)
+  )
     return "control";
   if (node.children.length === 0 && node.text) return "text";
   return "container";
@@ -102,7 +110,14 @@ function roleOf(node) {
 /* -------------------------------------------------------------- tree union */
 
 /** Flatten an observed tree into `path → node` plus sibling multiplicity. */
-function indexTree(node, componentId, args, path = "root", out = new Map(), repeated = new Set()) {
+function indexTree(
+  node,
+  componentId,
+  args,
+  path = "root",
+  out = new Map(),
+  repeated = new Set(),
+) {
   out.set(path, node);
   const counts = new Map();
   const named = node.children.map((c, i) => {
@@ -142,8 +157,21 @@ function indexTree(node, componentId, args, path = "root", out = new Map(), repe
 /* ------------------------------------------------------- style bookkeeping */
 
 const UNINTERESTING = new Set([
-  "none", "normal", "auto", "0px", "static", "visible", "rgba(0, 0, 0, 0)",
-  "1", "0s", "start", "block", "inline", "row", "1e-05s", "",
+  "none",
+  "normal",
+  "auto",
+  "0px",
+  "static",
+  "visible",
+  "rgba(0, 0, 0, 0)",
+  "1",
+  "0s",
+  "start",
+  "block",
+  "inline",
+  "row",
+  "1e-05s",
+  "",
 ]);
 
 /** Which observed style keys a token's property suffix corresponds to. */
@@ -182,7 +210,9 @@ const TOKEN_PROPERTY_STYLES = {
 const shortFont = (v) => (v || "").split(",")[0].replace(/"/g, "").trim();
 
 function styleValue(styles, keys) {
-  const parts = keys.map((k) => (k === "fontFamily" ? shortFont(styles[k]) : styles[k]));
+  const parts = keys.map((k) =>
+    k === "fontFamily" ? shortFont(styles[k]) : styles[k],
+  );
   if (keys.length === 4 && new Set(parts).size === 1) return parts[0];
   return parts.filter(Boolean).join(" ");
 }
@@ -196,9 +226,11 @@ function buildStyles(node, staticData, args = {}) {
   // the ones matching the active configuration are the ones actually in play.
   const activeSegments = new Set();
   for (const axis of staticData.axes) {
-    const value = args[axis.prop] ?? staticData.defaults[axis.prop] ?? axis.default;
+    const value =
+      args[axis.prop] ?? staticData.defaults[axis.prop] ?? axis.default;
     const hit = axis.values.find((v) => v.api === value);
-    if (hit?.tokenSegment) activeSegments.add(hit.tokenSegment.replace(/^_/, ""));
+    if (hit?.tokenSegment)
+      activeSegments.add(hit.tokenSegment.replace(/^_/, ""));
   }
 
   const styles = {};
@@ -210,17 +242,24 @@ function buildStyles(node, staticData, args = {}) {
     const keys = TOKEN_PROPERTY_STYLES[parsed.property];
     if (!keys) continue;
 
-    const qualifiers = [parsed.rootVariant, ...parsed.elements.map((e) => e.variant)].filter(
-      Boolean
-    );
+    const qualifiers = [
+      parsed.rootVariant,
+      ...parsed.elements.map((e) => e.variant),
+    ].filter(Boolean);
     // Reject tokens qualified for a variant this configuration is not in.
     if (qualifiers.some((q) => !activeSegments.has(q))) continue;
 
     const computed = styleValue(node.styles, keys);
     if (!computed || UNINTERESTING.has(computed)) continue;
-    const name = parsed.property.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    const name = parsed.property.replace(/-([a-z])/g, (_, c) =>
+      c.toUpperCase(),
+    );
     // Prefer the most specific applicable token.
-    if (specificity[name] !== undefined && specificity[name] >= qualifiers.length) continue;
+    if (
+      specificity[name] !== undefined &&
+      specificity[name] >= qualifiers.length
+    )
+      continue;
     specificity[name] = qualifiers.length;
     styles[name] = {
       token,
@@ -231,7 +270,13 @@ function buildStyles(node, staticData, args = {}) {
   return styles;
 }
 
-const LAYOUT_KEYS = ["display", "flexDirection", "justifyContent", "alignItems", "gridTemplateColumns"];
+const LAYOUT_KEYS = [
+  "display",
+  "flexDirection",
+  "justifyContent",
+  "alignItems",
+  "gridTemplateColumns",
+];
 
 function buildLayout(node) {
   const layout = {};
@@ -242,24 +287,6 @@ function buildLayout(node) {
   const gap = node.styles.rowGap;
   if (gap && !UNINTERESTING.has(gap)) layout.gap = gap;
   return Object.keys(layout).length ? layout : undefined;
-}
-
-/* -------------------------------------------------------------- default id */
-
-function pickDefaultStory(staticData) {
-  const axisProps = staticData.axes.map((a) => a.prop);
-  const scored = staticData.stories.map((s) => {
-    let deviation = 0;
-    for (const a of staticData.axes) {
-      const want = staticData.defaults[a.prop] ?? a.default;
-      if (want === undefined) continue;
-      const got = s.args[a.prop];
-      if (got !== undefined && got !== want) deviation += 1;
-    }
-    return { story: s, deviation, axisProps };
-  });
-  scored.sort((a, b) => a.deviation - b.deviation || a.story.id.localeCompare(b.story.id));
-  return scored[0]?.story;
 }
 
 /* ---------------------------------------------------------------- diffing */
@@ -277,17 +304,27 @@ function diffPart(base, other) {
   for (const k of Object.keys(base.styles)) {
     const a = base.styles[k];
     const b = other.styles[k];
-    if (a !== b) styles[k] = { from: k === "fontFamily" ? shortFont(a) : a, to: k === "fontFamily" ? shortFont(b) : b };
+    if (a !== b)
+      styles[k] = {
+        from: k === "fontFamily" ? shortFont(a) : a,
+        to: k === "fontFamily" ? shortFont(b) : b,
+      };
   }
   if (Object.keys(styles).length) delta.styles = styles;
   const attrs = {};
-  for (const k of new Set([...Object.keys(base.attrs), ...Object.keys(other.attrs)])) {
+  for (const k of new Set([
+    ...Object.keys(base.attrs),
+    ...Object.keys(other.attrs),
+  ])) {
     if (base.attrs[k] !== other.attrs[k])
       attrs[k] = { from: base.attrs[k] ?? null, to: other.attrs[k] ?? null };
   }
   if (Object.keys(attrs).length) delta.attrs = attrs;
   if (base.tag !== other.tag) delta.element = { from: base.tag, to: other.tag };
-  if (base.box.width !== other.box.width || base.box.height !== other.box.height)
+  if (
+    base.box.width !== other.box.width ||
+    base.box.height !== other.box.height
+  )
     delta.box = other.box;
   return Object.keys(delta).length ? delta : null;
 }
@@ -312,13 +349,20 @@ function classifyMechanism(prop, staticData, evidence) {
   const def = staticData.api.props[prop];
   if (!def) return null;
   const e = evidence[prop] || {};
-  if (e.presence?.size) return { mechanism: "presence", parts: [...e.presence].sort() };
-  if (e.element?.size) return { mechanism: "element-swap", parts: [...e.element].sort() };
-  if (e.classes?.size) return { mechanism: "class-toggle", parts: [...e.classes].sort() };
-  if (e.tokens?.size) return { mechanism: "token-swap", parts: [...e.tokens].sort() };
-  if (e.attrs?.size) return { mechanism: "attribute", parts: [...e.attrs].sort() };
-  if (e.layout?.size) return { mechanism: "layout", parts: [...e.layout].sort() };
-  if (e.styles?.size) return { mechanism: "token-swap", parts: [...e.styles].sort() };
+  if (e.presence?.size)
+    return { mechanism: "presence", parts: [...e.presence].sort() };
+  if (e.element?.size)
+    return { mechanism: "element-swap", parts: [...e.element].sort() };
+  if (e.classes?.size)
+    return { mechanism: "class-toggle", parts: [...e.classes].sort() };
+  if (e.tokens?.size)
+    return { mechanism: "token-swap", parts: [...e.tokens].sort() };
+  if (e.attrs?.size)
+    return { mechanism: "attribute", parts: [...e.attrs].sort() };
+  if (e.layout?.size)
+    return { mechanism: "layout", parts: [...e.layout].sort() };
+  if (e.styles?.size)
+    return { mechanism: "token-swap", parts: [...e.styles].sort() };
   if (def.role === "content") return { mechanism: "content", parts: [] };
   return { mechanism: "none", parts: [] };
 }
@@ -327,12 +371,27 @@ function classifyMechanism(prop, staticData, evidence) {
 
 export function reconcile(staticData, observations, opts = {}) {
   const id = staticData.id;
-  const ok = staticData.stories.filter((s) => observations[s.id]?.ok);
+  const stories = staticData.stories.filter((s) => observations[s.id]?.ok);
   const failed = staticData.stories
     .filter((s) => !observations[s.id]?.ok)
     .map((s) => ({ id: s.id, error: observations[s.id]?.error }));
 
-  if (!ok.length) return { error: "no successful observations", failed };
+  // The declared baseline (§5.6). It is generated from `{Name}Defaults.ts`
+  // rather than chosen from the authored stories, so every authored story is a
+  // variant and nothing here depends on guessing which story "is" the default.
+  const declared = staticData.declared || { config: {}, sources: {}, gaps: [] };
+  const baseline = staticData.defaultStory;
+  if (!baseline || !observations[baseline.id]?.ok)
+    return {
+      error: `declared default not observed (${baseline?.id ?? "no story generated"})`,
+      failed,
+    };
+
+  // The baseline participates in presence/anatomy, but never in `variants`.
+  const ok = [
+    { ...baseline, args: declared.config, name: "declared default" },
+    ...stories,
+  ];
 
   // ---- index every story's tree ------------------------------------------
   const indexed = new Map();
@@ -343,16 +402,18 @@ export function reconcile(staticData, observations, opts = {}) {
     repeated.forEach((p) => repeatedPaths.add(p));
   }
 
-  const defaultStory = pickDefaultStory({ ...staticData, stories: ok });
-  const defaultIndex = indexed.get(defaultStory.id);
-  const baseCfg = axisConfig(defaultStory.args, staticData);
+  const defaultIndex = indexed.get(baseline.id);
+  const baseCfg = axisConfig(declared.config, staticData);
 
   // ---- part presence across stories ---------------------------------------
   const allPaths = new Set();
-  for (const index of indexed.values()) for (const p of index.keys()) allPaths.add(p);
+  for (const index of indexed.values())
+    for (const p of index.keys()) allPaths.add(p);
   const presenceMap = new Map();
   for (const p of allPaths) {
-    const inStories = ok.filter((s) => indexed.get(s.id).has(p)).map((s) => s.id);
+    const inStories = ok
+      .filter((s) => indexed.get(s.id).has(p))
+      .map((s) => s.id);
     presenceMap.set(p, inStories);
   }
 
@@ -360,14 +421,21 @@ export function reconcile(staticData, observations, opts = {}) {
   function findGate(path) {
     const present = new Set(presenceMap.get(path));
     for (const [prop, def] of Object.entries(staticData.api.props)) {
-      const truthy = (v) => v !== undefined && v !== null && v !== false && v !== "" &&
+      const truthy = (v) =>
+        v !== undefined &&
+        v !== null &&
+        v !== false &&
+        v !== "" &&
         !(Array.isArray(v) && v.length === 0);
       let consistent = true;
       let discriminates = false;
       for (const s of ok) {
         const t = truthy(s.args[prop]);
         const inHere = present.has(s.id);
-        if (t !== inHere) { consistent = false; break; }
+        if (t !== inHere) {
+          consistent = false;
+          break;
+        }
         if (!t) discriminates = true;
       }
       if (consistent && discriminates)
@@ -395,8 +463,7 @@ export function reconcile(staticData, observations, opts = {}) {
 
   function buildAnatomy(path) {
     const sample =
-      defaultIndex.get(path) ||
-      indexed.get(presenceMap.get(path)[0]).get(path);
+      defaultIndex.get(path) || indexed.get(presenceMap.get(path)[0]).get(path);
     const inAll = presenceMap.get(path).length === ok.length;
     const isRepeated = repeatedPaths.has(path);
 
@@ -404,7 +471,9 @@ export function reconcile(staticData, observations, opts = {}) {
     const classSets = presenceMap
       .get(path)
       .map((sid) => new Set(indexed.get(sid).get(path).classes));
-    const invariant = [...classSets[0]].filter((c) => classSets.every((s) => s.has(c))).sort();
+    const invariant = [...classSets[0]]
+      .filter((c) => classSets.every((s) => s.has(c)))
+      .sort();
 
     const node = {
       path,
@@ -445,7 +514,7 @@ export function reconcile(staticData, observations, opts = {}) {
     const values = axis.values.map((v) => {
       const withValue = ok.filter((s) => s.args[axis.prop] === v.api);
       const withoutValue = ok.filter(
-        (s) => s.args[axis.prop] !== undefined && s.args[axis.prop] !== v.api
+        (s) => s.args[axis.prop] !== undefined && s.args[axis.prop] !== v.api,
       );
       let cls = null;
       // A class can only be attributed to a value when some story sets a
@@ -456,7 +525,9 @@ export function reconcile(staticData, observations, opts = {}) {
           .map((s) => new Set(indexed.get(s.id).get("root")?.classes || []))
           .reduce((a, b) => new Set([...a].filter((c) => b.has(c))));
         const inNone = new Set(
-          withoutValue.flatMap((s) => [...(indexed.get(s.id).get("root")?.classes || [])])
+          withoutValue.flatMap((s) => [
+            ...(indexed.get(s.id).get("root")?.classes || []),
+          ]),
         );
         const candidates = [...inAll].filter((c) => !inNone.has(c)).sort();
         cls = candidates[0] ?? null;
@@ -470,13 +541,17 @@ export function reconcile(staticData, observations, opts = {}) {
       if (issues.length) out.issues = issues;
       return out;
     });
-    return { prop: axis.prop, default: staticData.defaults[axis.prop] ?? axis.default, values };
+    return {
+      prop: axis.prop,
+      default: staticData.defaults[axis.prop] ?? axis.default,
+      values,
+    };
   });
 
   // ---- default state ------------------------------------------------------
   const defaultParts = {};
   for (const [path, node] of defaultIndex) {
-    const styles = buildStyles(node, staticData, defaultStory.args);
+    const styles = buildStyles(node, staticData, declared.config);
     const layout = buildLayout(node);
     const entry = {};
     if (Object.keys(styles).length) entry.styles = styles;
@@ -486,9 +561,16 @@ export function reconcile(staticData, observations, opts = {}) {
   }
 
   const defaultState = {
-    configuration: baseCfg,
+    configuration: Object.fromEntries(
+      Object.keys(declared.config)
+        .sort()
+        .map((k) => [
+          k,
+          { value: declared.config[k], source: declared.sources[k] },
+        ]),
+    ),
     parts: defaultParts,
-    evidence: { story: defaultStory.id, screenshot: defaultStory.screenshot },
+    evidence: { story: baseline.id, screenshot: baseline.screenshot ?? null },
   };
 
   // ---- variants + binding evidence ---------------------------------------
@@ -500,15 +582,32 @@ export function reconcile(staticData, observations, opts = {}) {
   };
 
   const variants = [];
+  // A part absent from the declared baseline has no delta to express, but its
+  // styles are still worth recording. The FIRST variant to show it carries its
+  // full state; later variants diff against that, so nothing is restated.
+  const introducedBase = new Map();
+
   for (const s of ok) {
-    if (s.id === defaultStory.id) continue;
+    if (s.id === baseline.id) continue;
     const cfg = axisConfig(s.args, staticData);
     const when = configDiff(baseCfg, cfg);
     const index = indexed.get(s.id);
     const parts = {};
+    const introducedHere = new Set();
     for (const [path, node] of index) {
-      const base = defaultIndex.get(path);
-      if (!base) continue;
+      const base = defaultIndex.get(path) || introducedBase.get(path);
+      if (!base) {
+        const styles = buildStyles(node, staticData, s.args);
+        const layout = buildLayout(node);
+        const entry = { introduced: true, classes: node.classes };
+        if (Object.keys(styles).length) entry.styles = styles;
+        if (layout) entry.layout = layout;
+        entry.box = node.box;
+        parts[path] = entry;
+        introducedBase.set(path, node);
+        introducedHere.add(path);
+        continue;
+      }
       const delta = diffPart(base, node);
       if (delta) parts[path] = delta;
     }
@@ -517,11 +616,14 @@ export function reconcile(staticData, observations, opts = {}) {
     if (changed.length === 1) {
       const prop = changed[0];
       for (const [path, d] of Object.entries(parts)) {
+        if (introducedHere.has(path)) continue; // not a delta — do not attribute
         if (d.classes) touch(prop, "classes", path);
         if (d.element) touch(prop, "element", path);
         if (d.attrs) touch(prop, "attrs", path);
         if (d.styles) {
-          const layoutish = Object.keys(d.styles).some((k) => LAYOUT_KEYS.includes(k));
+          const layoutish = Object.keys(d.styles).some((k) =>
+            LAYOUT_KEYS.includes(k),
+          );
           touch(prop, layoutish ? "layout" : "styles", path);
         }
       }
@@ -539,7 +641,10 @@ export function reconcile(staticData, observations, opts = {}) {
   for (const a of ok) {
     for (const b of ok) {
       if (a.id >= b.id) continue;
-      const diff = configDiff(axisConfig(a.args, staticData), axisConfig(b.args, staticData));
+      const diff = configDiff(
+        axisConfig(a.args, staticData),
+        axisConfig(b.args, staticData),
+      );
       const keys = Object.keys(diff);
       if (keys.length !== 1) continue;
       const prop = keys[0];
@@ -554,7 +659,9 @@ export function reconcile(staticData, observations, opts = {}) {
         if (d.element) touch(prop, "element", path);
         if (d.attrs) touch(prop, "attrs", path);
         if (d.styles) {
-          const layoutish = Object.keys(d.styles).some((k) => LAYOUT_KEYS.includes(k));
+          const layoutish = Object.keys(d.styles).some((k) =>
+            LAYOUT_KEYS.includes(k),
+          );
           touch(prop, layoutish ? "layout" : "styles", path);
         }
       }
@@ -572,7 +679,13 @@ export function reconcile(staticData, observations, opts = {}) {
     for (const v of axis.values) {
       if (!v.tokenSegment) continue;
       for (const [path, tokens] of tokensByPath) {
-        if ([...tokens].some((t) => t.includes(v.tokenSegment + "-") || t.includes(v.tokenSegment + "_")))
+        if (
+          [...tokens].some(
+            (t) =>
+              t.includes(v.tokenSegment + "-") ||
+              t.includes(v.tokenSegment + "_"),
+          )
+        )
           touch(axis.prop, "tokens", path);
       }
     }
@@ -613,8 +726,11 @@ export function reconcile(staticData, observations, opts = {}) {
   // ---- composition --------------------------------------------------------
   const slots = staticData.slots.map((slot) => {
     const counts = new Set(
-      ok.map((s) => (Array.isArray(s.args[slot.prop]) ? s.args[slot.prop].length : null))
-        .filter((n) => n !== null)
+      ok
+        .map((s) =>
+          Array.isArray(s.args[slot.prop]) ? s.args[slot.prop].length : null,
+        )
+        .filter((n) => n !== null),
     );
     const gatePath = [...allPaths].find((p) => {
       const g = findGate(p);
@@ -632,7 +748,9 @@ export function reconcile(staticData, observations, opts = {}) {
   let proven = 0;
   let total = 0;
   for (const axis of axes) {
-    const missing = axis.values.filter((v) => v.proven === false).map((v) => v.api);
+    const missing = axis.values
+      .filter((v) => v.proven === false)
+      .map((v) => v.api);
     axisCoverage[axis.prop] = {
       total: axis.values.length,
       proven: axis.values.length - missing.length,
@@ -647,14 +765,30 @@ export function reconcile(staticData, observations, opts = {}) {
     parts: {
       total: partsList.length,
       inDefault: partsList.filter((p) => defaultIndex.has(p)).length,
-      conditional: partsList.filter((p) => presenceMap.get(p).length < ok.length).length,
+      conditional: partsList.filter(
+        (p) => presenceMap.get(p).length < ok.length,
+      ).length,
     },
-    stories: { observed: ok.length, failed: failed.length },
+    // How much of the declared baseline is designed vs. synthesised (§5.6.1).
+    // A baseline propped up by placeholders or left with empty slots is a
+    // weaker foundation for every delta computed against it, so we say so.
+    baseline: {
+      values: Object.keys(declared.config).length,
+      fromExample: Object.values(declared.sources).filter(
+        (s) => s === "example",
+      ).length,
+      placeholders: declared.gaps.filter((g) => g.kind === "placeholder")
+        .length,
+      emptySlots: declared.gaps
+        .filter((g) => g.kind === "empty-slot")
+        .map((g) => g.prop),
+    },
+    stories: { observed: stories.length, failed: failed.length },
     combinations: {
       proven: variants.length + 1,
       possible: Math.max(
         variants.length + 1,
-        axes.reduce((n, a) => n * a.values.length, 1)
+        axes.reduce((n, a) => n * a.values.length, 1),
       ),
     },
     score: total ? Number((proven / total).toFixed(2)) : null,

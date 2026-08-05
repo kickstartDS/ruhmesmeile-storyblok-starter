@@ -2,17 +2,25 @@
   "components": {
     "blog-aside": {
       "axes": [],
-      "contractBytes": 5477,
+      "contractBytes": 11420,
       "coverage": {
         "axes": {},
+        "baseline": {
+          "emptySlots": [
+            "socialSharing"
+          ],
+          "fromExample": 2,
+          "placeholders": 0,
+          "values": 3
+        },
         "combinations": {
-          "possible": 1,
-          "proven": 1
+          "possible": 2,
+          "proven": 2
         },
         "parts": {
-          "conditional": 0,
-          "inDefault": 11,
-          "total": 11
+          "conditional": 18,
+          "inDefault": 9,
+          "total": 19
         },
         "score": null,
         "stories": {
@@ -23,26 +31,26 @@
       "failedStories": [],
       "mechanisms": {
         "content": 4,
-        "none": 1
+        "presence": 1
       },
       "naming": {
-        "bem-class": 4,
-        "position": 1,
+        "bem-class": 7,
+        "position": 2,
         "root": 1,
-        "slot-boundary": 2,
-        "tag": 2,
-        "token-grammar": 1
+        "slot-boundary": 4,
+        "tag": 3,
+        "token-grammar": 2
       },
       "observed": 1,
       "parts": {
-        "conditional": 0,
-        "inDefault": 11,
-        "total": 11
+        "conditional": 18,
+        "inDefault": 9,
+        "total": 19
       },
       "props": 5,
       "stories": 1,
       "tokens": 14,
-      "variants": 0
+      "variants": 1
     },
     "button": {
       "axes": [
@@ -67,7 +75,7 @@
           "total": 2
         }
       ],
-      "contractBytes": 8183,
+      "contractBytes": 8718,
       "coverage": {
         "axes": {
           "disabled": {
@@ -89,9 +97,15 @@
             "total": 3
           }
         },
+        "baseline": {
+          "emptySlots": [],
+          "fromExample": 1,
+          "placeholders": 0,
+          "values": 4
+        },
         "combinations": {
           "possible": 18,
-          "proven": 4
+          "proven": 5
         },
         "parts": {
           "conditional": 0,
@@ -125,16 +139,22 @@
       "props": 7,
       "stories": 4,
       "tokens": 28,
-      "variants": 3
+      "variants": 4
     },
     "faq": {
       "axes": [],
-      "contractBytes": 2577,
+      "contractBytes": 3142,
       "coverage": {
         "axes": {},
+        "baseline": {
+          "emptySlots": [],
+          "fromExample": 1,
+          "placeholders": 0,
+          "values": 1
+        },
         "combinations": {
-          "possible": 2,
-          "proven": 2
+          "possible": 3,
+          "proven": 3
         },
         "parts": {
           "conditional": 0,
@@ -164,7 +184,7 @@
       "props": 1,
       "stories": 2,
       "tokens": 10,
-      "variants": 1
+      "variants": 2
     },
     "section": {
       "axes": [
@@ -211,7 +231,7 @@
           "total": 2
         }
       ],
-      "contractBytes": 14670,
+      "contractBytes": 15370,
       "coverage": {
         "axes": {
           "aiDraft": {
@@ -262,13 +282,22 @@
             "total": 5
           }
         },
+        "baseline": {
+          "emptySlots": [
+            "components",
+            "buttons"
+          ],
+          "fromExample": 0,
+          "placeholders": 0,
+          "values": 14
+        },
         "combinations": {
           "possible": 720,
-          "proven": 10
+          "proven": 11
         },
         "parts": {
-          "conditional": 4,
-          "inDefault": 4,
+          "conditional": 7,
+          "inDefault": 1,
           "total": 8
         },
         "score": 0.63,
@@ -290,14 +319,14 @@
       },
       "observed": 10,
       "parts": {
-        "conditional": 4,
-        "inDefault": 4,
+        "conditional": 7,
+        "inDefault": 1,
         "total": 8
       },
       "props": 15,
       "stories": 10,
       "tokens": 37,
-      "variants": 9
+      "variants": 10
     },
     "slider": {
       "axes": [
@@ -332,7 +361,7 @@
           "total": 2
         }
       ],
-      "contractBytes": 8660,
+      "contractBytes": 13950,
       "coverage": {
         "axes": {
           "arrows": {
@@ -369,14 +398,22 @@
             "total": 2
           }
         },
+        "baseline": {
+          "emptySlots": [
+            "components"
+          ],
+          "fromExample": 0,
+          "placeholders": 0,
+          "values": 6
+        },
         "combinations": {
           "possible": 32,
-          "proven": 3
+          "proven": 5
         },
         "parts": {
-          "conditional": 0,
-          "inDefault": 12,
-          "total": 12
+          "conditional": 14,
+          "inDefault": 4,
+          "total": 15
         },
         "score": 0.6,
         "stories": {
@@ -388,25 +425,27 @@
       "mechanisms": {
         "class-toggle": 1,
         "content": 1,
-        "none": 7
+        "none": 6,
+        "presence": 1
       },
       "naming": {
-        "bem-class": 8,
+        "bem-class": 10,
         "position": 1,
         "root": 1,
         "slot-boundary": 1,
-        "tag": 1
+        "tag": 1,
+        "token-grammar": 1
       },
       "observed": 4,
       "parts": {
-        "conditional": 0,
-        "inDefault": 12,
-        "total": 12
+        "conditional": 14,
+        "inDefault": 4,
+        "total": 15
       },
       "props": 9,
       "stories": 4,
       "tokens": 13,
-      "variants": 2
+      "variants": 4
     }
   },
   "format": "kickstartds/component-contract@1",

@@ -1,0 +1,17 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "generated": {
+    "model": "SAMPLE — hand-written to exercise the brief merge, not model output"
+  },
+  "default": {
+    "description": "A compact, filled pill with a bold label — the standard call to action in body copy and section footers."
+  },
+  "variants": {
+    "components-button--primary-button": {
+      "difference": "Fills with the brand accent instead of the neutral surface, pulling the eye first when several buttons sit together."
+    },
+    "components-button--tertiary-button": {
+      "difference": "Drops the fill for a thin outline, so it reads as the quieter option beside a primary."
+    }
+  }
+}

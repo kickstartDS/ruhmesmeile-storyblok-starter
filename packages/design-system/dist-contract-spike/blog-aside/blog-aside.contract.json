@@ -14,10 +14,17 @@
                   "dsa-headline--space-after-minimum"
                 ],
                 "element": "header",
+                "gate": {
+                  "prop": "socialSharing",
+                  "when": "non-empty"
+                },
                 "instanceOf": "headline",
                 "namedBy": "slot-boundary",
+                "observedIn": [
+                  "blog-blog-aside--default"
+                ],
                 "path": "root/icon/child-3/headline",
-                "presence": "always",
+                "presence": "conditional",
                 "role": "slot"
               },
               {
@@ -29,9 +36,16 @@
                           "icon"
                         ],
                         "element": "svg",
+                        "gate": {
+                          "prop": "socialSharing",
+                          "when": "non-empty"
+                        },
                         "namedBy": "tag",
+                        "observedIn": [
+                          "blog-blog-aside--default"
+                        ],
                         "path": "root/icon/child-3/share-bar/link/icon",
-                        "presence": "always",
+                        "presence": "conditional",
                         "role": "glyph"
                       }
                     ],
@@ -39,6 +53,10 @@
                       "c-post-share-bar__link"
                     ],
                     "element": "a",
+                    "gate": {
+                      "prop": "socialSharing",
+                      "when": "non-empty"
+                    },
                     "namedBy": "bem-class",
                     "observedIn": [
                       "blog-blog-aside--default"
@@ -53,17 +71,31 @@
                   "dsa-blog-aside__share-bar"
                 ],
                 "element": "div",
+                "gate": {
+                  "prop": "socialSharing",
+                  "when": "non-empty"
+                },
                 "namedBy": "bem-class",
+                "observedIn": [
+                  "blog-blog-aside--default"
+                ],
                 "path": "root/icon/child-3/share-bar",
-                "presence": "always",
+                "presence": "conditional",
                 "role": "container"
               }
             ],
             "classes": [],
             "element": "div",
+            "gate": {
+              "prop": "socialSharing",
+              "when": "non-empty"
+            },
             "namedBy": "position",
+            "observedIn": [
+              "blog-blog-aside--default"
+            ],
             "path": "root/icon/child-3",
-            "presence": "always",
+            "presence": "conditional",
             "role": "container"
           },
           {
@@ -72,10 +104,17 @@
               "l-container--contact"
             ],
             "element": "div",
+            "gate": {
+              "prop": "socialSharing",
+              "when": "non-empty"
+            },
             "instanceOf": "contact",
             "namedBy": "slot-boundary",
+            "observedIn": [
+              "blog-blog-aside--default"
+            ],
             "path": "root/icon/contact",
-            "presence": "always",
+            "presence": "conditional",
             "role": "slot"
           },
           {
@@ -87,9 +126,16 @@
                       "icon"
                     ],
                     "element": "svg",
+                    "gate": {
+                      "prop": "socialSharing",
+                      "when": "non-empty"
+                    },
                     "namedBy": "tag",
+                    "observedIn": [
+                      "blog-blog-aside--default"
+                    ],
                     "path": "root/icon/meta/item/icon",
-                    "presence": "always",
+                    "presence": "conditional",
                     "role": "glyph"
                   }
                 ],
@@ -97,6 +143,10 @@
                   "c-post-meta__item"
                 ],
                 "element": "span",
+                "gate": {
+                  "prop": "socialSharing",
+                  "when": "non-empty"
+                },
                 "namedBy": "bem-class",
                 "observedIn": [
                   "blog-blog-aside--default"
@@ -111,9 +161,154 @@
               "dsa-blog-aside__meta"
             ],
             "element": "div",
+            "gate": {
+              "prop": "socialSharing",
+              "when": "non-empty"
+            },
             "namedBy": "bem-class",
+            "observedIn": [
+              "blog-blog-aside--default"
+            ],
             "path": "root/icon/meta",
-            "presence": "always",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-blog-aside"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "socialSharing",
+          "when": "non-empty"
+        },
+        "namedBy": "token-grammar",
+        "observedIn": [
+          "blog-blog-aside--default"
+        ],
+        "path": "root/icon",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-blog-aside--gap",
+          "--dsa-blog-aside__author--gap-horizontal",
+          "--dsa-blog-aside__author--gap-vertical",
+          "--dsa-blog-aside__author__body--flex-basis",
+          "--dsa-blog-aside__author__image--flex-basis",
+          "--dsa-blog-aside__author__link--font",
+          "--dsa-blog-aside__author__subtitle--font",
+          "--dsa-blog-aside__author__title--font",
+          "--dsa-blog-aside__meta__item--color",
+          "--dsa-blog-aside__meta__item--font",
+          "--dsa-blog-aside__meta__item__icon--size",
+          "--dsa-blog-aside__share-bar__icon--size",
+          "--dsa-blog-aside__sharebar__link--color",
+          "--dsa-blog-aside__sharebar__link--color_hover"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-headline",
+                  "dsa-headline--align-left",
+                  "dsa-headline--p",
+                  "dsa-headline--space-after-minimum"
+                ],
+                "element": "header",
+                "instanceOf": "headline",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-blogaside--contract-default"
+                ],
+                "path": "root/image/child-3/headline",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "c-post-share-bar",
+                  "dsa-blog-aside__share-bar"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-blogaside--contract-default"
+                ],
+                "path": "root/image/child-3/share-bar",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [],
+            "element": "div",
+            "namedBy": "position",
+            "observedIn": [
+              "contract-defaults-blogaside--contract-default"
+            ],
+            "path": "root/image/child-3",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "l-container",
+              "l-container--contact"
+            ],
+            "element": "div",
+            "instanceOf": "contact",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "contract-defaults-blogaside--contract-default"
+            ],
+            "path": "root/image/contact",
+            "presence": "conditional",
+            "role": "slot"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "contract-defaults-blogaside--contract-default"
+                    ],
+                    "path": "root/image/meta/item/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "c-post-meta__item"
+                ],
+                "element": "span",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-blogaside--contract-default"
+                ],
+                "path": "root/image/meta/item",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-post-meta",
+              "dsa-blog-aside__meta"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-blogaside--contract-default"
+            ],
+            "path": "root/image/meta",
+            "presence": "conditional",
             "role": "container"
           }
         ],
@@ -122,8 +317,11 @@
         ],
         "element": "div",
         "namedBy": "token-grammar",
-        "path": "root/icon",
-        "presence": "always",
+        "observedIn": [
+          "contract-defaults-blogaside--contract-default"
+        ],
+        "path": "root/image",
+        "presence": "conditional",
         "role": "container",
         "tokens": [
           "--dsa-blog-aside--gap",
@@ -212,8 +410,19 @@
       "proven": false
     },
     {
-      "mechanism": "none",
-      "parts": [],
+      "mechanism": "presence",
+      "parts": [
+        "root/icon",
+        "root/icon/child-3",
+        "root/icon/child-3/headline",
+        "root/icon/child-3/share-bar",
+        "root/icon/child-3/share-bar/link",
+        "root/icon/child-3/share-bar/link/icon",
+        "root/icon/contact",
+        "root/icon/meta",
+        "root/icon/meta/item",
+        "root/icon/meta/item/icon"
+      ],
       "prop": "socialSharing"
     }
   ],
@@ -226,23 +435,32 @@
           "url"
         ],
         "observedCounts": [
+          0,
           2
         ],
-        "part": "root",
+        "part": "root/icon",
         "prop": "socialSharing"
       }
     ]
   },
   "coverage": {
     "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "socialSharing"
+      ],
+      "fromExample": 2,
+      "placeholders": 0,
+      "values": 3
+    },
     "combinations": {
-      "possible": 1,
-      "proven": 1
+      "possible": 2,
+      "proven": 2
     },
     "parts": {
-      "conditional": 0,
-      "inDefault": 11,
-      "total": 11
+      "conditional": 18,
+      "inDefault": 9,
+      "total": 19
     },
     "score": null,
     "stories": {
@@ -251,21 +469,49 @@
     }
   },
   "default": {
-    "configuration": {},
+    "configuration": {
+      "author": {
+        "source": "example",
+        "value": {
+          "byline": "CEO at Company",
+          "links": [
+            {
+              "icon": "phone",
+              "label": "0228 / 688 966 20",
+              "url": "tel:+4922868896620"
+            },
+            {
+              "icon": "email",
+              "label": "mail@example.com",
+              "url": "mailto:mail@example.com"
+            }
+          ],
+          "name": "John Doe"
+        }
+      },
+      "date": {
+        "source": "example",
+        "value": "12/30/2022"
+      },
+      "socialSharing": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
     "evidence": {
-      "screenshot": "img/screenshots/blog-blog-aside--default.png",
-      "story": "blog-blog-aside--default"
+      "screenshot": null,
+      "story": "contract-defaults-blogaside--contract-default"
     },
     "parts": {
       "root": {
         "box": {
-          "height": 310,
+          "height": 216,
           "width": 1440
         }
       },
-      "root/icon": {
+      "root/image": {
         "box": {
-          "height": 310,
+          "height": 216,
           "width": 1440
         },
         "layout": {
@@ -291,13 +537,13 @@
           }
         }
       },
-      "root/icon/child-3": {
+      "root/image/child-3": {
         "box": {
-          "height": 75,
+          "height": 27,
           "width": 1440
         }
       },
-      "root/icon/child-3/headline": {
+      "root/image/child-3/headline": {
         "box": {
           "height": 27,
           "width": 1440
@@ -308,37 +554,19 @@
           "gap": "6.31116px"
         }
       },
-      "root/icon/child-3/share-bar": {
+      "root/image/child-3/share-bar": {
         "box": {
-          "height": 48,
+          "height": 0,
           "width": 1440
         }
       },
-      "root/icon/child-3/share-bar/link": {
+      "root/image/contact": {
         "box": {
-          "height": 48,
-          "width": 48
-        },
-        "layout": {
-          "display": "inline-block"
-        }
-      },
-      "root/icon/child-3/share-bar/link/icon": {
-        "box": {
-          "height": 32,
-          "width": 32
-        },
-        "layout": {
-          "display": "inline-block"
-        }
-      },
-      "root/icon/contact": {
-        "box": {
-          "height": 180,
+          "height": 135,
           "width": 1440
         }
       },
-      "root/icon/meta": {
+      "root/image/meta": {
         "box": {
           "height": 27,
           "width": 1440
@@ -349,7 +577,7 @@
           "gap": "4px"
         }
       },
-      "root/icon/meta/item": {
+      "root/image/meta/item": {
         "box": {
           "height": 27,
           "width": 124
@@ -360,7 +588,7 @@
           "gap": "9.01594px"
         }
       },
-      "root/icon/meta/item/icon": {
+      "root/image/meta/item/icon": {
         "box": {
           "height": 22,
           "width": 22
@@ -393,5 +621,174 @@
     }
   ],
   "title": "Blog Aside",
-  "variants": []
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/blog-blog-aside--default.png",
+        "story": "blog-blog-aside--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 310,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "216.141px",
+              "to": "309.5px"
+            }
+          }
+        },
+        "root/icon": {
+          "box": {
+            "height": 310,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-blog-aside"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "13.7152px"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-interface",
+              "token": "--dsa-blog-aside__meta__item--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-interface-s",
+              "token": "--dsa-blog-aside__author__link--font"
+            },
+            "gap": {
+              "computed": "13.7152px 13.7152px",
+              "resolves": "--ks-spacing-stack-s",
+              "token": "--dsa-blog-aside--gap"
+            }
+          }
+        },
+        "root/icon/child-3": {
+          "box": {
+            "height": 75,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/icon/child-3/headline": {
+          "box": {
+            "height": 27,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--p",
+            "dsa-headline--space-after-minimum"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "6.31116px"
+          }
+        },
+        "root/icon/child-3/share-bar": {
+          "box": {
+            "height": 48,
+            "width": 1440
+          },
+          "classes": [
+            "c-post-share-bar",
+            "dsa-blog-aside__share-bar"
+          ],
+          "introduced": true
+        },
+        "root/icon/child-3/share-bar/link": {
+          "box": {
+            "height": 48,
+            "width": 48
+          },
+          "classes": [
+            "c-post-share-bar__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/icon/child-3/share-bar/link/icon": {
+          "box": {
+            "height": 32,
+            "width": 32
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/icon/contact": {
+          "box": {
+            "height": 180,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--contact"
+          ],
+          "introduced": true
+        },
+        "root/icon/meta": {
+          "box": {
+            "height": 27,
+            "width": 1440
+          },
+          "classes": [
+            "c-post-meta",
+            "dsa-blog-aside__meta"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "gap": "4px"
+          }
+        },
+        "root/icon/meta/item": {
+          "box": {
+            "height": 27,
+            "width": 124
+          },
+          "classes": [
+            "c-post-meta__item"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "gap": "9.01594px"
+          }
+        },
+        "root/icon/meta/item/icon": {
+          "box": {
+            "height": 22,
+            "width": 22
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
 }

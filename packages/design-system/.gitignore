@@ -29,6 +29,7 @@ src/token-*/icon-sprite.html
 src/token-*/storybook/tokens.css
 src/token-*/storybook/icons.svg
 src/components/**/*Defaults.ts
+src/contract-defaults
 static/*.css
 static/*.css.map
 dist

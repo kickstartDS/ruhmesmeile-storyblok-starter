@@ -13,6 +13,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { parseComponentTokens } from "./tokenGrammar.mjs";
+import { buildDeclared } from "./declared.mjs";
 
 const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 
@@ -45,10 +46,14 @@ export function readDefaults(root, id) {
  * Classify a prop by what changing it does. This is the classification the
  * JSON Schema does not carry and an agent needs first.
  */
-const APPEARANCE = /^(variant|style|theme|color|colour|appearance|look|tone|emphasis|size|width|height|ratio|aspectRatio|align|alignment|spacing|gap|density|inverted|highlight|mode|contentMode|backgroundColor|background)$/i;
-const STATE = /^(disabled|active|selected|checked|open|expanded|loading|current|readonly|required|invalid)$/i;
-const BEHAVIOUR = /^(url|href|target|newTab|type|onClick|autoplay|loop|delay|interval|method|action|name|id|ariaLabel|rel)$/i;
-const LAYOUT = /^(layout|columns|rows|direction|orientation|order|position|sticky|fullWidth|contentAlign|headlineAlign)$/i;
+const APPEARANCE =
+  /^(variant|style|theme|color|colour|appearance|look|tone|emphasis|size|width|height|ratio|aspectRatio|align|alignment|spacing|gap|density|inverted|highlight|mode|contentMode|backgroundColor|background)$/i;
+const STATE =
+  /^(disabled|active|selected|checked|open|expanded|loading|current|readonly|required|invalid)$/i;
+const BEHAVIOUR =
+  /^(url|href|target|newTab|type|onClick|autoplay|loop|delay|interval|method|action|name|id|ariaLabel|rel)$/i;
+const LAYOUT =
+  /^(layout|columns|rows|direction|orientation|order|position|sticky|fullWidth|contentAlign|headlineAlign)$/i;
 
 function classifyRole(name, schema) {
   if (schema.type === "array") return "composition";
@@ -120,7 +125,7 @@ function extractSlots(schema) {
  */
 function buildCandidateAxes(props, parsedTokens) {
   const segments = new Set(
-    parsedTokens.map((t) => t.rootVariant).filter(Boolean)
+    parsedTokens.map((t) => t.rootVariant).filter(Boolean),
   );
   const axes = [];
   for (const [name, def] of Object.entries(props)) {
@@ -170,15 +175,27 @@ export function staticPass(root, id, shared) {
 
   const catalogEntry = shared.componentTokens[id] || { tokens: {} };
   const tokenNames = Object.keys(catalogEntry.tokens || {}).sort();
-  const { parsed, unparsed } = parseComponentTokens(id, catalogEntry.tokens || {});
+  const { parsed, unparsed } = parseComponentTokens(
+    id,
+    catalogEntry.tokens || {},
+  );
   const resolve = buildResolver(shared.componentTokens, shared.semanticTokens);
 
   const props = extractProps(schema);
   const { axes, segments } = buildCandidateAxes(props, parsed);
 
+  // The declared baseline (§5.6) — defaults exactly as they stand, with only
+  // what the schema demands filled in from its own examples.
+  const declared = buildDeclared(schema, defaults);
+
   const stories = shared.snippets
     .filter((s) => shared.storyComponent.get(s.id) === id)
-    .map((s) => ({ id: s.id, name: s.name, args: s.args || {}, screenshot: s.screenshot }))
+    .map((s) => ({
+      id: s.id,
+      name: s.name,
+      args: s.args || {},
+      screenshot: s.screenshot,
+    }))
     .sort((a, b) => a.id.localeCompare(b.id));
 
   return {
@@ -189,6 +206,7 @@ export function staticPass(root, id, shared) {
     selector: catalogEntry.selector || null,
     api: { props, required: schema.required || [] },
     defaults,
+    declared,
     slots: extractSlots(schema),
     axes,
     tokenSegments: segments,
@@ -203,10 +221,10 @@ export function staticPass(root, id, shared) {
 /** Load the artifacts shared by every component exactly once. */
 export function loadShared(root) {
   const componentTokens = readJson(
-    join(root, "src/token/component-token-catalog.json")
+    join(root, "src/token/component-token-catalog.json"),
   );
   const semanticTokens = existsSync(
-    join(root, "src/token/semantic-token-catalog.json")
+    join(root, "src/token/semantic-token-catalog.json"),
   )
     ? readJson(join(root, "src/token/semantic-token-catalog.json"))
     : {};

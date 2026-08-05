@@ -99,7 +99,7 @@ function serve(rootDir) {
   });
   return new Promise((resolve) => {
     server.listen(0, "127.0.0.1", () =>
-      resolve({ server, port: server.address().port })
+      resolve({ server, port: server.address().port }),
     );
   });
 }
@@ -112,11 +112,18 @@ function walkPage({ properties, tokens }) {
   const KEEP_ATTR =
     /^(disabled|type|role|aria-[a-z-]+|data-[a-z-]+|target|rel|open|checked|selected)$/;
   // Values that change on every render carry no contractual meaning.
-  const VOLATILE_ATTR = /^(data-uid|id|aria-controls|aria-labelledby|aria-describedby)$/;
+  const VOLATILE_ATTR =
+    /^(data-uid|id|aria-controls|aria-labelledby|aria-describedby)$/;
   // The static server binds an ephemeral port; make URLs origin-relative.
   const stable = (v) =>
     typeof v === "string"
-      ? v.replace(new RegExp(location.origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), "")
+      ? v.replace(
+          new RegExp(
+            location.origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+            "g",
+          ),
+          "",
+        )
       : v;
 
   const root = document.querySelector("#storybook-root");
@@ -124,7 +131,7 @@ function walkPage({ properties, tokens }) {
 
   // Storybook injects the icon sprite as a hidden <svg> before the story.
   const candidates = [...root.children].filter(
-    (el) => !el.hasAttribute("hidden") && el.tagName.toLowerCase() !== "style"
+    (el) => !el.hasAttribute("hidden") && el.tagName.toLowerCase() !== "style",
   );
   const componentRoot = candidates[0];
   if (!componentRoot) return null;
@@ -133,7 +140,8 @@ function walkPage({ properties, tokens }) {
     const cs = getComputedStyle(el);
 
     const styles = {};
-    for (const p of properties) styles[camel(p)] = stable(cs.getPropertyValue(p).trim());
+    for (const p of properties)
+      styles[camel(p)] = stable(cs.getPropertyValue(p).trim());
 
     // Locate tokens: a token is "defined here" when its declared value differs
     // from the value inherited from the parent. We keep only the NAME — custom
@@ -151,7 +159,9 @@ function walkPage({ properties, tokens }) {
     const attrs = {};
     for (const a of el.attributes)
       if (KEEP_ATTR.test(a.name))
-        attrs[a.name] = VOLATILE_ATTR.test(a.name) ? "<generated>" : stable(a.value);
+        attrs[a.name] = VOLATILE_ATTR.test(a.name)
+          ? "<generated>"
+          : stable(a.value);
     if (el.hasAttribute("href")) attrs.href = "<set>";
     if (el.hasAttribute("src")) attrs.src = "<set>";
 
@@ -201,7 +211,7 @@ export async function observe({ storybookDir, jobs, viewport, onProgress }) {
   try {
     for (const job of jobs) {
       const url = `http://127.0.0.1:${port}/iframe.html?id=${encodeURIComponent(
-        job.storyId
+        job.storyId,
       )}&viewMode=story`;
       try {
         await page.goto(url, { waitUntil: "load", timeout: 30000 });
@@ -219,7 +229,10 @@ export async function observe({ storybookDir, jobs, viewport, onProgress }) {
           ? { ok: true, ...observation }
           : { ok: false, error: "empty #storybook-root" };
       } catch (error) {
-        results[job.storyId] = { ok: false, error: String(error.message || error) };
+        results[job.storyId] = {
+          ok: false,
+          error: String(error.message || error),
+        };
       }
       onProgress?.(job.storyId, results[job.storyId].ok);
     }

@@ -11,6 +11,7 @@
         "instanceOf": "collapsible-box",
         "namedBy": "slot-boundary",
         "observedIn": [
+          "contract-defaults-faq--contract-default",
           "components-faq--dropdown-list",
           "components-faq--single-dropdown"
         ],
@@ -71,6 +72,7 @@
         "min": 1,
         "observedCounts": [
           1,
+          2,
           3
         ],
         "part": "root",
@@ -80,9 +82,15 @@
   },
   "coverage": {
     "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 1
+    },
     "combinations": {
-      "possible": 2,
-      "proven": 2
+      "possible": 3,
+      "proven": 3
     },
     "parts": {
       "conditional": 0,
@@ -96,15 +104,29 @@
     }
   },
   "default": {
-    "configuration": {},
+    "configuration": {
+      "questions": {
+        "source": "example",
+        "value": [
+          {
+            "answer": "The product is made of high-quality materials",
+            "question": "What is the product made of?"
+          },
+          {
+            "answer": "The product is made of high-quality materials",
+            "question": "What is the product made of?"
+          }
+        ]
+      }
+    },
     "evidence": {
-      "screenshot": "img/screenshots/components-faq--dropdown-list.png",
-      "story": "components-faq--dropdown-list"
+      "screenshot": null,
+      "story": "contract-defaults-faq--contract-default"
     },
     "parts": {
       "root": {
         "box": {
-          "height": 212,
+          "height": 142,
           "width": 1440
         },
         "styles": {
@@ -162,6 +184,27 @@
   "variants": [
     {
       "evidence": {
+        "screenshot": "img/screenshots/components-faq--dropdown-list.png",
+        "story": "components-faq--dropdown-list"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 212,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "141.812px",
+              "to": "212.219px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
         "screenshot": "img/screenshots/components-faq--single-dropdown.png",
         "story": "components-faq--single-dropdown"
       },
@@ -173,7 +216,7 @@
           },
           "styles": {
             "height": {
-              "from": "212.219px",
+              "from": "141.812px",
               "to": "71.4062px"
             }
           }

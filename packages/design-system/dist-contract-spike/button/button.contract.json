@@ -264,9 +264,15 @@
         "total": 3
       }
     },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 4
+    },
     "combinations": {
       "possible": 18,
-      "proven": 4
+      "proven": 5
     },
     "parts": {
       "conditional": 0,
@@ -281,19 +287,32 @@
   },
   "default": {
     "configuration": {
-      "disabled": false,
-      "size": "medium",
-      "variant": "secondary"
+      "disabled": {
+        "source": "schema-default",
+        "value": false
+      },
+      "label": {
+        "source": "example",
+        "value": "Book a meeting"
+      },
+      "size": {
+        "source": "schema-default",
+        "value": "medium"
+      },
+      "variant": {
+        "source": "schema-default",
+        "value": "secondary"
+      }
     },
     "evidence": {
-      "screenshot": "img/screenshots/components-button--secondary-button.png",
-      "story": "components-button--secondary-button"
+      "screenshot": null,
+      "story": "contract-defaults-button--contract-default"
     },
     "parts": {
       "root": {
         "box": {
           "height": 54,
-          "width": 222
+          "width": 202
         },
         "layout": {
           "alignItems": "center",
@@ -336,7 +355,7 @@
       "root/label": {
         "box": {
           "height": 27,
-          "width": 168
+          "width": 148
         }
       }
     }
@@ -391,7 +410,7 @@
               "to": "rgb(255, 255, 255)"
             },
             "width": {
-              "from": "222.094px",
+              "from": "202.094px",
               "to": "199.094px"
             }
           }
@@ -411,7 +430,7 @@
               "to": "rgb(255, 255, 255)"
             },
             "width": {
-              "from": "168px",
+              "from": "148px",
               "to": "145px"
             }
           }
@@ -468,7 +487,7 @@
               "to": "none"
             },
             "width": {
-              "from": "222.094px",
+              "from": "202.094px",
               "to": "205.094px"
             }
           }
@@ -492,7 +511,7 @@
               "to": "none"
             },
             "width": {
-              "from": "168px",
+              "from": "148px",
               "to": "151px"
             }
           }
@@ -502,6 +521,39 @@
         "disabled": true,
         "variant": "primary"
       }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-button--secondary-button.png",
+        "story": "components-button--secondary-button"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 54,
+            "width": 222
+          },
+          "styles": {
+            "width": {
+              "from": "202.094px",
+              "to": "222.094px"
+            }
+          }
+        },
+        "root/label": {
+          "box": {
+            "height": 27,
+            "width": 168
+          },
+          "styles": {
+            "width": {
+              "from": "148px",
+              "to": "168px"
+            }
+          }
+        }
+      },
+      "when": {}
     },
     {
       "evidence": {
@@ -544,7 +596,7 @@
               "to": "56.0781px"
             },
             "width": {
-              "from": "222.094px",
+              "from": "202.094px",
               "to": "198.094px"
             }
           }
@@ -556,7 +608,7 @@
           },
           "styles": {
             "width": {
-              "from": "168px",
+              "from": "148px",
               "to": "142px"
             }
           }

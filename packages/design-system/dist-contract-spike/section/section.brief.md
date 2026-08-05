@@ -6,8 +6,8 @@ Component used to layout components into pages
 **Anatomy**
 - **root** — `<section>` · container
   - **container** — `<div>` · container · repeated
-    - **content** — `<div>` · container
-      - **headline** — `<div>` · slot
+    - **content** — `<div>` · container · conditional
+      - **headline** — `<div>` · slot · conditional
   - **slider** — `<div>` · container · conditional
     - **container** — `<div>` · container · conditional
       - **content** — `<div>` · container · conditional
@@ -17,11 +17,11 @@ Component used to layout components into pages
 
 | prop | values | mechanism | affects |
 | --- | --- | --- | --- |
-| backgroundColor | default* · accent · bold | class-toggle | backgroundColor, backgroundImage, height |
+| backgroundColor | default* · accent · bold | class-toggle | backgroundColor, height |
 | backgroundImage | string | content *(unproven)* |  |
 | content | object | content *(unproven)* |  |
 | headline | object | content *(unproven)* |  |
-| inverted | false* · true | class-toggle | backgroundColor, backgroundImage |
+| inverted | false* · true | class-toggle | backgroundColor, height |
 | spaceAfter | enum | content *(unproven)* |  |
 | spaceBefore | enum | content *(unproven)* |  |
 | transition | enum | content *(unproven)* |  |
@@ -29,10 +29,10 @@ Component used to layout components into pages
 <small>\* = default</small>
 
 **Slots**
-- `components` → `root` — accepts 29 component types
+- `components` → `root` — accepts 29 component types · observed counts: 0
 - `buttons` → `root` — items: disabled, icon, label, size, type, url, variant · observed counts: 0, 2
 
 **Tokens**
 - `root`: `--dsa-section--background-color_accent`, `--dsa-section--background-color_bold`, `--dsa-section--background-color_default`, `--dsa-section--gutter_default`, `--dsa-section--gutter_large`, `--dsa-section--gutter_small`, `--dsa-section--space_default`, `--dsa-section--space_small` _(+29 more)_
 
-**Coverage** 0.63 — 10/720 configurations proven; no story for `aiDraft: true`, `headerSpacing: true`, `spotlight: true`, `style: deko`, `width: full, max, narrow`
+**Coverage** 0.63 — 11/720 configurations proven; no story for `aiDraft: true`, `headerSpacing: true`, `spotlight: true`, `style: deko`, `width: full, max, narrow`
