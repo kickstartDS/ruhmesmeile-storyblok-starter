@@ -133,19 +133,18 @@ packages/agent-eval/
     830-extend-existing-component/
     ...
 
-  experiments/                     # the variant matrix (§6.2)
-    baseline/cc-none-sonnet-high.ts
-    cb/cc-cb-sonnet-high.ts
-    dt/cc-dt-sonnet-high.ts
-    both/cc-both-sonnet-high.ts
+  experiments/                     # the variant matrix (§6.2) — FLAT, no subdirectories
+    cc-none-sonnet-high.ts
+    cc-cb-sonnet-high.ts
+    cc-dt-sonnet-high.ts
+    cc-both-sonnet-high.ts
     ...
 
   lib/
     experiment.ts                  # defineExperiment() — builds ExperimentConfig from a variant descriptor
     mcp/
       variants.ts                  # MCP_VARIANTS: none | component-builder | design-tokens | both
-      start-component-builder.mjs  # stdio launcher inside the sandbox
-      start-design-tokens.mjs
+      stage.ts                     # reads built MCP packages, vendors workspace deps, hashes the payload
     assertions/                    # #assertions — the kickstartDS contract (§7.1)
       component-contract.ts
       purity.ts
@@ -180,15 +179,15 @@ Every trial starts from a **fixture project**, not from a checkout of this monor
 
 The fixture is a minimal kickstartDS consumer:
 
-- `@kickstartds/design-system` installed as a **pinned tarball** built from the workspace (`pnpm --filter @kickstartds/design-system pack`) so the fixture always matches the code under test;
+- `@kickstartds/design-system` installed **from npm at the exact version in the workspace** (`packages/design-system/package.json`), so the fixture stays in lockstep with the tokens the Design Tokens MCP was synced from;
 - a Storybook 10 setup with the design system's token CSS loaded;
 - `tsconfig`, ESLint, Stylelint configured exactly as the design system configures them;
 - a handful of pre-existing components so "extend an existing component" tasks are realistic;
 - **no `.github/copilot-instructions.md`, no `AGENTS.md`, no `.cursorrules`, no repo-local agent configuration of any kind** (D14). The fixture is deliberately context-free: everything the agent knows about kickstartDS must arrive through the MCP servers under test, or not at all.
 
-A `fixture-hygiene` check runs before every trial and fails the run if any agent-instruction file is present in the sandbox — this is the single easiest way to silently invalidate the whole comparison.
+A `fixture-hygiene` check runs at config load and fails the run if any agent-instruction file is present in a fixture — this is the single easiest way to silently invalidate the whole comparison.
 
-The fixture is built by a `pretest` script and cached; the resolved design-system version is pinned into the fixture's `package.json` per run, as the Storybook harness does.
+The design-system dependency is only introduced once tasks need to compile against it (P1); the P0 fixture is React + TypeScript only, to keep the first end-to-end run cheap.
 
 ### 5.4 Harness configuration defaults
 
@@ -199,15 +198,18 @@ export const DEFAULTS = {
   sandbox: "docker", // Docker everywhere, local and CI — no Vercel account required (D4)
   copyFiles: "all", // MANDATORY — G4 depends on the full project snapshot
   validation: "vitest",
+  scripts: [], // post-run scripts disabled; validation happens inside EVAL.ts
+  earlyExit: false, // framework default is TRUE — must be overridden or multi-run stats collapse
   runs: 3, // default; regression suite raises to 5 for pass^k
   judge: { model: "<pinned>" }, // pinned; see §7.3
 };
 ```
 
-Two decisions inherited from Storybook's `agent-eval` experience:
+Three decisions, two inherited from Storybook's `agent-eval` experience and one forced by the framework's defaults:
 
-- **Post-run `scripts` are disabled by default.** Sandbox flakiness produced more failures than agent mistakes. Build/typecheck/lint are executed from inside `EVAL.tsx` via our own assertion helpers, so a tooling hiccup is distinguishable from an agent error.
-- **`setup()` and `editPrompt()` are not fingerprinted.** Our MCP wiring lives in `setup()`, so _any_ change to MCP configuration requires `--force` to invalidate cached results. This must be documented loudly in the README; a stale-cache comparison across MCP variants would silently invalidate the entire premise of this package.
+- **Post-run `scripts` are disabled by default.** Sandbox flakiness produced more failures than agent mistakes. Build/typecheck/lint are executed from inside `EVAL.ts` via our own assertion helpers, so a tooling hiccup is distinguishable from an agent error.
+- **`earlyExit` must be explicitly `false`.** The framework defaults it to `true`, which stops an experiment after the first passing run. Left at the default, every multi-run experiment silently degrades to pass@1-with-retries and `pass^k` becomes unmeasurable.
+- **`setup()` and `editPrompt()` are not fingerprinted.** Our MCP wiring lives in `setup()`, so _any_ change to the staged MCP build is invisible to the framework's reuse logic. We compensate with a computed variant-version guard — see §9 and ADR Decision 9.
 
 One consequence of running on direct provider keys instead of the Vercel AI Gateway (D3): **`@vercel/agent-eval`'s automatic failure classification (`model` / `infra` / `timeout`) is unavailable**, since it requires `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`. We therefore own failure triage ourselves — see §7.5.
 
@@ -234,16 +236,20 @@ The **core matrix** (always run) is 4 MCP sets × 1 agent × 1 model = 4 experim
 
 ### 6.2 MCP wiring
 
-`lib/mcp/variants.ts` maps a variant key to the MCP servers injected into the agent's config during `setup(sandbox)`:
+`lib/mcp/variants.ts` maps a variant key to the MCP servers staged into the sandbox by `setup(sandbox)`:
 
 ```
 none              -> {}
-component-builder -> { component-builder: stdio(start-component-builder.mjs) }
-design-tokens     -> { design-tokens:     stdio(start-design-tokens.mjs) }
+component-builder -> { component-builder: node .mcp-servers/component-builder/dist/index.js }
+design-tokens     -> { design-tokens:     node .mcp-servers/design-tokens/dist/index.js }
 both              -> both of the above
 ```
 
-MCP servers are launched **over stdio from a workspace build** inside the sandbox, not against the deployed HTTP endpoints. This keeps trials hermetic, removes JWT/network flakiness from the measurement, and — critically — means an eval run tests _the code in the current commit_, which is what a quality gate needs. A `-hosted` variant covering the deployed HTTP surface (incl. JWT auth) is deferred (D8).
+The `claude-code` adapter takes no MCP flag, so wiring goes through the files Claude Code reads from the project root: `setup()` writes a `.mcp.json` naming each server, plus a `.claude/settings.local.json` containing `enableAllProjectMcpServers: true` — without which project-scoped servers sit behind an interactive approval prompt that a `--print` run can never answer.
+
+Servers are staged from the **built workspace packages**, uploaded file-by-file (`Sandbox.writeFiles()` accepts only UTF-8 strings, so a packed tarball is not an option) and installed with `npm install --omit=dev` inside the sandbox. Workspace-protocol dependencies — currently `@kickstartds/shared-auth` — exist on no registry, so they are vendored under `.mcp-servers/_vendor/` and referenced as `file:` dependencies, resolved recursively.
+
+MCP servers therefore run **over stdio from a workspace build**, not against the deployed HTTP endpoints. This keeps trials hermetic, removes JWT/network flakiness from the measurement, and — critically — means an eval run tests _the code in the current commit_, which is what a quality gate needs. A `-hosted` variant covering the deployed HTTP surface (incl. JWT auth) is deferred (D8).
 
 ### 6.3 Reported deltas
 
@@ -286,7 +292,18 @@ Each returns `{ passed, score, details }` so partial credit is available.
 
 ### 7.2 Transcript-based graders
 
-Read from `@vercel/agent-eval`'s o11y bundle (`toolCalls`, `filesRead`, `filesModified`, `shellCommands`, `totalTurns`, `errors`, `thinkingBlocks`):
+Read from `project/agent-transcript.jsonl` and its pre-derived companion
+`project/agent-transcript-meta.json`, which `EVAL.ts` writes in-sandbox (§8.1,
+ADR Decision 15). The meta file already carries `observedModel`,
+`assistantMessages`, token totals split by input / output / cache-read /
+cache-write, a full `toolCalls` histogram, and the `mcp__*` subset with a count —
+so graders do not re-parse ~800 KB of JSONL per trial. Anything richer
+(`filesRead`, `shellCommands`, self-correction loops, error signatures) is
+derived host-side from the raw JSONL.
+
+> `@vercel/agent-eval`'s own o11y bundle is deliberately **not** the source of
+> truth here: it is populated only when upstream's single-path transcript capture
+> succeeds, and it did not on the first real run.
 
 | Grader           | Checks                                                                                                                                                     |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -345,15 +362,25 @@ results/<experiment>/<timestamp>/<eval>/
   kickstartds-report.json      # our normalized Outcome: quality/cost/time/efficiency + per-grader detail
   run-1/
     result.json
-    transcript.json
-    transcript-raw.jsonl
     outputs/
       eval.txt
       graders/                 # raw build/typecheck/lint/a11y/axe output
     project/                   # complete generated project (copyFiles: 'all')
+      agent-transcript.jsonl       # raw agent transcript (captured by EVAL.ts)
+      agent-transcript-meta.json   # tokens, tool-call histogram, mcp__* subset
     storybook-static/          # ← built, browsable Storybook for THIS trial
     screenshots/               # story screenshots (review artifacts, not diff-gated)
   run-2/ ...
+```
+
+> **Transcripts are ours, not the harness's.** `@vercel/agent-eval` writes
+> `transcript.json` / `transcript-raw.jsonl` only when its own capture succeeds;
+> it reads one hard-coded path and silently yields `null` otherwise, which is
+> what happened on the first real baseline run. Because cost (G2), efficiency
+> (G6) and MCP usage (§7.2) are all derived from the transcript, `EVAL.ts`
+> captures it in-sandbox and writes it into the workspace, where the
+> post-validation file capture picks it up. See ADR Decision 15.
+
 ```
 
 ### 8.2 The report Storybook

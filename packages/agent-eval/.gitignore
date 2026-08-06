@@ -1,0 +1,14 @@
+# Build artifacts
+dist/
+
+# Eval results — never committed. Published via the results site (see PRD §8.3).
+# The directory itself must exist: the CLI refuses to start without it.
+results/*
+!results/.gitkeep
+
+# Generated fixture projects and packed design-system tarballs
+.fixture-cache/
+
+# Local env
+.env
+.env.local

@@ -1,0 +1,14 @@
+{
+  "name": "810-atom-from-schema",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

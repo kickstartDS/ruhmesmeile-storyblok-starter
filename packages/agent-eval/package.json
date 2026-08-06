@@ -1,0 +1,27 @@
+{
+  "name": "agent-eval",
+  "version": "0.0.0",
+  "private": true,
+  "description": "UI generation eval loop — measures the quality, cost, time and efficiency contribution of the kickstartDS MCP servers",
+  "license": "(MIT OR Apache-2.0)",
+  "type": "module",
+  "scripts": {
+    "eval": "agent-eval",
+    "eval:dry": "agent-eval --dry",
+    "eval:smoke": "agent-eval --smoke",
+    "playground": "agent-eval playground",
+    "status": "agent-eval status",
+    "refingerprint": "agent-eval refingerprint",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@vercel/agent-eval": "1.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

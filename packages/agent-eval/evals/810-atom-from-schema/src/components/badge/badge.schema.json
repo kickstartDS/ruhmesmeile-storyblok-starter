@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/base/badge.schema.json",
+  "title": "Badge",
+  "description": "Compact status or category marker",
+  "type": "object",
+  "required": ["label"],
+  "additionalProperties": false,
+  "properties": {
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "Text displayed inside the badge"
+    },
+    "variant": {
+      "type": "string",
+      "title": "Variant",
+      "description": "Visual emphasis of the badge",
+      "enum": ["neutral", "informative", "positive", "notice", "negative"],
+      "default": "neutral"
+    },
+    "size": {
+      "type": "string",
+      "title": "Size",
+      "enum": ["small", "medium"],
+      "default": "medium"
+    },
+    "icon": {
+      "type": "string",
+      "title": "Icon",
+      "description": "Optional icon identifier rendered before the label"
+    },
+    "dismissible": {
+      "type": "boolean",
+      "title": "Dismissible",
+      "description": "Renders a dismiss control that removes the badge",
+      "default": false
+    }
+  }
+}
