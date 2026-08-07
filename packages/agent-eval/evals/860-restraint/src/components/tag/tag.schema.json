@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/base/tag.schema.json",
+  "title": "Tag",
+  "description": "Removable label representing a filter or selection",
+  "type": "object",
+  "required": ["label"],
+  "additionalProperties": false,
+  "properties": {
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "Text displayed inside the tag"
+    },
+    "removable": {
+      "type": "boolean",
+      "title": "Removable",
+      "description": "Renders a control that removes the tag",
+      "default": true
+    },
+    "removeLabel": {
+      "type": "string",
+      "title": "Remove label",
+      "description": "Accessible label for the remove control",
+      "default": "Remove"
+    }
+  }
+}

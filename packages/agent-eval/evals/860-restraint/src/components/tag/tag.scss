@@ -1,0 +1,45 @@
+@use "tag-tokens.scss";
+
+.dsa-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dsa-tag--gap);
+  padding: var(--dsa-tag--padding);
+  border-radius: var(--dsa-tag--border-radius);
+  background: var(--dsa-tag--background);
+  color: var(--dsa-tag--color);
+  font-size: var(--dsa-tag--font-size);
+  line-height: var(--dsa-tag--line-height);
+}
+
+.dsa-tag__label {
+  white-space: nowrap;
+}
+
+.dsa-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dsa-tag--remove-size);
+  height: var(--dsa-tag--remove-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--dsa-tag--remove-border-radius);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--dsa-tag--remove-background-hover);
+  }
+
+  &:focus-visible {
+    outline: var(--dsa-tag--focus-outline);
+    outline-offset: var(--dsa-tag--focus-outline-offset);
+  }
+}
+
+.dsa-tag__remove-icon {
+  font-size: var(--dsa-tag--remove-icon-font-size);
+  line-height: 1;
+}

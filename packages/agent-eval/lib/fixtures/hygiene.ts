@@ -34,6 +34,17 @@ const FORBIDDEN_FILES = [
 const FORBIDDEN_DIRS = [join(".github", "instructions"), ".cursor", ".claude"];
 
 /**
+ * Filenames that would hand the agent its own grading logic.
+ *
+ * Only `EVAL.ts`, `EVAL.tsx` and `PROMPT.md` are withheld from the sandbox, and
+ * the match is on basename. Anything else in the fixture is uploaded, so an
+ * assertion source parked next to it is readable by the agent under test. The
+ * per-eval sources live in `lib/eval-harness/sources/` for exactly this reason;
+ * this catches a stray copy.
+ */
+const FORBIDDEN_PATTERNS = [/^eval\.src\.tsx?$/i, /^harness\.tsx?$/i];
+
+/**
  * Throw if any eval fixture carries agent instructions.
  *
  * Called from `defineExperiment()` so it fails at config load, before a sandbox
@@ -60,15 +71,22 @@ export function assertFixtureHygiene(
         violations.push(`${entry}/${dir}/`);
       }
     }
+    for (const name of readdirSync(fixtureDir)) {
+      if (FORBIDDEN_PATTERNS.some((pattern) => pattern.test(name))) {
+        violations.push(`${entry}/${name}`);
+      }
+    }
   }
 
   if (violations.length > 0) {
     throw new Error(
-      `Fixture hygiene violation — agent instructions found inside eval fixtures:\n` +
+      `Fixture hygiene violation — agent instructions or grading logic found ` +
+        `inside eval fixtures:\n` +
         violations.map((v) => `  - ${v}`).join("\n") +
         `\n\nEvery variant, including the baseline, must start from the same ` +
         `instruction-free fixture. Guidance may only reach the agent through an ` +
-        `MCP server under test.`,
+        `MCP server under test, and assertions must stay in ` +
+        `lib/eval-harness/sources/.`,
     );
   }
 }

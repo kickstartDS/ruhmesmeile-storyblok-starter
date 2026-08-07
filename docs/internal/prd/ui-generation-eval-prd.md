@@ -388,8 +388,10 @@ results/<experiment>/<timestamp>/<eval>/
 For each trial we build a Storybook from `run-N/project/` that contains **both** the generated component's stories **and** the run report itself, rendered as stories from `templates/report-docs/`. Story sort order, following the old Storybook eval harness:
 
 ```
+
 Summary → Conversation → Graders → Build → Typecheck → Lint → A11y → Source
-```
+
+````
 
 - **Summary** — task prompt, variant (agent/model/MCP set), pass/fail, quality breakdown, cost, duration, turns, MCP tool-call table.
 - **Conversation** — the full transcript, rendered readably, with MCP tool calls and their outputs expandable.
@@ -401,7 +403,7 @@ Opening a trial locally must be one command:
 
 ```bash
 pnpm --filter agent-eval open <experiment>/<timestamp>/<eval>/run-1
-```
+````
 
 ### 8.3 Publication
 
@@ -440,7 +442,7 @@ Adopting Storybook's model, because it is the part of their setup that has actua
 - **Never auto-triggered on push.** Full runs are opt-in via PR labels (`ci:eval`, `ci:extra-models`) or manual dispatch. **Applying those labels and dispatching eval workflows is a human decision — agents must never do it.**
 - **Agents validating locally** use `EVAL_ONLY=<name>` with a single experiment at a time.
 - **`pnpm eval:dry`** prints the projected task × variant × run count and an estimated spend before anything executes.
-- **Hard budget guardrail of $25 per full run** (D6); the harness aborts when exceeded. Revisited after the P1 calibration run.
+- **Hard budget guardrail of $40 per full run** (D6); the harness aborts when exceeded. Raised from $25 after the P1 calibration run measured `cc-both` at $29.71.
 - **Nightly** runs the regression suite on the primary variant only — the cheap drift tripwire. Full matrix runs on release of either MCP package.
 
 ### 9.4 Known failures
@@ -497,7 +499,7 @@ Task authoring rules:
 | D3  | **Model access:** direct provider keys, no Vercel AI Gateway.                                                    | No vendor dependency and no gateway billing layer — **but** we lose automatic failure classification and must implement §7.5 ourselves.                                                               |
 | D4  | **Sandbox:** Docker everywhere, local and CI.                                                                    | No Vercel account, no Sandbox quota. CI parallelism is bounded by runner capacity, so full-matrix runs are slower; budget the wall-clock accordingly.                                                 |
 | D5  | **Fixture:** generated fixture project with a packed `@kickstartds/design-system` tarball.                       | Trial isolation and reproducibility; the fixture becomes a maintained artifact that must track design-system changes.                                                                                 |
-| D6  | **Budget ceiling:** **$25 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs early on. Revisit after the P1 calibration run once real per-task costs are known.                                                                                             |
+| D6  | **Budget ceiling:** **$40 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs. Raised from $25 after P1 measured `cc-both` at $29.71 on a single-eval matrix — the original figure was set before any per-trial cost was known. Not yet enforced in code (checklist 4.6).                                                                                             |
 | D7  | **Results hosting:** Kamal-deployed static site behind the shared JWT auth.                                      | Consistent with the other four hosted services; reuses `packages/shared-auth` and the existing `config/deploy-*.yml` pattern.                                                                         |
 | D8  | **MCP transport:** stdio from the workspace build.                                                               | Hermetic trials that test the current commit — what a quality gate needs. An optional `-hosted` variant is added later to smoke-test the deployed HTTP surface incl. JWT auth.                        |
 | D9  | **Runs per task:** 3 for `capability`, 5 for `regression`.                                                       | `pass^5` is meaningful enough to gate on; the capability suite stays cheap. Revisit once real per-trial costs are known against the D6 cap.                                                           |
@@ -517,7 +519,7 @@ All open questions are resolved; nothing blocks P0. Items flagged for deliberate
 | Risk                                                                                                                                                                                                                                           | Mitigation                                                                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Silent stale results.** `setup()`/`editPrompt()` aren't fingerprinted; an MCP config change could be compared against cached runs from the old config — invalidating the entire comparison.                                                  | `lib/experiment.ts` embeds a hand-maintained `variantVersion` string into a fingerprinted field; README documents `--force`. CI always runs with `--force` for matrix comparisons. |
-| **Cost overrun.** Matrix × tasks × runs multiplies fast.                                                                                                                                                                                       | `--dry` estimates, $25 hard cap (D6), label-gated CI, `EVAL_ONLY` for local iteration, cheap nightly tripwire.                                                                     |
+| **Cost overrun.** Matrix × tasks × runs multiplies fast.                                                                                                                                                                                       | `--dry` estimates, $40 hard cap (D6), label-gated CI, `EVAL_ONLY` for local iteration, cheap nightly tripwire.                                                                     |
 | **Judge drift makes historical comparisons invalid.**                                                                                                                                                                                          | Pinned judge model; pin change is a versioned event; deterministic graders carry 85% of the composite weight.                                                                      |
 | **Sandbox flakiness read as quality regression.** Aggravated by D3 — no gateway failure classification.                                                                                                                                        | Local classifier (§7.5), automatic single retry for `infra`/`timeout`, runs invalidated above a 20% non-model failure rate, post-run `scripts` disabled.                           |
 | **Instruction leakage into the sandbox.** A stray `copilot-instructions.md`, `AGENTS.md`, or agent config file would lift the baseline and shrink every measured MCP delta — silently, and in the direction that makes our servers look worse. | `fixture-hygiene` pre-trial check (§5.3) fails the run on any agent-instruction file; the `none` variant additionally asserts zero MCP tool calls (§7.2 `negative-usage`).         |

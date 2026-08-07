@@ -10,5 +10,5 @@
     "lib": ["ES2022"],
     "types": ["node"]
   },
-  "include": ["experiments", "lib", "types", "agent-eval.config.ts"]
+  "include": ["bin", "experiments", "lib", "types", "agent-eval.config.ts"]
 }

@@ -1,0 +1,19 @@
+:root {
+  --dsa-tag--gap: var(--ks-spacing-xxs, 0.25rem);
+  --dsa-tag--padding: var(--ks-spacing-xxs, 0.25rem)
+    var(--ks-spacing-xs, 0.5rem);
+  --dsa-tag--border-radius: var(--ks-border-radius-pill, 999px);
+  --dsa-tag--background: var(--ks-background-color-muted, #eef1f5);
+  --dsa-tag--color: var(--ks-text-color-default, #1b2733);
+  --dsa-tag--font-size: var(--ks-font-size-s, 0.875rem);
+  --dsa-tag--line-height: var(--ks-line-height-tight, 1.25);
+  --dsa-tag--remove-size: var(--ks-spacing-m, 1.25rem);
+  --dsa-tag--remove-border-radius: var(--ks-border-radius-circle, 50%);
+  --dsa-tag--remove-background-hover: var(
+    --ks-background-color-emphasis,
+    #dde3ea
+  );
+  --dsa-tag--remove-icon-font-size: var(--ks-font-size-m, 1rem);
+  --dsa-tag--focus-outline: var(--ks-focus-outline, 2px solid #2563eb);
+  --dsa-tag--focus-outline-offset: var(--ks-focus-outline-offset, 2px);
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/base/notification-banner.schema.json",
+  "title": "NotificationBanner",
+  "description": "Page-level banner announcing a change, with an optional call to action",
+  "type": "object",
+  "required": ["headline", "message"],
+  "additionalProperties": false,
+  "properties": {
+    "headline": {
+      "type": "string",
+      "title": "Headline",
+      "description": "Short heading summarising the notification"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message",
+      "description": "Body copy explaining the notification"
+    },
+    "variant": {
+      "type": "string",
+      "title": "Variant",
+      "enum": ["info", "success", "warning"],
+      "default": "info"
+    },
+    "actionLabel": {
+      "type": "string",
+      "title": "Action label",
+      "description": "Label of the primary call to action"
+    },
+    "actionIcon": {
+      "type": "string",
+      "title": "Action icon",
+      "description": "Icon identifier rendered before the action label"
+    },
+    "dismissLabel": {
+      "type": "string",
+      "title": "Dismiss label",
+      "description": "Accessible label of the dismiss control",
+      "default": "Dismiss notification"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "name": "agent-eval",
   "version": "0.0.0",
   "private": true,
-  "description": "UI generation eval loop — measures the quality, cost, time and efficiency contribution of the kickstartDS MCP servers",
+  "description": "UI generation eval loop \u2014 measures the quality, cost, time and efficiency contribution of the kickstartDS MCP servers",
   "license": "(MIT OR Apache-2.0)",
   "type": "module",
   "scripts": {
@@ -12,10 +12,16 @@
     "playground": "agent-eval playground",
     "status": "agent-eval status",
     "refingerprint": "agent-eval refingerprint",
-    "typecheck": "tsc --noEmit"
+    "grade": "tsx bin/grade.ts",
+    "graders:selftest": "tsx bin/graders-selftest.ts",
+    "setup:check": "tsx bin/setup-check.ts",
+    "typecheck": "tsc --noEmit && tsx bin/build-evals.ts --check",
+    "build:evals": "tsx bin/build-evals.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "esbuild": "^0.28.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {

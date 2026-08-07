@@ -152,4 +152,3 @@ regression to the model.
 
 If you are looking at a run and want to confirm this held, check `toolCalls` in
 `agent-transcript-meta.json` — `WebFetch` and `WebSearch` must be absent.
-

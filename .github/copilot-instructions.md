@@ -417,15 +417,21 @@ Then commit the updated `__snapshots__/` and `static/img/screenshots/` files.
 
 ### Component Architecture
 
-Each component follows a strict structure:
+Each component follows a strict structure (conformance measured across all 68
+components of the design system):
 
 ```
 src/components/{name}/
-  {Name}Component.tsx      — Pure React component (forwardRef, Context-overridable)
-  {Name}Component.scss     — BEM-scoped styles using design tokens
-  {Name}Component.client.ts — Client-side behavior (vanilla JS, no React state)
-  {name}.schema.json       — JSON Schema (source of truth for props)
+  {Name}Component.tsx      — Pure React component (forwardRef, Context-overridable) [68/68]
+  {name}.scss              — BEM-scoped styles, kebab-case, imported by the component [61/61 styled]
+  _{name}-tokens.scss      — Component token partial, pulled in via @use [41/68]
+  {Name}.client.js         — Client-side behavior (vanilla JS, no React state); also seen in js/ [7/68]
+  {name}.schema.json       — JSON Schema (source of truth for props) [67/68]
 ```
+
+Note: in the design system the component **does** import its own stylesheet
+(`import "./button.scss";`). The "register styles in `index.scss`" rule applies
+to the website package's local components, not here.
 
 ### Multi-Theme Support
 

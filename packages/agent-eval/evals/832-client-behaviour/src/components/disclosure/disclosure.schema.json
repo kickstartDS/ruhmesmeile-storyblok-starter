@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/base/disclosure.schema.json",
+  "title": "Disclosure",
+  "description": "Header that expands and collapses a panel of content",
+  "type": "object",
+  "required": ["summary", "content"],
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "type": "string",
+      "title": "Summary",
+      "description": "Always-visible label that toggles the panel"
+    },
+    "content": {
+      "type": "string",
+      "title": "Content",
+      "description": "Body copy revealed when the disclosure is open"
+    },
+    "defaultOpen": {
+      "type": "boolean",
+      "title": "Default open",
+      "description": "Whether the panel starts expanded on first paint",
+      "default": false
+    },
+    "id": {
+      "type": "string",
+      "title": "Id",
+      "description": "Identifier used to associate the trigger with its panel"
+    }
+  }
+}
