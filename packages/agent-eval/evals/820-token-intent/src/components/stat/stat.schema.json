@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/dsa/stat.schema.json",
+  "title": "Stat",
+  "description": "A single headline figure with a caption and an optional change indicator.",
+  "type": "object",
+  "required": ["value", "label"],
+  "additionalProperties": false,
+  "properties": {
+    "value": {
+      "type": "string",
+      "title": "Value",
+      "description": "The headline figure, already formatted for display"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "What the figure measures"
+    },
+    "delta": {
+      "type": "string",
+      "title": "Delta",
+      "description": "Period-over-period change, already formatted"
+    },
+    "trend": {
+      "type": "string",
+      "title": "Trend",
+      "description": "Whether the change is good or bad news for this metric",
+      "enum": ["up", "down"],
+      "default": "up"
+    }
+  }
+}

@@ -3,8 +3,8 @@
  *
  * The first full matrix (D-26) was confounded by a setup defect, and cost a
  * full matrix to discover — because `setup()` had never been exercised except
- * as part of a paid run. `--dry` does not help: it previews fingerprints and
- * never provisions a sandbox.
+ * as part of a paid run. The CLI offers no rehearsal: `run` takes `--force`,
+ * `--smoke` and `--ack-failures`, and `--smoke` spends real money (D-23).
  *
  * This provisions the same docker image the harness uses, runs the real setup
  * path, and asserts the properties Decision 22 depends on. No agent, no model,

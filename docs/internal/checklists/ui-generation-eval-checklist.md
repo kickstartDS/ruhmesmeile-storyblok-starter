@@ -68,22 +68,34 @@ See [ui-generation-eval-prd.md](../prd/ui-generation-eval-prd.md) for the full P
 - [x] 1.18 Run the full 4-variant core matrix, record actual per-trial cost (D-31, D-32)
 - [x] 1.19 Revisit D6 (budget) and D9 (runs per task) against measured cost (D-32)
 
-## Phase 2: Static Artifacts
+## Phase 2: Static Artifacts — COMPLETE
 
-**Exit criterion:** G4 — a historical run is fully inspectable from a static URL.
+**Exit criterion:** G4 — a historical run is fully inspectable from a static URL. **Met.**
 
-- [ ] 2.1 Implement `lib/report/build-report-storybook.ts` — build a Storybook per trial from `run-N/project/`
-- [ ] 2.2 Implement `templates/report-docs/Summary.stories.tsx`
-- [ ] 2.3 Implement `templates/report-docs/Conversation.stories.tsx` — transcript with expandable MCP tool calls
-- [ ] 2.4 Implement `templates/report-docs/Graders.stories.tsx` — per-assertion pass/fail + raw output
-- [ ] 2.5 Implement `templates/report-docs/Source.stories.tsx` — generated files, syntax highlighted
-- [ ] 2.6 Configure `storySort` ordering: Summary → Conversation → Graders → Build → Typecheck → Lint → A11y → Source
-- [ ] 2.7 Capture story screenshots as review artifacts
-- [ ] 2.8 Implement the results index site (experiments × timestamps × tasks, headline metrics, baseline deltas)
-- [ ] 2.9 Implement the `open <experiment>/<timestamp>/<eval>/run-N` command
-- [ ] 2.10 Implement retention pruning (last 10 per experiment + pinned baseline runs — D10)
-- [ ] 2.11 Add `config/deploy-agent-eval-results.yml` — Kamal static site behind shared JWT auth (D7)
-- [ ] 2.12 Implement `results:download` script (CI artifact retrieval, idempotent merge)
+`pnpm report build --all` → `pnpm report:index` → `kamal deploy -d agent-eval-results`
+publishes the whole campaign: an index of tasks × arms with headline metrics and
+baseline deltas, a screenshot per trial, and a link from each screenshot into
+that trial's own Storybook. See ADR 67 (artifacts), ADR 68 (retention and
+download), ADR 69 (deployment).
+
+- [x] 2.1 Build a Storybook per trial from `run-N/project/` — landed as `lib/report/host/` + `lib/report/manifest.ts` + `bin/report.ts`, not `lib/report/build-report-storybook.ts`
+- [x] 2.2 `Summary.stories.tsx`
+- [x] 2.3 `Conversation.stories.tsx` — transcript with expandable MCP tool calls
+- [x] 2.4 `Graders.stories.tsx` — per-assertion pass/fail + raw output
+- [x] 2.5 `Source.stories.tsx` — produced files first, then the fixture's
+- [x] 2.6 `storySort` ordering — Summary → Component → Conversation → Graders → Output → Source
+- [x] 2.7 Capture story screenshots as review artifacts — `lib/report/screenshot.ts` + `lib/report/serve.ts`, run automatically by `report build` (`--no-screenshots` to skip). Playwright-core, 2× DPR, cropped to the component's own box
+- [x] 2.8 Implement the results index site (experiments × timestamps × tasks, headline metrics, baseline deltas) — `bin/report-index.ts` → `pnpm report:index`, writes `results/index.html`. Reproduces the campaign matrix exactly, with a thumbnail per trial linking to its Storybook
+- [x] 2.9 `open <experiment>/<eval>/run-N` — timestamps resolved via `resolveMatrix()`, so addresses omit them
+- [x] 2.10 Implement retention pruning (last 10 per experiment + pinned baseline runs — D10) — `bin/prune-results.ts` → `pnpm results:prune`. Dry-run by default; explicit pins via `results/<experiment>/.pinned`; currently-reported runs pinned implicitly
+- [x] 2.11 Add `config/deploy-agent-eval-results.yml` — Kamal static site behind shared JWT auth (D7) — plus `packages/agent-eval/Dockerfile` and `server/index.ts` (Express, token-paste login, CSP)
+- [x] 2.12 Implement `results:download` script (CI artifact retrieval, idempotent merge) — `bin/download-results.ts` → `pnpm results:download`. Locates run dirs structurally by `summary.json`; never overwrites an existing trial
+
+Beyond the original list, and needing PRD §8 reconciliation:
+
+- [x] 2.13 `Report/Component → Rendered` — the produced component, rendered live and interactive
+- [x] 2.14 `Report/Component → Provenance` — what came from the agent vs. the host
+- [x] 2.15 `Report/Output` — one page for all toolchain/runtime output, rather than separate Build/Typecheck/Lint/A11y pages
 
 ## Phase 3: Task Suite & Judge
 
@@ -893,8 +905,8 @@ Verified by reproducing the recorded `810` matrix exactly. See ADR 33.
 
 **D-40 — chunked buying can produce an incomparable matrix.** Arms measured
 against different versions of the same eval still tabulate cleanly and mean
-nothing. `matrixIntegrity()` separates *complete* (a budget state) from
-*comparable* (a correctness failure), keyed on `contentFingerprint`. See ADR 34.
+nothing. `matrixIntegrity()` separates _complete_ (a budget state) from
+_comparable_ (a correctness failure), keyed on `contentFingerprint`. See ADR 34.
 
 **D-41 — the runner has no per-eval filter.** `EVAL_ONLY` narrows the eval list
 at config load; unknown names are fatal. Chunk by eval rather than by arm, so
@@ -930,7 +942,7 @@ forever. `bin/build-evals.ts` now runs prettier before writing. See ADR 38.
 
 **D-45 — the budget cap was raised to $40, and it does not do anything.** $25 was
 set before any per-trial cost was known; P1 then measured `cc-both` at $29.71 on
-a *single-eval* matrix, so the smallest run possible already exceeded it. Raised
+a _single-eval_ matrix, so the smallest run possible already exceeded it. Raised
 to $40 in the PRD, ADR 11 and item 4.6. Two things stay true: nothing enforces it
 (4.6 is unimplemented, so `--dry` plus attention is the actual control), and it
 caps an experiment-run rather than a campaign — the ~$310 five-eval matrix is
@@ -949,7 +961,7 @@ bounded by chunking (ADR 35), not by this number.
 
 **D-46 — the eval failed the agents, not the other way round.** All four arms
 lost `860` on one assertion, `the component token partial is left untouched`,
-expecting `86b4cbb6…` and getting `df8afd6e…`. The fixture's file *is*
+expecting `86b4cbb6…` and getting `df8afd6e…`. The fixture's file _is_
 `df8afd6e…`, and all twelve trials reproduced it byte-for-byte. The constant had
 been pasted by hand and had rotted. Digests are now derived from the fixture at
 build time (ADR 39), so the expected value and the shipped file are one
@@ -1052,14 +1064,14 @@ real money.
 ADR 44/45, `810` went from 0/12 to passing. The arms separated for the first
 time in the campaign:
 
-| arm | pass@1 | quality | cost | quality per extra $ |
-|---|---|---|---|---|
-| `cc-both` | 66.7% | 0.96 ±0.03 | 3.88× | 0.045 |
-| `cc-component-builder` | 66.7% | 0.93 ±0.06 | 2.11× | **0.105** |
-| `cc-design-tokens` | 0.0% | 0.69 ±0.00 | 3.00× | 0.009 |
-| `cc-none` | 0.0% | 0.64 ±0.02 | — | — |
+| arm                    | pass@1 | quality    | cost  | quality per extra $ |
+| ---------------------- | ------ | ---------- | ----- | ------------------- |
+| `cc-both`              | 66.7%  | 0.96 ±0.03 | 3.88× | 0.045               |
+| `cc-component-builder` | 66.7%  | 0.93 ±0.06 | 2.11× | **0.105**           |
+| `cc-design-tokens`     | 0.0%   | 0.69 ±0.00 | 3.00× | 0.009               |
+| `cc-none`              | 0.0%   | 0.64 ±0.02 | —     | —                   |
 
-Spend: $74.73. Note the baseline is *cheaper* than it looks good — `cc-none`
+Spend: $74.73. Note the baseline is _cheaper_ than it looks good — `cc-none`
 fails every trial at $2.49.
 
 **D-59 — component-builder is the causal factor; design-tokens is nearly
@@ -1147,7 +1159,7 @@ rendered HTML from the harness's own runtime report. See ADR 52.
 **D-67 — both defects produced plausible numbers, not broken ones.** Neither
 would have surfaced from reading results: `840` would have reported reuse that
 did not happen, `832` would have reported a correctly-hydrated default that was
-never rendered. Unlike D-54 and the `@use` break, these fail *silently upward*.
+never rendered. Unlike D-54 and the `@use` break, these fail _silently upward_.
 That is the argument for hand-solving every fixture before buying it: the
 failures that survive a results read are exactly the ones that flatter the
 system under test.
@@ -1161,80 +1173,262 @@ loophole case is where both defects were caught.
 ## Phase 1.11 — `812` bought; leak surface characterised
 
 - [x] **D-69** `bem` capped at 0.75 in all twelve `812` trials — component-side
-  check scored against a file the diff task forbids touching. Third instance of
-  the D-48 family. Fixed by dropping the check when the component is withheld
-  but present in `discover(trial)`. Re-graded free (D-50); quality shifted
-  uniformly, all deltas unchanged. (ADR 54)
+      check scored against a file the diff task forbids touching. Third instance of
+      the D-48 family. Fixed by dropping the check when the component is withheld
+      but present in `discover(trial)`. Re-graded free (D-50); quality shifted
+      uniformly, all deltas unchanged. (ADR 54)
 - [x] **D-70** Root-caused the `812` staging leak: `.mcp.json` in the agent's
-  working directory carries the absolute path to `/tmp/.agent-eval-mcp/…`, so
-  moving the servers out of the workspace never removed the stumble. Not
-  fixable for stdio servers — the agent's user must read what it executes.
-  (ADR 55)
+      working directory carries the absolute path to `/tmp/.agent-eval-mcp/…`, so
+      moving the servers out of the workspace never removed the stumble. Not
+      fixable for stdio servers — the agent's user must read what it executes.
+      (ADR 55)
 - [x] **D-71** Established that no leak fix is free: `guardVariantVersion()`
-  covers `DENY_WEB_RESEARCH`, `SETUP_VERSION`, staged packages and the probe,
-  throws without `--force`, and `--force` discards prior results. The leak is a
-  between-campaign change. (ADR 55)
-- [x] **D-72** Decided *not* to re-buy `812`'s two invalid arms (~$23): leaked
-  and counted trials have identical vitest outcomes and identical grader
-  profiles (σ = 0.00). (ADR 56)
+      covers `DENY_WEB_RESEARCH`, `SETUP_VERSION`, staged packages and the probe,
+      throws without `--force`, and `--force` discards prior results. The leak is a
+      between-campaign change. (ADR 55)
+- [x] **D-72** Decided _not_ to re-buy `812`'s two invalid arms (~$23): leaked
+      and counted trials have identical vitest outcomes and identical grader
+      profiles (σ = 0.00). (ADR 56)
 - [x] **D-73** Found that `812` discriminates on the `_{slug}-tokens.scss`
-  convention, not on token values — one assertion decides all twelve trials.
-  The design-tokens result on `812` is the `token-conformance` delta (+0.33),
-  not pass@1. (ADR 57)
+      convention, not on token values — one assertion decides all twelve trials.
+      The design-tokens result on `812` is the `token-conformance` delta (+0.33),
+      not pass@1. (ADR 57)
 - [ ] **D-74** Reconcile `token-conformance` with `812`'s `withoutVarFallbacks()`
-  — the grader counts `var(--x, #hex)` fallbacks as literals, the eval permits
-  them. Free to fix and re-grade. (ADR 58)
+      — the grader counts `var(--x, #hex)` fallbacks as literals, the eval permits
+      them. Free to fix and re-grade. (ADR 58)
 - [ ] Buy `840`, then `832` (human). Expect leak attrition on both; the control
-  is detection-and-exclusion, not prevention.
+      is detection-and-exclusion, not prevention.
 - [ ] Between campaigns: move MCP servers to host-side HTTP transport so no
-  server files exist in the sandbox. (ADR 55)
+      server files exist in the sandbox. (ADR 55)
 
 ## Phase 1.12 — `840` bought; capability matrix complete but for `832`
 
 - [x] **D-75** `840` bought, $68.01, 12/12 trials counted, zero exclusions.
-  `component-builder` 66.7% pass@1 / 0.98 quality; `both` 0.0% / 0.97;
-  `design-tokens` 0.0% / 0.82; `none` 0.0% / 0.73.
+      `component-builder` 66.7% pass@1 / 0.98 quality; `both` 0.0% / 0.97;
+      `design-tokens` 0.0% / 0.82; `none` 0.0% / 0.73.
 - [x] **D-76** Verified `840` is not defective: `component-builder` scored 15/15
-  twice. The failure distribution is structured, not random. (ADR 59)
+      twice. The failure distribution is structured, not random. (ADR 59)
 - [x] **D-77** `design-tokens`' failing-assertion set on `840` is exactly
-  `cc-none`'s minus "styles use design tokens rather than literal colour
-  values" — single-assertion isolation of the tokens server. (ADR 59)
+      `cc-none`'s minus "styles use design tokens rather than literal colour
+      values" — single-assertion isolation of the tokens server. (ADR 59)
 - [x] **D-78** Established that `cc-both`'s 0% pass@1 on `840` is noise (~1.4σ,
-  three distinct 14/15 misses) and must not be reported as a regression.
-  (ADR 59)
+      three distinct 14/15 misses) and must not be reported as a regression.
+      (ADR 59)
 - [x] **D-79** Across all four bought tasks, `cc-both` never beats
-  `cc-component-builder` on pass@1 while costing 1.5–4.7× more.
-  `component-builder` alone leads quality/extra-$ in every non-saturated task.
-  (ADR 59)
+      `cc-component-builder` on pass@1 while costing 1.5–4.7× more.
+      `component-builder` alone leads quality/extra-$ in every non-saturated task.
+      (ADR 59)
 - [x] **D-80** Zero leaks on `840` confirms the leak is task-correlated, not a
-  flat attrition rate. (ADR 60)
+      flat attrition rate. (ADR 60)
 - [ ] Buy `832` (human, ~$65) — completes the capability matrix and is the only
-  task whose primary axis is client behaviour.
+      task whose primary axis is client behaviour.
 - [ ] **D-74** Reconcile `token-conformance` with `812`'s `withoutVarFallbacks()`.
-  Free to fix and re-grade.
+      Free to fix and re-grade.
 
 ## Phase 1.13 — `832` bought; capability campaign complete
 
 - [x] **D-81** `832` bought, $54.77, 12/12 counted, zero exclusions.
-  `component-builder` 100% pass@1 / 1.00 quality; `both` 100% / 0.97;
-  `design-tokens` 0% / 0.73; `none` 0% / 0.63.
+      `component-builder` 100% pass@1 / 1.00 quality; `both` 100% / 0.97;
+      `design-tokens` 0% / 0.73; `none` 0% / 0.63.
 - [x] **D-82** `schema-validity` docked all twelve `832` trials for `content`, a
-  property the fixture itself declares as required under
-  `additionalProperties: false`. Fourth instance of "grading what the agent did
-  not author". Fixed via `readShipped()`; re-graded free. (ADR 61)
+      property the fixture itself declares as required under
+      `additionalProperties: false`. Fourth instance of "grading what the agent did
+      not author". Fixed via `readShipped()`; re-graded free. (ADR 61)
 - [x] **D-83** Capability matrix complete, 20/20 cells, $245.94 retained spend.
-  (ADR 62)
+      (ADR 62)
 - [x] **D-84** `design-tokens` produces pass@1 +0.0% on all four non-saturated
-  tasks while moving `token-conformance` +0.33…+0.46 — a correctness tool, not
-  a completion tool. (ADR 62)
+      tasks while moving `token-conformance` +0.33…+0.46 — a correctness tool, not
+      a completion tool. (ADR 62)
 - [x] **D-85** `both` never beats `component-builder` alone on pass@1 or value
-  in any task. (ADR 62)
+      in any task. (ADR 62)
 - [x] **D-74** Settled `token-conformance` vs `812`'s `withoutVarFallbacks()`.
-  The design system uses 149 `var()` fallbacks, all token→token, and **zero**
-  literal-colour fallbacks. The grader is correct; the *eval* is the lenient
-  outlier. No grader change. Fix `812`'s assertion next campaign — changing
-  `EVAL.ts` now would move fingerprints. (ADR 63)
+      The design system uses 149 `var()` fallbacks, all token→token, and **zero**
+      literal-colour fallbacks. The grader is correct; the _eval_ is the lenient
+      outlier. No grader change. Fix `812`'s assertion next campaign — changing
+      `EVAL.ts` now would move fingerprints. (ADR 63)
 - [ ] Phase 2 (2.1–2.12), carrying the standing static-inspection / Storybook
-  requirement. Item 1.9 (`stories.ts` grader) deferred here.
+      requirement. Item 1.9 (`stories.ts` grader) deferred here.
 - [ ] Between campaigns: host-side HTTP transport (ADR 55); component-builder
-  client-behaviour template peer-dep fix (ADR 46 freeze now lifted).
+      client-behaviour template peer-dep fix (ADR 46 freeze now lifted).
+
+## Phase 2.1 — static artifacts working end to end (zero spend, complete)
+
+Fourteen files were written unverified in the previous sitting. Building and
+opening them found four defects, all in the new code, none of which a code read
+would have caught (D-67 again: they failed silently _upward_).
+
+**D-86 — `storySort` cannot be a `const`.** Storybook statically parses
+`preview.tsx`; a referenced array fails the build with "unsupported". Inlined.
+
+**D-87 — every story threw `ReferenceError: React is not defined`.** The
+package `tsconfig.json` had no `jsx` setting, so esbuild used the classic
+runtime. Set `"jsx": "react-jsx"`.
+
+**D-88 — the component rendered empty.** `pickDefaults()` returned only
+`{ defaultOpen: false }`, because a `*Defaults` module carries configuration,
+not content — `summary` and `content` are the caller's job. The report was
+about to show a working component as a blank box, which is the most misleading
+thing a review artifact can do. Fixed with `placeholderArgs()`, deriving a
+stand-in for each unfilled required prop from that prop's own schema
+`description`, and labelling it "placeholder" on the Provenance page so no
+reader mistakes harness scaffolding for agent output.
+
+**D-89 — the component rendered completely unstyled.** Its SCSS compiled and
+injected correctly (verified: a `<style>` carrying
+`.dsa-disclosure { --dsa-disclosure--gap: var(--ks-spacing-xs); … }`), but
+**no fixture ships a `--ks-*` layer**, so every reference resolved to nothing.
+The host now injects `packages/design-system/src/token/{branding-tokens.css,
+tokens.css}` ahead of the trial's own styles, disclosed as host-supplied.
+`--ks-border-radius-card` now resolves to `8px`.
+
+D-89 is the more interesting one, because the missing layer is not a report
+bug. In-sandbox, `token-conformance` has been rewarding token references that
+**cannot resolve to a value in the environment the agent was given**. Shipping
+the layer into the fixtures is now queued for the rebuild, and would let the
+report drop its ambient workaround.
+
+**D-90 — `skipLibCheck` hid a broken import and degraded every story to `any`.**
+~25 type errors across the story files. A probe (`const y: number = manifest`
+under `@ts-expect-error`) reported "Unused '@ts-expect-error' directive",
+proving `manifest` was `any`. Cause: **inside an ambient `declare module`
+block, a relative specifier resolves against the module name, not the
+file** — so `import type { TrialManifest } from "../manifest"` silently
+resolved to nothing, and `skipLibCheck: true` suppressed the error. The inline
+form `import("../manifest").TrialManifest` fixed all but one.
+
+Generalises: **a clean typecheck can mean nothing was checked.**
+
+### Verified
+
+- `pnpm report build <arm>/<eval>/run-N` — 6.42s, 7.5 MB per trial, 7 stories.
+- **The produced component renders, is styled by its own SCSS against the DS
+  token layer, and is genuinely interactive**: `aria-expanded` flips on mouse
+  click and back on keyboard `Enter`. The vendored `define.js` installs a
+  `MutationObserver`, so anything Storybook renders is hydrated automatically —
+  the enabler for the whole phase, now confirmed rather than assumed.
+- **Graceful degradation**, on `cc-none/832/run-1`: an off-contract
+  `Disclosure.tsx` is still found by role and rendered, Provenance labels it
+  "off contract", Graders shows `component-contract 0.54` with the failing
+  check, Output carries the full 9-failure vitest dump. Zero console errors on
+  both a passing and a failing trial.
+- 7.5 MB × 60 trials ≈ 450 MB, nearly all of it an identical Storybook runtime
+  — 2.8 should dedupe it, and 2.10 matters sooner than expected.
+
+## Phase 2.2 — folding in the postponed Phase 1 learnings (zero spend)
+
+Unblocked by the decision to run a second campaign: fixture and `EVAL.ts`
+changes move fingerprints, which no longer costs anything.
+
+- [x] **Fixture Storybook type shim** (ADR 64). `types/storybook.d.ts` in all
+      five fixtures, `"include": ["src", "types"]`. Verified by reproducing the
+      one affected trial from its retained project: `tsc` exits 1 with TS2307
+      before, 0 after, no other diagnostic. `allowJs: true` preserved in
+      810/832/840 and still absent in 812/860.
+- [x] **`812` colour assertion corrected** (ADR 65, closing ADR 63).
+      `withoutTokenFallbacks()` replaces `withoutVarFallbacks()`. Unit-checked
+      in four states; checked against all twelve real `812` stylesheets, where
+      it fails exactly `cc-none` and no MCP arm; then run for real — 10/10 pass
+      on `cc-both`'s project, 2/10 fail with `cc-none`'s stylesheet swapped in.
+      The second failure was unplanned and is the useful part: the same literal
+      fallback loophole was being used for **lengths** too
+      (`gap: var(--dsa-space-1, 4px)`), and one false comment was hiding both.
+- [ ] Ship the `--ks-*` token layer into the fixtures (D-89) — **blocked on a
+      design decision, see D-91 below**
+- [ ] Bump fixtures to React 19, to match the workspace and the report host
+- [ ] Move MCP servers to host-side HTTP transport (ADR 55) — needs a
+      `SETUP_VERSION` bump
+- [ ] Fix `get-client-behavior-template`'s undeclared `@kickstartds/core` peer
+      dependency (ADR 46); per D-30 `get-storybook-template` has the same shape
+      of defect
+- [ ] Stories grader (item 1.9) — now meaningful, since fixtures accept stories
+
+Regression gates after both changes: `build:evals` ok ×5, `typecheck` ok ×5,
+`graders:selftest` — all five graders still agree with the design system.
+
+**Next free decision number: D-91.**
+
+## D-91 — shipping the token layer would collapse the `design-tokens` arm
+
+Queued from D-89, stopped before doing it. `token-conformance`'s `known-tokens`
+check scores referenced names against a registry of real design-system tokens:
+
+```ts
+const known = referenced.filter(
+  (name) =>
+    registry.semantic.has(name) ||
+    registry.branding.has(name) ||
+    registry.component.has(name) ||
+    name.startsWith(prefix),
+);
+```
+
+Knowing the valid `--ks-*` names is the entire measured contribution of the
+`design-tokens` MCP — it is the check that moved in every task
+(+0.43 / +0.33 / +0.46 / +0.46) and essentially the only one.
+
+Ship `tokens.css` into the fixture and `cc-none` can `grep` the answer. The arm
+difference would compress toward zero, and the campaign would no longer measure
+what it was built to measure.
+
+So this is not a mechanical fix. Two coherent positions:
+
+**(a) Ship it.** The real repository _does_ contain the token layer, so a
+fixture without one is unrealistic, and an agent that reads the tokens off disk
+is doing the sensible thing. If the arm difference then disappears, that is a
+finding, not a defect — and a sharper version of campaign finding #2
+("`design-tokens` never flips a task"): the MCP may be supplying what the
+workspace already supplies. It would also fix D-89 properly and let the report
+drop its ambient-token workaround.
+
+**(b) Don't ship it.** Keep the fixture deliberately token-blind so the arms
+stay separable, and treat the missing layer as a rendering concern only — the
+report host already supplies it, and `token-conformance` validates names
+host-side against the real design system either way.
+
+A third option worth costing: ship the layer **and** add a task whose value is
+not name recall (e.g. choosing the _right_ token for an intent, where the names
+are all available but only one is correct). That preserves realism without
+making the arm difference vacuous — and per D-32, buying power with tasks
+rather than runs is the better spend anyway.
+
+Not decided here; it changes what the second campaign measures.
+
+**Decided (D-92): option (c) — ship the layer, and add a task whose value is
+not name recall.**
+
+Both halves are done.
+
+The layer is synced into all five existing fixtures by `build:evals`, from
+`packages/design-tokens-mcp/tokens/` — the same directory `token-conformance`
+grades against, so a fixture cannot drift from the thing it is scored by in
+either direction. 12 files, 248 KB, 1,457 semantic `--ks-*` and 65
+`--ks-brand-*`. `componentToken/` is deliberately excluded: those are the design
+system's own `--dsa-*` partials, which for a task whose job is to write one
+would be the answer key. Because the sync runs before `fixtureDigests()`, the
+layer is covered by the baked digests like any other shipped file, so an agent
+that rewrites the token layer to make its own values "known" is visible for what
+it did.
+
+The new task is `820-token-intent`, described in ADR 66.
+
+- [x] **2.16 — `820-token-intent` fixture.** Sixth task. A `Stat` component
+      whose stylesheet is _fully tokenised and wrong_: three encoded design
+      rules violated using nothing but real, greppable token names. Passes the
+      ADR 53 four-state gate (five states, in fact — see ADR 66).
+
+- [x] **2.17 — the results site is served, not just built (D-93).** `2.11`
+      asked for "a Kamal static site behind shared JWT auth", which reads like
+      nginx — the model `deploy-design-system.yml` already uses. It could not
+      be. The gate is `@kickstartds/shared-auth`, a Node library, so the choice
+      was an nginx `auth_request` sidecar or the Express pattern the Design
+      Tokens Editor already runs. Express won: one secret, one issuing script,
+      five services, and no second thing to configure. `server/index.ts` is
+      ~150 lines and adds a `connect-src 'none'` CSP, because the tree it
+      serves is sixty Storybooks full of code no human reviewed — which is the
+      _point_ of the artifact, and therefore something the server has to assume
+      rather than wish away.
+
+      The other thing 2.11 got wrong by omission: this image cannot be built
+      from source. Results are the output of paid runs. The deploy sequence is
+      populate-then-ship, and `results/.gitkeep` is tracked so the `COPY`
+      succeeds on a fresh clone rather than failing the build.

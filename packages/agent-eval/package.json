@@ -2,30 +2,50 @@
   "name": "agent-eval",
   "version": "0.0.0",
   "private": true,
-  "description": "UI generation eval loop \u2014 measures the quality, cost, time and efficiency contribution of the kickstartDS MCP servers",
+  "description": "UI generation eval loop — measures the quality, cost, time and efficiency contribution of the kickstartDS MCP servers",
   "license": "(MIT OR Apache-2.0)",
   "type": "module",
   "scripts": {
     "eval": "agent-eval",
-    "eval:dry": "agent-eval --dry",
     "eval:smoke": "agent-eval --smoke",
     "playground": "agent-eval playground",
     "status": "agent-eval status",
     "refingerprint": "agent-eval refingerprint",
     "grade": "tsx bin/grade.ts",
+    "report": "tsx bin/report.ts",
     "graders:selftest": "tsx bin/graders-selftest.ts",
     "setup:check": "tsx bin/setup-check.ts",
     "typecheck": "tsc --noEmit && tsx bin/build-evals.ts --check",
-    "build:evals": "tsx bin/build-evals.ts"
+    "build:evals": "tsx bin/build-evals.ts",
+    "report:index": "tsx bin/report-index.ts",
+    "results:prune": "tsx bin/prune-results.ts",
+    "results:download": "tsx bin/download-results.ts",
+    "serve:results": "node server/index.ts"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^10.2.15",
+    "@storybook/react-vite": "^10.2.15",
+    "@types/cookie-parser": "^1.4.0",
+    "@types/express": "^4.17.0",
     "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "esbuild": "^0.28.1",
+    "playwright-core": "^1.58.2",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sass": "^1.83.0",
+    "storybook": "^10.2.15",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vite": "^7.0.0"
   },
   "dependencies": {
-    "@vercel/agent-eval": "1.4.0"
+    "@kickstartds/shared-auth": "workspace:*",
+    "@vercel/agent-eval": "1.4.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.0"
   },
   "engines": {
     "node": ">=20"

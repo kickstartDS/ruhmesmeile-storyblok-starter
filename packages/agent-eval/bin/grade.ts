@@ -56,7 +56,10 @@ function targets(): Array<{ experiment: string; timestamp: string | null }> {
   if (experiment && timestamp) return [{ experiment, timestamp }];
   if (experiment) return [{ experiment, timestamp: null }];
 
-  return listExperiments().map((name) => ({ experiment: name, timestamp: null }));
+  return listExperiments().map((name) => ({
+    experiment: name,
+    timestamp: null,
+  }));
 }
 
 function printOutcome(outcome: Outcome): void {

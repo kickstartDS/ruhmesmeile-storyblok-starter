@@ -1,0 +1,64 @@
+# UI generation eval — campaign results (2.11).
+#
+# Publishes the results tree produced by `packages/agent-eval`: the per-trial
+# Storybooks, the component screenshots and the index that ties them together.
+# Exit criterion G4 — "a historical run is fully inspectable from a static URL"
+# — is this file.
+#
+# Gated behind the shared JWT (D7), because the tree contains full agent
+# transcripts. Same secret as the three MCP servers and the token editor, so
+# there is one thing to rotate:
+#
+#   node scripts/issue-token.mjs --user alice --role admin --expires 90d
+#   kamal env push -d agent-eval-results
+#
+# Deploying does not build the results — nothing can. Populate them first:
+#
+#   pnpm --filter agent-eval results:download   # if the campaign ran in CI
+#   pnpm --filter agent-eval report build --all
+#   pnpm --filter agent-eval report:index
+#   kamal deploy -d agent-eval-results
+
+service: ruhmesmeile-agent-eval-results
+
+image: <%= ENV["DOCKER_AGENT_EVAL_IMAGE_NAME"] %>
+
+# Same server as every other service.
+servers:
+  web:
+    - <%= ENV["HOSTING_SERVER_IP"] %>
+
+proxy:
+  ssl: true
+  hosts:
+    - <%= ENV["AGENT_EVAL_PUBLIC_DOMAIN"] %>
+  app_port: 8080
+  # A trial Storybook is a few megabytes of bundle; the default is tight for it.
+  response_timeout: 60
+  healthcheck:
+    path: /health
+
+registry:
+  username: <%= ENV["DOCKER_USERNAME"] %>
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  # Repo root, so workspace config, patches and shared-auth are all in context.
+  context: .
+  dockerfile: packages/agent-eval/Dockerfile
+  args:
+    # Results change on every campaign and are copied in a late layer.
+    CACHEBUST: <%= Time.now.to_i %>
+
+env:
+  clear:
+    NODE_ENV: production
+  secret:
+    # Unset ⇒ the site is open. Set it before this is reachable from anywhere
+    # that is not localhost. Every secret named here must also exist in
+    # `.kamal/secrets`, so `MCP_REVOKED_TOKENS` is deliberately not listed:
+    # revocation is opt-in, and naming a secret nobody has defined fails the
+    # deploy rather than degrading.
+    - MCP_JWT_SECRET

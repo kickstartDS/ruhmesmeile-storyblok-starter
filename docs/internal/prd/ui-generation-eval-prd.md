@@ -356,22 +356,38 @@ This is the requirement that most differentiates us from stock `@vercel/agent-ev
 ### 8.1 What every trial persists
 
 ```
-results/<experiment>/<timestamp>/<eval>/
-  summary.json                 # from agent-eval: passRate, meanDuration, fingerprint, classification
-  classification.json
-  kickstartds-report.json      # our normalized Outcome: quality/cost/time/efficiency + per-grader detail
-  run-1/
-    result.json
-    outputs/
-      eval.txt
-      graders/                 # raw build/typecheck/lint/a11y/axe output
-    project/                   # complete generated project (copyFiles: 'all')
-      agent-transcript.jsonl       # raw agent transcript (captured by EVAL.ts)
-      agent-transcript-meta.json   # tokens, tool-call histogram, mcp__* subset
-    storybook-static/          # ← built, browsable Storybook for THIS trial
-    screenshots/               # story screenshots (review artifacts, not diff-gated)
-  run-2/ ...
+results/
+  index.html                     # the results site root (bin/report-index.ts)
+  <experiment>/
+    .pinned                      # optional: timestamps prune must never touch
+    <timestamp>/<eval>/
+      summary.json               # from agent-eval: passRate, meanDuration, fingerprint, classification
+      run-1/
+        result.json
+        outputs/
+          eval.txt               # vitest output for this trial
+        project/                 # complete generated project (copyFiles: 'all')
+          .mcp.json                    # the MCP set this arm was given
+          agent-transcript.jsonl       # raw agent transcript (captured by EVAL.ts)
+          agent-transcript-meta.json   # tokens, tool-call histogram, mcp__* subset
+        report-manifest.json     # ← written by `report build`
+        storybook-static/        # ← built, browsable Storybook for THIS trial
+        screenshots/             # ← story screenshots (review artifacts, not diff-gated)
+      run-2/ ...
 ```
+
+> **Everything below `report-manifest.json` is derived, not paid for.** The
+> harness writes `summary.json`, `result.json`, `outputs/` and `project/`; the
+> last three entries are produced afterwards by `pnpm report build` and can be
+> regenerated at any time from the trial. This split is what lets `results:download`
+> refuse to overwrite an existing trial (ADR 68) and what lets grading be
+> retroactive and free (D-50).
+>
+> There is no `classification.json` or `kickstartds-report.json` on disk. The
+> normalized `Outcome` — quality/cost/time/efficiency plus per-grader detail —
+> is computed on demand by `lib/report/collect.ts`, because it is a pure
+> function of the trial and caching it would only create a second thing to
+> invalidate whenever a grader changes.
 
 > **Transcripts are ours, not the harness's.** `@vercel/agent-eval` writes
 > `transcript.json` / `transcript-raw.jsonl` only when its own capture succeeds;
@@ -385,36 +401,70 @@ results/<experiment>/<timestamp>/<eval>/
 
 ### 8.2 The report Storybook
 
-For each trial we build a Storybook from `run-N/project/` that contains **both** the generated component's stories **and** the run report itself, rendered as stories from `templates/report-docs/`. Story sort order, following the old Storybook eval harness:
+For each trial we build a Storybook that contains **both** the generated
+component, rendered live, **and** the run report itself. The report stories live
+in `lib/report/host/` — a host-side Storybook that mounts the trial through
+`lib/report/host/trial-plugin.ts` and `lib/report/manifest.ts`, rather than a
+`templates/report-docs/` directory copied into the project. Keeping the host
+out of the trial means a report can be rebuilt for an old run without the run
+ever having known about it.
+
+Story sort order, as built:
 
 ```
 
-Summary → Conversation → Graders → Build → Typecheck → Lint → A11y → Source
+Summary → Component → Conversation → Graders → Output → Source
 
 ````
 
 - **Summary** — task prompt, variant (agent/model/MCP set), pass/fail, quality breakdown, cost, duration, turns, MCP tool-call table.
+- **Component → Rendered** — the produced component, live and interactive, mounted in `.rp-stage` with the fixture's own token layer applied. This sits second rather than last: the first question about a trial is what it made.
+- **Component → Provenance** — which files came from the agent and which from the host, so "it renders" is never mistaken for "the agent made it render".
 - **Conversation** — the full transcript, rendered readably, with MCP tool calls and their outputs expandable.
 - **Graders** — every assertion with pass/fail and raw output.
-- **Source** — the generated files, syntax-highlighted.
-- The generated component's own stories sit alongside, so a reviewer can _interact with the produced UI_ in the same browser tab as the evidence of how it was produced.
+- **Output** — all toolchain and runtime output on one page, rather than separate Build/Typecheck/Lint/A11y pages. The graders already attribute failures to a dimension; splitting the raw logs to match only made a reviewer click four times to find one stack trace.
+- **Source** — the produced files first, then the fixture's, syntax-highlighted.
 
-Opening a trial locally must be one command:
+Opening a trial locally must be one command, and timestamps are resolved via
+`resolveMatrix()` so addresses omit them:
 
 ```bash
-pnpm --filter agent-eval open <experiment>/<timestamp>/<eval>/run-1
+pnpm --filter agent-eval report open <experiment>/<eval>/run-1
+pnpm --filter agent-eval report build <experiment>/<eval>/run-1   # or --all
 ````
 
 ### 8.3 Publication
 
-`results/` is git-ignored. Runs are published as a **static results site**:
+`results/` is git-ignored. Runs are published as a **static results site**,
+rooted at `results/index.html` (`pnpm report:index`) so that every link it emits
+is a working relative path:
 
-- an index page listing experiments × timestamps × tasks with the headline metrics and the baseline-delta table;
-- each row links into that trial's Storybook.
+- an index page listing tasks × arms with the headline metrics and the
+  baseline-delta table — quality ±σ, Δ quality, pass@1, $/trial, cost ×,
+  quality per extra dollar;
+- a **row of screenshot thumbnails per arm**, bordered green or red by outcome,
+  each linking into that trial's Storybook. A table of numbers says `cc-none`
+  scored 0.64 on `810`; a row of sixty thumbnails shows what that looked like.
 
-Hosting follows existing repo practice — a Kamal-deployed static site alongside the other `config/deploy-*.yml` services, behind the shared JWT auth. CI runs also upload the same tree as a workflow artifact, downloadable via a `results:download` script (as Storybook's harness does with `gh`), so a reviewer can inspect a CI run locally without redeploying.
+Hosting follows existing repo practice: `config/deploy-agent-eval-results.yml`
+alongside the other `config/deploy-*.yml` services, behind the shared JWT auth.
+Unlike every other service it is **not built from source** — the tree is the
+output of paid runs — so `packages/agent-eval/Dockerfile` copies a populated
+`results/` in as a late layer, and `server/index.ts` serves it behind a
+token-paste login with a `connect-src 'none'` CSP, because the reports
+deliberately execute agent-authored code (ADR 69).
 
-Retention: the **last 10 runs per experiment** are kept hot, plus every baseline-setting run pinned indefinitely; older runs are pruned automatically in the results-site deploy step (D10). Artifacts run 20–40 MB per run in Storybook's experience, and we add a built Storybook per trial on top.
+CI runs upload the same tree as a workflow artifact, retrieved with
+`pnpm results:download` (`gh`-based, `--from` for a local directory). The merge
+is idempotent and **never overwrites** an existing trial: CI owns the run, the
+local machine owns everything derived from it.
+
+Retention: `pnpm results:prune` keeps the **last 10 runs per experiment** plus
+every timestamp listed in `results/<experiment>/.pinned` (D10) — and, because
+timestamps differ per arm and per batch, every timestamp the reports currently
+resolve to. It is dry-run unless given `--apply`. Artifacts run 20–40 MB per
+run, and each built trial Storybook adds ~7.5 MB on top; most of that is an
+identical Storybook runtime, which is the outstanding dedupe candidate.
 
 ---
 
@@ -492,23 +542,23 @@ Task authoring rules:
 
 ### 12.1 Decided (2026-08-06)
 
-| #   | Decision                                                                                                         | Consequence                                                                                                                                                                                           |
-| --- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| D1  | **Package name:** `packages/agent-eval`.                                                                         | Matches upstream and the Storybook precedent; scope is signalled by tasks, not the folder name.                                                                                                       |
-| D2  | **Agent/model scope:** Claude Code + one pinned model for P0–P2.                                                 | Isolates the MCP variable cleanly and keeps P1 within budget. A second agent lands in P3; cross-agent claims are out of scope until then.                                                             |
-| D3  | **Model access:** direct provider keys, no Vercel AI Gateway.                                                    | No vendor dependency and no gateway billing layer — **but** we lose automatic failure classification and must implement §7.5 ourselves.                                                               |
-| D4  | **Sandbox:** Docker everywhere, local and CI.                                                                    | No Vercel account, no Sandbox quota. CI parallelism is bounded by runner capacity, so full-matrix runs are slower; budget the wall-clock accordingly.                                                 |
-| D5  | **Fixture:** generated fixture project with a packed `@kickstartds/design-system` tarball.                       | Trial isolation and reproducibility; the fixture becomes a maintained artifact that must track design-system changes.                                                                                 |
-| D6  | **Budget ceiling:** **$40 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs. Raised from $25 after P1 measured `cc-both` at $29.71 on a single-eval matrix — the original figure was set before any per-trial cost was known. Not yet enforced in code (checklist 4.6).                                                                                             |
-| D7  | **Results hosting:** Kamal-deployed static site behind the shared JWT auth.                                      | Consistent with the other four hosted services; reuses `packages/shared-auth` and the existing `config/deploy-*.yml` pattern.                                                                         |
-| D8  | **MCP transport:** stdio from the workspace build.                                                               | Hermetic trials that test the current commit — what a quality gate needs. An optional `-hosted` variant is added later to smoke-test the deployed HTTP surface incl. JWT auth.                        |
-| D9  | **Runs per task:** 3 for `capability`, 5 for `regression`.                                                       | `pass^5` is meaningful enough to gate on; the capability suite stays cheap. Revisit once real per-trial costs are known against the D6 cap.                                                           |
-| D10 | **Retention:** last 10 runs per experiment, plus every baseline-setting run pinned indefinitely.                 | Bounded storage growth despite a built Storybook per trial. Pruning is automated in the results-site deploy step.                                                                                     |
-| D11 | **CI gating:** report-only until P4 baselines have survived two full cycles, then block on the regression suite. | Avoids a gate that cries wolf before its thresholds are trustworthy. The switch from report to block is an explicit, reviewed commit.                                                                 |
-| D12 | **Visibility:** private for v1, behind the shared JWT (D7).                                                      | Public publication stays open as a later marketing move; nothing in the design precludes it.                                                                                                          |
-| D13 | **Screenshots:** not committed, not tracked in Git LFS — they live only under `results/`.                        | Keeps repository size flat. Screenshots remain available through the results site and CI artifacts.                                                                                                   |
-| D14 | **Repo-local agent instructions are excluded from every variant**, including the baseline.                       | We measure the MCP servers' built-in capability, isolated from local setup context that differs between consumers. Baselines will read low by design; enforced by the `fixture-hygiene` check (§5.3). |
-| D15 | **CI runner sizing:** start on standard runners, measure in P1, escalate only if a full run exceeds ~2h.         | Wall-clock, not spend, is the binding constraint under Docker-only sandboxing (D4).                                                                                                                   |
+| #   | Decision                                                                                                         | Consequence                                                                                                                                                                                                        |
+| --- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| D1  | **Package name:** `packages/agent-eval`.                                                                         | Matches upstream and the Storybook precedent; scope is signalled by tasks, not the folder name.                                                                                                                    |
+| D2  | **Agent/model scope:** Claude Code + one pinned model for P0–P2.                                                 | Isolates the MCP variable cleanly and keeps P1 within budget. A second agent lands in P3; cross-agent claims are out of scope until then.                                                                          |
+| D3  | **Model access:** direct provider keys, no Vercel AI Gateway.                                                    | No vendor dependency and no gateway billing layer — **but** we lose automatic failure classification and must implement §7.5 ourselves.                                                                            |
+| D4  | **Sandbox:** Docker everywhere, local and CI.                                                                    | No Vercel account, no Sandbox quota. CI parallelism is bounded by runner capacity, so full-matrix runs are slower; budget the wall-clock accordingly.                                                              |
+| D5  | **Fixture:** generated fixture project with a packed `@kickstartds/design-system` tarball.                       | Trial isolation and reproducibility; the fixture becomes a maintained artifact that must track design-system changes.                                                                                              |
+| D6  | **Budget ceiling:** **$40 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs. Raised from $25 after P1 measured `cc-both` at $29.71 on a single-eval matrix — the original figure was set before any per-trial cost was known. Not yet enforced in code (checklist 4.6). |
+| D7  | **Results hosting:** Kamal-deployed static site behind the shared JWT auth.                                      | Consistent with the other four hosted services; reuses `packages/shared-auth` and the existing `config/deploy-*.yml` pattern.                                                                                      |
+| D8  | **MCP transport:** stdio from the workspace build.                                                               | Hermetic trials that test the current commit — what a quality gate needs. An optional `-hosted` variant is added later to smoke-test the deployed HTTP surface incl. JWT auth.                                     |
+| D9  | **Runs per task:** 3 for `capability`, 5 for `regression`.                                                       | `pass^5` is meaningful enough to gate on; the capability suite stays cheap. Revisit once real per-trial costs are known against the D6 cap.                                                                        |
+| D10 | **Retention:** last 10 runs per experiment, plus every baseline-setting run pinned indefinitely.                 | Bounded storage growth despite a built Storybook per trial. Pruning is automated in the results-site deploy step.                                                                                                  |
+| D11 | **CI gating:** report-only until P4 baselines have survived two full cycles, then block on the regression suite. | Avoids a gate that cries wolf before its thresholds are trustworthy. The switch from report to block is an explicit, reviewed commit.                                                                              |
+| D12 | **Visibility:** private for v1, behind the shared JWT (D7).                                                      | Public publication stays open as a later marketing move; nothing in the design precludes it.                                                                                                                       |
+| D13 | **Screenshots:** not committed, not tracked in Git LFS — they live only under `results/`.                        | Keeps repository size flat. Screenshots remain available through the results site and CI artifacts.                                                                                                                |
+| D14 | **Repo-local agent instructions are excluded from every variant**, including the baseline.                       | We measure the MCP servers' built-in capability, isolated from local setup context that differs between consumers. Baselines will read low by design; enforced by the `fixture-hygiene` check (§5.3).              |
+| D15 | **CI runner sizing:** start on standard runners, measure in P1, escalate only if a full run exceeds ~2h.         | Wall-clock, not spend, is the binding constraint under Docker-only sandboxing (D4).                                                                                                                                |
 
 All open questions are resolved; nothing blocks P0. Items flagged for deliberate revisit: **D6** (budget) and **D9** (runs per task) after the P1 calibration run, **D8** (hosted variant) once the deployed surface is worth smoke-testing, **D12** (public results), and **D14** — an instructions-vs-MCP study remains an interesting one-off, but only as a separate experiment, never as a variable inside the core matrix.
 

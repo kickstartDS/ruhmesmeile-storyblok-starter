@@ -70,6 +70,18 @@ export const TARGETS: Record<string, Target> = {
     mcpUseExpected: true,
     diffTask: true,
   },
+  "820-token-intent": {
+    slug: "stat",
+    dir: "src/components/stat",
+    // The stylesheet is the only wrong thing; the component ships working.
+    requiresClientBehaviour: false,
+    schemaProperties: ["delta", "label", "trend", "value"],
+    delegatedElements: [],
+    // Choosing between 1,522 visible token names by design intent is precisely
+    // what the tokens server encodes rules for. Ignoring it is the baseline.
+    mcpUseExpected: true,
+    diffTask: true,
+  },
   "832-client-behaviour": {
     slug: "disclosure",
     dir: "src/components/disclosure",

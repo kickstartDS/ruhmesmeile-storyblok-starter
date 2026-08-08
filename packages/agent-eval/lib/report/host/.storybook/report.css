@@ -1,0 +1,350 @@
+/*
+ * Report chrome.
+ *
+ * Everything is namespaced `rp-` and no element selectors are used, because
+ * this stylesheet shares a document with the component under test. A bare
+ * `button { … }` here would silently restyle the thing being reviewed.
+ */
+
+.rp-page {
+  box-sizing: border-box;
+  padding: 24px 28px 64px;
+  max-width: 1100px;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.rp-page *,
+.rp-page *::before,
+.rp-page *::after {
+  box-sizing: inherit;
+}
+
+.rp-title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.rp-subtitle {
+  margin: 0 0 24px;
+  font-size: 13px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.rp-section {
+  margin: 0 0 28px;
+}
+
+.rp-section__heading {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6b7280;
+}
+
+.rp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.rp-stat {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.rp-stat__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.rp-stat__value {
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.rp-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.rp-badge--pass {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.rp-badge--fail {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.rp-badge--muted {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.rp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.rp-table th,
+.rp-table td {
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+.rp-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rp-table td.rp-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rp-code {
+  margin: 0;
+  padding: 12px 14px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  overflow: auto;
+  max-height: 560px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/*
+ * Syntax highlighting, applied to the `token` classes Prism emits.
+ *
+ * Every rule is scoped under `.rp-code--lit`. `.token` is about as generic as a
+ * class name gets, and this stylesheet shares a document with the component
+ * under test — a trial that happens to use the word "token" in a class name is
+ * not far-fetched on a design-system benchmark.
+ *
+ * Hues are kept few and far apart. The job here is to make structure skimmable
+ * while reading someone else's code, not to be pretty: strings, comments and
+ * identifiers need to separate at a glance, and everything else can share.
+ */
+.rp-code--lit .token.comment,
+.rp-code--lit .token.prolog,
+.rp-code--lit .token.doctype,
+.rp-code--lit .token.cdata {
+  color: #64748b;
+  font-style: italic;
+}
+
+.rp-code--lit .token.punctuation {
+  color: #94a3b8;
+}
+
+.rp-code--lit .token.keyword,
+.rp-code--lit .token.atrule,
+.rp-code--lit .token.rule,
+.rp-code--lit .token.operator,
+.rp-code--lit .token.important {
+  color: #c4b5fd;
+}
+
+.rp-code--lit .token.string,
+.rp-code--lit .token.attr-value,
+.rp-code--lit .token.char,
+.rp-code--lit .token.regex,
+.rp-code--lit .token.url,
+.rp-code--lit .token.inserted {
+  color: #86efac;
+}
+
+.rp-code--lit .token.number,
+.rp-code--lit .token.boolean,
+.rp-code--lit .token.constant,
+.rp-code--lit .token.symbol,
+.rp-code--lit .token.unit {
+  color: #fdba74;
+}
+
+.rp-code--lit .token.function,
+.rp-code--lit .token.class-name,
+.rp-code--lit .token.property,
+.rp-code--lit .token.attr-name {
+  color: #7dd3fc;
+}
+
+.rp-code--lit .token.tag,
+.rp-code--lit .token.selector,
+.rp-code--lit .token.variable,
+.rp-code--lit .token.builtin {
+  color: #f9a8d4;
+}
+
+.rp-code--lit .token.deleted {
+  color: #fca5a5;
+}
+
+.rp-note {
+  padding: 10px 14px;
+  border-left: 3px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 13px;
+  color: #4b5563;
+  border-radius: 0 6px 6px 0;
+}
+
+.rp-note--warn {
+  border-left-color: #f59e0b;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.rp-turn {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.rp-turn__head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 12px;
+  background: #f9fafb;
+  font-size: 12px;
+  color: #6b7280;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rp-turn__role {
+  font-weight: 650;
+  color: #1a1a1a;
+  text-transform: capitalize;
+}
+
+.rp-turn__body {
+  padding: 10px 14px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.rp-tool {
+  margin: 8px 14px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.rp-tool__summary {
+  cursor: pointer;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #f3f4f6;
+  user-select: none;
+}
+
+.rp-tool--mcp .rp-tool__summary {
+  background: #ecfeff;
+  color: #155e75;
+}
+
+.rp-tool--error .rp-tool__summary {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.rp-tool__body {
+  padding: 0 12px 10px;
+}
+
+.rp-check {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 5px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.rp-check__mark {
+  width: 14px;
+  flex: 0 0 14px;
+  font-weight: 700;
+}
+
+.rp-check__mark--pass {
+  color: #16a34a;
+}
+
+.rp-check__mark--fail {
+  color: #dc2626;
+}
+
+.rp-check__mark--partial {
+  color: #d97706;
+}
+
+.rp-check__detail {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.rp-file {
+  margin-bottom: 18px;
+}
+
+.rp-file__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/*
+ * The stage the produced component renders on.
+ *
+ * The design system sets base typography globally rather than per component,
+ * so without this a correct component inherits the browser's serif default and
+ * looks wrong for a reason that has nothing to do with the agent. Only
+ * inherited text properties are set here — anything the component declares for
+ * itself still wins, and nothing targets its selectors.
+ */
+.rp-stage {
+  padding: 32px;
+  font-family: var(--ks-font-family-copy, system-ui, sans-serif);
+  color: var(--ks-text-color-default, inherit);
+}

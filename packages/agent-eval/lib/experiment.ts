@@ -448,9 +448,12 @@ function guardVariantVersion(
   //
   // `--smoke` is excluded because it deletes only its own results; advancing on
   // it would stamp everything it did *not* re-run as current.
+  //
+  // There is no `--dry`. `run` accepts `--force`, `--smoke` and
+  // `--ack-failures`, and nothing else — so the only zero-spend escape is a
+  // read-only command.
   const argv = process.argv.slice(2);
   const spends =
-    !argv.includes("--dry") &&
     !argv.includes("--smoke") &&
     !argv.some((arg) => READ_ONLY_COMMANDS.has(arg));
   if (!spends) return;
@@ -473,23 +476,28 @@ function describeDrift(marker: string, parts: VariantParts): string {
     return `\n  (marker predates per-input tracking — cannot attribute the change)\n`;
   }
 
-  const moved = Object.keys(parts).filter((key) => previous[key] !== parts[key]);
+  const moved = Object.keys(parts).filter(
+    (key) => previous[key] !== parts[key],
+  );
   if (!moved.length) return "";
 
   return (
     `\n  changed: ${moved.join(", ")}\n` +
     moved
-      .map((key) => `    ${key.padEnd(9)} ${previous[key] ?? "?"} -> ${parts[key]}`)
+      .map(
+        (key) =>
+          `    ${key.padEnd(9)} ${previous[key] ?? "?"} -> ${parts[key]}`,
+      )
       .join("\n") +
     "\n"
   );
 }
 
-function writeMarker(
-  marker: string,
-  stamp: string,
-  parts: VariantParts,
-): void {
+function writeMarker(marker: string, stamp: string, parts: VariantParts): void {
   mkdirSync(dirname(marker), { recursive: true });
-  writeFileSync(marker, `${stamp}\n${JSON.stringify(parts, null, 2)}\n`, "utf-8");
+  writeFileSync(
+    marker,
+    `${stamp}\n${JSON.stringify(parts, null, 2)}\n`,
+    "utf-8",
+  );
 }

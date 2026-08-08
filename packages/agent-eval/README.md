@@ -49,7 +49,7 @@ then widen the matrix.
 ## Usage
 
 ```bash
-pnpm eval:dry                            # what would run, no spend
+pnpm setup:check                         # rehearse setup against a real container, no spend
 pnpm eval                                # interactive experiment picker
 pnpm eval run cc-none-sonnet-high        # one specific experiment
 pnpm status                              # which results are stale

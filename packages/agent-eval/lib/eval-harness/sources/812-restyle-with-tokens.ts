@@ -49,33 +49,45 @@ test("the provided schema is left untouched", () => {
 });
 
 /**
- * Collapses every `var()` call, innermost first, so that whatever sits in the
- * fallback slot disappears with it.
+ * Collapses `var()` calls whose fallback is itself a token, innermost first, so
+ * that only a *literal* in a fallback slot is left behind for the assertions
+ * below to find.
  *
- * `var(--ks-color-positive, #059669)` is not the defect this task is about —
- * the design system's own token partials carry fallbacks exactly like that, so
- * scoring them as hardcoded colour would punish the house style. What counts is
- * a literal used as the value itself.
+ * This check used to collapse every `var()` regardless of its fallback, on the
+ * stated grounds that "the design system's own token partials carry fallbacks
+ * exactly like that". A census of all 68 components says otherwise: 149 `var()`
+ * fallbacks, every one of them `var(--x, var(--y))`, and not a single literal
+ * colour among them. The house style is token to token, all the way down the
+ * branding → semantic → component layering.
+ *
+ * So `var(--ks-color-positive, #059669)` is not house style, it is a hardcoded
+ * colour wearing a token's clothes — a baseline run cleared this task's colour
+ * assertion by writing exactly that. The `token-conformance` grader always
+ * scored it as a defect; this eval was the lenient one. (ADR 63.)
  */
-function withoutVarFallbacks(css: string): string {
+function withoutTokenFallbacks(css: string): string {
   let previous;
   let collapsed = css;
   do {
     previous = collapsed;
-    collapsed = collapsed.replace(/var\(\s*--[^()]*\)/g, "VAR");
+    // A bare `var(--x)`, or one whose fallback has already collapsed to VAR.
+    collapsed = collapsed.replace(
+      /var\(\s*--[\w-]+\s*(?:,\s*VAR\s*)?\)/g,
+      "VAR",
+    );
   } while (collapsed !== previous);
   return collapsed;
 }
 
 test("no literal colour values survive in the stylesheet", () => {
-  const styles = withoutVarFallbacks(read(FILES.styles));
+  const styles = withoutTokenFallbacks(read(FILES.styles));
   const literals =
     styles.match(/#[0-9a-fA-F]{3,8}\b|\brgba?\(|\bhsla?\(/g) ?? [];
   expect(literals).toEqual([]);
 });
 
 test("no literal font sizes, spacing or radii survive in the stylesheet", () => {
-  const styles = withoutVarFallbacks(read(FILES.styles));
+  const styles = withoutTokenFallbacks(read(FILES.styles));
   // Anything with a px/rem/em length on a property the fixture hardcoded. `0`
   // is unitless and legitimate, so it is not matched.
   const declarations = styles.match(

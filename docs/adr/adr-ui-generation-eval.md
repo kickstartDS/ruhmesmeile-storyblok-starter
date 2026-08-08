@@ -313,7 +313,7 @@ Three of the four dimensions this package measures — cost, efficiency, and MCP
 
 **Rationale:**
 
-- `captureGeneratedFiles()` runs *after* validation and collects via `git add . && git diff HEAD --name-status`, so untracked files written by `EVAL.ts` are picked up and land in `run-N/project/`. This satisfies G4 (static inspectable artifacts) and the explicit requirement that every run keep its transcript of communication.
+- `captureGeneratedFiles()` runs _after_ validation and collects via `git add . && git diff HEAD --name-status`, so untracked files written by `EVAL.ts` are picked up and land in `run-N/project/`. This satisfies G4 (static inspectable artifacts) and the explicit requirement that every run keep its transcript of communication.
 - The derived summary means P1 graders never re-parse 800 KB of JSONL, and the `mcp__*` histogram is precisely the signal the MCP-usage and negative-usage graders need. Verified against real Claude Code transcripts: `mcp__storybook-docs-mcp__get-documentation: 12` extracted cleanly alongside token totals.
 - Owning the capture removes a silent dependency on upstream best-effort behaviour that has already failed us once.
 
@@ -367,7 +367,7 @@ Two residual notes:
   CLI invocation, not the graders, so no assertion leaks. Re-check if upstream
   moves grading detail into it.
 
-Closing the web also changed what the baseline *is*: mean duration fell from
+Closing the web also changed what the baseline _is_: mean duration fell from
 647.1s to 310.7s and output quality dropped (plain `.css`, no `{Name}Component`
 suffix in any trial). The pre-deny runs were partly measuring retrieval of our
 own published source, so they are superseded and should not be cited as
@@ -399,7 +399,7 @@ same pattern already used for transcript capture).
 - The harness's own pass/fail (`EVAL.ts`) and our quality score are now two
   different numbers. Both are reported. `pass@1` remains the gate; the quality
   score is what deltas are computed on, because a binary gate cannot show that
-  a variant got *closer* to the contract.
+  a variant got _closer_ to the contract.
 - Graders can read things the sandbox cannot — notably the real token registry
   in `packages/design-tokens-mcp/tokens/`, which is how `token-conformance`
   distinguishes an invented `--space-3xs` from a real `--ks-spacing-*`.
@@ -412,20 +412,20 @@ same pattern already used for transcript capture).
 copied from `.github/copilot-instructions.md`, which is wrong on those two
 lines. Measured conformance:
 
-| Rule | Conformance |
-| --- | --- |
-| `{Pascal}Component.tsx` | 68/68 |
-| `{slug}.scss` (kebab-case) | 61/61 of styled components |
-| `{slug}.schema.json` | 67/68 |
-| component imports its own stylesheet | 61/61 |
-| `.dsa-` block in styles | 58/61 |
-| `_{slug}-tokens.scss` | 41/68 |
-| `{Pascal}.client.js` (root or `js/`) | 7/68 |
+| Rule                                 | Conformance                |
+| ------------------------------------ | -------------------------- |
+| `{Pascal}Component.tsx`              | 68/68                      |
+| `{slug}.scss` (kebab-case)           | 61/61 of styled components |
+| `{slug}.schema.json`                 | 67/68                      |
+| component imports its own stylesheet | 61/61                      |
+| `.dsa-` block in styles              | 58/61                      |
+| `_{slug}-tokens.scss`                | 41/68                      |
+| `{Pascal}.client.js` (root or `js/`) | 7/68                       |
 
 Two consequences followed. The reported 0/3 baseline was partly a rubric
 artifact — trials were penalised for output that was closer to correct than the
 rubric was. Worse, the MCP variants would have been penalised for following
-their own guidance, since the Component Builder MCP teaches the *real*
+their own guidance, since the Component Builder MCP teaches the _real_
 convention. The measured delta could have come out negative for reasons that
 have nothing to do with the MCP's value.
 
@@ -470,8 +470,8 @@ deltas the package exists to measure.
 
 **Context.** The first three baselines ran against a fixture with only React,
 TypeScript and Vitest installed. Every trial wrote `badge.css` instead of
-`badge.scss`, and the transcripts show why: *"using only plain CSS since Sass
-isn't installed"*. Two graders were scoring a fixture defect as a model defect.
+`badge.scss`, and the transcripts show why: _"using only plain CSS since Sass
+isn't installed"_. Two graders were scoring a fixture defect as a model defect.
 
 **Decision.** Fixture provisioning is decided per eval, in that eval's
 `package.json`. The framework's agent definition already runs `npm install` in
@@ -481,7 +481,7 @@ mechanism — no `setup()` step is involved.
 `810-atom-from-schema` declares the toolchain a real kickstartDS package has:
 `sass`, `jsdom`, `react-dom`, `@testing-library/react`, `axe-core`, `typescript`,
 `vitest`. It does **not** declare `@kickstartds/design-system`, because a Badge
-is an atom — it composes nothing. Evals whose task *requires* composition (a
+is an atom — it composes nothing. Evals whose task _requires_ composition (a
 card that needs a Button, a form that needs Inputs) must declare the design
 system, or the task is impossible and `ds-reuse` has nothing to measure. The
 `delegatedElements` field on each grader target already encodes this per eval.
@@ -494,7 +494,7 @@ it and the MCP delta collapses toward zero for a reason that says nothing about
 the servers.
 
 **Consequences.** All baselines predating this change are retired; they measured
-a different environment. The cold/warm split is now a property of the *task*
+a different environment. The cold/warm split is now a property of the _task_
 rather than a global policy: atom evals stay cold and measure whether the agent
 knows the conventions, composition evals ship the design system and measure
 whether the agent finds and reuses what already exists. Both are real questions;
@@ -540,7 +540,7 @@ and called the handler functions directly with
 which then scored 1.00.
 
 Nothing in the pipeline objected, because every individual number was real. The
-`mcp-usage` diagnostic did report *"configured but never called"* in 9/9 runs,
+`mcp-usage` diagnostic did report _"configured but never called"_ in 9/9 runs,
 but it was diagnostic by design (Decision 12: grade the product, not the path),
 so it carried no weight and excluded nothing.
 
@@ -553,7 +553,7 @@ so it carried no weight and excluded nothing.
 2. **Servers run outside the workspace.** Uploads still land in `.mcp-servers/`
    — the docker backend extracts every tar at the container workdir, so there
    is no alternative — and are then moved to a sibling directory. This removes
-   the *stumble*; it does not make the servers unreachable, and is not intended
+   the _stumble_; it does not make the servers unreachable, and is not intended
    to.
 3. **`confounded` failure class.** A non-baseline trial that either touches the
    staging path or records zero MCP calls is excluded from every aggregate.
@@ -561,7 +561,7 @@ so it carried no weight and excluded nothing.
 **Why the third layer is the load-bearing one.** `--dangerously-skip-permissions`
 is always passed, so no permission rule stops a read, and `find /` locates the
 servers wherever they are. Prevention is not achievable; detection is. Making
-this a *validity* condition rather than a low score is the key move — a
+this a _validity_ condition rather than a low score is the key move — a
 confounded trial usually looks good, and the failure mode is silent inclusion,
 not a visible error.
 
@@ -656,7 +656,7 @@ for the design system to copy from, and found `jsonwebtoken`.
   as `mcp-usage/no-staging-enumeration` and **counted**.
 
 Classification is per shell segment, not per command string, because
-`find <dir> | head -50` pipes a *path list* into `head` — a whole-string scan
+`find <dir> | head -50` pipes a _path list_ into `head` — a whole-string scan
 for content verbs would call that a read. A verb only counts when it is applied
 to the staging path itself. `cd <dir> && …` counts unconditionally: everything
 after it is relative to the tree, which is how the first matrix was compromised.
@@ -687,9 +687,9 @@ visible as a `toolchain` penalty rather than a vanished trial.
 ## Decision 26 — MCP reached through a subagent still counts as reached
 
 **Context.** In the first valid matrix, `cc-component-builder` run-2 was
-excluded as *"an MCP variant that never called an MCP server"*. It had. The
+excluded as _"an MCP variant that never called an MCP server"_. It had. The
 agent resolved four tools via `ToolSearch`, then spawned a subagent and asked it
-to call them and *"report back their FULL raw output"*. Claude Code runs that
+to call them and _"report back their FULL raw output"_. Claude Code runs that
 nested conversation separately, and it never reaches the session transcript:
 every record we capture carries `isSidechain: false`. The counter saw zero and
 the exclusion rule scored a well-informed trial as if it were the baseline.
@@ -706,7 +706,7 @@ many calls it took, so the cost is not. Averaging in a zero would have made the
 component-builder arm look cheaper than it is, in the same breath as making it
 look like it had not used its MCP at all.
 
-**Direction of the old error.** It deleted a *successful* MCP trial, so it bit
+**Direction of the old error.** It deleted a _successful_ MCP trial, so it bit
 only the MCP arms and only when they worked well enough to delegate. Left in
 place it would have understated exactly the effect the matrix exists to
 measure.
@@ -721,14 +721,14 @@ trial. "MCP costs 4× more" was the output ratio; the real ratio is 7.08×.
 
 **Decision.** `lib/report/cost.ts` prices all four token classes from a static
 per-family table and every `Outcome` carries a `cost` breakdown. Aggregates
-report mean cost per counted trial *and* total spent including excluded trials —
+report mean cost per counted trial _and_ total spent including excluded trials —
 a confounded trial is billed exactly like any other, so budgeting from the
 counted mean understates any run that had to throw work away.
 
 **Why static prices.** This is a planning estimate, not an invoice. A live
 pricing lookup would add a network dependency to a report that must run offline
 against archived results, and the provider's own billing remains authoritative.
-The table is keyed by model *family* so a point release does not silently fall
+The table is keyed by model _family_ so a point release does not silently fall
 through to the wrong tier.
 
 **What it changed immediately.** Ranking arms by quality alone put `both` first.
@@ -805,7 +805,7 @@ exactly the configuration most likely to trigger it — `both` already burns 3.9
 the output tokens of baseline for +0.02 quality.
 
 **Decision.** `860-restraint` ships `Tag` complete and correct except for one
-seeded defect (axe `button-name`, critical). The eval scores the fix *and* the
+seeded defect (axe `button-name`, critical). The eval scores the fix _and_ the
 blast radius: schema, client behaviour and token partial are hash-pinned, and
 the component directory must gain no unrequested files.
 
@@ -814,7 +814,7 @@ visually-hidden accessible name legitimately needs a new rule. Pinning it would
 score the correct fix as a violation.
 
 `requiresClientBehaviour` stays `true` here and is `false` for `812`: in both
-cases the target is the file that *should already exist and be left alone*.
+cases the target is the file that _should already exist and be left alone_.
 
 ## Decision 32 — validate every eval in both directions before spending on it
 
@@ -865,7 +865,7 @@ Verified by reproducing the recorded 810 matrix exactly through the new path.
 ## 34. `contentFingerprint` is the comparability invariant
 
 **Context.** Chunked buying introduces a failure mode that does not exist in a
-single run: arms can be measured against *different versions of the same eval*.
+single run: arms can be measured against _different versions of the same eval_.
 The numbers still line up in a table, and the table is meaningless.
 
 **Decision.** `lib/report/matrix.ts` treats `contentFingerprint` — which covers
@@ -873,7 +873,7 @@ eval files only, not agent/model config — as the invariant that must agree acr
 arms. `matrixIntegrity()` reports two distinct properties:
 
 - **complete** — every arm ran every eval
-- **comparable** — every arm that ran an eval ran the *same* eval
+- **comparable** — every arm that ran an eval ran the _same_ eval
 
 These are deliberately separate. An incomplete matrix is a budget state; a
 non-comparable one is a correctness failure. Grading prints `NOT COMPARABLE` with
@@ -921,7 +921,7 @@ advanced the marker, and every later invocation demanded `--force` forever. The
 rule is now an inversion: advance unless this is `--dry`, `--smoke`, or a
 read-only subcommand (`status`, `refingerprint`, `playground`, `init`).
 `--smoke` is excluded because it deletes only its own results, so advancing on it
-would stamp everything it did *not* re-run as current.
+would stamp everything it did _not_ re-run as current.
 
 Verified by simulating `process.argv` rather than invoking the CLI: `--force`
 advances, `--dry --force` and `--smoke --force` do not.
@@ -961,7 +961,7 @@ eval, 11/12 tests passing, on `the component token partial is left untouched` �
 while every one of the twelve trials had in fact left the file untouched. The
 agents showed perfect restraint and were failed by a typo in the answer key.
 
-A pasted digest is unfalsifiable from the inside: once it rots, a *correct*
+A pasted digest is unfalsifiable from the inside: once it rots, a _correct_
 result and an over-edit are indistinguishable, and the eval reports the wrong
 one. PRD §10 already says a task that cannot pass is broken rather than hard.
 
@@ -985,7 +985,7 @@ the results already bought against them — survive the change.
 baseline" (Decision 26) excluded all nine MCP-arm trials of `860` and marked
 three arms `RUN INVALID`. But `860` is a one-line accessible-name fix. Opening a
 token catalogue to write an `aria-label` is precisely the over-engineering the
-eval exists to penalise, so declining to call a server is the *correct* answer,
+eval exists to penalise, so declining to call a server is the _correct_ answer,
 not a missing measurement.
 
 The rule was written for `810`, where the servers are the treatment and ignoring
@@ -1006,7 +1006,7 @@ the answer key off disk — is untouched.
 **Context.** All twelve `860` trials scored quality `0.86 ±0.00`, with
 byte-identical grader detail: the same four literal colours, the same unknown
 tokens, the same `exports TagProvider` purity failure. The whole-component
-graders are scoring the *shipped fixture*, which every arm correctly left alone;
+graders are scoring the _shipped fixture_, which every arm correctly left alone;
 the agent only touches an `aria-label`. The dimension has zero discriminating
 power here and is close to meaningless as designed.
 
@@ -1032,7 +1032,7 @@ question when the fixture supplied them, and it is what catches an agent that
 renames or deletes something it was asked to leave alone.
 
 **Consequence, and a second instance of the same bug.** Scoping alone first made
-`860` *worse* — 0.86 to 0.76 — because `client-behaviour` read "no client file in
+`860` _worse_ — 0.86 to 0.76 — because `client-behaviour` read "no client file in
 the graded set" as three hard failures. The agent was being given 0.00 for
 correctly not rewriting a working file: the same defect as the `860` digest and
 the zero-call confound, for the third time. Fixed by returning `n/a` when the
@@ -1052,8 +1052,7 @@ it.
 with `@use "tag-tokens";`. The grader requires the extension.
 
 **Decision.** The grader is correct and the fixture is the outlier: the design
-system writes `@use "button-tokens.scss";` in 47 components and the bare form in
-3. Leave the regex alone.
+system writes `@use "button-tokens.scss";` in 47 components and the bare form in 3. Leave the regex alone.
 
 **Consequence.** Worth recording because the first instinct was to call this a
 grader bug, by analogy with the digest and confound defects. It was not. "The
@@ -1126,7 +1125,7 @@ across all variants exhausted as a capability measure.
 
 **Decision.** Keep `860` in the matrix, but read it as a drift gate rather than
 a comparison. At ~$0.24/trial it is the cheapest eval by an order of magnitude,
-and a *fall* from 100% is exactly the response-drift signal the PRD asks for.
+and a _fall_ from 100% is exactly the response-drift signal the PRD asks for.
 
 **It also carries one real result.** MCP availability does not induce
 over-engineering on a small diff: all three MCP arms declined to call a server
@@ -1254,8 +1253,8 @@ That JSDoc is copied verbatim from the schema's own `description` for
 `actionIcon`, and copying field descriptions into JSDoc is exactly what the
 component-builder MCP's templates prescribe.
 
-**Consequence.** The check was not merely weak, it was *biased toward the arms
-under test*: the MCP tells agents to copy descriptions, so MCP arms would have
+**Consequence.** The check was not merely weak, it was _biased toward the arms
+under test_: the MCP tells agents to copy descriptions, so MCP arms would have
 earned a free pass on the one assertion `840` exists to make informative, while
 baseline arms could fail it. That inflates the measured MCP benefit on the task
 built to fix D-20 — a confound of the same family as the zero-call one, and
@@ -1286,7 +1285,7 @@ tripped by one. Both are wrong.
 **Context.** `832`'s initial-state check read `expect(source).toMatch(/defaultOpen/)`,
 under a comment explaining that "`defaultOpen` has to reach the markup". It does
 not test that. The prop name appears in the destructuring of any component that
-merely *declares* it, so an implementation that accepted `defaultOpen` and then
+merely _declares_ it, so an implementation that accepted `defaultOpen` and then
 ignored it passed — which is precisely the flash-of-wrong-state defect the
 assertion was written to catch.
 
@@ -1306,7 +1305,7 @@ passed.
 **Consequence.** Rendering the disclosure open also gives the a11y probe an
 expanded panel to inspect rather than a `hidden` subtree that axe skips, so the
 change buys a little coverage as well. The general rule: when a check is about
-behaviour, a prop *name* in source text is evidence of nothing — the harness
+behaviour, a prop _name_ in source text is evidence of nothing — the harness
 already renders the component, so use it.
 
 ## 53. Pre-verification is cheap; blind buying is not
@@ -1325,7 +1324,7 @@ case suggested by the assertion's shape.
 **Result.** `812` clean (10/10 solved; 4 targeted failures unsolved). `832` one
 defect (ADR 52). `840` one defect (ADR 51), plus confirmation it does discriminate
 the native-HTML anti-pattern it was built for. Cost: zero. Both defects were of
-the kind that produce a *plausible* number rather than an obviously broken one,
+the kind that produce a _plausible_ number rather than an obviously broken one,
 so neither would have been caught by reading the results.
 
 **Consequence.** This is now a gate, not an option. Fixture edits are free until
@@ -1345,7 +1344,7 @@ obeying the task.
 This is the third instance of the same family: D-48 (`client-behaviour` scoring
 0.00 on `860`), the `860` `@use` assertion, and now `bem`. The shape is always
 the same — a check written for a from-scratch task, reused on a diff task,
-where *absence* means *correctness* rather than *failure*.
+where _absence_ means _correctness_ rather than _failure_.
 
 `bem` is a styles grader with one component-side check, which is why it escaped
 the earlier sweep: the grader itself is applicable, only one of its four checks
@@ -1381,9 +1380,14 @@ relies on the leak detector for the guarantee. The stumble was not removed:
 path.
 
 ```json
-{ "mcpServers": { "design-tokens": {
-    "command": "node",
-    "args": ["/tmp/.agent-eval-mcp/design-tokens/dist/index.js"] } } }
+{
+  "mcpServers": {
+    "design-tokens": {
+      "command": "node",
+      "args": ["/tmp/.agent-eval-mcp/design-tokens/dist/index.js"]
+    }
+  }
+}
 ```
 
 One `ls ..` from there reaches `tokens/`. For a stdio server this is not
@@ -1410,10 +1414,10 @@ as the control.
 `812`'s two invalid arms are less alarming than the label suggests. Vitest
 outcomes were identical across leaked and clean trials:
 
-| arm | run-1 | run-2 | run-3 |
-| --- | --- | --- | --- |
-| `cc-design-tokens` | 1 failed \| 9 passed (counted) | 1 failed \| 9 passed (leaked) | 1 failed \| 9 passed (leaked) |
-| `cc-component-builder` | 10 passed (counted) | 10 passed (counted) | 10 passed (leaked) |
+| arm                    | run-1                          | run-2                         | run-3                         |
+| ---------------------- | ------------------------------ | ----------------------------- | ----------------------------- |
+| `cc-design-tokens`     | 1 failed \| 9 passed (counted) | 1 failed \| 9 passed (leaked) | 1 failed \| 9 passed (leaked) |
+| `cc-component-builder` | 10 passed (counted)            | 10 passed (counted)           | 10 passed (leaked)            |
 
 Grader profiles were identical too — σ = 0.00 in both arms. Re-buying to raise
 n from 1 to 3 on a zero-variance measurement buys almost nothing, so `812` is
@@ -1422,7 +1426,7 @@ n from 1 to 3 on a zero-variance measurement buys almost nothing, so `812` is
 The leak also carries a finding of its own. The leaked reads were of
 `button-tokens.scss` and `divider-tokens.scss` — component token partials.
 Handed the design system's own examples of the convention, the design-tokens
-arm *still* did not produce `_alert-tokens.scss`, and still failed. The
+arm _still_ did not produce `_alert-tokens.scss`, and still failed. The
 convention has to be told, not discovered.
 
 **Rule:** `RUN INVALID` says the sample is not clean, not that the conclusion is
@@ -1450,7 +1454,7 @@ one. `pass@1 +100%` for component-builder is real but is not evidence about
 token lookup; the `token-conformance` delta is the design-tokens result, and it
 is positive.
 
-**Rule:** a task isolates what its *failing* assertion tests, not what its
+**Rule:** a task isolates what its _failing_ assertion tests, not what its
 prompt is about. Before authoring, ask which single assertion will flip, and
 confirm it belongs to the capability under test.
 
@@ -1472,12 +1476,12 @@ graders are retroactive, so it can be settled at zero cost.
 `840` is the first task where every grader reports and where the two servers'
 contributions separate without interpretation:
 
-| arm | failing assertions (of 15) |
-| --- | --- |
-| `cc-none` | 9 — naming, DS composition, button, heading, icon, purity, ref, client-side dismiss, literal colours |
-| `cc-design-tokens` | 8 — *the same list minus literal colours* |
-| `cc-component-builder` | 0, 0, 1 |
-| `cc-both` | 1, 1, 1 (three different assertions) |
+| arm                    | failing assertions (of 15)                                                                           |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| `cc-none`              | 9 — naming, DS composition, button, heading, icon, purity, ref, client-side dismiss, literal colours |
+| `cc-design-tokens`     | 8 — _the same list minus literal colours_                                                            |
+| `cc-component-builder` | 0, 0, 1                                                                                              |
+| `cc-both`              | 1, 1, 1 (three different assertions)                                                                 |
 
 The design-tokens arm's failure set is `cc-none`'s with exactly one assertion
 removed. It fixes token correctness and nothing else — the same finding `810`
@@ -1491,12 +1495,12 @@ be quoted as evidence that adding the tokens server degrades output.
 What is not noise is the cost. Across all four tasks `cc-both` never exceeds
 `cc-component-builder` on pass@1, and pays for the privilege:
 
-| eval | cb $/trial | both $/trial | cb quality/extra-$ | both quality/extra-$ |
-| --- | --- | --- | --- | --- |
-| `810` | $5.26 | $9.67 | **0.105** | 0.045 |
-| `812` | $1.43 | $6.76 | **0.110** | 0.011 |
-| `840` | $4.58 | $8.36 | **0.164** | 0.045 |
-| `860` | $0.24 | $0.26 | 0.000 (saturated) | 0.000 (saturated) |
+| eval  | cb $/trial | both $/trial | cb quality/extra-$ | both quality/extra-$ |
+| ----- | ---------- | ------------ | ------------------ | -------------------- |
+| `810` | $5.26      | $9.67        | **0.105**          | 0.045                |
+| `812` | $1.43      | $6.76        | **0.110**          | 0.011                |
+| `840` | $4.58      | $8.36        | **0.164**          | 0.045                |
+| `860` | $0.24      | $0.26        | 0.000 (saturated)  | 0.000 (saturated)    |
 
 `component-builder` alone is the best value in every non-saturated task, by
 2–10×. The plausible mechanism is attention budget: on `840` `cc-both` made
@@ -1514,7 +1518,7 @@ only three benign enumerations. `812` produced three leaks and invalidated two
 arms.
 
 This confirms ADR 55/57: agents raid `/tmp/.agent-eval-mcp` when the task is
-*itself* a lookup problem and the staging directory visibly contains the
+_itself_ a lookup problem and the staging directory visibly contains the
 answers. Authoring tasks do not trigger it.
 
 The consequence is that expected attrition is not a flat rate to be
@@ -1550,7 +1554,7 @@ unchanged.
 
 **This is the fourth instance of one bug.** D-48 (`client-behaviour` on a
 diff task), the `860` `@use` literal, ADR 54 (`bem`'s component check), and now
-this. The general form: *a check scores content the agent did not author* —
+this. The general form: _a check scores content the agent did not author_ —
 either because the task forbids touching it, or because the fixture supplied it.
 
 **Standing rule for every new grader check:** name the artefact being scored and
@@ -1561,24 +1565,24 @@ either answer is no, the check measures the fixture.
 
 20/20 cells. Quality by arm (corrected):
 
-| eval | none | design-tokens | component-builder | both |
-| --- | --- | --- | --- | --- |
-| `810` atom from schema | 0.64 | 0.69 | 0.93 | 0.96 |
-| `812` restyle with tokens | 0.93 | 0.99† | 0.99† | 1.00 |
-| `832` client behaviour | 0.63 | 0.73 | **1.00** | 0.97 |
-| `840` reuse over native | 0.73 | 0.82 | 0.98 | 0.97 |
-| `860` restraint (control) | 1.00 | 1.00 | 1.00 | 1.00 |
+| eval                      | none | design-tokens | component-builder | both |
+| ------------------------- | ---- | ------------- | ----------------- | ---- |
+| `810` atom from schema    | 0.64 | 0.69          | 0.93              | 0.96 |
+| `812` restyle with tokens | 0.93 | 0.99†         | 0.99†             | 1.00 |
+| `832` client behaviour    | 0.63 | 0.73          | **1.00**          | 0.97 |
+| `840` reuse over native   | 0.73 | 0.82          | 0.98              | 0.97 |
+| `860` restraint (control) | 1.00 | 1.00          | 1.00              | 1.00 |
 
 † arm invalid on `812` (staging leak, ADR 55/56).
 
 Efficiency — quality per extra dollar over baseline:
 
-| eval | design-tokens | component-builder | both |
-| --- | --- | --- | --- |
-| `810` | 0.009 | 0.105 | 0.045 |
-| `812` | 0.010 | 0.110 | 0.011 |
-| `832` | 0.035 | **0.216** | 0.092 |
-| `840` | 0.025 | 0.164 | 0.045 |
+| eval  | design-tokens | component-builder | both  |
+| ----- | ------------- | ----------------- | ----- |
+| `810` | 0.009         | 0.105             | 0.045 |
+| `812` | 0.010         | 0.110             | 0.011 |
+| `832` | 0.035         | **0.216**         | 0.092 |
+| `840` | 0.025         | 0.164             | 0.045 |
 
 Four findings, each holding across every task that can report on it:
 
@@ -1614,10 +1618,10 @@ literal colours, on the assumption that they are house style.
 
 Settled by measuring the design system itself across all 68 components:
 
-| pattern | occurrences |
-| --- | --- |
-| `var(--x, <literal colour>)` | **0** |
-| `var(--x, var(--y))` | 149 |
+| pattern                      | occurrences |
+| ---------------------------- | ----------- |
+| `var(--x, <literal colour>)` | **0**       |
+| `var(--x, var(--y))`         | 149         |
 
 The house style is token→token fallback — precisely the branding → semantic →
 component layering the architecture describes. A literal fallback appears
@@ -1635,3 +1639,445 @@ authoritative. **The reference implementation is.** Measure it before editing
 either — the disagreement itself is evidence that one of them was written from
 memory rather than from the code (ADR 51's lesson, arriving from a new
 direction).
+
+## ADR 64 — Fixtures must not typecheck-fail code the toolchain told the agent to write
+
+The component builder's `get-storybook-template` hands out
+
+```ts
+import { Meta, StoryObj } from "@storybook/react-vite";
+```
+
+and the design system documents 68 of 68 components with a story file
+(`@storybook/react-vite` ×56, `@storybook/react` ×2). Writing a story is the
+house convention, and an MCP arm is explicitly told so.
+
+No fixture had Storybook installed. So an agent that followed the convention it
+was handed took a `tsc` failure for it:
+
+| eval / arm                             | run   | outcome | quality | toolchain |
+| -------------------------------------- | ----- | ------- | ------- | --------- |
+| `810` / `cc-component-builder`          | run-1 | pass    | 0.84    | 1.0       |
+| `810` / `cc-component-builder`          | run-2 | fail    | 0.69    | 1.0       |
+| `810` / `cc-component-builder`          | run-3 | fail    | 0.58    | **0.5**   |
+
+`run-3`'s `toolchain-report.json` carried exactly one error:
+
+```
+src/components/badge/Badge.stories.tsx(1,32): error TS2307:
+Cannot find module '@storybook/react-vite' or its corresponding type declarations.
+```
+
+That was the only toolchain failure in the arm, and its whole cause. One trial
+in sixty — small, but the direction of the bias is the problem: it docks the
+arm that was given the template, for using it. **The fixture was penalising its
+own omission** — the eighth instance of the ADR 54 / ADR 61 family.
+
+**Decision:** ship a permissive ambient `types/storybook.d.ts` in all five
+fixtures, declaring `Meta` and `StoryObj` for both specifiers, with
+`"include": ["src", "types"]`.
+
+Rejected alternatives:
+
+- _Install Storybook into the sandbox._ Far too heavy for a per-trial `npm
+  install`, to satisfy a type-only import.
+- _Exclude `*.stories.tsx` from typecheck._ Hides real errors, and forecloses
+  the planned stories grader (checklist 1.9).
+
+The shim is deliberately inert: it asserts nothing about story quality, no task
+prompt mentions stories, and **writing no story at all remains equally fine.**
+It removes a penalty; it does not create an incentive.
+
+Verified by reproducing `run-3` from its retained project: `npx tsc --noEmit`
+exits 1 with the TS2307 above before the shim, and exits 0 after it, with no
+other diagnostic appearing.
+
+## ADR 65 — `812`'s colour assertion, corrected (closes ADR 63)
+
+ADR 63 established the fix and deferred it. The campaign is over and the next
+one rebuilds everything, so the fingerprint cost is now zero and it is applied.
+
+`withoutVarFallbacks()` collapsed **every** `var()` before looking for literals,
+so `var(--ks-color-positive, #059669)` scored clean. It is replaced by
+`withoutTokenFallbacks()`, which collapses a `var()` only when its fallback is
+itself a token — leaving a literal in a fallback slot to be caught.
+
+Behaviour, unit-checked in all four states of ADR 68:
+
+| input                                | verdict |
+| ------------------------------------ | ------- |
+| `var(--dsa-x, var(--ks-y))`          | clean   |
+| `var(--a, var(--b, var(--c)))`       | clean   |
+| `var(--ks-x)`                        | clean   |
+| `var(--ks-color-positive, #059669)`  | caught  |
+| `var(--ks-bg, rgba(0,0,0,.5))`       | caught  |
+| `color: #fff`                        | caught  |
+
+Then checked against all twelve real `812` stylesheets from the campaign:
+
+| arm                    | old assertion | new assertion |
+| ---------------------- | ------------- | ------------- |
+| `cc-none` (3 runs)     | pass          | **fail**      |
+| `cc-design-tokens`     | pass          | pass          |
+| `cc-component-builder` | pass          | pass          |
+| `cc-both`              | pass          | pass          |
+
+Perfect discrimination: it fails exactly the arm that used the loophole and
+nothing else. This is the check that mattered — a stricter assertion that also
+failed the MCP arms would have been a broken task, not a fixed one (ADR 53).
+
+Finally the regenerated `EVAL.ts` was run for real: 10/10 pass against
+`cc-both`'s run-1 project; swapping in `cc-none`'s stylesheet fails 2 of 10 —
+the colour assertion **and** the length assertion, since that trial hardcoded
+`gap: var(--dsa-space-1, 4px)` and three font sizes the same way. The same
+loophole was being used for lengths, and the same one-line premise was hiding
+both.
+
+The lesson is ADR 51's, once more: the discarded comment asserted that "the
+design system's own token partials carry fallbacks exactly like that." No one
+counted. It was false, and it cost a whole campaign's worth of one arm's colour
+scoring.
+
+## ADR 66 — a task that survives the token layer being visible
+
+Shipping the `--ks-*` layer into the fixtures (D-92, option (c)) makes every
+valid token name greppable from inside the sandbox. That is the honest thing to
+do — the real repository has the layer — but it also removes the one thing the
+Design Tokens MCP was measurably supplying. `known-tokens` is the check that
+moved in every task of the first campaign (+0.43 / +0.33 / +0.46 / +0.46), and
+it rewards knowing names. Names are now free.
+
+`820-token-intent` is the other half of that decision: a task whose value is
+not name recall.
+
+### What it measures
+
+The design system encodes *rules* that its token names do not reveal. Three of
+them, all served by the tokens MCP via `get_design_rules`:
+
+| rule                  | the defect in the fixture                             |
+| --------------------- | ----------------------------------------------------- |
+| `color-semantic-layer` | `--ks-color-primary` on component text                |
+| `typography-pairing`  | `--ks-font-size-display-l` + `--ks-line-height-copy-l` |
+| `font-family-roles`   | `--ks-font-family-display` on an interface-sized label |
+
+Every token in that table exists, is spelled correctly, and resolves. Nothing
+in the fixture is hardcoded and there is not a single literal to replace, so
+this is not 812 in a different costume: 812 asks *is this a token*, 820 asks
+*is this the right token*. Both questions have the same 1,522 candidate names
+in front of them; only the second one is still hard once you can `grep`.
+
+`--ks-color-primary` reads like exactly the token a component should use. It
+is a primitive, meant for building the semantic layer and not for direct use.
+`--ks-line-height-copy-l` pairs with a display-sized figure to give it a 1.5
+line-height where it wants 1.15. An agent that can ask the server is told this.
+An agent that cannot has to already know the system.
+
+### The prompt names no rules
+
+It describes symptoms a designer would report — "the vertical rhythm is visibly
+off", "they don't follow when the theme changes" — and never says *category*,
+*primitive* or *semantic layer*. Naming the rules would hand the baseline arm
+the answer and measure nothing, the same failure mode as an answer key in the
+fixture (ADR 17).
+
+### Five states, not four
+
+ADR 53 requires the fixture be hand-solved and run locally before it is bought.
+This one was run in five, because the interesting failure is a new one:
+
+| state          | stylesheet                                    | result           |
+| -------------- | --------------------------------------------- | ---------------- |
+| unsolved       | as shipped                                    | 2 failed / 7 ok  |
+| solved         | correct categories, semantic colours          | **9 passed**     |
+| loophole       | awkward declarations deleted                  | 1 failed / 8 ok  |
+| anti-pattern   | tokens replaced with literals                 | 3 failed / 6 ok  |
+| **wrong intent** | right layer, right pairs, `--ks-text-color-copy` on the display figure | 1 failed / 8 ok |
+
+The unsolved run names all four mixes with their selectors and all three
+primitives, which is the evidence that the block parser works rather than the
+assumption that it does (lesson (d)).
+
+The fifth state is why `categoryOf()` covers `--ks-text-color-<category>` and
+not just size, line-height and family. A first draft checked only the latter
+three, and "right names, right pairing, wrong category of colour" passed it —
+a defect that fails silently *upward* (D-67), invisible in any results read.
+The tokens MCP's own rule includes `textColorPattern`; the assertion now does
+too.
+
+### Not by deletion
+
+Every intent assertion above passes on an empty file, so a positive requirement
+carries the anti-vacuous load: at least three font-size, three line-height and
+three colour tokens must survive, and the two trend modifiers must keep
+distinct, tokenised colours. Without it, deleting the awkward declarations is a
+perfect score — the loophole state of D-68, and the reason that state is run.
+
+### Scoring shape
+
+`TARGETS["820-token-intent"]` is `diffTask: true`, `requiresClientBehaviour:
+false`, `mcpUseExpected: true` — structurally 812's sibling. The component and
+schema ship correct and are digest-pinned; the stylesheet is the only thing the
+agent may touch.
+
+`defineExperiment()` defaults `evals` to `"*"`, so this joins all four arms
+automatically. Every fixture change this session moves fingerprints, so the
+second campaign requires `--force` regardless.
+
+---
+
+## ADR 67 — Screenshots are the review artifact; the Storybook is the appeal
+
+Phase 2 could already answer "what did `cc-none` score on `810`". It could not
+answer "what did that *look like*", and the second question is the one a
+designer asks first. Sixty trials is also too many to open by hand, so the
+built Storybooks were, in practice, unopened.
+
+So `report build` now also writes `run-N/screenshots/component.png`, and
+`pnpm report:index` lays those out as a grid: one row per arm, one thumbnail per
+trial, green border for a pass, red for a fail, each linking to the full
+Storybook for that trial. The picture is the summary; the Storybook is where you
+go when the picture raises a question.
+
+### Why a real browser and a real server
+
+Two things ruled out cheaper options. Storybook's iframe fetches its own JSON
+index, so `file://` fails on same-origin — hence `lib/report/serve.ts`, a
+root-confined static server on port 0. And the produced components are React
+with client behaviour; only an actual browser tells you whether they render.
+`playwright-core` was added as a devDependency; the browsers were already in
+`~/.cache/ms-playwright`.
+
+Screenshots are captured inside a `try/catch` so that a screenshot failure never
+costs the built report, and `--no-screenshots` skips them entirely.
+
+### Two defects, both found by looking at the output
+
+`page.evaluate` given a *string* evaluates it rather than calling it. The first
+`COMPONENT_BOX` was a bare arrow function, so it returned unserialisable and
+every screenshot silently fell back to a viewport shot annotated *"the component
+rendered nothing with a layout box"* — a note indistinguishable from a genuine
+empty render. It is now an IIFE, and the docstring says why, because this is
+D-67's shape again: a defect that fails silently *upward*.
+
+Then `#storybook-root` turned out to be the wrong anchor. Its first child is
+`.rp-stage`, a full-width block, so a badge came out as a 1200×250 picture of
+mostly nothing. The measurement now starts at `.rp-stage` and takes the union of
+its children's boxes, since a component may render several roots.
+
+Neither was visible in the code. Both were obvious in the PNG — lesson (d),
+twice in one afternoon.
+
+### The index lives in `results/`
+
+`results/index.html`, not `results/../index.html` or a separate `site/`
+directory. Every link it emits is then a working relative path — into a trial's
+`storybook-static/index.html`, into its `screenshots/component.png` — which
+means the same tree works from `file://`, from `pnpm serve:results`, and from
+the deployed container with no URL rewriting anywhere. The deployment (ADR 69)
+is a single `COPY` because of this.
+
+---
+
+## ADR 68 — A pruner that can delete a result you are currently reporting is not a pruner
+
+D10 asked for "keep the last 10 per experiment, plus pinned baselines". Written
+literally — sort the timestamps, drop all but the newest ten — that is wrong
+here, and quietly so.
+
+Timestamps in this harness differ **per arm and per run-batch**. `resolveMatrix()`
+may legitimately resolve `810` to a batch from three weeks ago because that task
+has not been re-run since, while five newer batches exist for other tasks. The
+newest ten directories are therefore *not* the set the reports currently point
+at, and a literal implementation eventually deletes a paid-for trial that the
+index is linking to.
+
+`bin/prune-results.ts` has three safety properties, in increasing order of how
+much they matter:
+
+1. **Dry-run by default.** `--apply` is required to delete anything. The default
+   invocation prints what would go, with sizes.
+2. **Explicit pins.** `results/<experiment>/.pinned`, one timestamp per line,
+   `#` for comments. This is the D10 baseline-pinning mechanism.
+3. **Implicit pins.** Every timestamp `resolveMatrix(experiment)` currently
+   resolves is protected, whether or not anyone remembered to pin it.
+
+```ts
+const eligible = runs.filter((run) => !pinned.has(run) && !current.has(run));
+const doomed = eligible.slice(0, Math.max(0, eligible.length - keep));
+```
+
+Verified at `--keep 3` against `cc-component-builder` (11 runs, 5 current): it
+proposed removing three. A naive implementation would have proposed eight,
+including runs the index links to.
+
+### The same asymmetry, in `results:download`
+
+`bin/download-results.ts` merges CI artifacts into the local tree and **never
+overwrites** an existing `<experiment>/<timestamp>`. CI owns the trial; this
+machine owns everything derived from it — the built Storybooks, the screenshots,
+the index. Overwriting would silently discard locally-built reports to replace
+them with bytes that are, by construction, identical apart from what is missing.
+
+Both branches were run: 14 present → `0 added, 14 already present`; one run
+renamed to a future timestamp → `added`, `13 already present`.
+
+Run directories are located **structurally** rather than by path convention —
+any `summary.json` sits at `<experiment>/<timestamp>/<eval>/summary.json`, so
+the run directory is two levels up. Artifact layouts change; that invariant is
+the harness's own.
+
+---
+
+## ADR 69 — Publishing a tree of agent-authored HTML
+
+Exit criterion G4 is "a historical run is fully inspectable from a static URL".
+The tree that satisfies it is unusual in two ways, and both show up in the
+deployment.
+
+**It cannot be built.** Every other image in this repo compiles from source.
+This one is the output of paid model runs; no compiler reproduces it, and CI
+does not have it either unless `results:download` has put it there. So the
+Dockerfile copies `packages/agent-eval/results/` in as a late, cache-busted
+layer, and the deploy sequence is explicitly *populate, then ship*:
+
+```
+pnpm --filter agent-eval report build --all
+pnpm --filter agent-eval report:index
+kamal deploy -d agent-eval-results
+```
+
+(`results/.gitkeep` is tracked precisely so the `COPY` has something to copy on
+a fresh clone; an unpopulated deploy is an empty site, not a build failure.)
+
+**It is untrusted by construction.** The reports exist to run code a model
+wrote, unreviewed, sixty times over. That is the feature — a component that does
+not render is a *result*. But it means the site serves scripts nobody has read,
+so `server/index.ts` sets a CSP with `connect-src 'none'` and
+`form-action 'none'`. Storybook's own bundle needs `'unsafe-inline'` and
+`'unsafe-eval'`, so the script directives cannot be tightened; the network
+directives are what actually contain the untrusted code. Reviewing a result is
+never an act of trust in the thing being reviewed.
+
+### Why Express rather than nginx
+
+`deploy-design-system.yml` serves static Storybook from nginx, which would have
+been the obvious model. But D7 requires the shared JWT gate, and the gate is
+`@kickstartds/shared-auth` — a Node library. Rather than an nginx `auth_request`
+sidecar, this follows the pattern the Design Tokens Editor already established:
+Express, a token-paste form, an `httpOnly` cookie, `verifyToken()` on every
+request. One secret (`MCP_JWT_SECRET`), one issuing script, five services.
+
+Auth degrades gracefully in the usual way: with no secret set the site is open,
+so local use needs no setup. `/health` is deliberately outside the gate, since
+the orchestrator has no token.
+
+Verified against a live server: `/health` 200 unauthenticated, `/` 401 without a
+cookie, 200 with a JWT issued by `scripts/issue-token.mjs`, 401 with a malformed
+one, nested `storybook-static/index.html` and `screenshots/component.png` both
+200, and `/../package.json` 404.
+
+### Two things the image build taught, both only by running it
+
+**The container has no devDependencies.** `agent-eval`'s dev tree is Storybook,
+Vite and a Playwright browser driver — the machinery for *producing* reports,
+none of which serving them requires. Installing `--prod` cuts the image to
+400 MB (of which 113 MB is the current results tree). Node 24 strips types
+natively, so the server runs from `server/index.ts` with plain `node` and the
+runtime needs no TypeScript either: no build step, and therefore no build output
+that can drift from its source.
+
+**`--prod --filter agent-eval` is not enough.** It links `@kickstartds/shared-auth`
+as a workspace package without installing *its* dependencies, so the container
+built cleanly, started, and died on `Cannot find package 'jsonwebtoken'`. Worth
+naming precisely because of what the failure mode is: the gate was not open, it
+was absent — an auth library that cannot load is a service that cannot start,
+which is the safe direction, but only by luck. Both packages are now named in
+the filter.
+
+Neither was visible in review. The image built, the config parsed, the
+Dockerfile read correctly. Running it is what found them — lesson (d), a third
+time.
+
+**Verified against the built image:** `/health` 200 unauthenticated, `/` 401
+without a cookie and 200 with a JWT, a trial's `storybook-static/index.html` and
+`screenshots/component.png` both 200.
+
+**One more, from the config rather than the image:** `MCP_REVOKED_TOKENS` was
+originally listed under `env.secret`. Kamal requires every named secret to exist
+in `.kamal/secrets`, and no other service declares that one — so naming an
+opt-in feature would have failed the deploy outright. It is dropped, with a
+comment saying why, rather than added to `.kamal/secrets` as an empty string
+nobody would later recognise.
+
+---
+
+## ADR 70 — The first full `report build --all` found two host defects, not agent ones
+
+Building all sixty reports for the first time crashed on trial four with
+`Rollup failed to resolve import "@kickstartds/ds"`, which reads exactly like an
+agent inventing a package. It was the opposite. `@kickstartds/ds` is the
+vendored design-system slice that `840-reuse-over-native` exists entirely to
+make agents reuse; the trial had solved the task. Its screenshot, once it built,
+is a correctly styled banner with a working dismiss control.
+
+### The alias was written for the package that broke first
+
+`trial-plugin.ts` aliased exactly one vendored package, `@kickstartds/core`,
+hardcoded by name — because a trial has no `node_modules` (only `project/` was
+ever captured) and that was the import that failed first, back when the plugin
+was written. `840` declares two `file:` dependencies. The second was never
+wired, so *every* trial that solved that task correctly was unbuildable, and the
+error blamed the agent for it.
+
+The fix reads the trial's own `package.json` and aliases every `file:` or
+`link:` dependency to its on-disk directory. Naming packages was the defect;
+naming the *mechanism* is the fix, and it covers whatever a future fixture
+vendors without anyone remembering to come back here.
+
+This is the reporting equivalent of ADR 64: an artifact that makes correct
+agent work look broken is worse than one that fails outright, because the
+failure is legible and the misattribution is not.
+
+### A batch must survive its worst member
+
+The crash also cost the fifty-six trials that had not been reached, and the
+three already built had to be rebuilt from the start of the batch. `build --all`
+now collects failures, names them at the end, and exits non-zero — the same rule
+already applied to screenshots, and for the same reason: the artifact is the
+point, and one trial's problem is a finding about that trial. The index already
+renders an unbuilt trial as a "not built" placeholder, so a failure degrades to
+a visible gap rather than a missing run.
+
+Both defects needed sixty real builds to surface; three hand-picked trials had
+not touched either path.
+
+---
+
+## ADR 71 — `connect-src 'none'` was verified with a client that does not enforce CSP
+
+The deployed reports loaded a Storybook shell and then failed:
+`NetworkError when attempting to fetch resource`, from Storybook's manager
+fetching `index.json` to discover its stories. The header blocking it was ours.
+
+ADR 69 argued the reports should be allowed to run agent-written code and reach
+nothing, and `connect-src 'none'` is the literal reading of that. It is also
+wrong twice over. Storybook is a client-rendered application that fetches its
+own index at runtime, so `'none'` does not restrict a hostile trial, it disables
+the viewer. And `form-action 'none'` blocked the login form from posting to
+`/login` — the gate could never have been passed in a browser.
+
+Both were "verified" with curl, which does not enforce CSP. The check confirmed
+the header was present and said nothing about whether the page worked, which is
+lesson (d) — reading an assertion is not verifying it — in the one form that
+survives a careful review: the test ran, passed, and tested the wrong thing.
+
+`'self'` preserves the property that actually matters. The threat is
+agent-written code calling out to somewhere we do not control; a same-origin
+request reaches a static file server whose only POST route exchanges a token the
+caller already holds. Re-verified in a browser: index loads, all seven stories
+resolve, the trial's component renders with its tokens.
+
+Anything user-facing behind a header, a cookie or a policy is now verified
+through a browser. Two of the three defects in this results server were invisible
+to the tool it was tested with.

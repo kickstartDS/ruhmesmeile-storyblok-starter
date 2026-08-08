@@ -21,6 +21,30 @@ var define_FIXTURE_DIGESTS_default = {
     "04e6a48850ead294d70b904fd9f899f1444941a8fae1e88466ac1751ce300aeb",
   "src/components/tag/tag.scss":
     "f5c4b9ef77ce74deebfa3af8cb024bfd4e69961e3a45198747d2aa7128f8af7f",
+  "src/token/background-color-token.scss":
+    "6238d7754e6f27ddd3312add938fe8638da1df934c7e5c961c22dbd9cc9bc03f",
+  "src/token/border-color-token.scss":
+    "a42ecd37f04b25d48faf6806dc5ec011c5c472d4ad3b175b91afc8c9d307dab7",
+  "src/token/border-token.scss":
+    "c3388cec18e51807eb8f985ad0737581b4b5d87e2d1575e9bf49a1f58178fc7e",
+  "src/token/box-shadow-token.scss":
+    "781467e4312a5c2f03a164000482575506221dcb7faa77174a6691e608d4c1b7",
+  "src/token/branding-tokens.css":
+    "b7982c0fea11e59260e54c77b15dfda9d68b64e9beee315bb8fc3b9d47494b2e",
+  "src/token/color-token.scss":
+    "434eb5a9fa368af630b24a308a8ea6327172be91a60a6734ca8c17f04e711810",
+  "src/token/font-size-token.scss":
+    "651ad344098ded528b4808b2b378d20e87d20d23b9bf1a0193b495a4093f7fee",
+  "src/token/font-token.scss":
+    "a9c9f193d4a91e27f1985ca99d24deef648bf2816a54dcbe22f9f7c76ddf23d0",
+  "src/token/scaling-token.scss":
+    "62d2659ce880d74c4640ae74392e3f3768e59b076898d14f377f1ee9c0c839cc",
+  "src/token/spacing-token.scss":
+    "76e37f5f1e3baa4e926829a0d331ffd39344689001a90b097a5ba5a32356d09d",
+  "src/token/text-color-token.scss":
+    "3606c15dc3894f0a57d73b0267fe513f00b7323bdc5a2945da346eb09ff95d98",
+  "src/token/transition-token.scss":
+    "6674234915fe5165d6481da46772354a3564838e8a1a763e8d2e19e8d30394e8",
 };
 
 // lib/eval-harness/sources/860-restraint.ts

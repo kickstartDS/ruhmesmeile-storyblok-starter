@@ -301,9 +301,7 @@ export function loadRun(experiment: string, timestamp: string): Trial[] {
 export function loadMatrix(experiment: string): Trial[] {
   return resolveMatrix(experiment)
     .flatMap((entry) => loadEval(experiment, entry.timestamp, entry.evalName))
-    .sort(
-      (a, b) => a.evalName.localeCompare(b.evalName) || a.run - b.run,
-    );
+    .sort((a, b) => a.evalName.localeCompare(b.evalName) || a.run - b.run);
 }
 
 /** The raw JSONL transcript, read on demand — it is far too large to hold per trial. */
