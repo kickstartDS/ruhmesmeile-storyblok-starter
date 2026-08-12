@@ -101,7 +101,16 @@ test("the stylesheet reads from the token layer", () => {
 });
 
 test("the variants remain visually distinguishable", () => {
-  const styles = read(FILES.styles);
+  // The whole authored stylesheet layer, not just `alert.scss`. Declaring the
+  // three modifiers in `_alert-tokens.scss` as token overrides and consuming
+  // them from the base rule is a defensible split, and reading only
+  // `alert.scss` failed it — a latent false negative that Phase 1 happened not
+  // to trip on any of the four arms. A check named for distinguishability has
+  // no business deciding *where* the variants live; the `_{slug}-tokens.scss`
+  // convention is enforced by its own assertion below. (D-115.)
+  const partial = `${harness.dir}/_alert-tokens.scss`;
+  const styles =
+    read(FILES.styles) + (existsSync(partial) ? read(partial) : "");
   // `info` is the base state and carries no modifier of its own, so only the
   // three real modifiers are required. Both the flat and the nested spelling
   // count — `&--success` inside `.dsa-alert` is idiomatic SCSS and compiles to

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/progress-steps.schema.json",
+  "title": "Progress Steps",
+  "description": "Shows where someone is in a multi-step flow, listing the steps in order and marking which are behind, current and ahead.",
+  "type": "object",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "title": "Steps",
+      "description": "The steps of the flow, in the order they are worked through.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Name of the step, shown to the user."
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Where this step sits relative to the one the user is on.",
+            "enum": ["complete", "current", "upcoming"],
+            "default": "upcoming"
+          }
+        },
+        "required": ["label"],
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "Accessible name for the progress indicator as a whole.",
+      "default": "Progress"
+    }
+  },
+  "required": ["steps"],
+  "additionalProperties": false
+}

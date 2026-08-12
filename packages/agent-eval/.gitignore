@@ -9,6 +9,11 @@ results/*
 # Generated fixture projects and packed design-system tarballs
 .fixture-cache/
 
+# The calibration questions are derived from the results tree and weigh ~1 MB;
+# `pnpm calibration:export` rebuilds them. The answers next to them are not
+# derived from anything and are committed — see calibration/labels/.
+calibration/bundle.json
+
 # Local env
 .env
 .env.local

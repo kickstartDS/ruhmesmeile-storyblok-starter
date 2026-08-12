@@ -1,0 +1,268 @@
+{
+  "code-idiom:434764f3a696f64f": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/812-restyle-with-tokens/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T09:20:28.524Z"
+  },
+  "design-intent:17d88ec3eb34bc13": {
+    "verdict": "fail",
+    "note": "Needs to use JSON Schema and generated TypeScript types for its interfaces",
+    "address": "cc-both-sonnet-high/860-restraint/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T09:23:05.878Z"
+  },
+  "token-reasoning:8b242310b2783c26": {
+    "verdict": "fail",
+    "note": "Moreso: this component scss file should have to import the disclosure tokens from their separate file... and use component tokens internally",
+    "address": "cc-design-tokens-sonnet-high/832-client-behaviour/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T09:24:56.399Z"
+  },
+  "code-idiom:c68016454226de54": {
+    "verdict": "fail",
+    "note": "Doesn't use component tokens, and doesn't use JSON Schema for TypeScript interface generation",
+    "address": "cc-none-sonnet-high/832-client-behaviour/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T09:26:20.147Z"
+  },
+  "token-reasoning:6b80b94501b0bbd0": {
+    "verdict": "fail",
+    "note": "component named in kickstartDS component semantic (.c-component, instead of .dsa-component), not using component token, and even inventing some values not defined even in kickstartDS (like --ks-space-2xs)",
+    "address": "cc-none-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T09:28:54.516Z"
+  },
+  "token-reasoning:42d510f55db84c28": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/832-client-behaviour/run-3",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T09:31:08.544Z"
+  },
+  "token-reasoning:44346fbf0c04f659": {
+    "verdict": "fail",
+    "note": "inventend semantic dsa token, that don't exist. hard-coded fallback values in variable declarations",
+    "address": "cc-none-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T09:37:36.290Z"
+  },
+  "design-intent:1b810ea5052cdceb": {
+    "verdict": "fail",
+    "note": "doesn't use JSON Schema type interface generation, declares component tokens inline in component scss file, not in dedicated tokens file, doesn't import the identifier from the client side bundle, but defines it inline",
+    "address": "cc-design-tokens-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T09:41:39.315Z"
+  },
+  "design-intent:6b80b94501b0bbd0": {
+    "verdict": "fail",
+    "note": "component file name is wrong, should be BadgeComponent.tsx, not badge.tsx, shouldn't use React state either, doesn't use JSON Schema for TypeScript interface generation, uses .c-badge instead of .dsa-badge, invents tokens like --ks-space-2xs, defines component token inline instead of their own file",
+    "address": "cc-none-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T09:50:21.686Z"
+  },
+  "design-intent:1993243e8fc20455": {
+    "verdict": "fail",
+    "note": "component identifier defined inline not imported from client bundle, useEffect for initialization... shouldn't rely on react in any form here",
+    "address": "cc-both-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T09:54:43.419Z"
+  },
+  "design-intent:1cbc31c7eb8f55be": {
+    "verdict": "fail",
+    "note": "behaviour implemented in React state or effects instead of the client bundle, behaviour attachment is significant, and should be done without useEffect to also work in vanilla scenarios without React runtime",
+    "address": "cc-both-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T10:44:59.495Z"
+  },
+  "code-idiom:3da288235cbc1a1a": {
+    "verdict": "fail",
+    "note": "component tokens declared inline instead of in the _{slug}-tokens.scss partial, wrong class prefix — .c-* instead of .dsa-*, behaviour implemented in React state or effects instead of the client bundle, component identifier defined inline instead of imported from the client bundle, wrong file name — not the {Name}Component.tsx convention, falsely uses useState in the component instead of pure client behaviour",
+    "address": "cc-design-tokens-sonnet-high/810-atom-from-schema/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T11:03:14.116Z"
+  },
+  "code-idiom:6b80b94501b0bbd0": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, component tokens declared inline instead of in the _{slug}-tokens.scss partial, no --dsa-* component token layer — consumes --ks-* semantics directly, invents tokens that do not exist in the system, hard-coded literal fallbacks in var() declarations, wrong class prefix — .c-* instead of .dsa-*, behaviour implemented in React state or effects instead of the client bundle, component identifier defined inline instead of imported from the client bundle, wrong file name — not the {Name}Component.tsx convention",
+    "address": "cc-none-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T11:05:44.646Z"
+  },
+  "design-intent:e5566aa0958d875e": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema",
+    "address": "cc-none-sonnet-high/860-restraint/run-2",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T11:07:33.078Z"
+  },
+  "code-idiom:17d88ec3eb34bc13": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, not using generated defaults and / or deepmMergeDefaults on those",
+    "address": "cc-both-sonnet-high/860-restraint/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T11:09:02.574Z"
+  },
+  "token-reasoning:1993243e8fc20455": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T11:10:07.495Z"
+  },
+  "code-idiom:17c19d46e900f589": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T13:15:53.842Z"
+  },
+  "token-reasoning:beedb7cc3c90ddf2": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/832-client-behaviour/run-2",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T13:18:03.070Z"
+  },
+  "design-intent:07452fce828f60dc": {
+    "verdict": "pass",
+    "note": "should use classNames library, not its own cx implementation",
+    "address": "cc-both-sonnet-high/810-atom-from-schema/run-2",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T13:20:02.733Z"
+  },
+  "design-intent:8b52d9c565e49891": {
+    "verdict": "pass",
+    "note": "it would have been nice to use deepMergeDefaults from our helpers for the imported defaults",
+    "address": "cc-both-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T13:37:39.384Z"
+  },
+  "token-reasoning:07452fce828f60dc": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/810-atom-from-schema/run-2",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T13:42:13.814Z"
+  },
+  "code-idiom:07c90ebdf282d606": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T13:43:24.867Z"
+  },
+  "design-intent:44346fbf0c04f659": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, invents tokens that do not exist in the system, hard-coded literal fallbacks in var() declarations, behaviour implemented in React state or effects instead of the client bundle, component identifier defined inline instead of imported from the client bundle, wrong file name — not the {Name}Component.tsx convention, invented component token",
+    "address": "cc-none-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T16:42:56.499Z"
+  },
+  "code-idiom:19812b21fd892012": {
+    "verdict": "fail",
+    "note": "",
+    "address": "cc-none-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T16:45:46.407Z"
+  },
+  "design-intent:8b242310b2783c26": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, no --dsa-* component token layer — consumes --ks-* semantics directly, invents tokens that do not exist in the system, behaviour implemented in React state or effects instead of the client bundle, component identifier defined inline instead of imported from the client bundle, wrong file name — not the {Name}Component.tsx convention, uses invented ksd prefix for token variables, missing component tokens entirely",
+    "address": "cc-design-tokens-sonnet-high/832-client-behaviour/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T16:49:32.572Z"
+  },
+  "code-idiom:1b810ea5052cdceb": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, wrong file name — not the {Name}Component.tsx convention, component tokens declared inline instead of in the _{slug}-tokens.scss partial, component identifier defined inline instead of imported from the client bundle, onAction would typically not be used in our types of static component definitions, also a React import we don't want",
+    "address": "cc-design-tokens-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T18:14:01.007Z"
+  },
+  "code-idiom:07452fce828f60dc": {
+    "verdict": "pass",
+    "note": "it would have been nice if classNames library was used instead of an invented inline cx helper",
+    "address": "cc-both-sonnet-high/810-atom-from-schema/run-2",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T18:15:10.260Z"
+  },
+  "code-idiom:2b248ece2a66f0e2": {
+    "verdict": "fail",
+    "note": "behaviour implemented in React state or effects instead of the client bundle, otherwise this was a pretty good implementation",
+    "address": "cc-component-builder-sonnet-high/810-atom-from-schema/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T18:17:41.040Z"
+  },
+  "token-reasoning:07c90ebdf282d606": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T19:09:33.085Z"
+  },
+  "token-reasoning:8b52d9c565e49891": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T19:11:12.397Z"
+  },
+  "design-intent:27e319a7957ea7dd": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-both-sonnet-high/832-client-behaviour/run-2",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T19:12:32.077Z"
+  },
+  "design-intent:beedb7cc3c90ddf2": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/832-client-behaviour/run-2",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T19:13:17.786Z"
+  },
+  "design-intent:2b248ece2a66f0e2": {
+    "verdict": "fail",
+    "note": "behaviour implemented in React state or effects instead of the client bundle",
+    "address": "cc-component-builder-sonnet-high/810-atom-from-schema/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T19:14:56.858Z"
+  },
+  "code-idiom:e5566aa0958d875e": {
+    "verdict": "fail",
+    "note": "prop types hand-written instead of generated from the JSON Schema, no use of defaults, no use of deepMergeDefaults",
+    "address": "cc-none-sonnet-high/860-restraint/run-2",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-10T20:52:52.843Z"
+  },
+  "design-intent:17c19d46e900f589": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T20:54:39.200Z"
+  },
+  "design-intent:300998e763b99f17": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-10T20:56:27.465Z"
+  },
+  "token-reasoning:0781069bb8ebd6ca": {
+    "verdict": "fail",
+    "note": "component tokens declared inline instead of in the _{slug}-tokens.scss partial",
+    "address": "cc-design-tokens-sonnet-high/812-restyle-with-tokens/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-10T20:58:07.749Z"
+  },
+  "code-idiom:1ffee2dffb92439a": {
+    "verdict": "pass",
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-11T09:20:57.949Z"
+  }
+}

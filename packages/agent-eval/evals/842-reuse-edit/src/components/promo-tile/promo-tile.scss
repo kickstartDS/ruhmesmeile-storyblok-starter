@@ -1,0 +1,42 @@
+.dsa-promo-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-stack-s);
+  padding: var(--ks-spacing-inset-m);
+  border: var(--ks-border-width-default) solid var(--ks-border-color-default);
+
+  &__headline {
+    margin: 0;
+    font: var(--ks-font-display-s);
+    color: var(--ks-text-color-display);
+  }
+
+  &__body {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--ks-spacing-inline-xxs);
+    padding: var(--ks-spacing-inline-xs);
+    border: var(--ks-border-width-default) solid var(--ks-border-color-default);
+    background: var(--ks-background-color-bold);
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-interface);
+  }
+
+  &__action-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: currentcolor;
+  }
+
+  &__action-label {
+    font: var(--ks-font-copy-m);
+  }
+}

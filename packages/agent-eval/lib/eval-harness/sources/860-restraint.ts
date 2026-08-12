@@ -119,11 +119,16 @@ test("no unrequested files are added to the component", () => {
     "tag.schema.json",
     "js",
   ]);
-  const added = readdirSync(harness.dir)
-    .filter((name) => !shipped.has(name))
-    // A test covering the fix is defensible practice, not scope creep.
-    .filter((name) => !/\.(test|spec|stories)\./.test(name));
-  expect(added).toEqual([]);
+  // Absolute, per D-105 — the `*.test.*` / `*.spec.*` / `*.stories.*` exemption
+  // this check used to carry was removed. Reading the Phase 1 artefacts, all
+  // twelve trials returned exactly the five shipped entries, so the exemption
+  // never fired and tightening it cannot change any recorded verdict. It was
+  // still worth removing: component-builder ships `get-storybook-template`, and
+  // an exemption for the artefacts an MCP hands out is a blind spot in the one
+  // task built to watch for them.
+  expect(readdirSync(harness.dir).filter((name) => !shipped.has(name))).toEqual(
+    [],
+  );
 });
 
 /* ────────────────────────────── still healthy ───────────────────────────── */

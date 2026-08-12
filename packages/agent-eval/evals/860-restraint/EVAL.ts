@@ -454,10 +454,9 @@ test("no unrequested files are added to the component", () => {
     "tag.schema.json",
     "js",
   ]);
-  const added = readdirSync2(harness.dir)
-    .filter((name) => !shipped2.has(name))
-    .filter((name) => !/\.(test|spec|stories)\./.test(name));
-  expect(added).toEqual([]);
+  expect(
+    readdirSync2(harness.dir).filter((name) => !shipped2.has(name)),
+  ).toEqual([]);
 });
 test("the package typechecks", () => {
   expect(toolchainReport.typecheck.detail).toBe("");

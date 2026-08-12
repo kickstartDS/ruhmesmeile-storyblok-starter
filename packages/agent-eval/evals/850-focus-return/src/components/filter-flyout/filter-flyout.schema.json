@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/filter-flyout.schema.json",
+  "title": "Filter Flyout",
+  "description": "A button that reveals a short list of filters beneath it.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Identifier",
+      "description": "Identifier the trigger and panel are wired together with",
+      "type": "string",
+      "examples": ["results-filter"]
+    },
+    "triggerLabel": {
+      "title": "Trigger label",
+      "description": "Label on the button that opens the flyout",
+      "type": "string",
+      "examples": ["Filter results"]
+    },
+    "flyoutOptions": {
+      "title": "Options",
+      "description": "The filters offered inside the flyout",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Identifier",
+            "description": "Value submitted when this option is chosen",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "description": "Label shown in the flyout",
+            "type": "string"
+          }
+        },
+        "required": ["id", "label"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["id", "triggerLabel", "flyoutOptions"],
+  "additionalProperties": false
+}

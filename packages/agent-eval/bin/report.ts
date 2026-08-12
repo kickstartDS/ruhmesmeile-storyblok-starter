@@ -20,6 +20,7 @@ import { existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { parseAddress, resolveTrials } from "../lib/address";
 import {
   listExperiments,
   loadEval,
@@ -32,54 +33,6 @@ import { captureScreenshots } from "../lib/report/screenshot";
 const CONFIG_DIR = fileURLToPath(
   new URL("../lib/report/host/.storybook", import.meta.url),
 );
-
-interface Address {
-  experiment: string;
-  evalName: string;
-  run: number | null;
-}
-
-function parseAddress(raw: string): Address {
-  const parts = raw.split("/").filter(Boolean);
-  if (parts.length < 2) {
-    throw new Error(
-      `Cannot parse "${raw}". Expected <experiment>/<eval>[/run-N].`,
-    );
-  }
-
-  const runPart = parts.at(-1)!;
-  const runMatch = /^run-(\d+)$/.exec(runPart);
-
-  return {
-    experiment: parts[0],
-    // Tolerate a pasted address that still carries its timestamp segment.
-    evalName: runMatch ? parts.at(-2)! : parts.at(-1)!,
-    run: runMatch ? Number(runMatch[1]) : null,
-  };
-}
-
-function resolveTrials(address: Address): Trial[] {
-  const entry = resolveMatrix(address.experiment).find(
-    (candidate) => candidate.evalName === address.evalName,
-  );
-
-  if (!entry) {
-    throw new Error(
-      `No current result for ${address.experiment}/${address.evalName}.`,
-    );
-  }
-
-  const trials = loadEval(address.experiment, entry.timestamp, entry.evalName);
-  if (address.run === null) return trials;
-
-  const one = trials.find((trial) => trial.run === address.run);
-  if (!one) {
-    throw new Error(
-      `${address.experiment}/${address.evalName} has no run-${address.run}.`,
-    );
-  }
-  return [one];
-}
 
 /** The manifest is written next to the trial so the Vite plugin can read it. */
 function writeManifest(trial: Trial): string {

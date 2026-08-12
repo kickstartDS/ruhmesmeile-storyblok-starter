@@ -1,0 +1,26 @@
+.dsa-spotlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-stack-s);
+  padding: var(--ks-spacing-inset-m);
+  border: var(--ks-border-width-default) solid var(--ks-border-color-default);
+  background: var(--ks-background-color-card);
+  color: var(--ks-text-color-copy);
+
+  &__heading {
+    margin: 0;
+    font: var(--ks-font-display-s);
+    color: var(--ks-text-color-display);
+  }
+
+  &__body {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+  }
+
+  &__footnote {
+    margin: 0;
+    font: var(--ks-font-copy-s);
+    color: var(--ks-text-color-copy);
+  }
+}

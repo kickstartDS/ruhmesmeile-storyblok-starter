@@ -11,5 +11,12 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["node"]
   },
-  "include": ["bin", "experiments", "lib", "types", "agent-eval.config.ts"]
+  "include": ["bin", "experiments", "lib", "types", "agent-eval.config.ts"],
+  // Gold implementations are written against the *fixture's* dependency graph,
+  // not this package's: 842's reference imports `@kickstartds/ds`, which only
+  // exists vendored inside `evals/842-reuse-edit`. They are never compiled or
+  // shipped — they are read by humans and copied into a sandbox by hand — so
+  // typechecking them here resolves nothing and fails for the wrong reason.
+  // Each one is verified in place by the ADR 53 gate instead.
+  "exclude": ["lib/eval-harness/reference"]
 }

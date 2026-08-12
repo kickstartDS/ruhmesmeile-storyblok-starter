@@ -1,0 +1,38 @@
+@use "article-teaser-tokens.scss";
+
+.dsa-article-teaser {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-article-teaser--gap);
+  padding: var(--dsa-article-teaser--padding);
+  border: var(--dsa-article-teaser--border-width) solid
+    var(--dsa-article-teaser--border-color);
+  background-color: var(--dsa-article-teaser--background);
+
+  &__kicker {
+    margin: 0;
+    font: var(--ks-font-interface-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ks-text-color-interface);
+  }
+
+  &__title {
+    margin: 0;
+    font: var(--ks-font-display-m);
+    font-weight: var(--ks-font-weight-bold);
+    color: var(--ks-text-color-display);
+  }
+
+  &__excerpt {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+  &__reading-time {
+    margin: 0;
+    font: var(--ks-font-interface-xs);
+    color: var(--ks-text-color-interface);
+  }
+}

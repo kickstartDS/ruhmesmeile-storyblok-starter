@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/rating.schema.json",
+  "title": "Rating",
+  "description": "A score shown as a row of stars.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "What is being rated. Used as the accessible name."
+    },
+    "value": {
+      "type": "number",
+      "title": "Value",
+      "description": "Score, from 0 to max. Fractions are allowed, and are shown to the nearest half star.",
+      "minimum": 0
+    },
+    "max": {
+      "type": "number",
+      "title": "Max",
+      "description": "Highest possible score.",
+      "default": 5
+    },
+    "kind": {
+      "type": "string",
+      "title": "Kind",
+      "description": "Visual treatment of the unfilled remainder.",
+      "enum": ["solid", "outline"],
+      "default": "solid"
+    }
+  },
+  "required": ["label", "value"],
+  "additionalProperties": false
+}

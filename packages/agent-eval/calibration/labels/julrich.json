@@ -1,0 +1,87 @@
+{
+  "code-idiom:1ffee2dffb92439a": {
+    "verdict": "pass",
+    "reasons": [],
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/812-restyle-with-tokens/run-3",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-11T14:27:37.267Z",
+    "rater": "julrich"
+  },
+  "design-intent:97bd358e88600052": {
+    "verdict": "pass",
+    "reasons": [],
+    "note": "",
+    "address": "cc-both-sonnet-high/860-restraint/run-2",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-11T14:30:27.869Z",
+    "rater": "julrich"
+  },
+  "token-reasoning:8b242310b2783c26": {
+    "verdict": "pass",
+    "reasons": [],
+    "note": "",
+    "address": "cc-design-tokens-sonnet-high/832-client-behaviour/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-11T15:25:19.119Z",
+    "rater": "julrich"
+  },
+  "code-idiom:c68016454226de54": {
+    "verdict": "fail",
+    "reasons": [
+      "schema-types",
+      "react-behaviour",
+      "wrong-filename",
+      "no-defaults"
+    ],
+    "note": "invented design system token",
+    "address": "cc-none-sonnet-high/832-client-behaviour/run-1",
+    "rubric": "code-idiom",
+    "labelledAt": "2026-08-11T15:27:16.199Z",
+    "rater": "julrich"
+  },
+  "token-reasoning:6b80b94501b0bbd0": {
+    "verdict": "fail",
+    "reasons": [
+      "invented-tokens",
+      "no-component-tokens",
+      "hardcoded-fallbacks",
+      "wrong-token-prefix"
+    ],
+    "note": "",
+    "address": "cc-none-sonnet-high/810-atom-from-schema/run-3",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-11T15:28:12.069Z",
+    "rater": "julrich"
+  },
+  "token-reasoning:beedb7cc3c90ddf2": {
+    "verdict": "pass",
+    "reasons": [],
+    "note": "",
+    "address": "cc-component-builder-sonnet-high/832-client-behaviour/run-2",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-11T15:40:39.551Z",
+    "rater": "julrich"
+  },
+  "token-reasoning:44346fbf0c04f659": {
+    "verdict": "fail",
+    "reasons": [
+      "invented-tokens",
+      "no-component-tokens"
+    ],
+    "note": "",
+    "address": "cc-none-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "token-reasoning",
+    "labelledAt": "2026-08-11T15:42:01.274Z",
+    "rater": "julrich"
+  },
+  "design-intent:b138ecc704c8f412": {
+    "verdict": "fail",
+    "reasons": [],
+    "note": "inline props and no use of generated props based on JSON Schema, wrong component file name, client identifier not imported from client bundle, inline Javascript behaviour not decoupled into client bundle (on Action), component token defined inline not in dedicated token file",
+    "address": "cc-design-tokens-sonnet-high/840-reuse-over-native/run-1",
+    "rubric": "design-intent",
+    "labelledAt": "2026-08-11T15:49:56.069Z",
+    "rater": "julrich"
+  }
+}

@@ -16,6 +16,8 @@ import { existsSync, readdirSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { TARGETS } from "../graders/targets";
+
 const PACKAGE_ROOT = resolve(
   fileURLToPath(new URL(".", import.meta.url)),
   "..",
@@ -56,10 +58,17 @@ export function assertFixtureHygiene(
   if (!existsSync(evalsDir)) return;
 
   const violations: string[] = [];
+  const untiered: string[] = [];
 
   for (const entry of readdirSync(evalsDir)) {
     const fixtureDir = join(evalsDir, entry);
     if (!statSync(fixtureDir).isDirectory()) continue;
+
+    // Eval selection now defaults to a tier rather than `"*"`, and the tier is
+    // read from TARGETS. A fixture with no entry there is not merely ungraded,
+    // it never runs at all — a failure that looks exactly like a clean
+    // campaign. Cheap to catch here, invisible everywhere else.
+    if (!(entry in TARGETS)) untiered.push(entry);
 
     for (const file of FORBIDDEN_FILES) {
       if (existsSync(join(fixtureDir, file))) {
@@ -76,6 +85,16 @@ export function assertFixtureHygiene(
         violations.push(`${entry}/${name}`);
       }
     }
+  }
+
+  if (untiered.length > 0) {
+    throw new Error(
+      `Eval fixture has no entry in TARGETS:\n` +
+        untiered.map((name) => `  - ${name}`).join("\n") +
+        `\n\nEval selection defaults to a tier, so an eval that is not in the ` +
+        `registry is silently skipped rather than run. Add it to ` +
+        `lib/graders/targets.ts with a \`tier\`.`,
+    );
   }
 
   if (violations.length > 0) {

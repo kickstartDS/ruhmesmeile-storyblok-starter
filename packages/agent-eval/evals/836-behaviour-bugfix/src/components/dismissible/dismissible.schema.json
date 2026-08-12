@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/dismissible.schema.json",
+  "title": "Dismissible",
+  "description": "A banner the reader can close, by button or by Escape.",
+  "type": "object",
+  "required": ["message"],
+  "additionalProperties": false,
+  "properties": {
+    "message": {
+      "title": "Message",
+      "description": "The text shown in the banner.",
+      "type": "string"
+    },
+    "closeLabel": {
+      "title": "Close label",
+      "description": "Accessible name for the close control.",
+      "type": "string",
+      "default": "Dismiss"
+    }
+  }
+}

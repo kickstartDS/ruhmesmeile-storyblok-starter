@@ -17,18 +17,20 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ExperimentConfig, Sandbox } from "@vercel/agent-eval";
+import type { ExperimentConfig, ModelTier, Sandbox } from "@vercel/agent-eval";
 
 import { DEFAULTS, PRIMARY_AGENT, PRIMARY_MODEL } from "../agent-eval.config";
 import {
-  MCP_UPLOAD_DIR,
   mcpConfigFor,
-  mcpRuntimeDir,
+  mcpUrl,
+  serverSpec,
   stageVariant,
   type VariantKey,
 } from "./mcp/variants";
+import { ensureHostServer } from "./mcp/serve";
 import { hashStagedPackages, type StagedPackage } from "./mcp/stage";
 import { assertFixtureHygiene } from "./fixtures/hygiene";
+import { evalsInTier } from "./graders/targets";
 
 const PACKAGE_ROOT = resolve(
   fileURLToPath(new URL(".", import.meta.url)),
@@ -44,6 +46,20 @@ export interface DefineExperimentOptions {
   name: string;
   /** Which MCP servers the agent gets. */
   variant: VariantKey;
+  /**
+   * The model to run against. Defaults to `PRIMARY_MODEL`.
+   *
+   * Declared per experiment because the results directory is the file name and
+   * the file name carries the model label. Leaving the model to come only from
+   * `PRIMARY_MODEL` — i.e. from `EVAL_MODEL` in the caller's shell — meant
+   * `EVAL_MODEL=haiku` would write Haiku trials into `cc-*-sonnet-high/` with
+   * nothing objecting, and `collectRun()`, the published report and the
+   * calibration candidate pool all aggregate by directory. Two models would
+   * have been averaged together under a name asserting one of them, with the
+   * only evidence in the `model` field of each individual `result.json`, which
+   * nothing groups by. (D-117, ADR 82.)
+   */
+  model?: ModelTier;
   /** Runs per eval. See RUNS in agent-eval.config.ts. */
   runs: number;
   /** Reasoning effort passed through to the agent CLI. */
@@ -81,8 +97,8 @@ export function defineExperiment(
 
   return {
     agent: PRIMARY_AGENT,
-    model: PRIMARY_MODEL,
-    evals: selectedEvals(options.evals ?? "*"),
+    model: options.model ?? PRIMARY_MODEL,
+    evals: selectedEvals(options.evals ?? defaultEvals()),
     runs: options.runs,
     earlyExit: DEFAULTS.earlyExit,
     scripts: [...DEFAULTS.scripts],
@@ -129,20 +145,26 @@ const DENY_WEB_RESEARCH = ["WebSearch", "WebFetch"];
  * payload, an added install step — is invisible, and stale results from the
  * previous build would be silently reported as current.
  */
-const SETUP_VERSION = "5-vendored-deps-installed-servers-outside-workspace";
+const SETUP_VERSION = "6-host-http-transport";
 
-/** The in-sandbox JSON-RPC liveness probe, shipped as-is. */
+/** The in-sandbox reachability probe, shipped as-is. */
 const PROBE_SOURCE = readFileSync(
-  fileURLToPath(new URL("./mcp/probe.mjs", import.meta.url)),
+  fileURLToPath(new URL("./mcp/probe-http.mjs", import.meta.url)),
   "utf-8",
 );
 
 /**
- * Upload the staged MCP servers, install their dependencies, move them out of
- * the agent's reach, prove they answer `tools/list`, and point Claude Code at
- * them.
+ * Point the sandbox at the host-side MCP servers, prove it can reach them, and
+ * lock down web research.
  *
- * Every variant — including the `none` baseline, which stages nothing — gets a
+ * Nothing is uploaded. The servers run on the host in Streamable HTTP mode and
+ * the sandbox gets a URL, because every version of shipping them into the
+ * container leaked (ADR 55, D-26): first the agent read `.mcp-servers/` out of
+ * its own working directory, then \u2014 once they were moved to `/tmp` \u2014 it read
+ * the design-tokens server's token files out of the absolute path `.mcp.json`
+ * names. A stdio server cannot be hidden from the user that has to execute it.
+ *
+ * Every variant \u2014 including the `none` baseline, which stages nothing \u2014 gets a
  * settings file, because `DENY_WEB_RESEARCH` has to apply everywhere.
  *
  * Exported for `bin/setup-check.ts`, which rehearses this against a real
@@ -154,86 +176,31 @@ export async function setupVariant(
   sandbox: Sandbox,
   packages: StagedPackage[],
 ): Promise<void> {
-  const workingDir = sandbox.getWorkingDirectory();
-  const runtimeDir = mcpRuntimeDir(workingDir);
-
   // The fixture's own dependencies are NOT installed here. The framework's
   // agent definition already runs `npm install` in the workspace as its first
   // install step, so declaring a dependency in the eval's `package.json` is
   // sufficient — doing it again would just pay for the install twice.
 
-  // Upload everything first: a server's `npm install` resolves `file:` deps
-  // against vendored packages that must already be on disk.
-  for (const pkg of packages) {
-    const prefix = `${MCP_UPLOAD_DIR}/${pkg.key}`;
-    const files: Record<string, string> = {};
+  const servers = packages.filter((pkg) => pkg.entry);
 
-    for (const [path, content] of Object.entries(pkg.files)) {
-      files[`${prefix}/${path}`] = content;
-    }
-
-    files[`${prefix}/package.json`] = JSON.stringify(
-      {
-        // The real package name is load-bearing: npm installs a `file:`
-        // dependency under the name declared in its own manifest.
-        name: pkg.packageName,
-        version: pkg.version,
-        private: true,
-        type: "module",
-        main: pkg.main,
-        dependencies: pkg.dependencies,
-      },
-      null,
-      2,
-    );
-
-    await sandbox.writeFiles(files);
-  }
-
-  // Every staged package with dependencies needs its own install, vendored
-  // ones included.
-  //
-  // It is tempting to assume a `file:` dependency is installed through its
-  // parent — npm does place its transitive deps in the parent's tree. But npm
-  // links `file:` deps rather than copying them, and Node resolves from a
-  // symlink's *realpath*: code in `_vendor/kickstartds-shared-auth/dist/` looks
-  // in `_vendor/…/node_modules`, then `_vendor/node_modules`, and never in the
-  // server's `node_modules` where npm actually put things. That assumption is
-  // what killed the first matrix — both servers died on startup with
-  // `Cannot find package 'jsonwebtoken'`, Claude Code exposed no tools, and the
-  // agent read the servers off disk instead (D-26).
-  //
-  // Vendored packages go first so a server's `file:` link always points at a
-  // directory that is already complete.
-  const installOrder = [...packages].sort(
-    (a, b) => Number(Boolean(a.entry)) - Number(Boolean(b.entry)),
-  );
-
-  for (const pkg of installOrder) {
-    if (Object.keys(pkg.dependencies).length === 0) continue;
-
-    const install = await sandbox.runCommand(
-      "npm",
-      ["install", "--omit=dev", "--no-audit", "--no-fund"],
-      { cwd: `${workingDir}/${MCP_UPLOAD_DIR}/${pkg.key}` },
-    );
-
-    if (install.exitCode !== 0) {
-      throw new Error(
-        `MCP setup: failed to install dependencies for ${pkg.packageName}\n${install.stderr}`,
+  if (servers.length > 0) {
+    const ports: Record<string, number> = {};
+    for (const server of servers) {
+      ports[server.key] = await ensureHostServer(
+        server.key,
+        serverSpec(server.key).packageDir,
       );
     }
-  }
 
-  if (packages.length > 0) {
-    await relocateOutOfWorkspace(sandbox, workingDir, runtimeDir);
-    await probeStagedServers(sandbox, runtimeDir, packages);
+    const hostAddress = await resolveHostAddress(sandbox);
+    await probeHostServers(sandbox, servers, hostAddress, ports);
+
+    await sandbox.writeFiles({
+      ".mcp.json": mcpConfigFor(packages, hostAddress, ports),
+    });
   }
 
   await sandbox.writeFiles({
-    ...(packages.length > 0
-      ? { ".mcp.json": mcpConfigFor(packages, runtimeDir) }
-      : {}),
     ".claude/settings.local.json": JSON.stringify(
       {
         // Project-scoped MCP servers are otherwise gated behind an interactive
@@ -251,55 +218,63 @@ export async function setupVariant(
 /**
  * `Sandbox` exposes only `runCommand`; the backends have a `runShell`, but it
  * is not on the published interface. Anything needing globbing, `&&`, or a
- * move goes through here.
+ * redirect goes through here.
  */
 function shell(sandbox: Sandbox, command: string) {
   return sandbox.runCommand("bash", ["-c", command]);
 }
 
 /**
- * Move the servers from the upload directory to a sibling of the workspace.
+ * The address the sandbox uses to reach the host.
  *
- * `writeFiles` cannot target anything outside the workspace — the docker
- * backend extracts every upload tar at the container workdir — so the servers
- * have to land inside it and be moved afterwards. See `MCP_RUNTIME_DIR_NAME`
- * for why they cannot be left there.
+ * `host.docker.internal` is not an option: the framework's docker backend
+ * hardcodes `HostConfig: { AutoRemove: true }` and exposes no hook for
+ * `ExtraHosts`, so on Linux that name does not resolve. The container's default
+ * gateway is the bridge, which is the host — read straight out of
+ * `/proc/net/route` rather than shelling out to `ip`, which `node:24-slim` does
+ * not ship.
+ *
+ * The gateway is stored there as little-endian hex, hence the byte reversal.
  */
-async function relocateOutOfWorkspace(
-  sandbox: Sandbox,
-  workingDir: string,
-  runtimeDir: string,
-): Promise<void> {
-  const move = await shell(
-    sandbox,
-    `rm -rf '${runtimeDir}' && mv '${workingDir}/${MCP_UPLOAD_DIR}' '${runtimeDir}'`,
-  );
+async function resolveHostAddress(sandbox: Sandbox): Promise<string> {
+  const read = await sandbox.runCommand("node", [
+    "-e",
+    "const l=require('fs').readFileSync('/proc/net/route','utf8').split('\\n').slice(1)" +
+      ".map(s=>s.split(/\\s+/)).find(f=>f[1]==='00000000');" +
+      "if(!l)process.exit(1);" +
+      "const h=l[2];console.log([6,4,2,0].map(i=>parseInt(h.substr(i,2),16)).join('.'));",
+  ]);
 
-  if (move.exitCode !== 0) {
+  const address = read.stdout.trim();
+
+  if (read.exitCode !== 0 || !/^\d+\.\d+\.\d+\.\d+$/.test(address)) {
     throw new Error(
-      `MCP setup: could not move the staged servers out of the workspace.\n` +
-        `  from: ${workingDir}/${MCP_UPLOAD_DIR}\n` +
-        `  to:   ${runtimeDir}\n` +
-        `Leaving them in the workspace is not an option — the agent reads them ` +
-        `directly and the run silently stops measuring MCP use (D-26).\n` +
-        move.stderr,
+      `MCP setup: could not determine the host address from inside the sandbox.\n` +
+        `${read.stderr.trim() || read.stdout.trim()}\n\n` +
+        `Without it the servers are unreachable and the run would measure a ` +
+        `variant that silently has no MCP at all.`,
     );
   }
+
+  return address;
 }
 
 /**
- * Speak JSON-RPC to every staged server and require a non-empty tool list.
+ * Speak JSON-RPC to every server over the exact URL the agent will use, from
+ * inside the container, and require a non-empty tool list.
  *
- * Runs before the agent, so a dead server costs a container start rather than
- * an experiment.
+ * Runs before the agent, so an unreachable server costs a container start
+ * rather than an experiment. This checks strictly more than the old stdio probe
+ * did: it covers the host process, the bridge, and the HTTP transport together.
  */
-async function probeStagedServers(
+async function probeHostServers(
   sandbox: Sandbox,
-  runtimeDir: string,
-  packages: StagedPackage[],
+  servers: StagedPackage[],
+  hostAddress: string,
+  ports: Record<string, number>,
 ): Promise<void> {
-  const probePath = `${runtimeDir}/probe.mjs`;
-  const uploadName = `${MCP_UPLOAD_DIR}-probe.mjs`;
+  const probePath = "/tmp/mcp-probe.mjs";
+  const uploadName = ".mcp-probe.mjs";
 
   await sandbox.writeFiles({ [uploadName]: PROBE_SOURCE });
   const place = await shell(
@@ -311,25 +286,21 @@ async function probeStagedServers(
   }
 
   try {
-    for (const pkg of packages) {
-      if (!pkg.entry) continue;
-
-      const probe = await sandbox.runCommand("node", [
-        probePath,
-        `${runtimeDir}/${pkg.key}/${pkg.entry}`,
-      ]);
+    for (const server of servers) {
+      const url = mcpUrl(hostAddress, ports[server.key]);
+      const probe = await sandbox.runCommand("node", [probePath, url]);
 
       if (probe.exitCode !== 0) {
         throw new Error(
-          `MCP setup: server "${pkg.key}" did not answer tools/list.\n` +
+          `MCP setup: server "${server.key}" did not answer tools/list at ${url}.\n` +
             `${probe.stdout.trim() || probe.stderr.trim()}\n\n` +
-            `The server is unusable, so the run would measure a variant that ` +
+            `The server is unreachable, so the run would measure a variant that ` +
             `silently has no MCP at all.`,
         );
       }
     }
   } finally {
-    // Nothing left lying around that hints at where the servers went.
+    // Nothing left lying around that hints at how the sandbox reaches the host.
     await shell(sandbox, `rm -f '${probePath}'`);
   }
 }
@@ -357,6 +328,29 @@ const READ_ONLY_COMMANDS = new Set([
   "playground",
   "init",
 ]);
+
+/**
+ * Which evals an experiment runs when it does not name any itself.
+ *
+ * Not `"*"`. Phase 1 priced a greenfield trial at $4.24–$5.67 and an edit trial
+ * at $0.23; with `"*"` every fixture added joins all four arms, so the suite's
+ * cost is set by its most expensive tasks and there is a standing disincentive
+ * to add cheap ones. Tiering removes that: `core` is the edit and diff tasks
+ * and is cheap enough to run on every campaign, `extra` is the
+ * build-from-scratch tasks and is bought deliberately.
+ *
+ *   pnpm eval cc-none-sonnet-high                    # core only
+ *   EVAL_EXTRA_EVALS=1 pnpm eval cc-none-sonnet-high # the full suite
+ *
+ * The tier lives in `TARGETS`, which is already the per-eval registry and is
+ * already host-side. A fixture with no target entry is not silently dropped —
+ * `assertFixtureHygiene()` fails first.
+ */
+function defaultEvals(): string[] | "*" {
+  const extra = process.env.EVAL_EXTRA_EVALS?.trim();
+  if (extra && extra !== "0" && extra !== "false") return "*";
+  return evalsInTier("core");
+}
 
 /**
  * Which evals this invocation is allowed to run.

@@ -1,0 +1,25 @@
+@use "portrait-tokens.scss";
+
+.dsa-portrait {
+  display: block;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: var(--dsa-portrait--ring-width) solid var(--dsa-portrait--ring-color);
+  background-color: var(--dsa-portrait--placeholder);
+
+  &--small {
+    inline-size: var(--dsa-portrait--size-small);
+    block-size: var(--dsa-portrait--size-small);
+  }
+
+  &--medium {
+    inline-size: var(--dsa-portrait--size-medium);
+    block-size: var(--dsa-portrait--size-medium);
+  }
+
+  &--large {
+    inline-size: var(--dsa-portrait--size-large);
+    block-size: var(--dsa-portrait--size-large);
+  }
+}

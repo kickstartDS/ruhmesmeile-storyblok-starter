@@ -225,7 +225,7 @@ yarn storybook              # Start Storybook only
 }
 
 export function handleGetComponentStructure(
-  args: ComponentStructureArgs
+  args: ComponentStructureArgs,
 ): CallToolResult {
   const { componentName, description: _description } = args;
   const kebabName = toKebabCase(componentName);
@@ -288,7 +288,7 @@ Use these tools to get templates for each file:
 }
 
 export function handleGetJsonSchemaTemplate(
-  args: JsonSchemaTemplateArgs
+  args: JsonSchemaTemplateArgs,
 ): CallToolResult {
   const { componentName, description, properties = [] } = args;
   const kebabName = toKebabCase(componentName);
@@ -384,7 +384,7 @@ Run \`yarn schema\` to generate:
 }
 
 export function handleGetReactComponentTemplate(
-  args: ReactComponentTemplateArgs
+  args: ReactComponentTemplateArgs,
 ): CallToolResult {
   const {
     componentName,
@@ -515,7 +515,7 @@ ${
 }
 
 export function handleGetClientBehaviorTemplate(
-  args: ClientBehaviorTemplateArgs
+  args: ClientBehaviorTemplateArgs,
 ): CallToolResult {
   const { componentName, identifier, behaviorDescription = "" } = args;
   const kebabName = toKebabCase(componentName);
@@ -590,16 +590,74 @@ export const initFeature = (element) => {
 };
 `;
 
+  const standaloneTemplate = `// No \`@kickstartds/core\` in this package — same pattern, no base class.
+
+export default class ${componentName} {
+  constructor(element) {
+    this.element = element;
+
+    const $ = element.querySelector.bind(element);
+    this.elements = {
+      // example: $(".dsa-${kebabName}__element"),
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    element.addEventListener("click", this.handleClick);
+  }
+
+  handleClick(event) {
+    // Handle click
+  }
+
+  // Same role as \`onDisconnect\`: everything set up above is torn down here.
+  destroy() {
+    this.element.removeEventListener("click", this.handleClick);
+  }
+}
+`;
+
   return text(`# Client-Side Behavior Template for ${componentName}
 
 ${
   behaviorDescription ? `## Behavior Description\n${behaviorDescription}\n` : ""
 }
 
+## Prerequisite
+
+The main template below imports \`@kickstartds/core\`. **Check it is resolvable
+before you use it** — it is a peer dependency of the design system, not something
+every consuming package installs. 11 of the design system's 13 client-behaviour
+files use it, so it is the house pattern where it is available.
+
+If it is not available, you have two correct options:
+
+1. Add it: \`"@kickstartds/core": "^4.0.2"\` in \`dependencies\`.
+2. Use the standalone template further down, which is the same pattern without
+   the base class.
+
+**What is not an option is moving the behaviour into React.** A component that
+reaches for \`useState\` because \`@kickstartds/core\` was missing has traded a
+one-line dependency question for a violation of the rule this design system is
+built on: components are pure, behaviour is vanilla JS. Absence of the package
+is a packaging problem, not a licence to change architecture.
+
+Note also that \`.client.js\` files are plain JavaScript imported from TypeScript,
+which needs \`"allowJs": true\` in \`tsconfig.json\`. The design system sets it.
+
 ## Main File: \`src/components/${kebabName}/js/${componentName}.client.js\`
 
 \`\`\`javascript
 ${template}
+\`\`\`
+
+## Standalone Variant (no \`@kickstartds/core\`)
+
+Use this when the package cannot take the dependency. It keeps the parts that
+matter — a class per element, cached DOM references, bound handlers, and explicit
+teardown — and drops only the registration the base class would have done.
+
+\`\`\`javascript
+${standaloneTemplate}
 \`\`\`
 
 ## Optional Feature Module: \`src/components/${kebabName}/js/feature.client.js\`
@@ -638,7 +696,17 @@ ${featureModuleTemplate}
 
 ## Connecting to React
 
-In your React component:
+Most components just import the client file for its side effect — \`define()\`
+finds the elements itself, so the React component stays unaware of it. This is
+what 6 of the design system's 8 interactive components do:
+
+\`\`\`tsx
+import "./js/${componentName}.client";
+\`\`\`
+
+Reach for \`useKsComponent\` only when the element needs the attributes the
+runtime pushes onto it (2 of 8 components do). It comes from the same package,
+so the prerequisite above applies:
 
 \`\`\`tsx
 import { useKsComponent } from "@kickstartds/core/lib/react";
@@ -653,7 +721,11 @@ const ${componentName}ContextDefault = forwardRef((props, ref) => {
     </div>
   );
 });
-\`\`\``);
+\`\`\`
+
+With the standalone variant there is nothing to import into the component at
+all: instantiate the class against the element from wherever you bootstrap the
+page.`);
 }
 
 export function handleGetScssTemplate(args: ScssTemplateArgs): CallToolResult {
@@ -794,7 +866,7 @@ CSS Properties
 }
 
 export function handleGetStorybookTemplate(
-  args: StorybookTemplateArgs
+  args: StorybookTemplateArgs,
 ): CallToolResult {
   const { componentName, defaultArgs = {} } = args;
   const kebabName = toKebabCase(componentName);
@@ -867,6 +939,26 @@ Refer to the component tokens panel for available customization options.
 
   return text(`# Storybook Templates for ${componentName}
 
+## Prerequisites — check these before writing the file
+
+A stories file that does not compile is worse than no stories file: it breaks
+the package's typecheck for everyone. This template needs all of the following
+to already exist in the package.
+
+- \`@storybook/react-vite\`, \`@storybook/addon-docs\`, \`@storybook/addon-links\`
+  and \`json-schema\` in \`devDependencies\`.
+- \`@kickstartds/core\`, for \`pack\` and \`getArgsShared\`.
+- \`${kebabName}.schema.dereffed.json\` — **generated** by the design system's
+  schema build step, not written by hand.
+- \`${kebabName}-tokens.json\` — **generated** by the token extraction step from
+  \`_${kebabName}-tokens.scss\`.
+
+If the package has no Storybook set up, or those two generated files are not
+there, **do not write a stories file**. Say so instead. Emitting one anyway
+produces TS2307 on four imports and is a real, recorded cost: agents have failed
+tasks on exactly this, having written a stories file nobody asked for into a
+package that could not compile it.
+
 ## Stories File: \`src/components/${kebabName}/${componentName}.stories.tsx\`
 
 \`\`\`tsx
@@ -906,7 +998,7 @@ parameters: {
 }
 
 export function handleGetDefaultsTemplate(
-  args: DefaultsTemplateArgs
+  args: DefaultsTemplateArgs,
 ): CallToolResult {
   const { componentName, defaults = {} } = args;
   const kebabName = toKebabCase(componentName);
@@ -917,7 +1009,7 @@ import { ${componentName}Props } from "./${componentName}Props";
 const defaults: DeepPartial<${componentName}Props> = ${JSON.stringify(
     defaults,
     null,
-    2
+    2,
   )};
 
 export default defaults;
@@ -1126,7 +1218,7 @@ The token architecture enables easy theming:
 }
 
 export function handleListExistingComponents(
-  args: ListExistingComponentsArgs
+  args: ListExistingComponentsArgs,
 ): CallToolResult {
   const { includeDetails = false } = args;
 
@@ -1274,32 +1366,32 @@ The following components have client-side JavaScript:
 
 export function dispatch(
   name: string,
-  args: Record<string, unknown>
+  args: Record<string, unknown>,
 ): CallToolResult {
   switch (name) {
     case "get-ui-building-instructions":
       return handleGetUiBuildingInstructions();
     case "get-component-structure":
       return handleGetComponentStructure(
-        args as unknown as ComponentStructureArgs
+        args as unknown as ComponentStructureArgs,
       );
     case "get-json-schema-template":
       return handleGetJsonSchemaTemplate(
-        args as unknown as JsonSchemaTemplateArgs
+        args as unknown as JsonSchemaTemplateArgs,
       );
     case "get-react-component-template":
       return handleGetReactComponentTemplate(
-        args as unknown as ReactComponentTemplateArgs
+        args as unknown as ReactComponentTemplateArgs,
       );
     case "get-client-behavior-template":
       return handleGetClientBehaviorTemplate(
-        args as unknown as ClientBehaviorTemplateArgs
+        args as unknown as ClientBehaviorTemplateArgs,
       );
     case "get-scss-template":
       return handleGetScssTemplate(args as unknown as ScssTemplateArgs);
     case "get-storybook-template":
       return handleGetStorybookTemplate(
-        args as unknown as StorybookTemplateArgs
+        args as unknown as StorybookTemplateArgs,
       );
     case "get-defaults-template":
       return handleGetDefaultsTemplate(args as unknown as DefaultsTemplateArgs);
@@ -1307,7 +1399,7 @@ export function dispatch(
       return handleGetTokenArchitecture();
     case "list-existing-components":
       return handleListExistingComponents(
-        args as unknown as ListExistingComponentsArgs
+        args as unknown as ListExistingComponentsArgs,
       );
     default:
       throw new Error(`Unknown tool: ${name}`);

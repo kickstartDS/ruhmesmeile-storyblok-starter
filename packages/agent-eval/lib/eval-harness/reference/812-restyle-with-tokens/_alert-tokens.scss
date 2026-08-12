@@ -1,0 +1,17 @@
+.dsa-alert {
+  --dsa-alert--gap: var(--ks-spacing-stack-xs);
+  --dsa-alert--padding: var(--ks-spacing-inset-m);
+  --dsa-alert--padding-compact: var(--ks-spacing-inset-s);
+  --dsa-alert--border-radius: var(--ks-border-radius-card);
+  --dsa-alert--accent-width: var(--ks-border-width-default);
+  --dsa-alert--font: var(--ks-font-copy-m);
+  --dsa-alert--font-compact: var(--ks-font-copy-s);
+  --dsa-alert--transition: var(--ks-transition-fade);
+
+  --dsa-alert--accent-color: var(--ks-border-color-accent);
+  --dsa-alert--background: var(--ks-background-color-informative);
+  --dsa-alert--color: var(--ks-text-color-informative);
+
+  --dsa-alert--title-font: var(--ks-font-interface-m);
+  --dsa-alert--title-color: var(--dsa-alert--color);
+}

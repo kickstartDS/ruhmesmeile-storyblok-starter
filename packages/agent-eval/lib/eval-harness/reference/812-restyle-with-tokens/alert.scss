@@ -1,0 +1,49 @@
+@use "alert-tokens.scss";
+
+.dsa-alert {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-alert--gap);
+  padding: var(--dsa-alert--padding);
+  border-radius: var(--dsa-alert--border-radius);
+  border-left: var(--dsa-alert--accent-width) solid
+    var(--dsa-alert--accent-color);
+  background: var(--dsa-alert--background);
+  color: var(--dsa-alert--color);
+  font: var(--dsa-alert--font);
+  transition: background var(--dsa-alert--transition);
+}
+
+.dsa-alert__title {
+  margin: 0;
+  font: var(--dsa-alert--title-font);
+  font-weight: var(--ks-font-weight-bold);
+  color: var(--dsa-alert--title-color);
+}
+
+.dsa-alert__message {
+  margin: 0;
+}
+
+.dsa-alert--compact {
+  padding: var(--dsa-alert--padding-compact);
+  font: var(--dsa-alert--font-compact);
+}
+
+.dsa-alert--success {
+  --dsa-alert--accent-color: var(--ks-text-color-positive);
+  --dsa-alert--background: var(--ks-background-color-positive);
+  --dsa-alert--color: var(--ks-text-color-positive);
+}
+
+.dsa-alert--warning {
+  --dsa-alert--accent-color: var(--ks-text-color-notice);
+  --dsa-alert--background: var(--ks-background-color-notice);
+  --dsa-alert--color: var(--ks-text-color-notice);
+}
+
+.dsa-alert--danger {
+  --dsa-alert--accent-color: var(--ks-text-color-negative);
+  --dsa-alert--background: var(--ks-background-color-negative);
+  --dsa-alert--color: var(--ks-text-color-negative);
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/portrait.schema.json",
+  "title": "Portrait",
+  "description": "A person's picture, cropped to a circle.",
+  "type": "object",
+  "properties": {
+    "src": {
+      "title": "Source",
+      "description": "Image source for the portrait",
+      "type": "string",
+      "examples": ["/img/people/mira.jpg"]
+    },
+    "alt": {
+      "title": "Alternative text",
+      "description": "Alternative text for the portrait",
+      "type": "string",
+      "examples": ["Mira Okonkwo"]
+    },
+    "size": {
+      "title": "Size",
+      "description": "How large the portrait should be rendered",
+      "type": "string",
+      "enum": ["small", "medium", "large"],
+      "default": "medium"
+    }
+  },
+  "required": ["src", "alt"],
+  "additionalProperties": false
+}

@@ -1,0 +1,40 @@
+.dsa-spotlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-stack-s);
+  padding: var(--ks-spacing-inset-m);
+  border: 1px solid #e2e2e2;
+  background: #ffffff;
+  color: #1a1a1a;
+
+  &__heading {
+    margin: 0;
+    font: var(--ks-font-display-s);
+    color: #101010;
+  }
+
+  &__body {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+  }
+
+  &__footnote {
+    margin: 0;
+    font: var(--ks-font-copy-s);
+    color: #5c5c5c;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #3a3a3a;
+    background: #161616;
+    color: #f2f2f2;
+
+    .dsa-spotlight__heading {
+      color: #fafafa;
+    }
+
+    .dsa-spotlight__footnote {
+      color: #a8a8a8;
+    }
+  }
+}

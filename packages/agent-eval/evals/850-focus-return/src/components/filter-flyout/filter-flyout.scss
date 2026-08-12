@@ -1,0 +1,46 @@
+@use "filter-flyout-tokens.scss";
+
+.dsa-filter-flyout {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    font: var(--ks-font-interface-s);
+    padding: var(--dsa-filter-flyout--trigger-padding);
+    border: var(--dsa-filter-flyout--border-width) solid
+      var(--dsa-filter-flyout--border-color);
+    background-color: var(--dsa-filter-flyout--trigger-background);
+    color: var(--ks-text-color-interface);
+    cursor: pointer;
+  }
+
+  &__panel {
+    display: none;
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    min-inline-size: var(--dsa-filter-flyout--panel-width);
+    padding: var(--dsa-filter-flyout--panel-padding);
+    border: var(--dsa-filter-flyout--border-width) solid
+      var(--dsa-filter-flyout--border-color);
+    background-color: var(--dsa-filter-flyout--panel-background);
+  }
+
+  &__trigger[aria-expanded="true"] + &__panel {
+    display: block;
+  }
+
+  &__options {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--dsa-filter-flyout--option-gap);
+  }
+
+  &__link {
+    font: var(--ks-font-interface-s);
+    color: var(--ks-text-color-interface);
+  }
+}

@@ -1,0 +1,25 @@
+.dsa-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-stack-s);
+  padding: var(--ks-spacing-inset-m);
+
+  &__eyebrow {
+    margin: 0;
+    font: var(--ks-font-copy-s);
+    color: var(--ks-text-color-copy);
+  }
+
+  &__title {
+    margin: 0;
+    font: var(--ks-font-display-s);
+    color: var(--ks-text-color-display);
+  }
+
+  &__summary {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+}

@@ -1,0 +1,20 @@
+@use "rating-stars-tokens.scss";
+
+.dsa-rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dsa-rating-stars--gap);
+
+  &__star {
+    inline-size: var(--dsa-rating-stars--star-size);
+    block-size: var(--dsa-rating-stars--star-size);
+
+    &--filled {
+      fill: var(--dsa-rating-stars--filled);
+    }
+
+    &--empty {
+      fill: var(--dsa-rating-stars--empty);
+    }
+  }
+}

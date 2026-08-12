@@ -1,0 +1,35 @@
+@use "notification-banner-tokens.scss";
+
+.dsa-notification-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--dsa-notification-banner--gap);
+  padding: var(--dsa-notification-banner--padding);
+  border-radius: var(--dsa-notification-banner--border-radius);
+  font: var(--dsa-notification-banner--font);
+  background-color: var(--dsa-notification-banner--background);
+  color: var(--dsa-notification-banner--color);
+
+  // Layout only. The composed components own their own appearance; restyling
+  // them from here would couple this banner to their internals.
+  &__body {
+    flex: 1 1 auto;
+  }
+
+  &--success {
+    --dsa-notification-banner--background: var(
+      --ks-background-color-positive
+    );
+    --dsa-notification-banner--color: var(--ks-text-color-positive);
+  }
+
+  &--warning {
+    --dsa-notification-banner--background: var(--ks-background-color-notice);
+    --dsa-notification-banner--color: var(--ks-text-color-notice);
+  }
+
+  &--danger {
+    --dsa-notification-banner--background: var(--ks-background-color-negative);
+    --dsa-notification-banner--color: var(--ks-text-color-negative);
+  }
+}

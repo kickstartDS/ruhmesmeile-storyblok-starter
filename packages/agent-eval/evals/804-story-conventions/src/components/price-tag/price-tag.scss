@@ -1,0 +1,39 @@
+@use "./price-tag-tokens" as *;
+
+.dsa-price-tag {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-price-tag--gap);
+  padding: var(--dsa-price-tag--padding);
+  border: var(--dsa-price-tag--border-width) solid
+    var(--dsa-price-tag--border-color);
+  background-color: var(--dsa-price-tag--background-color);
+
+  &__amount {
+    margin: 0;
+    font-size: var(--dsa-price-tag--amount-font-size);
+    font-weight: var(--dsa-price-tag--amount-font-weight);
+    color: var(--dsa-price-tag--amount-color);
+  }
+
+  &__period {
+    font-size: var(--dsa-price-tag--period-font-size);
+    font-weight: var(--dsa-price-tag--period-font-weight);
+    color: var(--dsa-price-tag--period-color);
+  }
+
+  &__note {
+    margin: 0;
+    font-size: var(--dsa-price-tag--note-font-size);
+    color: var(--dsa-price-tag--note-color);
+
+    &--emphasis {
+      color: var(--dsa-price-tag--note-emphasis-color);
+    }
+  }
+
+  &--highlight {
+    border-color: var(--dsa-price-tag--highlight-border-color);
+    background-color: var(--dsa-price-tag--highlight-background-color);
+  }
+}

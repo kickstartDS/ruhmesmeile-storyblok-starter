@@ -17,7 +17,14 @@
 #   pnpm --filter agent-eval results:download   # if the campaign ran in CI
 #   pnpm --filter agent-eval report build --all
 #   pnpm --filter agent-eval report:index
+#   pnpm --filter agent-eval calibration:export # the /calibrate queue
 #   kamal deploy -d agent-eval-results
+#
+# The same container also serves `/calibrate` (3.6): the hand-grading queue,
+# without the results tree it was derived from, so that people who do not have
+# a checkout can grade. That is not a convenience — with one rater there is no
+# way to tell a judge defect from one reviewer's idiosyncrasy, and the 80%
+# target in 3.7 has no ceiling to be read against.
 
 service: ruhmesmeile-agent-eval-results
 
@@ -51,6 +58,26 @@ builder:
   args:
     # Results change on every campaign and are copied in a late layer.
     CACHEBUST: <%= Time.now.to_i %>
+
+# Hand-grading, written at runtime by people who are not holding the repository
+# (3.6). The image carries the *questions* — `calibration/bundle.json`, built by
+# `pnpm --filter agent-eval calibration:export` — and this volume carries the
+# answers, which are the most expensive artefact the project produces and would
+# otherwise last exactly until the next deploy.
+#
+# The volume is not a backup: it survives deploys and nothing else, and `pnpm
+# judge` cannot read it. The answers belong in git next to the ones graded
+# locally, so bring them home and commit them:
+#
+#   pnpm --filter agent-eval labels:pull
+#
+# That reads this volume over ssh and unions it into `calibration/labels/` by
+# material hash — per label, not per file, because the same person grades in
+# both places and copying either file over the other destroys a session. For
+# someone without shell access to the host, the "download my labels" link on
+# /calibrate produces the same file and `labels:pull --from <dir>` merges it.
+volumes:
+  - "ruhmesmeile-agent-eval-labels:/app/packages/agent-eval/calibration/labels"
 
 env:
   clear:

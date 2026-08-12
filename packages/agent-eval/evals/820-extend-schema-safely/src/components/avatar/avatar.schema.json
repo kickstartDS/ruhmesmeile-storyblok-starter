@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/avatar.schema.json",
+  "title": "Avatar",
+  "description": "A person's portrait or initials, next to their name.",
+  "type": "object",
+  "required": ["name"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "title": "Name",
+      "description": "The person's name, used for the label and the fallback initials.",
+      "type": "string"
+    },
+    "imageSrc": {
+      "title": "Image source",
+      "description": "Portrait to show instead of the initials.",
+      "type": "string"
+    }
+  }
+}

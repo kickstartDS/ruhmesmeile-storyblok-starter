@@ -1,0 +1,40 @@
+@use "testimonial-tokens.scss";
+
+.dsa-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-testimonial--gap);
+  margin: 0;
+  padding: var(--dsa-testimonial--padding);
+  border: var(--dsa-testimonial--border-width) solid
+    var(--dsa-testimonial--border-color);
+  background-color: var(--dsa-testimonial--background);
+
+  &__quote {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: var(--dsa-testimonial--author-gap);
+  }
+
+  &__attribution {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    font: var(--ks-font-interface-s);
+    font-weight: var(--ks-font-weight-bold);
+    color: var(--ks-text-color-interface);
+  }
+
+  &__role {
+    font: var(--ks-font-interface-xs);
+    color: var(--ks-text-color-interface);
+  }
+}

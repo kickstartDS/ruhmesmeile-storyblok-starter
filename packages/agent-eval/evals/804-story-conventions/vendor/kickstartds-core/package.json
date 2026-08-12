@@ -1,0 +1,20 @@
+{
+  "name": "@kickstartds/core",
+  "version": "4.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./lib/component": {
+      "types": "./lib/component/index.d.ts",
+      "default": "./lib/component/index.js"
+    },
+    "./lib/react": {
+      "types": "./lib/react/index.d.ts",
+      "default": "./lib/react/index.js"
+    },
+    "./lib/storybook": {
+      "types": "./lib/storybook/index.d.ts",
+      "default": "./lib/storybook/index.js"
+    }
+  }
+}

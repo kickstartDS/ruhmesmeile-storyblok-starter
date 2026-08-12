@@ -1,0 +1,36 @@
+@use "disclosure-tokens.scss";
+
+.dsa-disclosure {
+  border-block-end: var(--dsa-disclosure--border-width) solid
+    var(--dsa-disclosure--border-color);
+
+  &__trigger {
+    display: block;
+    inline-size: 100%;
+    padding: var(--dsa-disclosure--trigger-padding);
+    border: 0;
+    background: none;
+    font: var(--dsa-disclosure--trigger-font);
+    color: var(--dsa-disclosure--trigger-color);
+    text-align: start;
+    cursor: pointer;
+  }
+
+  // Visibility follows the trigger's ARIA state, so the attribute the client
+  // file toggles is the single source of truth and cannot drift from what
+  // assistive technology is told.
+  &__panel {
+    display: none;
+    padding: var(--dsa-disclosure--panel-padding);
+    font: var(--dsa-disclosure--panel-font);
+    color: var(--dsa-disclosure--panel-color);
+  }
+
+  &__trigger[aria-expanded="true"] + &__panel {
+    display: block;
+  }
+
+  &__content {
+    margin: 0;
+  }
+}

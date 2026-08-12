@@ -1400,10 +1400,10 @@ instead of a path.
 
 **There is no free version of this fix.** `DENY_WEB_RESEARCH`, `SETUP_VERSION`,
 the staged-package hash and the probe source all feed `guardVariantVersion()`,
-which throws unless `--force`, and `--force` discards prior results. Any change
-that closes the leak invalidates every result bought so far. Bypassing the
-guard by not bumping `SETUP_VERSION` is exactly the silent staleness the guard
-exists to prevent, and is not an option.
+which throws unless `--force`, and `--force` stops prior results being reused.
+Any change that closes the leak invalidates every result bought so far.
+Bypassing the guard by not bumping `SETUP_VERSION` is exactly the silent
+staleness the guard exists to prevent, and is not an option.
 
 **Consequence:** the leak cannot be fixed mid-campaign. It is a between-campaign
 change, and the current campaign runs to completion with detection-and-exclusion
@@ -1655,11 +1655,11 @@ house convention, and an MCP arm is explicitly told so.
 No fixture had Storybook installed. So an agent that followed the convention it
 was handed took a `tsc` failure for it:
 
-| eval / arm                             | run   | outcome | quality | toolchain |
-| -------------------------------------- | ----- | ------- | ------- | --------- |
-| `810` / `cc-component-builder`          | run-1 | pass    | 0.84    | 1.0       |
-| `810` / `cc-component-builder`          | run-2 | fail    | 0.69    | 1.0       |
-| `810` / `cc-component-builder`          | run-3 | fail    | 0.58    | **0.5**   |
+| eval / arm                     | run   | outcome | quality | toolchain |
+| ------------------------------ | ----- | ------- | ------- | --------- |
+| `810` / `cc-component-builder` | run-1 | pass    | 0.84    | 1.0       |
+| `810` / `cc-component-builder` | run-2 | fail    | 0.69    | 1.0       |
+| `810` / `cc-component-builder` | run-3 | fail    | 0.58    | **0.5**   |
 
 `run-3`'s `toolchain-report.json` carried exactly one error:
 
@@ -1680,7 +1680,7 @@ fixtures, declaring `Meta` and `StoryObj` for both specifiers, with
 Rejected alternatives:
 
 - _Install Storybook into the sandbox._ Far too heavy for a per-trial `npm
-  install`, to satisfy a type-only import.
+install`, to satisfy a type-only import.
 - _Exclude `*.stories.tsx` from typecheck._ Hides real errors, and forecloses
   the planned stories grader (checklist 1.9).
 
@@ -1704,14 +1704,14 @@ itself a token — leaving a literal in a fallback slot to be caught.
 
 Behaviour, unit-checked in all four states of ADR 68:
 
-| input                                | verdict |
-| ------------------------------------ | ------- |
-| `var(--dsa-x, var(--ks-y))`          | clean   |
-| `var(--a, var(--b, var(--c)))`       | clean   |
-| `var(--ks-x)`                        | clean   |
-| `var(--ks-color-positive, #059669)`  | caught  |
-| `var(--ks-bg, rgba(0,0,0,.5))`       | caught  |
-| `color: #fff`                        | caught  |
+| input                               | verdict |
+| ----------------------------------- | ------- |
+| `var(--dsa-x, var(--ks-y))`         | clean   |
+| `var(--a, var(--b, var(--c)))`      | clean   |
+| `var(--ks-x)`                       | clean   |
+| `var(--ks-color-positive, #059669)` | caught  |
+| `var(--ks-bg, rgba(0,0,0,.5))`      | caught  |
+| `color: #fff`                       | caught  |
 
 Then checked against all twelve real `812` stylesheets from the campaign:
 
@@ -1747,24 +1747,24 @@ Design Tokens MCP was measurably supplying. `known-tokens` is the check that
 moved in every task of the first campaign (+0.43 / +0.33 / +0.46 / +0.46), and
 it rewards knowing names. Names are now free.
 
-`820-token-intent` is the other half of that decision: a task whose value is
+`811-token-intent` is the other half of that decision: a task whose value is
 not name recall.
 
 ### What it measures
 
-The design system encodes *rules* that its token names do not reveal. Three of
+The design system encodes _rules_ that its token names do not reveal. Three of
 them, all served by the tokens MCP via `get_design_rules`:
 
-| rule                  | the defect in the fixture                             |
-| --------------------- | ----------------------------------------------------- |
-| `color-semantic-layer` | `--ks-color-primary` on component text                |
-| `typography-pairing`  | `--ks-font-size-display-l` + `--ks-line-height-copy-l` |
-| `font-family-roles`   | `--ks-font-family-display` on an interface-sized label |
+| rule                   | the defect in the fixture                              |
+| ---------------------- | ------------------------------------------------------ |
+| `color-semantic-layer` | `--ks-color-primary` on component text                 |
+| `typography-pairing`   | `--ks-font-size-display-l` + `--ks-line-height-copy-l` |
+| `font-family-roles`    | `--ks-font-family-display` on an interface-sized label |
 
 Every token in that table exists, is spelled correctly, and resolves. Nothing
 in the fixture is hardcoded and there is not a single literal to replace, so
-this is not 812 in a different costume: 812 asks *is this a token*, 820 asks
-*is this the right token*. Both questions have the same 1,522 candidate names
+this is not 812 in a different costume: 812 asks _is this a token_, 820 asks
+_is this the right token_. Both questions have the same 1,522 candidate names
 in front of them; only the second one is still hard once you can `grep`.
 
 `--ks-color-primary` reads like exactly the token a component should use. It
@@ -1776,8 +1776,8 @@ An agent that cannot has to already know the system.
 ### The prompt names no rules
 
 It describes symptoms a designer would report — "the vertical rhythm is visibly
-off", "they don't follow when the theme changes" — and never says *category*,
-*primitive* or *semantic layer*. Naming the rules would hand the baseline arm
+off", "they don't follow when the theme changes" — and never says _category_,
+_primitive_ or _semantic layer_. Naming the rules would hand the baseline arm
 the answer and measure nothing, the same failure mode as an answer key in the
 fixture (ADR 17).
 
@@ -1786,12 +1786,12 @@ fixture (ADR 17).
 ADR 53 requires the fixture be hand-solved and run locally before it is bought.
 This one was run in five, because the interesting failure is a new one:
 
-| state          | stylesheet                                    | result           |
-| -------------- | --------------------------------------------- | ---------------- |
-| unsolved       | as shipped                                    | 2 failed / 7 ok  |
-| solved         | correct categories, semantic colours          | **9 passed**     |
-| loophole       | awkward declarations deleted                  | 1 failed / 8 ok  |
-| anti-pattern   | tokens replaced with literals                 | 3 failed / 6 ok  |
+| state            | stylesheet                                                             | result          |
+| ---------------- | ---------------------------------------------------------------------- | --------------- |
+| unsolved         | as shipped                                                             | 2 failed / 7 ok |
+| solved           | correct categories, semantic colours                                   | **9 passed**    |
+| loophole         | awkward declarations deleted                                           | 1 failed / 8 ok |
+| anti-pattern     | tokens replaced with literals                                          | 3 failed / 6 ok |
 | **wrong intent** | right layer, right pairs, `--ks-text-color-copy` on the display figure | 1 failed / 8 ok |
 
 The unsolved run names all four mixes with their selectors and all three
@@ -1801,7 +1801,7 @@ assumption that it does (lesson (d)).
 The fifth state is why `categoryOf()` covers `--ks-text-color-<category>` and
 not just size, line-height and family. A first draft checked only the latter
 three, and "right names, right pairing, wrong category of colour" passed it —
-a defect that fails silently *upward* (D-67), invisible in any results read.
+a defect that fails silently _upward_ (D-67), invisible in any results read.
 The tokens MCP's own rule includes `textColorPattern`; the assertion now does
 too.
 
@@ -1815,7 +1815,7 @@ perfect score — the loophole state of D-68, and the reason that state is run.
 
 ### Scoring shape
 
-`TARGETS["820-token-intent"]` is `diffTask: true`, `requiresClientBehaviour:
+`TARGETS["811-token-intent"]` is `diffTask: true`, `requiresClientBehaviour:
 false`, `mcpUseExpected: true` — structurally 812's sibling. The component and
 schema ship correct and are digest-pinned; the stylesheet is the only thing the
 agent may touch.
@@ -1829,7 +1829,7 @@ second campaign requires `--force` regardless.
 ## ADR 67 — Screenshots are the review artifact; the Storybook is the appeal
 
 Phase 2 could already answer "what did `cc-none` score on `810`". It could not
-answer "what did that *look like*", and the second question is the one a
+answer "what did that _look like_", and the second question is the one a
 designer asks first. Sixty trials is also too many to open by hand, so the
 built Storybooks were, in practice, unopened.
 
@@ -1853,12 +1853,12 @@ costs the built report, and `--no-screenshots` skips them entirely.
 
 ### Two defects, both found by looking at the output
 
-`page.evaluate` given a *string* evaluates it rather than calling it. The first
+`page.evaluate` given a _string_ evaluates it rather than calling it. The first
 `COMPONENT_BOX` was a bare arrow function, so it returned unserialisable and
-every screenshot silently fell back to a viewport shot annotated *"the component
-rendered nothing with a layout box"* — a note indistinguishable from a genuine
+every screenshot silently fell back to a viewport shot annotated _"the component
+rendered nothing with a layout box"_ — a note indistinguishable from a genuine
 empty render. It is now an IIFE, and the docstring says why, because this is
-D-67's shape again: a defect that fails silently *upward*.
+D-67's shape again: a defect that fails silently _upward_.
 
 Then `#storybook-root` turned out to be the wrong anchor. Its first child is
 `.rp-stage`, a full-width block, so a badge came out as a 1200×250 picture of
@@ -1888,7 +1888,7 @@ here, and quietly so.
 Timestamps in this harness differ **per arm and per run-batch**. `resolveMatrix()`
 may legitimately resolve `810` to a batch from three weeks ago because that task
 has not been re-run since, while five newer batches exist for other tasks. The
-newest ten directories are therefore *not* the set the reports currently point
+newest ten directories are therefore _not_ the set the reports currently point
 at, and a literal implementation eventually deletes a paid-for trial that the
 index is linking to.
 
@@ -1939,7 +1939,7 @@ deployment.
 This one is the output of paid model runs; no compiler reproduces it, and CI
 does not have it either unless `results:download` has put it there. So the
 Dockerfile copies `packages/agent-eval/results/` in as a late, cache-busted
-layer, and the deploy sequence is explicitly *populate, then ship*:
+layer, and the deploy sequence is explicitly _populate, then ship_:
 
 ```
 pnpm --filter agent-eval report build --all
@@ -1952,7 +1952,7 @@ a fresh clone; an unpopulated deploy is an empty site, not a build failure.)
 
 **It is untrusted by construction.** The reports exist to run code a model
 wrote, unreviewed, sixty times over. That is the feature — a component that does
-not render is a *result*. But it means the site serves scripts nobody has read,
+not render is a _result_. But it means the site serves scripts nobody has read,
 so `server/index.ts` sets a CSP with `connect-src 'none'` and
 `form-action 'none'`. Storybook's own bundle needs `'unsafe-inline'` and
 `'unsafe-eval'`, so the script directives cannot be tightened; the network
@@ -1980,7 +1980,7 @@ one, nested `storybook-static/index.html` and `screenshots/component.png` both
 ### Two things the image build taught, both only by running it
 
 **The container has no devDependencies.** `agent-eval`'s dev tree is Storybook,
-Vite and a Playwright browser driver — the machinery for *producing* reports,
+Vite and a Playwright browser driver — the machinery for _producing_ reports,
 none of which serving them requires. Installing `--prod` cuts the image to
 400 MB (of which 113 MB is the current results tree). Node 24 strips types
 natively, so the server runs from `server/index.ts` with plain `node` and the
@@ -1988,7 +1988,7 @@ runtime needs no TypeScript either: no build step, and therefore no build output
 that can drift from its source.
 
 **`--prod --filter agent-eval` is not enough.** It links `@kickstartds/shared-auth`
-as a workspace package without installing *its* dependencies, so the container
+as a workspace package without installing _its_ dependencies, so the container
 built cleanly, started, and died on `Cannot find package 'jsonwebtoken'`. Worth
 naming precisely because of what the failure mode is: the gate was not open, it
 was absent — an auth library that cannot load is a service that cannot start,
@@ -2027,12 +2027,12 @@ is a correctly styled banner with a working dismiss control.
 hardcoded by name — because a trial has no `node_modules` (only `project/` was
 ever captured) and that was the import that failed first, back when the plugin
 was written. `840` declares two `file:` dependencies. The second was never
-wired, so *every* trial that solved that task correctly was unbuildable, and the
+wired, so _every_ trial that solved that task correctly was unbuildable, and the
 error blamed the agent for it.
 
 The fix reads the trial's own `package.json` and aliases every `file:` or
 `link:` dependency to its on-disk directory. Naming packages was the defect;
-naming the *mechanism* is the fix, and it covers whatever a future fixture
+naming the _mechanism_ is the fix, and it covers whatever a future fixture
 vendors without anyone remembering to come back here.
 
 This is the reporting equivalent of ADR 64: an artifact that makes correct
@@ -2081,3 +2081,1439 @@ resolve, the trial's component renders with its tokens.
 Anything user-facing behind a header, a cookie or a policy is now verified
 through a browser. Two of the three defects in this results server were invisible
 to the tool it was tested with.
+
+---
+
+## ADR 72 — the judge is a host-side grader, not an in-sandbox assertion
+
+PRD §7.3 places the LLM judge inside the sandbox, as a `toSatisfyCriterion`
+assertion in `EVAL.ts`. That is the harness's own idiom and it reads well, but
+it makes the rubric part of the fixture — and the fixture is what the
+fingerprint is computed over. Editing a rubric would invalidate every result
+that used it.
+
+Phase 3 exit is "≥80% agreement with human grading, iterate the rubrics until
+it holds". Under the PRD's placement, one lap of that loop is a full capability
+matrix: sixty agent runs, roughly $250 and several hours. Nobody iterates a
+rubric four times at $1,000. The design would have quietly guaranteed that the
+rubrics shipped in whatever state they were first written in.
+
+It is also blocked operationally. The harness's agentic judge authenticates
+through `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`, both deliberately unset so
+the failure classifier cannot fire (D-19).
+
+The judge therefore runs on the host, over trials that already exist. It reads
+the same artefacts as every other grader, and it can be re-run over all sixty
+Phase 1 trials for cents. Rubric iteration costs a rubric, not a campaign — the
+same property that made the deterministic graders retroactive (D-50), applied
+to the one grader that has a bill.
+
+**Spending is split from grading, in code and not by convention.** `bin/judge.ts`
+is the only file that can open a socket to a model; it is dry by default and
+writes verdicts to `judge.json` beside each trial. `lib/graders/judge.ts` only
+ever reads that file. `npm run grade` is run dozens of times a day, and a
+grader that _could_ spend money when someone re-grades would be a standing
+hazard. Decision 11 says spend is a human decision, and the only way to mean
+that is for the free path to contain no code that can pay for anything.
+
+Un-judged trials report `applicable: false`, which `qualityScore` already
+renormalises around, so adding the grader changed no existing score.
+
+Two things fell out of building it that the design did not anticipate.
+
+**A pin that names a tier is not a pin.** `agent-eval.config.ts` carries
+`JUDGE_MODEL: ModelTier = "opus"`, which resolves to whatever "opus" means on
+the day it is called. For the agent under test that is fine. For the instrument
+measuring it, it means a score from March and a score from September may come
+from different models with no record that they did — precisely the drift the
+judge exists to detect. The judge names a dated release instead, and the dry run
+verifies it against the API before spending. That verification immediately
+caught a pin that did not resolve at all.
+
+Notably the dated pin is _not_ the newest model available: the current flagship
+was published only as an undated alias, and an alias is the thing the constant
+exists to avoid. A judge one generation old and stable is worth more than one
+that is current and moves.
+
+**Half the bill was one invariant list.** The `token-reasoning` rubric shows the
+judge the 1457 semantic token names that were available to choose from — ten
+times the size of the component being judged, identical on all forty-eight
+calls. Hoisting it into a cached system block took the estimate from $23.83 to
+$14.92 with no change in what the judge sees. Prompt caches match a prefix, so
+this is only available to a design that keeps its invariant context separate
+from its per-trial context; the in-sandbox placement, where each trial builds
+its own prompt in isolation, could not have used it.
+
+## ADR 73 — a judge shown less than it needs confabulates rather than abstains
+
+ADR 54 and ADR 61 established that every check must be asked whether the agent
+authored the thing being scored. Applying that to the judge exposed `api-design`
+grading a fixture-written schema on all thirty-six trials that had one, so
+`buildPrompt` was changed to gate every file on `untouched()`. The rubric was
+then re-run against forty-eight trials, and produced seven failures whose
+reasoning was entirely invented: three mutually exclusive descriptions of one
+unchanging schema, and two components failed for correctly matching the file the
+judge was describing incorrectly.
+
+The gate was working. The briefs are what leaked: they say "its props are already
+specified in `<name>.schema.json` — treat that schema as the source of truth",
+and the agent does not write that file, so the gate withheld it. The judge was
+told an authoritative document existed, was denied it, and reconstructed it from
+the component in front of it — then reported the component as diverging from the
+reconstruction.
+
+The decision is that **authorship gating alone is not enough; a rubric must also
+declare what it cannot be asked without.** Rubrics carry a `requires` list, and
+where that material is missing the question is not put at all. This is stricter
+than returning `unknown`, deliberately: `unknown` is a judgement the model makes
+about evidence it has seen, and the failure here was that the model would not
+make it. The system prompt additionally forbids reasoning about, or reporting a
+discrepancy against, any file not in evidence — belt and braces, since the same
+shape will recur as briefs grow more detailed.
+
+Two consequences worth stating plainly. First, removing contaminated material is
+not automatically an improvement: the contaminated `api-design` graded our own
+fixture identically in every arm, which was uninformative but harmless, while the
+corrected one marked correct work wrong. A defect that produces confident,
+plausible, _wrong_ output is more expensive than one that produces a flat line,
+and the flat line is what tempted us to "fix" it.
+
+Second, the rubric was never the problem. No task in the suite asks the agent to
+design an API — the schema is fixture-given on three tasks and absent on two, and
+`810` is explicitly "build this from the given schema". `api-design` is retained
+and self-disabling until 3.1 supplies a task whose brief describes behaviour and
+leaves the surface to the agent. The general rule: **before iterating on a rubric
+that will not discriminate, check that the suite contains a task where the thing
+it measures is something the agent actually decides.**
+
+---
+
+## ADR 74 — The unit of a calibration sample is the artefact, not the trial
+
+**Context.** The 3.6 harness was tested by piping five labels through it. The
+report came back with fourteen observations, `token-reasoning` alone claiming
+eleven from what had been two gradings.
+
+Nothing was wrong with the labels. A label is keyed by rubric id and a hash of
+the material, and trials frequently produce byte-identical code — that is the
+entire point of `860-restraint`, where the correct behaviour is to change
+nothing, so four arms converge on the same file. One grading legitimately
+answers for all of them. It does not become four observations by doing so.
+
+**Decision.** Agreement is computed over distinct labelled units. Items are
+grouped by key, each group contributes one paired observation, and where the
+judge answered the same material more than once its majority verdict is used.
+The corpus is **153 units, from 180 trial-rubric pairs**. `queue()` and
+`--status` count the same way, so the number shown during a session is the
+number the report will use.
+
+**Why this matters more than it looks.** 3.8 turns on a 15% weight if agreement
+clears 80%, and the sample backing that decision is twenty hand-gradings. Per
+trial, twenty gradings would have reported themselves as up to 180 — a sample
+inflated ninefold by an accounting choice, with nothing visibly wrong in the
+output. It is the same species of defect as D-102's fabrications: a number that
+looks like evidence, arrived at honestly, and isn't.
+
+**Consequence, and a free measurement.** Grouping surfaces something worth
+having. Identical input answered two different ways is the judge disagreeing
+with itself, and no amount of rubric rewording lifts agreement above that floor.
+`--report` now prints self-consistency wherever repeated material was not
+answered uniformly, which tells us whether a sub-80% rubric is badly worded or
+simply noisy — two problems with opposite fixes.
+
+**Generalisation.** Deduplicate before counting. Identical artefacts across
+trials will silently multiply a small hand-graded sample into a large-looking
+one, and the arithmetic is correct at every step.
+
+---
+
+## ADR 75 — A task that leaves the API open must be shown not to dictate one
+
+**Context.** `824-api-from-behaviour` exists because `api-design` had nothing to
+judge (D-102). Its brief describes a `progress-steps` component's behaviour and
+ships no schema, so the agent designs the surface and writes it.
+
+That creates a verification problem the other fixtures do not have. Every prior
+task has one intended answer, so ADR 53's gate asks whether a correct solution
+passes. Here there is no single correct answer, and the failure mode is an eval
+that quietly rewards the API its author happened to imagine. That defect is
+invisible in the results: it produces a plausible spread, and the arms that lose
+look like they wrote worse code rather than different code.
+
+**Decision.** The gate runs a sixth state — **a second, equally valid API** — and
+both must pass identically.
+
+| state             | what changed                                 | result           |
+| ----------------- | -------------------------------------------- | ---------------- |
+| unsolved          | as shipped, no component at all              | 10 failed / 2 ok |
+| solved A          | per-item `status` enum                       | **12 passed**    |
+| solved B          | `currentStep` index, status derived          | **12 passed**    |
+| anti-pattern      | `useState` for step state, literal `#33475b` | 2 failed / 10 ok |
+| loophole (schema) | `required: ["steps", "currentStep"]`         | 1 failed / 11 ok |
+| loophole (stub)   | schema present but `properties: {}`          | 2 failed / 10 ok |
+
+Solved A and B disagree on almost everything that matters — whether step state
+lives on the item or is derived from an index, whether the enum exists at all,
+what the second prop is called — and the eval cannot tell them apart. That is
+the property being asserted.
+
+**What the assertions do and do not pin.** The brief fixes exactly one thing:
+steps arrive as `steps`, each with a label. That is forced, because the runtime
+and a11y probes must render the component without knowing its API, and it is
+also what a real brief does — naming the data to be displayed is not designing
+the props. Everything else is checked only for coherence: the schema must be an
+object schema with properties, must declare `steps` as an array, and must not
+_require_ anything the brief said should be optional. The last one is a genuine
+contract check rather than a style preference — a schema demanding props the
+component renders happily without contradicts the implementation next to it.
+
+**Known gap, deliberately left open.** Nothing here verifies that the component
+honours the schema it wrote. An agent could declare `currentStep` and ignore it,
+and every assertion would pass. Catching that statically would mean parsing the
+component's props out of TSX and matching them against the schema — the shape of
+check that has already misfired twice in this project (ADR 51's JSDoc match, ADR
+52's prop-name probe). It is left to `api-design`, which reads both files and is
+the reason the task exists.
+
+**Also verified:** `untouched()` returns `false` for a file the fixture never
+shipped, so the authorship gate added in D-100 classifies this schema as
+agent-authored and `api-design` activates on this task and nowhere else.
+
+**Consequence.** The hand-solved implementation is kept at
+`lib/eval-harness/reference/824-api-from-behaviour/` — outside `evals/`, because
+everything inside a fixture except `EVAL.ts` and `PROMPT.md` is uploaded to the
+sandbox and a reference solution shipped next to the task would be the answer
+key. It seeds 3.3.
+
+## ADR 76 — A restraint task needs a temptation worth resisting
+
+**Status:** Accepted · **Supersedes nothing** · **Extends ADR 42**
+
+**Context.** `860-restraint` returned 1.00 in all four arms. Read as a result,
+that is a clean negative: no arm over-engineered, no MCP induced scope creep.
+Read as an instrument, it is uninformative — zero variance is zero information
+(lesson (r)). The reason is visible in the task. `860` asks for an accessible
+name on a remove button. Nobody gold-plates a one-line a11y fix, so the arms had
+nothing to differ about, and the 100% measures the difficulty of the temptation
+rather than the discipline of the agent.
+
+The campaign's other loose thread points at where a real temptation lives. The
+design-tokens MCP never flipped a task in any of the five evals; its only
+reliable effect was on `token-conformance`. A server that changes how code is
+written without changing whether the task is solved is exactly the kind of
+server that might also change code it was not asked to touch. That is a finding
+worth having, and no task in the suite could produce it.
+
+**Decision.** `861-token-restraint` aims a restraint task at one server. The
+component is a `Quote`; the request is one wrong token — the byline uses
+`--ks-text-color-display` where it should use `--ks-text-color-copy`. The
+stylesheet around it is deliberately stocked with work an agent holding a token
+catalogue has every reason to want to do:
+
+- a literal `#000000` inside `@media print`, carrying a comment that says it is
+  a signed-off exception because the PDF renderer drops custom properties, with
+  a ticket reference;
+- a `19px` font-size in a `--legacy` modifier kept for content published before
+  a relaunch, also commented, also ticketed;
+- assorted hand-set values that are simply not tokenised.
+
+Tokenising the print exception is not a cleanup, it is a regression the comment
+exists to prevent. That is what makes the trap fair: the fixture states the
+reason in the file, and the brief closes with "the rest of the stylesheet is the
+way it is on purpose, so keep the change to the colour that is wrong". Failing
+an agent for work nobody asked for is only legitimate when both the code and the
+brief said so, and lesson (b) — an eval that fails correct behaviour is the most
+expensive kind of bug — makes that a hard requirement, not a nicety.
+
+**Two right answers, again.** ADR 75's lesson applied immediately. Setting
+`--dsa-quote__author--color` in `_quote-tokens.scss` is as idiomatic here as
+changing the fallback in the rule — the design system does both, `_divider-
+tokens.scss` the former and `breadcrumb.scss` the latter. The first draft of the
+eval digest-pinned the token partial as part of the restraint check, which would
+have failed the more idiomatic of the two fixes for being a fix. The assertion
+now resolves the effective value the way the browser would (a declaration in the
+partial wins over the fallback) and the partial's restraint check verifies the
+four shipped declarations survive rather than pinning bytes.
+
+**D-105 — the added-file check is absolute.** It initially exempted `*.test.*`,
+`*.spec.*` and `*.stories.*`, reasoning that an agent writing tests is doing
+something good. The ADR 53 gate ran an added-stories-file state and it passed
+13/13, which is how the mistake surfaced: component-builder ships
+`get-storybook-template`, so the arm most likely to leave an unrequested story
+behind is precisely the arm this task is measuring. A restraint task that
+exempts the artefacts an MCP hands out cannot observe the effect it exists to
+observe. The harness writes its reports to the project root, so an absolute
+check has no false positive.
+
+**Gate.** Ten states, each failing exactly its own assertion:
+
+| state                             | result                           |
+| --------------------------------- | -------------------------------- |
+| unsolved                          | 2 failed (both fix assertions)   |
+| solved — fallback in `quote.scss` | **13 passed**                    |
+| solved — token in the partial     | **13 passed**                    |
+| blanket `display`→`copy`          | 1 failed (passage keeps display) |
+| tokenised the print exception     | 1 failed (print exception)       |
+| deleted the legacy modifier       | 1 failed (legacy modifier)       |
+| rewrote the token partial         | 1 failed (shipped tokens)        |
+| added a dependency                | 1 failed (dependencies)          |
+| added a stories file              | 1 failed (added files)           |
+| edited the component / the schema | 1 failed each (digests)          |
+
+The blanket-replace state earns its own assertion. Swapping every `display`
+reference for `copy` satisfies both fix assertions while flattening the
+component's type hierarchy, so the eval separately requires that the quoted
+passage still uses the display colour.
+
+**Consequence.** Whether `861` discriminates is not knowable before a campaign;
+the gate can only prove that it _can_. If it also saturates, that is a stronger
+negative than `860`'s, because this time the temptation was placed deliberately
+and refused. Reference solution at `lib/eval-harness/reference/861-token-
+restraint/` — a one-line diff.
+
+**Lesson (aa):** a negative result is only as strong as the temptation it
+survived.
+
+## ADR 77 — The restraint task the artefacts asked for
+
+**Status:** Accepted · **Extends ADR 76**
+
+**Context.** `861` was designed from a hypothesis: the design-tokens MCP might
+induce scope creep. `862` was designed from the artefacts. Phase 1's results are
+on disk, and listing what each trial actually left in its component directory is
+free. It says three things.
+
+On `832` and `840`, the component-builder arms consistently emit
+`XComponent.tsx` + `XProps.ts` + `XDefaults.ts` + `_x-tokens.scss` + `js/`,
+where `none` emits `x.tsx` + `index.ts` and invents a file naming scheme per
+run. That is the file-structure template being followed, it is conformance
+rather than churn, and it is plainly a large part of why that arm scores 0.93
+against 0.64 on `810`.
+
+Unrequested `*.test.tsx` files appear in every arm — `none`, `design-tokens`,
+`component-builder`, `both`. Writing tests nobody asked for is a baseline agent
+habit, not an MCP effect. Any restraint measurement that treats it as one is
+measuring the model.
+
+And on `860`, all twelve trials returned exactly the five shipped entries. No
+arm added anything to a component it was asked to make one small fix to.
+
+**Decision.** The interesting question is therefore none of the above. It is
+what the template pressure that produces correct structure on a _new_ component
+does to one that already exists and is published. `862-api-freeze` asks it
+directly. `Rating` floors its value; the half-star rule is already in the
+stylesheet, commented as designed-but-unrendered with a ticket, and the schema
+already documents `value` as fractional and shown to the nearest half. The fix
+is `860`'s idiom — wire up what is already there.
+
+The fixture is then deliberately off-house-style in exactly the ways the
+component-builder templates would correct: the variant prop is called `kind`,
+props and defaults are inline rather than split into `RatingProps.ts` and
+`RatingDefaults.ts`, and there is no `index.ts`. The brief freezes the API and
+gives the reason a real one has — the component is published, three products
+import it, two destructure `kind` by name, so a rename is a breaking change and
+a separate piece of work.
+
+**Why this is scoreable and not a trap.** Same bar as ADR 76. Every constraint
+is stated in the brief, and the one class name the assertions match on
+(`.dsa-rating__star--half`) ships in the fixture rather than being guessed at,
+so no assertion pins a decision the brief left open. `3.5` of `5` is the render
+value precisely because nearest-half, floor-then-remainder and round-half-up all
+agree on three full, one half, one empty; `3.4` would have made the eval a
+quiz about a threshold nobody specified.
+
+**A separate assertion for the accessible name.** Rounding is a rendering
+concern, and an implementation that also rounds what `aria-label` reports throws
+away the precision the fix exists to surface. That failure passes every count-
+based check, so it gets its own.
+
+**Gate.** Eleven states, each failing exactly its own assertion:
+
+| state                                  | result                          |
+| -------------------------------------- | ------------------------------- |
+| unsolved                               | 2 failed (both behaviour tests) |
+| solved — nearest-half helper           | **15 passed**                   |
+| solved — per-star remainder            | **15 passed**                   |
+| renamed `kind` → `variant`             | 1 failed (prop renamed)         |
+| added an `allowHalf` prop              | 1 failed (prop added)           |
+| extended the schema                    | 1 failed (schema digest)        |
+| edited the token partial               | 1 failed (tokens digest)        |
+| split into `RatingProps.ts`/`index.ts` | 1 failed (restructured)         |
+| added a dependency                     | 1 failed (dependencies)         |
+| rounded the accessible name            | 1 failed (accessible name)      |
+| dropped a stylesheet selector          | 1 failed (stylesheet)           |
+| rendered an extra star                 | 1 failed (star counts)          |
+
+`no prop is renamed` matches `variant` in a binding position — `\bvariant\s*[?:=,]` — rather than as a bare word, so a comment that happens to use the
+term is not a failure.
+
+**Consequence, and a free tightening.** `860`'s added-file check carried the
+same `*.test.*` / `*.spec.*` / `*.stories.*` exemption that D-105 removed from
+`861`. Because the artefacts show all twelve `860` trials returned the five
+shipped entries, removing it there cannot change a recorded verdict — the
+exemption never fired. It is removed anyway, so the blind spot is closed before
+the Haiku campaign rather than discovered in it. Reference solution at
+`lib/eval-harness/reference/862-api-freeze/`.
+
+**Lesson (ab):** before designing a task around a suspected behaviour, look at
+what the runs already produced. Three of this task's four design decisions came
+from a directory listing that cost nothing, and one hypothesis it replaced —
+that unrequested tests indicate MCP-induced creep — was wrong.
+
+## ADR 78 — the suite is cost-tiered, and it carries two controls
+
+**Status:** accepted · **Supersedes the reading of D6, does not repeal it**
+
+**Context.** Phase 1 priced every kind of task the suite runs. A greenfield
+trial costs $4.24–$5.67 and takes nine to eleven minutes; an edit trial costs
+$0.23 and takes two. Across the whole campaign the arms came in at $4.67
+(`both`), $3.66 (`design-tokens`), $2.69 (`component-builder`) and $1.37
+(`none`), averaging $2.93 over 135 trials.
+
+That twentyfold spread is the whole problem. D6 wrote down "$40 hard cap per
+full run of the 4-variant core matrix" when the suite was five evals; the
+measured figure is $35.18 per _eval_ matrix, so D6 had silently become a
+per-eval cap. Twenty evals at Phase 1's shape would be roughly $700 a campaign,
+which is affordable once and not affordable as a quality gate against response
+drift — and the gate is the point. A suite that is too expensive to run is a
+benchmark, not a gate.
+
+**Decision.** `Target` carries `tier: "core" | "extra"`. `defaultEvals()`
+returns `evalsInTier("core")`; setting `EVAL_EXTRA_EVALS` returns `"*"`.
+
+```
+pnpm eval cc-none-sonnet-high                     # core only, ~$150
+EVAL_EXTRA_EVALS=1 pnpm eval cc-none-sonnet-high  # the full suite, ~$600
+```
+
+The twelve core evals are all edit or diff tasks. The eight extra evals carry
+every greenfield generation task and, deliberately, all five evals that produced
+the Phase 1 headline matrix — so the headline comparison stays reproducible on
+demand rather than being folded into the routine run and re-bought every time.
+
+The tier is a property of the task rather than a flag on the command because the
+decision is about what a task costs to answer, which is a fact about the task.
+Nothing about tiering touches grading, and `evalsInTier` is sorted so selection
+is deterministic.
+
+**Consequence.** `assertFixtureHygiene()` now throws on any fixture directory
+without a `TARGETS` entry, because an untiered fixture would silently land in
+neither tier and never run. In practice this means registering a target
+immediately after scaffolding, before the fixture files exist.
+
+### Two controls, not one
+
+`852-a11y-repair` has been the suite's control since it was written: neither
+server documents accessibility, so a spread across the arms there is not an MCP
+effect and invalidates the reading of every treatment task.
+
+`850-focus-return` joins it, and is the stronger of the two. The grep is equally
+clean — `focus`, `Escape`, `aria-expanded`, `keyboard` and `accessib` all return
+zero across every file in `component-builder-mcp/src` — but the component-builder
+server ships `get-client-behavior-template`, so an agent holding that server will
+be pulled into calling a tool that has nothing whatever to say about the thing
+being graded. `852` controls with no plausible tool in reach; `850` controls with
+one. Per lesson (aa), a negative result is only as strong as the temptation it
+survives, and this is a better temptation.
+
+If either control spreads, the campaign is measuring something other than the
+documentation and no treatment task can be read.
+
+### Authoring rule: check prevalence, not just existence
+
+Three tasks changed shape and one died while the suite was being filled out.
+
+`815-logical-properties` was cut. The idea was to grade `margin-inline-start`
+over `margin-left`; the design system uses the logical form in zero stylesheets
+and the physical form in sixteen, and the component-builder server never
+mentions the distinction. The task would have graded a house style the house
+does not have.
+
+`850` was planned as a WAI-ARIA menu with roving arrow-key focus. A grep for
+`ArrowDown|ArrowUp|Escape|key ===` across every component and client module in
+the design system returned **one** hit — the Escape handler in
+`nav-main/js/NavToggle.client.js`. Dropdowns are native `<details>`. The roving
+pattern would have been graded against a convention that exists nowhere. What
+`NavToggle` _does_ do, explicitly and in the house idiom, is move focus into the
+panel on open and hand it back to the trigger on close, and nothing in the suite
+tested that.
+
+`816` was planned as theme adaptation until it became clear that `811`, `861`
+and `806` already cover token intent from three angles. Asking the design-tokens
+server for its `pairing` rules surfaced `typography-pairing`, which describes a
+defect — display-sized type on a copy line-height — that is real, checkable, and
+untested.
+
+The rule, then: **before authoring a task, verify that the correct answer is
+something the design system actually does and an MCP actually encodes, and check
+how prevalent it is rather than only that it exists.** This is lesson (ac), and
+it is close to free — each of these came out of a grep, against a matrix that
+costs $35 to buy and cannot be un-bought.
+
+### Two smaller rules the gates produced
+
+**Reuse is graded from the source and the DOM together (lesson (ai)).** `802`
+asks for a `Testimonial` assembled from the package's `Portrait` and
+`RatingStars`. A gate state that copied `className="dsa-portrait"` onto a raw
+`<img>` puts `dsa-portrait` in the rendered HTML and satisfies a DOM-side
+assertion completely. The import-side assertion catches that; the DOM-side
+catches an import that is never rendered. Neither half is redundant.
+
+**An assertion satisfiable by flattening needs an anti-degenerate pin beside it
+(lesson (ag)).** `816` asks that each piece of type be set from a single
+category — which is satisfied perfectly by setting the entire card to
+`--ks-font-copy-m`, destroying the hierarchy the component exists to express.
+Three pins hold the shape, and the gate's flatten-everything state fails exactly
+those three.
+
+**A fix task needs a regression half (lesson (af)).** `850`'s brief is a bug
+report about a panel keyboard users cannot escape. The cheapest way to satisfy it
+is to stop opening the panel. Three of the sixteen assertions therefore cover
+behaviour that already works, and the gate's demolition state fails five
+assertions — three of them that half. Without it, demolition would have scored
+better than the shipped bug.
+
+**Lesson (ad), recurring.** Two `816` gate states passed while testing nothing: a
+`perl -pi -e` aimed at a string that is not in the file reported a clean 14/14,
+and a chained `perl` mangled a stylesheet rather than editing it. A gate state
+that passes is not evidence until the mutation is shown to have landed. Every
+mutation since is a `python3` heredoc carrying `assert old in t`.
+
+**Reference solutions are excluded from `typecheck` (lesson (ah)).**
+`lib/eval-harness/reference` is written against each fixture's dependency graph,
+never compiled and never shipped into a sandbox. That exclusion is only
+defensible because each reference is verified in place by its own ADR 53 gate
+before it is saved.
+
+## ADR 79 — a rubric is enabled one at a time, by hand
+
+**Status:** accepted
+
+3.8 says "enable the judge's 15% weight". Read literally that is one edit to
+`WEIGHTS_VERSION`, and it turns on all four rubrics at once. Three of them will
+have been calibrated against human labels by then. The fourth will not, because
+it cannot be: `api-design` is narrowed by `requires: ["schema"]` (D-100) so it
+is only asked where the agent authored the API, and no eval in the Phase 1
+matrix does. Its calibration material does not exist yet — `824-api-from-
+behaviour` is the first task that will produce any.
+
+So "enable the judge" and "enable `api-design`" are the same edit only by
+accident of implementation. They are separated:
+
+**`Rubric.calibrated` decides whether a rubric's verdicts move the composite.**
+`design-intent`, `token-reasoning` and `code-idiom` carry it; `api-design` does
+not. `lib/graders/judge.ts` filters the scoring set by the flag and leaves the
+verdicts in `checks`, annotated `uncalibrated, not scored`. Nothing upstream
+changes: `bin/judge.ts` still asks all four, `judge.json` still records all four,
+`pnpm calibrate` still offers all four for hand-grading. Only belief is gated.
+
+Three consequences worth stating.
+
+**The flag is set by a person, not by the agreement number.** `pnpm calibrate
+--report` prints `[not scored]` next to any unflagged rubric, so a rubric can sit
+at 100% and still not count, visibly. This is deliberate. Agreement over twenty
+labels is a weak signal, and `api-design` is precisely the rubric that already
+looked fine — it produced confident, fluent, well-argued verdicts about the
+contents of a schema it had never been shown, on seven of forty-eight trials
+(D-102). A number it generates about itself is not the thing that should decide
+whether to trust it.
+
+**The gate costs nothing to move.** Grading is host-side and retroactive
+(Decision 17), so flipping `calibrated` re-scores every trial ever run, for free,
+in both directions. There is no reason to enable a rubric early to avoid rework,
+which is usually the argument that wins these.
+
+**It generalises past `api-design`.** Every rubric added from here starts
+uncalibrated and stays that way until someone has read its disagreements. The
+default for a new measuring instrument is "does not count".
+
+Lesson (aj): a rubric that has never been checked against a human is not a
+measurement, and the safe default for one is to ask it, record it, show it, and
+give it no weight.
+
+## ADR 80 — the sandbox stopped receiving the thing it was supposed to be measured on
+
+Two changes landed together because they are the same mistake at two scales: in
+both cases the harness handed the agent something it should only have been able
+to _ask for_.
+
+### The servers moved to the host
+
+ADR 55 left this unresolved with a clear diagnosis and no fix. Both MCP servers
+were uploaded into the container and launched over stdio, which meant their
+entire source tree — and, for `design-tokens`, the token files themselves — sat
+on a filesystem the agent could read. It did read them. Two of four arms on
+`812` came back `RUN INVALID` because agents found
+`/tmp/.agent-eval-mcp/design-tokens/tokens/`, and they found it because
+`.mcp.json` sits in the working directory and names the absolute path.
+
+That is not a bug in the placement. It is a property of stdio: the user that
+runs the server has to be able to read the server. Moving the directory removed
+the stumble and kept the capability, which is why the leak detector, not the
+layout, was doing the actual work.
+
+Both servers already speak Streamable HTTP, so the fix was available the whole
+time and was only ever blocked on cost. They now run on the host, and the
+sandbox gets a URL. There is no file to find because there is no file.
+
+The interesting constraint was reaching the host at all. The framework's docker
+backend hardcodes `HostConfig: { AutoRemove: true }` and exposes no hook for
+`ExtraHosts`, so `host.docker.internal` — the obvious answer — does not resolve
+on Linux, and there is no supported way to make it. But the container's default
+gateway _is_ the bridge and the bridge _is_ the host, so the address can simply
+be read out of `/proc/net/route`. Not via `ip`, which `node:24-slim` does not
+ship; via `node`, which by construction it does.
+
+What this does **not** close: `.mcp.json` still contains a URL, and an agent can
+`curl` it. The leak detector now matches the endpoint shape for exactly that
+reason. But the residual channel yields what the tools yield, whereas the old
+one yielded the design system's token files directly — the difference between an
+agent that used its MCP without being credited and an agent that never needed
+one.
+
+The cost was known in advance (D-71) and is unchanged: `SETUP_VERSION` and the
+probe both feed `variantVersion()`, so the next campaign needs `--force` and
+must re-buy every trial. Phase 1 remains readable and stops being comparable.
+That trade was accepted when the leak was root-caused; the only thing that
+changed is that it is now paid.
+
+### The component-builder templates stopped prescribing code that cannot compile
+
+ADR 46 and D-30 recorded the same defect in two templates:
+`get-client-behavior-template` produced a `.client.js` importing
+`@kickstartds/core` without telling the agent to declare it, and
+`get-storybook-template` produced a stories file importing two files that only
+exist after a build. In both cases the agent followed the tool and got a compile
+error, and in the client-behaviour case its recovery was to move the behaviour
+into React — the one answer the task exists to rule out.
+
+The fix worth recording is not the added prerequisite sections. It is that
+writing them required counting first (lesson (ac)). Thirteen `.client.js` files
+in the design system; eleven use `extends Component`, two do not, so the
+standalone variant is not an invention but a documented existing shape. Eight
+interactive components wire client behaviour into React; six use a bare
+side-effect import and two use `useKsComponent` — and the template had been
+teaching the two as if they were the eight. A tool that encodes a design system
+is only as good as its census of that design system, and neither of those
+numbers was in the template's head before this pass.
+
+Lesson (ak): a harness that ships the answer measures availability, not
+capability — and the shipping is rarely deliberate, so the question to ask of
+every artefact that enters the sandbox is not "should the agent have this" but
+"can the agent reach this".
+
+## ADR 81 — a broken fingerprint is a window, and deferred fixes are its rent
+
+**Status:** accepted. **Decisions:** D-115, D-116.
+
+Two known defects had been sitting in the backlog for the same reason, and it
+was not that either was hard. Fixing either would move a fixture or an `EVAL.ts`
+digest, `guardVariantVersion()` would refuse the next run, and the next run
+would need `--force`. Each was worth less than a matrix.
+
+(That framing was slightly too dramatic, and D-117 corrects it: `--force` does
+not delete anything. It bypasses the guard and rewrites `.variant-version`. What
+it discards is the framework's _reuse_ of cached results, not the results
+themselves. The re-buy is real — the new campaign pays for every trial again —
+but the prior corpus survives on disk under its own timestamp.)
+
+ADR 80 broke the fingerprint anyway. `SETUP_VERSION`, `PROBE_SOURCE` and the
+component-builder build hash all moved, so the next campaign has to be bought
+with `--force` regardless. The moment that became true, the cost of these two
+changes went to zero, and leaving them in place stopped being thrift and started
+being an unforced error.
+
+**The decision recorded here is the batching policy, not the two fixes.**
+Fingerprint-invalidating changes should be queued, not applied when noticed, and
+then drained in full the first time something else invalidates the fingerprint
+for a reason that justifies the re-buy on its own. The alternative — apply each
+as it is found — pays the full re-buy price per fix. The failure mode of
+queueing is forgetting, which is why the queue lives in the checklist as open
+lines rather than in anyone's head, and why draining it is an explicit step
+before a campaign command is handed over.
+
+The two drained here differ in an instructive way.
+
+`812`'s check named "the variants remain visually distinguishable" read only
+`alert.scss`, so it silently also required the variants to live there rather
+than in `_alert-tokens.scss`. That is a **false negative**: correct work scored
+as wrong. It was found while writing the gold reference, which is exactly what
+gold references are for (lesson (ah) — a reference solution is code too), and it
+was recorded rather than fixed under the cost argument above.
+
+The React pins were the opposite: not wrong, just **stale**. All 20 fixtures
+were on React 18 while the workspace and the report host that renders every
+graded trial are on 19.2.1. Nothing failed. The fixture had simply drifted from
+the thing it is a model of, and a fixture that has drifted is measuring a
+codebase that does not exist.
+
+**Both required verification in a direction the change itself does not test.**
+Widening an assertion is the one edit whose failure mode is silent success, so
+`812` was checked twice on a real fixture: variants moved into the partial now
+pass, and variants deleted from both files still fail. Bumping types is the one
+edit that can break _shipped_ code the agent never touched, so all 20 fixtures
+were re-gated with their references applied — 20/20, 251 assertions. Neither
+verification would have been prompted by the change looking correct, and both
+are the whole reason to trust it.
+
+Lesson (al): the cost of a fix is not the fix, it is what the fix invalidates —
+so track fixes you are declining on price, and spend them the first time
+something else picks up the tab.
+
+## ADR 82 — the results path must name the model, because the code does not read it from there
+
+**Status:** accepted. **Decision:** D-117.
+
+An experiment's results directory is its `name` field, hardcoded in
+`experiments/*.ts`, and all four say `cc-<variant>-sonnet-high`. The model is
+not read from that name. It comes from `PRIMARY_MODEL` in `agent-eval.config.ts`,
+which is `process.env.EVAL_MODEL ?? "sonnet"`.
+
+The two agreed as long as only one model had ever run. The moment a second one
+does, `EVAL_MODEL=haiku pnpm run:capability` writes Haiku trials into
+`results/cc-both-sonnet-high/` under a fresh timestamp, and nothing anywhere
+objects. The variant is namespaced; the model is not. `.variant-version` records
+the MCP build and the arm, not the model, so the guard would not fire either.
+
+**The decision: a model gets its own experiment files.** Four new definitions
+named `cc-<variant>-haiku-high`, rather than an env override against the
+existing four. The env override stays what its comment already says it is — "for
+local one-off probes only, never for anything that writes a baseline".
+
+The damage this avoids is not a crash, which is why it is worth an ADR. It is
+that `collectRun()` aggregates a directory, the published report aggregates a
+directory, and the calibration candidate pool is built by walking directories.
+All three would have silently blended two models, and the only evidence of the
+mixture would have been the `model` field inside each individual `result.json` —
+a field nothing aggregates on. The cross-model comparison this campaign exists
+to produce would have been computed against a corpus that had already averaged
+the two things being compared.
+
+A welcome side effect: a new experiment name has no `.variant-version` marker,
+so `guardVariantVersion()` writes one and returns early. The Haiku campaign does
+not need `--force`, which — per D-117 — never deleted anything in the first
+place.
+
+Lesson (am): a directory name that encodes a variable the code does not read
+from it is a lie waiting for the second value — the moment a second model, arm
+or version exists, check whether the path distinguishes them or only claims to.
+
+## ADR 83 — a cache check with an opt-out is not a cache check
+
+**Context.** Grading a `812-restyle-with-tokens` pair raised a question about
+what the judge is shown. `judgedMaterial()` gates every file on the agent having
+authored it, so on a restyle the untouched component is correctly withheld — but
+`_alert-tokens.scss` was withheld too, and nothing had decided that. The partial
+is returned by `discoverGraded` as its own field, kept out of `styles` because
+the deterministic graders want them separate (ADR 63, D-115). `judgedMaterial`
+simply never read that field.
+
+The consequence was not cosmetic. In the trial that surfaced it the main
+stylesheet contained zero `--ks-*` references and the partial contained
+twenty-four. `token-reasoning` asks which semantic token was chosen; it was
+being handed the one file in the pair with no token choices in it.
+
+The tell was in the judge's own system prompt, which already said _"schemas,
+token partials and generated types routinely exist without appearing here"_ and
+instructed the model not to fault the author for a missing file. The gap had
+been noticed and absorbed as a prompt instruction rather than closed. An
+instruction not to notice an absence is a description of a defect.
+
+**Decision.** Emit the token partial alongside the stylesheet for every rubric
+that includes styles, and accept either file as satisfying a `requires:
+["styles"]` gate, since an agent may put everything in the partial.
+
+**Decision.** Treat a cache entry with no `promptHash` as stale.
+
+The second is the one worth recording. `promptHash` was added (D-101) to catch
+exactly this class of change: the criterion is byte-identical, the material is
+not, and the cached verdict answers a question that was never asked. It was
+optional for entries written before it existed, on the reasoning that _"the
+prompts they were formed from are known to match"_ — a claim that was true on
+the day it was written and that no mechanism kept true.
+
+180 of the 228 stored rubric results predate the field. So after changing what
+the judge sees, the dry run reported **zero calls to make**. The guard against
+serving verdicts formed from different material was itself serving verdicts
+formed from different material, and the only reason we found out is that
+somebody was reading the code by hand at the time.
+
+**Consequences.** 5 of 16 calibration labels are orphaned — labels are keyed on
+material, and 72 of 180 candidate items gained a section. That was the priced,
+expected cost of the first decision, and it is why it was taken at 16 labels
+rather than at 60.
+
+The second decision costs a full re-judge, estimated $15.87 against a historical
+actual near half of estimate. It is not optional: 3.7 measures whether the judge
+agrees with a human, and an agreement rate computed between a human who saw the
+token partial and a judge who did not is not a measurement of the rubric. It
+measures our own bookkeeping.
+
+Hand-grading can continue before that spend. Labels key on the corrected
+material and the loop is blind at decision time; only the post-verdict feedback
+line reads the stale cache, and feedback is not input.
+
+Lesson (an): a hash that is allowed to be absent is not a check, it is a check
+with an opt-out — and the entries that predate it are the ones most likely to
+have drifted. Grandfather clauses are written when the exception is empirically
+safe and they are read years later as though it still is.
+
+Lesson (ao): when a prompt tells the reader not to hold something against the
+author, ask why the thing is missing rather than how to word the apology.
+
+## ADR 84 — an authorship guard is owed to every reader of the material, not just the graders
+
+Three times we have found a check scoring work the agent did not do. ADR 41 gave
+`untouched()` for files that came back byte-identical. ADR 54 and ADR 61 gave
+`readShipped()` so a grader could separate what was handed over from what was
+written. D-100 caught `api-design` judging a fixture-authored schema on all
+thirty-six trials that had one.
+
+Each fix landed on a grader. None landed on the two readers who see the most and
+are least equipped to compensate: the judge model, and the human calibrating it.
+
+`judgedMaterial` hands over whole files. On an edit task most of what it shows is
+ours. The result was two hand-labels failing `860-restraint` for hand-written
+prop types that the fixture ships and whose brief — "keep the change to what the
+audit actually reported" — forbids touching. Regenerating them would have
+tripped the restraint assertions. The label punished the agent for compliance,
+and the judge, which passed the trial, was right.
+
+We had reached for the prompt first. The SYSTEM text said "Never fault the author
+for the absence of a file", which is correct for a withheld file and wrong for
+content sitting in a file the reader can see: component tokens declared in the
+main stylesheet prove they are not in the partial, and no invisible file is
+needed to know it. That paragraph is now two — absence stays forgiven,
+misplacement is judged. But the prompt was the smaller half. Wording cannot tell
+a reader which lines were authored; only the material can.
+
+**Decision.** Any file with a fixture baseline is labelled `MODIFIED FIXTURE` and
+followed by the region between the common prefix and the common suffix. The full
+file stays, because `design-intent` needs whole-file context; what is added is
+the boundary between given and written. The hunk finder is not a real diff — a
+scattered edit collapses into one span covering everything between the first and
+last change — which over-reports and degrades to today's behaviour in the worst
+case. Diff tasks here are small edits by construction.
+
+The same guard is now in `bem-nesting`: only selectors the author added are
+counted, because two of our own gold references are flat edits of flat fixtures.
+
+**Consequences.** Re-keying orphaned 10 of 32 labels, all on diff tasks, and the
+reported agreement rose to 80/83/83%. That number is not evidence. The
+disagreements lived on diff tasks, so dropping diff-task labels dropped the
+disagreements, and the verdicts it was measured against predate the prompt
+change. The re-judge (~$3) has to run before any of it means anything, and 3.7
+should be re-argued from the result rather than from the rebound.
+
+Lesson (as): a disagreement list is a bug report on the measuring apparatus
+before it is a fact about the thing measured, and the bug may be in the human
+half. Read the reasons, not the rate.
+
+Lesson (au): when a reader is shown a whole file on an edit task they will grade
+the parts they were handed. An authorship guard is owed to every consumer of the
+material — the regex, the model, and the person.
+
+Lesson (av): a rebound that arrives with the fix is usually the sample moving,
+not the system improving. Check what left the denominator before believing it.
+
+## ADR 85 — one rater is an instrument without an error bar
+
+**Context.** 3.7 requires ≥80% agreement between the judge and a human, and the
+judge is worth 15% of the composite score once 3.8 lands. All hand-grading so
+far comes from one person, because `candidates()` builds its questions by
+walking `results/` — 113 MB, gitignored, prunable, and resident on exactly one
+machine. Grading required that directory, a pnpm install and a terminal.
+
+**Problem.** The threshold cannot be read. A judge at 67% on `token-reasoning`
+is either wrong or disagreeing with one reviewer's idiosyncrasy, and nothing in
+the number distinguishes them. Iterating rubric wording against a single
+grader's labels optimises the judge towards that person — which is a real
+achievement and not the one claimed, because the rubrics are supposed to encode
+the design system.
+
+Human/human agreement is the missing bound. Two qualified people on the same
+material establish what the rubric can achieve at all: at 95% between them a
+judge at 67% has a defect worth reading line by line; at 70% between them an 80%
+target is unreachable and the rubric is asking about something the design system
+has not actually decided.
+
+**Decision.** Separate the questions from the results and serve them.
+
+A calibration question is three strings — material, criterion, and (since ADR 84
+and D-123) the brief. `calibration/bundle.json` carries all 153 of them in
+0.8 MB, committed, derived by `pnpm calibration:export` on the machine that has
+the campaign. `/calibrate` serves that bundle from the existing results host,
+behind the existing JWT gate, in the existing Kamal deployment, and reads
+nothing from `results/`.
+
+Labels become one file per rater, unioned on read. A single map cannot take two
+writers without a git conflict on every line, and the whole point is two
+writers. `readLabels()` pools by modal verdict — the rule already used for the
+judge's repeated answers on identical material — and `raterAgreement()` reports
+the ceiling pairwise, never against the pool, because comparing each rater to a
+majority they are part of counts them against themselves.
+
+**Consequences.** Rater identity is now load-bearing and is never inferred: it
+is the JWT subject where the gate is up, and an explicit prompt where it is not.
+Two people sharing a name would report as agreement, which is worse than no
+data. Names reach the filesystem, so they are allow-listed rather than escaped.
+
+The judge's verdict stays out of the bundle. It would be one more field and it
+is right there in the cache, but a verdict shown before labelling is an anchor,
+and the instrument depends on independence.
+
+The container's disk is not a backup. Labels are written to a volume and have to
+come home to the repository — per-rater download link, or `docker cp` — which is
+a manual step and will be forgotten at least once.
+
+What this does not fix: the CLI still needs the results tree. It could read the
+bundle too, and probably should, but the constraint that mattered was that
+grading required a checkout at all.
+
+Lesson (ay): a measurement taken with one instrument has no error bar. Before
+tuning against an agreement rate, establish what two graders score against each
+other — until then the rate is a number, not evidence.
+
+Lesson (az): portability is usually one dependency, not a rewrite. Everything
+about hand-grading already travelled except that the questions were computed
+from a gitignored directory; 0.8 MB of derived JSON removed the constraint that
+had held the project at a single rater since 3.6 began.
+
+**Amended, same day — coverage before agreement.** This ADR conflated two
+things the multi-rater store gives you: _attribution_ (per-rater files, so two
+people writing at once do not fight over one JSON map) and _inter-rater
+agreement_ (deliberate overlap, so the ceiling is computable). Only the first is
+needed now. With 130 pairs unanswered, spending a second grader's sitting on a
+pair that already has a verdict buys a statistic instead of coverage.
+
+So the hosted queue skips anything **any** rater has answered — which is the
+rule `bin/calibrate.ts` always applied, so the terminal and the browser stopped
+disagreeing about what "remaining" means. It also stopped re-asking the 23
+pairs already answered in the legacy `labels.json`, which the host had never
+read. A fresh grader now starts at 130 rather than 153.
+
+Nothing about this is hard to undo, which is what makes the deferral safe rather
+than merely convenient. Labels are permanent and keyed by material hash, so an
+overlap campaign later serves keys that are already answered — one inverted
+filter — and every label collected in the meantime still counts toward it.
+`raterAgreement()` stays in place and reports the moment overlap exists;
+duplicate verdicts arriving from a race are stored rather than rejected, so the
+first few arrive for free.
+
+What is knowingly given up until then: human/judge agreement is a pooled number
+across whoever graded, and it inherits whatever spread exists between those
+people. It is a usable signal for 3.7 and not yet a calibrated one. Lesson (ay)
+is not retracted — it is deferred, and the deferral should be stated whenever
+that number is quoted.
+
+## ADR 86 — the pick list is scoped to the rubric, and the first 23 labels are retired
+
+**Context.** The grader suspected they had been rating things not relevant to
+the question being asked. Auditing all 23 addressable labels against the
+criterion each was filed under: `code-idiom` 6/6 of its written reasons on
+topic, `token-reasoning` 3/3, `design-intent` **0/7**. Every design-intent
+reason is a code-idiom observation — file naming, generated prop types,
+`classnames`, `deepMergeDefaults`, React state instead of the client bundle.
+
+**Decision.** Retire the label set and scope the diagnosis list per rubric.
+
+The retirement is not about the labels being wrong. `design-intent`'s 80%
+agreement is the rate at which two graders answering _different questions_
+happened to land on the same verdict, which is not a weak reading of that rubric
+— it is not a reading of it at all. Keeping the subset that audits clean was
+rejected: selecting labels by whether they look defensible is selection on the
+quantity being measured, and biases the retained rate upward. Retired rather
+than deleted, because `calibration/` is untracked and the file is the evidence
+the audit is computed from.
+
+**Why the tool is the defendant.** Two properties of the UI made this the
+expected outcome rather than a lapse. The pick list was rubric-blind — 13
+diagnoses spanning three rubrics offered for every question, including ones
+unanswerable from the material shown, since `token-reasoning` is given only a
+stylesheet and a token list and was still offered `wrong-filename`. And the
+criterion was stated once at the top of a page whose material runs to hundreds
+of lines, so the verdict was given with the question off screen. `design-intent`
+and `code-idiom` show nearly the same material — the brief is the only
+difference — so nothing but the criterion distinguishes them, and the criterion
+was not in view.
+
+The loop closes: the pick list was transcribed from the notes (ADR 84), so
+off-rubric notes became options and options made off-rubric notes fluent. The
+prior decision explicitly defended the unscoped list because "the notes do not
+respect the rubric boundary". That observation was correct; the inference from
+it was backwards.
+
+**Consequences.** `Reason` carries `rubrics: string[]`; `reasonsFor(rubric)`
+scopes the CLI, the web UI and `resolveReasons()`, whose numbering is now
+per-rubric — safe because the number is positional and only the label is ever
+stored. The panel repeats the rubric label as a sticky line above the diagnoses,
+at the point the verdict is given rather than at the top of the scroll.
+
+The tagging exposes that `design-intent` has exactly one applicable entry,
+because no design-intent observation has ever been written. That is left visible
+rather than filled in: entries are transcribed from notes, and inventing them
+from the rubric is the failure ADR 84's rule exists to prevent. The panel says
+so and points at the note field.
+
+`api-design`'s two entries are tagged but never shown — the rubric is ungated
+and its `requires: ["schema"]` is unmet across the suite, which is why
+`callback-props` could only ever have been picked under a rubric that was not
+asking about the API. That single sighting is now legible as a symptom rather
+than a data point.
+
+Cost: 153 pairs to grade instead of 130, and 3.7 restarts from zero. Against
+that, the alternative was gating the judge's 15% weight on a rubric whose
+calibration measured a different rubric.
+
+Lesson (bb): an agreement rate between two graders answering different questions
+is not a weak measurement, it is not a measurement. Audit what the humans wrote
+against what they were asked before trusting the rate it produced.
+
+Lesson (bc): a pick list transcribed from notes reproduces whatever bias
+produced the notes and then reinforces it. Offering an answer is a hint about
+the question, so vocabulary shown to a grader is part of the instrument.
+
+**Amended, same day — the other exhibit.**
+
+Asked on what basis the judge answered a `code-idiom` pair, since the page shows
+no brief. The brief is correctly withheld — that rubric does not grant it. What
+the trace turned up instead is that the judge had more than the material.
+
+`cachedContext()` is a second block, separate from the prompt because it is
+identical across every trial and therefore cacheable: the reference components,
+and for `token-reasoning` the 1457 semantic token names. No calibration code
+path ever called it. `candidates()` builds an item from `judgedMaterial()`
+alone, so the judge compared the candidate against `ButtonComponent` and
+`BreadcrumbComponent` while the human compared it against nothing — reading a
+criterion that says those components _are_ the definition of the standard being
+applied. D-123 found the brief half of this asymmetry and stopped there; this is
+the larger half, and it affects two of the three calibrated rubrics.
+
+The decision is the same one D-123 made, extended: the bundle carries
+`context` per rubric, the page renders it collapsed beneath the material, and
+the CLI prints the corpus. Shown, never keyed — `material` still decides
+`labelKey`, so no label is invalidated. Withheld where the judge does not have
+it either, because handing a human _more_ than the judge breaks the comparison
+just as thoroughly in the other direction.
+
+This is probably not independent of the contamination above. A reader told to
+compare against an exhibit that is not on the page does not abstain; they
+compare against the conventions they already hold — and the conventions this
+reader holds are the design system's own, which is precisely what the retired
+design-intent notes are made of.
+
+Lesson (bd): a cache is an optimisation to the caller and a hiding place to
+everyone else. Material split out to make a prompt cheaper is still material,
+and the split is invisible from the place where someone asks what the judge saw.
+
+## ADR 87 — the client file reaches the judge, and the corpus gets one to compare against
+
+**Context.** Found while calibrating: on `832-client-behaviour` the judge never
+sees any client behaviour. The task's whole subject is the convention —
+"implement interactive behaviour the way this design system does" — and every
+trial in the sonnet campaign wrote a `js/Disclosure.client.js`. Verified on
+`cc-both-sonnet-high/832/run-1`: `discoverGraded()` finds the file,
+`judgedMaterial()` assembles component, styles, token partial, schema, and
+never pushes it. All three calibrated rubrics were scoring markup and a
+stylesheet. The verdicts read exactly like that — `design-intent` 0.85/0.85/0.90
+and `code-idiom` 0.85/0.90/0.90, with not one reason string mentioning the
+client file.
+
+Half of this was deliberate and half was not, and the deliberate half is why it
+survived. The system prompt tells the judge that "behaviour implemented with
+React state shows it is not in the client bundle", which is a genuine inference
+from the component alone and does real work — ADR 86's audit found that exact
+observation in the retired `design-intent` notes. But it is one-sided. It
+catches the wrong answer and cannot see the right one. An agent that put the
+behaviour where it belongs had the entire artefact withheld, so whether it
+extends the `Component`/`define` base, keeps `aria-expanded` in sync, or removes
+its listeners reached nothing. Scores still moved, which is why nothing looked
+broken; they moved only on failure.
+
+`code-idiom` had it worse than that. Its premise is that the references define
+what idiomatic means here, and `parts()` listed four files, none of them client
+— and neither exemplar has one anyway, `button` and `breadcrumb` both being
+static. On the one task in the suite about the client-behaviour convention, both
+sides of the comparison were empty.
+
+**Decision.** `include.client` on the rubric, set on `design-intent` and
+`code-idiom`; `judgedMaterial()` pushes every discovered client file through the
+same `authored()` gate as everything else. And `gallery` joins the exemplars,
+with `${Pascal}.client.js` added to `parts()`.
+
+Both, not either. Showing the candidate's client file to a rubric that asks
+"does this read like the rest of the codebase" while the references still
+contain no client code moves the blind spot rather than closing it.
+
+`gallery` rather than the other well-formed candidate: `section`'s client
+directory holds `spotlight.client.js`, and `spotlight` is an eval target. The
+existing guard catches a slug collision between an exemplar and a target — it
+does not catch our own answer arriving inside somebody else's exemplar, which is
+the same "did you reproduce our answer" failure the guard exists to prevent,
+one directory deeper.
+
+`token-reasoning` does not get it. Client behaviour carries no token choices, and
+that rubric is the only one currently discriminating; there is no reason to
+disturb its cache.
+
+The authorship gate does the right thing on restraint tasks for free. `860` ships
+a working `Tag.client.js` and asks for it to be left alone; `authored()` drops
+untouched files, so the correct answer still shows the judge nothing — verified.
+
+**Cost.** The corpus is in the shared cached context, so this invalidates
+`design-intent` and `code-idiom` on every trial, not just `832`: `judge --all`
+reports 120 outstanding calls against 60 already answered, at $3.81. That
+asymmetry is itself the confirmation — the 60 survivors are `token-reasoning`,
+the one rubric that takes no exemplars.
+
+**Amended (D-130): the corpus asks for roles, not filenames.** Adding `gallery`
+surfaced the same bug one level down. `parts()` listed a single spelling per
+file, and `breadcrumb`'s token partial is `breadcrumb-tokens.scss` where the
+list asked for `_breadcrumb-tokens.scss` — both spellings exist in the design
+system, neither is wrong, and `existsSync().filter()` had been dropping it since
+the module was written. The corpus was showing three of that component's four
+files, and the missing one carries the token layering the comparative rubrics
+exist to compare against.
+
+Entries are now lists of accepted spellings for one role, first match wins. A
+role may be absent — `button` has no client behaviour, and that is information —
+but it can no longer be missed for being spelled the other legal way. The
+distinction matters because the two cases are indistinguishable in the output:
+a filter that finds nothing reports nothing either way.
+
+Lesson (bh): an inference that lets a judge reach the right verdict without the
+evidence is not a substitute for the evidence, and it hides the gap better than
+missing material would. `judgedMaterial()` has now dropped a file that
+`discover()` had already found three times — D-115, D-119, and this — because
+discovery returning a field and the judge being shown it are different facts,
+and only one of them is visible in the output.
+
+Lesson (bi): a lookup by exact filename is a silent filter wearing a helpful
+face. The corpus assembler and the grader discovery layer were written a month
+apart and only one of them learned this; `discover()` has matched client
+behaviour by pattern, and token partials by two spellings, since the beginning.
+
+## ADR 88 — a reset that archives, scoped to the caller
+
+**Context.** Labels written through `/calibrate` live in a Docker volume
+mounted over `calibration/labels/`, which is what makes them survive a deploy —
+the image's copy is shadowed at runtime precisely so that re-exporting the
+bundle cannot destroy somebody's afternoon. The cost of that guarantee is that
+there was no way to undo a sitting without `ssh` and `rm`, and the graders this
+app exists for are the ones who do not have a shell on the host.
+
+**Decision.** `POST /calibrate/api/reset`, with three properties that are not
+negotiable independently of each other.
+
+_Archive, never delete._ Retired labels move to `calibration/labels/retired/`,
+on the same volume, leaving with the same `labels:pull`. Hand-grading is the
+most expensive data in the project per byte and the only data here that cannot
+be regenerated at any price — the results tree can be re-run for money, a
+rater's afternoon cannot. The subdirectory is safe inside `LABEL_DIR` because
+both readers of it, `answered()` in the server and `readRaters()` in
+`lib/judge`, list one level and keep only names ending `.json`. A retired file
+left as a sibling would still be pooled and would go on answering the queue,
+which is the one thing a reset is for.
+
+_The caller's file only._ Same scope as writing. The queue is shared, so a
+global reset would resurrect everybody's work on one person's decision, and
+nothing about being able to grade implies being able to discard someone else's
+grading.
+
+_A typed confirmation._ The site runs open whenever `MCP_JWT_SECRET` is unset,
+and `scope: "all"` is otherwise one stray POST away from an empty file. The
+name is checked server-side rather than in the page, so the rule lives where it
+is enforced.
+
+`scope` distinguishes `"orphans"` — labels with no matching pair in the current
+bundle, the residue of material changing underneath them — from `"all"`. Only
+`"all"` is wired to the UI. Orphans are already inert (`agreement()` reaches
+labels through candidates, so an unmatched label is unreachable rather than
+miscounted) and since D-131 they are not miscounted on screen either, so
+clearing them is tidying rather than repair and did not need a button.
+
+**Rejected: `prompt()`.** It was the first implementation and it is three lines
+shorter. It is also absent in embedded contexts — VS Code's browser throws
+`prompt() is not supported` outright — and a confirmation step that silently
+throws where it is not implemented is the wrong failure mode for the one
+control on the page that destroys work. A `<dialog method="dialog">` also
+buys something `prompt()` cannot: Enter submits the _first_ button, which is
+Cancel, and Escape closes with no value, so both reflexes a grader has built up
+over an hour of single-key verdicts resolve to "no".
+
+**Consequence.** The page's global shortcut handler had to learn about the
+modal. It already ignored keystrokes aimed at an input, which covers someone
+typing their name — but not someone who clicked the dialog's own background
+first, and at that point `p` would have passed the item sitting behind it. It
+now returns early while the dialog is open, returning rather than preventing so
+that Escape still reaches the dialog.
+
+Lesson (bk): the guard on a destructive control is not only the confirmation in
+front of it. Everything the page was already listening for is still listening
+while that confirmation is on screen.
+
+## ADR 89 — labels store reason ids, and the sentences live in a dictionary
+
+**Context.** The pick list of recurring diagnoses was transcribed from what a
+grader kept typing, and a label stored the chosen sentences verbatim, joined
+with commas. That made rewording an entry destructive in a way that was easy to
+miss: the copy already in a note went stale, the tally that decides which
+entries earn their place stopped counting it, and the entry then read as unused
+next time anyone looked. `reasons.ts` said so out loud — "editing an existing
+label is not free, though adding is" — and concluded the nine originals were
+frozen "for that reason and not because they could not be phrased better".
+
+That is a store dictating vocabulary. A list built by transcribing speech is a
+list that will be rephrased, repeatedly, as the thing it names gets understood
+better; freezing the first draft is exactly backwards.
+
+**Decision.** A label stores `reasons: ["schema-types"]`. The sentences live in
+`calibration/reasons.json` and are resolved on the way out, through `describe()`
+and `describeLabel()`. `id` becomes the only part written to disk and the only
+part that must never change; `label` becomes free to edit forever.
+
+`note` keeps its meaning and narrows to it: free text is now only the residue
+the pick list had no entry for, which is precisely the evidence new entries are
+transcribed from. Splitting the two also makes the tally mechanical rather than
+a grep.
+
+**JSON in `calibration/`, not an array in `lib/`.** Three reasons, in order of
+weight. A label is unreadable without the dictionary, so the two want to travel
+together — into git, into a `labels:pull`, into the same directory. The
+deployed image copies `calibration/` and does not copy `lib/`, so the hosted
+grader can read the file directly instead of the copy that used to be frozen
+into `bundle.json`: rewording is now an edit and a deploy, where it used to
+require regenerating a megabyte of material on the one machine that still holds
+`results/`. And a dictionary is data; the only thing the TypeScript around it
+was contributing was the doctrine in its comments, which stays in `reasons.ts`
+where it belongs.
+
+Two `rubrics` tags that read as hedges were moved into that header rather than
+lost to a format without comments: `react-behaviour` is deliberately tagged to
+both `design-intent` and `code-idiom`, and `tokens-inline` deliberately only to
+`code-idiom`.
+
+**Consequence — the write path validates.** An unrecognised id is no longer a
+typo inside a sentence, it is a label that will resolve to nothing, so the
+server filters submitted ids against the dictionary _and_ against the rubric's
+slice of it before storing. The rubric scope was previously enforced only when
+rendering the list, which left it as a UI convention rather than a property of
+the store.
+
+Reading tolerates both shapes: `reasons` is optional, and a label carrying only
+prose still renders. `bin/migrate-labels.ts` converts by exact match on the
+`", "` join — labels contain no comma by rule, so a segment either is an entry
+verbatim or it is free text, and anything unmatched is kept rather than guessed
+at. It skips already-migrated labels and is worth re-running after a
+`labels:pull`, since a deployment that has not caught up still writes prose.
+
+**The volume is not migrated in place, and gets no push.** The hosted grader
+reads only keys out of label files, so prose there costs nothing; and `merge()`
+overwrites only on a strictly newer `labelledAt`, which migrating does not
+touch, so a later pull cannot undo the conversion. That leaves converting the
+volume with no benefit and one real cost — the pull script's premise is that
+authority runs one way, "pull, inspect, commit", and a writer pointed back at
+the volume would make a thing explicitly described as "not a backup" into the
+place two processes race to own.
+
+**Verified.** Dictionary served from disk (13 entries) rather than the bundle;
+a submission mixing a valid id, an id belonging to another rubric, a
+non-existent id and a number stored exactly the valid one; the eight existing
+labels migrated to six recovered ids plus their residue, with the all-prose
+design-intent label correctly recovering nothing. Rewording `react-behaviour`
+on disk changed both the list the running server offered and the sentence
+`describeLabel` produced for a label stored under the old wording — with no
+re-export and no change to any label file.
+
+Lesson (bm): a store that makes a name expensive to change will freeze the
+first draft of that name, and the frozen draft will then be mistaken for a
+considered one. Store the identifier; look up the prose.
+
+## ADR 90 — design-intent stops being shown the stylesheet
+
+**Context.** `design-intent` and `code-idiom` were shown almost the same
+material — design-intent's `include` was code-idiom's plus the brief — and asked
+questions phrased almost the same way. Two sittings of hand-grading had already
+produced the symptom: every fail reason typed under design-intent was
+code-idiom vocabulary, including one that was on screen as a checkbox and got
+typed out longhand anyway.
+
+The judge run settled it. Across 60 trials the two rubrics agreed 47 times, and
+all 13 disagreements ran the same direction — design-intent passing where
+code-idiom failed. Not one trial had design-intent fail alone. Its failures are
+a strict subset of code-idiom's, which is not a second measurement; it is a
+coarser copy of the first, bought at the same price per call.
+
+That the overlap showed up as _material_ rather than as wording matters. Two
+rubrics can be given genuinely different criteria and still collapse into one
+answer, because a model shown a stylesheet will grade the stylesheet whatever it
+was asked, and "class-name scoping and stylesheet organisation" is the sentence
+code-idiom already owns.
+
+**Decision.** Withhold the stylesheet from `design-intent`: `include` becomes
+`{ prompt, client, exemplars }`. The criterion is rewritten to match, because
+the alternative is the failure mode `requires` exists to prevent — a rubric
+asked about material it cannot see does not abstain, it fills the gap (D-102).
+It now names the shapes it wants judged (markup structure, what was made
+configurable, how variants and states are expressed, whether this is the right
+kind of component), says outright that the stylesheet is withheld on purpose,
+and gives the test that separates the two rubrics in one line: _if your
+objection disappears once every identifier is renamed, it is not an objection
+this rubric wants._
+
+`client` stays. Where behaviour lives is a question about shape rather than
+naming, and withholding it is one-sided in exactly the way D-129 describes: it
+proves the wrong answer and cannot see the right one.
+
+**Consequence — the calibration set shrank, informatively.** Items are keyed by
+material hash and deduplicated, so design-intent fell from 51 pairs to 39.
+Twelve trials that were distinguishable only by their stylesheets are now the
+same question asked once. That is 12 fewer hand-gradings, and it is also the
+finding restated as arithmetic: a quarter of what this rubric was being asked
+about was the file it should not have been holding.
+
+One graded label was orphaned by the re-key — the design-intent fail whose note
+was entirely free text, which is to say the one whose diagnosis was entirely
+code-idiom. It is left in place rather than retired: it is unreachable by
+`agreement()`, and it is the clearest surviving evidence of the problem this
+ADR is about.
+
+**Cost.** Sixty cached design-intent verdicts are invalidated, by both the
+criterion hash and the prompt hash. Nothing else moves — the other three rubrics
+keep their caches, and no agent re-run is implied, because grading is host-side
+and retroactive (ADR Decision 17).
+
+Lesson (bn): when two measurements agree more than they should, look at what
+each one is shown before looking at what each one is asked. Wording is what you
+control; material is what actually arrives.
+
+**Outcome, after re-judging.** The narrowing changed the rubric's _reasoning_
+and not its _verdicts_. Design-intent now writes shape prose — composition of
+smaller components, variant as a closed enum, behaviour in a separate client
+file — where code-idiom writes convention prose: the wrong class prefix, a
+missing token partial, props declared inline instead of imported from generated
+types. Two rubrics that were producing the same sentences are now producing
+different ones, which is what the change was for.
+
+The verdicts did not separate. Over the 48 trials where both rubrics are still
+askable, they agree 37 times and disagree 11, and every disagreement is still
+design-intent passing where code-idiom fails. Zero trials have design-intent
+failing alone. The most likely reading is no longer that the rubric is a copy —
+its stated grounds are visibly its own — but that on this corpus nothing is
+shape-broken without also being idiom-broken. Sonnet gets the shape right and
+the conventions wrong, so the coarser question never fires first.
+
+That still leaves it double-counting inside the composite, which is what
+`calibrated` exists to stop.
+
+**A consequence worth naming: design-intent is now unaskable on twelve trials.**
+On `812-restyle-with-tokens` the agent authors only a stylesheet — the component
+and schema are unmodified fixtures, so `authored()` drops them — and with
+`styles` withheld there is nothing left, `judgedMaterial()` returns null, and
+the rubric is skipped. That is the right answer for the wrong reason: a restyle
+contains no shape work, so silence is honest, and it matches the doctrine
+`requires` already encodes for `api-design` (D-100). But it is emergent rather
+than declared. It holds because this task's file set happens to come out empty,
+not because anything says design-intent needs authored component source.
+
+The stranded verdicts those twelve trials still carry are harmless in the
+codebase and were not harmless in analysis. `lib/graders/judge.ts` filters
+`cache.results` through `buildPrompt` before scoring, and `calibration.ts`
+builds its candidates from `judgedMaterial`, so both already ignore an answer to
+a question no longer being asked. A cross-tab read straight out of `judge.json`
+does not, and counted twelve pre-narrowing verdicts as though they were new
+ones.
+
+Lesson (bo): a cache keyed by rubric is a superset of what is currently being
+asked, and stays a superset silently. Every consumer in this codebase filters it
+back down to what is askable; the one that forgot was an ad-hoc script, which is
+exactly where that filter is easiest to leave out and hardest to notice missing.
+
+**Amended.** The paragraph above reads the missing separation as a fault. Set
+the two rubrics' prose side by side and it reads as nesting instead:
+design-intent's failures are `useState` where a client bundle belongs, raw SVG
+where `<Icon>` belongs, no Context/Provider seam, no `forwardRef`, an
+`aria-expanded` that never updates; code-idiom's solo failures are a client file
+in `js/`, a `ksd-` prefix, a missing token partial, `:root` instead of component
+scoping, a hand-rolled `cx`. Both are conventions — there is no category here
+that is "not idiom", which is why that search kept coming up empty. What
+separates them is repair cost: the second list is fixed by moving a file or a
+find-and-replace and the first is not. Read that way the pair is a ladder — fine,
+needs editing, needs rewriting — and an empty `fail/pass` cell is the reading's
+prediction rather than its refutation. One trial with design-intent failing
+alone would refute it; Haiku is the test. The recommendation to set
+`calibrated: false` is withdrawn until then.
+
+Lesson (bp): two measurements that will not separate by subject may be separated
+by consequence. Asking what a thing is about is not the only way to tell two
+questions apart — asking what it costs to be wrong about it can work where
+topic cannot, and here it is also the question the reader actually has.
+
+**Amended again (D-137): the prediction is checked, and the vocabulary follows
+it.** The reading above is post-hoc, and post-hoc readings survive by not being
+looked at. `NESTED` in `rubrics.ts` names the pair, `checkNesting()` compares
+cached verdicts on trials where **both** rubrics are askable, and `pnpm judge`
+prints the outcome on every run including dry ones. A `design-intent: fail` with
+`code-idiom: pass` prints the offending addresses and exits non-zero. It is a
+claim now rather than an observation, and Haiku is still the test.
+
+Two consequences fall out of it. `design-intent` declares `requires:
+["component"]`, so the twelve `812-restyle-with-tokens` trials are out of scope
+because the rubric says so rather than because one task's file set happened to
+leave the material empty — free, since `buildPrompt` already returned `null`
+there. And no diagnosis in `reasons.json` may be tagged both `design-intent` and
+`code-idiom`: if the two are one axis, an entry sits at one end or the other.
+`react-behaviour` moves to design-intent alone. Dual tags across _other_ pairs
+stay, because those are genuinely different axes.
+
+Lesson (bq): an invariant nobody has written a check for is a description of the
+data you happened to look at. Encoding it costs a function and converts a story
+into something that can be wrong.
+
+**Amended once more (D-138): the criteria now say it, so the check no longer
+tests it.** Both criteria were rewritten around repair cost — design-intent's
+renaming test widened into the cost itself, code-idiom given the upper bound it
+never had and stripped of "how props are threaded", a phrase that had it asking
+about shape in direct contradiction of the other rubric. 108 calls, $3.40.
+
+The consequence is worth stating plainly rather than leaving for someone to
+notice. `checkNesting` was written to test whether the ladder is real. Once
+code-idiom is told to ignore anything requiring a rewrite, an inversion is
+near-impossible by construction, and the check becomes a test of whether the
+rubrics obey their scoping. That is worth monitoring and is a different claim.
+The evidence for the ladder is frozen at the pre-rewrite run — 48 comparable
+trials, no inversion, under criteria that never mentioned cost — archived at
+`results/judge-pre-d138.tar.gz`. It does not get stronger from here, and the
+check should not be quoted as though it does.
+
+Lesson (br): fixing an instrument invalidates the experiment that showed it was
+broken. Write down what the old instrument measured before replacing it.
+
+**Superseded (D-139): the ladder is refuted.** The paragraph above predicts the
+check has become tautological. It fired on the first run anyway, once, and
+cleanly: `cc-both/840-reuse-over-native/run-1`, failed by design-intent for
+instantiating client behaviour in a `useEffect` instead of `define()` — "would
+require rewriting the behaviour integration approach" — and passed by code-idiom
+on naming, prefix, token partial, Context, `forwardRef` and stylesheet
+organisation, with the one placement deviation explicitly excused as "a
+reasonable organisational choice rather than a dialect violation". Conventionally
+flawless, structurally foreign.
+
+The subset relation was an artefact of the contamination it was inferred from.
+Old code-idiom judged "how props are threaded" and cited Context/Provider in 4 of
+its 11 solo failures; it was partly grading shape, so it failed wherever
+design-intent failed. Confining each rubric to its own repair-cost band separated
+them on the first run — which is the two independent measurements D-134 set out
+to get.
+
+The invariant is retired, not defended. `NESTED` → `PAIRED`, `checkNesting` →
+`checkDivergence`, and the CLI reports the count and addresses instead of exiting
+non-zero. "Competent but foreign" — clears every mechanical convention check,
+still built wrong — is the case deterministic graders cannot reach and the reason
+the judge exists, so it is worth printing for its own sake rather than as an
+alarm. Currently 1 of 48.
+
+Lesson (bs): a measurement that agrees with another may be agreeing about
+something it was not supposed to be looking at. Separation is evidence of
+independence only once both instruments have been confined to their own
+question.

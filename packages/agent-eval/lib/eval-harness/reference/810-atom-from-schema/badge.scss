@@ -1,0 +1,48 @@
+@use "badge-tokens.scss";
+
+.dsa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dsa-badge--gap);
+  padding: var(--dsa-badge--padding);
+  border-radius: var(--dsa-badge--border-radius);
+  font: var(--dsa-badge--font);
+  background-color: var(--dsa-badge--background);
+  color: var(--dsa-badge--color);
+
+  &--small {
+    padding: var(--dsa-badge--padding-small);
+    font: var(--dsa-badge--font-small);
+  }
+
+  &--informative {
+    --dsa-badge--background: var(--ks-background-color-informative);
+    --dsa-badge--color: var(--ks-text-color-informative);
+  }
+
+  &--positive {
+    --dsa-badge--background: var(--ks-background-color-positive);
+    --dsa-badge--color: var(--ks-text-color-positive);
+  }
+
+  &--notice {
+    --dsa-badge--background: var(--ks-background-color-notice);
+    --dsa-badge--color: var(--ks-text-color-notice);
+  }
+
+  &--negative {
+    --dsa-badge--background: var(--ks-background-color-negative);
+    --dsa-badge--color: var(--ks-text-color-negative);
+  }
+
+  &__dismiss {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+}

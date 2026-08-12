@@ -21,9 +21,10 @@
 import { createSandbox, type Sandbox } from "@vercel/agent-eval";
 
 import { setupVariant } from "../lib/experiment";
+import { stopHostServers } from "../lib/mcp/serve";
 import {
+  MCP_RUNTIME_DIR_NAME,
   MCP_UPLOAD_DIR,
-  mcpRuntimeDir,
   stageVariant,
   type VariantKey,
 } from "../lib/mcp/variants";
@@ -67,34 +68,36 @@ console.log(`\nSetup check — variant "${variant}", no agent, no spend.\n`);
 const packages = stageVariant(variant);
 const servers = packages.filter((pkg) => pkg.entry);
 console.log(
-  `Staged ${packages.length} package(s), ${servers.length} server(s): ` +
-    `${servers.map((s) => s.key).join(", ") || "none"}\n`,
+  `Hashed ${packages.length} package(s), ${servers.length} server(s): ` +
+    `${servers.map((s) => s.key).join(", ") || "none"}\n` +
+    `Nothing is uploaded — servers run on the host over HTTP (ADR 55).\n`,
 );
 
 const sandbox = await createSandbox({ backend: "docker", runtime: "node24" });
 
 try {
   const workingDir = sandbox.getWorkingDirectory();
-  const runtimeDir = mcpRuntimeDir(workingDir);
 
-  // The real thing. A dead server, a failed install, or a workspace we cannot
-  // move out of throws here — which is the entire point.
+  // The real thing. A server that will not start on the host, or that the
+  // container cannot reach across the bridge, throws here — which is the
+  // entire point.
   await setupVariant(sandbox, packages);
-  console.log("setup() completed — every staged server answered tools/list.\n");
+  console.log("setup() completed — every server answered tools/list.\n");
 
   assert(
     !(await exists(sandbox, `${workingDir}/${MCP_UPLOAD_DIR}`)),
-    "the upload directory is gone from the workspace",
+    "no server tree in the workspace",
     "the agent can list it, read dist/tools.js, and call the handlers directly",
+  );
+  assert(
+    !(await exists(sandbox, `/tmp/${MCP_RUNTIME_DIR_NAME}`)),
+    "no server tree beside the workspace either",
+    "this is the path `812` lost two arms to (ADR 55)",
   );
 
   if (servers.length > 0) {
     assert(
-      await exists(sandbox, runtimeDir),
-      `servers live outside the workspace (${runtimeDir})`,
-    );
-    assert(
-      !(await exists(sandbox, `${runtimeDir}/probe.mjs`)),
+      !(await exists(sandbox, "/tmp/mcp-probe.mjs")),
       "the probe cleaned up after itself",
     );
 
@@ -110,13 +113,22 @@ try {
     );
 
     for (const [name, spec] of entries) {
-      const arg = (spec as { args?: string[] }).args?.[0] ?? "";
+      const { type, url } = spec as { type?: string; url?: string };
       assert(
-        arg.startsWith(runtimeDir),
-        `${name} is launched from outside the workspace`,
-        arg,
+        type === "http" && /^http:\/\/[\d.]+:\d+\/mcp$/.test(url ?? ""),
+        `${name} is declared as a host-side HTTP endpoint`,
+        `${type} ${url}`,
       );
-      assert(await exists(sandbox, arg), `${name} entry point exists`, arg);
+      // The one file in the sandbox that names a server must name nothing but
+      // a URL — no path an agent could follow to the token files.
+      const serialized = JSON.stringify(spec);
+      assert(
+        !serialized.includes(MCP_RUNTIME_DIR_NAME) &&
+          !serialized.includes(MCP_UPLOAD_DIR) &&
+          !serialized.includes("node"),
+        `${name} leaks no filesystem path`,
+        serialized,
+      );
     }
   } else {
     assert(
@@ -140,6 +152,7 @@ try {
   );
 } finally {
   await (sandbox as unknown as { stop: () => Promise<void> }).stop();
+  stopHostServers();
 }
 
 if (failures.length > 0) {

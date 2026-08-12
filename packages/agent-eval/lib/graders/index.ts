@@ -15,6 +15,7 @@ import { dsReuse } from "./ds-reuse";
 import { stylePlacement } from "./style-placement";
 import { clientBehaviour } from "./client-behaviour";
 import { toolchain, a11y } from "./toolchain";
+import { judge } from "./judge";
 import { mcpUsage, negativeUsage } from "./mcp-usage";
 import type { GraderResult } from "./types";
 import type { Trial } from "./trial";
@@ -33,6 +34,10 @@ export const QUALITY_GRADERS: Grader[] = [
   clientBehaviour,
   toolchain,
   a11y,
+  // Reads cached verdicts only, and reports `n/a` where none exist — so listing
+  // it here does not make grading cost anything, and does not change the score
+  // of any trial that has not been judged.
+  judge,
 ];
 
 /**

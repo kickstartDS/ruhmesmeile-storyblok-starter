@@ -209,7 +209,7 @@ Three decisions, two inherited from Storybook's `agent-eval` experience and one 
 
 - **Post-run `scripts` are disabled by default.** Sandbox flakiness produced more failures than agent mistakes. Build/typecheck/lint are executed from inside `EVAL.ts` via our own assertion helpers, so a tooling hiccup is distinguishable from an agent error.
 - **`earlyExit` must be explicitly `false`.** The framework defaults it to `true`, which stops an experiment after the first passing run. Left at the default, every multi-run experiment silently degrades to pass@1-with-retries and `pass^k` becomes unmeasurable.
-- **`setup()` and `editPrompt()` are not fingerprinted.** Our MCP wiring lives in `setup()`, so _any_ change to the staged MCP build is invisible to the framework's reuse logic. We compensate with a computed variant-version guard — see §9 and ADR Decision 9.
+- **`setup()` and `editPrompt()` are not fingerprinted.** Our MCP wiring lives in `setup()`, so _any_ change to the MCP build is invisible to the framework's reuse logic. We compensate with a computed variant-version guard — see §9 and ADR Decision 9. The servers no longer travel into the sandbox (ADR 55/80), but they are still read and hashed on the host for exactly this reason.
 
 One consequence of running on direct provider keys instead of the Vercel AI Gateway (D3): **`@vercel/agent-eval`'s automatic failure classification (`model` / `infra` / `timeout`) is unavailable**, since it requires `AI_GATEWAY_API_KEY` or `VERCEL_OIDC_TOKEN`. We therefore own failure triage ourselves — see §7.5.
 
@@ -236,20 +236,20 @@ The **core matrix** (always run) is 4 MCP sets × 1 agent × 1 model = 4 experim
 
 ### 6.2 MCP wiring
 
-`lib/mcp/variants.ts` maps a variant key to the MCP servers staged into the sandbox by `setup(sandbox)`:
+`lib/mcp/variants.ts` maps a variant key to the MCP servers the sandbox is pointed at by `setup(sandbox)`:
 
 ```
 none              -> {}
-component-builder -> { component-builder: node .mcp-servers/component-builder/dist/index.js }
-design-tokens     -> { design-tokens:     node .mcp-servers/design-tokens/dist/index.js }
+component-builder -> { component-builder: http://<bridge-gateway>:8791/mcp }
+design-tokens     -> { design-tokens:     http://<bridge-gateway>:8792/mcp }
 both              -> both of the above
 ```
 
 The `claude-code` adapter takes no MCP flag, so wiring goes through the files Claude Code reads from the project root: `setup()` writes a `.mcp.json` naming each server, plus a `.claude/settings.local.json` containing `enableAllProjectMcpServers: true` — without which project-scoped servers sit behind an interactive approval prompt that a `--print` run can never answer.
 
-Servers are staged from the **built workspace packages**, uploaded file-by-file (`Sandbox.writeFiles()` accepts only UTF-8 strings, so a packed tarball is not an option) and installed with `npm install --omit=dev` inside the sandbox. Workspace-protocol dependencies — currently `@kickstartds/shared-auth` — exist on no registry, so they are vendored under `.mcp-servers/_vendor/` and referenced as `file:` dependencies, resolved recursively.
+Servers run **on the host, from the built workspace packages, in Streamable HTTP mode** (`MCP_TRANSPORT=http`), started on first use and killed when the CLI exits. Nothing MCP-related enters the sandbox except the URL. This is the ADR 55 fix: staging the servers into the container put their source — and the design-tokens server's own token files — on a filesystem the agent could read, and on `812` it did, costing two arms. A stdio server cannot be hidden from the user that has to execute it, so the files stopped travelling. The sandbox reaches the host across the docker bridge, whose gateway is read from `/proc/net/route` inside the container (`host.docker.internal` is unavailable: the framework's docker backend exposes no `ExtraHosts` hook).
 
-MCP servers therefore run **over stdio from a workspace build**, not against the deployed HTTP endpoints. This keeps trials hermetic, removes JWT/network flakiness from the measurement, and — critically — means an eval run tests _the code in the current commit_, which is what a quality gate needs. A `-hosted` variant covering the deployed HTTP surface (incl. JWT auth) is deferred (D8).
+Running from a **workspace build rather than the deployed endpoints** is unchanged and is the point: trials stay hermetic, JWT and public-network flakiness stay out of the measurement, and an eval run tests _the code in the current commit_, which is what a quality gate needs. `MCP_JWT_SECRET` is deliberately left unset, which is the documented auth-disabled local mode. A `-hosted` variant covering the deployed surface incl. JWT auth is still deferred (D8).
 
 ### 6.3 Reported deltas
 
@@ -316,15 +316,27 @@ derived host-side from the raw JSONL.
 
 ### 7.3 Model-based grader (LLM judge)
 
-Via `@vercel/agent-eval`'s agentic judge (`toSatisfyCriterion`, `toScoreAtLeast`).
+Runs **on the host, retroactively** over trials that already exist — not as an
+in-sandbox `toSatisfyCriterion` assertion. Superseded during Phase 3; see ADR 72
+and D-94. The original design made the rubric part of the fixture fingerprint,
+which would have priced one lap of the calibration loop below at a full
+capability matrix (~$250). Host-side, a lap costs cents and replays over every
+trial ever run.
+
+Implementation: `lib/judge/rubrics.ts` (criteria), `lib/judge/run.ts` (the API
+client and verdict cache), `bin/judge.ts` (the CLI that spends),
+`lib/graders/judge.ts` (the grader, which only reads cached verdicts).
 
 Rules:
 
-- **One isolated judge call per rubric dimension.** Dimensions: _design intent_ (does it look like a kickstartDS component), _token-layer reasoning_ (are the chosen tokens semantically right, not merely valid), _API design_ (is the schema a sensible public API), _code idiom_ (does it read like the rest of the design system).
-- **The judge model is pinned** in `agent-eval.config.ts`. Comparing MCP variants while the judge drifts is meaningless. Changing the pin invalidates fingerprints and must be a deliberate, changelog-worthy act.
-- **Judges get an "Unknown" escape hatch** and are instructed to use it rather than guess.
-- **Never `.not.toSatisfyCriterion`.** Negative checks use the deterministic `toContainText` form.
-- **Calibration:** before the judge counts toward a gate, ≥20 hand-graded trials must show ≥80% agreement with human grading. Calibration set lives in `evals/*/REFERENCE/` and is re-checked whenever the judge pin changes.
+- **One isolated judge call per rubric dimension.** Dimensions: _design intent_ (does it look like a kickstartDS component), _token-layer reasoning_ (are the chosen tokens semantically right, not merely valid), _API design_ (is the schema a sensible public API), _code idiom_ (does it read like the rest of the design system). Batching them into one call would anchor the four verdicts to each other.
+- **The judge model is pinned to a dated release** in `lib/judge/run.ts`. `agent-eval.config.ts` carries a `ModelTier`, which is a tier and not a pin — it resolves to whatever is current at call time (D-96). Comparing MCP variants while the judge drifts is meaningless. `judge` verifies the pin against the API before spending; changing it re-runs every rubric and is a changelog-worthy act.
+- **Judges get an "Unknown" escape hatch** and are instructed to use it rather than guess. Unknown verdicts are excluded from the mean rather than scored zero — the alternative to "I cannot tell" is not silence, it is a confident number.
+- **The judge is shown only files the agent authored**, via `discoverGraded()`. It cannot tell who wrote what, so on diff-task fixtures it would otherwise credit or blame the starting point (ADR 54/61).
+- **Only `bin/judge.ts` can spend.** It is dry by default. The grader reads `judge.json` and makes no network calls, so `npm run grade` is free by construction (D-95).
+- **Never negative criteria.** Negative checks stay deterministic.
+- **Calibration:** before the judge counts toward a gate, ≥20 hand-graded trials must show ≥80% agreement with human grading, re-checked whenever the pin changes. Calibration is **per rubric, not per judge**: `Rubric.calibrated` gates each rubric's contribution to the composite independently, and a rubric with no material to calibrate against — `api-design`, until `824-api-from-behaviour` runs — is asked, cached and reported but carries no weight (ADR 79, D-112). The hand-grading instrument is the built per-trial Storybook report, not `REFERENCE/` — reports show the judge the same artefacts a human reviewer sees.
+- **Enabling the judge's weight bumps `WEIGHTS_VERSION`** (D-97). Adding a dimension changes every composite score; results either side of that change are not comparable.
 
 ### 7.4 Composite quality score
 
@@ -491,8 +503,8 @@ Adopting Storybook's model, because it is the part of their setup that has actua
 
 - **Never auto-triggered on push.** Full runs are opt-in via PR labels (`ci:eval`, `ci:extra-models`) or manual dispatch. **Applying those labels and dispatching eval workflows is a human decision — agents must never do it.**
 - **Agents validating locally** use `EVAL_ONLY=<name>` with a single experiment at a time.
-- **`pnpm eval:dry`** prints the projected task × variant × run count and an estimated spend before anything executes.
-- **Hard budget guardrail of $40 per full run** (D6); the harness aborts when exceeded. Raised from $25 after the P1 calibration run measured `cc-both` at $29.71.
+- **`pnpm eval status`** reports what has already been bought. There is no dry-run flag — `run` accepts only `--force`, `--smoke` and `--ack-failures`, and **`--smoke` spends money** (D-23); it is not a way to inspect artifacts.
+- **Hard budget guardrail of $40 per full run** (D6); the harness aborts when exceeded. Raised from $25 after the P1 calibration run measured `cc-both` at $29.71. Phase 1 then measured a single-eval 4-variant matrix at $35.18 on average, which makes D6 in practice a **per-eval** cap rather than a per-run one. Rather than raise it — the number is doing useful work at that scale — §10.1 tiers the suite so a routine gate run is ~$150 and the expensive tasks are opt-in.
 - **Nightly** runs the regression suite on the primary variant only — the cheap drift tripwire. Full matrix runs on release of either MCP package.
 
 ### 9.4 Known failures
@@ -505,16 +517,50 @@ When an assertion must be relaxed, the relaxation carries a self-contained comme
 
 20–30 tasks, following Anthropic's "20–50 is a good start". Numbering lines borrowed from Storybook's convention so the suite can grow without renumbering:
 
-| Range | Line                          | Examples                                                                                                                       |
-| ----- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `8xx` | **Core** (always run)         | Build an atom from a written spec · Build a composite from two existing components · Add a story with a play function          |
-| `81x` | **Token-centric**             | Restyle an existing component to a different semantic intent · Add a component-token layer · Adapt to a non-default theme      |
-| `82x` | **Schema-centric**            | Design a JSON Schema for a described component and generate matching props · Extend an existing schema without breaking it     |
-| `83x` | **Behavior**                  | Add client-side behavior with vanilla JS (no React state) · Progressive-enhancement fallback                                   |
-| `84x` | **Reuse / anti-hand-rolling** | Task whose obvious solution is a native `<button>`/`<input>` — correct answer is the DS component                              |
-| `85x` | **A11y**                      | Build a disclosure/menu with correct roles and keyboard handling                                                               |
-| `86x` | **Negative / restraint**      | A request that should be _declined or minimally scoped_ (e.g. "add a new brand color") — guards against one-sided optimization |
-| `9xx` | **Extra** (flag-gated)        | Long-horizon multi-component tasks, expensive, `EVAL_EXTRA_EVALS=1`                                                            |
+| Range | Line                          | Occupants                                                                                                                                                  |
+| ----- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `80x` | **Core**                      | `802-composite-from-two` · `804-story-conventions` · `806-inverted-context`                                                                                |
+| `81x` | **Token-centric**             | `810-atom-from-schema` · `811-token-intent` · `812-restyle-with-tokens` · `816-typography-pairing` · `817-responsive-tokens` · `818-component-token-layer` |
+| `82x` | **Schema-centric**            | `820-extend-schema-safely` · `824-api-from-behaviour`                                                                                                      |
+| `83x` | **Behavior**                  | `832-client-behaviour` · `836-behaviour-bugfix`                                                                                                            |
+| `84x` | **Reuse / anti-hand-rolling** | `840-reuse-over-native` · `842-reuse-edit`                                                                                                                 |
+| `85x` | **A11y** (both controls)      | `850-focus-return` · `852-a11y-repair`                                                                                                                     |
+| `86x` | **Negative / restraint**      | `860-restraint` · `861-token-restraint` · `862-api-freeze`                                                                                                 |
+
+Twenty tasks, all through the ADR 53 gate. The `9xx` range was never used: the
+extra tier turned out to be a property worth attaching to tasks across every
+range rather than a range of its own, so it became `tier` on the target (ADR 78).
+
+### 10.1 Cost tiers
+
+Phase 1 measured a greenfield trial at $4.24–$5.67 and an edit trial at $0.23.
+At that spread a twenty-eval matrix in Phase 1's shape is roughly $700, which is
+affordable once and not affordable as the drift gate this exists to be — and
+§9.3's "$40 hard cap per full run" had already become a per-_eval_ cap against a
+measured $35.18 per eval matrix.
+
+Each target therefore carries `tier: "core" | "extra"`.
+
+- **core** (12) — all edit or diff tasks, roughly $150 a campaign. This is what
+  the gate runs.
+- **extra** (8) — every greenfield generation task, plus all five evals that
+  produced the Phase 1 headline matrix, roughly $450 more. Run via
+  `EVAL_EXTRA_EVALS=1`, so the headline comparison stays reproducible on demand
+  instead of being re-bought on every gate run.
+
+Selection lives in `defaultEvals()`; `evalsInTier()` sorts, so it is
+deterministic. `assertFixtureHygiene()` throws on any fixture without a target,
+because an untiered fixture would land in neither tier and never run.
+
+### 10.2 Controls
+
+`850-focus-return` and `852-a11y-repair` are **control tasks**: neither MCP
+server documents accessibility, focus, keyboard behaviour or Escape handling, so
+neither task should move when the servers are added. A spread on either means the
+campaign is measuring something other than the documentation, and no treatment
+task can be read. `850` is the stronger control because the component-builder
+server does ship `get-client-behavior-template` — the temptation to reach for a
+tool that cannot help is real there, and absent in `852`.
 
 Task authoring rules:
 
@@ -522,6 +568,11 @@ Task authoring rules:
 - A task at 100% across all variants has saturated and no longer discriminates — graduate to regression or retire.
 - Prompts are written as a **realistic developer request**, not as a checklist that pre-encodes the grader.
 - `REFERENCE/` gold implementations are never mounted into the sandbox.
+- **Verify the correct answer is something the design system actually does and an MCP actually encodes — and check its prevalence, not just its existence.** A grep is free; a matrix is $35 and cannot be un-bought. This killed one planned task and reshaped three.
+- **A fix task needs a regression half**, or it grades demolition as repair.
+- **An assertion satisfiable by flattening everything to one value needs an anti-degenerate pin beside it.**
+- **Grade reuse from the source and the DOM together** — a copied class name is not a reused component.
+- **Every gate mutation asserts its target exists before writing.** A gate state that passes may be testing nothing.
 
 ---
 
@@ -542,23 +593,23 @@ Task authoring rules:
 
 ### 12.1 Decided (2026-08-06)
 
-| #   | Decision                                                                                                         | Consequence                                                                                                                                                                                                        |
-| --- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| D1  | **Package name:** `packages/agent-eval`.                                                                         | Matches upstream and the Storybook precedent; scope is signalled by tasks, not the folder name.                                                                                                                    |
-| D2  | **Agent/model scope:** Claude Code + one pinned model for P0–P2.                                                 | Isolates the MCP variable cleanly and keeps P1 within budget. A second agent lands in P3; cross-agent claims are out of scope until then.                                                                          |
-| D3  | **Model access:** direct provider keys, no Vercel AI Gateway.                                                    | No vendor dependency and no gateway billing layer — **but** we lose automatic failure classification and must implement §7.5 ourselves.                                                                            |
-| D4  | **Sandbox:** Docker everywhere, local and CI.                                                                    | No Vercel account, no Sandbox quota. CI parallelism is bounded by runner capacity, so full-matrix runs are slower; budget the wall-clock accordingly.                                                              |
-| D5  | **Fixture:** generated fixture project with a packed `@kickstartds/design-system` tarball.                       | Trial isolation and reproducibility; the fixture becomes a maintained artifact that must track design-system changes.                                                                                              |
-| D6  | **Budget ceiling:** **$40 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs. Raised from $25 after P1 measured `cc-both` at $29.71 on a single-eval matrix — the original figure was set before any per-trial cost was known. Not yet enforced in code (checklist 4.6). |
-| D7  | **Results hosting:** Kamal-deployed static site behind the shared JWT auth.                                      | Consistent with the other four hosted services; reuses `packages/shared-auth` and the existing `config/deploy-*.yml` pattern.                                                                                      |
-| D8  | **MCP transport:** stdio from the workspace build.                                                               | Hermetic trials that test the current commit — what a quality gate needs. An optional `-hosted` variant is added later to smoke-test the deployed HTTP surface incl. JWT auth.                                     |
-| D9  | **Runs per task:** 3 for `capability`, 5 for `regression`.                                                       | `pass^5` is meaningful enough to gate on; the capability suite stays cheap. Revisit once real per-trial costs are known against the D6 cap.                                                                        |
-| D10 | **Retention:** last 10 runs per experiment, plus every baseline-setting run pinned indefinitely.                 | Bounded storage growth despite a built Storybook per trial. Pruning is automated in the results-site deploy step.                                                                                                  |
-| D11 | **CI gating:** report-only until P4 baselines have survived two full cycles, then block on the regression suite. | Avoids a gate that cries wolf before its thresholds are trustworthy. The switch from report to block is an explicit, reviewed commit.                                                                              |
-| D12 | **Visibility:** private for v1, behind the shared JWT (D7).                                                      | Public publication stays open as a later marketing move; nothing in the design precludes it.                                                                                                                       |
-| D13 | **Screenshots:** not committed, not tracked in Git LFS — they live only under `results/`.                        | Keeps repository size flat. Screenshots remain available through the results site and CI artifacts.                                                                                                                |
-| D14 | **Repo-local agent instructions are excluded from every variant**, including the baseline.                       | We measure the MCP servers' built-in capability, isolated from local setup context that differs between consumers. Baselines will read low by design; enforced by the `fixture-hygiene` check (§5.3).              |
-| D15 | **CI runner sizing:** start on standard runners, measure in P1, escalate only if a full run exceeds ~2h.         | Wall-clock, not spend, is the binding constraint under Docker-only sandboxing (D4).                                                                                                                                |
+| #   | Decision                                                                                                         | Consequence                                                                                                                                                                                                                                                                                                                                   |
+| --- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D1  | **Package name:** `packages/agent-eval`.                                                                         | Matches upstream and the Storybook precedent; scope is signalled by tasks, not the folder name.                                                                                                                                                                                                                                               |
+| D2  | **Agent/model scope:** Claude Code + one pinned model for P0–P2.                                                 | Isolates the MCP variable cleanly and keeps P1 within budget. A second agent was scheduled for P3 and has been **postponed out of it**: it doubles the cost of every campaign to answer a question that is not the live one. P3 continues on Claude, and spends the budget on a cheaper Claude instead. Cross-agent claims stay out of scope. |
+| D3  | **Model access:** direct provider keys, no Vercel AI Gateway.                                                    | No vendor dependency and no gateway billing layer — **but** we lose automatic failure classification and must implement §7.5 ourselves.                                                                                                                                                                                                       |
+| D4  | **Sandbox:** Docker everywhere, local and CI.                                                                    | No Vercel account, no Sandbox quota. CI parallelism is bounded by runner capacity, so full-matrix runs are slower; budget the wall-clock accordingly.                                                                                                                                                                                         |
+| D5  | **Fixture:** generated fixture project with a packed `@kickstartds/design-system` tarball.                       | Trial isolation and reproducibility; the fixture becomes a maintained artifact that must track design-system changes.                                                                                                                                                                                                                         |
+| D6  | **Budget ceiling:** **$40 hard cap per full run** of the 4-variant core matrix.                                  | Caps task-count × runs. Raised from $25 after P1 measured `cc-both` at $29.71 on a single-eval matrix — the original figure was set before any per-trial cost was known. Not yet enforced in code (checklist 4.6).                                                                                                                            |
+| D7  | **Results hosting:** Kamal-deployed static site behind the shared JWT auth.                                      | Consistent with the other four hosted services; reuses `packages/shared-auth` and the existing `config/deploy-*.yml` pattern.                                                                                                                                                                                                                 |
+| D8  | **MCP transport:** host-side Streamable HTTP against the workspace build (was stdio in-sandbox until ADR 55/80). | Hermetic trials that test the current commit — what a quality gate needs — without putting the servers' source or the design system's token files on a filesystem the agent can read. An optional `-hosted` variant is added later to smoke-test the deployed HTTP surface incl. JWT auth.                                                    |
+| D9  | **Runs per task:** 3 for `capability`, 5 for `regression`.                                                       | `pass^5` is meaningful enough to gate on; the capability suite stays cheap. Revisit once real per-trial costs are known against the D6 cap.                                                                                                                                                                                                   |
+| D10 | **Retention:** last 10 runs per experiment, plus every baseline-setting run pinned indefinitely.                 | Bounded storage growth despite a built Storybook per trial. Pruning is automated in the results-site deploy step.                                                                                                                                                                                                                             |
+| D11 | **CI gating:** report-only until P4 baselines have survived two full cycles, then block on the regression suite. | Avoids a gate that cries wolf before its thresholds are trustworthy. The switch from report to block is an explicit, reviewed commit.                                                                                                                                                                                                         |
+| D12 | **Visibility:** private for v1, behind the shared JWT (D7).                                                      | Public publication stays open as a later marketing move; nothing in the design precludes it.                                                                                                                                                                                                                                                  |
+| D13 | **Screenshots:** not committed, not tracked in Git LFS — they live only under `results/`.                        | Keeps repository size flat. Screenshots remain available through the results site and CI artifacts.                                                                                                                                                                                                                                           |
+| D14 | **Repo-local agent instructions are excluded from every variant**, including the baseline.                       | We measure the MCP servers' built-in capability, isolated from local setup context that differs between consumers. Baselines will read low by design; enforced by the `fixture-hygiene` check (§5.3).                                                                                                                                         |
+| D15 | **CI runner sizing:** start on standard runners, measure in P1, escalate only if a full run exceeds ~2h.         | Wall-clock, not spend, is the binding constraint under Docker-only sandboxing (D4).                                                                                                                                                                                                                                                           |
 
 All open questions are resolved; nothing blocks P0. Items flagged for deliberate revisit: **D6** (budget) and **D9** (runs per task) after the P1 calibration run, **D8** (hosted variant) once the deployed surface is worth smoke-testing, **D12** (public results), and **D14** — an instructions-vs-MCP study remains an interesting one-off, but only as a separate experiment, never as a variable inside the core matrix.
 

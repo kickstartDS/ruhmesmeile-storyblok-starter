@@ -1,0 +1,32 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as PriceTagStories from "./PriceTag.stories";
+
+<Meta of={PriceTagStories} />
+
+# PriceTag
+
+Shows a price, the period it is billed for, and an optional qualifier beneath
+it. Used wherever a plan or package has to state its cost.
+
+<Canvas of={PriceTagStories.Default} />
+
+## Properties
+
+<ArgTypes />
+
+## Usage
+
+```jsx
+<PriceTag amount="€49" period="month" note={{ text: "Billed annually" }} />
+```
+
+## Variants
+
+The `highlight` variant lifts one tag out of a row of them — the recommended
+plan in a pricing table, for instance. Use it once per group.
+
+<Canvas of={PriceTagStories.Highlighted} />
+
+## Design Tokens
+
+Refer to the component tokens panel for available customization options.

@@ -36,6 +36,9 @@ import express, {
   type Response,
 } from "express";
 
+// Explicit extension: node strips the types, it does not resolve for us.
+import { mountCalibration } from "./calibrate.ts";
+
 const RESULTS_DIR =
   process.env.RESULTS_DIR ??
   join(dirname(fileURLToPath(import.meta.url)), "..", "results");
@@ -105,6 +108,7 @@ const app = express();
 app.disable("x-powered-by");
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: "16kb" }));
+app.use(express.json({ limit: "16kb" }));
 
 app.use((_request, response, next) => {
   response.setHeader("Content-Security-Policy", CSP);
@@ -161,6 +165,10 @@ app.use((request: Request, response: Response, next: NextFunction) => {
   response.clearCookie(COOKIE);
   response.status(401).type("html").send(LOGIN_PAGE());
 });
+
+// Behind the gate, ahead of the static tree: `/calibrate` is a route, and the
+// results directory must never get the chance to shadow it with a file.
+mountCalibration(app);
 
 app.use(
   express.static(RESULTS_DIR, { index: "index.html", dotfiles: "ignore" }),

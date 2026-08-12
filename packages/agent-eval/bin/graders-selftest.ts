@@ -70,6 +70,9 @@ function trialFor(slug: string): Trial {
     // The selftest grades the design system itself, which has no fixture to
     // diff against — every file must be judged on its content.
     diffTask: false,
+    // Not a suite member. The selftest never goes through eval selection, so
+    // the tier is carried only to satisfy the type.
+    tier: "core",
   };
 
   return {

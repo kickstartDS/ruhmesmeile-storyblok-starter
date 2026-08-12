@@ -1,0 +1,40 @@
+@use "rating-tokens.scss";
+
+.dsa-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dsa-rating--gap);
+  font: var(--dsa-rating--font);
+
+  &__star {
+    color: var(--dsa-rating__star--color-empty);
+  }
+
+  &__star--full {
+    color: var(--dsa-rating__star--color-full);
+  }
+
+  // Shipped with the relaunch and never rendered: the component still floors
+  // the value, so this rule has no element to attach to. Wiring it up is
+  // DS-2310.
+  &__star--half {
+    background-image: linear-gradient(
+      90deg,
+      var(--dsa-rating__star--color-full) 50%,
+      var(--dsa-rating__star--color-empty) 50%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+
+  &__label {
+    margin-inline-start: var(--dsa-rating__label--margin-inline-start);
+    color: var(--dsa-rating__label--color);
+  }
+
+  &--outline &__star--empty {
+    color: transparent;
+    -webkit-text-stroke: var(--ks-border-width-default)
+      var(--dsa-rating__star--color-empty);
+  }
+}

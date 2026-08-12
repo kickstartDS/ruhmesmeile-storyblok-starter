@@ -1,0 +1,45 @@
+@use "progress-steps-tokens.scss";
+
+.dsa-progress-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dsa-progress-steps--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--dsa-progress-steps--font);
+  color: var(--dsa-progress-steps--color);
+
+  &__step {
+    display: flex;
+    align-items: center;
+    gap: var(--dsa-progress-steps__step--gap);
+
+    &--current {
+      color: var(--dsa-progress-steps--color_current);
+      font-weight: bold;
+
+      .dsa-progress-steps__marker {
+        border-color: var(--dsa-progress-steps__marker--border-color_current);
+      }
+    }
+
+    &--complete .dsa-progress-steps__marker {
+      border-color: var(--dsa-progress-steps__marker--border-color_current);
+    }
+  }
+
+  &__marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.75em;
+    block-size: 1.75em;
+    border: var(--dsa-progress-steps__marker--border-width) solid
+      var(--dsa-progress-steps__marker--border-color);
+    border-radius: 50%;
+    background: var(--dsa-progress-steps__marker--background);
+    font-weight: normal;
+  }
+}

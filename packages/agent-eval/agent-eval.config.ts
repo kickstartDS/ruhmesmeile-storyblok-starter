@@ -23,12 +23,17 @@ export const PRIMARY_MODEL_LABEL = process.env.EVAL_MODEL_LABEL ?? "sonnet";
 export const PRIMARY_AGENT: AgentType = "claude-code";
 
 /**
- * The pinned judge model (Decision 8).
+ * The judge model *tier* (Decision 8).
  *
- * Changing this invalidates fingerprints and every historical comparison. It is
- * a changelog-worthy act, not a tweak. Unused until P3 — no eval calls a judge
- * matcher yet — but pinned from the start so the fingerprint never shifts
- * underneath us when the first judge assertion lands.
+ * Superseded as a pin by `JUDGE_MODEL_ID` in `lib/judge/run.ts`. A `ModelTier`
+ * is not a pin: "opus" resolves to whatever is current when it is called, so
+ * two scores taken months apart could come from different models with nothing
+ * on record to say so — the drift a pinned judge exists to rule out (D-96,
+ * ADR 72). The judge names a dated release instead, and verifies it against the
+ * API before spending.
+ *
+ * Kept because the harness's own judge matchers take a tier, should an eval ever
+ * call one. Nothing reads it today.
  */
 export const JUDGE_MODEL: ModelTier = "opus";
 

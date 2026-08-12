@@ -431,7 +431,9 @@ test("the stylesheet reads from the token layer", () => {
   expect(read(FILES.styles)).toMatch(/var\(--/);
 });
 test("the variants remain visually distinguishable", () => {
-  const styles = read(FILES.styles);
+  const partial = `${harness.dir}/_alert-tokens.scss`;
+  const styles =
+    read(FILES.styles) + (existsSync2(partial) ? read(partial) : "");
   for (const variant of ["success", "warning", "danger"]) {
     expect(styles).toMatch(new RegExp(`(?:\\.dsa-alert--|&--)${variant}\\b`));
   }

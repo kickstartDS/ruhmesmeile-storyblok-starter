@@ -1,0 +1,15 @@
+.dsa-progress-steps {
+  --dsa-progress-steps--font: var(--ks-font-interface-s);
+  --dsa-progress-steps--gap: var(--ks-spacing-inline-s);
+  --dsa-progress-steps--color: var(--ks-text-color-interface);
+  --dsa-progress-steps--color_current: var(
+    --ks-text-color-interface-interactive-selected
+  );
+  --dsa-progress-steps__step--gap: var(--ks-spacing-inline-xxs);
+  --dsa-progress-steps__marker--border-color: var(--ks-border-color-default);
+  --dsa-progress-steps__marker--border-color_current: var(
+    --ks-border-color-interface
+  );
+  --dsa-progress-steps__marker--border-width: var(--ks-border-width-default);
+  --dsa-progress-steps__marker--background: var(--ks-background-color-card);
+}

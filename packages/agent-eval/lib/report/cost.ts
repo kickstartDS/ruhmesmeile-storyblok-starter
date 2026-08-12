@@ -28,10 +28,16 @@ export interface Pricing {
  * Cache writes carry a 25% premium over input and cache reads a 90% discount,
  * which is why a long agentic run is dominated by whichever of the two the
  * agent's context churn produces more of.
+ *
+ * The Opus row is Opus 4.5 and later. It was Opus 4.1's ($15/$75) until D-121,
+ * which is a threefold difference and the reason judge spend was reported at
+ * triple the invoice for three campaigns. Nothing in the matrix has ever run on
+ * Opus, so no campaign figure was affected — but a stale row in a table nobody
+ * exercises is a trap armed for whoever exercises it first.
  */
 const PRICING: Record<string, Pricing> = {
   "claude-sonnet": { input: 3, output: 15, cacheWrite: 3.75, cacheRead: 0.3 },
-  "claude-opus": { input: 15, output: 75, cacheWrite: 18.75, cacheRead: 1.5 },
+  "claude-opus": { input: 5, output: 25, cacheWrite: 6.25, cacheRead: 0.5 },
   "claude-haiku": { input: 1, output: 5, cacheWrite: 1.25, cacheRead: 0.1 },
 };
 

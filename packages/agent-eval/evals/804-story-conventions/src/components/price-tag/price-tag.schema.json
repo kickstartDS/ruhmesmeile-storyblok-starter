@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/price-tag.schema.json",
+  "title": "Price Tag",
+  "description": "A price, its billing period and an optional qualifier.",
+  "type": "object",
+  "required": ["amount"],
+  "additionalProperties": false,
+  "properties": {
+    "amount": {
+      "type": "string",
+      "title": "Amount",
+      "description": "The price itself, already formatted for display.",
+      "examples": ["€49"]
+    },
+    "period": {
+      "type": "string",
+      "title": "Period",
+      "description": "Billing period the price applies to.",
+      "examples": ["month"]
+    },
+    "variant": {
+      "type": "string",
+      "title": "Variant",
+      "description": "Visual weight of the tag.",
+      "enum": ["regular", "highlight"],
+      "default": "regular"
+    },
+    "note": {
+      "type": "object",
+      "title": "Note",
+      "description": "A short qualifier shown beneath the price.",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text",
+          "description": "The qualifier's text.",
+          "examples": ["Billed annually"]
+        },
+        "emphasis": {
+          "type": "boolean",
+          "title": "Emphasis",
+          "description": "Whether the qualifier is called out.",
+          "default": false
+        }
+      }
+    }
+  }
+}

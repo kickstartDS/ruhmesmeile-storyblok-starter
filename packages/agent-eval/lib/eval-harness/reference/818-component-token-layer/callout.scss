@@ -1,0 +1,27 @@
+@use "callout-tokens.scss";
+
+.dsa-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsa-callout--gap);
+  padding: var(--dsa-callout--padding);
+  border-inline-start: var(--dsa-callout--border-width) solid
+    var(--dsa-callout--border-color);
+
+  &__heading {
+    margin: 0;
+    font: var(--dsa-callout__heading--font);
+    font-weight: var(--dsa-callout__heading--font-weight);
+    color: var(--dsa-callout__heading--color);
+  }
+
+  &__body {
+    margin: 0;
+    font: var(--dsa-callout__body--font);
+    color: var(--dsa-callout__body--color);
+  }
+
+  &--strong &__heading {
+    color: var(--dsa-callout--emphasis-color);
+  }
+}

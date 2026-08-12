@@ -20,7 +20,11 @@
     "report:index": "tsx bin/report-index.ts",
     "results:prune": "tsx bin/prune-results.ts",
     "results:download": "tsx bin/download-results.ts",
-    "serve:results": "node server/index.ts"
+    "serve:results": "node server/index.ts",
+    "judge": "tsx bin/judge.ts",
+    "calibrate": "tsx bin/calibrate.ts",
+    "calibration:export": "tsx bin/export-calibration.ts",
+    "labels:pull": "tsx bin/pull-labels.ts"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.2.15",

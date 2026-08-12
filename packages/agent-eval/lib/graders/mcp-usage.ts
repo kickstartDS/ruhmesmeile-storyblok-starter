@@ -180,9 +180,35 @@ const CONTENT_VERBS =
 /** Tools whose output is a path list rather than file contents. */
 const ENUMERATING_TOOLS = /^(glob|ls)$/i;
 
+/**
+ * Paths and endpoints that would mean the agent went around the protocol.
+ *
+ * The first two are historical: since ADR 55 the servers run on the host over
+ * HTTP and no server file enters the sandbox, so there is nothing at either
+ * path to find. They stay because a future change that reintroduces staging
+ * without reintroducing detection would be silent, and silence is how D-26 cost
+ * a full matrix.
+ *
+ * The third is live. The one thing the sandbox still knows is the URL in
+ * `.mcp.json`, and an agent that curls it, or POSTs raw JSON-RPC to it with
+ * `node -e`, gets the servers' answers without any of it appearing as a tool
+ * call. That is a smaller hole than the old one — it yields what the tools
+ * yield, not the token files themselves — but it would still make an arm look
+ * like it never reached its MCP while being fully informed by it.
+ */
 function touchesStaging(text: string): boolean {
-  return text.includes(MCP_RUNTIME_DIR_NAME) || text.includes(MCP_UPLOAD_DIR);
+  return (
+    text.includes(MCP_RUNTIME_DIR_NAME) ||
+    text.includes(MCP_UPLOAD_DIR) ||
+    MCP_ENDPOINT.test(text)
+  );
 }
+
+/**
+ * The host-side endpoint, matched by shape rather than by address: the bridge
+ * gateway is discovered per container and the ports may move.
+ */
+const MCP_ENDPOINT = /https?:\/\/[\d.]+:\d+\/mcp\b/;
 
 /**
  * Classify one shell command.

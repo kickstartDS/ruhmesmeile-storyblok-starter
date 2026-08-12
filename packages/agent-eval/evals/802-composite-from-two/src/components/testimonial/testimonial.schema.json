@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/testimonial.schema.json",
+  "title": "Testimonial",
+  "description": "A customer quote, attributed to a named person, with the score they gave.",
+  "type": "object",
+  "properties": {
+    "quote": {
+      "title": "Quote",
+      "description": "What the customer said",
+      "type": "string",
+      "examples": [
+        "We shipped the redesign in a fortnight instead of a quarter."
+      ]
+    },
+    "authorName": {
+      "title": "Author name",
+      "description": "Who said it",
+      "type": "string",
+      "examples": ["Mira Okonkwo"]
+    },
+    "authorRole": {
+      "title": "Author role",
+      "description": "The author's role and company",
+      "type": "string",
+      "examples": ["Head of Design, Northwind"]
+    },
+    "portraitSrc": {
+      "title": "Portrait source",
+      "description": "Image source for the author's picture",
+      "type": "string",
+      "examples": ["/img/people/mira.jpg"]
+    },
+    "rating": {
+      "title": "Rating",
+      "description": "The score the author gave, out of five",
+      "type": "number",
+      "examples": [5]
+    },
+    "ratingLabel": {
+      "title": "Rating label",
+      "description": "Accessible description of the score",
+      "type": "string",
+      "examples": ["Rated 5 out of 5"]
+    }
+  },
+  "required": ["quote", "authorName", "portraitSrc", "rating", "ratingLabel"],
+  "additionalProperties": false
+}

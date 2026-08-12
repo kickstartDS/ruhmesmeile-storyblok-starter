@@ -1,0 +1,22 @@
+{
+  "name": "842-reuse-edit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@kickstartds/core": "file:vendor/kickstartds-core",
+    "@kickstartds/ds": "file:vendor/kickstartds-ds",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "axe-core": "^4.10.2",
+    "jsdom": "^25.0.1",
+    "sass": "^1.83.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

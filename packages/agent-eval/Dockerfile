@@ -56,6 +56,16 @@ RUN pnpm install --frozen-lockfile --ignore-scripts --prod \
 # and so nothing that can fall out of sync with it.
 COPY packages/agent-eval/server/ ./packages/agent-eval/server/
 
+# The hand-grading queue. Unlike the results this *is* reproducible — it is
+# derived from them by `pnpm calibration:export` — but it is derived on the
+# machine that holds them, and shipping it is the entire point: a second rater
+# needs the questions, not the 113 MB they came from.
+#
+# `calibration/labels/` is mounted over by a volume at runtime (see the Kamal
+# config). Labels written through the web app are not in this image and must
+# not be: they would be replaced by the next deploy.
+COPY packages/agent-eval/calibration/ ./packages/agent-eval/calibration/
+
 # Cache-bust: results change on every campaign, and nothing above them does.
 # Kept last so re-publishing rebuilds exactly one layer.
 ARG CACHEBUST=0
@@ -64,6 +74,7 @@ COPY packages/agent-eval/results/ ./packages/agent-eval/results/
 ENV NODE_ENV=production
 ENV PORT=8080
 ENV RESULTS_DIR=/app/packages/agent-eval/results
+ENV CALIBRATION_DIR=/app/packages/agent-eval/calibration
 
 EXPOSE 8080
 

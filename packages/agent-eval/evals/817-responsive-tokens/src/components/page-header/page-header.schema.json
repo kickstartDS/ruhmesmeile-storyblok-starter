@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/page-header.schema.json",
+  "title": "PageHeader",
+  "description": "The title block at the top of a page.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "The page title."
+    },
+    "summary": {
+      "type": "string",
+      "title": "Summary",
+      "description": "One-line summary shown under the title."
+    },
+    "eyebrow": {
+      "type": "string",
+      "title": "Eyebrow",
+      "description": "Small label above the title, e.g. the section this page belongs to."
+    }
+  },
+  "required": ["title"],
+  "additionalProperties": false
+}

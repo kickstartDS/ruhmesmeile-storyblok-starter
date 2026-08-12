@@ -1,0 +1,8 @@
+.dsa-rating {
+  --dsa-rating--gap: var(--ks-spacing-inline-xxs);
+  --dsa-rating--font: var(--ks-font-copy-s);
+  --dsa-rating__star--color-full: var(--ks-text-color-primary);
+  --dsa-rating__star--color-empty: var(--ks-text-color-interface);
+  --dsa-rating__label--color: var(--ks-text-color-copy);
+  --dsa-rating__label--margin-inline-start: var(--ks-spacing-inline-xs);
+}

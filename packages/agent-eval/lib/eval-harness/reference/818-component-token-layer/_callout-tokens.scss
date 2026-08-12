@@ -1,0 +1,12 @@
+.dsa-callout {
+  --dsa-callout--gap: var(--ks-spacing-stack-s);
+  --dsa-callout--padding: var(--ks-spacing-inset-m);
+  --dsa-callout--border-width: var(--ks-border-width-default);
+  --dsa-callout--border-color: var(--ks-border-color-default);
+  --dsa-callout__heading--font: var(--ks-font-copy-s);
+  --dsa-callout__heading--font-weight: var(--ks-font-weight-bold);
+  --dsa-callout__heading--color: var(--ks-text-color-display);
+  --dsa-callout__body--font: var(--ks-font-copy-m);
+  --dsa-callout__body--color: var(--ks-text-color-copy);
+  --dsa-callout--emphasis-color: var(--ks-text-color-primary);
+}

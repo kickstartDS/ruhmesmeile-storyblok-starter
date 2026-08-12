@@ -1,0 +1,26 @@
+.dsa-dismissible {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ks-spacing-inline-xs);
+  padding: var(--ks-spacing-inset-m);
+  border: var(--ks-border-width-default) solid var(--ks-border-color-default);
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__message {
+    flex: 1;
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+  &__close {
+    padding: var(--ks-spacing-inline-xxs);
+    border: none;
+    background: none;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-interface);
+  }
+}

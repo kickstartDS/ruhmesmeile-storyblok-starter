@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/spotlight.schema.json",
+  "title": "Spotlight",
+  "description": "A highlighted passage with a heading and an optional footnote.",
+  "type": "object",
+  "required": ["heading", "body"],
+  "additionalProperties": false,
+  "properties": {
+    "heading": {
+      "title": "Heading",
+      "description": "The headline of the highlighted passage.",
+      "type": "string"
+    },
+    "body": {
+      "title": "Body",
+      "description": "The passage itself.",
+      "type": "string"
+    },
+    "footnote": {
+      "title": "Footnote",
+      "description": "Optional attribution or aside, shown last.",
+      "type": "string"
+    }
+  }
+}

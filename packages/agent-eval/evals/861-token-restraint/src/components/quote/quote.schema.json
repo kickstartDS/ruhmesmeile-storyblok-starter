@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/quote.schema.json",
+  "title": "Quote",
+  "description": "A quoted passage with optional attribution and source.",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "title": "Text",
+      "description": "The quoted passage."
+    },
+    "attribution": {
+      "type": "string",
+      "title": "Attribution",
+      "description": "Who said it."
+    },
+    "source": {
+      "type": "string",
+      "title": "Source",
+      "description": "Where they said it — a publication, talk or role."
+    }
+  },
+  "required": ["text"],
+  "additionalProperties": false
+}

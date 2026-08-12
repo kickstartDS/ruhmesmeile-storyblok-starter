@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/callout.schema.json",
+  "title": "Callout",
+  "description": "An aside that lifts one point out of the surrounding copy.",
+  "type": "object",
+  "properties": {
+    "heading": {
+      "type": "string",
+      "title": "Heading",
+      "description": "Short lead-in shown above the body copy."
+    },
+    "body": {
+      "type": "string",
+      "title": "Body",
+      "description": "The body of the callout."
+    },
+    "emphasis": {
+      "type": "string",
+      "title": "Emphasis",
+      "description": "Visual weight. `strong` is used for the one callout that matters on a page.",
+      "enum": ["regular", "strong"],
+      "default": "regular"
+    }
+  },
+  "required": ["heading", "body"],
+  "additionalProperties": false
+}
