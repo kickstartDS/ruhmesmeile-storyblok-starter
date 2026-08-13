@@ -3721,4 +3721,76 @@ because the work made them converge; one of them was reading the other's
 material. Separation is evidence of independence only once you have checked that
 both were confined to their own question.
 
-**Next free decision number: D-140.**
+### D-140 — the reason dictionary had drifted from the criteria it serves
+
+D-138 rewrote two criteria and nothing checked whether the pick list a human
+grades with still matched them. Auditing all twenty entries against the current
+text, one rubric was badly served:
+
+- `invented-tokens` — **removed.** The `token-reasoning` criterion's second
+  paragraph says "the deterministic graders already checked that every token
+  referenced exists ... you are judging *choice*, not validity", and
+  `tokenConformance` does compute exactly this, by name, against the real
+  registry. The chip invited a human to fail a trial the deterministic score
+  had already docked.
+- `hardcoded-fallbacks` — **removed**, same side of the same line. A `var()`
+  fallback is mechanics.
+- `wrong-token-prefix` — **retagged `code-idiom`.** It is `wrong-prefix`'s twin,
+  a find-and-replace over a naming convention, filed under tokens because it has
+  "token" in the name.
+- `callback-props` — **gained `design-intent`**, whose criterion names it in as
+  many words: "behaviour threaded through props where the references keep it in
+  the client bundle". It had only `api-design`, which is ungated and unaskable
+  across the whole suite, so the diagnosis was unreachable from any rubric
+  actually being asked.
+- `open-variant` — **gained `api-design`**; both criteria name closed variant
+  sets, and these are different axes rather than one rubric borrowing the
+  other's subject.
+- `wrong-placement` — **added**, `code-idiom`. Transcribed from the judge's own
+  verdict on the D-139 trial: "placing client JS in a `js/` subdirectory rather
+  than alongside the component file". `wrong-filename` is about what a file is
+  called; the criterion has always asked about both — "file names and where
+  files are placed" — and the list had a chip for one half.
+
+That leaves `token-reasoning` with a single chip, `no-component-tokens`. The
+count is the finding, not a problem to fix by topping it back up: the list had
+become a validity checklist under a semantics heading, and one honest entry is
+worth more than four that point elsewhere. If real semantic complaints show up
+in free text during calibration, they earn lines then.
+
+**Two entries were considered and refused.** A chip for a missing companion
+file, and any replacement for the removed token chips, would both have been read
+out of a criterion rather than transcribed from something a person wrote — the
+exact move this file's SCSS-flatness paragraph (D-122b) declines. A pick list
+derived from the rubric stops being evidence about what humans notice and
+becomes a second copy of the rubric, which is how the last three sessions'
+worth of contamination got in.
+
+**Two labels violated an invariant nobody was checking.** `no-forward-ref` and
+`styling-props`, both added in D-136, contained commas — and notes from several
+raters are joined with `", "` when rendered, which is why the file forbids them.
+Reworded; labels are not stored, so this costs nothing. Same shape as D-139's
+display bug: a rule stated in a doc comment, obeyed by everything written before
+it, quietly broken by the additions that came after.
+
+**Stored labels are left alone**, per D-137. Three carry the dropped ids —
+`token-reasoning:6b80b94501b0bbd0` (`810-atom-from-schema/run-3`, fail) is
+justified by all four token chips, three of which the rubric does not grade;
+`44346fbf0c04f659` by `invented-tokens` plus `no-component-tokens`; and a
+`code-idiom` label on `832-client-behaviour/run-1` carries the free-text note
+"invented design system token" under a rubric with no token chip at all. The ids
+still resolve in reports, only the checkboxes stop rendering, and re-saving would
+drop them silently. They are also the evidence for this edit, which is the better
+reason to keep them.
+
+Free: labels and reason ids are not hashed, no verdict is re-keyed, no call is
+made. Verified 19 entries, zero design-intent+code-idiom duals, zero commas,
+zero duplicate ids, typecheck clean.
+
+**Lesson (bt):** when you fix an instrument, the things calibrated *against* that
+instrument are now out of date too, and they will not announce it. The criteria
+and the pick list are one artefact in two files with nothing tying them
+together — D-138 changed one and left the other pointing at the previous
+version for two sessions.
+
+**Next free decision number: D-141.**

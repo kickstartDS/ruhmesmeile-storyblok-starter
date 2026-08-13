@@ -3517,3 +3517,59 @@ Lesson (bs): a measurement that agrees with another may be agreeing about
 something it was not supposed to be looking at. Separation is evidence of
 independence only once both instruments have been confined to their own
 question.
+
+**Amended a fifth time (D-140): the pick list had to follow the criteria.**
+Rewriting two criteria left the reason dictionary a human calibrates with
+pointing at the previous version. `token-reasoning` was the casualty — three of
+its four chips (`invented-tokens`, `hardcoded-fallbacks`, `wrong-token-prefix`)
+asked about validity or naming, which its own criterion hands to the
+deterministic graders in its second paragraph and `tokenConformance` genuinely
+computes. The first two are removed and the third moves to `code-idiom`, leaving
+the rubric one chip. `callback-props` gained `design-intent` (its criterion names
+the diagnosis verbatim, and `api-design` is ungated and unaskable across the
+suite, so it was previously unreachable), `open-variant` gained `api-design`, and
+a `wrong-placement` chip was transcribed from the D-139 verdict.
+
+The refusals matter as much: no replacement chips were invented for
+`token-reasoning`, and no "missing companion file" chip was added, because both
+would have been read out of a criterion rather than transcribed from something a
+person wrote. A pick list derived from the rubric measures the rubric.
+
+The list as it now stands, and the test each entry passes. For the
+`design-intent`/`code-idiom` pair the test is repair cost: an objection that
+survives renaming every identifier and moving every file is design-intent's,
+and everything else is code-idiom's.
+
+| Reason | Rubric(s) | Why it sits there |
+| --- | --- | --- |
+| `schema-types` | code-idiom, api-design | Delete the hand-written interface, add an import. Spans two axes rather than two ends of one. |
+| `react-behaviour` | design-intent | Moving behaviour into the client bundle is a rewrite. Was tagged both; D-137 made it design-intent's alone, and D-139's inversion was this objection. |
+| `identifier-inline` | code-idiom | Delete a line, add an import. |
+| `wrong-filename` | code-idiom | A rename. |
+| `wrong-placement` | code-idiom | A move. Added D-140 from the D-139 verdict — `wrong-filename` covers what a file is called, not where it was put. |
+| `tokens-inline` | code-idiom | "Adding a missing file alongside the ones that are there" — named in design-intent's criterion as explicitly *not* its business. |
+| `no-component-tokens` | token-reasoning | Which layer a value was taken from. The only surviving chip that asks about choice rather than validity. |
+| `wrong-prefix` | code-idiom | Find-and-replace. |
+| `no-defaults` | code-idiom | An import and a line. |
+| `inline-classnames` | code-idiom | Delete, import. |
+| `callback-props` | design-intent, api-design | "Behaviour threaded through props where the references keep it in the client bundle" — design-intent's criterion, verbatim. Gained that tag in D-140; `api-design` alone left it unreachable. |
+| `wrong-token-prefix` | code-idiom | `wrong-prefix`'s twin. Retagged from `token-reasoning` in D-140 — it was filed under tokens for having "token" in the name. |
+| `reimplements-primitive` | design-intent | Composing instead of re-implementing is a rewrite. |
+| `not-overridable` | design-intent | code-idiom's criterion now ships "whether consumers can substitute it" here explicitly. |
+| `monolithic` | design-intent | Decomposition is a rewrite. |
+| `open-variant` | design-intent, api-design | Both criteria name closed variant sets; gained `api-design` in D-140. |
+| `no-forward-ref` | design-intent | code-idiom's criterion explicitly excludes ref-forwarding. |
+| `styling-props` | design-intent, api-design | Both criteria name it. |
+| `wrong-kind` | design-intent | "The kind of component the brief called for at all." |
+
+Two entries were also reworded because they contained commas, which the file
+forbids — notes from several raters are joined with `", "` when rendered.
+`no-forward-ref` and `styling-props`, both added in D-136. Labels are not
+hashed, so this costs nothing; the point is that a rule stated in a doc comment
+and obeyed by everything written before it was quietly broken by what came
+after, which is the same shape as D-139's display bug.
+
+Lesson (bt): fixing an instrument silently invalidates whatever was calibrated
+against it. The criteria and the pick list are one artefact split across two
+files with nothing linking them, and the split held a stale version for two
+sessions without complaint.

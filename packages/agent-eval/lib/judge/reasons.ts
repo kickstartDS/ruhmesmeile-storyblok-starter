@@ -78,6 +78,26 @@
  * transcribed from a note is exactly what the paragraph above warns against.
  * If it starts appearing in free text it has earned a line.
  *
+ * One addition since, on the same evidentiary rule (D-140):
+ *
+ *   wrong-placement       1   "placing client JS in a `js/` subdirectory rather
+ *                              than alongside the component file as in Gallery,
+ *                              but this is a reasonable organisational choice
+ *                              rather than a dialect violation"
+ *
+ * Transcribed from a judge verdict rather than a rater's note, as the seven
+ * design-intent entries were. It is the one objection in the trial that refuted
+ * the severity ladder, and `wrong-filename` did not cover it: that entry is
+ * about what a file is called, and this is about where it was put. The criterion
+ * has always asked about both in one breath — "file names and where files are
+ * placed" — and the list only had a chip for the first half.
+ *
+ * Not added alongside it: a chip for a conventional companion file being absent
+ * outright. The criterion asks about it, which is precisely why it does not
+ * qualify — see the SCSS-flatness paragraph above. Nobody has written that
+ * complaint, and reading it out of the criterion is how a pick list stops being
+ * a transcription and starts being a second copy of the rubric.
+ *
  * Two properties are deliberate.
  *
  * **The list is scoped to the rubric being asked.** It was not, and that was a
@@ -111,6 +131,41 @@
  * transcribed from something someone actually wrote, not derived from a
  * criterion.
  *
+ * **No entry may be tagged with a rubric that rubric is not asking about.**
+ * Obvious, and it did not hold. Auditing the list against the rewritten
+ * criteria (D-140) found three entries under `token-reasoning` that its own
+ * criterion disclaims in its second paragraph — "the deterministic graders
+ * already checked that every token referenced exists and that no raw hex values
+ * were used — you are judging *choice*, not validity".
+ *
+ *   invented-tokens       removed. `tokenConformance` computes exactly this,
+ *                         by name, against the real registry. A judge asked to
+ *                         re-derive it from a stylesheet is a worse instrument
+ *                         than the one already running, and a human handed the
+ *                         chip will fail a trial the deterministic score has
+ *                         already docked.
+ *   hardcoded-fallbacks   removed, same side of the same line: a `var()`
+ *                         fallback is mechanics, and mechanics is not choice.
+ *   wrong-token-prefix    retagged `code-idiom`. It is `wrong-prefix`'s twin —
+ *                         a find-and-replace over a naming convention — and it
+ *                         was filed under tokens because it has "token" in it.
+ *
+ * That left `no-component-tokens` as the only surviving chip that asks what
+ * `token-reasoning` asks: which layer a value was taken from. The list had
+ * quietly become a validity checklist under a semantics heading.
+ *
+ * The stored labels show the cost. `token-reasoning:6b80b94501b0bbd0`
+ * (`810-atom-from-schema/run-3`, fail) is justified by all four token chips —
+ * three of which the rubric does not grade. `44346fbf0c04f659` fails on
+ * `invented-tokens` plus `no-component-tokens`. And a `code-idiom` label on
+ * `832-client-behaviour/run-1` carries the free-text note "invented design
+ * system token", under a rubric that has never had a token chip at all. The
+ * leak runs in both directions.
+ *
+ * Those labels stay as they are, per the same rule D-137 set: the ids still
+ * resolve, only the checkbox stops rendering, and re-saving would silently drop
+ * them. They are also the evidence for the edit.
+ *
  * **No entry may be tagged both `design-intent` and `code-idiom`.** Those two
  * rubrics differ by what it costs to be wrong, not by subject, so a diagnosis
  * belongs to exactly one of them: if it is fixed by moving a file or a
@@ -124,7 +179,13 @@
  *
  * `api-design` tags exist but are never shown — the rubric is ungated and its
  * `requires: ["schema"]` is unmet across the suite. `callback-props` was picked
- * once, necessarily under a rubric that was not asking about the API.
+ * once, necessarily under a rubric that was not asking about the API; it now
+ * also carries `design-intent`, whose criterion names it in as many words —
+ * "behaviour threaded through props where the references keep it in the client
+ * bundle" — so the diagnosis is reachable from a rubric that is actually being
+ * asked. `open-variant` gained `api-design` for the mirror-image reason: both
+ * criteria name closed variant sets, and the two are different axes on it
+ * rather than one rubric borrowing the other's subject.
  *
  * **No label contains a comma.** Notes are still free text and still joined
  * with ", " when several people have written on one pair, so a comma inside a

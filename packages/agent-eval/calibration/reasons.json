@@ -20,23 +20,18 @@
     "rubrics": ["code-idiom"]
   },
   {
+    "id": "wrong-placement",
+    "label": "files placed somewhere the references do not put them",
+    "rubrics": ["code-idiom"]
+  },
+  {
     "id": "tokens-inline",
     "label": "component tokens declared inline instead of in the _{slug}-tokens.scss partial",
     "rubrics": ["code-idiom"]
   },
   {
-    "id": "invented-tokens",
-    "label": "invents tokens that do not exist in the system",
-    "rubrics": ["token-reasoning"]
-  },
-  {
     "id": "no-component-tokens",
     "label": "no --dsa-* component token layer — consumes --ks-* semantics directly",
-    "rubrics": ["token-reasoning"]
-  },
-  {
-    "id": "hardcoded-fallbacks",
-    "label": "hard-coded literal fallbacks in var() declarations",
     "rubrics": ["token-reasoning"]
   },
   {
@@ -57,12 +52,12 @@
   {
     "id": "callback-props",
     "label": "event-handler props on what should be a static component definition",
-    "rubrics": ["api-design"]
+    "rubrics": ["design-intent", "api-design"]
   },
   {
     "id": "wrong-token-prefix",
     "label": "component tokens declared under an invented prefix — not --dsa-*",
-    "rubrics": ["token-reasoning"]
+    "rubrics": ["code-idiom"]
   },
   {
     "id": "reimplements-primitive",
@@ -82,16 +77,16 @@
   {
     "id": "open-variant",
     "label": "variant taken as a free-form string where the references use a closed set",
-    "rubrics": ["design-intent"]
+    "rubrics": ["design-intent", "api-design"]
   },
   {
     "id": "no-forward-ref",
-    "label": "does not forward a ref, so a parent cannot compose or measure it",
+    "label": "does not forward a ref — a parent cannot compose or measure it",
     "rubrics": ["design-intent"]
   },
   {
     "id": "styling-props",
-    "label": "spacing, colour or layout left configurable where the references fix it",
+    "label": "spacing or layout left configurable where the references fix it",
     "rubrics": ["design-intent", "api-design"]
   },
   {
