@@ -3793,7 +3793,7 @@ and the pick list are one artefact in two files with nothing tying them
 together — D-138 changed one and left the other pointing at the previous
 version for two sessions.
 
-**Next free decision number: D-145.**
+**Superseded — see the footer at the end of this document.**
 
 ## D-141 — the calibration came back, and the disagreements clustered
 
@@ -3947,4 +3947,120 @@ hashed and no verdict is re-keyed.
 to ask. An answer sheet made only of mechanical chips makes every rater
 mechanical, and then the expensive instrument is buying agreement on questions a
 `grep` settles.
+
+## D-145 — the fourth re-judge, and an instruction that only half took
+
+$5.63, 168 calls, nothing cached: the first measurement of the three sharpened
+criteria, each of which now names the settled mechanical objections and tells
+the judge they are already counted.
+
+```
+Agreement — 104/141 overall
+  ✗ design-intent       77%  (30/39)  kappa 0.54  [not scored]
+  ✗ token-reasoning     65%  (33/51)  kappa 0.37  [not scored]
+  ✓ code-idiom          80%  (41/51)  kappa 0.61
+```
+
+The judge did **not** collapse to uniform pass, which was the risk of telling it
+to stop citing the easy things. But the instruction only half took: roughly 57
+of 67 fails still cite grep-able facts. The pattern is consistent and one-sided
+— when the judge wants to _pass_ it defers ("this is checked by deterministic
+graders", "deterministic graders cover that separately"), and when it wants to
+_fail_ it forgets. Exclusion by instruction buys compliance exactly where
+compliance costs nothing.
+
+All nine `design-intent` misses are the human citing a mechanical chip and the
+judge correctly declining it. Those labels are stale by construction: they were
+written against a criterion that no longer asks the question they answer. This
+is D-126 recurring — fixing an instrument invalidates what was calibrated
+against it (lesson br) — and it means the 77% is not a measurement of the new
+criterion at all.
+
+A verdict-store audit turned up a hygiene problem while counting: 12
+`design-intent` verdicts for `812-restyle-with-tokens` from before
+`requires: ["component"]` existed. Calibration filters them correctly (39 pairs,
+not 51); anything reading `judge.json` directly does not. The cause is that
+`criterionHash` covers the criterion _text only_ — not `requires`, not
+`include` — so a gating change leaves superseded verdicts looking current. They
+are left in place deliberately, as evidence for D-146.
+
+**Lesson (bz):** an instruction telling a judge to ignore what it can already
+see is obeyed when it wants to pass and forgotten when it wants to fail. If an
+objection must not count, remove the evidence for it or remove the rubric — do
+not ask nicely.
+
+**Lesson (ca):** a verdict cache keyed on criterion text alone survives a gating
+change, so verdicts the current configuration would never buy still look
+current.
+
+## D-146 — the one rubric that looked worth the money was making it up
+
+`api-design` came out of D-145 looking like the only rubric earning its price:
+the only stored verdicts whose objections no grader could reach, all of them
+about the schema-to-props contract rather than about spelling. Four were quoted
+as the case for promoting it. Three actions followed, in order — promote it,
+grade what could be graded, then deal with `token-reasoning`. The first two
+inverted each other.
+
+**It has no material, and that is correct.** `pnpm calibrate` reports zero
+candidates: `requires: ["schema"]` and every fixture ships the schema with a
+brief saying to leave it alone, so the agent never authors one. The 48 verdicts
+are fossils from before the gate existed. The doc comment saying so was accurate
+and the claim that it was stale was wrong.
+
+**`schema-conformance` (1.6) built to catch what the fossils described** — the
+schema is the one part of the task that is not the agent's opinion, and nothing
+checked whether it was implemented. Mention-based on purpose: a property counts
+as implemented if its name appears in the component's TypeScript sources, which
+is weak in the safe direction, because a grader must not invent violations.
+
+It scores **1.00 on 67 design-system components and 1.00 on all 36 applicable
+trials** — no discriminating power whatsoever. That reads as a broken check
+until you use it as an oracle on the four quoted objections:
+
+| the fossil verdict said                                   | the schema it was shown says                                            |
+| --------------------------------------------------------- | ----------------------------------------------------------------------- |
+| omits `actionUrl`, "non-functional as a link"              | `headline, message, variant, actionLabel, actionIcon, dismissLabel` — no `actionUrl` |
+| flattens a `cta` object into `actionLabel`/`actionIcon`    | already flat; there is no `cta`                                          |
+| renames `label`→`summary`, `body`→`content`, "breaking the contract other teams depend on" | declares `summary` and `content` — the component was faulted for conforming |
+| `content: string` against the schema's `format: markdown`  | `{"type": "string"}`; no `format`                                        |
+
+**Four for four, each inverted in the direction of an objection.** The grader is
+not blind; there was nothing there. This is D-102 one step worse: there the
+judge invented a schema it had never been seen, here it contradicted one sitting
+in its own prompt. The rubric stays gated and the fossils stay on disk, cited
+from `rubrics.ts`, because deleting them would make this entry unverifiable.
+
+**`token-reasoning` retired.** Over 60 calls it produced the verdict it was
+written for exactly once, and it was a good one —
+`--ks-text-color-primary-interactive` "is semantically meant for interactive
+text elements, not decorative icons", naming two better tokens. The other 21
+fails restate `token-conformance` in prose, 11 calls returned `unknown`, it
+never cleared calibration (69%, kappa 0.37), and it failed self-consistency
+outright: **0 of 1 repeated components answered the same way**, so identical
+code drew opposite verdicts. It had already been narrowed by instruction this
+round and the narrowing did not take (lesson bz). A second wording is not worth
+60 calls a round against a measured reliability of zero. Verdicts and labels
+stay; reinstating means restoring the object and re-judging.
+
+That leaves one scored rubric, `code-idiom`, at 80% / kappa 0.61 — and D-144
+already showed graders beat the judge on two of the three it was measured
+against. The judge is now a minority instrument by evidence rather than by
+policy.
+
+**Lesson (cb):** a rubric deferred for lack of material may still have a full
+store of verdicts from before it was deferred. Check the store, not the doc
+comment — and check what the store says against the artefact, not against how
+convincing it reads.
+
+**Lesson (cc):** a judge fabricates most fluently about the artefact it has been
+shown, because that is where it has the vocabulary to be specific. Confabulation
+looks like detail.
+
+**Lesson (cd):** a grader that finds nothing has still measured something. Zero
+variance on both the reference and the trials is a finding about the corpus, and
+it is the only thing that can adjudicate a judge's claim about the same facts.
+
+**Next free decision number: D-147.**
+
 

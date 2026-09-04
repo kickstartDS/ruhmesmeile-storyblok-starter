@@ -225,39 +225,69 @@ foreign.
 Do not reward or punish visual taste. Answer "unknown" only if the reference
 components do not speak to the kind of component being judged.`,
   },
-  {
-    id: "token-reasoning",
-    /*
-     * Never cleared the bar — 69%, and this flag read `true` anyway. Nothing
-     * was measured to justify it; it predates the first calibration and was
-     * simply never revisited, which is the failure the flag exists to prevent
-     * (D-144).
-     */
-    calibrated: false,
-    label: "Token choices are semantically right, not merely valid",
-    include: { styles: true, tokenNames: true },
-    criterion: `Are the design tokens used here the semantically correct ones?
-
-A stylesheet can reference nothing but real tokens and still be wrong: using a
-brand colour where a semantic foreground token is meant, reaching for a heading
-token to size body copy, or hard-coding a value that a token exists for.
-
-Whether every referenced token exists, whether any raw hex values were used,
-whether a --dsa-* component layer is present and whether its prefix is the
-conventional one are all settled deterministically before you are asked. Those
-are questions about validity. Yours is about *choice*, and the token list you
-have been given is there to tell you what the alternatives were — not to be
-checked against.
-
-A "fail" therefore has to name the token that should have been used instead. If
-you cannot name a better one from the list, you have not found a semantic
-objection, and the answer is "pass".
-
-Say "unknown" rather than guessing when a token's intended meaning is not
-recoverable from its name.`,
-  },
+  /*
+   * `token-reasoning` was retired here (D-146). It asked whether a token choice
+   * was semantically right rather than merely valid — the one token question no
+   * grader can answer — and over 60 calls it answered it once:
+   *
+   *   "--ks-text-color-primary-interactive is semantically meant for
+   *    interactive text elements, not decorative icons. A more appropriate
+   *    choice would be --ks-text-color-interface or --ks-text-color-default."
+   *
+   * That is exactly the verdict the rubric was written to produce, and it is
+   * the only one. The other 21 fails restated `token-conformance` in prose,
+   * 11 calls returned "unknown", it never cleared calibration (69%, kappa 0.37),
+   * and it failed self-consistency outright: 0 of 1 repeated components were
+   * answered the same way, meaning identical code drew opposite verdicts.
+   *
+   * It was narrowed by instruction first — the criterion was rewritten to name
+   * validity as settled and to require a fail to name the better token — and
+   * the rewrite did not take. The judge deferred to the graders when it wanted
+   * to pass and forgot them when it wanted to fail. A second wording was not
+   * worth another 60 calls a round against a measured reliability of zero.
+   *
+   * Retiring the rubric leaves its 60 stored verdicts and 47 human labels in
+   * place, as with the retired reason chips: the dictionary entry goes, the
+   * stored ids keep their meaning. Reinstating it means restoring this object
+   * and re-judging, and is cheap enough to do if a better instrument for the
+   * question appears — a grader that models token intent, or a second rater.
+   */
   {
     id: "api-design",
+    /*
+     * Correctly gated, and deliberately left that way (D-146).
+     *
+     * `requires: ["schema"]` yields no material anywhere in the Phase 1 matrix,
+     * because every fixture ships the schema and every brief says to leave it
+     * alone — so the agent never authors one. `pnpm calibrate` reports zero
+     * candidates for this rubric. That is the gate working, not a gap.
+     *
+     * Forty-eight verdicts from before the gate existed survive in the stores.
+     * They were read back in full, because they looked like the only judge
+     * output no grader could reach: objections about the schema-to-props
+     * contract rather than about spelling. Checked against the schemas the
+     * judge had been shown, all four of the strongest were fabrications.
+     *
+     *   - faulted a component for omitting `actionUrl`; the schema declares
+     *     headline, message, variant, actionLabel, actionIcon, dismissLabel,
+     *     and has no such property
+     *   - faulted it for flattening a `cta` object into actionLabel/actionIcon;
+     *     the schema is already flat and has no `cta`
+     *   - faulted a component for renaming `label` to `summary` and `body` to
+     *     `content`; the schema declares summary and content, so the component
+     *     was faulted for conforming to it
+     *   - faulted `content: string` against a `format: markdown` the schema
+     *     does not declare
+     *
+     * Every one inverts the truth in the direction of an objection. This is the
+     * D-102 failure one step worse: there the judge invented a schema it had
+     * never been shown, here it contradicted one sitting in its own prompt.
+     *
+     * The checkable part of the question now lives in the `schema-conformance`
+     * grader, which reads both lists and scores 1.00 on every trial — which is
+     * how the fabrications were caught. Do not enable this rubric on the
+     * strength of those verdicts.
+     */
     calibrated: false,
     label: "The public API would survive a second use case",
     include: { prompt: true, schema: true, exemplars: true },

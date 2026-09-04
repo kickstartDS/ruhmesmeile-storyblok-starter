@@ -3636,3 +3636,42 @@ demonstrated on a task that asks one.
 
 Lesson (by): check what a rater actually said, not what the rubric claims to
 ask. A pick list of mechanical chips makes every rater mechanical.
+
+### Amendment to ADR 91 (verified 2026-09-04)
+
+ADR 91 concluded that the graders match the judge because nobody had ever asked
+the judge a judgment question, and left one escape open: a rubric might still
+earn its per-call price by answering something no check can. `api-design` looked
+like that rubric. Its 48 stored verdicts were the only judge output in the
+corpus whose objections no grader could reach — schema-to-props contract
+divergence, not spelling.
+
+The escape is closed, and not by argument.
+
+`api-design` produces zero calibration candidates: `requires: ["schema"]`, and
+no fixture lets the agent author a schema. The 48 verdicts predate that gate. A
+new deterministic grader, `schema-conformance`, was built to take over the
+checkable part of the question and scored 1.00 on all 67 design-system
+components and all 36 applicable trials — which made it a usable oracle for the
+verdicts themselves. All four of the strongest fossil objections were checked
+against the schema the judge had been shown in its own prompt, and all four were
+fabrications, each inverted in the direction of an objection: a property that
+does not exist, a nesting that is already flat, a rename where the component in
+fact conformed, and a `format` the schema does not declare.
+
+So the one rubric that looked like it was buying something no check could buy
+was buying fiction. Combined with the retirement of `token-reasoning` — one
+usable verdict in 60 calls, and 0-of-1 self-consistency on identical code — the
+judge is down to a single scored rubric, `code-idiom`, on which it does beat the
+graders (80% vs 65%). That is now the whole of its demonstrated value.
+
+ADR 91's ordering stands and its cost argument strengthens. The remaining test
+is unchanged and still unrun: `824-api-from-behaviour` is the only task that
+leaves the API open, and it is the only condition under which `api-design` has
+ever been designed to produce material honestly. Nothing in the Phase 1 stores
+should be read as evidence about it.
+
+Lesson (cc): a judge fabricates most fluently about the artefact it has been
+shown, because that is where it has the vocabulary to be specific.
+Confabulation looks like detail — and it is checkable, which is the argument for
+building the grader before believing the verdict.

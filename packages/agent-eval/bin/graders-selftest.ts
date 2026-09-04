@@ -17,6 +17,7 @@ import { join, relative } from "node:path";
 import { componentContract } from "../lib/graders/component-contract";
 import { purity } from "../lib/graders/purity";
 import { authoringSeams } from "../lib/graders/authoring-seams";
+import { schemaConformance } from "../lib/graders/schema-conformance";
 import { tokenConformance } from "../lib/graders/token-conformance";
 import { bem } from "../lib/graders/bem";
 import { stylePlacement } from "../lib/graders/style-placement";
@@ -36,6 +37,7 @@ const FLOORS: Record<string, number> = {
   "component-contract": 0.75,
   purity: 0.6,
   "authoring-seams": 0.85,
+  "schema-conformance": 0.9,
   "token-conformance": 0.75,
   bem: 0.7,
   "style-placement": 0.75,
@@ -104,6 +106,7 @@ const graders = {
   "component-contract": componentContract,
   purity,
   "authoring-seams": authoringSeams,
+  "schema-conformance": schemaConformance,
   "token-conformance": tokenConformance,
   bem,
   "style-placement": stylePlacement,

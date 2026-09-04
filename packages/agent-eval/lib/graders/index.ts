@@ -9,6 +9,7 @@
 import { componentContract } from "./component-contract";
 import { purity } from "./purity";
 import { authoringSeams } from "./authoring-seams";
+import { schemaConformance } from "./schema-conformance";
 import { tokenConformance } from "./token-conformance";
 import { schemaValidity } from "./schema-validity";
 import { bem } from "./bem";
@@ -28,6 +29,7 @@ export const QUALITY_GRADERS: Grader[] = [
   componentContract,
   purity,
   authoringSeams,
+  schemaConformance,
   tokenConformance,
   schemaValidity,
   bem,
