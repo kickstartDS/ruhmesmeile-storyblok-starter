@@ -3540,27 +3540,27 @@ The list as it now stands, and the test each entry passes. For the
 survives renaming every identifier and moving every file is design-intent's,
 and everything else is code-idiom's.
 
-| Reason | Rubric(s) | Why it sits there |
-| --- | --- | --- |
-| `schema-types` | code-idiom, api-design | Delete the hand-written interface, add an import. Spans two axes rather than two ends of one. |
-| `react-behaviour` | design-intent | Moving behaviour into the client bundle is a rewrite. Was tagged both; D-137 made it design-intent's alone, and D-139's inversion was this objection. |
-| `identifier-inline` | code-idiom | Delete a line, add an import. |
-| `wrong-filename` | code-idiom | A rename. |
-| `wrong-placement` | code-idiom | A move. Added D-140 from the D-139 verdict — `wrong-filename` covers what a file is called, not where it was put. |
-| `tokens-inline` | code-idiom | "Adding a missing file alongside the ones that are there" — named in design-intent's criterion as explicitly *not* its business. |
-| `no-component-tokens` | token-reasoning | Which layer a value was taken from. The only surviving chip that asks about choice rather than validity. |
-| `wrong-prefix` | code-idiom | Find-and-replace. |
-| `no-defaults` | code-idiom | An import and a line. |
-| `inline-classnames` | code-idiom | Delete, import. |
-| `callback-props` | design-intent, api-design | "Behaviour threaded through props where the references keep it in the client bundle" — design-intent's criterion, verbatim. Gained that tag in D-140; `api-design` alone left it unreachable. |
-| `wrong-token-prefix` | code-idiom | `wrong-prefix`'s twin. Retagged from `token-reasoning` in D-140 — it was filed under tokens for having "token" in the name. |
-| `reimplements-primitive` | design-intent | Composing instead of re-implementing is a rewrite. |
-| `not-overridable` | design-intent | code-idiom's criterion now ships "whether consumers can substitute it" here explicitly. |
-| `monolithic` | design-intent | Decomposition is a rewrite. |
-| `open-variant` | design-intent, api-design | Both criteria name closed variant sets; gained `api-design` in D-140. |
-| `no-forward-ref` | design-intent | code-idiom's criterion explicitly excludes ref-forwarding. |
-| `styling-props` | design-intent, api-design | Both criteria name it. |
-| `wrong-kind` | design-intent | "The kind of component the brief called for at all." |
+| Reason                   | Rubric(s)                 | Why it sits there                                                                                                                                                                             |
+| ------------------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schema-types`           | code-idiom, api-design    | Delete the hand-written interface, add an import. Spans two axes rather than two ends of one.                                                                                                 |
+| `react-behaviour`        | design-intent             | Moving behaviour into the client bundle is a rewrite. Was tagged both; D-137 made it design-intent's alone, and D-139's inversion was this objection.                                         |
+| `identifier-inline`      | code-idiom                | Delete a line, add an import.                                                                                                                                                                 |
+| `wrong-filename`         | code-idiom                | A rename.                                                                                                                                                                                     |
+| `wrong-placement`        | code-idiom                | A move. Added D-140 from the D-139 verdict — `wrong-filename` covers what a file is called, not where it was put.                                                                             |
+| `tokens-inline`          | code-idiom                | "Adding a missing file alongside the ones that are there" — named in design-intent's criterion as explicitly _not_ its business.                                                              |
+| `no-component-tokens`    | token-reasoning           | Which layer a value was taken from. The only surviving chip that asks about choice rather than validity.                                                                                      |
+| `wrong-prefix`           | code-idiom                | Find-and-replace.                                                                                                                                                                             |
+| `no-defaults`            | code-idiom                | An import and a line.                                                                                                                                                                         |
+| `inline-classnames`      | code-idiom                | Delete, import.                                                                                                                                                                               |
+| `callback-props`         | design-intent, api-design | "Behaviour threaded through props where the references keep it in the client bundle" — design-intent's criterion, verbatim. Gained that tag in D-140; `api-design` alone left it unreachable. |
+| `wrong-token-prefix`     | code-idiom                | `wrong-prefix`'s twin. Retagged from `token-reasoning` in D-140 — it was filed under tokens for having "token" in the name.                                                                   |
+| `reimplements-primitive` | design-intent             | Composing instead of re-implementing is a rewrite.                                                                                                                                            |
+| `not-overridable`        | design-intent             | code-idiom's criterion now ships "whether consumers can substitute it" here explicitly.                                                                                                       |
+| `monolithic`             | design-intent             | Decomposition is a rewrite.                                                                                                                                                                   |
+| `open-variant`           | design-intent, api-design | Both criteria name closed variant sets; gained `api-design` in D-140.                                                                                                                         |
+| `no-forward-ref`         | design-intent             | code-idiom's criterion explicitly excludes ref-forwarding.                                                                                                                                    |
+| `styling-props`          | design-intent, api-design | Both criteria name it.                                                                                                                                                                        |
+| `wrong-kind`             | design-intent             | "The kind of component the brief called for at all."                                                                                                                                          |
 
 Two entries were also reworded because they contained commas, which the file
 forbids — notes from several raters are joined with `", "` when rendered.
@@ -3573,3 +3573,66 @@ Lesson (bt): fixing an instrument silently invalidates whatever was calibrated
 against it. The criteria and the pick list are one artefact split across two
 files with nothing linking them, and the split held a stale version for two
 sessions without complaint.
+
+### Amendment to ADR 90 (verified 2026-09-04)
+
+The corpus held one client file, `Gallery.client.js`, flat — and the design
+system puts eight there and five under `js/`. `roles()` could spell only the
+first, so it dropped the second silently. The judge generalised the single
+sample into a rule and objected to `js/` placement in eight of its ten
+`code-idiom` false failures.
+
+Repairing the evidence rather than the criterion worked, and cost exactly what
+it gained. `code-idiom` rose 73% → 82% (κ 0.41 → 0.65) and the `js/` cluster
+disappeared. `design-intent` fell 87% → 74% (κ 0.75 → 0.49), its false passes
+doubling, with the judge citing the new exemplar as licence — _"like NavToggle
+does"_. Overall agreement was 106/141 before and 106/141 after.
+
+ADR 90 separated the two rubrics by what each is **asked**. It did not separate
+them by what each is **shown**, and they still share one corpus. That corpus is
+therefore a single control with opposite signs on the two rubrics, and no
+setting of it improves both. Per-rubric corpora are the available fix, but
+choosing one by which score improves is fitting to the labels, so the decision
+has to be argued from what each rubric is for.
+
+Lesson (bv): shared evidence is a shared control surface.
+
+## ADR 91 — the graders match the judge, because nobody ever asked a judgment question
+
+**Context.** Two verified confabulations — one per instrument, on the same
+predicate — showed the agreement rate was never judge accuracy, only agreement
+between two fallible raters. Both were checkable by `grep`. That prompted a
+sweep of all 141 labels against the deterministic grader check ids, to find
+which labels were mispriced.
+
+It found none, and something worse. Every chip in use maps onto a grader:
+`code-idiom`'s seven chips (84 uses) onto `component-contract`,
+`authoring-seams`, `bem` and `style-placement`; `design-intent`'s four (39
+uses, 33 of them onto `purity`, which had been grading them all along);
+`token-reasoning`'s four onto `token-conformance`. The five judgment-shaped
+chips were never used once. The twenty-one free-text notes are mechanical in
+every clause. Five fails carry no justification at all.
+
+**Decision.** Measure the graders against the human directly, with an unfitted
+rule — every applicable check perfect, or fail. Result: **78% overall against
+the judge's 75%**, at zero marginal cost. `design-intent` 95% against the
+judge's 74%; `token-reasoning` 77% against 69%; `code-idiom` 65% against 82%,
+its weakness an artefact of aggregating four graders under all-must-pass.
+Twenty-nine of thirty-one misses run `human=pass, graders=fail` — the rule is
+too strict, not wrong.
+
+**Consequences.** The LLM judge is not currently measuring anything the graders
+cannot, and three rounds of criterion and corpus work were spent tuning an
+instrument against labels whose every stated reason was mechanical. The honest
+reading is not that judgment is unnecessary; it is that **this eval set never
+poses a judgment question.** `810`, `812`, `832`, `840` and `860` are
+conformance tasks, and conformance is what a grader is for. `824-api-from-
+behaviour` — built under ADR 75 precisely to leave the API open — has never run,
+and is the only place the five unused chips could have been earned.
+
+So the next money goes to `824`, not to a fourth re-judge. A rubric earns its
+per-call price by answering something no check can, and that has to be
+demonstrated on a task that asks one.
+
+Lesson (by): check what a rater actually said, not what the rubric claims to
+ask. A pick list of mechanical chips makes every rater mechanical.

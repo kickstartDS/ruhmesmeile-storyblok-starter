@@ -53,12 +53,62 @@ const COMPONENTS = fileURLToPath(
  * file: the `Component`/`define` base, the `identifier` export, and listeners
  * that are removed again (D-129).
  *
- * Deliberately not `section`, which is the other well-formed candidate: its
- * client directory holds `spotlight.client.js`, and `spotlight` is an eval
- * target. The guard below only catches a slug collision, not our own answer
- * arriving inside somebody else's exemplar.
+ * `nav-toggle` is here because the corpus was misrepresenting the design system
+ * on the single point `code-idiom` disagreed with its rater about most. Eight
+ * of that rubric's ten false failures were one objection — client JS in a `js/`
+ * subdirectory rather than flat beside the component — reasoned from
+ * `Gallery.client.js` as though it were the rule. The design system does both:
+ * eight client files sit flat, five sit under `js/` (`section`, `nav-main`).
+ * The corpus showed one half, the judge generalised it into a convention, and
+ * then applied it inconsistently — excusing the same placement on three trials
+ * and failing it on eight. That is a sampling defect in the evidence, not a
+ * fault in the question, so it is repaired here rather than in the criterion
+ * (D-142).
+ *
+ * It is the one well-formed `js/` example that is not `section`, and it is a
+ * component in its own right: `NavToggleComponent.tsx` pairs with
+ * `js/NavToggle.client.js`, with `nav-toggle.scss` and `_nav-toggle-tokens.scss`
+ * alongside. It has no schema of its own, which is allowed — a role may be
+ * absent. Its client file carries the convention a second time in a different
+ * shape from Gallery's: `identifier`, `define`, `handleEvent` dispatch, and
+ * listeners added and removed in matching pairs.
+ *
+ * It overlaps the `disclosure` target in kind — both are open/close behaviour —
+ * which is the risk `gallery` already carries and is not the risk the guard
+ * exists to prevent. This is not our answer to that task; it is a different
+ * component that happens to toggle.
+ *
+ * Still deliberately not `section`, and the reason is stronger than it first
+ * looked. `section` does not merely *contain* `spotlight.client.js`: it is
+ * threaded through with our answer to the `spotlight` eval — a `spotlight`
+ * prop, a `--spotlight` modifier, four `--dsa-section__spotlight--*` tokens, a
+ * schema field, and a `Section.client.js` whose body lazy-imports
+ * `initSpotlight`. Selecting roles by exact filename would keep
+ * `spotlight.client.js` itself out of the corpus and still hand the judge most
+ * of the implementation. The guard below catches a slug collision; it cannot
+ * catch this, which is why the list stays curated and short.
  */
-const EXEMPLARS = ["button", "breadcrumb", "gallery"];
+
+/**
+ * An exemplar's directory and its component slug, which are usually the same.
+ *
+ * `nav-toggle` is the exception that forces the distinction: a component with
+ * its own stylesheet, token partial, React file and client file, living inside
+ * `nav-main/` rather than in a directory of its own. Naming the two separately
+ * is what lets the corpus show it without also dragging in the unrelated
+ * `NavMainComponent.tsx` and `nav-main.scss` beside it.
+ */
+interface Exemplar {
+  dir: string;
+  slug: string;
+}
+
+const EXEMPLARS: Exemplar[] = [
+  { dir: "button", slug: "button" },
+  { dir: "breadcrumb", slug: "breadcrumb" },
+  { dir: "gallery", slug: "gallery" },
+  { dir: "nav-main", slug: "nav-toggle" },
+];
 
 /**
  * The files that show how a component is built, as roles rather than names.
@@ -73,6 +123,13 @@ const EXEMPLARS = ["button", "breadcrumb", "gallery"];
  * `existsSync` dropped it and the corpus had been showing three of that
  * component's four files since the day it was written. Both spellings are in
  * the design system today; neither is wrong (D-130).
+ *
+ * The client role now accepts both placements for exactly the same reason. This
+ * design system puts client files flat beside the component *and* under `js/`,
+ * and a corpus that can only see the first spelling drops the file silently for
+ * every component that uses the second — which is how the judge came to believe
+ * flat was the only legal answer (D-142). Flat is listed first, so a component
+ * carrying both would still be shown the way `gallery` writes it.
  */
 const roles = (slug: string): string[][] => {
   const pascal = slug.replace(/(^|-)(\w)/g, (_, __, c: string) =>
@@ -81,7 +138,7 @@ const roles = (slug: string): string[][] => {
 
   return [
     [`${pascal}Component.tsx`],
-    [`${pascal}.client.js`],
+    [`${pascal}.client.js`, `js/${pascal}.client.js`],
     [`${slug}.scss`],
     [`_${slug}-tokens.scss`, `${slug}-tokens.scss`],
     [`${slug}.schema.json`],
@@ -106,24 +163,26 @@ export function referenceCorpus(): string {
   }
 
   const targets = new Set(Object.values(TARGETS).map((target) => target.slug));
-  const collisions = EXEMPLARS.filter((slug) => targets.has(slug));
+  const collisions = [
+    ...new Set(EXEMPLARS.flatMap(({ dir, slug }) => [dir, slug])),
+  ].filter((slug) => targets.has(slug));
   if (collisions.length) {
     throw new Error(
       `Exemplar(s) ${collisions.join(", ")} are also eval targets. An exemplar that is a target turns a style rubric into a diff against our own answer.`,
     );
   }
 
-  const sections = EXEMPLARS.flatMap((slug) =>
+  const sections = EXEMPLARS.flatMap(({ dir, slug }) =>
     roles(slug)
       .map((spellings) =>
         spellings
-          .map((file) => ({ file, path: join(COMPONENTS, slug, file) }))
+          .map((file) => ({ file, path: join(COMPONENTS, dir, file) }))
           .find((entry) => existsSync(entry.path)),
       )
       .filter((entry) => entry !== undefined)
       .map(
         (entry) =>
-          `\n----- ${slug}/${entry.file} -----\n${readFileSync(entry.path, "utf8")}`,
+          `\n----- ${dir}/${entry.file} -----\n${readFileSync(entry.path, "utf8")}`,
       ),
   );
 

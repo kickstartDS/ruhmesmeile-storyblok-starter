@@ -68,6 +68,34 @@ const readMap = (path: string): Record<string, Label> =>
   JSON.parse(readFileSync(path, "utf8")) as Record<string, Label>;
 
 /**
+ * Does this file look like a label map?
+ *
+ * `--from ~/Downloads` is the documented way to merge labels saved through the
+ * browser, and a downloads folder is the least curated directory on the
+ * machine. Reading every `.json` in it assumed the only JSON anyone ever
+ * downloads is labels; the first real use hit a Storyblok product export and
+ * died on a quoted product name, before printing anything about the 141 labels
+ * sitting next to it.
+ *
+ * So the filter is by shape, not by extension. A label map is an object whose
+ * values carry a `verdict` and a `labelledAt` — enough to be sure, cheap to
+ * check, and it lets the empty map through, which is what a rater with nothing
+ * graded yet legitimately has.
+ */
+function isLabelMap(value: unknown): value is Record<string, Label> {
+  if (typeof value !== "object" || value === null || Array.isArray(value))
+    return false;
+
+  return Object.values(value).every(
+    (label) =>
+      typeof label === "object" &&
+      label !== null &&
+      "verdict" in label &&
+      "labelledAt" in label,
+  );
+}
+
+/**
  * Stream the remote label directory into a scratch tree.
  *
  * Two processes rather than one `ssh … | tar x` shell string: the host is
@@ -112,17 +140,47 @@ function fetchInto(directory: string): void {
   execFileSync("tar", ["x", "-C", directory], { input: tar });
 }
 
-/** Every `<rater>.json` in a directory, as [rater, labels]. */
+/**
+ * Every `<rater>.json` in a directory that is actually a label map, as
+ * [rater, labels].
+ *
+ * The two ways to be skipped are reported differently on purpose. A file of a
+ * different shape is just somebody else's JSON sharing a folder — there were
+ * 38 of them the first time this ran, and naming each would bury the one line
+ * that matters. A file that does not parse at all is ambiguous: most likely
+ * also somebody else's, but possibly a truncated label file, and a rater whose
+ * session went missing needs to see that filename.
+ */
 function ratersIn(directory: string): Array<[string, Record<string, Label>]> {
   if (!existsSync(directory)) return [];
 
-  return readdirSync(directory)
-    .filter((file) => file.endsWith(".json"))
-    .sort()
-    .map((file) => [
-      file.replace(/\.json$/, ""),
-      readMap(join(directory, file)),
-    ]);
+  const raters: Array<[string, Record<string, Label>]> = [];
+  let foreign = 0;
+
+  for (const file of readdirSync(directory)
+    .filter((f) => f.endsWith(".json"))
+    .sort()) {
+    let parsed: unknown;
+
+    try {
+      parsed = readMap(join(directory, file));
+    } catch {
+      console.log(`  skipped ${file} — not valid JSON`);
+      continue;
+    }
+
+    if (!isLabelMap(parsed)) {
+      foreign += 1;
+      continue;
+    }
+
+    raters.push([file.replace(/\.json$/, ""), parsed]);
+  }
+
+  if (foreign)
+    console.log(`  skipped ${foreign} file(s) that are not label maps`);
+
+  return raters;
 }
 
 interface Change {

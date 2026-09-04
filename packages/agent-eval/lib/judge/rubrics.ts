@@ -145,7 +145,14 @@ export const PAIRED: ReadonlyArray<readonly [string, string]> = [
 export const RUBRICS: Rubric[] = [
   {
     id: "design-intent",
-    calibrated: true,
+    /*
+     * Withdrawn at 74% (D-144). It cleared at 87% before the corpus gained a
+     * second client-file placement and then paid for that repair one-for-one,
+     * its false passes doubling as the judge read the new exemplar as licence.
+     * The bar is the bar in both directions, and the pre-repair reading was
+     * taken against an instrument now known to have been sampling wrong.
+     */
+    calibrated: false,
     label: "Built like this design system — differences need a rewrite",
     /**
      * The stylesheet is deliberately withheld (D-134).
@@ -196,6 +203,18 @@ in the candidate and moving every file it wrote, it is one of yours.
 You are deliberately not shown the stylesheet, for the same reason: almost
 nothing that can be seen in it costs a rewrite to fix.
 
+Four objections are already settled and are not yours to make. Deterministic
+graders check, on every trial, whether behaviour sits in React state or effects
+instead of the client bundle, whether the component forwards a ref, whether it
+exposes a Context/Provider seam, and whether it hand-rolls markup an existing
+component provides. They do not confabulate and they cost nothing. Restating
+any of them adds no information to this measurement.
+
+So a "fail" here must rest on something those checks cannot express. State it
+that way: name the shape the candidate took and the shape the references take,
+in terms that survive every identifier being renamed and every file moved. If
+the only thing you can point to is one of the four above, the answer is "pass".
+
 A component can be entirely correct, idiomatically named, and still be the wrong
 shape: a single element where the references use a compound, a free-form variant
 string where the references use a closed set, behaviour threaded through props
@@ -208,16 +227,31 @@ components do not speak to the kind of component being judged.`,
   },
   {
     id: "token-reasoning",
-    calibrated: true,
+    /*
+     * Never cleared the bar — 69%, and this flag read `true` anyway. Nothing
+     * was measured to justify it; it predates the first calibration and was
+     * simply never revisited, which is the failure the flag exists to prevent
+     * (D-144).
+     */
+    calibrated: false,
     label: "Token choices are semantically right, not merely valid",
     include: { styles: true, tokenNames: true },
     criterion: `Are the design tokens used here the semantically correct ones?
 
 A stylesheet can reference nothing but real tokens and still be wrong: using a
 brand colour where a semantic foreground token is meant, reaching for a heading
-token to size body copy, or hard-coding a value that a token exists for. The
-deterministic graders already checked that every token referenced exists and
-that no raw hex values were used — you are judging *choice*, not validity.
+token to size body copy, or hard-coding a value that a token exists for.
+
+Whether every referenced token exists, whether any raw hex values were used,
+whether a --dsa-* component layer is present and whether its prefix is the
+conventional one are all settled deterministically before you are asked. Those
+are questions about validity. Yours is about *choice*, and the token list you
+have been given is there to tell you what the alternatives were — not to be
+checked against.
+
+A "fail" therefore has to name the token that should have been used instead. If
+you cannot name a better one from the list, you have not found a semantic
+objection, and the answer is "pass".
 
 Say "unknown" rather than guessing when a token's intended meaning is not
 recoverable from its name.`,
@@ -268,6 +302,19 @@ another rubric is asking about them; raising them here does not count them
 twice, it makes this measurement a copy of that one. A candidate that is built
 wrong but named, placed and imported exactly the way the references are is a
 "pass" here.
+
+It is also bounded by what has already been checked. File naming and placement,
+the presence of the conventional companion files, class-name prefixes and BEM
+shape, stylesheet self-import, whether component tokens live in their partial,
+whether props and defaults live in their own modules, and whether the client
+identifier is imported rather than re-declared — every one of those is graded
+deterministically on every trial, for free, without confabulating. The list
+above tells you what the local dialect *is*; it is not the list of things to
+report.
+
+A "fail" must therefore name something a reviewer would correct by hand that no
+such check could have caught. If your objection could be written as a grep, it
+has already been counted, and the answer here is "pass".
 
 Answer "unknown" only if the references genuinely do not establish a convention
 on the points where the candidate differs.`,

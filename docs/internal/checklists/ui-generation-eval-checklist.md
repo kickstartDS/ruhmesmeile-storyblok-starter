@@ -107,31 +107,31 @@ Beyond the original list, and needing PRD §8 reconciliation:
       `836`, `842`, `850`, `852`. Every one of them needs the next campaign to
       produce numbers; none of them can be read against Phase 1.
 
-                    | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
-                    | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
-                    | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
-                    | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
-                    | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
-                    | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
-                    | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
-                    | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
-                    | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
-                    | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
-                    | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
-                    | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
-                    | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
-                    | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
-                    | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
-                    | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
-                    | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
-                    | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
-                    | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
-                    | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
-                    | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
-                    | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
+                      | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
+                      | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
+                      | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
+                      | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
+                      | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
+                      | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
+                      | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
+                      | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
+                      | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
+                      | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
+                      | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
+                      | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
+                      | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
+                      | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
+                      | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
+                      | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
+                      | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
+                      | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
+                      | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
+                      | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
+                      | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
+                      | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
 
-                    Twelve core, eight extra. Two controls rather than one, and every treatment
-                    task's reading is conditional on both staying flat.
+                      Twelve core, eight extra. Two controls rather than one, and every treatment
+                      task's reading is conditional on both staying flat.
 
   - [x] D-106 — the suite is **cost-tiered**, and the tier is a property of the
         task rather than a scheduling flag. Phase 1 measured a greenfield trial
@@ -3729,7 +3729,7 @@ text, one rubric was badly served:
 
 - `invented-tokens` — **removed.** The `token-reasoning` criterion's second
   paragraph says "the deterministic graders already checked that every token
-  referenced exists ... you are judging *choice*, not validity", and
+  referenced exists ... you are judging _choice_, not validity", and
   `tokenConformance` does compute exactly this, by name, against the real
   registry. The chip invited a human to fail a trial the deterministic score
   had already docked.
@@ -3787,10 +3787,164 @@ Free: labels and reason ids are not hashed, no verdict is re-keyed, no call is
 made. Verified 19 entries, zero design-intent+code-idiom duals, zero commas,
 zero duplicate ids, typecheck clean.
 
-**Lesson (bt):** when you fix an instrument, the things calibrated *against* that
+**Lesson (bt):** when you fix an instrument, the things calibrated _against_ that
 instrument are now out of date too, and they will not announce it. The criteria
 and the pick list are one artefact in two files with nothing tying them
 together — D-138 changed one and left the other pointing at the previous
 version for two sessions.
 
-**Next free decision number: D-141.**
+**Next free decision number: D-145.**
+
+## D-141 — the calibration came back, and the disagreements clustered
+
+All 60 trials labelled by hand across three rubrics — 141 pairs, not the
+representative sample the plan asked for. Agreement: `design-intent` 34/39
+(87%, κ 0.75), `code-idiom` 37/51 (73%, κ 0.41), `token-reasoning` 35/51
+(69%, κ 0.46). Overall 106/141.
+
+The rate was the least useful number in the report. The 35 disagreements
+reduce to **one cause per rubric**, each visible in the judge's own prose:
+
+- `token-reasoning` is asked whether token choices are semantically apt and is
+  shown the token list, so it checks whether the tokens _exist_. Eleven of its
+  fourteen misses are existence-checking wearing a semantics label.
+- `code-idiom` produced ten `pass→fail` misses; **eight were the same
+  objection** — that a client file under `js/` is misplaced. The corpus held
+  exactly one client file, `Gallery.client.js`, flat. The judge generalised one
+  sample into a rule.
+- `design-intent` was the lenient one, and the only rubric with zero
+  `pass→fail`. Its misses are all the judge excusing something.
+
+One rater, so none of this carries an error bar (D-125, ADR 85). Free.
+
+**Lesson (bu):** when a judge and a human disagree, read the list, not the rate.
+Thirty-five disagreements were three causes; the percentage said none of that.
+
+## D-142 — the corpus gained a second client-file placement, and paid for it
+
+The `js/` objection was a **sampling defect in the evidence, not a fault in the
+question**, so it was repaired in the corpus rather than the criterion. The
+design system does both placements — eight client files flat, five under `js/` —
+and `roles()` could only spell the flat one, so it dropped the other silently
+for every component that used it. Same class as D-130's missing underscore.
+
+`nav-toggle` joins the exemplars, `EXEMPLARS` becomes `{ dir, slug }` because
+its directory is `nav-main`, and the client role accepts both spellings, flat
+first. `section` was considered and refused: it is threaded through with our
+answer to the `spotlight` eval — a prop, a `--spotlight` modifier, four
+`--dsa-section__spotlight--*` tokens, a schema field, and a client file that
+lazy-imports `initSpotlight`. Corpus is now 17 files, ~9.2k tokens.
+
+Cost $3.48 for 108 calls; `token-reasoning`'s 60 verdicts were untouched because
+its criterion sets `exemplars: false`. **The result was exactly zero-sum:**
+
+| rubric            | before        | after         |
+| ----------------- | ------------- | ------------- |
+| `code-idiom`      | 73% (κ 0.41)  | 82% (κ 0.65)  |
+| `design-intent`   | 87% (κ 0.75)  | 74% (κ 0.49)  |
+| `token-reasoning` | 69%           | 69%           |
+| overall           | **106 / 141** | **106 / 141** |
+
+`code-idiom` moved exactly as diagnosed — `pass→fail` fell 10 → 2 and the `js/`
+cluster vanished. `design-intent` paid one-for-one, its `fail→pass` misses
+doubling 5 → 10, and the judge names the cause itself: _"like NavToggle does"_,
+_"nav-main shows this is an acceptable variant"_. Both comparative rubrics read
+one corpus, so it is one lever with opposite signs.
+
+**Lesson (bv):** shared evidence is a shared control surface. Widening a corpus
+to cure one rubric's false strictness loosens every rubric that reads it.
+
+## D-143 — both instruments confabulate, and the seams get a grader
+
+Two errors, one per instrument, verified in source:
+
+- `cc-component-builder/840/run-1` — the human chip says defaults are not
+  merged. Line 77 is `deepMergeDefaults(defaults, props)`. **The label is wrong.**
+- `cc-both/840/run-2` — the judge lists `deepMergeDefaults` among conventions
+  satisfied. `grep -c` returns 0. **The judge confabulated.**
+
+So the agreement rate was never judge accuracy; it is agreement between two
+fallible raters, and driving it to 100% was never the right target.
+
+Four predicates were proposed for a grader and **two were refused after reading
+the fixtures**: `classnames` is not a dependency of any eval, and
+`deepMergeDefaults` is not in the vendored core. Both would have scored the
+sandbox rather than the agent. No fixture ships `*Props.ts` or `*Defaults.ts`
+either — there is no generator in there — so "use the generated defaults" was
+never an askable question.
+
+`lib/graders/authoring-seams.ts` grades the spelling-neutral residue instead:
+`props-module`, `defaults-module`, and `identifier-seam` (only where the target
+requires client behaviour). Validated against the real design system before
+being trusted — **mean 0.95 across 68 components**, floor 0.85 in the self-test.
+That guard is the point: a grader that scores the reference badly is encoding a
+convention that does not exist.
+
+It separates the arms perfectly, which the rubric it came from never did:
+
+| eval                    | both | component-builder | design-tokens | none |
+| ----------------------- | ---- | ----------------- | ------------- | ---- |
+| `810-atom-from-schema`  | 0.89 | 0.94              | 0.17          | 0.17 |
+| `832-client-behaviour`  | 1.00 | 1.00              | 0.17          | 0.17 |
+| `840-reuse-over-native` | 0.89 | 1.00              | 0.17          | 0.17 |
+| `860-restraint`         | 0.17 | 0.17              | 0.17          | 0.17 |
+
+Zero overlap. The flat 0.17 is `props-module=0, defaults-module=0,
+identifier-seam=0.5` — **in eighteen trials without the Component Builder MCP,
+not one agent ever split props or defaults into a module.** `860` is flat
+everywhere because leaving the fixture alone is the correct answer, and `812`
+authors no component at all; both are correct non-signals. Caveat: this may
+partly measure template-following, since the MCP hands out that structure.
+
+Free — grading is host-side and retroactive (D-50), so no agent re-ran and no
+judge call was made.
+
+**Lesson (bw):** both instruments confabulate about facts they are not shown.
+**Lesson (bx):** a chip can penalise the sandbox rather than the agent.
+
+## D-144 — every reason anyone gave is mechanical
+
+A sweep of all 141 labels against the grader check ids, before spending anything
+on a re-judge. It found no mispriced labels. It found that **the pick list has
+no non-mechanical entries in use at all.**
+
+- `code-idiom` — 84 chip-uses across seven chips. **All seven are now
+  deterministic** (`component-contract`, `authoring-seams`, `bem`,
+  `style-placement`).
+- `design-intent` — 39 uses across four chips; 33 are `purity`
+  (`no-react-state`, `context-overridable`, `provider-export`, `forward-ref`),
+  which were graded deterministically the entire time.
+- `token-reasoning` — all four chips map onto `token-conformance`.
+- The five genuinely judgment-shaped chips — `monolithic`, `open-variant`,
+  `styling-props`, `wrong-kind`, `callback-props` — were **never used once**.
+- Twenty-one labels carry free text. Every clause in it is mechanical too
+  ("component token defined inline", "invented semantic `--dsa` token"). Five
+  fails carry no justification of any kind.
+
+So the obvious test: predict the verdict from graders alone, with a deliberately
+unfitted rule — every applicable check must be perfect or the trial fails.
+
+| rubric            | graders vs human | judge vs human |
+| ----------------- | ---------------- | -------------- |
+| `design-intent`   | **95%** (38/40)  | 74%            |
+| `token-reasoning` | **77%** (36/47)  | 69%            |
+| `code-idiom`      | 65% (33/51)      | **82%**        |
+| overall           | **78%** (107/138) | 75%            |
+
+The free instrument matches the $3.48-per-round one. `design-intent` — the
+rubric whose existence has been doubted since D-108 — is the one graders nail,
+and `purity` had been answering it all along. `code-idiom` scores worst because
+it aggregates four graders under an all-must-pass rule, so it has the most
+chances to trip. **29 of the 31 misses are `human=pass, graders=fail`**: the
+rule wants a tolerance, not more evidence. Tuning that threshold on these
+labels would be fitting to them, so it waits for out-of-sample material.
+
+`inline-classnames` retired from `reasons.json` per the D-140 precedent — the
+dictionary entry goes, stored labels keep the id. Free; reason ids are not
+hashed and no verdict is re-keyed.
+
+**Lesson (by):** check what a rater actually _said_, not what the rubric claims
+to ask. An answer sheet made only of mechanical chips makes every rater
+mechanical, and then the expensive instrument is buying agreement on questions a
+`grep` settles.
+

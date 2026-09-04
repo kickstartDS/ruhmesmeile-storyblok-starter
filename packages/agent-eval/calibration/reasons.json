@@ -45,11 +45,6 @@
     "rubrics": ["code-idiom"]
   },
   {
-    "id": "inline-classnames",
-    "label": "hand-rolled cx helper instead of the classnames library",
-    "rubrics": ["code-idiom"]
-  },
-  {
     "id": "callback-props",
     "label": "event-handler props on what should be a static component definition",
     "rubrics": ["design-intent", "api-design"]
