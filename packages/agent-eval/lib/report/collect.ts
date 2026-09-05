@@ -95,10 +95,15 @@ function missingModuleIsTheAgentsFault(haystack: string): boolean {
  * exposed and the agent had read the servers off disk instead. Nothing in the
  * pipeline objected, because every individual number was real.
  *
- * So an MCP variant that reached no MCP is not a low score, it is not a
- * measurement at all, and it must not be averaged with ones that are.
+ * So an MCP variant that *could not* reach an MCP is not a low score, it is not
+ * a measurement at all, and it must not be averaged with ones that are.
  * `metrics.ts` and `grade.ts` keep only `model` and `none`, so returning this
  * class excludes the trial and prints why.
+ *
+ * "Could not" is load-bearing. Until D-149 the two were indistinguishable, so
+ * every zero-call trial was excluded. Now that tools load upfront, a zero-call
+ * trial is usually a model that *declined*, which is a finding rather than a
+ * confound — see the intent-to-treat note below.
  */
 function confound(
   trial: Trial,
@@ -135,12 +140,20 @@ function confound(
           "ENABLE_TOOL_SEARCH did not take effect",
       };
     }
-    return {
-      failureClass: "confounded",
-      reason:
-        "an MCP variant that never called an MCP server — this trial measures " +
-        "the baseline, whatever its score says",
-    };
+    // Loaded upfront and still never called: the server was reachable and the
+    // model declined it. That is a result, not a broken trial, and it stays in
+    // the sample.
+    //
+    // Excluding it would select on the outcome. "Did the agent choose to call
+    // the server" is correlated with "was the server any use here", so keeping
+    // only the trials where it was called measures the MCP's value *given that
+    // the agent wanted it* — which is not the question. The question is what
+    // having the server available does, and declining to use it is part of
+    // that answer. Intent-to-treat, not per-protocol.
+    //
+    // `mcp-usage/reached-mcp` still flags it, and the per-eval `mcp calls`
+    // figure shows 0.0, so a silent decline stays visible.
+    return null;
   }
   // A trial that handed its MCP calls to a subagent also reports zero, because
   // subagent turns never reach the transcript. That is our blind spot, not the

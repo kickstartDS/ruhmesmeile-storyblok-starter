@@ -4552,7 +4552,99 @@ whose value is *data already in the repo* competes with `Read`; a server whose
 value is *conventions not written anywhere* does not. This is a claim about what
 belongs in an MCP, not about which model is lazy.
 
-**Next free decision number: D-152.**
+---
+
+## D-152 — Stage 2: the disk ran out, the exclusion rule was selecting, and quality has stopped discriminating
+
+Stage 2 ran `cc-none` and `cc-both` over all 20 evals, 3 runs each. Headline
+numbers were 35% and 62%. Neither is usable as printed, for two unrelated
+reasons.
+
+### The host ran out of disk mid-`cc-none`
+
+60 sandboxes start concurrently, each doing a full `npm install`. Fourteen
+`cc-none` trials died with `ENOSPC` — some before Claude Code was even
+installed — and only 46 of 60 transcripts exist. The grader classified them
+correctly as infra failures, which pushed **12 of 20 evals over the >20%
+threshold and marked them RUN INVALID**.
+
+`cc-both` ran afterwards, on disk freed by the first run's teardown, and is
+clean: 60/60 transcripts.
+
+So the two arms are not comparable and `cc-none` must be re-run. Before that:
+free space (`docker system df` showed ~11.7 GB reclaimable, and 29 volumes
+holding 18.7 GB) and cap concurrency, because 60 parallel `npm install`s against
+a disk at 85% is the actual defect. The harness has no disk precheck — the same
+category of absence as D6's budget guard, lesson (co).
+
+### Zero MCP calls stopped meaning "confounded"
+
+`cc-both` had 28 of 60 trials make no MCP call at all, and **7 evals where no
+run touched a server**: 806, 817, 820, 850, 852, 860, 862. Under the old rule
+that invalidated 6 of 20 evals.
+
+The rule was written when zero calls meant the tools were unreachable (D-26,
+D-148). With tools loaded upfront that is no longer what it means: the server
+was connected, its definitions were in context, and the model declined. That is
+a result.
+
+Excluding it **selects on the outcome**. Whether the agent reaches for a server
+is correlated with whether the server was any use on that task, so keeping only
+the trials where it was called measures "the MCP's value given the agent wanted
+it" — which is not the question anyone is asking. The question is what having
+the server available does, and declining to use it is part of that answer.
+
+Changed to intent-to-treat in `lib/report/collect.ts`: exclude only when
+`mcpToolsWereDeferred()` says the tools were never loaded. Declines stay in the
+sample, flagged by `mcp-usage/reached-mcp` and visible as `0.0 mcp calls` in the
+per-eval line. Re-grading is free, so `cc-both` went from 6 invalid evals to
+**0 of 20** without spending anything.
+
+Note which evals get declined: 817-responsive-tokens and 818's neighbours are
+token questions, and the tokens server still goes untouched. That is lesson (cr)
+holding across 20 evals rather than one.
+
+### Quality has saturated; pass@1 is the only thing still discriminating
+
+Five evals sit at 0% pass in *both* arms — 804, 811, 840, 842, 850 — while
+scoring 0.84–1.00 quality. These are not broken gates. The assertions:
+
+| eval | what actually failed |
+| --- | --- |
+| 850-focus-return | focus stayed outside the panel; Escape did not close; focus never returned to the trigger |
+| 840-reuse-over-native | "the call to action is not a hand-rolled button"; restyled the components it composed |
+| 842-reuse-edit | "the styles that imitated a button are gone" — they were not |
+| 811-token-intent | stylesheet still styles the component; the two trends are not distinctly tokenised |
+| 804-story-conventions | the documentation page was never written |
+
+`850` is the sharpest: quality **1.00**, pass **0%**. The agent produced a
+perfectly-shaped component — contract, purity, seams, tokens all satisfied —
+that does not work. The conformance rubrics cannot see behaviour, and with the
+MCPs attached Haiku is at their ceiling.
+
+The other four are all *restraint and reuse* failures: hand-rolling what the
+design system already provides, and leaving imitation styles behind. That is
+precisely what `get-ui-building-instructions` exists to prevent, and the servers
+do not prevent it. A genuine negative result, and the most useful thing Stage 2
+bought.
+
+**Lesson (cs):** an exclusion rule inherits the world it was written in. "Never
+called the server" meant *broken* in the deferred era and means *declined* now;
+the code did not change but its meaning did, and it quietly became a filter that
+kept the flattering half of the sample. Re-read exclusion criteria whenever the
+mechanism underneath them changes.
+
+**Lesson (ct):** when a metric reaches its ceiling it stops being a metric.
+Quality sits at 0.97–1.00 across arms that pass 0% of the time, so any headline
+built on mean quality now reports how well-shaped the failures are. pass@1 and
+the behavioural evals are what still carry information.
+
+**Lesson (cu):** run capacity is a precondition, not a detail. Sixty concurrent
+`npm install`s cost twelve evals' worth of baseline, and nothing in the harness
+looked at free disk before spending money on 60 sandboxes.
+
+**Next free decision number: D-153.**
+
 
 
 

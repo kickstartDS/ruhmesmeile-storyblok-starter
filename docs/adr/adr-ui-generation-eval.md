@@ -3770,3 +3770,41 @@ Lesson (cq): check the direction of a measurement error before deciding it is
 small. An inflation that lands preferentially on the treatment arm is a thumb on
 the scale, not noise.
 
+## ADR 94 — Declining to call a server is a result, not a confound
+
+**Context.** Trials in an MCP arm that made no MCP call were excluded as
+confounded (Decision 26 and its successors), on the reasoning that they measured
+the baseline while wearing a treatment label. That reasoning was correct while
+tools were deferred: the server was not callable, so the trial could not have
+measured the treatment.
+
+Decision 92 loads tools upfront. Zero calls now means the definitions were in
+context and the model chose not to use them — which happened in 28 of 60
+`cc-both` trials and in every run of seven evals.
+
+**Decision.** Exclude a zero-call trial only when `mcpToolsWereDeferred()`
+confirms the tools were never loaded. Otherwise keep it and count it.
+
+The estimand is intent-to-treat: what does making the server available do?
+Excluding declines answers a different question — what does the server do for an
+agent that already wanted it — and does so by selecting on a variable
+correlated with the outcome, since an agent reaches for a server roughly when
+the server is going to help. The resulting number is biased upward by
+construction and there is no way to bound the bias from inside the sample.
+
+Declines remain visible: `mcp-usage/reached-mcp` flags them and the per-eval
+line reports `0.0 mcp calls`.
+
+**Consequences.** `cc-both` went from 6 invalid evals of 20 to none, at no cost,
+because grading is retroactive (Decision 17). MCP-arm means now include trials
+where the server did nothing, so treatment effects get smaller and more honest.
+The decline rate becomes a finding in its own right — the design-tokens server
+is declined on token evals, which is a statement about that server's value that
+the old rule deleted from the sample.
+
+Lesson (cs): an exclusion rule inherits the world it was written in. The code did
+not change but its meaning did, and it became a filter keeping the flattering
+half of the sample. Re-read exclusion criteria whenever the mechanism underneath
+them changes.
+
+
