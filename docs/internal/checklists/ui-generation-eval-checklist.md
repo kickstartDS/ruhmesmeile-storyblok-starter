@@ -4643,7 +4643,115 @@ the behavioural evals are what still carry information.
 `npm install`s cost twelve evals' worth of baseline, and nothing in the harness
 looked at free disk before spending money on 60 sandboxes.
 
-**Next free decision number: D-153.**
+---
+
+## D-153 — Stage 3: full Haiku coverage, and the second server does not earn its keep
+
+Four arms × 20 evals × 3 runs = **240 trials, 0 excluded, 0 invalid**. The
+first complete matrix the campaign has produced, and the goal set at the start:
+full coverage of everything using Haiku.
+
+Batching fixed the capacity problem from D-152 without touching the harness. Six
+invocations of ten evals each held the peak at 30 concurrent sandboxes instead of
+60. Every one of the 180 new trials produced a transcript; there was not a single
+`ENOSPC`. See ADR 95.
+
+### The matrix
+
+pass@1 over 3 runs, with mean MCP calls per trial:
+
+| eval | cc-none | cc-component-builder | cc-design-tokens | cc-both |
+| --- | --- | --- | --- | --- |
+| 802-composite-from-two | 67% | **100%** (1.3) | 67% | **100%** (4.0) |
+| 804-story-conventions | 0% | **100%** (2.3) | 0% | 0% (1.7) |
+| 806-inverted-context | 67% | 33% | **100%** | **100%** |
+| 810-atom-from-schema | 0% | **100%** (3.7) | 0% | 67% (4.3) |
+| 811-token-intent | 33% | 0% (1.3) | **100%** (12.7) | 0% (9.0) |
+| 812-restyle-with-tokens | 0% | **100%** (1.0) | 0% | **100%** (14.3) |
+| 816-typography-pairing | 0% | 0% (1.0) | 0% (0.7) | 33% (4.7) |
+| 817-responsive-tokens | 67% | **100%** | 67% (1.0) | **100%** |
+| 818-component-token-layer | 0% | 67% (2.7) | 0% (0.7) | 33% (3.0) |
+| 820-extend-schema-safely | **100%** | 33% (0.3) | 0% | 67% |
+| 824-api-from-behaviour | 0% | **100%** (6.7) | 0% | 67% (5.3) |
+| 832-client-behaviour | 0% | 0% (8.0) | 0% | **100%** (4.3) |
+| 836-behaviour-bugfix | 100% | 100% | 100% | 100% |
+| 840-reuse-over-native | 0% | 0% | 0% | 0% (4.0) |
+| 842-reuse-edit | 0% | 0% | 67% | 0% |
+| 850-focus-return | 0% | 0% | 0% | 0% |
+| 852-a11y-repair | 100% | 100% | 100% | 100% |
+| 860-restraint | 100% | 100% | 100% | 100% |
+| 861-token-restraint | 100% | 100% | 100% | 100% |
+| 862-api-freeze | 100% | 100% (0.3) | 100% | 67% |
+| **mean pass@1** | **41.7%** | **61.7%** | **45.0%** | **61.7%** |
+| **spent** | $11.13 | **$10.50** | $12.35 | $12.00 |
+
+### Component-builder alone is the configuration to ship
+
+`cc-component-builder` scores **61.7%, exactly matching `cc-both`, while being
+the cheapest of the four arms.** Against the baseline that is **+20 points of
+pass@1 for 6% less money**. This is the campaign's central result and it is not
+a close call: the second server adds $1.50 (14%) and zero pass@1.
+
+The bracket from D-151 is now closed at full width. Adding the design-tokens
+server to the component-builder server buys nothing on aggregate.
+
+### The design-tokens server is barely used, and it is used well exactly once
+
+Across its 60 trials the server was called **43 times total, with 54 of 60 trials
+never calling it at all**. That is the greppability hypothesis from D-151
+confirmed at scale: token *values* are in the staged repo and an agent will read
+them rather than ask for them.
+
+The exception is sharp. On `811-token-intent` the design-tokens arm called it
+**12.7 times per trial and was the only arm to pass — 100% against 33/0/0.**
+Token *intent* is the one thing that genuinely is not greppable, and when the
+task demands it the server both gets called and wins. One eval out of twenty.
+
+Note that `cc-both` fails `811` at 0% despite 9.0 calls per trial. Having both
+servers available made it call the tokens server nearly as often and still lose,
+which suggests the component-builder instructions crowd out the token reasoning
+rather than composing with it.
+
+### Where the servers actively hurt
+
+- **`820-extend-schema-safely`**: baseline **100%** → component-builder 33% →
+  design-tokens 0% → both 67%. The clearest regression in the matrix.
+- **`806-inverted-context`**: baseline 67% → component-builder 33%.
+- **`811-token-intent`**: baseline 33% → component-builder 0%.
+
+Three of twenty evals are worse with the component-builder server than without
+it. An aggregate of +20 points is worth having, but it is not a uniform gain and
+"attach the MCP" is not unconditionally correct advice.
+
+### One genuine synergy
+
+`832-client-behaviour` is the only eval where the combination beats both singles:
+0% / 0% / 0% / **100%**. Quality tracks it too (0.65 / 0.90 / 0.65 / 0.98). It is
+a single eval at n=3, so it is a lead rather than a finding.
+
+### The saturation from D-152 survives full coverage
+
+`840-reuse-over-native` and `850-focus-return` are **0% in all four arms**.
+`850` holds quality 1.00 while passing nothing, in every configuration. The
+reuse-and-restraint failures are not something either server fixes, and they are
+the failures the component-builder server most explicitly exists to prevent.
+
+**Lesson (cv):** the cheapest arm won. Cost and quality were assumed to trade off
+against each other for long enough that the report has a `quality/extra-$`
+column, and the answer turned out to be that the better configuration is also the
+less expensive one, because a well-directed agent stops sooner. Do not assume the
+axes are in tension until measured.
+
+**Lesson (cw):** an aggregate win can hide a per-case regression. +20 points mean
+pass@1 contains three evals that got strictly worse. Ship the mean, but read the
+rows.
+
+**Lesson (cx):** a capability that is available in the environment will not be
+bought from a server. The design-tokens server is only used where the answer
+cannot be grepped — which is a statement about the eval set as much as about the
+server, and the fix is to test intent, not values.
+
+**Next free decision number: D-154.**
 
 
 

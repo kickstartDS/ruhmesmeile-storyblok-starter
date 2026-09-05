@@ -3808,3 +3808,58 @@ half of the sample. Re-read exclusion criteria whenever the mechanism underneath
 them changes.
 
 
+
+---
+
+## Decision 95 — Concurrency is controlled by splitting the eval selection, not by the harness
+
+**Status.** Accepted, validated over 180 trials.
+
+**Context.** The framework has no concurrency cap. `dist/cli.js:305` constructs
+`new StartRateLimiter(20, 2_000)` and passes it to `runExperiment`; the class
+doc is explicit that it rate-limits *starts* only — "once started, operations run
+freely with no concurrency limit." A 20-eval arm at 3 runs therefore puts all 60
+sandboxes in flight within about six seconds, each running a full `npm install`.
+That is what exhausted the disk in D-152 and destroyed fourteen baseline trials.
+
+Two fixes were available: write a custom runner around the exported
+`runExperiment` with a real semaphore, or split the eval list across
+invocations. `runExperiment` accepts an optional `rateLimiter`, so the first was
+genuinely open.
+
+**Decision.** Split the run with `EVAL_ONLY` instead of building a limiter.
+
+```bash
+A=802-…,804-…,806-…,810-…,811-…,812-…,816-…,817-…,818-…,820-…
+B=824-…,832-…,836-…,840-…,842-…,850-…,852-…,860-…,861-…,862-…
+
+for arm in cc-none-haiku-high cc-component-builder-haiku-high cc-design-tokens-haiku-high; do
+  EVAL_ONLY=$A pnpm eval $arm --force
+  EVAL_ONLY=$B pnpm eval $arm --force
+done
+```
+
+Ten evals per invocation holds the peak at 30 sandboxes, roughly 21 GB.
+
+This works because the report **resolves per eval across timestamps**, taking the
+most recent result for each eval independently. An arm split across two
+invocations — or six — reassembles into one arm at grading time with nothing
+lost. The unit of resolution is the eval, not the run.
+
+`EVAL_ONLY` fully overrides tier selection: `selectedEvals()` returns the
+configured set only `if (!raw)`, so `EVAL_EXTRA_EVALS` is unnecessary alongside
+it, and names are validated against the `evals/` directory and throw on typos.
+
+**Consequences.** 180 trials, 180 transcripts, zero infra failures, no code
+written. Wall clock rose from one invocation to six — roughly eight minutes each
+— which is the whole cost.
+
+The limitation is that the split is manual and the batch size was picked from a
+measured per-sandbox footprint (~0.7 GB) against known free disk. Nothing
+enforces it. If an arm grows past 20 evals or the disk tightens, this silently
+returns to being D-152. A real limiter or a disk precheck is still the durable
+fix; this is the version that did not cost a day.
+
+Lesson: when the framework will not give you a knob, look for one in how you
+invoke it. Per-eval result resolution made the run splittable, which made
+concurrency a scheduling problem rather than a patching problem.
