@@ -12,7 +12,12 @@
 import { runQualityGraders, runDiagnosticGraders } from "../graders";
 import { efficiencyOf, type Efficiency } from "../graders/efficiency";
 import { costOf, type CostBreakdown } from "./cost";
-import { mcpUsageOf, stagingLeakOf, type McpUsage } from "../graders/mcp-usage";
+import {
+  mcpToolsWereDeferred,
+  mcpUsageOf,
+  stagingLeakOf,
+  type McpUsage,
+} from "../graders/mcp-usage";
 import { qualityScore, type QualityScore } from "../graders/quality";
 import { loadRun, listRuns, type Trial } from "../graders/trial";
 import type { GraderResult } from "../graders/types";
@@ -119,6 +124,17 @@ function confound(
     // ...unless the eval is one where declining to call a server is the
     // correct answer. See `Target.mcpUseExpected`.
     if (!trial.target.mcpUseExpected) return null;
+    // Deferred tools make "never called" ambiguous: the model may have been
+    // unable to reach the server rather than unwilling. Say which.
+    if (mcpToolsWereDeferred(trial)) {
+      return {
+        failureClass: "confounded",
+        reason:
+          "MCP tools were deferred behind ToolSearch and never loaded, so the " +
+          "server was never callable — this trial measures the baseline, and " +
+          "ENABLE_TOOL_SEARCH did not take effect",
+      };
+    }
     return {
       failureClass: "confounded",
       reason:

@@ -89,6 +89,7 @@ export function defineExperiment(
   const parts = {
     staged: hashStagedPackages(packages),
     settings: shortHash(JSON.stringify(DENY_WEB_RESEARCH)),
+    tools: TOOL_SEARCH,
     probe: shortHash(PROBE_SOURCE),
     setup: SETUP_VERSION,
   };
@@ -137,6 +138,33 @@ export function defineExperiment(
 const DENY_WEB_RESEARCH = ["WebSearch", "WebFetch"];
 
 /**
+ * Whether MCP tools are deferred behind `ToolSearch` or handed to the model
+ * upfront (D-149).
+ *
+ * Claude Code defers MCP tools by default: the model receives only a list of
+ * *names* in a `deferred_tools_delta` attachment, and has to call `ToolSearch`
+ * to load a definition before it can call the tool. That discovery step, not
+ * the MCP, is what the first two campaigns measured.
+ *
+ * Sonnet searched in 57 of 93 MCP-variant trials and called an MCP server in
+ * 47 of them — the two counts track each other almost exactly, and a trial that
+ * skipped the search never reached a server. Haiku searched in 0 of 24 and so
+ * called a server in 0 of 24, which made all four of its arms the baseline
+ * wearing different labels. Both models were handed the same catalogue.
+ *
+ * `false` loads every tool upfront, which is what "this variant has the MCP
+ * available" was always supposed to mean. Deferral is a context-window
+ * optimisation, and our tool count is far too small to need it.
+ *
+ * Set `EVAL_TOOL_SEARCH=1` to restore the deferred regime deliberately — the
+ * question "does a model discover a server nobody told it to use?" is worth
+ * asking, but it is a different question and it cannot share an arm with this
+ * one. The value is in the variant hash, so the two regimes can never be
+ * compared by accident.
+ */
+const TOOL_SEARCH = process.env.EVAL_TOOL_SEARCH ? "deferred" : "upfront";
+
+/**
  * Bump on any `setupVariant()` change the framework's fingerprint cannot see.
  *
  * `computeFingerprint` hashes the eval directory plus agent/model/scripts/
@@ -146,7 +174,7 @@ const DENY_WEB_RESEARCH = ["WebSearch", "WebFetch"];
  * payload, an added install step — is invisible, and stale results from the
  * previous build would be silently reported as current.
  */
-const SETUP_VERSION = "6-host-http-transport";
+const SETUP_VERSION = "7-tools-upfront";
 
 /** The in-sandbox reachability probe, shipped as-is. */
 const PROBE_SOURCE = readFileSync(
@@ -209,6 +237,11 @@ export async function setupVariant(
         // the baseline, which declares no servers.
         enableAllProjectMcpServers: true,
         permissions: { deny: DENY_WEB_RESEARCH },
+        // Goes in the same file as `enableAllProjectMcpServers`, which is
+        // known to take effect here: the servers do connect and their names do
+        // reach the model. An untracked `settings.local.json` is exempt from
+        // the workspace-trust gate that holds back a committed settings file.
+        env: { ENABLE_TOOL_SEARCH: TOOL_SEARCH === "deferred" ? "true" : "false" },
       },
       null,
       2,

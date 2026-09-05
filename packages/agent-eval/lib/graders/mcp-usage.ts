@@ -113,6 +113,53 @@ export function delegationOf(trial: Trial): McpDelegation | null {
     : null;
 }
 
+/**
+ * Were the MCP tools deferred behind `ToolSearch` rather than handed to the
+ * model upfront?
+ *
+ * Claude Code announces deferral in a `deferred_tools_delta` attachment that
+ * lists tool *names* only. The model cannot call any of them until it calls
+ * `ToolSearch` to load a definition, so a trial in this regime that reports
+ * zero MCP calls has not necessarily declined the server — it may never have
+ * been able to reach it. Distinguishing the two is the difference between a
+ * finding about the model and a finding about our own configuration (D-149).
+ *
+ * `setupVariant` now sets `ENABLE_TOOL_SEARCH=false`, so this should be false
+ * for every new trial. If it is not, the setting did not take effect and the
+ * variant is not the variant we think it is.
+ */
+export function mcpToolsWereDeferred(trial: Trial): boolean {
+  const raw = readRawTranscript(trial);
+  if (!raw) return false;
+
+  for (const line of raw.split("\n")) {
+    if (!line.includes("deferred_tools_delta") || !line.includes("mcp__")) {
+      continue;
+    }
+
+    let entry: unknown;
+    try {
+      entry = JSON.parse(line);
+    } catch {
+      continue;
+    }
+
+    const attachment = (entry as { attachment?: { type?: string; addedNames?: unknown } })
+      ?.attachment;
+    if (attachment?.type !== "deferred_tools_delta") continue;
+
+    const names = attachment.addedNames;
+    if (
+      Array.isArray(names) &&
+      names.some((name) => typeof name === "string" && name.startsWith("mcp__"))
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export function mcpUsageOf(trial: Trial): McpUsage {
   const summary = trial.transcript?.summary;
   if (!summary) {

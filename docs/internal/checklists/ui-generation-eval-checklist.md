@@ -4195,6 +4195,93 @@ is only a both-MCP trial if an MCP was called, and the harness cannot enforce
 that — it can only report it afterwards, which is why the confound class exists
 and why it must be read before the scores.
 
-**Next free decision number: D-149.**
+## D-149 — the tools were never loaded: Claude Code defers MCP by default
+
+D-148 established that Haiku called no MCP tool in 24 trials and left the
+question open. The answer is not about Haiku.
+
+Every transcript in the corpus — Haiku and Sonnet alike, byte-for-byte the same
+shape — carries this on line 4:
+
+```json
+{ "type": "attachment",
+  "attachment": { "type": "deferred_tools_delta",
+                  "addedNames": ["…", "mcp__component-builder__get-scss-template", "…"] } }
+```
+
+`deferred_tools_delta` means the model was handed the tools' **names** and not
+their definitions. It cannot call one until it calls `ToolSearch` to load it.
+Claude Code's documented default (`ENABLE_TOOL_SEARCH`, unset):
+
+> Unset, Claude Code defers all MCP tools by default. […] `false` loads all
+> tools upfront.
+
+A census of `ToolSearch` against MCP calls across all 84 trials:
+
+| arm | trials | with ToolSearch | searches | with MCP calls |
+| --- | --- | --- | --- | --- |
+| cc-both-sonnet-high | 30 | 18 | 45 | 15 |
+| cc-component-builder-sonnet-high | 33 | 21 | 39 | 17 |
+| cc-design-tokens-sonnet-high | 30 | 18 | 39 | 15 |
+| cc-none-sonnet-high | 39 | 3 | 3 | 0 |
+| cc-both-haiku-high | 6 | 0 | 0 | 0 |
+| cc-component-builder-haiku-high | 6 | 0 | 0 | 0 |
+| cc-design-tokens-haiku-high | 6 | 0 | 0 | 0 |
+| cc-none-haiku-high | 6 | 0 | 0 | 0 |
+
+The search is the gate. Where it fires, calls follow (18→15, 21→17, 18→15);
+where it does not, they never do; the baseline searched three times and
+correctly found nothing. Haiku searched zero times in 24 trials.
+
+So the finding in D-148 is real but misattributed. Haiku did not decline to use
+the servers — it was never told they were usable in the form a tool call
+requires. And the consequence runs backwards through the whole campaign: **every
+number to date measures tool *discovery*, not MCP value.** Roughly 40% of the
+Sonnet MCP-arm trials (12/30, 12/33, 12/30) never searched, and are baseline
+trials wearing an MCP label. The deltas we have priced are a blend of "does the
+MCP help" and "does the model go looking".
+
+**Decision.** `setupVariant()` now writes `env: { ENABLE_TOOL_SEARCH: "false" }`
+into `.claude/settings.local.json`, alongside the `enableAllProjectMcpServers`
+flag already proven to take effect there. `SETUP_VERSION` moves to
+`7-tools-upfront` and the regime is a named part of the variant hash, so no
+result from the deferred era can be reported as current. Deferral is a
+context-window optimisation; at ten tools we are nowhere near needing it, and
+"the variant has the MCP available" should mean the model can call it.
+
+The deferred regime is kept, not discarded — `EVAL_TOOL_SEARCH=1` restores it.
+"Will a model discover a server nobody instructed it to use?" is a legitimate
+and arguably more realistic question than "does the server's content help",
+but it is a *different* question and the two cannot share an arm. If that gets
+its own campaign, it needs its own variant.
+
+`mcpToolsWereDeferred()` (`lib/graders/mcp-usage.ts`) now reads the attachment
+directly, and `collect.ts` distinguishes "never called" from "never callable" in
+the confound reason. Re-grading the corpus — free, host-side, D-50 — reclassifies
+12 trials immediately. This is the check that makes the setting falsifiable: if
+`ENABLE_TOOL_SEARCH` silently fails to apply, the next run says so instead of
+quietly producing another campaign's worth of mislabelled baselines.
+
+One caveat worth carrying: the bundle gates `toolSearchReminder` (how often the
+model is nudged to search) behind remote feature flags. Whether a model searches
+was never purely a property of the model — it is partly a server-side setting
+that can change under us between runs. That alone disqualifies the deferred
+regime as the default for a drift gate.
+
+**Lesson (ck):** a tool the model can see the *name* of is not a tool it can
+call. Availability has stages, and a harness that verifies only the earliest one
+— server connects, names arrive — will certify an arm that cannot work.
+
+**Lesson (cl):** the mechanism was already written down in our own code.
+`mcp-usage.ts` documented ToolSearch, in prose, months before this analysis;
+`grep` found that comment while looking for the answer and it was read as an
+aside. Search the codebase's *explanations*, not just its identifiers, before
+concluding a behaviour is unexplained.
+
+**Lesson (cm):** two models producing different results is not yet a finding
+about the models. Here it was a finding about a default that treats them
+identically and that only one of them happened to route around.
+
+**Next free decision number: D-150.**
 
 
