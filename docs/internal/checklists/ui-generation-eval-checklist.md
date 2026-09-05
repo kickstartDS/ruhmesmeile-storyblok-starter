@@ -4321,7 +4321,7 @@ concluding a behaviour is unexplained.
 about the models. Here it was a finding about a default that treats them
 identically and that only one of them happened to route around.
 
-## D-150 — the corpus is superseded; buying it back in stages
+## D-150 — Haiku-only, and the target is the full 20 × 4 matrix
 
 84 trials and $96.40 were spent in the deferred regime. They are not wasted —
 they are the evidence for D-148 and D-149, and they remain a valid measurement
@@ -4333,42 +4333,57 @@ withdrawn pending re-run. That is: the 810 discrimination (0% → 67%), the
 per-arm cost multiples, and every Haiku figure in D-148 except the fact that it
 never called a server.
 
-### Why this is not one big re-run
+**Sonnet is out of scope.** The cross-model comparison is not the question we
+are paying to answer, and re-running Sonnet upfront would have been the single
+largest line in the budget — 60 trials at roughly 3× Haiku's token prices. The
+Sonnet corpus stays on disk, superseded, and every Sonnet figure in this
+document is now a deferred-regime figure that must not be compared to anything.
 
-The obvious move — re-run the full core matrix and be done — costs more than it
-is worth at this stage, and the estimate it would rest on is unsound. Per-trial
-costs from the deferred regime are the costs of agents that frequently gave up
-early. The one upfront data point we have rose 1.3× (Haiku, `810`, $0.35 →
-$0.46) *and* turned failures into passes, which costs more turns. Extrapolating
-$96 of deferred spend across 12 core evals × 4 arms × 2 models lands somewhere
-between $250 and $600, on an assumption we know is wrong in an unknown
-direction, from 5 of 20 evals.
+The goal is **complete Haiku coverage: 20 evals × 4 arms × 3 runs = 240 trials.**
+Full coverage is the deliverable, so the staging below is about *ordering*, not
+about omitting cells. Every stage ends with the matrix closer to complete and
+none of them is optional.
 
-So: buy it in stages, and re-estimate from real upfront trials after each.
+### What the estimate rests on
+
+One upfront eval. `810` on `cc-component-builder-haiku` cost $0.46 per trial,
+up from $0.35 deferred — a 1.3× rise that also converted three failures into
+three passes, and passing costs turns. The deferred per-arm figures underneath
+it are the costs of an agent that gave up early, so they understate in a
+direction we cannot size. Against Haiku's known spread — `860-restraint` at
+$0.02–0.14, `840-reuse-over-native` the heaviest at roughly $0.7 per trial once
+scaled off Sonnet — the honest range for 240 trials is **$85–175**, and it comes
+from a single data point. Re-estimate after Stage 2, when there are 120 real
+ones.
 
 ### Stages
 
 | stage | scope | trials | estimate | buys |
 | --- | --- | --- | --- | --- |
-| 0 ✅ | `810` × cc-component-builder-haiku | 3 | $1.51 actual | the regime works |
-| 1 | `810` × the other three Haiku arms | 9 | $4–6 | first honest four-arm delta |
-| 2 | `810` × four Sonnet arms | 12 | $15–30 | model comparison restored |
-| — | *checkpoint: re-estimate per-trial cost from 24 real upfront trials* | | | |
-| 3 | `812`, `832`, `840` × four arms × both models | 72 | re-estimate | the discriminating subset |
-| 4 | full core (12 evals) × four arms × both models | 288 | re-estimate | the regression gate |
+| 0 ✅ | `810` × cc-component-builder | 3 | $1.51 actual | the regime works |
+| 1 | `810` × the other three arms | 9 | $4–6 | first honest four-arm delta |
+| — | *checkpoint: is `cc-both` fixing the token layer?* | | | |
+| 2 | all 20 evals × `cc-none` and `cc-both` | 120 | $40–85 | the bracket |
+| — | *checkpoint: re-estimate per-trial cost from 120 real upfront trials* | | | |
+| 3 | all 20 evals × `cc-component-builder` and `cc-design-tokens` | 120 | re-estimate | attribution; matrix complete |
 
 Stage 1 answers the question Stage 0 raised: `cc-component-builder` alone left
 `token-conformance` at 0.80 with direct branding-layer references. If `cc-both`
 does not fix that, the design-tokens server is not doing the one job its arm
-exists to test — and that is worth knowing for $5 before anything larger is
-bought.
+exists to test — and that is worth knowing for $5 before $150 is committed.
 
-Stage 2 is the gate on every cross-model claim. Until it lands, Haiku and Sonnet
-numbers in this document are not comparable and are marked as such.
+Stage 2 runs the two arms that **bracket** the effect. `cc-none` and `cc-both`
+bound the total MCP contribution on every eval at once: an eval where they do
+not separate has no MCP effect for the single-server arms to attribute. That
+ordering does not remove Stage 3 — full coverage is the goal — but it means
+Stage 3 is bought already knowing which cells carry the finding and which are
+confirmatory, and it produces a publishable four-arm story for `810` plus a
+whole-suite baseline-versus-everything result before the halfway point.
 
-Stage 4 is deliberately last. A regression gate is only worth paying for once
-the deltas it is meant to protect are known; buying 288 trials to discover what
-`810` could have told us for $5 is the mistake this staging exists to avoid.
+Stage 3 closes the matrix. `cc-design-tokens` is the arm with no upfront data at
+all and the largest deferred context overhead (32% above baseline for zero
+calls, D-148); it is also the arm most likely to move `token-conformance`, which
+is the grader still failing with the component-builder server present.
 
 ### Commands
 
@@ -4377,12 +4392,31 @@ the deltas it is meant to protect are known; buying 288 trials to discover what
 EVAL_ONLY=810-atom-from-schema pnpm eval cc-none-haiku-high --force; \
 EVAL_ONLY=810-atom-from-schema pnpm eval cc-design-tokens-haiku-high --force; \
 EVAL_ONLY=810-atom-from-schema pnpm eval cc-both-haiku-high --force
+
+# stage 2 — all 20 evals, one arm per invocation
+EVAL_EXTRA_EVALS=1 pnpm eval cc-none-haiku-high --force; \
+EVAL_EXTRA_EVALS=1 pnpm eval cc-both-haiku-high --force
+
+# stage 3
+EVAL_EXTRA_EVALS=1 pnpm eval cc-component-builder-haiku-high --force; \
+EVAL_EXTRA_EVALS=1 pnpm eval cc-design-tokens-haiku-high --force
 ```
 
 One experiment per invocation, joined by `;` — the CLI declares `<experiments...>`
 variadic but runs only the first and exits non-zero when evals fail (D-117).
-`--force` is required at every stage until each experiment has run once under
-`7-tools-upfront`, and is non-destructive.
+`--force` is required until each experiment has run once under `7-tools-upfront`,
+and is non-destructive.
+
+**There is no spend guard.** The PRD's "hard budget guardrail of $40 per full
+run (D6); the harness aborts when exceeded" is not implemented — not in
+`agent-eval.config.ts`, not in `lib/`, not in the framework. A Stage 2 or 3
+invocation is 60 trials in one unattended command, which at the top of the range
+is around $42, and nothing will stop it. Until a guard exists, split a sweep
+with `EVAL_ONLY` and read `pnpm cost` between chunks if the number matters.
+
+Wall clock is the other unbudgeted resource: three trials of `810` ran
+concurrently in 288s, so 60 trials at that concurrency is roughly 1.5 hours per
+arm, and the full 240 is most of a working day.
 
 ### The checks that gate each stage
 
@@ -4400,6 +4434,11 @@ Before spending on the next stage, on the trials just bought:
 actually measured is written down at the moment it is superseded. The 84 trials
 answer "will a model find a server nobody pointed it at" — a question we did not
 know we were asking, and would now have to pay for deliberately.
+
+**Lesson (co):** a guardrail that exists only in a PRD is not a guardrail. D6's
+"$40 hard budget, the harness aborts when exceeded" has been cited in planning
+for months and is implemented nowhere. It was found by looking for it, not by it
+firing — which is the only way an absent safety net is ever found.
 
 **Next free decision number: D-151.**
 
