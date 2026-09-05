@@ -39,15 +39,27 @@ export const JUDGE_MODEL: ModelTier = "opus";
 
 export const DEFAULTS = {
   /**
-   * 20 minutes. Raised from 15 after the first baseline run: the slowest
-   * no-MCP trial took 653s against a 900s ceiling, and MCP variants can only be
-   * slower (the token MCP alone can be a dozen roundtrips). A timeout kill
-   * wastes the entire spend of a trial, so the ceiling is deliberately far
-   * above the observed mean rather than close to it. `timeout` is part of the
-   * fingerprint, so this invalidates cached results — done at the same time as
-   * the EVAL.ts transcript-capture change, which invalidates them anyway.
+   * 30 minutes. Raised from 15 to 20 after the first baseline run (the slowest
+   * no-MCP trial took 653s against a 900s ceiling), then to 30 when the first
+   * Haiku trial was killed at the 1200s mark.
+   *
+   * Both ceilings were sized against Sonnet, and a cheaper model is the wrong
+   * thing to size against a Sonnet observation: it does not do less work, it
+   * takes more turns to do the same work, so the wall clock moves in the
+   * opposite direction to the price. MCP variants compound that — the token
+   * MCP alone can be a dozen roundtrips per decision.
+   *
+   * A timeout kill wastes the entire spend of a trial and returns nothing to
+   * grade, which is the most expensive possible outcome. The ceiling is
+   * therefore deliberately far above the observed mean rather than close to
+   * it; it exists to stop a wedged trial, not to bound a slow one.
+   *
+   * `timeout` is part of the framework fingerprint, so this invalidates cached
+   * results everywhere. That is free for the Haiku arms, which have none, and
+   * academic for the Sonnet arms, whose campaign is complete and whose results
+   * are read off disk by `grade`/`report`/`cost` regardless.
    */
-  timeout: 1200,
+  timeout: 1800,
 
   /** Docker everywhere, local and CI (D4). No Vercel account required. */
   sandbox: "docker" as const,
