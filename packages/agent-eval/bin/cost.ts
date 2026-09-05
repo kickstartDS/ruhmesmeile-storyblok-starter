@@ -47,25 +47,55 @@ const PRICES = {
 
 type Usage = Record<string, number>;
 
-/** Sum the per-message usage blocks in one agent transcript. */
+/**
+ * Sum the per-message usage in one agent transcript, counting each message once.
+ *
+ * Claude Code writes one JSONL line per *content block*, not per message: a
+ * reply that emits some text and three tool calls becomes four lines, each
+ * carrying a copy of the same `message.usage` for the whole reply. Summing
+ * line by line therefore bills every message once per block it happened to
+ * contain, which is why the first reconstruction of a $1.19 run reported
+ * $2.54 — 12 assistant lines over 5 distinct messages.
+ *
+ * The error is not a constant factor and cannot be divided out: blocks per
+ * message is a function of how many tools the agent called, so the arms that
+ * call MCP tools were inflated hardest, in the exact direction that flatters
+ * the conclusion we were drawing about what MCPs cost.
+ *
+ * Deduplicated on `message.id`, which is the API's identifier for one billed
+ * response. Lines without one keep their own key, so a transcript in some
+ * other shape is over-counted rather than dropped.
+ */
 function usageOf(transcript: string): Usage {
-  const total: Usage = {};
+  const seen = new Map<string, Usage>();
+  let anonymous = 0;
+
   for (const line of readFileSync(transcript, "utf8").split("\n")) {
     if (!line.trim()) continue;
-    let parsed: { message?: { usage?: unknown }; usage?: unknown };
+    let parsed: {
+      message?: { id?: unknown; usage?: unknown };
+      usage?: unknown;
+    };
     try {
       parsed = JSON.parse(line) as typeof parsed;
     } catch {
       continue;
     }
-    const usage = (parsed.message?.usage ?? parsed.usage) as
-      | Usage
-      | undefined;
+    const usage = (parsed.message?.usage ?? parsed.usage) as Usage | undefined;
     if (!usage || typeof usage !== "object") continue;
-    for (const [key, value] of Object.entries(usage)) {
-      if (typeof value === "number") total[key] = (total[key] ?? 0) + value;
-    }
+
+    const id =
+      typeof parsed.message?.id === "string"
+        ? parsed.message.id
+        : `anonymous-${anonymous++}`;
+    if (!seen.has(id)) seen.set(id, usage);
   }
+
+  const total: Usage = {};
+  for (const usage of seen.values())
+    for (const [key, value] of Object.entries(usage))
+      if (typeof value === "number") total[key] = (total[key] ?? 0) + value;
+
   return total;
 }
 
