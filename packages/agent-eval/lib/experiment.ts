@@ -12,6 +12,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  renameSync,
   writeFileSync,
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -415,7 +416,26 @@ function guardVariantVersion(
     return;
   }
 
-  const previous = readFileSync(marker, "utf-8").trim().split("\n")[0]!.trim();
+  const raw = readFileSync(marker, "utf-8");
+
+  // A marker that exists but holds nothing is debris, not history.
+  //
+  // `results/{experiment}/` is created before the first trial runs, so a crash
+  // or a kill in that window leaves a zero-byte marker behind — and the guard
+  // then compared the stamp against the empty string, failed, and refused every
+  // subsequent run of that experiment with "was last run against a different
+  // MCP build" plus a drift summary admitting it could not attribute the
+  // change. The only way out was `--force`, on an experiment that had never
+  // produced a result to discard.
+  //
+  // Treated as absent instead. An empty marker means no run ever finished under
+  // it, so there is nothing the guard exists to protect.
+  if (raw.trim() === "") {
+    writeMarker(marker, stamp, parts);
+    return;
+  }
+
+  const previous = raw.trim().split("\n")[0]!.trim();
   if (previous === stamp) return;
 
   if (!process.argv.includes("--force")) {
@@ -489,9 +509,15 @@ function describeDrift(marker: string, parts: VariantParts): string {
 
 function writeMarker(marker: string, stamp: string, parts: VariantParts): void {
   mkdirSync(dirname(marker), { recursive: true });
+  // Staged through a temporary file because `writeFileSync` is not atomic: a
+  // kill mid-write leaves a truncated marker, which is how the empty-marker
+  // case above came to exist. `renameSync` within one directory is atomic, so
+  // the marker is either the old content or the new one, never a fragment.
+  const staging = `${marker}.${process.pid}.tmp`;
   writeFileSync(
-    marker,
+    staging,
     `${stamp}\n${JSON.stringify(parts, null, 2)}\n`,
     "utf-8",
   );
+  renameSync(staging, marker);
 }
