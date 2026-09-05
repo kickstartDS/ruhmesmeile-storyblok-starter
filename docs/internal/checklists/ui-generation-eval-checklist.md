@@ -4440,6 +4440,119 @@ know we were asking, and would now have to pay for deliberately.
 for months and is implemented nowhere. It was found by looking for it, not by it
 firing — which is the only way an absent safety net is ever found.
 
-**Next free decision number: D-151.**
+---
+
+## D-151 — Stage 1: the bracket holds, and the report was billing us twice
+
+Stage 1 bought the three remaining Haiku arms on `810-atom-from-schema`, 3 runs
+each, with tools loaded upfront. All four arms cleared the D-150 gate: no
+`deferred_tools_delta` in any transcript, and `cc-none` made zero MCP calls
+while the MCP arms made them.
+
+| arm | pass@1 | quality | $/trial | mcp calls/trial |
+| --- | --- | --- | --- | --- |
+| `cc-none` | 0% | 0.63 ±0.07 | $0.43 | — |
+| `cc-design-tokens` | **run invalid** | (0.69 unscored) | $0.51 | **0** |
+| `cc-component-builder` | 100% | 0.98 ±0.01 | $0.50 | 2.7 |
+| `cc-both` | 100% | 0.99 ±0.01 | $0.63 | 6.3 |
+
+The headline is an economic one, which is the point of G2: the
+component-builder server converts a 0% pass rate into 100% for **16% more money
+per trial**. `cc-both` adds a further 26% on top of that for +0.01 quality —
+though see the per-grader note below, because the average hides what it bought.
+
+### `cc-design-tokens` made zero calls with the tools in context
+
+This is a different zero from D-148's. The tools were loaded — no deferral — and
+Haiku declined to call them, three times out of three. Instead it read and
+grepped: 12–21 `Read` and 31–41 `Bash` calls per trial.
+
+Two hypotheses were tested and one survives:
+
+- **Rejected — component-builder refers the agent onward.** `cc-both` called
+  design-tokens 5× in run-1 and never in runs 2–3, so it looked like the
+  instructions server might be the entry point. It is not: the
+  component-builder MCP's source contains no reference to the tokens server, by
+  grep. Run-1 was variance.
+- **Supported — the repo is staged, so token values are greppable.** The tokens
+  server's payload is *values*, and values are on disk. The component-builder
+  server's payload is *conventions*, which are not on disk in that form. An
+  agent with filesystem access has no reason to pay a tool call for the first
+  and every reason to pay one for the second.
+
+The grader's exclusion reason — "this trial measures the baseline, whatever its
+score says" — is now independently confirmed rather than merely asserted: the
+excluded trials scored 0.69 and FAIL, inside the baseline's 0.63 ±0.07.
+
+Open, and deliberately not decided here: whether this is a finding about the
+tokens server, or about `810` failing to pose a question only that server can
+answer. `816-typography-pairing` and `817` are the evals that would separate
+those, and both are in Stage 2/3. Deciding it now, from one eval, would repeat
+lesson (cm).
+
+### The report was inflating every cost figure by ~2.2×
+
+`pnpm grade` reported $3.28 for the three `cc-component-builder` trials.
+`pnpm cost` reconstructed $1.38. Anthropic billed **$1.51**.
+
+D-147 found this exact bug — Claude Code writes one JSONL line per *content
+block*, and every line of a message repeats that message's `usage` verbatim —
+and fixed it in `bin/cost.ts`. It left the same summation live in
+`lib/eval-harness/harness.ts`, whose `agent-transcript-meta.json` is what
+`efficiencyOf()` reads, which is what the report's `costOf()` prices. So the
+instrument nobody looks at was corrected and the instrument that produces every
+headline number in the PRD was not.
+
+Fixed by recomputing tokens and turns host-side in `lib/graders/efficiency.ts`,
+deduplicated on `message.id`. Host-side because grading is retroactive and free
+(D-50): every trial already bought is repriced without re-running anything. The
+same fix in the sandbox summariser would have corrected only future trials.
+
+`toolCalls` is deliberately *not* deduplicated. One block per line means the
+per-line count of `tool_use` blocks is already right; deduplicating on
+`message.id` and taking the first line's blocks reads 49 tool calls as 3. The
+same transcript shape requires opposite treatment for two different quantities,
+which is why this is written down.
+
+Validation after the fix, against the invoice:
+
+| | before | after | billed |
+| --- | --- | --- | --- |
+| `cc-component-builder` × `810` × 3 | $3.28 | **$1.50** | **$1.51** |
+
+Turns fell with it — 104 → 64.3 on `cc-both`, and every turn count in every
+report before this is roughly double the truth.
+
+The error is not a constant and cannot be divided out of the historical
+figures: blocks per message is a function of how many tools the agent called, so
+**the MCP arms were inflated hardest** — in exactly the direction that flatters
+the conclusion "MCPs are expensive". Every cost and turn comparison in the
+campaign so far was biased against the thing under test.
+
+### What `cc-both` actually bought
+
+The +0.01 average is not the story. `cc-component-builder` alone leaves
+`authoring-seams` at 0.83 and `token-conformance` at 0.80; `cc-both` scores
+1.00/0.99, 0.83/0.99, 1.00/1.00 across its three runs. The second server closes
+the two gaps the first one leaves, on the runs where it is used at all — while
+being the server that, alone, gets ignored entirely.
+
+**Lesson (cp):** fixing a bug in one instrument is not fixing the bug. D-147
+wrote the mechanism down correctly, found it in the tool it was holding, and
+never asked what else summed the same file. The question after any measurement
+fix is "what else reads this?", and it has to be asked with `grep`, not memory.
+
+**Lesson (cq):** check the direction of a measurement error before deciding it
+is small. A 2.2× inflation that lands preferentially on the treatment arm is not
+noise, it is a thumb on the scale — and this one pointed at the conclusion we
+were most likely to want to believe.
+
+**Lesson (cr):** an agent will not pay for information it can grep. A server
+whose value is *data already in the repo* competes with `Read`; a server whose
+value is *conventions not written anywhere* does not. This is a claim about what
+belongs in an MCP, not about which model is lazy.
+
+**Next free decision number: D-152.**
+
 
 

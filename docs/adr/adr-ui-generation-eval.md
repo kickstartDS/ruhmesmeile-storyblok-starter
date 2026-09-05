@@ -3725,3 +3725,48 @@ Lesson (cl): the mechanism was in our own source the whole time. `mcp-usage.ts`
 described ToolSearch in prose months before this analysis, and a `grep` surfaced
 that comment while hunting for the cause and it was read as an aside. Search the
 codebase's explanations, not just its identifiers.
+
+## ADR 93 — Token accounting is recomputed host-side, per message
+
+**Context.** The sandbox writes `agent-transcript-meta.json` alongside each
+transcript, and the report priced trials from its `tokens` field. Claude Code
+writes one JSONL line per content block, and every line of a message repeats
+that message's `usage`, so the summariser's line-by-line addition over-counted
+by however many blocks a message contained. Measured: $3.28 reported against a
+$1.51 invoice on three trials, and 98 transcript lines across 50 messages.
+
+D-147 diagnosed this mechanism correctly and fixed it in `bin/cost.ts` alone.
+The report — the path producing every USD/task and turn figure the PRD quotes —
+kept the uncorrected sum for three more campaigns.
+
+**Decision.** Tokens and turns are recomputed in `lib/graders/efficiency.ts`
+from the raw transcript, deduplicated on `message.id`, and the sandbox
+summariser's values for those two fields are ignored.
+
+Host-side, not in the sandbox, because grading is retroactive and free
+(Decision 17 / D-50): every trial already paid for is repriced with no re-run.
+Correcting the summariser would have fixed only trials not yet bought, and left
+the corpus permanently un-comparable across the fix.
+
+`toolCalls` is explicitly exempt. With one block per line, the per-line count is
+already correct, and applying the same deduplication to it reads 49 tool calls
+as 3. Two quantities in one file, requiring opposite treatment — the exemption
+is load-bearing and documented at the function.
+
+**Consequences.** All historical cost and turn figures are superseded; the
+corpus is internally consistent because grading is retroactive. The error was
+proportional to tool-call volume, so it fell hardest on MCP arms, biasing every
+prior cost comparison against the treatment. The sandbox summariser still
+over-counts and is now the *unused* value for these two fields — a stale
+producer left in place, which is the shape of trap Decision 92's price table
+described. It is tolerated only because the host-side path is the one anything
+reads.
+
+Lesson (cp): fixing a bug in one instrument is not fixing the bug. The question
+after any measurement correction is "what else reads this?", asked with `grep`
+rather than from memory.
+
+Lesson (cq): check the direction of a measurement error before deciding it is
+small. An inflation that lands preferentially on the treatment arm is a thumb on
+the scale, not noise.
+

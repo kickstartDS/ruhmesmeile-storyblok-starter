@@ -48,6 +48,75 @@ const EMPTY: Efficiency = {
 /** Rough token estimate; only ever compared against itself across variants. */
 const estimateTokens = (text: string): number => Math.ceil(text.length / 4);
 
+/**
+ * Tokens and turns, counted per *message* rather than per transcript line.
+ *
+ * Claude Code writes one line per content block, and every line of a message
+ * repeats that message's `usage` verbatim. The in-sandbox summariser
+ * (`lib/eval-harness/harness.ts`) adds them up line by line, so its `tokens`
+ * and `assistantMessages` are inflated by however many blocks the message
+ * happened to contain — measured at 98 lines across 50 messages on one trial,
+ * and $3.28 against a $1.51 invoice.
+ *
+ * The error is not a constant: blocks per message is a function of how many
+ * tools the agent called, so the arms that call MCP tools inflate hardest, in
+ * the direction that flatters what an MCP appears to cost. D-147 fixed exactly
+ * this in `bin/cost.ts` and left it live here — which is the path the report,
+ * and therefore every headline USD/task figure, actually uses.
+ *
+ * Recomputed host-side rather than in the sandbox so it applies retroactively
+ * to every trial already bought (D-50). `toolCalls` is deliberately *not*
+ * recomputed: one block per line means the summariser's per-line count of
+ * `tool_use` blocks is already correct, and deduplicating those would
+ * undercount them badly (49 calls read as 3).
+ */
+function perMessageTotals(raw: string): {
+  tokens: Efficiency["tokens"];
+  turns: number;
+} {
+  const seen = new Set<string>();
+  const tokens = { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 };
+  let turns = 0;
+  let anonymous = 0;
+
+  for (const line of raw.split("\n")) {
+    if (!line.trim()) continue;
+    let event: {
+      message?: {
+        id?: unknown;
+        role?: unknown;
+        usage?: Record<string, unknown>;
+      };
+    };
+    try {
+      event = JSON.parse(line) as typeof event;
+    } catch {
+      continue;
+    }
+
+    const message = event?.message;
+    if (message?.role !== "assistant") continue;
+
+    // A line without an id is its own message rather than a dropped one: an
+    // unfamiliar transcript shape should over-count, not silently vanish.
+    const id =
+      typeof message.id === "string" ? message.id : `anonymous-${anonymous++}`;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    turns += 1;
+
+    const usage = message.usage;
+    if (!usage) continue;
+    const num = (value: unknown) => (typeof value === "number" ? value : 0);
+    tokens.input += num(usage.input_tokens);
+    tokens.output += num(usage.output_tokens);
+    tokens.cacheRead += num(usage.cache_read_input_tokens);
+    tokens.cacheWrite += num(usage.cache_creation_input_tokens);
+  }
+
+  return { tokens, turns };
+}
+
 export function efficiencyOf(trial: Trial): Efficiency {
   const summary = trial.transcript?.summary;
   if (!summary) return EMPTY;
@@ -72,6 +141,10 @@ export function efficiencyOf(trial: Trial): Efficiency {
 
   const raw = readRawTranscript(trial);
   if (!raw) return efficiency;
+
+  const { tokens, turns } = perMessageTotals(raw);
+  efficiency.tokens = tokens;
+  efficiency.turns = turns;
 
   const written = new Set<string>();
   const mcpToolUseIds = new Set<string>();
