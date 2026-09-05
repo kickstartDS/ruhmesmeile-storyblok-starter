@@ -3675,3 +3675,53 @@ Lesson (cc): a judge fabricates most fluently about the artefact it has been
 shown, because that is where it has the vocabulary to be specific.
 Confabulation looks like detail — and it is checkable, which is the argument for
 building the grader before believing the verdict.
+
+## ADR 92 — MCP tools are loaded upfront, because availability has stages
+
+**Context.** Twenty-four Haiku trials across all four arms produced identical
+results, and a `tool_use` census found zero MCP calls in every one of them. The
+servers connected, the probe passed, the tool names reached the model, and
+`setup-check` was green. Nothing in the harness was broken.
+
+Line 4 of every transcript in the corpus — Haiku and Sonnet alike — is a
+`deferred_tools_delta` attachment listing the MCP tools by name. Claude Code
+defers MCP tools by default (`ENABLE_TOOL_SEARCH` unset); the model receives
+names, not definitions, and must call `ToolSearch` to load one before it can
+call it. Across all 84 trials the search is the gate: where it fires, MCP calls
+follow (18→15, 21→17, 18→15 by arm); where it does not, they never do. Haiku
+searched zero times. Sonnet searched in roughly 60% of its MCP-arm trials, which
+means the other 40% were baselines wearing an MCP label.
+
+**Decision.** `setupVariant()` sets `ENABLE_TOOL_SEARCH=false` in
+`.claude/settings.local.json`, the same file whose `enableAllProjectMcpServers`
+flag is already proven to take effect there. `SETUP_VERSION` moves to
+`7-tools-upfront` and the regime is a named part of the variant-version hash, so
+the two regimes cannot be pooled by accident. `EVAL_TOOL_SEARCH=1` restores
+deferral for anyone who wants to ask that question on purpose.
+
+Confirmed on `810-atom-from-schema`, `cc-component-builder-haiku`: 0/3 → 3/3,
+quality 0.97–0.99, 2/1/5 MCP calls per trial, `deferred_tools_delta` gone,
+$1.51. The first honest measurement of MCP value in the campaign.
+
+**Consequences.** Every MCP-versus-baseline delta measured before this is
+withdrawn (D-150). The 84 deferred trials are not discarded — they are a valid
+measurement of tool *discovery*, and the two regimes now answer different
+questions: does the server's content help, versus will a model find a server
+nobody pointed it at. The second is arguably closer to a real user's experience
+and cannot be the default for a drift gate, because Claude Code gates the
+*reminder* to search behind remote feature flags — whether a model searches is
+partly a server-side setting that can change between runs.
+
+`mcpToolsWereDeferred()` reads the attachment directly and `collect.ts`
+distinguishes "never called" from "never callable" in the confound reason, so a
+setting that silently stops applying announces itself instead of producing
+another campaign of mislabelled baselines.
+
+Lesson (ck): a tool the model can see the name of is not a tool it can call.
+Availability has stages, and a harness that verifies only the earliest — server
+connects, names arrive — will certify an arm that cannot work.
+
+Lesson (cl): the mechanism was in our own source the whole time. `mcp-usage.ts`
+described ToolSearch in prose months before this analysis, and a `grep` surfaced
+that comment while hunting for the cause and it was read as an aside. Search the
+codebase's explanations, not just its identifiers.

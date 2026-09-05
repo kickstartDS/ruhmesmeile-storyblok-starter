@@ -4268,6 +4268,45 @@ was never purely a property of the model — it is partly a server-side setting
 that can change under us between runs. That alone disqualifies the deferred
 regime as the default for a drift gate.
 
+### Confirmed against a real run
+
+`EVAL_ONLY=810-atom-from-schema pnpm eval cc-component-builder-haiku-high
+--force`, three trials, $1.51 billed. The guard fired first and refused the run
+until `--force` — which is the guard working: `--force` is documented as "ignore
+fingerprints, re-run everything" and deletes nothing, so the deferred-era trials
+remain on disk under their own timestamps as the evidence for D-148.
+
+| | deferred | upfront |
+| --- | --- | --- |
+| `deferred_tools_delta` in transcript | yes | no |
+| `ToolSearch` calls | 0 | 0 — nothing left to search |
+| MCP calls per trial | 0, 0, 0 | 2, 1, 5 |
+| passed | 0/3 | **3/3** |
+| quality | — | 0.98, 0.99, 0.97 |
+
+All three opened on `get-ui-building-instructions`; `mcp-usage/consulted-first`
+fires on each. The eval Haiku could not pass at all, it now passes every time,
+and the only thing that changed is whether the tool definitions were in the
+context. **This is the first honest measurement of MCP value in the campaign.**
+
+Two graders still bite with the server present, and those findings are now about
+the MCP's *content* rather than its absence: `token-conformance` 0.80 (component
+tokens referencing `--ks-brand-color-scale-1` and `-3` directly, skipping the
+semantic layer) and `authoring-seams` 0.83 (no shared identifier tying the
+component to its client bundle). The token violation is the design-tokens
+server's subject, not the component-builder's, which makes `cc-both` the cell
+that matters.
+
+What must **not** be read out of this: Haiku's 3/3 against Sonnet's 67% on the
+same eval and the same server. Sonnet's figure comes from the deferred regime
+where a third of its trials never searched. Comparing them compares a working
+arm against a half-broken one. No model comparison survives D-149 (see D-150).
+
+Cost reconciliation: $1.38 reconstructed against $1.51 billed, 9% under — wider
+than the 2–6% band the dedup fix was validated at, and worth watching rather
+than acting on. Per trial the arm went from $0.35 to $0.46, and gained a
+denominator: three passes instead of none. Cheap failure is still failure.
+
 **Lesson (ck):** a tool the model can see the *name* of is not a tool it can
 call. Availability has stages, and a harness that verifies only the earliest one
 — server connects, names arrive — will certify an arm that cannot work.
@@ -4282,6 +4321,86 @@ concluding a behaviour is unexplained.
 about the models. Here it was a finding about a default that treats them
 identically and that only one of them happened to route around.
 
-**Next free decision number: D-150.**
+## D-150 — the corpus is superseded; buying it back in stages
+
+84 trials and $96.40 were spent in the deferred regime. They are not wasted —
+they are the evidence for D-148 and D-149, and they remain a valid measurement
+of *tool discovery*. They are not a measurement of MCP value, and nothing in the
+PRD may cite them as one.
+
+Every campaign conclusion that rests on an MCP-versus-baseline delta is
+withdrawn pending re-run. That is: the 810 discrimination (0% → 67%), the
+per-arm cost multiples, and every Haiku figure in D-148 except the fact that it
+never called a server.
+
+### Why this is not one big re-run
+
+The obvious move — re-run the full core matrix and be done — costs more than it
+is worth at this stage, and the estimate it would rest on is unsound. Per-trial
+costs from the deferred regime are the costs of agents that frequently gave up
+early. The one upfront data point we have rose 1.3× (Haiku, `810`, $0.35 →
+$0.46) *and* turned failures into passes, which costs more turns. Extrapolating
+$96 of deferred spend across 12 core evals × 4 arms × 2 models lands somewhere
+between $250 and $600, on an assumption we know is wrong in an unknown
+direction, from 5 of 20 evals.
+
+So: buy it in stages, and re-estimate from real upfront trials after each.
+
+### Stages
+
+| stage | scope | trials | estimate | buys |
+| --- | --- | --- | --- | --- |
+| 0 ✅ | `810` × cc-component-builder-haiku | 3 | $1.51 actual | the regime works |
+| 1 | `810` × the other three Haiku arms | 9 | $4–6 | first honest four-arm delta |
+| 2 | `810` × four Sonnet arms | 12 | $15–30 | model comparison restored |
+| — | *checkpoint: re-estimate per-trial cost from 24 real upfront trials* | | | |
+| 3 | `812`, `832`, `840` × four arms × both models | 72 | re-estimate | the discriminating subset |
+| 4 | full core (12 evals) × four arms × both models | 288 | re-estimate | the regression gate |
+
+Stage 1 answers the question Stage 0 raised: `cc-component-builder` alone left
+`token-conformance` at 0.80 with direct branding-layer references. If `cc-both`
+does not fix that, the design-tokens server is not doing the one job its arm
+exists to test — and that is worth knowing for $5 before anything larger is
+bought.
+
+Stage 2 is the gate on every cross-model claim. Until it lands, Haiku and Sonnet
+numbers in this document are not comparable and are marked as such.
+
+Stage 4 is deliberately last. A regression gate is only worth paying for once
+the deltas it is meant to protect are known; buying 288 trials to discover what
+`810` could have told us for $5 is the mistake this staging exists to avoid.
+
+### Commands
+
+```bash
+# stage 1
+EVAL_ONLY=810-atom-from-schema pnpm eval cc-none-haiku-high --force; \
+EVAL_ONLY=810-atom-from-schema pnpm eval cc-design-tokens-haiku-high --force; \
+EVAL_ONLY=810-atom-from-schema pnpm eval cc-both-haiku-high --force
+```
+
+One experiment per invocation, joined by `;` — the CLI declares `<experiments...>`
+variadic but runs only the first and exits non-zero when evals fail (D-117).
+`--force` is required at every stage until each experiment has run once under
+`7-tools-upfront`, and is non-destructive.
+
+### The checks that gate each stage
+
+Before spending on the next stage, on the trials just bought:
+
+1. `deferred_tools_delta` absent from every transcript. If present,
+   `ENABLE_TOOL_SEARCH` did not apply and the stage is void — stop.
+2. `mcpToolCallCount > 0` on every MCP-variant trial, and zero on `cc-none`.
+   The second is the one that invalidates deltas if it breaks.
+3. `pnpm grade` reports no `confounded` exclusions. `mcpToolsWereDeferred()`
+   now names the cause in the reason string.
+4. Reconstructed cost within ~10% of the billed figure.
+
+**Lesson (cn):** a superseded corpus is not a worthless one, provided what it
+actually measured is written down at the moment it is superseded. The 84 trials
+answer "will a model find a server nobody pointed it at" — a question we did not
+know we were asking, and would now have to pay for deliberately.
+
+**Next free decision number: D-151.**
 
 
