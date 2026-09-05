@@ -4061,6 +4061,140 @@ looks like detail.
 variance on both the reference and the trials is a finding about the corpus, and
 it is the only thing that can adjudicate a judge's claim about the same facts.
 
-**Next free decision number: D-147.**
+---
+
+## D-147 — four instruments repaired before a single Haiku result was read
+
+Opening the Haiku campaign surfaced four separate faults, none of which
+announced itself as one. In order of discovery:
+
+**The wedged marker.** A trial killed at the 1200s ceiling left a zero-byte
+`results/cc-none-haiku-high/.variant-version` behind. `guardVariantVersion`
+tested only `existsSync`, so it read `previous` as the empty string, never
+matched, and refused every subsequent run of that experiment — reporting "was
+last run against a different MCP build" while its own drift summary admitted it
+could not attribute the change. The documented escape was `--force`, on an
+experiment that had never produced a result to discard. An empty marker now
+counts as absent, and writes are staged through a temp file and renamed, since
+`writeFileSync` is not atomic and a kill mid-write is how the file came to
+exist.
+
+**The ceiling.** Raised 1200s → 1800s. Both previous ceilings were sized against
+Sonnet observations, which is the wrong reference for a cheaper model: it does
+not do less work, it takes more turns to do the same work, so wall clock moves
+opposite to price.
+
+**The invisible run.** The harness now writes `results/{arm}/{model}/{timestamp}/`
+where the Sonnet campaign wrote `results/{arm}/{timestamp}/`. `listRuns` read
+direct children of the experiment directory, took `haiku` for a timestamp, read
+the timestamp below it as an eval name, found no `summary.json`, and skipped it.
+Nothing errored: `pnpm cost` printed the same 60-trial Sonnet total it had
+printed *before* the run. A run is now identified by its path below the
+experiment, sorted by timestamp so the model segment cannot reorder which result
+resolves as current.
+
+**The double count.** The billing page said $1.19; `pnpm cost` said $2.54. Claude
+Code writes one JSONL line per *content block*, not per message — a reply with
+some text and three tool calls is four lines, each carrying a copy of the same
+`message.usage` for the whole reply. One transcript had 12 assistant lines over
+5 distinct message ids. Deduplicated on `message.id`, the same run reconstructs
+at $1.12, and two later runs at $1.27 vs $1.32 and $2.82 vs $2.88 billed — 2–6%.
+
+The correction was not a constant factor and could not have been scaled out.
+Blocks per message is a function of how many tools the agent called, so the
+arms that called MCP tools were inflated hardest — in the direction that
+flattered the conclusion. The whole cost dimension moves:
+
+| | as reported in D-121 | corrected |
+| --- | --- | --- |
+| Sonnet campaign total | $223.26 | **$91.99** |
+| cc-both vs cc-none | 3.7× | **2.47×** |
+| 810 mean per trial | $5.69 | $1.91 |
+
+MCP overhead is real and roughly half what we said it was. The 3.7× figure must
+not survive into the PRD.
+
+**Lesson (ce):** a guard that tests only for a file's existence trusts that the
+file was fully written. A crash mid-write converts a safety check into a
+permanent block, and the block is worded as though the data were wrong rather
+than absent.
+
+**Lesson (cf):** a tool that silently returns the same answer after new data
+arrives is indistinguishable from a tool that is working. The layout change
+produced no error anywhere — only an unchanged total, which is exactly what a
+correct tool would print if nothing had run.
+
+**Lesson (cg):** an instrument built on our own arithmetic stayed wrong for a
+full campaign because nothing external ever contradicted it. One line from a
+billing page falsified it in a single comparison. Every reconstructed
+measurement needs one ground truth it cannot produce itself.
+
+---
+
+## D-148 — Haiku never called a single MCP tool, in 24 trials
+
+Batch 1: `810-atom-from-schema` and `860-restraint`, four Haiku arms, three runs
+each. Every arm returned the identical result — 810 at 0/3, 860 at 3/3 — which
+is what prompted looking past pass/fail.
+
+`810` is the eval that discriminates hardest for Sonnet: 0% at baseline, 67%
+with the component-builder MCP. On Haiku it is 0% in all four arms, and the
+grader's confound detector explains why:
+
+> excluded — confounded: an MCP variant that never called an MCP server — this
+> trial measures the baseline, whatever its score says
+
+A census of `tool_use` blocks confirms it across the batch:
+
+| arm (810) | trials | with real MCP calls | total calls |
+| --- | --- | --- | --- |
+| cc-component-builder-sonnet | 12 | 8 | 71 |
+| cc-both-sonnet | 9 | 6 | 185 |
+| cc-design-tokens-sonnet | 9 | 6 | 157 |
+| cc-none-sonnet | 18 | 0 | 0 |
+| **all four Haiku arms** | **24** | **0** | **0** |
+
+The servers were reachable and the tools were offered: the tool catalogue in
+each Haiku transcript lists all ten `mcp__component-builder__*` names. Sonnet,
+under the same setup, called them 71–185 times. So this is a model behaviour,
+not a plumbing failure — Haiku was handed the tools and never reached for them.
+
+Two consequences. The three MCP Haiku arms are, behaviourally, four copies of
+the baseline, and `pnpm grade` correctly marks their 810 runs invalid rather
+than reporting a null result. And the arms still did not cost the same:
+
+| arm | 6 trials |
+| --- | --- |
+| cc-none-haiku | $1.12 |
+| cc-component-builder-haiku | $1.27 |
+| cc-both-haiku | $1.34 |
+| cc-design-tokens-haiku | $1.48 |
+
+Up to 32% more for zero calls. Advertising a server enlarges the system prompt,
+and that is billed on every turn. **An MCP server costs money before it is
+useful, and continues to if it is never useful.**
+
+Cost reconciliation for the batch: $5.21 reconstructed against $5.39 billed,
+versus a $9.60 projection — 46% under, because a model that never calls a tool
+and gives up early is cheap. Which is the trap: cost per *trial* rewards
+failure. Cost per *successful* trial is the only honest cross-model figure, and
+on 810 Haiku has no denominator at all.
+
+**Lesson (ch):** a string match on a transcript finds the tool catalogue as
+readily as a tool call. Both contain the tool's name; only one is evidence. Read
+`tool_use` blocks, never `grep`. This was asserted here as a finding — that
+Haiku "called the MCP exhaustively and ignored what it returned" — before the
+grader's own confound detector, which had already got it right, was consulted.
+
+**Lesson (ci):** when every arm of an experiment returns the same number, treat
+it as a claim that the manipulation did not happen, not as a result about the
+manipulation.
+
+**Lesson (cj):** a variant's *label* is not its treatment. `cc-both-haiku-high`
+is only a both-MCP trial if an MCP was called, and the harness cannot enforce
+that — it can only report it afterwards, which is why the confound class exists
+and why it must be read before the scores.
+
+**Next free decision number: D-149.**
 
 
