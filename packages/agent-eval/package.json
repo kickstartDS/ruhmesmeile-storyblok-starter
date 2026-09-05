@@ -12,6 +12,7 @@
     "status": "agent-eval status",
     "refingerprint": "agent-eval refingerprint",
     "grade": "tsx bin/grade.ts",
+    "cost": "tsx bin/cost.ts",
     "report": "tsx bin/report.ts",
     "graders:selftest": "tsx bin/graders-selftest.ts",
     "setup:check": "tsx bin/setup-check.ts",
