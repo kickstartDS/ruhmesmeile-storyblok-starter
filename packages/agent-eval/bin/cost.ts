@@ -108,11 +108,15 @@ function rows(all: boolean): Row[] {
   };
 
   if (all) {
+    // `**` because the timestamp sits at different depths depending on which
+    // harness version wrote the run (see `listRuns`). The eval name is read
+    // from the end of the path, where it is always four segments up from the
+    // transcript, rather than by index from the front, where it is not.
     for (const path of globSync(
-      "results/*/*/*/run-*/project/agent-transcript.jsonl",
+      "results/*/**/run-*/project/agent-transcript.jsonl",
     )) {
-      const [, arm, , evalName] = path.split("/");
-      record(path, arm, evalName);
+      const parts = path.split("/");
+      record(path, parts[1]!, parts[parts.length - 4]!);
     }
     return found;
   }

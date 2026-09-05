@@ -180,9 +180,43 @@ function listDirs(dir: string): string[] {
   });
 }
 
-/** All timestamped run directories for an experiment, newest last. */
+/** A results directory named by the harness, e.g. `2026-09-05T09-47-29.504Z`. */
+const TIMESTAMP = /^\d{4}-\d{2}-\d{2}T/;
+
+/** The timestamp at the end of a run path, ignoring any model segment. */
+const stampOf = (run: string): string => run.slice(run.lastIndexOf("/") + 1);
+
+/**
+ * All timestamped run directories for an experiment, newest last.
+ *
+ * Returned relative to the experiment directory, because the harness does not
+ * always put timestamps at the same depth: the Sonnet campaign wrote
+ * `results/{arm}/{timestamp}/`, and a later harness version interposes the
+ * model, giving `results/{arm}/{model}/{timestamp}/`. Both layouts exist on
+ * disk and neither is going to be rewritten, so a run is identified by its path
+ * below the experiment rather than by a bare timestamp.
+ *
+ * Everything downstream joins this onto the experiment directory, so a
+ * `"haiku/2026-..."` entry threads through unchanged. Sorting is by timestamp
+ * alone — `resolveMatrix` walks these newest-first to dedupe, and sorting the
+ * raw strings would order by model name first and silently mis-resolve which
+ * result is current.
+ *
+ * Without this, an unrecognised layout does not error: `listDirs` returns the
+ * model directory, the timestamp below it is read as an eval name, its missing
+ * `summary.json` skips it, and the entire run is reported as absent.
+ */
 export function listRuns(experiment: string): string[] {
-  return listDirs(join(RESULTS_ROOT, experiment)).sort();
+  const root = join(RESULTS_ROOT, experiment);
+  return listDirs(root)
+    .flatMap((entry) =>
+      TIMESTAMP.test(entry)
+        ? [entry]
+        : listDirs(join(root, entry))
+            .filter((child) => TIMESTAMP.test(child))
+            .map((child) => `${entry}/${child}`),
+    )
+    .sort((a, b) => stampOf(a).localeCompare(stampOf(b)));
 }
 
 export function listExperiments(): string[] {
