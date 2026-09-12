@@ -1364,40 +1364,65 @@ The following components have client-side JavaScript:
 // Dispatcher — maps tool names to handler functions
 // ---------------------------------------------------------------------------
 
+/**
+ * Accept the other separator convention.
+ *
+ * This server used to name its tools in kebab-case while the design-tokens
+ * server used snake_case. Measured against the eval campaign, a model holding
+ * both servers at once mixed the two: it called `get-typography-tokens` on the
+ * snake_case server and `get_token_architecture` on the kebab-case one. The
+ * tool it wanted existed and the name it produced did not.
+ *
+ * Both servers are snake_case now, so this only catches callers working from
+ * the old names — either a client pinned to an older version, or a model
+ * recalling them from training. Normalising is safe because no two tools here
+ * differ only by separator.
+ */
+function canonical(name: string): string {
+  return name.includes("-") ? name.replace(/-/g, "_") : name;
+}
+
 export function dispatch(
   name: string,
   args: Record<string, unknown>,
 ): CallToolResult {
-  switch (name) {
-    case "get-ui-building-instructions":
+  const resolved = canonical(name);
+  if (resolved !== name) {
+    // Logged rather than silently accepted: the point of tolerating the old
+    // names is to find out how long they keep being used.
+    console.error(`[deprecated tool name] ${name} → ${resolved}`);
+  }
+
+  switch (resolved) {
+    case "get_ui_building_instructions":
       return handleGetUiBuildingInstructions();
-    case "get-component-structure":
+    case "get_component_structure":
       return handleGetComponentStructure(
         args as unknown as ComponentStructureArgs,
       );
-    case "get-json-schema-template":
+    case "get_json_schema_template":
       return handleGetJsonSchemaTemplate(
         args as unknown as JsonSchemaTemplateArgs,
       );
-    case "get-react-component-template":
+    case "get_react_component_template":
       return handleGetReactComponentTemplate(
         args as unknown as ReactComponentTemplateArgs,
       );
-    case "get-client-behavior-template":
+    case "get_client_behavior_template":
       return handleGetClientBehaviorTemplate(
         args as unknown as ClientBehaviorTemplateArgs,
       );
-    case "get-scss-template":
+    case "get_scss_template":
       return handleGetScssTemplate(args as unknown as ScssTemplateArgs);
-    case "get-storybook-template":
+    case "get_storybook_template":
       return handleGetStorybookTemplate(
         args as unknown as StorybookTemplateArgs,
       );
-    case "get-defaults-template":
+    case "get_defaults_template":
       return handleGetDefaultsTemplate(args as unknown as DefaultsTemplateArgs);
-    case "get-token-architecture":
+    case "get_token_architecture":
       return handleGetTokenArchitecture();
-    case "list-existing-components":
+    case "list_existing_components":
       return handleListExistingComponents(
         args as unknown as ListExistingComponentsArgs,
       );

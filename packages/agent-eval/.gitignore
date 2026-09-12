@@ -6,6 +6,12 @@ dist/
 results/*
 !results/.gitkeep
 
+# Ad-hoc probe runs written outside results/ (e.g. probe-cc-both-nametidy-*).
+# These carry the same weight as a results tree — a single 12-eval probe is
+# ~300 MB — but were not covered by `results/*`, so they showed up as untracked
+# and would have been swept in by `git add -A`.
+probe-*/
+
 # Generated fixture projects and packed design-system tarballs
 .fixture-cache/
 

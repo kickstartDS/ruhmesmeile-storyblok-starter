@@ -1,0 +1,97 @@
+name: Eval review — one eval, four arms
+description: Qualitative review of a single eval across all four MCP arms. Diagnosis only; scoring happens in /calibrate.
+title: "[eval] <eval-name> — <one-line pattern>"
+labels: ["eval-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This issue is for diagnosis, not scoring.**
+
+        Pass/fail and rubric verdicts are graded blind in `/calibrate`, on the
+        same text material the LLM judge is given. Putting a verdict here
+        instead would be graded with the rendered output in view, which the
+        judge never sees — that asymmetry is exactly what the calibration
+        instrument is built to avoid.
+
+        What belongs here is everything a verdict cannot carry: *why* an arm
+        behaved the way it did, whether the assertion is measuring what we
+        meant, and what we should change.
+
+  - type: input
+    id: matrix-row
+    attributes:
+      label: Matrix row
+      description: pass@1 over 3 runs, mean MCP calls per trial in parentheses.
+      placeholder: "cc-none 0% · cc-component-builder 100% (3.7) · cc-design-tokens 0% · cc-both 67% (4.3)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pattern
+    attributes:
+      label: Pattern
+      options:
+        - lift — MCP arms beat baseline
+        - regression — an MCP arm is worse than baseline
+        - synergy — only cc-both passes
+        - pairing-loss — a single-server arm beats cc-both
+        - saturated-zero — 0% in all four arms
+        - saturated-pass — 100% in all four arms
+        - flat — no arm separates
+    validations:
+      required: true
+
+  - type: textarea
+    id: reading
+    attributes:
+      label: What the transcripts say
+      description: |
+        Which tools were called, in what order, and what the agent did with the
+        answers. Quote sparingly and link the trial rather than pasting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: assertion
+    attributes:
+      label: Is the assertion measuring what we meant?
+      description: |
+        A 0% row is either a hard task or a broken check. A 100% row is either a
+        solved task or a check that cannot fail. Say which, and how you know.
+    validations:
+      required: true
+
+  - type: textarea
+    id: corrections
+    attributes:
+      label: Corrections to make
+      description: |
+        One checkbox per actionable change. Tag each with where it lands:
+        `[server]` MCP tool/description/naming · `[eval]` fixture or assertion ·
+        `[rubric]` criterion wording · `[reasons]` new `reasons.json` id ·
+        `[docs]` D-number or ADR.
+      value: |
+        - [ ] `[server]`
+        - [ ] `[eval]`
+        - [ ] `[rubric]`
+        - [ ] `[reasons]`
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Trials reviewed
+      description: Addresses and Storybook links for the trials you actually opened.
+      placeholder: "cc-both-haiku-high/811-token-intent/run-2 — https://…/storybook-static/index.html"
+
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Definition of done
+      options:
+        - label: All four arms opened for at least one run
+        - label: At least one transcript read end to end
+        - label: Corrections listed, or explicitly "none — this row is correct as measured"
+        - label: Any new failure mode proposed as a `calibration/reasons.json` id

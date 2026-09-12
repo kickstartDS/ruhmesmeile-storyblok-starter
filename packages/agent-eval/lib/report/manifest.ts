@@ -30,6 +30,7 @@ const EXCLUDED_SOURCES = new Set([
   "package-lock.json",
   "agent-transcript.jsonl",
   "agent-transcript-meta.json",
+  "agent-subagent-transcripts.jsonl",
   "toolchain-report.json",
   "runtime-report.json",
 ]);

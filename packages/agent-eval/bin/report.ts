@@ -5,10 +5,16 @@
  *   pnpm report list
  *   pnpm report open  <experiment>/<eval>[/run-N]
  *   pnpm report build <experiment>/<eval>[/run-N] | --all  [--no-screenshots]
+ *   pnpm report build --all --arm cc-none-haiku-low [--arm …]
  *
  * `open` starts a dev Storybook against one trial; `build` writes a static one
  * into the trial's own directory, which is what publication uploads, and then
  * screenshots the component it produced.
+ *
+ * `build` is also how a re-grade reaches the UI. `report-manifest.json` carries
+ * the graded outcome, and the host inlines it into the bundle rather than
+ * fetching it — so grading may be free and retroactive (D-50), but *seeing* a
+ * new grade is not. A judge pass or a rubric change means rebuilding.
  *
  * Addresses omit the timestamp because there is only ever one current run per
  * experiment × eval (`resolveMatrix` picks it), and typing an ISO timestamp by
@@ -99,7 +105,21 @@ async function main(): Promise<void> {
   // that slot strip anything starting with `--` — after which `build --all`
   // parsed as a build with no address, and failed on the empty string.
   const all = argv.includes("--all");
-  const [command, target] = argv.filter((arg) => !arg.startsWith("--"));
+  // `--all` means every trial on disk, and after a campaign that is mostly
+  // trials whose Storybook is already built and whose manifest has not moved.
+  // Skipping built ones by default would be wrong — a judge pass or a rubric
+  // change alters the manifest without touching the trial, and those rebuilds
+  // are the whole reason `build` exists — so the selection is narrowed by name
+  // instead. `--arm` is repeatable and only filters `--all`.
+  const arms = argv.reduce<string[]>((acc, arg, index) => {
+    const value = argv[index + 1];
+    if (arg === "--arm" && value && !value.startsWith("--")) acc.push(value);
+    return acc;
+  }, []);
+  const [command, target] = argv.filter(
+    (arg, index) =>
+      !arg.startsWith("--") && !(index > 0 && argv[index - 1] === "--arm"),
+  );
 
   if (!command || command === "list") {
     list();
@@ -125,12 +145,21 @@ async function main(): Promise<void> {
     }
 
     const trials = all
-      ? listExperiments().flatMap((experiment) =>
-          resolveMatrix(experiment).flatMap((entry) =>
-            loadEval(experiment, entry.timestamp, entry.evalName),
-          ),
-        )
+      ? listExperiments()
+          .filter((experiment) => !arms.length || arms.includes(experiment))
+          .flatMap((experiment) =>
+            resolveMatrix(experiment).flatMap((entry) =>
+              loadEval(experiment, entry.timestamp, entry.evalName),
+            ),
+          )
       : resolveTrials(parseAddress(target ?? ""));
+
+    if (all && arms.length && !trials.length) {
+      throw new Error(
+        `No current results for ${arms.join(", ")}. Known experiments: ` +
+          listExperiments().join(", "),
+      );
+    }
 
     console.log(`Building ${trials.length} report Storybook(s)…`);
     const failed: string[] = [];

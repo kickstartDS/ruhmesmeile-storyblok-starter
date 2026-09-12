@@ -87,3 +87,6 @@ packages/design-tokens-editor/dist/
 packages/design-system/debug-storybook.log
 packages/design-system/dist/
 packages/design-system/storybook-static/
+
+# Eval
+archive-cc-*

@@ -492,6 +492,35 @@ interface AnthropicResponse {
   };
 }
 
+/**
+ * Statuses worth asking again.
+ *
+ * 529 is "overloaded", and it says nothing about the request — it arrives
+ * unprompted partway through a long run and the same body succeeds a moment
+ * later. A judge pass is 369 calls against one account, so meeting one is
+ * likely rather than unlucky, and without this the run dies at call 76 and
+ * takes the whole invocation with it. The cache means a re-run resumes for
+ * free, so this is a convenience rather than a correctness fix, but the
+ * convenience is the difference between a command that finishes and a command
+ * somebody has to sit and restart.
+ *
+ * Deliberately excluded: 400, 401, 403, 404. Those are bugs in what we sent,
+ * and retrying spends the same money to be told the same thing.
+ */
+const TRANSIENT = new Set([408, 429, 500, 502, 503, 504, 529]);
+const MAX_ATTEMPTS = 5;
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+/** `retry-after` when the server names a delay, exponential when it does not. */
+const backoff = (attempt: number, retryAfter: string | null): number => {
+  const named = Number(retryAfter);
+  if (Number.isFinite(named) && named > 0)
+    return Math.min(named * 1_000, 60_000);
+  return Math.min(2_000 * 2 ** (attempt - 1), 32_000);
+};
+
 async function ask(
   prompt: string,
   shared: string | null,
@@ -511,30 +540,52 @@ async function ask(
     });
   }
 
-  const response = await fetch(`${API}/messages`, {
-    method: "POST",
-    headers: {
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: JUDGE_MODEL_ID,
-      max_tokens: MAX_TOKENS,
-      // Judging is a classification, not a brainstorm. The rubrics are meant to
-      // give the same answer twice on the same input.
-      temperature: 0,
-      system,
-      messages: [{ role: "user", content: prompt }],
-    }),
+  const body = JSON.stringify({
+    model: JUDGE_MODEL_ID,
+    max_tokens: MAX_TOKENS,
+    // Judging is a classification, not a brainstorm. The rubrics are meant to
+    // give the same answer twice on the same input.
+    temperature: 0,
+    system,
+    messages: [{ role: "user", content: prompt }],
   });
 
-  if (!response.ok) {
-    throw new Error(
-      `judge model returned ${response.status}: ${(await response.text()).slice(0, 300)}`,
+  let failure = "";
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    let response: Response;
+    try {
+      response = await fetch(`${API}/messages`, {
+        method: "POST",
+        headers: {
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+        },
+        body,
+      });
+    } catch (cause) {
+      // A dropped socket and an overload are the same thing from here.
+      failure = `judge model unreachable: ${cause instanceof Error ? cause.message : String(cause)}`;
+      if (attempt === MAX_ATTEMPTS) break;
+      const wait = backoff(attempt, null);
+      console.error(`\n  ${failure} — retrying in ${wait / 1_000}s`);
+      await sleep(wait);
+      continue;
+    }
+
+    if (response.ok) return (await response.json()) as AnthropicResponse;
+
+    failure = `judge model returned ${response.status}: ${(await response.text()).slice(0, 300)}`;
+    if (!TRANSIENT.has(response.status) || attempt === MAX_ATTEMPTS) break;
+
+    const wait = backoff(attempt, response.headers.get("retry-after"));
+    console.error(
+      `\n  ${response.status} — retrying in ${wait / 1_000}s (attempt ${attempt} of ${MAX_ATTEMPTS - 1})`,
     );
+    await sleep(wait);
   }
-  return (await response.json()) as AnthropicResponse;
+
+  throw new Error(failure);
 }
 
 /**

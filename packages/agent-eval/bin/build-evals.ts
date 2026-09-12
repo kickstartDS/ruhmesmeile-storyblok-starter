@@ -36,6 +36,8 @@ import {
 import { dirname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { TARGETS } from "../lib/graders/targets";
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const EVALS_DIR = join(ROOT, "evals");
 const SOURCES_DIR = join(ROOT, "lib", "eval-harness", "sources");
@@ -117,6 +119,22 @@ async function bundle(sourceFile: string, fixtureDir: string): Promise<string> {
   // working tree byte-identical, which is what `--check` needs to mean
   // anything. It also keeps the fingerprint stable across a `pnpm format`.
   return prettierFormat(output.text, { parser: "typescript" });
+}
+
+/**
+ * Whether a fixture is supposed to carry the global token layer.
+ *
+ * `paste`-tier fixtures are defined by its *absence* — they model a chat user
+ * with no checkout (D-159). Without this check the sync below would helpfully
+ * put `src/token/` back on every build and silently convert them into ordinary
+ * repo-context evals, which is the one failure that would look like a clean
+ * result rather than an error.
+ *
+ * `assertFixtureHygiene()` already refuses a fixture with no `TARGETS` entry,
+ * so the lookup cannot quietly default.
+ */
+function wantsTokenLayer(name: string): boolean {
+  return TARGETS[name]?.tier !== "paste";
 }
 
 /**
@@ -222,8 +240,21 @@ async function main() {
     }
 
     // Sync first: the token layer lives under `src/`, so it must be in place
-    // before the digests that describe `src/` are computed.
-    const tokenChanges = syncTokenLayer(evalDir, !check);
+    // before the digests that describe `src/` are computed. Paste fixtures opt
+    // out — for them the absence of `src/token/` *is* the specification, so a
+    // stray one is a hard error in both modes rather than something `--check`
+    // reports as staleness. Syncing it back would turn the eval into an
+    // ordinary repo-context task while still reporting under the paste name.
+    if (!wantsTokenLayer(name) && existsSync(join(evalDir, TOKEN_DEST))) {
+      console.error(
+        `  INVALID evals/${name}/${TOKEN_DEST} exists in a paste-context ` +
+          `fixture. Delete it, or move the eval out of the paste tier.`,
+      );
+      process.exit(1);
+    }
+    const tokenChanges = wantsTokenLayer(name)
+      ? syncTokenLayer(evalDir, !check)
+      : [];
     if (tokenChanges.length && check) {
       stale.push(name);
       console.log(

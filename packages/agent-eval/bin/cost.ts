@@ -170,7 +170,9 @@ function table(
 ): void {
   console.log(
     `\n${label.padEnd(36)}${"n".padStart(4)}${"total".padStart(10)}` +
-      (wide ? `${"mean".padStart(9)}${"min".padStart(8)}${"max".padStart(8)}` : ""),
+      (wide
+        ? `${"mean".padStart(9)}${"min".padStart(8)}${"max".padStart(8)}`
+        : ""),
   );
   for (const key of [...groups.keys()].sort()) {
     const values = groups.get(key) ?? [];
@@ -207,8 +209,16 @@ console.log(
     : "\nCurrent matrix only. `--all` includes superseded timestamps.",
 );
 
-table("by eval", group(found, (row) => row.evalName), true);
-table("by arm", group(found, (row) => row.arm), false);
+table(
+  "by eval",
+  group(found, (row) => row.evalName),
+  true,
+);
+table(
+  "by arm",
+  group(found, (row) => row.arm),
+  false,
+);
 
 const total = found.reduce((sum, row) => sum + row.cost, 0);
 const tokens = found.reduce((sum, row) => sum + row.tokens, 0);

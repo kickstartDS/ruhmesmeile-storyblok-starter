@@ -8,6 +8,7 @@
   "scripts": {
     "eval": "agent-eval",
     "eval:smoke": "agent-eval --smoke",
+    "campaign:split": "bash bin/run-split.sh",
     "playground": "agent-eval playground",
     "status": "agent-eval status",
     "refingerprint": "agent-eval refingerprint",

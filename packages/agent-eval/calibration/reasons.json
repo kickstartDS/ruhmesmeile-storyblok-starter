@@ -7,7 +7,7 @@
   {
     "id": "react-behaviour",
     "label": "behaviour implemented in React state or effects instead of the client bundle",
-    "rubrics": ["design-intent"]
+    "rubrics": []
   },
   {
     "id": "identifier-inline",
@@ -57,12 +57,12 @@
   {
     "id": "reimplements-primitive",
     "label": "re-implements markup an existing component already provides instead of composing it",
-    "rubrics": ["design-intent"]
+    "rubrics": []
   },
   {
     "id": "not-overridable",
     "label": "no Context/Provider seam — consumers cannot substitute the implementation",
-    "rubrics": ["design-intent"]
+    "rubrics": []
   },
   {
     "id": "monolithic",
@@ -77,7 +77,7 @@
   {
     "id": "no-forward-ref",
     "label": "does not forward a ref — a parent cannot compose or measure it",
-    "rubrics": ["design-intent"]
+    "rubrics": []
   },
   {
     "id": "styling-props",

@@ -50,8 +50,12 @@ export interface HarnessConfig {
 
 const TRANSCRIPT_FILE = "agent-transcript.jsonl";
 const TRANSCRIPT_META_FILE = "agent-transcript-meta.json";
+const SUBAGENT_TRANSCRIPT_FILE = "agent-subagent-transcripts.jsonl";
 const TOOLCHAIN_REPORT_FILE = "toolchain-report.json";
 const RUNTIME_REPORT_FILE = "runtime-report.json";
+
+/** A runaway subagent should not turn one trial into a 100 MB result. */
+const MAX_SUBAGENT_BYTES = 4_000_000;
 
 // EVAL.ts is ESM (fixtures declare `"type": "module"`), so `require` is not in
 // scope. These dependencies are CJS-friendly and cheaper to pull in
@@ -191,6 +195,137 @@ export function shipped(relPath: string): string {
   return digest;
 }
 
+/**
+ * Directories holding subagent transcripts.
+ *
+ * When the agent delegates with the `Agent` tool, the subagent's transcript is
+ * written to `/tmp/claude-<uid>/<encoded-cwd>/<session>/tasks/<agentId>.output`
+ * — outside `~/.claude`, so `captureTranscript()` never saw it. The main
+ * transcript records only that `Agent` was called; everything the subagent did
+ * was discarded when the sandbox was torn down.
+ *
+ * That mattered more than it looks. In `cc-design-tokens-haiku-high`, 20 of the
+ * 32 trials that appeared to make no MCP call at all had delegated to an
+ * `Explore` subagent, against 0 of the 4 that did call the server — an
+ * anti-correlation stronger than any effect the campaign has measured. It could
+ * not be read either way, because the evidence was in `/tmp`.
+ */
+function findTaskDirs(dir: string, depth = 0, out: string[] = []): string[] {
+  if (depth > 5 || !existsSync(dir)) return out;
+  let entries: string[] = [];
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return out;
+  }
+  for (const entry of entries) {
+    if (entry === "node_modules") continue;
+    const full = join(dir, entry);
+    let stats;
+    try {
+      stats = statSync(full);
+    } catch {
+      continue;
+    }
+    if (!stats.isDirectory()) continue;
+    if (entry === "tasks") out.push(full);
+    else findTaskDirs(full, depth + 1, out);
+  }
+  return out;
+}
+
+/**
+ * Copy every subagent transcript into the workspace and summarise it.
+ *
+ * Written as one concatenated JSONL rather than a file per subagent so the
+ * artefact has a fixed name: `collectFiles()` and the report's source list both
+ * filter by exact filename, and a per-agent name would leak subagent output
+ * into the reports as though the agent had authored it.
+ *
+ * The summary is kept separate from the main transcript's. Folding subagent
+ * tool calls into `mcpToolCallCount` would silently redefine a number that
+ * every prior arm was measured with; a comparison against those arms has to
+ * keep reading the same thing.
+ */
+function collectSubagentTranscripts(encodedCwd: string) {
+  const roots: string[] = [];
+  try {
+    for (const entry of readdirSync("/tmp")) {
+      if (entry.startsWith("claude-")) roots.push(join("/tmp", entry));
+    }
+  } catch {
+    // No /tmp listing: report zero rather than failing the trial.
+  }
+
+  const taskDirs: string[] = [];
+  for (const root of roots) {
+    // The encoded-cwd level is Claude Code's convention and has changed before,
+    // so prefer it when present and fall back to sweeping the whole root.
+    const scoped = join(root, encodedCwd);
+    findTaskDirs(existsSync(scoped) ? scoped : root, 0, taskDirs);
+  }
+
+  const agents: Array<Record<string, unknown>> = [];
+  const lines: string[] = [];
+  let bytes = 0;
+  let truncated = false;
+
+  for (const taskDir of taskDirs) {
+    let entries: string[] = [];
+    try {
+      entries = readdirSync(taskDir);
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.endsWith(".output")) continue;
+      let raw: string;
+      try {
+        raw = readFileSync(join(taskDir, entry), "utf-8");
+      } catch {
+        continue;
+      }
+      if (bytes + raw.length > MAX_SUBAGENT_BYTES) {
+        truncated = true;
+        continue;
+      }
+      bytes += raw.length;
+      lines.push(raw.endsWith("\n") ? raw : `${raw}\n`);
+      agents.push({
+        agentId: entry.replace(/\.output$/, ""),
+        bytes: raw.length,
+        summary: summarise(raw),
+      });
+    }
+  }
+
+  if (lines.length) writeFileSync(SUBAGENT_TRANSCRIPT_FILE, lines.join(""));
+
+  const mcpToolCalls: Record<string, number> = {};
+  const toolCalls: Record<string, number> = {};
+  for (const agent of agents) {
+    const summary = agent.summary as ReturnType<typeof summarise>;
+    for (const [name, n] of Object.entries(summary.toolCalls)) {
+      toolCalls[name] = (toolCalls[name] ?? 0) + n;
+    }
+    for (const [name, n] of Object.entries(summary.mcpToolCalls)) {
+      mcpToolCalls[name] = (mcpToolCalls[name] ?? 0) + n;
+    }
+  }
+
+  return {
+    searchedRoots: roots,
+    taskDirs,
+    count: agents.length,
+    bytes,
+    truncated,
+    agents,
+    toolCalls,
+    mcpToolCalls,
+    mcpToolCallCount: Object.values(mcpToolCalls).reduce((a, b) => a + b, 0),
+  };
+}
+
 export function captureTranscript(): void {
   try {
     const cwd = process.cwd();
@@ -236,6 +371,8 @@ export function captureTranscript(): void {
       meta.bytes = raw.length;
       meta.summary = summarise(raw);
     }
+
+    meta.subagents = collectSubagentTranscripts(encodedCwd);
 
     writeFileSync(TRANSCRIPT_META_FILE, JSON.stringify(meta, null, 2));
   } catch {

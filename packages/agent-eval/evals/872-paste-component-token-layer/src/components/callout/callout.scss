@@ -1,0 +1,25 @@
+.dsa-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-stack-s);
+  padding: var(--ks-spacing-inset-m);
+  border-inline-start: var(--ks-border-width-default) solid
+    var(--ks-border-color-default);
+
+  &__heading {
+    margin: 0;
+    font: var(--ks-font-copy-s);
+    font-weight: var(--ks-font-weight-bold);
+    color: var(--ks-text-color-display);
+  }
+
+  &__body {
+    margin: 0;
+    font: var(--ks-font-copy-m);
+    color: var(--ks-text-color-copy);
+  }
+
+  &--strong &__heading {
+    color: var(--ks-text-color-primary);
+  }
+}

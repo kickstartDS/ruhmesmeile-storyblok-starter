@@ -71,7 +71,8 @@ function coverage(
 ): { score: number; missing: string[] } {
   const missing = names.filter((name) => !mentions(source, name));
   return {
-    score: names.length === 0 ? 1 : (names.length - missing.length) / names.length,
+    score:
+      names.length === 0 ? 1 : (names.length - missing.length) / names.length,
     missing,
   };
 }

@@ -117,7 +117,19 @@ test("a component token layer exists", () => {
 
 test("the component tokens are namespaced to the component", () => {
   for (const name of definedComponentTokens().keys()) {
-    expect(name).toMatch(/^--dsa-callout(--|__)/);
+    // The optional `_modifier` segment is not a leniency. The design system
+    // uses exactly this shape 39 times — `--dsa-cta_color-neutral__copy--color`,
+    // `--dsa-feature_large__icon--size-multiplier` — for a block variant, and
+    // the original pattern rejected it by requiring `--` or `__` immediately
+    // after the block name. Every design-tokens trial on `872` produced
+    // `--dsa-callout_strong__heading--color`, the house convention, and was
+    // scored as unnamespaced for it.
+    //
+    // Safe to change: `definedComponentTokens()` matches definitions, not
+    // references, and no `818` trial in any prior run defined a single
+    // `--dsa-*` property. The loop was vacuous, so this assertion has never
+    // discriminated between two runs and no historical result moves.
+    expect(name).toMatch(/^--dsa-callout(_[a-z0-9-]+)?(--|__)/);
   }
 });
 

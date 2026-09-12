@@ -3705,11 +3705,11 @@ $1.51. The first honest measurement of MCP value in the campaign.
 
 **Consequences.** Every MCP-versus-baseline delta measured before this is
 withdrawn (D-150). The 84 deferred trials are not discarded — they are a valid
-measurement of tool *discovery*, and the two regimes now answer different
+measurement of tool _discovery_, and the two regimes now answer different
 questions: does the server's content help, versus will a model find a server
 nobody pointed it at. The second is arguably closer to a real user's experience
 and cannot be the default for a drift gate, because Claude Code gates the
-*reminder* to search behind remote feature flags — whether a model searches is
+_reminder_ to search behind remote feature flags — whether a model searches is
 partly a server-side setting that can change between runs.
 
 `mcpToolsWereDeferred()` reads the attachment directly and `collect.ts`
@@ -3757,7 +3757,7 @@ is load-bearing and documented at the function.
 corpus is internally consistent because grading is retroactive. The error was
 proportional to tool-call volume, so it fell hardest on MCP arms, biasing every
 prior cost comparison against the treatment. The sandbox summariser still
-over-counts and is now the *unused* value for these two fields — a stale
+over-counts and is now the _unused_ value for these two fields — a stale
 producer left in place, which is the shape of trap Decision 92's price table
 described. It is tolerated only because the host-side path is the one anything
 reads.
@@ -3807,8 +3807,6 @@ not change but its meaning did, and it became a filter keeping the flattering
 half of the sample. Re-read exclusion criteria whenever the mechanism underneath
 them changes.
 
-
-
 ---
 
 ## Decision 95 — Concurrency is controlled by splitting the eval selection, not by the harness
@@ -3817,7 +3815,7 @@ them changes.
 
 **Context.** The framework has no concurrency cap. `dist/cli.js:305` constructs
 `new StartRateLimiter(20, 2_000)` and passes it to `runExperiment`; the class
-doc is explicit that it rate-limits *starts* only — "once started, operations run
+doc is explicit that it rate-limits _starts_ only — "once started, operations run
 freely with no concurrency limit." A 20-eval arm at 3 runs therefore puts all 60
 sandboxes in flight within about six seconds, each running a full `npm install`.
 That is what exhausted the disk in D-152 and destroyed fourteen baseline trials.
@@ -3863,3 +3861,238 @@ fix; this is the version that did not cost a day.
 Lesson: when the framework will not give you a knob, look for one in how you
 invoke it. Per-eval result resolution made the run splittable, which made
 concurrency a scheduling problem rather than a patching problem.
+
+## Decision 96 — The human pick list is part of the rubric, and must be derived from its exclusions
+
+**Status.** Accepted. Applied to `calibration/reasons.json`; 21 labels invalidated.
+
+**Context.** `design-intent` had never cleared calibration — 77%, kappa 0.54,
+against an 80% threshold — across several rounds of rubric rewording. It was
+read as a hard rubric, and the standing plan was to buy an error bar for it with
+a three-rater round.
+
+The confusion matrix says otherwise. `design-intent` scored fail→pass 9 and
+pass→fail **0**: every disagreement in one direction. Noise is symmetric;
+this was not noise.
+
+The criterion forbids the judge four specific objections, because deterministic
+graders already check them on every trial — behaviour in React state or effects,
+a missing `forwardRef`, a missing Context/Provider seam, hand-rolled markup that
+duplicates an existing component — and closes with "if the only thing you can
+point to is one of the four above, the answer is 'pass'." That instruction was
+followed: the judge's stored reasons say "this is checked by deterministic
+graders" and then pass.
+
+`reasons.json` offered `design-intent` nine chips. Four were those four
+objections, and across the whole label set they are the **only** chips ever
+used — `not-overridable` 16, `react-behaviour` 11, `reimplements-primitive` 6,
+`no-forward-ref` 6, and zero uses of the five the criterion actually asks for.
+The rubric and the pick list encoded the same contract and disagreed about it.
+
+**Decision.** The reason dictionary is scoped by rubric, so scope it to the
+rubric's remit: `design-intent` was removed from the `rubrics` array of those
+four chips, leaving `callback-props`, `monolithic`, `open-variant`,
+`styling-props` and `wrong-kind`.
+
+The entries are kept rather than deleted. All three consumers filter with
+`reason.rubrics.includes(rubric)`, so an empty array is never offered while
+stored ids continue to resolve to their sentences — the treatment the retired
+`token-reasoning` chips already have, and `no-component-tokens` has pointed at a
+dead rubric since D-146.
+
+**Consequences.** The 77% was never a measurement of the judge, so it should not
+have been read as one, and the rewordings aimed at it could not have worked.
+
+The cost is 21 of 39 `design-intent` labels: 19 rest solely on now-retired chips
+with no live chip among them, one carries a note about file naming and client
+identifier imports (`code-idiom` material, also out of remit), and one is a bare
+fail with no note. All need re-grading; the ~18 passes are unaffected.
+
+3.7 reorders. Re-grade 21 items, re-read agreement, and only then decide whether
+a second rater addresses what is left — a three-rater round against a broken
+pick list would have bought precision on the wrong quantity. `api-design`
+remains 0/23: unmeasured rather than weak, and the cheapest reliability in the
+project.
+
+**Lesson.** Where a rubric names objections as out of scope, every surface that
+collects a verdict against that rubric inherits the exclusion. Two artefacts
+encoding one contract will drift, and this drift presented for weeks as a rubric
+that could not be calibrated. A confusion matrix empty in one direction is a
+specification bug until shown otherwise.
+
+## Decision 97 — Deltas are only meaningful within a cohort of one model at one profile
+
+**Status:** accepted.
+
+**Context.** The results index compared every arm against a single global
+baseline, defaulting to `cc-none-haiku-high` once the campaign moved to haiku.
+Arms are named `cc-{variant}-{model}-{profile}`, and the campaign is not a
+single grid: `haiku-high` runs 20 tasks across 4 variants, `sonnet-high` runs 5
+tasks across 4 variants, and `haiku-paste` runs 3 tasks across 2. A single
+baseline over that shape produced two distinct defects.
+
+The first was attribution. `cc-both-sonnet-high` was reported at `11.62×` the
+baseline's cost per trial, in a column headed `cost ×` inside a page about what
+the MCP servers do. Almost all of that ratio is sonnet being a more expensive
+model than haiku. The same arithmetic inflated sonnet's quality deltas to
+`+0.23`, a figure that sums the model effect and the server effect and labels
+the total as the server's.
+
+The second was density. On one 23 × 10 matrix, the sonnet columns were blank for
+18 of 23 rows and the paste columns for 20 of 23, because those arms never ran
+those tasks. The three paste tasks additionally rendered as entirely empty rows,
+since the global baseline had not run them either and the cell renderer blanked
+anything without a baseline — three tasks scoring 0.92 to 0.99 were invisible.
+
+**Decision.** Group arms into cohorts keyed by `{model}-{profile}`, parsed from
+the arm name. Each cohort selects its own baseline — its `none` variant, with
+`--baseline` demoted to a fallback for a cohort that lacks one — and every delta,
+cost ratio and mean-Δ footer is computed within the cohort. The overview becomes
+one table with a `<tbody>` and group header per cohort; the matrix becomes one
+table per cohort whose rows are restricted to the tasks that cohort ran. Row
+labels drop to the bare variant (`none`, `both`, `component-builder`,
+`design-tokens`), since the group header already carries model and profile. The
+per-task tables are grouped and baselined the same way, so no delta anywhere on
+the page crosses a model boundary.
+
+**Consequences.** Every matrix is now fully dense: 20 × 4, 5 × 4 and 3 × 2, with
+zero empty cells against 130 before. Sonnet's `cost ×` corrects from `11.62×` to
+`2.47×`, which is the actual price of running both servers on sonnet.
+`cc-design-tokens-haiku-paste` gains a real `+0.03` where it previously showed
+`—`, because `cc-none-haiku-paste` is its cohort baseline and did run those
+tasks. Row labels shorten from 30-odd characters to one word, which is what
+makes four columns comparable at a glance.
+
+Retained: the `ix-abs` italic cell for a task with no baseline in its cohort.
+No cohort needs it today, but a cohort assembled without a `none` arm would
+otherwise lose its scores entirely, which was the paste-row bug in another form.
+
+**Lesson.** A baseline is a claim about what varies between two rows. When the
+rows differ in model _and_ in tooling, the delta measures both and attributes
+them to whichever one the column header names. Grouping is not presentation
+here — it is the precondition for the number meaning what the page says it
+means.
+
+## Decision 98 — Tier widening enumerates its tiers; `"*"` is never the default
+
+**Context.** `defaultEvals()` returned `evalsInTier("core")` normally and `"*"`
+under `EVAL_EXTRA_EVALS=1`. Two tiers existed when it was written, so `"*"` and
+"core plus extra" denoted the same set and the shortcut was free.
+
+D-159 added a third tier. `paste` names a deployment context rather than a
+price: its fixtures ship no `src/token/`, and `targets.ts` documents that it "is
+a separate tier rather than a flag so that it can never be pulled into a
+repo-context arm by accident … Results therefore land in their own directory and
+are never averaged with the repo arms."
+
+`"*"` is every fixture on disk. From the moment `871`–`873` were added, the
+documented guarantee was false: `EVAL_EXTRA_EVALS=1` — the flag every capability
+campaign runs with — would have pulled all three paste fixtures into all four
+repo arms. No published result is affected, because nothing has been run since
+they landed.
+
+**Decision.** `defaultEvals()` enumerates: `evalsInTier("core")` by default,
+`[...evalsInTier("core"), ...evalsInTier("extra")]` when widened. Return type
+narrows from `string[] | "*"` to `string[]`. `paste` reaches an arm only when an
+experiment names it explicitly, which the paste experiments already do.
+
+**Consequences.** The invariant is enforced by construction rather than asserted
+in a docblock, and adding a fourth tier cannot silently re-scope the default the
+way adding the third one did. Verified across the four new `haiku-low` arms:
+12 evals / 0 paste by default, 20 evals / 0 paste when widened — matching
+`haiku-high` exactly, which is the precondition for the cross-cohort comparison
+those arms exist to support. The eval list is outside `computeFingerprint` by
+design, so nothing cached is invalidated.
+
+**Lesson.** A glob is a claim that the set it matches will never gain a member
+that does not belong. That claim is invisible at the call site and expires
+silently — here it expired the instant a tier was added whose defining property
+was that it must stay out. Where a docblock states an invariant, enumeration
+keeps it and a wildcard merely describes it.
+
+## Decision 99 — Reasoning effort is a cohort axis, and its first sample is the far end
+
+**Context.** All ten experiments to date pinned `effort: "high"`, so the campaign
+has measured one point on the deliberation axis and generalised from it — the
+same defect D-159 identified on the deployment-context axis. The next campaign
+was scoped as "Haiku at medium", partly on the expectation of a cheaper run.
+
+Measuring the 240 `haiku-high` trials contradicts the cost premise. Output
+tokens — the only component effort governs — are $7.99 of $45.77 (17.5%). Cache
+read is $28.57 (62.4%) and is 184× the output volume. The bill is set by turn
+count re-reading accumulated context, not by thinking.
+
+**Decision.** Sample `low`, not `medium`. Effort is not a cost lever, so it is
+not a dial to tune but an axis to characterise, and the first sample on a new
+axis belongs at the extreme where the contrast is largest. `medium` is the
+interpolation and is only worth buying if the endpoints show a gradient.
+
+Effort is a **cohort** key, joining model and deployment context under Decision 97. Deltas are read within `haiku-low`; the legitimate cross-cohort read is
+delta-against-delta, never score-against-score, because a cheaper agent moves
+the baseline as well as the treatment.
+
+**Consequences.** Four arms, ~$45, ~21 h sequential — roughly what `haiku-high`
+cost, and that is the point rather than a disappointment. `buildCohorts()` needs
+no change: `cc-*-haiku-low` parses to variant + cohort `haiku-low` with its own
+`none` baseline, so no existing delta is contaminated and the cost of being
+wrong about the whole exercise is one self-contained block in the report.
+
+The headline pre-registration is `component-builder`, whose delta has been
+shrinking as the agent weakens (`+0.23` sonnet, `+0.09` haiku) — the opposite of
+what "structural instruction substitutes for deliberation" predicts. A third
+decline makes the server a multiplier on model capability rather than a floor
+under it, which inverts the deployment advice the campaign would otherwise give.
+
+**Lesson.** Verify which line item a knob controls before scoping a campaign
+around tuning it. "Reasoning effort" is named like the cost dial and is a sixth
+of the bill; the actual dial is turn count, which no configuration field names
+and which effort may move in either direction.
+
+## Decision 100 — Batch size is computed from free disk, not written down
+
+**Status.** Accepted. Refines Decision 95; does not replace it.
+
+**Context.** Decision 95 made concurrency a scheduling problem and validated a
+batch of 10 evals over 180 trials. The 10 was derived — per-sandbox footprint
+(~0.7 GB) × runs, against free disk at the time — and then written down as a
+constant, which deleted its provenance. The decision named its own expiry
+condition: "If an arm grows past 20 evals or the disk tightens, this silently
+returns to being D-152."
+
+The disk tightened, from 41 GB free to 35 GB at 95%. A batch of 10 peaks around
+21 GB, and the results tree grows ~0.5 GB per 60 trials underneath the campaign
+that is producing it. The constant was no longer carrying the margin it had been
+chosen for, and nothing in the system would have said so.
+
+**Decision.** `bin/run-split.sh` computes the batch: `(free − reserve) ÷
+(footprint × runs)`, clamped to the validated ceiling of 10, re-measured before
+every batch rather than once per campaign. The reserve (`FLOOR_GB`, default 15)
+is the invariant now; the batch size is derived from it.
+
+Batches are balanced across the remaining evals rather than filled greedily. A
+ceiling of 9 over 20 evals gives 9/9/2 greedily and 7/7/6 balanced — the same
+invocation count and wall clock, at a 14 GB peak instead of 18 GB. Greedy
+filling buys nothing and spends the reserve to get it.
+
+The eval list is derived from `evalsInTier` rather than pasted into the script,
+so Decision 98's exclusion of `paste` holds here by construction rather than by
+transcription. Dry by default, per `prune-results.ts`.
+
+**Consequences.** The D-166 campaign plans as 12 invocations, 240 trials, 21 GB
+free at peak against 14 GB under the constant. A tightening disk now shrinks the
+batch instead of silently eroding the margin, and a campaign that cannot start
+safely refuses with a resume command rather than exhausting the disk mid-run.
+Completed evals survive any stop, because the report resolves per eval across
+timestamps — the property Decision 95 identified as what makes splitting work.
+
+This is still not a concurrency limiter. `runExperiment` accepts a
+`rateLimiter`, and a semaphore would cap live sandboxes directly and make batch
+size irrelevant; that remains the durable fix and remains unbuilt. What changed
+is the failure mode: refusing to start, rather than discovering the limit by
+hitting it.
+
+**Lesson.** A constant derived from a measurement is a measurement with its
+provenance stripped. It then reads as a decision, so nobody re-derives it, and
+it goes quietly wrong as the quantity it was measured against moves. Where the
+input is observable at runtime, keep the derivation and let the constant be the
+thing you actually meant to hold fixed — here, the reserve.

@@ -241,7 +241,9 @@ export async function setupVariant(
         // known to take effect here: the servers do connect and their names do
         // reach the model. An untracked `settings.local.json` is exempt from
         // the workspace-trust gate that holds back a committed settings file.
-        env: { ENABLE_TOOL_SEARCH: TOOL_SEARCH === "deferred" ? "true" : "false" },
+        env: {
+          ENABLE_TOOL_SEARCH: TOOL_SEARCH === "deferred" ? "true" : "false",
+        },
       },
       null,
       2,
@@ -374,15 +376,28 @@ const READ_ONLY_COMMANDS = new Set([
  * build-from-scratch tasks and is bought deliberately.
  *
  *   pnpm eval cc-none-sonnet-high                    # core only
- *   EVAL_EXTRA_EVALS=1 pnpm eval cc-none-sonnet-high # the full suite
+ *   EVAL_EXTRA_EVALS=1 pnpm eval cc-none-sonnet-high # core + extra
+ *
+ * The widened form enumerates `core` and `extra` rather than returning `"*"`.
+ * It used to return `"*"`, which was correct while those were the only two
+ * tiers and silently wrong the moment `paste` was added (D-159): `"*"` is every
+ * fixture on disk, so `EVAL_EXTRA_EVALS=1` would have pulled `871`–`873` into
+ * repo-context arms. That is precisely the accident `targets.ts` claims the
+ * tier makes impossible, and it would not have announced itself — the arm would
+ * simply have reported 23 tasks instead of 20, with three paste fixtures
+ * averaged into a repo cohort whose whole point is that they are not
+ * comparable. Enumerating the tiers keeps the guarantee true by construction:
+ * `paste` now reaches an arm only when an experiment names it.
  *
  * The tier lives in `TARGETS`, which is already the per-eval registry and is
  * already host-side. A fixture with no target entry is not silently dropped —
  * `assertFixtureHygiene()` fails first.
  */
-function defaultEvals(): string[] | "*" {
+function defaultEvals(): string[] {
   const extra = process.env.EVAL_EXTRA_EVALS?.trim();
-  if (extra && extra !== "0" && extra !== "false") return "*";
+  if (extra && extra !== "0" && extra !== "false") {
+    return [...evalsInTier("core"), ...evalsInTier("extra")];
+  }
   return evalsInTier("core");
 }
 

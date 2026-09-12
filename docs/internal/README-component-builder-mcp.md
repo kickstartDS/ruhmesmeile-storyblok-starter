@@ -53,43 +53,43 @@ Add to your VS Code settings:
 
 ## Available Tools
 
-### `get-ui-building-instructions`
+### `get_ui_building_instructions`
 
 Get comprehensive instructions for building UI components. **Always call this first** before any component development work.
 
-### `get-component-structure`
+### `get_component_structure`
 
 Get the standard file structure and creation order for a new component.
 
-### `get-json-schema-template`
+### `get_json_schema_template`
 
 Generate a JSON Schema template for defining component props. The schema is the source of truth for component APIs.
 
-### `get-react-component-template`
+### `get_react_component_template`
 
 Get a React component template following the Design System patterns (pure functional, forwardRef, Context pattern).
 
-### `get-client-behavior-template`
+### `get_client_behavior_template`
 
 Get templates for adding client-side JavaScript behavior to components using the kickstartDS Component class.
 
-### `get-scss-template`
+### `get_scss_template`
 
 Get SCSS templates with BEM naming and Design Token layers.
 
-### `get-storybook-template`
+### `get_storybook_template`
 
 Get Storybook story templates with schema integration.
 
-### `get-defaults-template`
+### `get_defaults_template`
 
 Get a defaults file template for component default props.
 
-### `get-token-architecture`
+### `get_token_architecture`
 
 Get documentation on the three-layer Design Token architecture.
 
-### `list-existing-components`
+### `list_existing_components`
 
 List all existing components in the Design System with their file structures.
 

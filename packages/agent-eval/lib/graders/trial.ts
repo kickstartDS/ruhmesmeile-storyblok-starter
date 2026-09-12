@@ -124,6 +124,8 @@ function readProjectFiles(dir: string): Map<string, string> {
       if (!TEXT_EXTENSIONS.has(ext)) continue;
       // The raw transcript is ~400 KB of JSONL and is read on demand instead.
       if (entry === "agent-transcript.jsonl") continue;
+      // Subagent transcripts are evidence too, and larger still.
+      if (entry === "agent-subagent-transcripts.jsonl") continue;
       try {
         files.set(
           relative(dir, full).split("\\").join("/"),

@@ -61,8 +61,20 @@ export interface Target {
    * build-from-scratch tasks: they carry most of the capability signal and
    * essentially all of the cost, so they are bought deliberately rather than
    * on every invocation.
+   *
+   * `paste` is the exception to "tiering is by cost": it names a *deployment
+   * context*, not a price. Its fixtures ship no `src/token/`, modelling the
+   * user who pastes a snippet into a chat window with no checkout to grep.
+   * Every other eval assumes a repository, which made "is this tool redundant"
+   * and "is this tool redundant here" indistinguishable (D-159).
+   *
+   * It is a separate tier rather than a flag so that it can never be pulled
+   * into a repo-context arm by accident: `defaultEvals()` returns `core`, and
+   * `EVAL_EXTRA_EVALS=1` widens to `extra`. Neither reaches `paste`, which only
+   * runs from an experiment that names it. Results therefore land in their own
+   * directory and are never averaged with the repo arms.
    */
-  tier: "core" | "extra";
+  tier: "core" | "extra" | "paste";
 }
 
 export const TARGETS: Record<string, Target> = {
@@ -352,6 +364,58 @@ export const TARGETS: Record<string, Target> = {
     mcpUseExpected: false,
     diffTask: true,
     tier: "core",
+  },
+
+  /* ───────────────────────────── paste context ─────────────────────────────
+   *
+   * Same tasks as `811` and `818`, same prompts, same assertions — the only
+   * difference is that the fixture ships no `src/token/`. Both prompts already
+   * refer to "the rest of the system" and "the other components", neither of
+   * which is on disk in either context, so they transfer unchanged.
+   *
+   * The pairing is the point: 811/871 and 818/872 differ in exactly one
+   * variable, so the delta between them is the value of having the token layer
+   * locally. Reusing the graders (the sources are one-line re-exports) means
+   * the two contexts cannot drift into measuring different things.
+   */
+  "871-paste-token-intent": {
+    slug: "stat",
+    dir: "src/components/stat",
+    requiresClientBehaviour: false,
+    schemaProperties: ["delta", "label", "trend", "value"],
+    delegatedElements: [],
+    // With no token layer on disk there is no second way to learn a name, so
+    // an MCP arm that never calls the server really has run the baseline.
+    mcpUseExpected: true,
+    diffTask: true,
+    tier: "paste",
+  },
+  "872-paste-component-token-layer": {
+    slug: "callout",
+    dir: "src/components/callout",
+    requiresClientBehaviour: false,
+    schemaProperties: ["body", "emphasis", "heading"],
+    delegatedElements: [],
+    mcpUseExpected: true,
+    diffTask: true,
+    tier: "paste",
+  },
+  "873-paste-responsive-tokens": {
+    slug: "page-header",
+    dir: "src/components/page-header",
+    requiresClientBehaviour: false,
+    schemaProperties: ["eyebrow", "summary", "title"],
+    delegatedElements: [],
+    // Added after D-160, which rested on `871` alone. 871 asks which token is
+    // right — a question whose answer is a name, and names are what a lookup
+    // table holds. This one asks whether the spacing scale is *itself*
+    // responsive, so the right answer deletes the component's media queries
+    // instead of tokenising the values inside them. In a checkout that fact is
+    // greppable at the bottom of `spacing-token.scss`; here it exists only in
+    // the server. See `sources/873-paste-responsive-tokens.ts`.
+    mcpUseExpected: true,
+    diffTask: true,
+    tier: "paste",
   },
 };
 

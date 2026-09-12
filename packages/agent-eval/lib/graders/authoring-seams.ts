@@ -98,11 +98,11 @@ export function authoringSeams(trial: Trial): GraderResult {
   // bundle that hydrates it. Re-declaring it in the component means the two
   // sides agree by coincidence: change one string and the wiring goes quiet.
   if (trial.target.requiresClientBehaviour) {
-    const identifierImported = /import\s*{[^}]*\bidentifier\b[^}]*}\s*from/.test(
+    const identifierImported =
+      /import\s*{[^}]*\bidentifier\b[^}]*}\s*from/.test(source);
+    const identifierInline = /\b(export\s+)?const\s+identifier\s*[:=]/.test(
       source,
     );
-    const identifierInline =
-      /\b(export\s+)?const\s+identifier\s*[:=]/.test(source);
 
     checks.push(
       partial(

@@ -58,14 +58,38 @@ type McpResult = {
 };
 
 /**
+ * Accept the other separator convention.
+ *
+ * The component-builder server named its tools in kebab-case while this one
+ * used snake_case. Measured against the eval campaign, a model holding both
+ * servers at once mixed the two — `get-typography-tokens` was called here, and
+ * `get_token_architecture` was called there. The tool the model wanted existed;
+ * the name it produced did not.
+ *
+ * Both servers are snake_case now, so this only catches callers working from
+ * the old names. Normalising is safe because no two tools here differ only by
+ * separator.
+ */
+function canonical(name: string): string {
+  return name.includes("-") ? name.replace(/-/g, "_") : name;
+}
+
+/**
  * Dispatch a tool call by name, returning the MCP result content.
  */
 export async function dispatch(
   name: string,
   args: Record<string, unknown>,
 ): Promise<McpResult> {
+  const resolved = canonical(name);
+  if (resolved !== name) {
+    // Logged rather than silently accepted: the point of tolerating the old
+    // names is to find out how long they keep being used.
+    console.error(`[deprecated tool name] ${name} → ${resolved}`);
+  }
+
   try {
-    switch (name) {
+    switch (resolved) {
       // ── Token Read / Query ────────────────────────────────────────────
 
       case "get_token": {
@@ -246,6 +270,66 @@ export async function dispatch(
         const stats: Record<string, unknown> = { ...(await getTokenStats()) };
         stats.componentTokens = await getComponentTokenStats();
         return text(stats);
+      }
+
+      // Deliberately the same tool name as the component-builder server's.
+      // Both servers can answer "how is the token layer stacked", and a model
+      // holding only one of them should still land the question. The answers
+      // differ in kind rather than contradicting: that server explains the
+      // intended architecture, this one reports what the tokens actually are.
+      case "get_token_architecture": {
+        const globalTokens = await parseAllTokens();
+        const componentTokens = await parseAllComponentTokens();
+
+        const branding: string[] = [];
+        const semantic: string[] = [];
+        for (const tokenName of globalTokens.keys()) {
+          (tokenName.startsWith("--ks-brand-") ? branding : semantic).push(
+            tokenName,
+          );
+        }
+
+        return text({
+          layers: [
+            {
+              layer: "branding",
+              prefix: "--ks-brand-*",
+              count: branding.length,
+              purpose:
+                "Core brand values. Referenced by semantic tokens, not used directly in a component.",
+              examples: branding.slice(0, 5),
+            },
+            {
+              layer: "semantic",
+              prefix: "--ks-*",
+              count: semantic.length,
+              purpose:
+                "Purpose-based tokens resolving to branding values. The layer a component normally reaches for.",
+              examples: semantic.slice(0, 5),
+            },
+            {
+              layer: "component",
+              prefix: "--dsa-*",
+              count: componentTokens.length,
+              purpose:
+                "Per-component tokens resolving to semantic values. Define one when a component must vary independently.",
+              examples: componentTokens
+                .slice(0, 5)
+                .map((token) => token.name ?? String(token)),
+            },
+          ],
+          rules: [
+            "A layer may only reference the layer above it.",
+            "Do not hardcode a value that a semantic token already names.",
+            "Do not point a component token straight at a branding token — that skips the layer which gives the value its meaning.",
+          ],
+          related: {
+            get_token_hierarchy:
+              "Semantic ordering within one category (text-color, elevation, spacing, …).",
+            get_branding_tokens: "The branding layer in W3C DTCG form.",
+            get_component_tokens: "Every token defined for one component.",
+          },
+        });
       }
 
       case "search_tokens": {

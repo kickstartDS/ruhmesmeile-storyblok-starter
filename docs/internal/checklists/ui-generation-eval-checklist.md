@@ -107,31 +107,31 @@ Beyond the original list, and needing PRD §8 reconciliation:
       `836`, `842`, `850`, `852`. Every one of them needs the next campaign to
       produce numbers; none of them can be read against Phase 1.
 
-                      | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
-                      | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
-                      | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
-                      | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
-                      | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
-                      | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
-                      | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
-                      | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
-                      | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
-                      | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
-                      | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
-                      | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
-                      | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
-                      | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
-                      | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
-                      | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
-                      | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
-                      | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
-                      | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
-                      | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
-                      | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
-                      | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
+                                | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
+                                | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
+                                | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
+                                | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
+                                | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
+                                | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
+                                | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
+                                | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
+                                | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
+                                | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
+                                | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
+                                | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
+                                | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
+                                | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
+                                | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
+                                | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
+                                | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
+                                | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
+                                | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
+                                | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
+                                | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
+                                | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
 
-                      Twelve core, eight extra. Two controls rather than one, and every treatment
-                      task's reading is conditional on both staying flat.
+                                Twelve core, eight extra. Two controls rather than one, and every treatment
+                                task's reading is conditional on both staying flat.
 
   - [x] D-106 — the suite is **cost-tiered**, and the tier is a property of the
         task rather than a scheduling flag. Phase 1 measured a greenfield trial
@@ -3924,11 +3924,11 @@ no non-mechanical entries in use at all.**
 So the obvious test: predict the verdict from graders alone, with a deliberately
 unfitted rule — every applicable check must be perfect or the trial fails.
 
-| rubric            | graders vs human | judge vs human |
-| ----------------- | ---------------- | -------------- |
-| `design-intent`   | **95%** (38/40)  | 74%            |
-| `token-reasoning` | **77%** (36/47)  | 69%            |
-| `code-idiom`      | 65% (33/51)      | **82%**        |
+| rubric            | graders vs human  | judge vs human |
+| ----------------- | ----------------- | -------------- |
+| `design-intent`   | **95%** (38/40)   | 74%            |
+| `token-reasoning` | **77%** (36/47)   | 69%            |
+| `code-idiom`      | 65% (33/51)       | **82%**        |
 | overall           | **78%** (107/138) | 75%            |
 
 The free instrument matches the $3.48-per-round one. `design-intent` — the
@@ -4018,12 +4018,12 @@ It scores **1.00 on 67 design-system components and 1.00 on all 36 applicable
 trials** — no discriminating power whatsoever. That reads as a broken check
 until you use it as an oracle on the four quoted objections:
 
-| the fossil verdict said                                   | the schema it was shown says                                            |
-| --------------------------------------------------------- | ----------------------------------------------------------------------- |
-| omits `actionUrl`, "non-functional as a link"              | `headline, message, variant, actionLabel, actionIcon, dismissLabel` — no `actionUrl` |
-| flattens a `cta` object into `actionLabel`/`actionIcon`    | already flat; there is no `cta`                                          |
-| renames `label`→`summary`, `body`→`content`, "breaking the contract other teams depend on" | declares `summary` and `content` — the component was faulted for conforming |
-| `content: string` against the schema's `format: markdown`  | `{"type": "string"}`; no `format`                                        |
+| the fossil verdict said                                                                    | the schema it was shown says                                                         |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| omits `actionUrl`, "non-functional as a link"                                              | `headline, message, variant, actionLabel, actionIcon, dismissLabel` — no `actionUrl` |
+| flattens a `cta` object into `actionLabel`/`actionIcon`                                    | already flat; there is no `cta`                                                      |
+| renames `label`→`summary`, `body`→`content`, "breaking the contract other teams depend on" | declares `summary` and `content` — the component was faulted for conforming          |
+| `content: string` against the schema's `format: markdown`                                  | `{"type": "string"}`; no `format`                                                    |
 
 **Four for four, each inverted in the direction of an objection.** The grader is
 not blind; there was nothing there. This is D-102 one step worse: there the
@@ -4089,12 +4089,12 @@ where the Sonnet campaign wrote `results/{arm}/{timestamp}/`. `listRuns` read
 direct children of the experiment directory, took `haiku` for a timestamp, read
 the timestamp below it as an eval name, found no `summary.json`, and skipped it.
 Nothing errored: `pnpm cost` printed the same 60-trial Sonnet total it had
-printed *before* the run. A run is now identified by its path below the
+printed _before_ the run. A run is now identified by its path below the
 experiment, sorted by timestamp so the model segment cannot reorder which result
 resolves as current.
 
 **The double count.** The billing page said $1.19; `pnpm cost` said $2.54. Claude
-Code writes one JSONL line per *content block*, not per message — a reply with
+Code writes one JSONL line per _content block_, not per message — a reply with
 some text and three tool calls is four lines, each carrying a copy of the same
 `message.usage` for the whole reply. One transcript had 12 assistant lines over
 5 distinct message ids. Deduplicated on `message.id`, the same run reconstructs
@@ -4105,11 +4105,11 @@ Blocks per message is a function of how many tools the agent called, so the
 arms that called MCP tools were inflated hardest — in the direction that
 flattered the conclusion. The whole cost dimension moves:
 
-| | as reported in D-121 | corrected |
-| --- | --- | --- |
-| Sonnet campaign total | $223.26 | **$91.99** |
-| cc-both vs cc-none | 3.7× | **2.47×** |
-| 810 mean per trial | $5.69 | $1.91 |
+|                       | as reported in D-121 | corrected  |
+| --------------------- | -------------------- | ---------- |
+| Sonnet campaign total | $223.26              | **$91.99** |
+| cc-both vs cc-none    | 3.7×                 | **2.47×**  |
+| 810 mean per trial    | $5.69                | $1.91      |
 
 MCP overhead is real and roughly half what we said it was. The 3.7× figure must
 not survive into the PRD.
@@ -4146,13 +4146,13 @@ grader's confound detector explains why:
 
 A census of `tool_use` blocks confirms it across the batch:
 
-| arm (810) | trials | with real MCP calls | total calls |
-| --- | --- | --- | --- |
-| cc-component-builder-sonnet | 12 | 8 | 71 |
-| cc-both-sonnet | 9 | 6 | 185 |
-| cc-design-tokens-sonnet | 9 | 6 | 157 |
-| cc-none-sonnet | 18 | 0 | 0 |
-| **all four Haiku arms** | **24** | **0** | **0** |
+| arm (810)                   | trials | with real MCP calls | total calls |
+| --------------------------- | ------ | ------------------- | ----------- |
+| cc-component-builder-sonnet | 12     | 8                   | 71          |
+| cc-both-sonnet              | 9      | 6                   | 185         |
+| cc-design-tokens-sonnet     | 9      | 6                   | 157         |
+| cc-none-sonnet              | 18     | 0                   | 0           |
+| **all four Haiku arms**     | **24** | **0**               | **0**       |
 
 The servers were reachable and the tools were offered: the tool catalogue in
 each Haiku transcript lists all ten `mcp__component-builder__*` names. Sonnet,
@@ -4163,12 +4163,12 @@ Two consequences. The three MCP Haiku arms are, behaviourally, four copies of
 the baseline, and `pnpm grade` correctly marks their 810 runs invalid rather
 than reporting a null result. And the arms still did not cost the same:
 
-| arm | 6 trials |
-| --- | --- |
-| cc-none-haiku | $1.12 |
-| cc-component-builder-haiku | $1.27 |
-| cc-both-haiku | $1.34 |
-| cc-design-tokens-haiku | $1.48 |
+| arm                        | 6 trials |
+| -------------------------- | -------- |
+| cc-none-haiku              | $1.12    |
+| cc-component-builder-haiku | $1.27    |
+| cc-both-haiku              | $1.34    |
+| cc-design-tokens-haiku     | $1.48    |
 
 Up to 32% more for zero calls. Advertising a server enlarges the system prompt,
 and that is billed on every turn. **An MCP server costs money before it is
@@ -4176,8 +4176,8 @@ useful, and continues to if it is never useful.**
 
 Cost reconciliation for the batch: $5.21 reconstructed against $5.39 billed,
 versus a $9.60 projection — 46% under, because a model that never calls a tool
-and gives up early is cheap. Which is the trap: cost per *trial* rewards
-failure. Cost per *successful* trial is the only honest cross-model figure, and
+and gives up early is cheap. Which is the trap: cost per _trial_ rewards
+failure. Cost per _successful_ trial is the only honest cross-model figure, and
 on 810 Haiku has no denominator at all.
 
 **Lesson (ch):** a string match on a transcript finds the tool catalogue as
@@ -4190,7 +4190,7 @@ grader's own confound detector, which had already got it right, was consulted.
 it as a claim that the manipulation did not happen, not as a result about the
 manipulation.
 
-**Lesson (cj):** a variant's *label* is not its treatment. `cc-both-haiku-high`
+**Lesson (cj):** a variant's _label_ is not its treatment. `cc-both-haiku-high`
 is only a both-MCP trial if an MCP was called, and the harness cannot enforce
 that — it can only report it afterwards, which is why the confound class exists
 and why it must be read before the scores.
@@ -4204,9 +4204,13 @@ Every transcript in the corpus — Haiku and Sonnet alike, byte-for-byte the sam
 shape — carries this on line 4:
 
 ```json
-{ "type": "attachment",
-  "attachment": { "type": "deferred_tools_delta",
-                  "addedNames": ["…", "mcp__component-builder__get-scss-template", "…"] } }
+{
+  "type": "attachment",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": ["…", "mcp__component-builder__get-scss-template", "…"]
+  }
+}
 ```
 
 `deferred_tools_delta` means the model was handed the tools' **names** and not
@@ -4218,16 +4222,16 @@ Claude Code's documented default (`ENABLE_TOOL_SEARCH`, unset):
 
 A census of `ToolSearch` against MCP calls across all 84 trials:
 
-| arm | trials | with ToolSearch | searches | with MCP calls |
-| --- | --- | --- | --- | --- |
-| cc-both-sonnet-high | 30 | 18 | 45 | 15 |
-| cc-component-builder-sonnet-high | 33 | 21 | 39 | 17 |
-| cc-design-tokens-sonnet-high | 30 | 18 | 39 | 15 |
-| cc-none-sonnet-high | 39 | 3 | 3 | 0 |
-| cc-both-haiku-high | 6 | 0 | 0 | 0 |
-| cc-component-builder-haiku-high | 6 | 0 | 0 | 0 |
-| cc-design-tokens-haiku-high | 6 | 0 | 0 | 0 |
-| cc-none-haiku-high | 6 | 0 | 0 | 0 |
+| arm                              | trials | with ToolSearch | searches | with MCP calls |
+| -------------------------------- | ------ | --------------- | -------- | -------------- |
+| cc-both-sonnet-high              | 30     | 18              | 45       | 15             |
+| cc-component-builder-sonnet-high | 33     | 21              | 39       | 17             |
+| cc-design-tokens-sonnet-high     | 30     | 18              | 39       | 15             |
+| cc-none-sonnet-high              | 39     | 3               | 3        | 0              |
+| cc-both-haiku-high               | 6      | 0               | 0        | 0              |
+| cc-component-builder-haiku-high  | 6      | 0               | 0        | 0              |
+| cc-design-tokens-haiku-high      | 6      | 0               | 0        | 0              |
+| cc-none-haiku-high               | 6      | 0               | 0        | 0              |
 
 The search is the gate. Where it fires, calls follow (18→15, 21→17, 18→15);
 where it does not, they never do; the baseline searched three times and
@@ -4236,7 +4240,7 @@ correctly found nothing. Haiku searched zero times in 24 trials.
 So the finding in D-148 is real but misattributed. Haiku did not decline to use
 the servers — it was never told they were usable in the form a tool call
 requires. And the consequence runs backwards through the whole campaign: **every
-number to date measures tool *discovery*, not MCP value.** Roughly 40% of the
+number to date measures tool _discovery_, not MCP value.** Roughly 40% of the
 Sonnet MCP-arm trials (12/30, 12/33, 12/30) never searched, and are baseline
 trials wearing an MCP label. The deltas we have priced are a blend of "does the
 MCP help" and "does the model go looking".
@@ -4252,7 +4256,7 @@ context-window optimisation; at ten tools we are nowhere near needing it, and
 The deferred regime is kept, not discarded — `EVAL_TOOL_SEARCH=1` restores it.
 "Will a model discover a server nobody instructed it to use?" is a legitimate
 and arguably more realistic question than "does the server's content help",
-but it is a *different* question and the two cannot share an arm. If that gets
+but it is a _different_ question and the two cannot share an arm. If that gets
 its own campaign, it needs its own variant.
 
 `mcpToolsWereDeferred()` (`lib/graders/mcp-usage.ts`) now reads the attachment
@@ -4276,13 +4280,13 @@ until `--force` — which is the guard working: `--force` is documented as "igno
 fingerprints, re-run everything" and deletes nothing, so the deferred-era trials
 remain on disk under their own timestamps as the evidence for D-148.
 
-| | deferred | upfront |
-| --- | --- | --- |
-| `deferred_tools_delta` in transcript | yes | no |
-| `ToolSearch` calls | 0 | 0 — nothing left to search |
-| MCP calls per trial | 0, 0, 0 | 2, 1, 5 |
-| passed | 0/3 | **3/3** |
-| quality | — | 0.98, 0.99, 0.97 |
+|                                      | deferred | upfront                    |
+| ------------------------------------ | -------- | -------------------------- |
+| `deferred_tools_delta` in transcript | yes      | no                         |
+| `ToolSearch` calls                   | 0        | 0 — nothing left to search |
+| MCP calls per trial                  | 0, 0, 0  | 2, 1, 5                    |
+| passed                               | 0/3      | **3/3**                    |
+| quality                              | —        | 0.98, 0.99, 0.97           |
 
 All three opened on `get-ui-building-instructions`; `mcp-usage/consulted-first`
 fires on each. The eval Haiku could not pass at all, it now passes every time,
@@ -4290,7 +4294,7 @@ and the only thing that changed is whether the tool definitions were in the
 context. **This is the first honest measurement of MCP value in the campaign.**
 
 Two graders still bite with the server present, and those findings are now about
-the MCP's *content* rather than its absence: `token-conformance` 0.80 (component
+the MCP's _content_ rather than its absence: `token-conformance` 0.80 (component
 tokens referencing `--ks-brand-color-scale-1` and `-3` directly, skipping the
 semantic layer) and `authoring-seams` 0.83 (no shared identifier tying the
 component to its client bundle). The token violation is the design-tokens
@@ -4307,14 +4311,14 @@ than the 2–6% band the dedup fix was validated at, and worth watching rather
 than acting on. Per trial the arm went from $0.35 to $0.46, and gained a
 denominator: three passes instead of none. Cheap failure is still failure.
 
-**Lesson (ck):** a tool the model can see the *name* of is not a tool it can
+**Lesson (ck):** a tool the model can see the _name_ of is not a tool it can
 call. Availability has stages, and a harness that verifies only the earliest one
 — server connects, names arrive — will certify an arm that cannot work.
 
 **Lesson (cl):** the mechanism was already written down in our own code.
 `mcp-usage.ts` documented ToolSearch, in prose, months before this analysis;
 `grep` found that comment while looking for the answer and it was read as an
-aside. Search the codebase's *explanations*, not just its identifiers, before
+aside. Search the codebase's _explanations_, not just its identifiers, before
 concluding a behaviour is unexplained.
 
 **Lesson (cm):** two models producing different results is not yet a finding
@@ -4325,7 +4329,7 @@ identically and that only one of them happened to route around.
 
 84 trials and $96.40 were spent in the deferred regime. They are not wasted —
 they are the evidence for D-148 and D-149, and they remain a valid measurement
-of *tool discovery*. They are not a measurement of MCP value, and nothing in the
+of _tool discovery_. They are not a measurement of MCP value, and nothing in the
 PRD may cite them as one.
 
 Every campaign conclusion that rests on an MCP-versus-baseline delta is
@@ -4340,7 +4344,7 @@ Sonnet corpus stays on disk, superseded, and every Sonnet figure in this
 document is now a deferred-regime figure that must not be compared to anything.
 
 The goal is **complete Haiku coverage: 20 evals × 4 arms × 3 runs = 240 trials.**
-Full coverage is the deliverable, so the staging below is about *ordering*, not
+Full coverage is the deliverable, so the staging below is about _ordering_, not
 about omitting cells. Every stage ends with the matrix closer to complete and
 none of them is optional.
 
@@ -4358,14 +4362,14 @@ ones.
 
 ### Stages
 
-| stage | scope | trials | estimate | buys |
-| --- | --- | --- | --- | --- |
-| 0 ✅ | `810` × cc-component-builder | 3 | $1.51 actual | the regime works |
-| 1 | `810` × the other three arms | 9 | $4–6 | first honest four-arm delta |
-| — | *checkpoint: is `cc-both` fixing the token layer?* | | | |
-| 2 | all 20 evals × `cc-none` and `cc-both` | 120 | $40–85 | the bracket |
-| — | *checkpoint: re-estimate per-trial cost from 120 real upfront trials* | | | |
-| 3 | all 20 evals × `cc-component-builder` and `cc-design-tokens` | 120 | re-estimate | attribution; matrix complete |
+| stage | scope                                                                 | trials | estimate     | buys                         |
+| ----- | --------------------------------------------------------------------- | ------ | ------------ | ---------------------------- |
+| 0 ✅  | `810` × cc-component-builder                                          | 3      | $1.51 actual | the regime works             |
+| 1     | `810` × the other three arms                                          | 9      | $4–6         | first honest four-arm delta  |
+| —     | _checkpoint: is `cc-both` fixing the token layer?_                    |        |              |                              |
+| 2     | all 20 evals × `cc-none` and `cc-both`                                | 120    | $40–85       | the bracket                  |
+| —     | _checkpoint: re-estimate per-trial cost from 120 real upfront trials_ |        |              |                              |
+| 3     | all 20 evals × `cc-component-builder` and `cc-design-tokens`          | 120    | re-estimate  | attribution; matrix complete |
 
 Stage 1 answers the question Stage 0 raised: `cc-component-builder` alone left
 `token-conformance` at 0.80 with direct branding-layer references. If `cc-both`
@@ -4449,12 +4453,12 @@ each, with tools loaded upfront. All four arms cleared the D-150 gate: no
 `deferred_tools_delta` in any transcript, and `cc-none` made zero MCP calls
 while the MCP arms made them.
 
-| arm | pass@1 | quality | $/trial | mcp calls/trial |
-| --- | --- | --- | --- | --- |
-| `cc-none` | 0% | 0.63 ±0.07 | $0.43 | — |
-| `cc-design-tokens` | **run invalid** | (0.69 unscored) | $0.51 | **0** |
-| `cc-component-builder` | 100% | 0.98 ±0.01 | $0.50 | 2.7 |
-| `cc-both` | 100% | 0.99 ±0.01 | $0.63 | 6.3 |
+| arm                    | pass@1          | quality         | $/trial | mcp calls/trial |
+| ---------------------- | --------------- | --------------- | ------- | --------------- |
+| `cc-none`              | 0%              | 0.63 ±0.07      | $0.43   | —               |
+| `cc-design-tokens`     | **run invalid** | (0.69 unscored) | $0.51   | **0**           |
+| `cc-component-builder` | 100%            | 0.98 ±0.01      | $0.50   | 2.7             |
+| `cc-both`              | 100%            | 0.99 ±0.01      | $0.63   | 6.3             |
 
 The headline is an economic one, which is the point of G2: the
 component-builder server converts a 0% pass rate into 100% for **16% more money
@@ -4475,8 +4479,8 @@ Two hypotheses were tested and one survives:
   component-builder MCP's source contains no reference to the tokens server, by
   grep. Run-1 was variance.
 - **Supported — the repo is staged, so token values are greppable.** The tokens
-  server's payload is *values*, and values are on disk. The component-builder
-  server's payload is *conventions*, which are not on disk in that form. An
+  server's payload is _values_, and values are on disk. The component-builder
+  server's payload is _conventions_, which are not on disk in that form. An
   agent with filesystem access has no reason to pay a tool call for the first
   and every reason to pay one for the second.
 
@@ -4495,8 +4499,8 @@ lesson (cm).
 `pnpm grade` reported $3.28 for the three `cc-component-builder` trials.
 `pnpm cost` reconstructed $1.38. Anthropic billed **$1.51**.
 
-D-147 found this exact bug — Claude Code writes one JSONL line per *content
-block*, and every line of a message repeats that message's `usage` verbatim —
+D-147 found this exact bug — Claude Code writes one JSONL line per _content
+block_, and every line of a message repeats that message's `usage` verbatim —
 and fixed it in `bin/cost.ts`. It left the same summation live in
 `lib/eval-harness/harness.ts`, whose `agent-transcript-meta.json` is what
 `efficiencyOf()` reads, which is what the report's `costOf()` prices. So the
@@ -4508,7 +4512,7 @@ deduplicated on `message.id`. Host-side because grading is retroactive and free
 (D-50): every trial already bought is repriced without re-running anything. The
 same fix in the sandbox summariser would have corrected only future trials.
 
-`toolCalls` is deliberately *not* deduplicated. One block per line means the
+`toolCalls` is deliberately _not_ deduplicated. One block per line means the
 per-line count of `tool_use` blocks is already right; deduplicating on
 `message.id` and taking the first line's blocks reads 49 tool calls as 3. The
 same transcript shape requires opposite treatment for two different quantities,
@@ -4516,9 +4520,9 @@ which is why this is written down.
 
 Validation after the fix, against the invoice:
 
-| | before | after | billed |
-| --- | --- | --- | --- |
-| `cc-component-builder` × `810` × 3 | $3.28 | **$1.50** | **$1.51** |
+|                                    | before | after     | billed    |
+| ---------------------------------- | ------ | --------- | --------- |
+| `cc-component-builder` × `810` × 3 | $3.28  | **$1.50** | **$1.51** |
 
 Turns fell with it — 104 → 64.3 on `cc-both`, and every turn count in every
 report before this is roughly double the truth.
@@ -4548,8 +4552,8 @@ noise, it is a thumb on the scale — and this one pointed at the conclusion we
 were most likely to want to believe.
 
 **Lesson (cr):** an agent will not pay for information it can grep. A server
-whose value is *data already in the repo* competes with `Read`; a server whose
-value is *conventions not written anywhere* does not. This is a claim about what
+whose value is _data already in the repo_ competes with `Read`; a server whose
+value is _conventions not written anywhere_ does not. This is a claim about what
 belongs in an MCP, not about which model is lazy.
 
 ---
@@ -4606,30 +4610,30 @@ holding across 20 evals rather than one.
 
 ### Quality has saturated; pass@1 is the only thing still discriminating
 
-Five evals sit at 0% pass in *both* arms — 804, 811, 840, 842, 850 — while
+Five evals sit at 0% pass in _both_ arms — 804, 811, 840, 842, 850 — while
 scoring 0.84–1.00 quality. These are not broken gates. The assertions:
 
-| eval | what actually failed |
-| --- | --- |
-| 850-focus-return | focus stayed outside the panel; Escape did not close; focus never returned to the trigger |
-| 840-reuse-over-native | "the call to action is not a hand-rolled button"; restyled the components it composed |
-| 842-reuse-edit | "the styles that imitated a button are gone" — they were not |
-| 811-token-intent | stylesheet still styles the component; the two trends are not distinctly tokenised |
-| 804-story-conventions | the documentation page was never written |
+| eval                  | what actually failed                                                                      |
+| --------------------- | ----------------------------------------------------------------------------------------- |
+| 850-focus-return      | focus stayed outside the panel; Escape did not close; focus never returned to the trigger |
+| 840-reuse-over-native | "the call to action is not a hand-rolled button"; restyled the components it composed     |
+| 842-reuse-edit        | "the styles that imitated a button are gone" — they were not                              |
+| 811-token-intent      | stylesheet still styles the component; the two trends are not distinctly tokenised        |
+| 804-story-conventions | the documentation page was never written                                                  |
 
 `850` is the sharpest: quality **1.00**, pass **0%**. The agent produced a
 perfectly-shaped component — contract, purity, seams, tokens all satisfied —
 that does not work. The conformance rubrics cannot see behaviour, and with the
 MCPs attached Haiku is at their ceiling.
 
-The other four are all *restraint and reuse* failures: hand-rolling what the
+The other four are all _restraint and reuse_ failures: hand-rolling what the
 design system already provides, and leaving imitation styles behind. That is
 precisely what `get-ui-building-instructions` exists to prevent, and the servers
 do not prevent it. A genuine negative result, and the most useful thing Stage 2
 bought.
 
 **Lesson (cs):** an exclusion rule inherits the world it was written in. "Never
-called the server" meant *broken* in the deferred era and means *declined* now;
+called the server" meant _broken_ in the deferred era and means _declined_ now;
 the code did not change but its meaning did, and it quietly became a filter that
 kept the flattering half of the sample. Re-read exclusion criteria whenever the
 mechanism underneath them changes.
@@ -4652,38 +4656,37 @@ first complete matrix the campaign has produced, and the goal set at the start:
 full coverage of everything using Haiku.
 
 Batching fixed the capacity problem from D-152 without touching the harness. Six
-invocations of ten evals each held the peak at 30 concurrent sandboxes instead of
-60. Every one of the 180 new trials produced a transcript; there was not a single
+invocations of ten evals each held the peak at 30 concurrent sandboxes instead of 60. Every one of the 180 new trials produced a transcript; there was not a single
 `ENOSPC`. See ADR 95.
 
 ### The matrix
 
 pass@1 over 3 runs, with mean MCP calls per trial:
 
-| eval | cc-none | cc-component-builder | cc-design-tokens | cc-both |
-| --- | --- | --- | --- | --- |
-| 802-composite-from-two | 67% | **100%** (1.3) | 67% | **100%** (4.0) |
-| 804-story-conventions | 0% | **100%** (2.3) | 0% | 0% (1.7) |
-| 806-inverted-context | 67% | 33% | **100%** | **100%** |
-| 810-atom-from-schema | 0% | **100%** (3.7) | 0% | 67% (4.3) |
-| 811-token-intent | 33% | 0% (1.3) | **100%** (12.7) | 0% (9.0) |
-| 812-restyle-with-tokens | 0% | **100%** (1.0) | 0% | **100%** (14.3) |
-| 816-typography-pairing | 0% | 0% (1.0) | 0% (0.7) | 33% (4.7) |
-| 817-responsive-tokens | 67% | **100%** | 67% (1.0) | **100%** |
-| 818-component-token-layer | 0% | 67% (2.7) | 0% (0.7) | 33% (3.0) |
-| 820-extend-schema-safely | **100%** | 33% (0.3) | 0% | 67% |
-| 824-api-from-behaviour | 0% | **100%** (6.7) | 0% | 67% (5.3) |
-| 832-client-behaviour | 0% | 0% (8.0) | 0% | **100%** (4.3) |
-| 836-behaviour-bugfix | 100% | 100% | 100% | 100% |
-| 840-reuse-over-native | 0% | 0% | 0% | 0% (4.0) |
-| 842-reuse-edit | 0% | 0% | 67% | 0% |
-| 850-focus-return | 0% | 0% | 0% | 0% |
-| 852-a11y-repair | 100% | 100% | 100% | 100% |
-| 860-restraint | 100% | 100% | 100% | 100% |
-| 861-token-restraint | 100% | 100% | 100% | 100% |
-| 862-api-freeze | 100% | 100% (0.3) | 100% | 67% |
-| **mean pass@1** | **41.7%** | **61.7%** | **45.0%** | **61.7%** |
-| **spent** | $11.13 | **$10.50** | $12.35 | $12.00 |
+| eval                      | cc-none   | cc-component-builder | cc-design-tokens | cc-both         |
+| ------------------------- | --------- | -------------------- | ---------------- | --------------- |
+| 802-composite-from-two    | 67%       | **100%** (1.3)       | 67%              | **100%** (4.0)  |
+| 804-story-conventions     | 0%        | **100%** (2.3)       | 0%               | 0% (1.7)        |
+| 806-inverted-context      | 67%       | 33%                  | **100%**         | **100%**        |
+| 810-atom-from-schema      | 0%        | **100%** (3.7)       | 0%               | 67% (4.3)       |
+| 811-token-intent          | 33%       | 0% (1.3)             | **100%** (12.3)  | 0% (9.0)        |
+| 812-restyle-with-tokens   | 0%        | **100%** (1.0)       | 0%               | **100%** (14.3) |
+| 816-typography-pairing    | 0%        | 0% (1.0)             | 0% (0.7)         | 33% (4.7)       |
+| 817-responsive-tokens     | 67%       | **100%**             | 67% (1.0)        | **100%**        |
+| 818-component-token-layer | 0%        | 67% (2.7)            | 0% (0.7)         | 33% (3.0)       |
+| 820-extend-schema-safely  | **100%**  | 33% (0.3)            | 0%               | 67%             |
+| 824-api-from-behaviour    | 0%        | **100%** (6.7)       | 0%               | 67% (5.3)       |
+| 832-client-behaviour      | 0%        | 0% (8.0)             | 0%               | **100%** (4.3)  |
+| 836-behaviour-bugfix      | 100%      | 100%                 | 100%             | 100%            |
+| 840-reuse-over-native     | 0%        | 0%                   | 0%               | 0% (4.0)        |
+| 842-reuse-edit            | 0%        | 0%                   | 67%              | 0%              |
+| 850-focus-return          | 0%        | 0%                   | 0%               | 0%              |
+| 852-a11y-repair           | 100%      | 100%                 | 100%             | 100%            |
+| 860-restraint             | 100%      | 100%                 | 100%             | 100%            |
+| 861-token-restraint       | 100%      | 100%                 | 100%             | 100%            |
+| 862-api-freeze            | 100%      | 100% (0.3)           | 100%             | 67%             |
+| **mean pass@1**           | **41.7%** | **61.7%**            | **45.0%**        | **61.7%**       |
+| **spent**                 | $11.13    | **$10.50**           | $12.35           | $12.00          |
 
 ### Component-builder alone is the configuration to ship
 
@@ -4699,12 +4702,12 @@ server to the component-builder server buys nothing on aggregate.
 
 Across its 60 trials the server was called **43 times total, with 54 of 60 trials
 never calling it at all**. That is the greppability hypothesis from D-151
-confirmed at scale: token *values* are in the staged repo and an agent will read
+confirmed at scale: token _values_ are in the staged repo and an agent will read
 them rather than ask for them.
 
 The exception is sharp. On `811-token-intent` the design-tokens arm called it
-**12.7 times per trial and was the only arm to pass — 100% against 33/0/0.**
-Token *intent* is the one thing that genuinely is not greppable, and when the
+**12.3 times per trial and was the only arm to pass — 100% against 33/0/0.**
+Token _intent_ is the one thing that genuinely is not greppable, and when the
 task demands it the server both gets called and wins. One eval out of twenty.
 
 Note that `cc-both` fails `811` at 0% despite 9.0 calls per trial. Having both
@@ -4723,18 +4726,38 @@ Three of twenty evals are worse with the component-builder server than without
 it. An aggregate of +20 points is worth having, but it is not a uniform gain and
 "attach the MCP" is not unconditionally correct advice.
 
-### One genuine synergy
+### One genuine synergy, which quality does not corroborate
 
 `832-client-behaviour` is the only eval where the combination beats both singles:
-0% / 0% / 0% / **100%**. Quality tracks it too (0.65 / 0.90 / 0.65 / 0.98). It is
-a single eval at n=3, so it is a lead rather than a finding.
+0% / 0% / 0% / **100%**. It is a single eval at n=3, so it is a lead rather than
+a finding — and the lead got weaker once the judge was scored (D-154).
+
+Quality is 0.60 / 0.89 / 0.60 / **0.89**. `cc-both` does not beat
+`cc-component-builder` on quality; it _ties_ it, while passing 3/3 against 0/3.
+The judge is why: on all three `cc-both` runs it returns `design-intent=pass`
+with `code-idiom=fail`. The combination gets the behaviour right and writes it
+unidiomatically, and the arm that fails the assertion outright is graded just as
+well.
+
+So the synergy lives entirely in the eval assertion and nowhere else in the
+measurement. Either the assertion is catching something real that quality is
+blind to, or it is catching something incidental — and those two have opposite
+implications for shipping. `832` is the first eval to review for that reason.
 
 ### The saturation from D-152 survives full coverage
 
 `840-reuse-over-native` and `850-focus-return` are **0% in all four arms**.
-`850` holds quality 1.00 while passing nothing, in every configuration. The
+`850` scores quality **0.895 in every arm** while passing nothing — flat to three
+decimal places across all nine baseline, single-server and paired runs. The
 reuse-and-restraint failures are not something either server fixes, and they are
 the failures the component-builder server most explicitly exists to prevent.
+
+The one exception is instructive rather than real: `cc-both` run-2 scores 1.00,
+which lifts that arm's mean to 0.93. Its judge verdict is `unknown` — the reply
+was unparseable — so the dimension was dropped and its weight redistributed
+across the three graders it was already passing. A rubric that fails to parse
+reads as a _higher_ score than one that fails. Worth watching if `unknown`
+becomes common.
 
 **Lesson (cv):** the cheapest arm won. Cost and quality were assumed to trade off
 against each other for long enough that the report has a `quality/extra-$`
@@ -4751,8 +4774,1179 @@ bought from a server. The design-tokens server is only used where the answer
 cannot be grepped — which is a statement about the eval set as much as about the
 server, and the fix is to test intent, not values.
 
-**Next free decision number: D-154.**
+## D-154 — The judge enters the score, carried by one rubric
 
+The judge has been run across the whole campaign: **597 verdicts for $11.56**,
+and **286 of 300 trials now carry a judge dimension**. The remaining 14 had no
+applicable rubric.
 
+It changes no conclusion from D-153. Mean quality by arm — `cc-none` 0.825,
+`cc-design-tokens` 0.842, `cc-component-builder` 0.898, `cc-both` 0.921 — puts
+the arms in the same order as pass@1, with the spread slightly wider. The
+figures inside D-153 have been revised in place.
 
+### It is one rubric, not four
 
+Only `code-idiom` scores (`calibrated: true`). The other 180 `design-intent` and
+70 `api-design` verdicts render on the trial page and carry no weight, which is
+D-112 working exactly as written: the judge earns its 15% one rubric at a time,
+as each clears the ≥80% agreement bar. So the whole 15% is currently a single
+question about local idiom, answered 197 pass / 89 fail / 1 unknown.
+
+That is a real limit on what the number means, and only the human round lifts
+it. It also means roughly $4 of the $11.56 bought verdicts that cannot score
+yet — not wasted, because they are the material the calibration round labels
+against, but not scoring either.
+
+The 60 `token-reasoning` verdicts from the retired rubric were filtered out by
+the `live` check rather than scoring anything: the D-102 guard confirmed against
+real data instead of a test.
+
+### Two defects the pass surfaced
+
+The run died at trial 76 on a **529 `overloaded_error`** — `lib/judge/run.ts` had
+a single `fetch` and threw on any non-2xx. It now retries transient statuses with
+`retry-after`-aware backoff, and deliberately does not retry 4xx: those are bugs
+in what was sent, and retrying spends the same money to be told the same thing.
+Because verdicts cache as they land, the crash cost nothing but the restart.
+
+Second, and worse to reason about: **grading is free and retroactive (D-50) in
+money, but not in artefacts.** The two consumers of a grade disagree about when
+it is fetched. `report-index` calls `collectTrial()` on every invocation, so the
+index was never stale. The per-trial Storybook receives the manifest through a
+Vite virtual module that inlines it into the bundle, so every one of the 300
+built Storybooks kept showing _"No applicable grader for: judge"_ long after the
+verdicts existed. A `--manifest-only` flag was written to refresh the JSON
+without rebuilding, then removed once it became clear the file has exactly one
+reader and that reader only runs during a build. Seeing a new grade costs a
+45-minute rebuild.
+
+**Lesson (cy):** "free to recompute" and "free to observe" are different
+properties, and a cache that is invisible in the write path will not announce
+itself. Two views of the same number went out of sync for a day because one
+recomputes and one bakes.
+
+**Lesson (cz):** an unparseable verdict scored _higher_ than a failing one.
+`850-focus-return` `cc-both` run-2 returned `unknown`, the dimension was dropped,
+its weight was redistributed across graders the trial was already passing, and it
+came out at 1.00. Dropping a dimension is the right default when a grader does
+not apply, but it is the wrong default when a grader broke, and the two are
+indistinguishable at the point of scoring.
+
+**Lesson (da):** paying for judgements that cannot yet be counted is a
+legitimate spend, but it should be a deliberate one. Three rubrics were run when
+one could score, because the uncalibrated verdicts are what the human round
+labels against — worth doing, worth knowing the price of in advance.
+
+---
+
+### D-155 — The two servers disagreed about how to spell a tool name
+
+`cc-both` was the only arm that failed MCP calls at all: 9 of 164, against zero
+in both single-server arms. That asymmetry is the whole finding. Neither server
+is broken on its own; holding both is what breaks.
+
+The advertised names were not at fault. `component-builder` was kebab-case in
+all ten tools, `design-tokens` was snake_case in all thirty, each internally
+consistent, and `component-builder`'s instruction text never names a tool
+belonging to the other server. The model composes `mcp__<server>__<tool>` out of
+two independently recalled halves, and with two servers attached it mispaired
+them. The failures sort into three kinds:
+
+| kind                  | n   | example                                      | what went wrong                                               |
+| --------------------- | --- | -------------------------------------------- | ------------------------------------------------------------- |
+| server misattribution | 5   | `mcp__design-tokens__get-token-architecture` | a real `component-builder` tool, addressed to `design-tokens` |
+| convention bleed      | 3   | `mcp__design-tokens__get-typography-tokens`  | right server, right tool, wrong separator                     |
+| invented              | 1   | `mcp__design-tokens__get_border_tokens`      | exists nowhere                                                |
+
+Convention bleed has a direction: every instance normalised _toward_ kebab-case,
+which is the convention the model had seen far more of — `get-ui-building-
+instructions` alone appears 37 times in this arm. The minority convention lost,
+which is an argument for picking one rather than for picking the better one.
+
+**Decision.** Two changes, aimed at the two fixable classes.
+
+_Unify the convention._ `component-builder`'s ten tools are snake*case now,
+matching `design-tokens`. Both dispatchers additionally normalise `-` → `*`when
+the exact name misses, and log the substitution. A single rule rather than an
+alias table: no two tools on either server differ only by separator, so the rule
+is total, and there is nothing to keep in sync as tools are added. The aliases
+are deliberately *not* advertised in`tools/list` — the failing calls came from
+model memory, not from the tool list, so advertising them would only enlarge the
+surface that has to be remembered.
+
+_Converge on the concept._ `get_token_architecture` now exists on **both**
+servers under the same name, each answering from its own material —
+`component-builder` with the prose explanation of the intended layering,
+`design-tokens` with the live counts, examples and rules. It was tempting to
+delete the `component-builder` version as a duplicate; the transcripts said
+otherwise, because it was called 7 times in `cc-component-builder`, the arm with
+the best pass@1 in the matrix. A tool that only looks redundant from the
+two-server vantage point is load-bearing from the one-server vantage point.
+
+**What the re-run showed.** The arm was re-run against the rebuilt servers. Eight
+of the twenty evals did not survive the run and were discarded as non-model
+failures, so the comparison is restricted to the eleven evals present in both,
+33 trials each side:
+
+|                 | pre-fix | post-fix |
+| --------------- | ------- | -------- |
+| MCP calls       | 57      | 59       |
+| failed calls    | 3       | **0**    |
+| pass@1          | 60.6%   | 63.6%    |
+| mean wall-clock | 446 s   | 332 s    |
+
+The failure count is the only number here that the change can claim. Call volume
+held — the model reaches for the servers exactly as often, it just no longer
+misses — and the three misroutes that the shared evals did contain
+(`811-token-intent` twice, `818-component-token-layer` once) are gone. pass@1
+moved by a single run on `862-api-freeze`, which at n=3 is noise. The wall-clock
+drop is far too large to attribute: three recovered tool calls cannot account for
+an hour across 33 trials, so it is machine variance or a warmer cache, and it
+should not be quoted as an effect of this change.
+
+The two `mcp__design-tokens__get-ui-building-instructions` misroutes remain
+unfixed by design — a redirect stub on the wrong server would make server
+identity meaningless, which is the one thing keeping the arms separable. Both of
+those, and the invented `get_border_tokens`, sat in evals the re-run lost.
+
+**Lesson (db):** the fix is confirmed to do what it was designed to do, and there
+is no evidence it improves outcomes. Those are compatible, and saying only the
+first would be the more flattering error. Every one of the nine failures was
+recoverable — the model retried and got there — so the cost removed was wasted
+turns, not wrong answers, and an arm that was already not beating
+`cc-component-builder` on pass@1 does not start beating it because its retries
+went away.
+
+**Lesson (dc):** `--force` deletes the previous run rather than superseding it,
+and the guard's phrasing ("discard them") is accurate but easy to read as "stop
+reusing them". The pre-fix `cc-both` campaign survives only because it was copied
+first. Anything the published report or an open issue links to needs a copy
+before a forced re-run, not after.
+
+**Lesson (dd):** the copy must not be made inside `results/`. A backup at
+`results/.backup-cc-both-haiku-high/` was walked by the judge as though it were a
+twenty-first experiment arm, and would have been published as one. Sibling
+directories are the tree's only unit of meaning; a name beginning with a dot does
+not exempt it.
+
+---
+
+### D-156 — The design-tokens server is not weak, it is unfound
+
+The arm summary had read as a verdict on the server's usefulness: `cc-design-
+tokens` scored 42% against a 39% baseline, while `cc-component-builder` reached
+60% — and it did so while spending the most money of any arm. Reading that as
+"the token server does not help" turns out to be wrong, because it skips the step
+where the server is actually consulted.
+
+| arm                    | trials | issued ≥1 MCP call | pass@1 |
+| ---------------------- | ------ | ------------------ | ------ |
+| `cc-none`              | 57     | —                  | 39%    |
+| `cc-design-tokens`     | 57     | **6 (11%)**        | 42%    |
+| `cc-component-builder` | 57     | 28 (49%)           | 60%    |
+| `cc-both`              | 57     | 32 (56%)           | 60%    |
+
+Attachment is not use. The server was present in all 57 trials and touched in
+six. Its three-point lift is what a server earns when it is available every time
+and consulted one time in nine.
+
+**It is never the entry point.** In `cc-both`, all 32 MCP-using trials opened
+with a component-builder tool — 26 × `get_ui_building_instructions`, 6 ×
+`list_existing_components`. The first design-tokens call lands at MCP-call index
+1, 2 or 3, never 0. It has no independent discovery path; it is reached only
+after the other server has already put the model into a tool-using frame. And
+when it stands alone there is no agreement on where to begin: the six solo trials
+opened with four different tools, against 25 of 28 opening with the same tool on
+component-builder.
+
+**The mechanism is in the descriptions.** `get_ui_building_instructions` opens
+with "ALWAYS call this tool FIRST before doing any UI/frontend/React/component
+development" and then lists the situations that qualify. That is a trigger keyed
+to the task the model is already performing. All 29 design-tokens tools were leaf
+queries named for the data they return — `get_token`, `list_tokens`,
+`get_typography_tokens`. Nothing anywhere stated the condition under which a
+model should want one. The server was reachable only by an agent that had already
+concluded it needed token data, which is precisely the conclusion the server
+exists to provoke.
+
+**When it is found, it works.** Within the four evals where it was actually
+called (`811`, `816`, `817`, `818`):
+
+|                                               | pass@1        |
+| --------------------------------------------- | ------------- |
+| called it                                     | **4/6 (67%)** |
+| attached, never called it                     | 1/6 (17%)     |
+| no server at all (`cc-none`, same four evals) | 25%           |
+
+Same tasks, same arm, same model. The contrast is between finding it and not
+finding it, not between easy and hard tasks. Counter-evidence worth keeping in
+view: on those same four evals `cc-component-builder` also scores 42%, identical
+to `cc-design-tokens`, so the specialist advantage does not survive to the arm
+level. That is consistent with an 11% hit rate diluting it to nothing, but it is
+not proof of it.
+
+**Decision.** Give the server a front door, described by the moment of use rather
+than by the data it returns. `get_token_architecture` — added in D-155, already
+the orienting tool — now opens with the same unconditional trigger the
+component-builder entry point uses, names the situations that qualify (writing
+CSS or SCSS, choosing a colour, spacing, typography, radius, shadow or transition
+value), and states that every other tool on the server is a lookup within the
+structure it returns. It is also moved to the head of `tools/list`.
+
+Description and position moved together and cannot be separated afterwards. That
+is a deliberate trade: two variables in one change, because the intervention
+being copied has both, and a re-run costs an arm.
+
+**Prediction, recorded before the run.** Usage moves from 11% toward
+component-builder's ~50%. If the 67%-vs-17% split holds, pass@1 on the four token
+evals follows. The arm to measure in is `cc-design-tokens-haiku-high`, which
+isolates discovery from component-builder's coat-tails — in `cc-both` the two
+servers now both advertise `get_token_architecture`, so an effect there could not
+be attributed.
+
+**Result.** The prediction is not met, and the run that was supposed to test it
+instead measured something more useful. The arm was run twice under identical
+code and configuration, an hour apart, on the same twelve core evals:
+
+|                                      | pre         | post A (12:17) | post B (13:04) |
+| ------------------------------------ | ----------- | -------------- | -------------- |
+| trials issuing ≥1 design-tokens call | 5 (14%)     | 7 (19%)        | 4 (11%)        |
+| total calls                          | 41          | 68             | 49             |
+| pass@1                               | 25/36 (69%) | 28/36 (78%)    | 21/36 (58%)    |
+
+**Post A and post B differ by 20 points of pass@1 and 8 points of usage with
+nothing changed between them.** The pre-change value sits between the two on both
+measures. The effect the run was built to detect is smaller than the variation
+between two runs of the identical thing, so no effect can be claimed — in either
+direction.
+
+That number retro-actively prices every comparison in this document taken at
+n=36. D-155's pass@1 movement (60.6% → 63.6%) and the +9 points read off post A
+alone are both inside it. Neither was evidence. Three runs per eval is enough to
+see a tool call appear or disappear; it is not enough to see a pass rate move.
+
+**One signal survives, and it is behavioural rather than outcome-based.** Before
+the change, the five trials that reached the server opened with four different
+tools — no consensus entry point. After it, 7 of 11 users across both runs opened
+with `get_token_architecture`, and in post B all four did. Part of that is
+trivial: the tool did not exist before, so it could not have been opened. The
+non-trivial part is the concentration. The server now has an agreed front door
+for whoever walks in.
+
+What it does not do is cause anyone to walk in. Usage across the two post runs
+(11%, 19%) brackets the pre value (14%). The front-door metaphor was wrong in a
+specific way: a door is only taken by someone already at the building, and the
+tool list is read by a model that has already decided whether tokens are its
+problem. The description improves what happens after the list is read. Whatever
+determines _whether_ it is read is somewhere else — the harness prompt, or the
+agent's own judgement about when a task is a styling task.
+
+**A correction.** The first analysis of this run recorded that the arm had "lost"
+eight evals — `802`, `804`, `810`, `812`, `816`, `824`, `832`, `840` — to a
+deterministic harness fault, and blamed `status` for reporting the arm complete.
+That was wrong, and the explanation was in `defaultEvals()` the whole time: those
+eight are `tier: "extra"`, the build-from-scratch fixtures, deliberately gated
+behind `EVAL_EXTRA_EVALS=1` so that a campaign's cost is not set by its most
+expensive tasks. Twelve is the documented default. `status` was correct;
+housekeeping reported `0 non-model failure(s)`; nothing was lost. The original
+20-eval campaign was bought with the flag set, and the re-runs were not.
+
+The comparison is still narrower than the campaign it is being read against, and
+still excludes `816`, one of the four token evals. But it is narrow by design and
+by an env var, not by a defect.
+
+_(`storybook-static` and `report-manifest.json` are absent from the new tree
+because `report build` has not been run against it. They are report artefacts,
+not run artefacts. Noted because their absence reads like a regression and is
+not one.)_
+
+**Lesson (de):** an arm summary measures a server _and_ its discoverability
+multiplied together, and reports the product as if it were the first factor. Six
+of 57 is the number that should have been read first; 42% against 39% is what
+that number looks like after it has been averaged with 51 trials in which the
+system under test was never invoked.
+
+**Lesson (df):** a tool description is an interface, and naming it after its
+return value is the same mistake as naming a function after its implementation. A
+model does not search the tool list for the data it needs; it recognises, or
+fails to recognise, that the moment it is in is one the tool is for. The
+correction to that mistake improves what happens after the tool list is read. It
+does not change how often the tool list is read at all, and this run is the
+evidence that those are two different problems.
+
+**Lesson (dg):** measure the noise floor before believing any delta. Two runs of
+an unchanged arm came out 20 points apart on pass@1. Every improvement claimed in
+this document at n=36 — including one made in D-155 and one made earlier in this
+very decision — is smaller than that. The cheapest experiment available was
+always to run the same thing twice, and it was never run until an accident forced
+it.
+
+**Lesson (dh):** "the harness is broken" is the most expensive hypothesis
+available and should be the last one tested. Two consecutive runs came back with
+an identical set of evals missing, which looked like proof of a deterministic
+fault; the actual cause was a documented default with an env-var override, and
+the doc comment explaining it sat directly above the function. The tell was
+ignored twice: `status` said the arm was complete and housekeeping reported zero
+non-model failures, and both were simply telling the truth. Before diagnosing a
+tool, check what it was configured to do.
+
+**Next free decision number: D-158.**
+
+---
+
+### D-157 — The server was competing with a copy of itself
+
+D-156 read low usage as a discoverability failure. Transcript inspection — free,
+and available the whole time — says it mostly is not.
+
+**Every fixture ships the answer.** `src/token/` is in all twenty evals: twelve
+files, 219 KB, the entire `--ks-*` semantic layer. The trials that never called
+the server read those files instead — `spacing-token.scss` six times,
+`text-color-token.scss` four, `ls -la src/token/` three. The server was competing
+against a local copy of its own contents: faster, always present, and requiring
+no prior judgement that this is a token task.
+
+**Entry is rational, and the 11% denominator was wrong.**
+
+| eval                        | entered | token files read | what the prompt asks for                                   |
+| --------------------------- | ------- | ---------------- | ---------------------------------------------------------- |
+| `811-token-intent`          | **3/3** | 0                | "use the token layer _the way this design system intends_" |
+| `818-component-token-layer` | 1/3     | 6, 10, 6         | "the same treatment the other components have"             |
+| `817-responsive-tokens`     | 0/3     | 1, 1, 3          | "scale the way the rest of the system does"                |
+| `861-token-restraint`       | 0/3     | 0                | names the wrong token _and_ the right one                  |
+| other eight core evals      | 0/24    | —                | not token tasks                                            |
+
+`811` is the only prompt that asks about _intent_ — which token is correct for a
+purpose. The SCSS files cannot answer that, so the model goes to the server every
+time, 12–20 calls, and never opens a token file. The others point at a worked
+example already in the repository, or hand the answer over outright.
+
+So the 11% figure averaged three different situations: 24 trials where not
+calling a token server is correct, 9 where the repository already held the
+answer, and 3 where intent was genuinely required — and there entry was perfect.
+Discoverability is not established as the binding constraint.
+
+**Decision, and one deliberately not taken.** The obvious way to force entry is
+to delete `src/token/` from the fixtures. Rejected: real repositories ship their
+token layer, and removing it would manufacture a dependence on the server that
+does not exist in practice. An eval that deletes the alternative in order to make
+the tool look necessary is measuring its own setup.
+
+What is changed instead is the description, from "here is the architecture" —
+which is what the files already show — to the differentiator: the files say which
+tokens _exist_, not which is _correct_, and a token that is wrong for its role
+compiles silently and looks fine until it is themed. It now also names
+`validate_token_usage`, which was the most-used tool in the arm's first run and
+is the one capability with no filesystem equivalent.
+
+**Subagent transcripts are now captured.** 20 of the 32 trials that appeared to
+make no MCP call had delegated to an async `Explore` subagent; 0 of the 4 that
+called the server had. That anti-correlation is stronger than any effect measured
+in this campaign and could not be read in either direction, because Claude Code
+writes subagent transcripts to `/tmp/claude-<uid>/…/tasks/<id>.output` and
+`captureTranscript()` only ever searched `~/.claude`. They are now copied to
+`agent-subagent-transcripts.jsonl` and summarised under `meta.subagents`, kept
+separate from the main summary so that `mcpToolCallCount` still means what it
+meant in every previous arm.
+
+**Lesson (di):** an MCP server that returns data the repository already contains
+is not competing on discoverability, it is competing on convenience, and it will
+lose to `Read`. The tools worth measuring are the ones with no filesystem
+equivalent — judgement, validation, intent — and only one eval in the suite
+currently asks for any of them.
+
+**Lesson (dj):** before concluding that a behaviour is absent, confirm it would
+have been visible. Two decisions were written about trials that "made no MCP
+call" while the evidence for two-thirds of them was being written to `/tmp` and
+deleted with the sandbox.
+
+---
+
+### D-158 — The criterion was not met, and the instrument was wrong anyway
+
+Re-run of `cc-design-tokens-haiku-high`, 12 core evals × 3, against the run one
+hour earlier. Only two things changed: the front-door description was reframed
+around what the on-disk token files cannot answer, and subagent transcripts
+started being captured.
+
+**The stated criterion failed.** D-157 said: if `817` and `818` move from 1/6 to
+4/6 entry, the description argument works.
+
+| eval                        | before | after |
+| --------------------------- | ------ | ----- |
+| `817-responsive-tokens`     | 0/3    | 0/3   |
+| `818-component-token-layer` | 1/3    | 2/3   |
+
+2/6, not 4/6. Arguing with the filesystem in a tool description does not stop a
+model reading the filesystem. `817` in particular has now gone 0/3 three times
+running — it is not noise, it is a stable preference for `Read`.
+
+**Something did change, one level down.** Entry count barely moved (4→5 trials in
+the main agent), but the mix of tools inside those trials moved a lot:
+
+| tool                    | before | after |
+| ----------------------- | ------ | ----- |
+| `search_tokens`         | 13     | 4     |
+| `get_component_tokens`  | 12     | 8     |
+| `validate_token_usage`  | 3      | **8** |
+| `get_token_for_context` | 2      | **6** |
+| `get_token_hierarchy`   | 5      | 7     |
+
+Lookup calls roughly halved; judgement calls roughly tripled. The description now
+names the capabilities with no filesystem equivalent, and the trials that do
+enter spend their calls on those. This is the (df) effect again: a description
+change alters what happens _after_ the tool list is read, not how often it is
+read. Worth having, but it is not adoption.
+
+**The measurement hole was larger than the effect being measured.** With subagent
+transcripts captured for the first time: **25 of 36 trials delegated to an
+`Explore` subagent**, and three of them used the design-tokens server there — 27
+calls that no previous arm in this campaign could see. `806-inverted-context`,
+scored as 0/3 entry with 0 calls, was in fact 2/3 with 24 calls, all inside
+subagents.
+
+Total entry for the arm is therefore 7/36, not 5/36 — and every adoption figure
+in D-149 through D-157, including the 11% / 49% / 56% comparison that started
+this line of work, is an undercount by an unknown margin. Those numbers cannot be
+repaired retroactively; the transcripts were deleted with their sandboxes.
+
+**pass@1 was unreadable, as predicted.** 58% → 66%, with 78% on the same code
+three hours earlier. Three measurements of two configurations: 58, 78, 66. The
+band swallows the change. 3.4 agent-hours.
+
+**Lesson (dk):** the honest reading is that this server is not under-discovered,
+it is under-needed. Eleven of twelve core evals can be solved without it, and are.
+The one that cannot — `811`, which asks about intent — enters 3/3 every single
+time, unprompted, and has done so under three different descriptions. Adoption is
+determined by the task, not the advertising.
+
+**Lesson (dl):** an instrument that cannot see two-thirds of the agent's work is
+not a noisy instrument, it is a different instrument. Three decisions were argued
+from a number that was structurally incomplete, and the incompleteness was
+discoverable for free at any point by reading one transcript to the end.
+
+---
+
+### D-159 — The suite measures one deployment context and generalises from it
+
+D-158's lesson (dk) concluded that the lookup tools "will keep losing to grep,
+permanently", and floated cutting the server from 29 tools to 6. That conclusion
+does not survive contact with the second audience.
+
+**The suite only contains repo-resident agents.** Every fixture is a checkout
+with `src/token/` present: 1,575 custom properties, the whole branding and
+semantic layer, committed and greppable. Measured in that context, `search_tokens`
+and `get_token` are redundant — correctly so. But that is one deployment context
+among at least two.
+
+The other is the pasted-snippet user: a chat interface, a fragment of SCSS, no
+checkout, no `Read`, no `grep`. For that user the redundancy inverts completely.
+The lookup tools are the _only_ way to learn that `--ks-spacing-m` exists, and the
+reasoning tools are useless without them, because there is nothing to reason
+about until the names are known. `validate_token_usage` cannot validate a token
+the model could not look up.
+
+**Decision:** the tool surface stays at 29. The suite grows a second context
+instead of the server shrinking to fit the first.
+
+**Built.** A `paste` tier, `871-paste-token-intent` and
+`872-paste-component-token-layer` — the same tasks as `811` and `818`, with the
+same prompts and byte-identical graders, in fixtures that ship no `src/token/`.
+
+No permissions are changed and nothing is hidden. An earlier sketch denied
+`Read`/`Grep`/`Glob`; that would have simulated the context rather than created
+it, and would have measured obedience to a deny list. The agent may search as
+much as it likes — there is simply nothing to find, which is exactly the
+information state of someone with a snippet and a chat window.
+
+Four implementation notes worth keeping:
+
+- The graders are _imported_, not copied — each paste source is a one-line
+  `import "./811-token-intent"`, which registers the same `test()` calls under
+  this fixture's own baked digests. Copies would drift and the pair would stop
+  measuring one variable.
+- `bin/build-evals.ts` syncs the token layer into every fixture on every build.
+  Left alone it would have put `src/token/` back and silently converted these
+  into ordinary repo-context evals while still reporting under the paste name —
+  the failure mode that looks like a clean result. It now refuses to build a
+  paste fixture that has one.
+- `paste` is a tier rather than a flag so it cannot be pulled into a repo arm by
+  accident: `defaultEvals()` returns `core` and `EVAL_EXTRA_EVALS=1` widens to
+  `extra`; neither reaches `paste`. Verified — the repo arm still selects its
+  twelve core evals and nothing else.
+- Results land in `cc-*-haiku-paste/`, their own directory, and are never
+  averaged with the repo arms.
+
+**Prediction, recorded before the run:** entry approaches 3/3 on both evals; the
+call mix inverts back toward lookup (`search_tokens`, `get_token`,
+`list_tokens`) because names now have to come from somewhere; the `none` arm's
+`token-conformance` collapses while the design-tokens arm holds. If entry does
+_not_ rise with the filesystem gone, then the server is not being outcompeted by
+`grep`, and every discoverability decision from D-155 onward was chasing the
+wrong cause.
+
+This is explicitly **not** the fixture-stripping rejected in D-157. The
+difference is labelling. Removing `src/token/` from the existing evals and
+reporting the result as the same number would be manufacturing a dependence that
+real repo users do not have. Adding a separate, named context that genuinely has
+no filesystem measures a real audience under its own conditions, and its results
+are never averaged with the repo arms.
+
+**Lesson (dm):** an arm summary is a measurement of a tool _in a context_, and
+the context is a hidden variable until a second one exists. Twelve evals that all
+assume a checkout cannot distinguish "this tool is redundant" from "this tool is
+redundant here" — and the fix is another context, not a smaller product.
+
+---
+
+### D-160 — the paste context result: the server's first outcome effect
+
+`cc-none-haiku-paste` and `cc-design-tokens-haiku-paste`, 2026-09-07T14-04-26Z.
+12 trials, ~22 min wall per arm, mean 219 s (none) / 226 s (dt) per trial.
+
+The three predictions recorded in `cc-design-tokens-haiku-paste.ts` before the
+run are graded below. The falsifier — "if entry does not rise with the
+filesystem gone, D-155 onward chased the wrong cause" — was **not** triggered.
+
+**(1) Entry approaches 3/3 on both evals. Confirmed, and nearly vacuous.**
+Entry went 5/6 → 6/6. The headroom was one trial, because `811` was already at
+ceiling in repo context. I should not have written a prediction whose success
+condition was one trial wide; it cannot discriminate between hypotheses and it
+made a near-certain outcome look like evidence.
+
+**(2) The call mix inverts toward lookup. Confirmed, and this one is real.**
+
+|                                                                                                              | repo (47 calls) | paste (87 calls) |
+| ------------------------------------------------------------------------------------------------------------ | --------------- | ---------------- |
+| lookup (`search_tokens`, `get_token`, `list_tokens`, `list_files`, `search_component_tokens`)                | 4 — 8.5%        | **23 — 26%**     |
+| judgement (`get_token_architecture`, `get_token_hierarchy`, `get_token_for_context`, `validate_token_usage`) | 25 — 53%        | 27 — 31%         |
+
+The judgement tools are called an almost identical number of times in absolute
+terms (25 → 27) while lookup goes 4 → 23. That is the mechanism, stated
+precisely: **judgement questions are asked once per task regardless of context;
+lookup questions scale with how much the agent does not already have.** Total
+calls rose 85% while the number of "which token is right here" questions did not
+move at all.
+
+This retires the framing in D-155–D-158 that the lookup tools are dead weight.
+They were dead weight _for an agent standing in a checkout_. They are the only
+route to a token name for an agent that is not.
+
+**(3) Token-conformance collapses in the `none` arm while `dt` holds. Confirmed
+on `871`, not on `872`.**
+
+`871` / `811`, the check "colours come from the semantic layer, not the
+primitive palette" — trials failing, out of 3:
+
+|               | repo | paste   |
+| ------------- | ---- | ------- |
+| none          | 1/3  | **3/3** |
+| design-tokens | 1/3  | **0/3** |
+
+And the pass rate for the same eval:
+
+|               | repo | paste   |
+| ------------- | ---- | ------- |
+| none          | 1/3  | 0/3     |
+| design-tokens | 1/3  | **2/3** |
+
+**This is the first outcome difference the design-tokens server has produced
+anywhere in the suite.** In repo context the arms are indistinguishable (1/3 vs
+1/3) — which is what every arm summary since D-149 has been reporting. In paste
+context the same server, the same prompt and byte-identical graders separate 0/3
+from 2/3, and the semantic-layer check goes from deterministic failure to
+deterministic pass. Nine sessions of behavioural metrics (entry rate, call mix,
+opening call) existed because there was no outcome signal to measure. There was
+no outcome signal because the context was wrong.
+
+**`872` / `818` shows nothing, and the reason matters.** Check-failures summed
+over 3 trials: none 8 (repo) / 8 (paste); dt 6 (repo) / 4 (paste). No cell
+produces a single pass. "A component token layer exists" fails 3/3 in repo-dt
+and 2/3 in paste-dt. A task that no arm ever passes cannot discriminate between
+arms — `872`'s contribution here is to show that `818` is measuring something
+Haiku does not do rather than something the server enables. That is an
+eval-design finding, not a server finding, and `818` should be re-examined
+before it is cited in any comparison again.
+
+**Lesson (dn):** the design-tokens MCP has an effect on outcomes, and it took
+nine sessions to see it because every eval put the agent in a checkout where the
+answer was already on disk. The measurement was not noisy; it was aimed at the
+population where the intervention does nothing.
+
+**Lesson (do):** state predictions with enough headroom to be wrong. "Entry
+approaches 3/3" over a 5/6 baseline is one trial of room — it was confirmed and
+told us nothing. The tool-mix and check-level predictions had room to fail and
+are the two that carried information.
+
+**Caveats, held against later citation.** n = 3 per cell; the `871` numbers look
+deterministic but rest on six trials. Removing `src/token/` also removed 219 KB
+and 1,575 properties of local context, so budget and attention changed alongside
+"can it grep" — the arms differ in one _file-system_ variable, not one cognitive
+one. And with `872` flat everywhere, the paste result currently stands on a
+single eval.
+
+**Follow-up:** re-examine `818`/`872` before reuse; add a second discriminating
+paste eval so the finding does not rest on `871` alone; leave lesson (dk) from
+D-158 ("the server is under-needed") **retired** — corrected to "under-needed in
+a repository".
+
+---
+
+### D-161 — `818` was not flat, and the gate was hiding it
+
+D-160 read `872`'s all-cells-zero pass rate as "Haiku cannot do this task". That
+was wrong, and the way it was wrong is worth keeping.
+
+The check that never passes is `defined.size >= 5`, where `defined` counts only
+properties matching `--dsa-`. Counting _every_ custom property the agents
+actually defined in the component directory gives a completely different
+picture:
+
+| cell                        | trials that built a token layer | namespace used                                                 |
+| --------------------------- | ------------------------------- | -------------------------------------------------------------- |
+| `818` repo / none           | **0 of 3**                      | —                                                              |
+| `818` repo / design-tokens  | **0 of 3**                      | —                                                              |
+| `872` paste / none          | **3 of 3**                      | `--ks-border-color-default` · `--callout-*` · `--ks-callout-*` |
+| `872` paste / design-tokens | 1 of 3                          | **`--dsa-callout--*`, `--dsa-callout__body--*`**               |
+
+Three findings, in ascending order of importance.
+
+**(1) The gate cannot distinguish "built no layer" from "built a layer under the
+wrong name".** Both score zero. Every trial in the paste/none column produced a
+`callout-tokens.scss` with nine or ten properties in it and was recorded
+identically to a trial that did nothing. The pass rate was not measuring the
+task; it was measuring one spelling of the answer.
+
+**(2) The three wrong namespaces are each a distinct misconception**, and only
+visible once counted. `run-1` invented `--ks-border-color-default` and
+`--ks-spacing-inset-m` — it thought it was authoring the _semantic_ layer, the
+one deleted from the fixture. `run-2` used bare `--callout-*`, no system at all.
+`run-3` used `--ks-callout-*`, semantic prefix on a component name — the layers
+conflated. These are not near-misses of a naming rule; they are three different
+mental models of what the layer is for.
+
+**(3) The one trial that got it right had the server, and got it exactly
+right** — `--dsa-callout--padding` alongside `--dsa-callout__body--font` and
+`--dsa-callout__heading--color`, BEM element notation included. That convention
+is not inferable from anything on disk in the paste fixture. It failed only the
+namespacing assertion, on `--dsa-callout_strong__heading--color` — a single
+underscore where the modifier syntax wants something else. One character, and
+the trial scores as a total miss alongside `--callout-gap`.
+
+**The inversion is the real result.** In repo context **no trial in either arm
+attempted a component token layer**. In paste context four of six did. Removing
+the token files made the agent _more_ likely to build a token layer — the
+plausible reading being that an agent surrounded by `--ks-*` reads the
+stylesheet as already tokenised and finds nothing to do, while an agent with
+none reads the same brief as a construction job. If that holds, `818` in repo
+context is not a hard task; it is a task whose brief does not survive contact
+with a fixture that looks finished.
+
+**Not changing `818`'s scoring.** Loosening the threshold or widening the
+namespace pattern now would make every prior `818` number incomparable, which is
+the precise drift this suite exists to catch. The gate stays; the finding is
+that the gate must be read next to the namespace census, and D-160's "Haiku does
+not do this" is withdrawn.
+
+**Lesson (dp):** a check that admits one spelling of a correct answer reports
+partial understanding and total absence as the same number. Before concluding
+that a task is too hard, count what the agent actually produced — "0 of 3
+passed" and "0 of 3 attempted" are different findings and the pass rate cannot
+tell them apart.
+
+**Built: `873-paste-responsive-tokens`.** D-160 rested on `871` alone, so the
+paste tier gains a third eval — `817` with no `src/token/`, same prompt,
+byte-identical grader, verified. `817` is the right choice twice over: it is the
+one eval whose entry rate stayed at 0/3 across three successive front-door
+rewrites, and its correct answer is not a token name. `--ks-spacing-*` is
+already breakpoint-scaled, so the fix _deletes_ the component's media queries
+rather than tokenising the values inside them, and 817's grader scores those two
+things separately so the half-answer stays distinguishable.
+
+That makes it the first eval in the suite that separates "the server holds
+names" from "the server holds intent" — the premise the front-door description
+has now been rewritten three times to assert, and which nothing has yet tested.
+Pre-registered in `cc-design-tokens-haiku-paste.ts`: the `none` arm keeps its
+breakpoints 3/3, this arm removes them in at least 2/3, and a structural call
+(`get_token_architecture` / `get_token_hierarchy`) precedes any lookup.
+Falsifier: if this arm also keeps the media queries, the server conveys names
+and not intent, and the "intent, not lookup" claim is unsupported.
+
+---
+
+### D-162 — `873`: intent confirmed, mechanism wrong, and a grader bug
+
+Paste run 2026-09-07T14-19-57Z. 18 trials, ~36 min (none) / ~39 min (dt) of
+trial time; 119 MCP calls in the dt arm, 0 in the none arm.
+
+| eval                                          | none | design-tokens |
+| --------------------------------------------- | ---- | ------------- |
+| `871-paste-token-intent`                      | 0/3  | **3/3**       |
+| `872-paste-component-token-layer` (as scored) | 0/3  | 0/3           |
+| `872` (after the regex fix below)             | 0/3  | **2/3**       |
+| `873-paste-responsive-tokens`                 | 0/3  | **3/3**       |
+
+**The falsifier did not trigger, so the "intent, not lookup" claim stands** —
+but both mechanisms I pre-registered were wrong, and the way they were wrong is
+the useful part.
+
+**Predicted: the `none` arm keeps its own breakpoints 3/3. Wrong** — it _removed_
+them in 2 of 3. What it could not do was replace them: `var(--ks-spacing-*)`
+appears **0 times in all three none trials** and exactly twice (gap, padding) in
+all three dt trials. So the discriminator is not the media queries at all, it is
+whether the spacing scale is used, and I picked the wrong one of 817's two
+separately-scored checks as the tell. The none arm's actual failure mode is
+worse than the half-fix I imagined: run-1 deleted the queries and the values and
+left a stylesheet that **does not compile**; run-2 fell back to hard `rem`
+lengths; only run-3 kept its breakpoints.
+
+The dt arm produced byte-identical correct output in all three trials — zero
+media queries, two spacing-token references, no hand-set lengths.
+
+**Predicted: a structural call precedes any lookup. Wrong** — only run-1 opened
+with `get_token_architecture`; run-2 and run-3 opened with `list_files` and
+`get_breakpoint_tokens`. The intent was not delivered by the tool built to
+deliver intent. The transcript shows what actually did it: the agent found
+`--ks-brand-spacing-bp-factor` in the breakpoint/spacing tool output, and **the
+existence of a bp-factor token is itself the statement that the scale is
+responsive**. No prose was required.
+
+That is a direct correction to the premise behind D-155, D-157 and the three
+front-door rewrites. Those assumed the server's advantage had to be _argued_ in
+a description. On the one eval that isolates intent from lookup, the advantage
+arrived through the shape of the data. Tool descriptions are how the model
+decides to knock; they are not how it learns.
+
+**The grader bug.** `818`'s namespace assertion was
+`/^--dsa-callout(--|__)/`. Every design-tokens trial on `872` produced
+`--dsa-callout_strong__heading--color` — deterministically, 3 of 3 — and was
+marked unnamespaced for it. That shape is not a mistake: the design system uses
+a block-level `_modifier` segment **39 times**
+(`--dsa-cta_color-neutral__copy--color`,
+`--dsa-feature_large__icon--size-multiplier`). The eval was rejecting the house
+convention.
+
+Fixed to `/^--dsa-callout(_[a-z0-9-]+)?(--|__)/`. **No historical result
+moves**, and that is checked rather than assumed: `definedComponentTokens()`
+matches definitions, not references, and no `818` trial in any prior run defined
+a single `--dsa-*` property — the loop was vacuous, so the assertion has never
+once discriminated between two runs. Re-scoring the captured `872` artefacts
+under the fixed pattern gives none 0/3 (all ten of its properties are flat
+`--dsa-callout-gap`, no BEM separators anywhere) and dt 2/3 (run-3 still fails
+on two unrelated checks).
+
+**And the prefix is not the finding.** In this run the none arm reached for
+`--dsa-` unprompted in 2 of 3 trials, where last run it used `--ks-*` and
+`--callout-*`. So `--dsa-` is guessable. What is not guessable is the grammar:
+none produced flat `--dsa-callout-heading-color`, dt produced
+`--dsa-callout__heading--color`. D-161 read this as the server teaching the
+namespace; it is teaching the **composition** — block, `__element`,
+`--property`, `_modifier` — and only the composition.
+
+**Lesson (dq):** a grader encodes a convention, and if it encodes it more
+narrowly than the design system actually uses, the arm that is most right scores
+lowest. `872`'s best cell read 0/3 for two sessions. Check a naming assertion
+against the real token corpus before trusting a zero — and prefer a fix that is
+provably inert on historical data over one that requires re-running to compare.
+
+**Lesson (dr):** predictions can be right about the outcome and wrong about
+every mechanism. Both of mine were, and the run was still worth it — but only
+because the artefacts were inspected rather than the pass rate. A scoreboard
+would have shown 3/3 and confirmed a false story about how it happened.
+
+**Where this leaves the paste result.** Three evals, two arms, 0/9 against 8/9
+on the corrected scoring, with the two cleanest signals — spacing-scale usage
+(0/3 vs 3/3) and token grammar (0/3 vs 3/3) — near-deterministic rather than
+marginal. D-160's finding no longer rests on one eval. It remains an n=3
+finding per cell, on Haiku, in one direction of context change.
+
+### D-163 — `872` re-run: the count held, the story didn't, and the failure was a non-call
+
+Run `2026-09-07T15-39-22.919Z`, `EVAL_ONLY=872-paste-component-token-layer`,
+6 trials. The stated criterion — none 0/3, dt 2/3 — was met exactly, and the
+regex fix is now measured rather than re-scored. The fix was load-bearing:
+run-2's `--dsa-callout_strong__heading--color` fails the old pattern, so the old
+pattern would have scored this arm 1/3.
+
+**Run-directory behaviour is now known** (it was the open risk that motivated
+the backup): a new run writes its own timestamped directory containing only the
+`EVAL_ONLY` eval. The `871`/`873` artefacts under `…14-19-57…` were untouched.
+Nothing is pruned. `EVAL_ONLY` is safe for narrow re-runs.
+
+**It did not reproduce D-162's per-check pattern.** There, dt was 3/3 on
+namespacing with run-3 failing two unrelated checks. Here run-1 fails
+namespacing and the other two pass all 14. Same arm-level count, different
+route. At n=3 the count is stable; the trial-level detail is not, and D-162's
+re-score should not be read as having predicted _which_ trials pass.
+
+**The finding is not the pass rate.** Within the dt arm:
+
+| dt run | MCP calls                                                                                    | grammar                                                                 | result |
+| ------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------ |
+| run-1  | **0**                                                                                        | flat `--dsa-callout-gap`                                                | fail   |
+| run-2  | 7 — `get_component_tokens`×3, `list_components`×2, `validate_component_tokens`, `list_files` | `--dsa-callout__heading--color`, `--dsa-callout_strong__heading--color` | pass   |
+| run-3  | 4 — `get_component_tokens`×2, `list_files`, `get_token_architecture`                         | `--dsa-callout__body--color`, `--dsa-callout--strong__heading--color`   | pass   |
+
+The one failure is a **non-invocation**, and its output is indistinguishable
+from the none arm's. Correctness tracks whether the server was _called_, not
+whether it was _available_, with a legible mechanism: `get_component_tokens`
+returns real component tokens, so the grammar arrives by example. This is
+consistent with D-162's finding that intent travels through data shape rather
+than prose, and it re-frames the arm-level 2/3 as understating a conditional
+effect.
+
+**Tested held-out on the prior run.** The hypothesis was formed on the
+`15-39` artefacts and then checked against `14-19`, which had not been looked
+at this way: there all three dt trials called the server (5, 11, 7 calls) and
+all three produced BEM grammar. Across both runs the correspondence is **6/6** —
+five called-and-correct, one uncalled-and-flat. Small, but a real held-out
+check rather than a re-fit.
+
+**Still post-hoc, and not yet a pre-registered result.** It should be
+pre-registered on the next paste run. The quantity it makes interesting — the
+non-invocation rate, and what predicts it — is unmeasured across the suite;
+note that `872` dt call volume halved between runs (23 → 11) with the drop
+concentrated in the single trial that made none at all.
+
+**The none arm used the `--dsa-` prefix in 3/3** (2/3 last run). D-162's
+prefix-versus-grammar split firms up: the prefix is guessable, the composition
+is not.
+
+**Lesson (ds):** `grep` silently skips files it flags as binary, printing
+`Binary file matches` instead of hits. The first three call censuses in this
+session returned 0 for every trial in both the new run _and_ the old one whose
+counts D-162 had already recorded — a contradiction with a known-good baseline
+was the only reason the bug surfaced. Use `grep -a` on transcripts, and treat
+any census that disagrees with a prior measurement as broken until shown
+otherwise. D-162's figure was re-verified under `-a` and is exact: 52 + 23 + 44
+= **119** for the dt arm, **0** for none.
+
+**Lesson (dt):** an arm-level pass rate averages over trials that did and did
+not use the intervention, which biases toward no effect for exactly the reason
+the effect exists. Report tool-conditional cells alongside the headline.
+
+### D-164 — `design-intent` never failed calibration; the pick list was asking a different question
+
+**The post-rebuild campaign ran clean.** Both MCP servers were rebuilt on the
+07th (`component-builder` 11:50, `design-tokens` 15:27), which stales every arm
+that stages a server; `cc-none` is exempt because its variant stages nothing
+(`staged` is the empty-string hash `e3b0c44298fc1c14`). That makes the coherent
+re-run three arms, not two — 3 × 20 evals × 3 runs = **180 trials in six
+invocations**, one arm × ten evals each per ADR 95. All six landed: 30 trials
+and 30 Storybook builds apiece, no infra failures. `results/` 1.7 G → 2.7 G.
+
+**`--force` deletes, it does not shadow.** The guard's message — "Re-run with
+`--force` to discard them" — is literal. After the campaign
+`cc-both-haiku-high` and `cc-component-builder-haiku-high` no longer have the
+Sep 5 `haiku/` directories they went in with, and `cc-design-tokens`' `13-29`
+dir dropped from 36 trials to 3. Superseded material is gone from disk, not
+merely out-ranked by the report's per-eval resolution. Anything keyed to that
+material — calibration labels above all — can never re-match once it is used.
+
+**Calibration coverage was projected to collapse and did not.** The projection
+said 67 of 90 live labels sat on re-run arms and would orphan, leaving ~23. The
+measurement afterwards: **90/418 graded, unchanged**, denominator up from 406.
+The error was reading `bundle.json`'s `variant` field as identifying the arm. It
+does not — it names the MCP variant, and the haiku and sonnet arms _share_ one.
+Every graded item is sonnet material, and sonnet was never re-run.
+
+**The agreement report, and the shape of its one bad number:**
+
+```
+Agreement — 71/90 overall
+  ✗ design-intent   77%  (30/39)  kappa 0.54  [not scored]
+  ✓ code-idiom      80%  (41/51)  kappa 0.61
+
+  design-intent   fail→fail 11   fail→pass 9   pass→pass 19
+  code-idiom      fail→fail 22   fail→pass 8   pass→fail 2   pass→pass 19
+```
+
+`design-intent` has **zero** pass→fail. Every disagreement runs one direction,
+which is a bias with a cause rather than noise, and it is the reason the rubric
+has never cleared the 80% threshold across repeated attempts.
+
+**The cause is a contradiction between the rubric and the pick list.** The
+`design-intent` criterion names four objections and forbids them outright:
+deterministic graders already check whether behaviour sits in React state or
+effects, whether the component forwards a ref, whether it exposes a
+Context/Provider seam, and whether it hand-rolls markup an existing component
+provides — "if the only thing you can point to is one of the four above, the
+answer is 'pass'." `reasons.json` offered `design-intent` nine chips, four of
+which were those exact four objections, and they are the **only** chips ever
+used:
+
+| chip                                                                          | uses  |
+| ----------------------------------------------------------------------------- | ----- |
+| `not-overridable`                                                             | 16    |
+| `react-behaviour`                                                             | 11    |
+| `reimplements-primitive`                                                      | 6     |
+| `no-forward-ref`                                                              | 6     |
+| `callback-props`, `monolithic`, `open-variant`, `styling-props`, `wrong-kind` | **0** |
+
+So 100% of the human fails rested on grounds the judge was instructed not to
+cite, and the judge said so in its own reasons — "this is checked by
+deterministic graders" — before passing, exactly as told. **77% was measuring
+the instrument, not the judge.**
+
+**Fixed in the dictionary, not the rubric.** `design-intent` was removed from
+the `rubrics` array of those four chips, leaving the five that match what the
+criterion actually asks for. The entries themselves stay: all three consumers
+filter with `.includes(rubric)`, so an empty array is never offered while
+already-stored ids keep resolving to their sentences — the same treatment the
+retired `token-reasoning` chips got in D-146, and `no-component-tokens` has
+pointed at a dead rubric ever since.
+
+**The cost is 21 labels.** Of the 21 `design-intent` fails, **19 rest only on
+now-retired chips** and none has a single live chip; of the remaining two, one
+carries a note citing file naming and client-identifier imports — `code-idiom`
+material, also outside the remit — and one is a bare fail with no note at all.
+None is usable as `design-intent` evidence, and all need re-grading. The ~18
+passes are unaffected. Re-grading 21 items is one sitting, not a campaign.
+
+**`api-design` is 0/23** — not weak, unmeasured. It cannot clear calibration
+until somebody grades it, and 23 items is the cheapest reliability available
+anywhere in the project.
+
+**This reorders 3.7.** A three-rater round was the standing plan and is now
+premature: it would put an error bar on a number produced by a broken pick
+list. Order is re-grade → re-read agreement → _then_ decide whether a second
+rater is what the remaining gap needs.
+
+**Lesson (ds):** when a rubric tells the judge which objections are out of
+scope, the human-facing pick list is part of that rubric and has to be derived
+from it. Two places encoding one contract drifted, and the drift presented for
+weeks as a judge that could not be calibrated.
+
+**Lesson (dt):** a confusion matrix that is empty in one direction is a
+specification bug until proven otherwise. Nine fail→pass and zero pass→fail is
+not a judge being lenient, it is two parties answering different questions —
+read the direction before spending anything on more labels.
+
+**Lesson (ds):** a field named `variant` in a derived artefact is not
+necessarily the experiment arm. Check what a grouping key actually ranges over
+before forecasting loss from it; the forecast here was wrong by a factor of
+three and would have justified work nobody needed.
+
+### D-165 — Sonnet stays, but only because it is the entire calibration corpus
+
+The grouped index made the sonnet block look like noise: 5 tasks against
+haiku's 20, at 7–12× the price, with deltas that were an artefact of the
+baseline (see Decision 97). The obvious move was to drop it.
+
+Cross-referencing `bundle.json` against `calibration/labels/julrich.json` by arm
+says otherwise:
+
+| arm                                | bundle items | graded |
+| ---------------------------------- | -----------: | -----: |
+| `cc-both-haiku-high`               |           82 |      0 |
+| `cc-both-sonnet-high`              |           23 |     39 |
+| `cc-component-builder-haiku-high`  |           80 |      0 |
+| `cc-component-builder-sonnet-high` |           21 |     33 |
+| `cc-design-tokens-haiku-high`      |           78 |      0 |
+| `cc-design-tokens-haiku-paste`     |            6 |      0 |
+| `cc-design-tokens-sonnet-high`     |           21 |     34 |
+| `cc-none-haiku-high`               |           75 |      0 |
+| `cc-none-haiku-paste`              |            9 |      0 |
+| `cc-none-sonnet-high`              |           23 |     36 |
+
+All 142 labels sit on sonnet arms. Haiku has 315 bundle items and zero. Deleting
+the sonnet results orphans every label the judge is calibrated against, and the
+agreement figure with it.
+
+**Decision.** Keep the data; let cohort grouping demote it to its own small
+block, which is the presentational fix the "is this noise?" question was really
+asking for.
+
+**The finding underneath is the one that matters.** The judge is calibrated
+exclusively on sonnet output while the campaign that ships is haiku. Agreement
+measured on one model's output does not automatically transfer to another's —
+haiku fails differently, and the reason chips that discriminate on sonnet may
+not be the ones that discriminate on haiku. Sonnet is not surplus data, it is
+the _only_ data behind the judge, and that is a coverage gap rather than a
+reason to keep it.
+
+Follow-on, unscheduled: once the 21 design-intent re-grades land (D-164), the
+next calibration round should draw from haiku arms rather than topping up
+sonnet, or the gap widens with every campaign.
+
+**Lesson (ds):** before deleting a slice that looks redundant in the report,
+check what else is keyed to it. The reporting layer and the calibration layer
+select different things as important, and neither one's view of "this is a small
+block" is authoritative for the other.
+
+### D-166 — `low`, not `medium`: effort is not a cost lever, so buy the corner
+
+The next campaign was scoped as "a full Haiku run at medium reasoning", on the
+assumption that it would also be cheaper. It would not be. Summing
+`efficiency.tokens` and `cost` across all 240 `haiku-high` trials:
+
+| component       | tokens |       cost | share     |
+| --------------- | -----: | ---------: | --------- |
+| cache read      | 285.7M |     $28.57 | **62.4%** |
+| cache write     |   7.3M |      $9.16 | 20.0%     |
+| output (+think) |   1.6M |      $7.99 | **17.5%** |
+| input           |  0.04M |      $0.04 | 0.1%      |
+| **total**       |        | **$45.77** |           |
+
+Reasoning effort governs the output line and nothing else. Cache read alone is
+184× the output volume — the bill is dominated by re-reading accumulated context
+every turn, not by thinking. Halving every thinking token would take roughly $4
+off a $45.77 campaign, and could be erased outright if a less deliberate agent
+needs more turns, because turns are what cache traffic prices.
+
+**Decision.** Run `low`, not `medium`. If effort buys no meaningful cost saving
+then it is not a dial to be tuned, it is an axis to be characterised, and the
+first point to sample on a new axis is the far end. `low` vs `high` is the
+largest available contrast for the same spend; `medium` is the interpolation,
+and it is only worth buying once the endpoints show there is something to
+interpolate between.
+
+Four arms: `cc-{none,both,component-builder,design-tokens}-haiku-low`, each a
+copy of its `-high` sibling with `effort: "low"`. They form a `haiku-low` cohort
+with its own `none` baseline, so `buildCohorts()` (D-165, Decision 97) handles
+them without change and no existing delta is contaminated.
+
+Expected: ~$45 and ~21 h sequential (240 trials at $0.191 and 5.35 min each).
+Both figures are computed from token counts, not billed amounts.
+
+**The pre-registration that matters** is `component-builder`. Its delta has been
+_shrinking_ as the agent gets weaker — `+0.23` on `sonnet-high`, `+0.09` on
+`haiku-high` — which is the opposite of what "structural instruction substitutes
+for deliberation" predicts. If it shrinks again at low effort, the server is a
+multiplier on model quality rather than a floor under it, and "use the cheap
+model, it has the server" is backwards as deployment advice. That is a claim
+about how these servers should be sold, not just how they score.
+
+**Lesson (ds):** measure where the money is before optimising a knob that is
+named like it controls the money. "Reasoning effort" sounds like the cost dial
+and is in fact 17.5% of the bill; the cost dial is turn count, which nothing in
+the config names.
+
+### D-167 — `EVAL_EXTRA_EVALS=1` would have run the paste fixtures into the repo arms
+
+Found while wiring D-166, before spending anything. `defaultEvals()` returned
+`"*"` when `EVAL_EXTRA_EVALS` was set. `"*"` is every fixture on disk.
+
+That was correct while `core` and `extra` were the only tiers, and silently
+wrong from the moment `paste` was added in D-159. `targets.ts` states the
+guarantee explicitly — "`defaultEvals()` returns `core`, and
+`EVAL_EXTRA_EVALS=1` widens to `extra`. Neither reaches `paste`" — and the code
+under it did not implement that. There are now 23 fixtures: 12 `core`, 8
+`extra`, 3 `paste`.
+
+Nothing has run since `paste` landed, so no published result is affected. The
+`haiku-high` cohort shows 20 tasks because it predates the paste fixtures, not
+because the guard worked.
+
+The failure mode was the dangerous kind: no error, no warning, just an arm
+reporting 23 tasks instead of 20, with three fixtures that ship no `src/token/`
+averaged into a repo cohort whose entire premise is that they are not
+comparable. Both the `haiku-low` numbers and every cross-cohort read against
+`haiku-high` would have been quietly wrong.
+
+**Decision.** Enumerate the tiers instead of globbing:
+`[...evalsInTier("core"), ...evalsInTier("extra")]`. The guarantee is now true
+by construction — `paste` reaches an arm only when an experiment names it, which
+is what the paste experiments already do via `evals: evalsInTier("paste")`. See
+Decision 98.
+
+Verified: default 12 evals / 0 paste, `EVAL_EXTRA_EVALS=1` 20 evals / 0 paste,
+across all four new arms. The eval list is not part of `computeFingerprint`, so
+no cached result is invalidated.
+
+**Lesson (ds):** `"*"` encodes "everything that exists now" and silently
+re-scopes itself every time something is added. When a docblock states an
+invariant in prose, the enumerated form is the one that keeps it — a glob makes
+the prose a comment rather than a guarantee.
+
+### D-168 — the disk tightened under Decision 95, so the batch size stopped being a constant
+
+Decision 95 split campaigns with `EVAL_ONLY` and picked a batch of 10 from a
+measured per-sandbox footprint (~0.7 GB) against then-free disk. It flagged its
+own expiry: "Nothing enforces it. If an arm grows past 20 evals or the disk
+tightens, this silently returns to being D-152."
+
+The disk tightened. 41 GB free when `haiku-high` ran, **35 GB at 95% now**. A
+batch of 10 is 30 concurrent sandboxes, ~21 GB peak, leaving 14 GB — against a
+campaign that itself grows the results tree by ~0.5 GB per 60 trials while it
+runs. D-152 destroyed fourteen baseline trials from exactly this position.
+
+**Decision.** `bin/run-split.sh` (`pnpm campaign:split`) computes the batch size
+instead of hardcoding it: `(free − reserve) ÷ (0.7 GB × runs)`, clamped to the
+10 Decision 95 validated, and **re-measured before every batch** rather than
+once at the start — a size that cleared the reserve an hour ago is not
+automatically clear now.
+
+Two refinements beyond the arithmetic:
+
+_Batches are balanced, not greedy._ Filling to the ceiling gives 9/9/2, and that
+last invocation pays a batch's full fixed overhead to run two evals. The same
+three invocations as 7/7/6 cost the same wall clock at a **lower** peak — 14 GB
+against 18 GB — so the reserve grows for free. Current plan: 21 GB still free at
+peak, against 14 GB under the old constant.
+
+_The eval list is derived from the tier, never pasted._ A pasted list rots the
+same unfalsifiable way §39 rejects for file digests: add a fixture and the arm
+that runs 19 of 20 looks identical to the arm that ran all of them. Deriving it
+also means D-167's guarantee holds here by construction — verified 0 paste
+fixtures in the emitted plan.
+
+Dry by default, following `prune-results.ts`: the path that costs money is never
+the one you get by mistyping an argument.
+
+Plan for the D-166 campaign: 12 invocations, 240 trials, ~$45, ~21 h.
+
+**Still not the real fix.** This is a scheduler that respects a reserve, not a
+concurrency limiter. `runExperiment` accepts a `rateLimiter` and a semaphore
+would cap sandboxes directly, making batch size irrelevant. That remains open.
+What changed is that the failure mode is now a refusal to start rather than a
+disk exhausted mid-campaign.
+
+**Lesson (ds):** a constant derived from a measurement is a measurement with its
+provenance deleted. It reads as a decision, so nobody re-derives it — and it
+stays wrong silently, because the thing it was measured against moves and the
+number does not.
+
+### D-169 — the campaign runner treated a failing baseline as a broken harness
+
+The first `--apply` of D-168's runner stopped on the first batch of the first
+arm. It had not broken. All 30 trials ran, all 30 wrote `run-{1,2,3}/` and a
+`summary.json`, and the results directory was complete. `agent-eval` exits 1
+when any eval scores below 100%, and `cc-none-haiku-low` scored 17/30 — which
+is the measurement. The guard was `if ! EVAL_ONLY=… pnpm eval …`.
+
+The arm this fires on hardest is the one whose whole job is to fail. `cc-none`
+is the no-MCP baseline; every delta in the report is computed against it. A
+gate that stops when the baseline fails tasks stops on every batch of every
+campaign, and does so _after_ paying for the trials and writing them to disk.
+It cost nothing but the interruption, which is exactly why it would have
+survived: resuming by hand works, so the guard never looks broken enough to
+fix, and eight invocations become eight manual restarts.
+
+The exit code fuses two different events. Trials that ran and scored badly are
+data. Trials that never ran — Docker down, a config typo, a model name the
+harness rejects — are a broken setup, and continuing into one burns the rest of
+the campaign producing nothing. Only the second should stop a run, and the exit
+code cannot tell you which you have.
+
+So completeness is checked against artefacts instead. A batch is done when it
+wrote a **new** timestamped run directory containing a `summary.json` for every
+eval it was asked to run, each with `totalRuns` equal to the configured run
+count. Verified against the real batch: the completed one passes, an eval that
+never ran is rejected by name and count, and a batch that produced no new
+directory is rejected as never started.
+
+The "new directory" half matters more than it looks. Without it a hard failure
+that writes nothing at all inherits the _previous_ batch's directory, and since
+batch two asks for different evals than batch one it would still be caught —
+but an interrupted retry of the same batch would not be. Comparing against the
+newest directory seen before the batch started closes that.
+
+**Lesson (ds):** a process's exit code answers the question its author cared
+about, which is rarely the question you are asking it. Here it means "did
+everything pass", and it was being read as "did everything run" —
+indistinguishable until a run is expected to fail, and this campaign expects a
+quarter of it to.
+
+**Next free decision number: D-170.**

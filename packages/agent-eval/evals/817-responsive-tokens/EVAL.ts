@@ -65,8 +65,10 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 var TRANSCRIPT_FILE = "agent-transcript.jsonl";
 var TRANSCRIPT_META_FILE = "agent-transcript-meta.json";
+var SUBAGENT_TRANSCRIPT_FILE = "agent-subagent-transcripts.jsonl";
 var TOOLCHAIN_REPORT_FILE = "toolchain-report.json";
 var RUNTIME_REPORT_FILE = "runtime-report.json";
+var MAX_SUBAGENT_BYTES = 4e6;
 var requireCjs = createRequire(import.meta.url);
 function newestJsonlUnder(dir, depth = 0) {
   if (depth > 4 || !existsSync(dir)) return null;
@@ -160,6 +162,102 @@ function shipped(relPath) {
   }
   return digest2;
 }
+function findTaskDirs(dir, depth = 0, out = []) {
+  if (depth > 5 || !existsSync(dir)) return out;
+  let entries = [];
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return out;
+  }
+  for (const entry of entries) {
+    if (entry === "node_modules") continue;
+    const full = join(dir, entry);
+    let stats;
+    try {
+      stats = statSync(full);
+    } catch {
+      continue;
+    }
+    if (!stats.isDirectory()) continue;
+    if (entry === "tasks") out.push(full);
+    else findTaskDirs(full, depth + 1, out);
+  }
+  return out;
+}
+function collectSubagentTranscripts(encodedCwd) {
+  const roots = [];
+  try {
+    for (const entry of readdirSync("/tmp")) {
+      if (entry.startsWith("claude-")) roots.push(join("/tmp", entry));
+    }
+  } catch {}
+  const taskDirs = [];
+  for (const root of roots) {
+    const scoped = join(root, encodedCwd);
+    findTaskDirs(existsSync(scoped) ? scoped : root, 0, taskDirs);
+  }
+  const agents = [];
+  const lines = [];
+  let bytes = 0;
+  let truncated = false;
+  for (const taskDir of taskDirs) {
+    let entries = [];
+    try {
+      entries = readdirSync(taskDir);
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.endsWith(".output")) continue;
+      let raw;
+      try {
+        raw = readFileSync(join(taskDir, entry), "utf-8");
+      } catch {
+        continue;
+      }
+      if (bytes + raw.length > MAX_SUBAGENT_BYTES) {
+        truncated = true;
+        continue;
+      }
+      bytes += raw.length;
+      lines.push(
+        raw.endsWith("\n")
+          ? raw
+          : `${raw}
+`,
+      );
+      agents.push({
+        agentId: entry.replace(/\.output$/, ""),
+        bytes: raw.length,
+        summary: summarise(raw),
+      });
+    }
+  }
+  if (lines.length) writeFileSync(SUBAGENT_TRANSCRIPT_FILE, lines.join(""));
+  const mcpToolCalls = {};
+  const toolCalls = {};
+  for (const agent of agents) {
+    const summary = agent.summary;
+    for (const [name, n] of Object.entries(summary.toolCalls)) {
+      toolCalls[name] = (toolCalls[name] ?? 0) + n;
+    }
+    for (const [name, n] of Object.entries(summary.mcpToolCalls)) {
+      mcpToolCalls[name] = (mcpToolCalls[name] ?? 0) + n;
+    }
+  }
+  return {
+    searchedRoots: roots,
+    taskDirs,
+    count: agents.length,
+    bytes,
+    truncated,
+    agents,
+    toolCalls,
+    mcpToolCalls,
+    mcpToolCallCount: Object.values(mcpToolCalls).reduce((a, b) => a + b, 0),
+  };
+}
 function captureTranscript() {
   try {
     const cwd = process.cwd();
@@ -199,6 +297,7 @@ function captureTranscript() {
       meta.bytes = raw.length;
       meta.summary = summarise(raw);
     }
+    meta.subagents = collectSubagentTranscripts(encodedCwd);
     writeFileSync(TRANSCRIPT_META_FILE, JSON.stringify(meta, null, 2));
   } catch {}
 }

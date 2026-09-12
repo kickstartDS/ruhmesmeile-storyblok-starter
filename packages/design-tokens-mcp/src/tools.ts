@@ -2,12 +2,38 @@ import { TOKEN_FILES } from "./constants.js";
 import type { Tool } from "./types.js";
 
 /**
- * All 28 MCP tool definitions for the Design Tokens server.
+ * All 29 MCP tool definitions for the Design Tokens server.
+ *
+ * `get_token_architecture` is deliberately first. Measured against the eval
+ * campaign, this server was attached to 57 trials and called in 6 of them,
+ * while the component-builder server — whose first tool opens with "ALWAYS call
+ * this tool FIRST" — was called in 28. Every tool here used to be a leaf query
+ * named for the data it returns, so nothing told a model *when* it should want
+ * one. The list now opens with the tool that answers that.
  */
 export function getToolDefinitions(): Tool[] {
   const tokenFileKeys = Object.keys(TOKEN_FILES);
 
   return [
+    {
+      name: "get_token_architecture",
+      description: `ALWAYS call this tool FIRST before writing any CSS or SCSS, and before choosing any colour, spacing, typography, border-radius, shadow or transition value, including:
+- Styling a new or existing component
+- Restyling, theming, or adjusting visual appearance
+- Adding responsive or breakpoint-dependent styles
+- Defining component-level tokens
+
+Reading the token .scss files in the repository is not a substitute. Those files say which tokens exist. They do not say which one is correct for a given purpose, which layer a value belongs in, or which pairings the design system intends — and a token that exists but is wrong for its role compiles silently and looks fine until it is themed.
+
+This server holds that intent: the three-layer architecture (branding --ks-brand-* → semantic --ks-* → component --dsa-*), the hierarchy and pairing rules within each category, and validate_token_usage to check a choice before committing to it.
+
+Returns the layer structure with live counts, examples, and the rules that decide where a value belongs. Every other tool here is a lookup within that structure, so start here to know which one you need.`,
+      inputSchema: {
+        type: "object",
+        properties: {},
+      },
+    },
+
     // ── Token Read / Query ────────────────────────────────────────────────
     {
       name: "get_token",

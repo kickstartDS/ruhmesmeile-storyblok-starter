@@ -144,8 +144,9 @@ export function mcpToolsWereDeferred(trial: Trial): boolean {
       continue;
     }
 
-    const attachment = (entry as { attachment?: { type?: string; addedNames?: unknown } })
-      ?.attachment;
+    const attachment = (
+      entry as { attachment?: { type?: string; addedNames?: unknown } }
+    )?.attachment;
     if (attachment?.type !== "deferred_tools_delta") continue;
 
     const names = attachment.addedNames;

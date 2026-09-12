@@ -21,7 +21,7 @@ const READ_ONLY_ANNOTATIONS = {
 
 export const tools: Tool[] = [
   {
-    name: "get-ui-building-instructions",
+    name: "get_ui_building_instructions",
     description: `Get comprehensive instructions for building UI components in this Design System.
 
 ALWAYS call this tool FIRST before doing any UI/frontend/React/component development, including:
@@ -39,7 +39,7 @@ This returns the foundational patterns and conventions used across all component
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-component-structure",
+    name: "get_component_structure",
     description: `Get the standard file structure and templates for creating a new Design System component.
 
 Use this when you need to:
@@ -66,7 +66,7 @@ Requires the component name (PascalCase) and description.`,
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-json-schema-template",
+    name: "get_json_schema_template",
     description: `Get a JSON Schema template for defining component props.
 
 JSON Schema is the source of truth for component APIs in this Design System.
@@ -131,7 +131,7 @@ Use this when:
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-react-component-template",
+    name: "get_react_component_template",
     description: `Get a React component template following the Design System patterns.
 
 This Design System uses:
@@ -172,7 +172,7 @@ Use this when creating or modifying React component implementations.`,
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-client-behavior-template",
+    name: "get_client_behavior_template",
     description: `Get templates for adding client-side JavaScript behavior to components.
 
 This Design System separates concerns:
@@ -208,7 +208,7 @@ Use this when a component needs:
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-scss-template",
+    name: "get_scss_template",
     description: `Get SCSS/CSS templates following the Design System's styling patterns.
 
 This Design System uses:
@@ -244,7 +244,7 @@ Use this when:
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-storybook-template",
+    name: "get_storybook_template",
     description: `Get Storybook story templates for component documentation and testing.
 
 This Design System uses Storybook with:
@@ -271,7 +271,7 @@ Use this when creating stories for new or existing components.`,
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-defaults-template",
+    name: "get_defaults_template",
     description: `Get a defaults file template for component default props.
 
 Each component has a defaults file that:
@@ -297,7 +297,7 @@ Use this when creating the defaults configuration for a component.`,
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "get-token-architecture",
+    name: "get_token_architecture",
     description: `Get documentation on the Design Token architecture and layering system.
 
 This Design System uses a three-layer token architecture:
@@ -314,7 +314,7 @@ Use this to understand how to properly use and create tokens.`,
     annotations: READ_ONLY_ANNOTATIONS,
   },
   {
-    name: "list-existing-components",
+    name: "list_existing_components",
     description: `List all existing components in the Design System with their file structures.
 
 Use this to:

@@ -467,13 +467,13 @@ The component builder MCP server ([packages/component-builder-mcp/](packages/com
 
 | Tool                           | Purpose                                                     |
 | ------------------------------ | ----------------------------------------------------------- |
-| `get-ui-building-instructions` | Comprehensive component development guidelines (call first) |
-| `get-component-structure`      | File structure templates for new components                 |
-| `get-json-schema-template`     | JSON Schema boilerplate for component props                 |
-| `get-react-component-template` | React component boilerplate (forwardRef + Context)          |
-| `get-client-behavior-template` | Vanilla JS client-side behavior templates                   |
-| `get-scss-template`            | SCSS/BEM styling templates with token layers                |
-| `get-storybook-template`       | Storybook story template                                    |
+| `get_ui_building_instructions` | Comprehensive component development guidelines (call first) |
+| `get_component_structure`      | File structure templates for new components                 |
+| `get_json_schema_template`     | JSON Schema boilerplate for component props                 |
+| `get_react_component_template` | React component boilerplate (forwardRef + Context)          |
+| `get_client_behavior_template` | Vanilla JS client-side behavior templates                   |
+| `get_scss_template`            | SCSS/BEM styling templates with token layers                |
+| `get_storybook_template`       | Storybook story template                                    |
 
 ### Resources (3)
 
