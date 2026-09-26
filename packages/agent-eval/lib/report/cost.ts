@@ -39,6 +39,60 @@ const PRICING: Record<string, Pricing> = {
   "claude-sonnet": { input: 3, output: 15, cacheWrite: 3.75, cacheRead: 0.3 },
   "claude-opus": { input: 5, output: 25, cacheWrite: 6.25, cacheRead: 0.5 },
   "claude-haiku": { input: 1, output: 5, cacheWrite: 1.25, cacheRead: 0.1 },
+
+  /**
+   * DeepSeek v4.1 Flash on Novita, taken from the model's pricing card rather
+   * than from `GET /openai/v1/models` — that endpoint publishes only input and
+   * output, and the cache rate is the one that decides this model's bill.
+   *
+   * Cache read is $0.006, a 98% discount on input rather than Anthropic's 90%.
+   * The difference is not cosmetic at this workload's mix: the spike read 2.15M
+   * cache tokens against 130K of input, so at Anthropic's ratio cache would be
+   * 62% of the trial and at Novita's it is 15%. An earlier revision of this row
+   * carried the input rate as a deliberate upper bound and overstated the trial
+   * by 3.6×.
+   *
+   * Cache *write* is not published and the spike never exercised it — every
+   * assistant message reported `cache_creation_input_tokens: 0`, so the
+   * endpoint appears to cache implicitly rather than on explicit breakpoints.
+   * It is set to the input rate, which is the conservative reading of a term
+   * this workload does not currently generate.
+   *
+   * Checked against a real invoice: 18 requests billed $0.068383332 for
+   * 129,291 net input, 1,401,472 cache read and 17,656 output. Applying this
+   * row to those counts gives $0.06838 (D-173). Note the Novita dashboard
+   * quotes "Input Tokens" *inclusive* of cache, so billed input is the
+   * difference between its input and cache columns — `Efficiency.tokens.input`
+   * is already net, matching Anthropic's convention, and needs no adjustment.
+   */
+  deepseek: { input: 0.3, output: 1.2, cacheWrite: 0.3, cacheRead: 0.006 },
+
+  /**
+   * GLM 5.3 Flash on Novita, from the pricing card for the same reason as
+   * above — input $0.15, output $0.50, cache read $0.03 per Mtok.
+   *
+   * Half DeepSeek's input and output, but **five times its cache read**, and
+   * on this workload that inversion decides which model is cheaper. The mix is
+   * cache-dominated: the DeepSeek spike read 2.15M cache tokens against 130K
+   * of input and 27K of output, a cache/output ratio of 80×. Applying both
+   * rows to that same volume gives $0.084 on DeepSeek against $0.101 on GLM —
+   * so the model with the lower headline prices is the more expensive one
+   * here, by about 20%. Anyone reading the two cards side by side would
+   * conclude the opposite.
+   *
+   * Cache *write* is unpublished, as with DeepSeek, and is set to the input
+   * rate on the same conservative reading. Whether this endpoint also caches
+   * implicitly is unverified: if GLM reports non-zero
+   * `cache_creation_input_tokens` where DeepSeek reported zero, this term
+   * starts mattering and the row needs a real number rather than a bound.
+   * `pnpm spike:verify` prints the cache-write total, so the spike answers it
+   * before the grid runs.
+   *
+   * Not yet checked against an invoice. D-173 caught two errors in the
+   * DeepSeek row for seven cents, and the same $0.09 spike is worth spending
+   * here before 240 trials are billed against an unverified row.
+   */
+  glm: { input: 0.15, output: 0.5, cacheWrite: 0.15, cacheRead: 0.03 },
 };
 
 const FALLBACK = PRICING["claude-sonnet"]!;
@@ -65,9 +119,15 @@ export interface CostBreakdown {
   total: number;
 }
 
-/** Estimated USD for one trial. */
+/**
+ * Estimated USD for one trial.
+ *
+ * Takes only the `tokens` half of an `Efficiency` so that a summed cohort can
+ * be re-priced on a different model without fabricating turn counts and tool
+ * call totals it has no meaning for.
+ */
 export function costOf(
-  efficiency: Efficiency,
+  efficiency: Pick<Efficiency, "tokens">,
   model: string | null | undefined,
 ): CostBreakdown {
   const price = pricingFor(model);

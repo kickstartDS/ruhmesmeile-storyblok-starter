@@ -107,31 +107,31 @@ Beyond the original list, and needing PRD §8 reconciliation:
       `836`, `842`, `850`, `852`. Every one of them needs the next campaign to
       produce numbers; none of them can be read against Phase 1.
 
-                                | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
-                                | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
-                                | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
-                                | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
-                                | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
-                                | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
-                                | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
-                                | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
-                                | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
-                                | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
-                                | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
-                                | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
-                                | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
-                                | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
-                                | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
-                                | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
-                                | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
-                                | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
-                                | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
-                                | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
-                                | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
-                                | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
+                                                            | eval                      | slug                  | tier  | what it grades                                        | MCP effect expected |
+                                                            | ------------------------- | --------------------- | ----- | ----------------------------------------------------- | ------------------- |
+                                                            | `802-composite-from-two`  | `testimonial`         | extra | assembling one component out of two the package ships | yes                 |
+                                                            | `804-story-conventions`   | `price-tag`           | extra | the package's story conventions                       | yes                 |
+                                                            | `806-inverted-context`    | `spotlight`           | core  | inverted text colours on a bold surface               | yes                 |
+                                                            | `810-atom-from-schema`    | `badge`               | extra | an atom built from a supplied schema                  | —                   |
+                                                            | `811-token-intent`        | `stat`                | core  | picking tokens by intent, not by appearance           | yes                 |
+                                                            | `812-restyle-with-tokens` | `alert`               | extra | replacing literals with tokens                        | yes                 |
+                                                            | `816-typography-pairing`  | `article-teaser`      | extra | type as a system: family, size and line height agree  | yes                 |
+                                                            | `817-responsive-tokens`   | `page-header`         | core  | responsive scaling through tokens                     | yes                 |
+                                                            | `818-component-token-layer` | `callout`           | core  | the `--dsa-` layer over the `--ks-` layer             | yes                 |
+                                                            | `820-extend-schema-safely` | `avatar`             | core  | adding to a published API without breaking it         | yes                 |
+                                                            | `824-api-from-behaviour`  | `progress-steps`      | extra | designing a surface from a behavioural brief          | yes                 |
+                                                            | `832-client-behaviour`    | `disclosure`          | extra | framework-free client behaviour                       | —                   |
+                                                            | `836-behaviour-bugfix`    | `dismissible`         | core  | repairing client behaviour without demolishing it     | yes                 |
+                                                            | `840-reuse-over-native`   | `notification-banner` | extra | reaching for the package before reaching for HTML     | yes                 |
+                                                            | `842-reuse-edit`          | `promo-tile`          | core  | the same, as an edit rather than a build              | yes                 |
+                                                            | `850-focus-return`        | `filter-flyout`       | core  | **control** — behavioural a11y neither server covers  | **no**              |
+                                                            | `852-a11y-repair`         | `media-card`          | core  | **control** — static a11y neither server covers       | **no**              |
+                                                            | `860-restraint`           | `tag`                 | core  | not rewriting what already works (saturated at 1.00)  | —                   |
+                                                            | `861-token-restraint`     | `quote`               | core  | fixing one token without "improving" its neighbours   | no                  |
+                                                            | `862-api-freeze`          | `rating`              | core  | using what already ships rather than adding to it     | —                   |
 
-                                Twelve core, eight extra. Two controls rather than one, and every treatment
-                                task's reading is conditional on both staying flat.
+                                                            Twelve core, eight extra. Two controls rather than one, and every treatment
+                                                            task's reading is conditional on both staying flat.
 
   - [x] D-106 — the suite is **cost-tiered**, and the tier is a property of the
         task rather than a scheduling flag. Phase 1 measured a greenfield trial
@@ -5949,4 +5949,603 @@ everything pass", and it was being read as "did everything run" —
 indistinguishable until a run is expected to fail, and this campaign expects a
 quarter of it to.
 
-**Next free decision number: D-170.**
+### D-170 — the alternative-provider spike asks the transcript, not the exit code
+
+Earlier research concluded that running an arm against a non-Anthropic endpoint
+meant a harness rewrite of 500–1000 lines. That was wrong, and reading the
+framework settled it in three facts:
+
+- `run.mjs` forwards `model` as `--model <string>` to the CLI. `ModelTier` is a
+  closed union in TypeScript, but nothing downstream validates against it. A
+  widened option type and one cast at the config boundary is the entire change.
+- The orchestrator gives the sandbox `authEnv() + neutralWorkspace.env` and
+  nothing else, so an env var exported in the caller's shell never arrives. But
+  `setupVariant()` already writes `.claude/settings.local.json` with an `env`
+  block, and that block is known to work — `ENABLE_TOOL_SEARCH` rides it today.
+  `providerEnv` rides the same channel.
+- `extractObservedModelFromClaudeTranscript()` already records the last
+  `message.model` seen, and `collect.ts` already prices off it. The
+  instrumentation for the question was in place before the question was asked.
+
+So the spike is one eval, one arm, one run, named outside the
+`cc-{variant}-{model}-{context}` scheme so `buildCohorts()` cannot mistake it
+for an arm and `grade` cannot average it into anything.
+
+**The acceptance test is the observed model, not the exit code.** If settings
+`env` loses to the `ANTHROPIC_API_KEY` the orchestrator sets on the process, the
+trial runs against real Anthropic Haiku, passes cleanly, and every other signal
+looks healthy — a false positive that would carry straight into a paid grid.
+`spike-verify` fails the run when the transcript names a `claude-*` model.
+
+The second thing the spike has to establish is that the trial is _measurable_,
+which is not the same as passing. Almost nothing downstream reads the exit code
+and almost everything reads the transcript: tokens, cost, the D-160 call-mix
+analysis, and the negative-usage graders that assert the agent did _not_ do
+something. All of those degrade to a plausible zero when the transcript is
+missing. `spike-verify` checks capture, parse, token accounting, MCP call count,
+the web-research deny list, and that the graders produced a score.
+
+Two findings are deliberately left as warnings rather than fixed:
+
+_Prompt caching._ DeepSeek documents `cache_control` as Ignored across tools,
+text, `tool_use` and `tool_result`; Novita is unconfirmed. D-166 measured cache
+reads at 62.4% of spend and 184× the output volume, so a provider that ignores
+caching is not cheaper — it is plausibly ~2× the Haiku bill. The check is
+`cacheRead`/`cacheWrite` against a large `input`.
+
+_Cost attribution._ `pricingFor()` substring-matches `claude-*` and falls back
+to Sonnet rates for anything else, so every cost figure for a third-party model
+is fiction. Adding a price row from a half-remembered rate card would hide that
+behind a number; leaving the fallback lets `spike-verify` name it. The row goes
+in when the provider's real rates have been read.
+
+Novita over DeepSeek for the first attempt, for one concrete reason: DeepSeek's
+Anthropic-compatible endpoint _name-maps_, routing both `claude-sonnet` and
+`claude-haiku` to `deepseek-flash`. An arm labelled haiku would silently
+benchmark their small model, and if the transcript still reports a `claude-*`
+string then `pricingFor()` matches it and prices DeepSeek tokens at Anthropic
+rates — a wrong number with no warning attached. Novita takes the model name
+verbatim.
+
+**Lesson (ds):** "can we run against X" is two questions, and the cheap one
+hides the expensive one. Whether it completes is answered by a single trial;
+whether what completed is what you think, and whether it left behind the
+artefacts every later number is computed from, has to be asked separately and
+explicitly — because the failure mode of both is a green run.
+
+### D-171 — run discovery descends to the timestamp instead of counting levels
+
+The spike's first attempt was rejected by the provider, which is a normal
+result. What was not normal: `pnpm spike:verify` then reported **no results at
+all**, while `result.json`, `summary.json` and both transcript files sat on disk.
+
+The harness names the run directory after the model, and a third-party model ID
+is vendor-qualified. `moonshotai/kimi-k2-instruct` is not one directory, it is
+two, so the run landed at `results/{exp}/moonshotai/kimi-k2-instruct/{stamp}/`.
+`listRuns()` handled exactly one optional model segment — the Sonnet campaign's
+bare `{stamp}` and the later `{model}/{stamp}` — and a third level fell through
+both branches and returned nothing.
+
+The failure mode was already written down in that function's own docblock, three
+paragraphs about how an unrecognised layout "does not error" and reports the run
+as absent. The hazard was understood; the enumeration of layouts was simply
+finished before provider models existed to extend it. `listRuns()` now descends
+to the first timestamp on each branch, bounded at three segments so a directory
+holding no run cannot become a deep scan. `stampOf()` already took the last path
+segment, so sorting and dedupe needed no change. Verified across all three
+layouts on disk: `cc-both-haiku-high` (bare), `cc-none-haiku-low` (one segment),
+the spike (two). Existing arms resolve 20 evals each, unchanged.
+
+This is worth more than the trial it unblocked. Had the model instead been one
+without a slash, the grid would have run, `resolveMatrix` would have returned
+nothing for it, and the arm would have been reported as never run — after being
+paid for.
+
+**Lesson (ds):** a function that enumerates the shapes it has seen is correct
+until the next shape, and the tell is a docblock explaining at length why the
+unhandled case is dangerous. Where the structure has a recognisable terminator —
+here a timestamp — search for it rather than counting the steps to it.
+
+### D-172 — the DeepSeek cohort is a replication, not a cost exercise
+
+The spike passed on `deepseek/deepseek-v4.1-flash` via Novita: observed model
+correct, transcript captured at 1.19 MB, 26 MCP calls across 14 tools, web deny
+intact, quality 0.961. Both open blockers from D-170 resolved — caching is
+honoured (8.02M cache reads, 62× the output volume), and the endpoint takes the
+model name verbatim.
+
+Cheaper trials are the motive, but they are not the reason this is worth 240
+more of them. Every result the campaign holds comes from one vendor's models.
+"Component-builder helps, design-tokens does not" is either a fact about MCP
+servers or a fact about how Claude models respond to them, and nothing run so
+far distinguishes those. A second model family is the cheapest test available,
+and a reproduction there would be the most transferable finding the campaign
+has. So the cohort is the full four arms at the same 20 evals and 3 runs as
+`haiku-low`, not a single arm priced for comparison.
+
+`deepseek-default` rather than `-low` or `-high`. The harness turns `effort`
+into a CLI argument and there is no evidence this endpoint honours it; `flash`
+also suggests a model with little deliberation to modulate. Passing it would add
+an axis whose value is unknown rather than controlled. `haiku-low` is the
+reference cohort — cheaper, and per D-169 the better-scoring of the two.
+
+**The token profile is already the surprise.** The spike used 0.60M uncached
+input on a single trial. The entire 240-trial `haiku-low` cohort used 0.1M.
+Haiku's bill was 62.4% cache reads with essentially no uncached input; this
+model carries roughly six times one Haiku cohort's total input on one trial. So
+caching works but covers far less of the context, and the cost driver moves from
+cache reads to raw input — which means the Haiku cost model does not transfer
+and a projection built on it is an order of magnitude, not a quote.
+
+`newest_run()` in `run-split.sh` had D-171's bug one layer up: a fixed `*/*/`
+glob matched the _model_ directory on vendor-qualified IDs and never the run.
+`verify_batch` would have compared a path to itself and reported every batch as
+never started — stopping the campaign after paying for the first one. Now
+matched on the timestamp pattern and sorted by the stamp rather than the whole
+path, so the model segment cannot order it. Verified against all three layouts.
+
+**Lesson (ds):** when a second instance of a bug class turns up within an hour
+of the first, the fix is not done until the class has been searched for. Both
+were "assume the depth", both were invisible until a model name contained a
+slash, and the second one sat in the code path that exists specifically to stop
+a campaign from spending into a broken setup.
+
+**Next free decision number: D-179.**
+
+### D-178 — the censored grid was biased toward the arms it censored
+
+The GLM grid re-ran clean: four arms, 60 trials each, zero exclusions. D-176
+argued that the 1800s ceiling was not protecting the campaign but censoring its
+hardest evals, and that because the censoring was uneven — 7 excluded trials on
+`none` and `design-tokens`, 3 on `both` — it had to be biasing the result
+rather than merely shrinking it. The direction was predicted. Here it is:
+
+| arm               | q censored | q uncensored | Δq     | pass@1 censored | uncensored |
+| ----------------- | ---------- | ------------ | ------ | --------------- | ---------- |
+| none              | 0.899      | 0.885        | −0.014 | 40%             | 33%        |
+| component-builder | 0.940      | 0.949        | +0.009 | 51%             | 55%        |
+| design-tokens     | 0.908      | 0.886        | −0.022 | 43%             | 38%        |
+| both              | 0.943      | 0.946        | +0.003 | 70%             | 68%        |
+
+The two arms that lost the most trials are the two that fell when the trials
+came back, and the two that lost the fewest are the two that rose. Dropping the
+hardest evals flatters the arm that fails them. That is not a rounding effect:
+the headline result, the MCP-attributable quality gain, was understated by 56%.
+
+|                     | censored | uncensored |
+| ------------------- | -------- | ---------- |
+| baseline            | 0.899    | 0.885      |
+| Δ component-builder | +0.041   | **+0.064** |
+| headroom            | 0.101    | 0.115      |
+| Δ/headroom          | 0.41     | **0.56**   |
+
+**Pre-registration scorecard.** The GLM arms were the first in the campaign to
+pre-register a _ratio_ rather than a level, on the argument that a baseline
+already at 0.885 has little room left and the interesting quantity is the share
+of the remaining room the MCP recovers.
+
+- baseline in 0.85–0.92 → **0.885 ✓**
+- Δ/headroom in 0.35–0.60 → **0.56 ✓** (predicted 0.45; landed near the top of
+  the band, and would have missed low against the censored data it was not
+  scored on)
+- design-tokens Δ in 0.00–0.02 and below component-builder → **+0.001 ✓**
+- design-tokens highest $/trial → **✗**, `both` was dearer ($0.098 vs $0.096)
+- design-tokens MCP calls an order of magnitude above component-builder's ~3 →
+  **✗**, 6.4 vs 2.7, a factor of 2.4
+- both within ±0.01 of component-builder → **−0.003 ✓** (the sixth predicted
+  tie to hold)
+- both pass@1 ≥ component-builder → **68% vs 55% ✓**
+
+Five of seven. Both misses are about `design-tokens`, and both are the same
+misconception: its cost was predicted from an assumed call volume that did not
+materialise. It is not making an order of magnitude more calls than
+component-builder, it is making 2.4× as many and getting +0.001 of quality for
+them — $0.034/trial over baseline for nothing measurable, against
+component-builder's $0.006/trial for +0.064.
+
+The ratio across every cohort now measured:
+
+| cohort      | baseline | Δ      | headroom | Δ/headroom |
+| ----------- | -------- | ------ | -------- | ---------- |
+| sonnet-high | 0.719    | +0.226 | 0.281    | 0.80       |
+| glm         | 0.885    | +0.064 | 0.115    | 0.56       |
+| haiku-low   | 0.854    | +0.079 | 0.146    | 0.54       |
+| haiku-high  | 0.825    | +0.093 | 0.175    | 0.53       |
+| deepseek    | 0.906    | +0.039 | 0.094    | 0.41       |
+
+The ratio was expected to decline as the baseline climbs — a model that needs
+less help takes less of what is offered. It does not, cleanly: GLM has a higher
+baseline than either Haiku cohort and a higher ratio. Three of five cohorts sit
+in 0.53–0.56 regardless of baselines spanning 0.825–0.885, which reads less
+like a trend than like a constant with sonnet and deepseek as the ends worth
+explaining. DeepSeek ran under the same 1800s ceiling and was never censored by
+it (p99 1235s, max 1331s), so its 0.41 is a real floor and not the artifact GLM
+turned out to be. Whether 0.53–0.56 is the effect size for a mid-capability
+model is the question the next cohort should be designed to answer, and it
+should be pre-registered as a point estimate of 0.55, not a band.
+
+Cost, for the record and subject to D-177: the uncensored matrix estimates
+$19.46 across 240 trials against $19.5688 billed for the entire campaign —
+including 22 timed-out trials and every superseded run. Our per-trial figures
+absorb the whole invoice into four-fifths of the work, which is the same ~12%
+overstatement from the other direction.
+
+### D-177 — the invoice says the cache finding was an artifact
+
+D-176 closed with a second cost surprise: GLM came in 21% over the projection,
+and the explanation offered was that its prompt caching is simply less
+effective than DeepSeek's — 69% of prompt tokens served from cache against
+DeepSeek's 95%. That number came from the transcripts, it was consistent across
+all four arms, and it was wrong.
+
+The real invoice for the GLM campaign:
+
+|             | requests | prompt tokens | of which cache      | output    | billed   |
+| ----------- | -------- | ------------- | ------------------- | --------- | -------- |
+| Novita      | 6,755    | 411,788,360   | 383,025,600 (93.0%) | 7,563,106 | $19.5688 |
+| our tooling | 5,557    | 305,130,469   | 217,205,760 (71.2%) | 4,318,366 | $21.8641 |
+
+Two things are wrong at once, and they point in opposite directions, which is
+why neither was visible in the total.
+
+**The price table is right.** Running the invoice's own token counts through
+the `glm` row reproduces $19.5867 against $19.5688 billed — 0.09%. The rates
+added in D-175 from a screenshot of a pricing card, with no spike to check them
+against, are correct. That is the good news and it is worth stating plainly,
+because D-173 established that a price table is guilty until reconciled.
+
+**The token accounting is wrong.** Our estimate _exceeds_ the bill while
+counting fewer requests, fewer prompt tokens and less output than the bill
+does. That is not a shortfall, it is a contradiction: the arithmetic only comes
+out that way if we are pricing as fresh input a large block of tokens that
+Novita charged as cache reads. And the split cannot be repaired by adding the
+missing trials, because it is internally impossible — the cache gap (165.8M)
+is larger than the whole prompt-token gap (106.7M), and cache is a subset of
+the prompt.
+
+The tempting explanation was cache expiry. Anthropic's ephemeral cache has a
+five-minute TTL and GLM's median trial is 632s, so a turn that outlives the TTL
+re-pays its whole prefix as fresh input. It is a good story and it is false.
+Bucketing every trial by duration kills it:
+
+| duration | n   | cache share | net input/trial |
+| -------- | --- | ----------- | --------------- |
+| <5min    | 30  | 65.9%       | 89K             |
+| 5–10min  | 85  | 57.8%       | 243K            |
+| 10–20min | 78  | 66.7%       | 361K            |
+| 20–40min | 62  | 78.4%       | 540K            |
+
+Cache share _rises_ with duration rather than falling. Longer sessions cache
+better, which is what more repeated prefix should do. Slowness is not eroding
+anything.
+
+What is left is that the Anthropic-compatible `usage` block Novita returns for
+GLM under-reports its own prefix caching. DeepSeek's transcripts agree with
+DeepSeek's dashboard exactly (D-173) and its per-trial cache share is a tight
+population — p25 90.5%, median 93.4%, p75 95.4%. GLM's is not a population at
+all but a smear: p25 41.1%, median 62.1%, p75 92.0%, across trials the bill
+prices at a uniform 93%. The provider is discounting a prefix cache it is not
+fully declaring in the field we read.
+
+Three consequences.
+
+Our per-trial GLM costs are **~12% high** and cannot be fixed by editing the
+price table, because the rates are right and the inputs are wrong. The fix is
+not a correction factor either; a fudge that makes one campaign's total land on
+one invoice is not a cost model. The figures stand as an upper bound with this
+entry attached.
+
+**The cache-effectiveness column does not get added.** It was requested for the
+model comparison matrix and it was two steps from being published. It would
+have put 71% next to GLM and 95% next to DeepSeek, presented that as a property
+of the models, and used it to explain a cost gap — and the invoice says 93% and
+95%, a difference of two points that explains nothing. A metric that disagrees
+with the bill by 22 points is not a metric yet.
+
+**The 22 timed-out trials are real spend that our tooling cannot see.** They
+wrote no transcript, so `efficiencyOf` returns `available: false` and they
+contributed exactly zero to every number we have reported, while Novita billed
+roughly 1,198 requests and ~107M prompt tokens for them. `pnpm invoice` grew
+`--all-runs` (superseded runs are billed too — re-running a failed eval does
+not refund the first attempt) and now prints an `unaccounted` count instead of
+skipping silently. A blind spot that shows up in the output as a number gets
+investigated; one that shows up as nothing gets mistaken for a pricing error,
+which is precisely what happened in D-176.
+
+The lesson is narrower than "check your numbers". D-173 checked the price table
+against money and found it wrong. This time the price table was right and the
+_measurement_ was wrong, and the reconciliation caught it anyway — because a
+reconciliation does not test a price table, it tests the product of the price
+table and the token counts, and a 0.09% match on the invoice's counts next to a
+12% miss on ours localises the fault to the counts. Reconciling only the total
+would have shown a 12% gap and invited another round of rate-tweaking against a
+table that was already correct.
+
+### D-176 — the timeout was not stopping wedged trials, it was censoring hard ones
+
+The first GLM grid returned 22 excluded trials across 240, all with the same
+signature: `duration 1800.003`, `0 turns`, `Eval timed out after 1800s`, an
+empty `outputs/` and no transcript. Thirteen evals were marked RUN INVALID. The
+first reading was infrastructure, because that is what "no transcript captured"
+looked like when a 429 produced it in D-174. It was not.
+
+**The failures are eval-specific and identical across arms.**
+`810-atom-from-schema` and `840-reuse-over-native` timed out on all four arms,
+including `none`, which runs no MCP server at all. Those two are precisely the
+two slowest evals on DeepSeek — 401s and 404s median against a 201s cohort
+median. Nothing about the servers is implicated; the ordering is by how long
+the task takes.
+
+**GLM is 3.1× slower than DeepSeek, and the ceiling sat at its p90.**
+
+```
+glm       n=240  median=632s  p75=1135s  p90=1768s  p99=1800s  max=1800s
+deepseek  n=270  median=201s  p75=323s   p90=688s   p99=1235s  max=1331s
+```
+
+A ceiling at the p90 of the distribution it governs is not a safety net. The
+config's own docblock states the intent — "it exists to stop a wedged trial, not
+to bound a slow one" — and at 1800s against this model it was doing the
+opposite. Both previous raises (900 → 1200 → 1800) were sized against Sonnet,
+and the same docblock already warns that wall clock moves _against_ price,
+because a cheaper model does not do less work — it takes more turns to do the
+same work. GLM is the third model to bear that out and the first where the
+ceiling bound.
+
+**Why censoring is worse than waste.** A timeout kill is usually just expensive:
+the trial pays for its whole wall clock and returns nothing. Here it also
+biases. The trials removed are systematically the longest, the longest evals are
+the hardest, and dropping the hardest work from a mean raises it. It does so by
+different amounts per arm — 7 excluded on `none` and `design-tokens`, 3 on
+`both` — so it moves the deltas too, in the direction that flatters whichever
+arm was slowest. Every number from this grid is provisional until the tail is
+recovered.
+
+**The fix is per-arm, not global.** `DEFAULTS.timeout` is part of the framework
+fingerprint, so raising it invalidates cached results for every arm including
+the complete Sonnet and Haiku campaigns. `DefineExperimentOptions.timeout` was
+added instead, defaulting to `DEFAULTS.timeout`, and the GLM arms set
+`GLM_TIMEOUT = 5400`. It is deliberately _not_ in the variant fingerprint
+(`parts`), and that omission is the argument for the cheap repair: the timeout
+is a kill switch the agent cannot observe — it is never passed into the sandbox
+— so for every trial that finished it was not a live constraint, and raising it
+cannot change an already-recorded outcome. Re-running only the 13 invalid evals
+is therefore sound, and re-running all 240 would buy nothing.
+
+5400s is sized from the failures rather than the successes, since the successes
+are what the old ceiling already admitted: all three runs of `810` exceeded
+1800s, so its true factor is above 1800/401 = 4.5× rather than the cohort's
+3.1×, and 401 × 4.5 × 2 for spread lands near 3600s.
+
+**Lesson (ds):** a ceiling that is never hit tells you nothing, and a ceiling
+that is hit by 9% of a population is not a ceiling but a sampling rule. The
+check is not "did anything time out" but "where does the limit sit in the
+distribution it governs" — and the answer has to be re-asked every time the
+population changes, because the limit was sized against a population that no
+longer exists.
+
+**The second cost surprise, following D-175.** D-175 projected this grid at
+~$12.96 by re-pricing DeepSeek's measured token volume at GLM's rates. The grid
+came in at ~$15.63 estimated, 21% over, and the reason is that the projection
+held the _mix_ fixed when the mix is a property of the endpoint:
+
+```
+deepseek  in 13.8M  out 4.8M  cacheR 282.8M   → 95% of input tokens served from cache
+glm       in 65.3M  out 2.9M  cacheR 146.3M   → 69%
+```
+
+GLM reads half DeepSeek's cache and pays 4.7× the raw input to make up for it.
+So prompt-cache _effectiveness_ is a third axis alongside the published rate and
+the workload mix, it varies by endpoint for identical prompts, and it is not on
+any pricing card. D-175's conclusion survives with a correction: re-pricing a
+measured cohort beats reading a card, but only bounds a _different_ model's bill
+to within about 20%.
+
+Neither the `glm` nor the `deepseek` cost row has been checked against an
+invoice for this grid. The GLM row remains the one built without a spike.
+
+### D-175 — the cheaper card, the dearer bill
+
+GLM 5.3 Flash was added as the campaign's third model and second Novita vendor,
+mirroring the DeepSeek wiring exactly: `GLM_MODEL` pinned in `lib/providers.ts`,
+four arms in `experiments/cc-*-glm-default.ts`, a `glm` row in
+`lib/report/cost.ts`. Nothing in the harness needed changing, which is the
+result D-170 predicted and this is the second confirmation of.
+
+**The pricing inversion.** GLM's card reads cheaper than DeepSeek's on both
+headline numbers — input $0.15 against $0.30, output $0.50 against $1.20 — and
+is more expensive for this workload. Cache read is $0.03 against DeepSeek's
+$0.006, five times higher, and this workload is cache-dominated: the measured
+DeepSeek grid drew 13.8M input, 4.8M output and **282.8M cache read** across 240
+trials. Cache is 95% of the tokens. Re-pricing that exact volume gives $12.96 on
+GLM against the $11.61 actually billed on DeepSeek. Two models whose cards
+differ by 2–2.4× in DeepSeek's disfavour produce bills 11% apart in DeepSeek's
+favour.
+
+The general point is that a pricing card is quoted per token and a bill is paid
+per _mix_, and nothing on the card tells you the mix. An agent harness that
+re-reads a large prompt every turn sits at an extreme of that space — 80× more
+cache read than output on the spike — where the rate everyone compares last is
+the only one that matters. `pnpm cohort <arms> --price <model>` was added to
+answer the question the cards cannot: it re-prices a cohort that actually ran.
+
+**A latent bug that a second model exposed.** `bin/estimate-grid.ts` scaled
+`spike.input * ratio * TRIALS`, where `spike` is the _sum_ over trials in the
+spike experiment. That was correct while the spike experiment held one trial,
+and the surrounding code read as if it were per-trial. Spiking a second model
+into the same experiment made it four, and the projection grew 4× with no
+symptom except a number nobody could check. Fixed by dividing by the trial
+count, which is a no-op on the old data.
+
+**Lesson (ds):** an expression that is only correct while a count equals 1
+should be written as a division by that count anyway. The division costs
+nothing, documents the intent, and is the difference between a bug that cannot
+happen and one that waits for the day the count changes — which is, reliably,
+a day when attention is somewhere else. This is the third time in this campaign
+that a quantity was correct by coincidence of the data rather than by
+construction (D-171, D-172 assumed a path depth; this assumed a trial count).
+
+**Capacity.** GLM's per-model limit is 100 RPM against DeepSeek's 30 — the
+limits table is keyed per model, so each new model needs its own reading and its
+own ceiling. `MAX_BATCH = 0.8 × RPM / (7 × RUNS)` gives 3, planning 240 trials as
+28 batches of 3 evals: 9 concurrent sandboxes, ~63 RPM against the 100 ceiling.
+Three times DeepSeek's throughput for the same grid.
+
+**Pre-registration.** The component-builder arm predicts a _ratio_ rather than a
+number for the first time in the campaign. Four cohorts of raw deltas look like
+an unexplained decline — +0.226 on Sonnet, +0.093 and +0.079 on the two Haiku
+cohorts, +0.039 on DeepSeek — but against headroom they nearly stop moving:
+0.80, 0.53, 0.54, 0.41 of the distance the baseline left to 1.0. The prediction
+is **Δ ≈ 0.45 × (1 − baseline)**, band 0.35–0.60. It is falsifiable in a way the
+previous three pre-registrations were not, and it has a mechanism behind it.
+Reading the transcript of `cc-none-deepseek-default` on
+`802-composite-from-two/run-2` — a passing 0-MCP trial — shows 19 of 24 tool
+calls spent reverse-engineering conventions out of the two sibling components
+the fixture ships, including five `grep -oE` calls enumerating legal token names
+per category. It scored 1.00 on token-conformance and BEM, and 0.00 on
+authoring-seams; the two exemplars demonstrate the former and not the latter.
+A `none` arm recovers everything the repository demonstrates, so what the
+servers add is bounded by what the repository cannot show — and how much that is
+worth scales with how much the model was still getting wrong.
+
+The `glm` cost row is **not yet invoice-checked**. D-173 found two errors in the
+DeepSeek row for seven cents, and cache write is a bound rather than a
+measurement on both rows.
+
+### D-174 — the provider's rate limit is the batch ceiling's second job
+
+The first DeepSeek grid batch ran 10 evals × 3 runs = 30 sandboxes concurrently,
+as every batch has since Decision 95, and Novita answered with 429s. The batch
+ceiling was sized against **disk** — 0.7 GB per sandbox against free space — and
+that was the only constraint that had ever bound, because Anthropic's limits sat
+far above anything 30 concurrent agents could generate. A cheaper provider is
+cheaper partly because its limits are lower, so the same number that protects
+the disk now also has to protect the request rate, and nothing said so.
+
+The tell was in the durations before it was in the errors. Batch 1's trials
+averaged ~1100s where the spike's single trial took 189s. That is not more work,
+it is the harness's own exponential backoff — `runExperiment` retries 429s
+internally, so a throttled campaign does not fail fast, it quietly runs 6× longer
+and then fails anyway. Treat a large jump in mean duration against a known
+single-trial baseline as a rate-limit signal.
+
+`MAX_BATCH` is the only lever: the harness starts every fixture × run in a batch
+at once and exposes no concurrency cap (`StartRateLimiter` exists but is
+programmatic-only, and explicitly stops limiting once an operation has started —
+useless for 20-minute sessions that issue requests throughout). Concurrency is
+therefore exactly `MAX_BATCH × RUNS`.
+
+The account's real ceiling is **30 RPM** (TPM is 50,000,000 and never comes
+close — three concurrent trials draw ~1M/min). At the spike's measured ~7
+requests/minute per trial, and leaving a fifth of the budget for retry traffic,
+that permits `0.8 × 30 / 7 ≈ 3` concurrent trials, i.e. **`MAX_BATCH=1`** — 80
+batches for a four-arm grid, ~12 hours. 30 concurrent was running at roughly
+seven times the allowance.
+
+The limit is adjustable, and raising it is the fix rather than working around
+it: 300 RPM restores `MAX_BATCH=10`, the setting Decision 95 validated over 180
+trials and the point at which disk binds again anyway. The general rule for any
+future provider is to read the RPM off the account first and set
+`MAX_BATCH = 0.8 × RPM / (7 × RUNS)`, because the batch ceiling now answers to
+two constraints and only one of them is visible on the machine doing the
+running.
+
+Giving `MAX_BATCH` that second meaning immediately broke `run-split.sh`, which
+refused `MAX_BATCH=1` with "not enough disk: 95G free against a 15G reserve" —
+having printed `93G left` two lines earlier. The reserve guard tested the
+_clamped_ ceiling against `MIN_BATCH`, which was sound only while the clamp
+never bound: disk was always the smaller number, so the disk fit and the
+planning ceiling were one value and it did not matter which the guard read. An
+RPM-derived ceiling sits far below the disk fit, and the guard started reporting
+the operator's own choice as a resource exhaustion. Split into `disk_fit()`
+(unclamped, what the guard tests) and `batch_size()` (clamped, what planning
+uses). The general shape: when a number acquires a second reason to be small,
+every test that inferred a cause from its smallness is now wrong.
+
+What this cost: three evals of `cc-none-deepseek-default` were invalidated
+(`811-token-intent`, `818-component-token-layer`, `820-extend-schema-safely`),
+each losing one trial. The 429 surfaces as `infra: no transcript captured` —
+the trial dies before the transcript copies out — so the existing exclusion rule
+caught it, marked the runs invalid at >20% non-model failures, and refused to
+score them. That machinery earning its keep on a failure mode it was not written
+for is the one good outcome here. `resolveMatrix` dedupes per eval newest-first,
+so re-running those three supersedes the bad run rather than pooling with it;
+the other seven evals stay paid for.
+
+### D-173 — the first real invoice, and what it caught
+
+Novita billed the DeepSeek spike **$0.068383332** against 18 requests: 1,530,763
+input, 1,401,472 cache, 17,656 output. Our own figures for the same trial were
+0.60M input, 8.02M cache and 0.13M output — roughly 5.6× the bill. Two separate
+errors, plus one reporting convention, account for the whole gap.
+
+**1. The price table had cache reads 50× too high.** Novita's
+`GET /openai/v1/models` publishes input and output only, so the `deepseek` row
+was written with cache at the input rate as a deliberate upper bound. The real
+published rate is **$0.006/Mtok** — a 98% discount, not Anthropic's 90%. At this
+workload's mix (2.15M cache against 130K input) that is the difference between
+cache being 62% of a trial and 15% of it.
+
+**2. Two scripts summed every API call ~3.6×.** Claude Code writes one
+transcript line per content block and repeats the message's `usage` on each,
+identically. The spike's transcript carries 79 usage-bearing lines for 22
+distinct `message.id`s. `efficiencyOf` has deduplicated by id since D-147 and
+the report bills on that, so **no campaign figure was wrong** — the $45.77 Haiku
+total and the 62.4% cache share in D-166 both stand. But `bin/spike-verify.ts`
+and `bin/estimate-grid.ts` read `transcript.summary.tokens`, the raw in-sandbox
+sum, so the spike was verified and the grid was budgeted against a number 3.6×
+too large. This is the third instance of a bug living in a second copy of a
+computation that was already fixed once; D-147's own docblock flags the pattern.
+
+**3. The dashboard quotes input inclusive of cache.** Billed input is its input
+column minus its cache column — 129,291, against our net 130,323. That is a
+0.8% agreement and the convention is now recorded in `cost.ts`.
+
+The residual after all three looked at first like a fourth error: we counted 22
+requests to the invoice's 18. It was the dashboard lagging the tail of the run —
+the five most recent messages' cache reads summed to **exactly** the 750,080 gap.
+Once it settled it read 23 requests, 2,282,815 input, 2,151,552 cache, 27,111
+output, $0.0847. Cache matches ours **to the token**; input, output and request
+count each differ by exactly one small call of 940 input / 240 output / 0 cache,
+which Claude Code makes per session and does not write a `usage` record for
+(almost certainly the session-title generation on the small-fast model).
+
+So the model is validated at **$0.084251 estimated against $0.0847 billed**, and
+it understates by ~0.7% — one unlogged request per trial, ~$0.0006. That is the
+right direction to be wrong in only because it is small; it is recorded here so
+nobody later "discovers" it as a discrepancy. The more useful lesson is the lag:
+a half-settled invoice read as a 23% overestimate, and had the check stopped
+there it would have produced a confident, wrong correction. Compare request
+counts before comparing dollars.
+
+That fit was then tested blind. A three-eval calibration run
+(`816-typography-pairing`, `832-client-behaviour`, `840-reuse-over-native`,
+one run each) was priced _before_ the dashboard updated, predicting 143 requests,
+12,103,507 input, 11,683,584 cache, 149,688 output and $0.3757 cumulative. The
+settled invoice read 143 / 12,103,504 / **11,683,584** / 149,777 / $0.3754 —
+request count and cache exact, input off by 3 tokens, output by 89. Our tooling's
+own estimate over both runs was $0.373424 against $0.3754 billed, a 0.53%
+understatement, all of it the unlogged call (which resolves to ~939 in / ~270 out
+per session rather than the 940 / 240 inferred from one sample).
+
+Predicting a mixed workload from a single-task fit and landing on the cache
+column to the token is the part worth trusting: it means the accounting is not
+merely tuned, it is correct, and the 0.53% is a known constant rather than noise.
+
+Fixes: `cost.ts` `deepseek` row corrected and annotated with the invoice it was
+checked against; both scripts switched to `efficiencyOf`; `bin/invoice-check.ts`
+added (`pnpm invoice <experiment> [timestamp]`) to print totals in the shape a
+dashboard quotes them, so the next check is a paste rather than an
+investigation. Its run filter matches the trailing timestamp segment rather than
+the whole run id, because after D-171 a run id is a path — the same assumption
+that caused D-171 and D-172, caught a third time on first use. `pnpm
+spike:verify` now passes 9/9 with no warnings.
+
+Budget consequence: the four-arm DeepSeek grid re-projects at **~$15.80** for
+240 trials, against ~$83 for the same token volume at Haiku's rates. The
+pre-fix projection was ~$190.
+
+The lesson is not about arithmetic. Every cost figure this project has published
+was an estimate compounding a hand-maintained price table with a parser over an
+undocumented log format, and it went unchecked against money for the entire
+campaign. It happened to be right where it mattered. The check cost seven cents.

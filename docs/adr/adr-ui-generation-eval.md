@@ -4096,3 +4096,119 @@ provenance stripped. It then reads as a decision, so nobody re-derives it, and
 it goes quietly wrong as the quantity it was measured against moves. Where the
 input is observable at runtime, keep the derivation and let the constant be the
 thing you actually meant to hold fixed — here, the reserve.
+
+## Decision 101 — A third-party model endpoint is configuration, not a harness rewrite
+
+### Context
+
+Haiku carried the last campaign, but the cost model still has a hard floor: 240
+trials at Haiku rates. Cheaper endpoints exposing an Anthropic-compatible API —
+DeepSeek, Novita — would move that floor, and an earlier read of the harness
+concluded that using one meant a substantial rewrite. Three specific blockers
+were named: the agent is hardcoded to `claude-code`, `model` is typed as a
+closed `ModelTier` union, and the orchestrator controls the sandbox environment.
+
+That estimate was wrong. Reading the framework rather than reasoning about it
+from the type signatures reversed it.
+
+### Decision
+
+Support alternative providers through two additions and no framework patch.
+
+**`model` widens to `ModelTier | (string & {})`.** `run.mjs` does
+`cliArgs.push('--model', input.model)` — a plain string passthrough to the CLI.
+The union is a TypeScript convenience, not a runtime constraint. The option type
+widens, one cast sits at the config boundary where the value enters
+`ExperimentConfig`, and the intersection with `{}` keeps editor completion for
+the three known tiers while admitting arbitrary names.
+
+**`providerEnv?: Record<string, string>` rides the settings file.** The
+orchestrator builds `runEnv = { ...def.authEnv(options), ...neutralWorkspace.env }`
+and passes only that to the sandbox, so host environment does not flow through.
+But `setupVariant()` already writes `.claude/settings.local.json`, that file has
+an `env` block, and `ENABLE_TOOL_SEARCH` has been delivered through it since
+D-158. `providerEnv` merges into the same block. Values are read from
+`process.env` at experiment-definition time and never written as literals,
+because the destination is a file inside the sandbox.
+
+**The fingerprint part is conditional.** `defineExperiment` derives a variant
+fingerprint from the things that would change behaviour, and the guard refuses
+to reuse results across a change. Adding an unconditional `provider` part would
+have moved every existing arm's hash and invalidated 240 trials. The part is
+spread in only when `providerEnv` is present, so arms that do not use it hash
+byte-identically — verified against `cc-none-haiku-low` and `cc-both-haiku-high`
+after the change. It hashes the sorted **keys**, never the values: the values are
+credentials, and what matters for reuse is whether the provider wiring changed
+shape, not what the token is.
+
+The agent stays `claude-code`. That was never the blocker — Claude Code is the
+client, the endpoint is what moves.
+
+### The spike, and what counts as passing
+
+One eval, one arm, one run, named `spike-novita-both` — outside the
+`cc-{variant}-{model}-{context}` scheme, so `buildCohorts()` cannot parse it as
+an arm and no aggregate can absorb it. `812-restyle-with-tokens` because it is
+the cheapest eval that still exercises MCP (11 turns, ~$0.44 on haiku-high,
+against 29 turns and $1.27 for `810-atom-from-schema`). No `effort`, because the
+harness forwards it as a CLI flag and a third-party endpoint mishandling that
+flag would fail the spike for an unrelated reason.
+
+**The acceptance test is the observed model, not the exit code.** The failure
+this is built against is specific: if settings `env` loses to the
+`ANTHROPIC_API_KEY` the orchestrator sets on the process, the trial runs against
+real Anthropic, exits zero, produces a clean transcript and a plausible quality
+score. Nothing in the result distinguishes it from success, and the conclusion
+drawn would be carried into a paid grid. `run.mjs` already extracts the last
+`message.model` from the transcript into `trial.transcript.summary.observedModel`;
+`spike-verify` fails the run when that string matches `claude-*`.
+
+The second question is whether the trial is measurable, which is independent of
+whether it passed. Cost, token accounting, the D-160 call-mix analysis and the
+negative-usage graders all read the transcript, and all of them degrade to a
+plausible zero when it is absent rather than erroring. `spike-verify` therefore
+checks capture and parse separately from content, then asserts non-zero tokens,
+a non-zero MCP call count naming both servers, absence of `WebFetch`/`WebSearch`
+(the deny list lives in the same settings file the provider env now shares, so a
+provider run re-tests that file taking effect), and a quality score from the
+graders.
+
+### Two things left broken on purpose
+
+**Prompt caching is the live risk.** DeepSeek documents `cache_control` as
+Ignored across tools, text, `tool_use` and `tool_result`. Novita is unconfirmed.
+D-166 measured cache reads at 62.4% of spend and 184× output volume, so an
+endpoint that ignores caching is not cheaper than Haiku — it is plausibly around
+twice the price. `spike-verify` reports `cacheRead`/`cacheWrite`, and flat zero
+against a large input is the answer to the whole exercise.
+
+**Cost attribution stays wrong, and says so.** `pricingFor()` substring-matches
+`claude-*` against a three-family table and falls back to Sonnet rates
+otherwise, so any cost reported for a third-party model is fiction. Adding a
+price row from a half-remembered rate card would replace a visible gap with an
+invisible error. The fallback stays, `spike-verify` names it explicitly in its
+output, and the row goes in once the provider's published rates have actually
+been read.
+
+### Why Novita first
+
+DeepSeek's Anthropic-compatible endpoint name-maps rather than passing the model
+through: both `claude-sonnet` and `claude-haiku` route to `deepseek-flash`. An
+arm labelled haiku would benchmark their small model, and worse — if the
+transcript still reports a `claude-*` string, `pricingFor()` matches it and
+prices DeepSeek tokens at Anthropic rates. Wrong number, no warning, and the
+observed-model check defeated. Novita takes the model name verbatim, which keeps
+both the label and the price honest.
+
+### Consequences
+
+The full grid stays unapproved until the spike answers the caching question and
+the rate card has been read. What the spike costs is a few cents; what it
+de-risks is roughly $90 and a set of numbers that could not be trusted after the
+fact.
+
+**Lesson.** "Can we run against X" is two questions, and the cheap one hides the
+expensive one. Whether it completes is settled by a single trial. Whether the
+thing that completed is the thing you think, and whether it left behind the
+artefacts every later number is computed from, has to be asked separately and
+deliberately — because the failure mode of both is a green run.

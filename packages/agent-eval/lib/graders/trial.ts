@@ -198,6 +198,12 @@ const stampOf = (run: string): string => run.slice(run.lastIndexOf("/") + 1);
  * disk and neither is going to be rewritten, so a run is identified by its path
  * below the experiment rather than by a bare timestamp.
  *
+ * Depth is not fixed at two, because the model segment is a model *name* and a
+ * third-party one is vendor-qualified: `moonshotai/kimi-k2-instruct` becomes
+ * two directories, not one, and every provider model ID looks like that. So
+ * this descends to the first timestamp on each branch rather than counting
+ * levels.
+ *
  * Everything downstream joins this onto the experiment directory, so a
  * `"haiku/2026-..."` entry threads through unchanged. Sorting is by timestamp
  * alone — `resolveMatrix` walks these newest-first to dedupe, and sorting the
@@ -210,15 +216,19 @@ const stampOf = (run: string): string => run.slice(run.lastIndexOf("/") + 1);
  */
 export function listRuns(experiment: string): string[] {
   const root = join(RESULTS_ROOT, experiment);
-  return listDirs(root)
-    .flatMap((entry) =>
-      TIMESTAMP.test(entry)
-        ? [entry]
-        : listDirs(join(root, entry))
-            .filter((child) => TIMESTAMP.test(child))
-            .map((child) => `${entry}/${child}`),
-    )
-    .sort((a, b) => stampOf(a).localeCompare(stampOf(b)));
+
+  // Depth-first to the first timestamp on each branch. Bounded at three
+  // segments, which is one more than a vendor-qualified model needs, so a
+  // directory that holds no run at all cannot turn this into a deep scan.
+  const walk = (prefix: string, depth: number): string[] => {
+    if (depth > 3) return [];
+    return listDirs(join(root, prefix)).flatMap((entry) => {
+      const path = prefix ? `${prefix}/${entry}` : entry;
+      return TIMESTAMP.test(entry) ? [path] : walk(path, depth + 1);
+    });
+  };
+
+  return walk("", 1).sort((a, b) => stampOf(a).localeCompare(stampOf(b)));
 }
 
 export function listExperiments(): string[] {

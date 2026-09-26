@@ -341,6 +341,232 @@ function overviewSection(
   </section>`;
 }
 
+/**
+ * Cohorts whose absolute scores mean the same thing — same fixtures, so a
+ * difference between two of them is the model or the reasoning effort rather
+ * than the task. `CONTEXT_NOTES` marks the contexts where that stops holding
+ * (`paste` ships no `src/token/`), and those are held out rather than pooled.
+ */
+function comparableCohorts(cohorts: Cohort[]): Cohort[] {
+  return cohorts.filter(
+    (cohort) => !CONTEXT_NOTES[cohort.id.split("-").pop() ?? ""],
+  );
+}
+
+/**
+ * The tasks every one of these cohorts ran.
+ *
+ * Comparing models is the one thing this report has to do across cohorts, and
+ * coverage differs — Sonnet ran a five-task subset where Haiku ran twenty.
+ * Averaging each cohort over its own list would set Sonnet's mean of five
+ * against Haiku's of twenty and print the difference as a model difference,
+ * when a good part of it is which tasks each happened to draw. The intersection
+ * is the only set on which these columns answer the same question, and it is
+ * small enough to be worth printing next to the numbers it produced.
+ */
+function sharedTasks(cohorts: Cohort[]): string[] {
+  if (!cohorts.length) return [];
+  return cohorts
+    .reduce<
+      string[]
+    >((shared, cohort) => shared.filter((task) => cohort.tasks.includes(task)), [...(cohorts[0]?.tasks ?? [])])
+    .sort();
+}
+
+/**
+ * Per-task mean of one field for one arm, over a fixed task list.
+ *
+ * Unweighted by trial, matching `pairedQualityDelta`: a task is one
+ * observation whether it ran three times or five, so a cohort does not move
+ * the comparison by running more repeats of the same fixture.
+ */
+function meanOverTasks(
+  arm: string | null,
+  taskNames: string[],
+  tasks: TaskIndex,
+  pick: (summary: Aggregate) => number,
+): number | null {
+  if (!arm) return null;
+
+  const values = taskNames
+    .map((name) => tasks.get(name)?.get(arm)?.summary)
+    .filter((summary): summary is Aggregate => Boolean(summary))
+    .map(pick);
+
+  if (!values.length) return null;
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
+
+/**
+ * Model × server matrix — the cross-cohort view the per-cohort tables refuse
+ * to give.
+ *
+ * Everything else on this page is scoped to one cohort on purpose, because a
+ * delta that spans models measures the model and the servers at once and the
+ * servers are what the campaign is about. This section asks the other
+ * question — what does each model, at each reasoning effort, cost and deliver —
+ * and the honest way to ask it is on the shared task set with the server effect
+ * broken out as its own column rather than folded into the score.
+ *
+ * The column worth reading is Δ, not the absolute quality: if a cheap model's
+ * Δ is larger than an expensive one's, the servers are substituting for model
+ * capability, which is the campaign's actual hypothesis.
+ */
+function cohortSection(tasks: TaskIndex, cohorts: Cohort[]): string {
+  const comparable = comparableCohorts(cohorts);
+  if (comparable.length < 2) return "";
+
+  const shared = sharedTasks(comparable);
+  const held = cohorts.length - comparable.length;
+
+  if (!shared.length) {
+    return `
+  <section class="ix-cohorts">
+    <h2 id="cohorts">models compared</h2>
+    <p class="ix-caption">
+      ${comparable.length} comparable cohorts, but no single task was run by all
+      of them, so there is no set on which their scores answer the same
+      question. This table fills in once one task is shared across every cohort.
+    </p>
+  </section>`;
+  }
+
+  const variants = [
+    ...new Set(
+      comparable.flatMap((cohort) => cohort.arms.map((a) => a.variant)),
+    ),
+  ].sort((a, b) => (a === "none" ? -1 : b === "none" ? 1 : a.localeCompare(b)));
+
+  const armFor = (cohort: Cohort, variant: string): string | null =>
+    cohort.arms.find((arm) => arm.variant === variant)?.name ?? null;
+
+  const measured = comparable
+    .map((cohort) => {
+      const scores = new Map<string, number>();
+      for (const variant of variants) {
+        const value = meanOverTasks(
+          armFor(cohort, variant),
+          shared,
+          tasks,
+          (s) => s.meanQuality,
+        );
+        if (value !== null) scores.set(variant, value);
+      }
+      return { cohort, scores };
+    })
+    .filter(({ scores }) => scores.size > 0)
+    // Strongest baseline first, so the rows read as a capability ladder and the
+    // Δ column can be scanned against it.
+    .sort((a, b) => (b.scores.get("none") ?? 0) - (a.scores.get("none") ?? 0));
+
+  const rows = measured
+    .map(({ cohort, scores }) => {
+      const top = Math.max(...scores.values());
+      const none = scores.get("none") ?? null;
+
+      const best =
+        [...scores.entries()]
+          .filter(([variant]) => variant !== "none")
+          .sort((a, b) => b[1] - a[1])[0] ?? null;
+
+      const bestArm = best ? armFor(cohort, best[0]) : null;
+      const noneArm = armFor(cohort, "none");
+
+      const bestCost = meanOverTasks(
+        bestArm,
+        shared,
+        tasks,
+        (s) => s.meanCostUsd,
+      );
+      const noneCost = meanOverTasks(
+        noneArm,
+        shared,
+        tasks,
+        (s) => s.meanCostUsd,
+      );
+      const bestTime = meanOverTasks(
+        bestArm,
+        shared,
+        tasks,
+        (s) => s.meanDurationSeconds,
+      );
+      const bestPass = meanOverTasks(bestArm, shared, tasks, (s) => s.passAt1);
+
+      const cells = variants
+        .map((variant) => {
+          const value = scores.get(variant);
+          if (value === undefined) {
+            return `<td class="ix-na" title="not run">—</td>`;
+          }
+          const text = value.toFixed(2);
+          return `<td>${value === top ? `<strong>${text}</strong>` : text}</td>`;
+        })
+        .join("");
+
+      return `
+        <tr>
+          <th scope="row"><a href="#matrix-${escape(cohort.id)}">${escape(
+            cohort.id,
+          )}</a></th>${cells}
+          <td>${best ? escape(best[0]) : "—"}</td>
+          ${
+            best && none !== null
+              ? deltaCell(best[1] - none)
+              : `<td class="ix-na">—</td>`
+          }
+          <td>${bestPass === null ? "—" : pct(bestPass)}</td>
+          <td>${noneCost === null ? "—" : usd(noneCost)}</td>
+          <td>${bestCost === null ? "—" : usd(bestCost)}</td>
+          <td>${bestTime === null ? "—" : `${Math.round(bestTime)}s`}</td>
+        </tr>`;
+    })
+    .join("");
+
+  const head = variants
+    .map((variant) => `<th scope="col">${escape(variant)}</th>`)
+    .join("");
+
+  return `
+  <section class="ix-cohorts">
+    <h2 id="cohorts">models compared</h2>
+    <div class="ix-scroll">
+      <table class="ix-matrix">
+        <thead>
+          <tr>
+            <th scope="col">cohort</th>${head}
+            <th scope="col">best</th>
+            <th scope="col">Δ</th>
+            <th scope="col">pass@1</th>
+            <th scope="col">$/trial none</th>
+            <th scope="col">$/trial best</th>
+            <th scope="col">s/trial</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="ix-caption">
+      Every figure is the mean over the ${shared.length} task${
+        shared.length === 1 ? "" : "s"
+      } run by all ${measured.length} cohorts, unweighted by trial count, so
+      the columns answer the same question for each row even where total
+      coverage differs. Quality columns are absolute; <strong>bold</strong>
+      marks the best variant in a row. Δ is that variant's quality minus the
+      cohort's own <code>none</code> arm — the servers' contribution at that
+      model and effort, and the only cell here that is a controlled comparison.
+      A larger Δ on a weaker baseline is the servers substituting for model
+      capability.${
+        held
+          ? ` ${held} cohort${held === 1 ? " is" : "s are"} held out for running
+      a different fixture set; see the note on ${escape(
+        Object.keys(CONTEXT_NOTES).join(", "),
+      )} above.`
+          : ""
+      }
+    </p>
+  </section>`;
+}
+
 /** One cohort's task × variant matrix. Dense by construction. */
 function matrixTable(tasks: TaskIndex, cohort: Cohort): string {
   const names = cohort.arms.map((arm) => arm.name);
@@ -691,6 +917,7 @@ function main(): void {
   Generated ${new Date().toISOString().slice(0, 16).replace("T", " ")} UTC.
 </p>
 ${overviewSection(overall, tasks, cohorts)}
+${cohortSection(tasks, cohorts)}
 ${matrixSection(tasks, cohorts)}
 ${sections}
 </html>

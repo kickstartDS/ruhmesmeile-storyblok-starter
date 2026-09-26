@@ -84,13 +84,27 @@ fi
 
 free_gb() { df -BG --output=avail . | tail -1 | tr -dc '0-9'; }
 
-# usable disk / per-eval peak, clamped to the range Decision 95 validated.
-batch_size() {
-  local free="$1" usable per_eval n
+# How many evals the free disk can hold at peak, unclamped. This is the number
+# the reserve guard has to test, because it is the only one that says anything
+# about disk.
+disk_fit() {
+  local free="$1" usable per_eval
   usable=$(( free - FLOOR_GB ))
   [ "$usable" -le 0 ] && { printf '0\n'; return; }
   per_eval=$(( SANDBOX_TENTHS * RUNS ))
-  n=$(( usable * 10 / per_eval ))
+  printf '%s\n' $(( usable * 10 / per_eval ))
+}
+
+# The disk fit, clamped to the ceiling. Until D-174 the clamp was a formality —
+# `MAX_BATCH` sat at the 10 Decision 95 validated and disk was always the binder
+# — so the two numbers were one number and the reserve guard tested this one.
+# A provider RPM ceiling makes `MAX_BATCH` routinely *lower* than the disk fit,
+# at which point testing the clamped value aborts with "not enough disk" and 93G
+# free. The operator's ceiling is a deliberate choice and must never trip a
+# resource diagnostic.
+batch_size() {
+  local n
+  n="$(disk_fit "$1")"
   [ "$n" -gt "$MAX_BATCH" ] && n="$MAX_BATCH"
   printf '%s\n' "$n"
 }
@@ -112,7 +126,27 @@ planned_size() {
   printf '%s\n' "$(( (remaining + count - 1) / count ))"
 }
 
-newest_run() { ls -d results/"$1"/*/*/ 2>/dev/null | sort | tail -1; }
+# The newest timestamped run directory for an arm, with a trailing slash.
+#
+# Depth varies and cannot be assumed. The Sonnet campaign wrote
+# results/{arm}/{stamp}/; a later harness interposed the model, giving
+# results/{arm}/{model}/{stamp}/; and a third-party model ID is
+# vendor-qualified, so deepseek/deepseek-v4.1-flash is two directories and the
+# stamp sits three levels down. A fixed `*/*/` glob matched the model directory
+# on those arms and never the run — which would make verify_batch compare a
+# path to itself and report every batch as "never started", i.e. stop the
+# campaign after paying for the first batch. Same defect as D-171, one layer up.
+#
+# Matched on the timestamp itself rather than by counting levels, and sorted by
+# the stamp rather than the whole path so the model segment cannot order it.
+newest_run() {
+  find "results/$1" -mindepth 1 -maxdepth 4 -type d -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-*T*' 2>/dev/null \
+    | sed 's:$:/:' \
+    | awk -F/ '{ print $(NF-1) "\t" $0 }' \
+    | sort \
+    | tail -1 \
+    | cut -f2-
+}
 
 # Whether a batch finished is not what `agent-eval` reports in its exit code.
 # It exits 1 when any eval scored below 100%, which for this campaign is the
@@ -149,6 +183,7 @@ verify_batch() {
 }
 
 free_now="$(free_gb)"
+fit_now="$(disk_fit "$free_now")"
 max_fit="$(batch_size "$free_now")"
 batch_now="$(planned_size "${#EVALS[@]}" "${max_fit:-1}")"
 
@@ -162,7 +197,7 @@ printf 'ceiling %s eval(s), balanced to %s → %sG peak, %sG left\n\n' \
   "$max_fit" "$batch_now" "$(peak_gb "$batch_now")" \
   "$(( free_now - $(peak_gb "$batch_now") ))"
 
-if [ "$max_fit" -lt "$MIN_BATCH" ]; then
+if [ "$fit_now" -lt "$MIN_BATCH" ]; then
   printf 'not enough disk: %sG free against a %sG reserve.\n' "$free_now" "$FLOOR_GB" >&2
   printf 'reclaim first — `pnpm results:prune --apply`, `docker system prune`.\n' >&2
   exit 1
@@ -189,9 +224,10 @@ for arm in "${ARMS[@]}"; do
     # Re-measured per batch: the results tree grows as the campaign runs, so a
     # batch size that cleared the reserve an hour ago may not clear it now.
     free_now="$(free_gb)"
+    fit_now="$(disk_fit "$free_now")"
     max_fit="$(batch_size "$free_now")"
 
-    if [ "$max_fit" -lt "$MIN_BATCH" ]; then
+    if [ "$fit_now" -lt "$MIN_BATCH" ]; then
       printf '\nstopping: %sG free, below the %sG reserve.\n' "$free_now" "$FLOOR_GB" >&2
       printf 'completed evals are kept — the report resolves per eval, so this\n' >&2
       printf 'is a pause, not a loss. reclaim disk and resume with:\n' >&2

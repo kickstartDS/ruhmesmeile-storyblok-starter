@@ -9,6 +9,7 @@
     "eval": "agent-eval",
     "eval:smoke": "agent-eval --smoke",
     "campaign:split": "bash bin/run-split.sh",
+    "spike:verify": "tsx bin/spike-verify.ts",
     "playground": "agent-eval playground",
     "status": "agent-eval status",
     "refingerprint": "agent-eval refingerprint",
@@ -26,7 +27,9 @@
     "judge": "tsx bin/judge.ts",
     "calibrate": "tsx bin/calibrate.ts",
     "calibration:export": "tsx bin/export-calibration.ts",
-    "labels:pull": "tsx bin/pull-labels.ts"
+    "labels:pull": "tsx bin/pull-labels.ts",
+    "invoice": "tsx bin/invoice-check.ts",
+    "cohort": "tsx bin/cohort-summary.ts"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.2.15",

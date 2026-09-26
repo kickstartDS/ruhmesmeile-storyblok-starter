@@ -60,11 +60,49 @@ export interface DefineExperimentOptions {
    * only evidence in the `model` field of each individual `result.json`, which
    * nothing groups by. (D-117, ADR 82.)
    */
-  model?: ModelTier;
+  model?: ModelTier | (string & {});
   /** Runs per eval. See RUNS in agent-eval.config.ts. */
   runs: number;
   /** Reasoning effort passed through to the agent CLI. */
   effort?: "low" | "medium" | "high";
+  /**
+   * Seconds before a trial is killed. Defaults to `DEFAULTS.timeout`.
+   *
+   * Exists because wall clock is a property of the model, not of the work.
+   * `DEFAULTS.timeout` has been raised twice already, each time against the
+   * slowest model then in the campaign, and each raise is global: the ceiling
+   * is part of the framework fingerprint, so moving it invalidates cached
+   * results for every arm including complete ones. A per-arm override is the
+   * way to admit a slower model without reopening finished campaigns.
+   *
+   * It is deliberately absent from the variant fingerprint in `parts` below.
+   * The timeout is a kill switch, not a parameter the agent can observe — it
+   * is never passed into the sandbox — so for any trial that finished it was
+   * not a live constraint, and raising it cannot change an outcome already
+   * recorded. That is what makes it legitimate to re-run only the trials that
+   * hit the ceiling rather than the whole arm.
+   */
+  timeout?: number;
+  /**
+   * Environment applied to the agent's own session, for pointing Claude Code
+   * at an Anthropic-compatible endpoint that is not Anthropic's.
+   *
+   * The framework gives the sandbox exactly `authEnv() + neutralWorkspace.env`
+   * and nothing else, so a variable exported in the caller's shell does not
+   * reach the agent. `.claude/settings.local.json` does: `setupVariant()`
+   * already uses its `env` block for `ENABLE_TOOL_SEARCH`, which is known to
+   * take effect. This rides the same channel rather than patching the
+   * framework's auth resolution.
+   *
+   * That leaves one thing unverified and one thing worth stating plainly.
+   * Unverified: whether settings `env` wins over the `ANTHROPIC_API_KEY` the
+   * orchestrator sets on the process. If it does not, the trial runs on real
+   * Anthropic and looks like a success — which is precisely why the spike's
+   * acceptance test is the transcript's observed model and not its exit code.
+   * Plainly: values land in a file inside the sandbox, so pass a token from
+   * `process.env`, never a literal.
+   */
+  providerEnv?: Record<string, string>;
   /** Eval selection. Defaults to all. */
   evals?: ExperimentConfig["evals"];
 }
@@ -92,6 +130,20 @@ export function defineExperiment(
     tools: TOOL_SEARCH,
     probe: shortHash(PROBE_SOURCE),
     setup: SETUP_VERSION,
+    // Added only when present, so the fingerprint of every existing experiment
+    // is byte-identical to what its `.variant-version` marker already holds.
+    // An unconditional `provider: "anthropic"` would change all ten hashes at
+    // once and demand `--force` on arms whose setup did not move.
+    //
+    // Keys, never values: this is hashed into a file, and the values are
+    // credentials.
+    ...(options.providerEnv
+      ? {
+          provider: shortHash(
+            Object.keys(options.providerEnv).sort().join(","),
+          ),
+        }
+      : {}),
   };
   const variantVersion = shortHash(Object.values(parts).join("\u0000"));
 
@@ -99,17 +151,21 @@ export function defineExperiment(
 
   return {
     agent: PRIMARY_AGENT,
-    model: options.model ?? PRIMARY_MODEL,
+    // `ModelTier` is a closed union of Anthropic's tiers, but the framework
+    // only forwards this as `--model <string>` to the CLI, which accepts any
+    // model name the endpoint understands. The cast is the whole cost of
+    // pointing an arm at a non-Anthropic provider.
+    model: (options.model ?? PRIMARY_MODEL) as ModelTier,
     evals: selectedEvals(options.evals ?? defaultEvals()),
     runs: options.runs,
     earlyExit: DEFAULTS.earlyExit,
     scripts: [...DEFAULTS.scripts],
     validation: DEFAULTS.validation,
-    timeout: DEFAULTS.timeout,
+    timeout: options.timeout ?? DEFAULTS.timeout,
     sandbox: DEFAULTS.sandbox,
     copyFiles: DEFAULTS.copyFiles,
     agentOptions: options.effort ? { effort: options.effort } : undefined,
-    setup: (sandbox) => setupVariant(sandbox, packages),
+    setup: (sandbox) => setupVariant(sandbox, packages, options.providerEnv),
   };
 }
 
@@ -204,6 +260,7 @@ const PROBE_SOURCE = readFileSync(
 export async function setupVariant(
   sandbox: Sandbox,
   packages: StagedPackage[],
+  providerEnv?: Record<string, string>,
 ): Promise<void> {
   // The fixture's own dependencies are NOT installed here. The framework's
   // agent definition already runs `npm install` in the workspace as its first
@@ -243,6 +300,7 @@ export async function setupVariant(
         // the workspace-trust gate that holds back a committed settings file.
         env: {
           ENABLE_TOOL_SEARCH: TOOL_SEARCH === "deferred" ? "true" : "false",
+          ...providerEnv,
         },
       },
       null,
