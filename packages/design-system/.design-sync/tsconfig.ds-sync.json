@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@glidejs/glide/src/*": ["../../../node_modules/@glidejs/glide/src/*"]
+    }
+  }
+}

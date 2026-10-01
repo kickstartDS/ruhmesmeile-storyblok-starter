@@ -38,3 +38,13 @@ dist
 # pagefind
 static/pagefind
 
+# design-sync (claude.ai/design)
+.design-sync/sb-reference/
+.design-sync/learnings/
+.design-sync/.cache/
+.design-sync/node_modules
+.design-sync/logs/
+.design-sync/upload/
+.design-sync/ds-entry.mjs
+.ds-sync/
+ds-bundle/

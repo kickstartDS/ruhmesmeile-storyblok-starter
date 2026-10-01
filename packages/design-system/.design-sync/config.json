@@ -1,0 +1,109 @@
+{
+  "projectId": "81fcfd29-97f5-49b8-b7da-64c63436f7a9",
+  "shape": "storybook",
+  "pkg": "@kickstartds/design-system",
+  "globalName": "KickstartDS",
+  "storybookConfigDir": ".storybook",
+  "storybookStatic": ".design-sync/sb-reference",
+  "buildCmd": "pnpm run build && node .design-sync/gen-entry.mjs",
+  "entry": ".design-sync/ds-entry.mjs",
+  "tsconfig": ".design-sync/tsconfig.ds-sync.json",
+  "extraEntries": [
+    "./.design-sync/ds-exports.mjs"
+  ],
+  "libOverrides": {
+    "source-storybook.mjs": "bundlePreviewDecorators' esbuild call hardcodes loader {'.js','.json'}; .storybook/preview.tsx reaches component .scss through PageWrapper, so the decorator bundle failed and previews lost unpackDecorator (args are pack()ed \u2014 every component would render flattened props). Fork widens that one loader map to STORY_LOADERS, and points storybookStubPlugin at the story-imports fork below (the decorator bundle imports it directly, bypassing loadLib's fork seam).",
+    "story-imports.mjs": "INERT_STUB materializes only a fixed list of @storybook/* named exports; .storybook/themes.ts does `import { create } from 'storybook/theming'` and calls it at module scope, so create was undefined and the decorator bundle threw 'import_theming.create is not a function' in 68/73 previews. Fork adds the theming API names to that list.",
+    "preview-gen-storybook.mjs": "Story args are pack()ed (dot-flattened); the repo un-flattens them with the preview-level unpackDecorator, which relies on Storybook's Story(ctx) contract. The preview host hands __dsDecorate a pre-built element and a ctx-ignoring Story thunk, so that decorator no-ops and nested props arrived as literal 'image.srcMobile' keys \u2014 silently dropping headlines/buttons/arrays on every nested-arg component. Fork calls unpack() on the merged args at the same point in the chain Storybook does."
+  },
+  "cssEntry": "dist/global.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "Features": {
+      "cardMode": "column"
+    },
+    "ComparisonTable": {
+      "cardMode": "column"
+    },
+    "Footer": {
+      "cardMode": "column"
+    },
+    "Header": {
+      "cardMode": "column"
+    },
+    "CookieConsent": {
+      "cardMode": "single",
+      "primaryStory": "C15t",
+      "skip": [
+        "contract-defaults-cookieconsent--contract-default",
+        "corporate-cookie-consent--card",
+        "corporate-cookie-consent--banner"
+      ]
+    },
+    "SearchModal": {
+      "skip": [
+        "contract-defaults-searchmodal--contract-default"
+      ]
+    },
+    "Slider": {
+      "skip": [
+        "contract-defaults-slider--contract-default"
+      ]
+    },
+    "Breadcrumb": {
+      "skip": [
+        "contract-defaults-breadcrumb--contract-default"
+      ]
+    },
+    "ButtonGroup": {
+      "skip": [
+        "contract-defaults-buttongroup--contract-default"
+      ]
+    },
+    "Downloads": {
+      "skip": [
+        "contract-defaults-downloads--contract-default"
+      ]
+    },
+    "EventHeader": {
+      "skip": [
+        "contract-defaults-eventheader--contract-default"
+      ]
+    },
+    "ImageStory": {
+      "skip": [
+        "contract-defaults-imagestory--contract-default"
+      ]
+    },
+    "NavFlyout": {
+      "skip": [
+        "contract-defaults-navflyout--contract-default"
+      ]
+    },
+    "NavMain": {
+      "skip": [
+        "contract-defaults-navmain--contract-default"
+      ]
+    },
+    "NavTopbar": {
+      "skip": [
+        "contract-defaults-navtopbar--contract-default"
+      ]
+    }
+  },
+  "titleMap": {
+    "HTML": "Html",
+    "PageArchetypes": null,
+    "Playground": null,
+    "TokenPicker": null,
+    "Color": null,
+    "BackgroundColor": null,
+    "BorderColor": null,
+    "TextColor": null,
+    "Border": null,
+    "BoxShadow": null,
+    "FontSize": null,
+    "Spacing": null,
+    "Transition": null
+  }
+}
