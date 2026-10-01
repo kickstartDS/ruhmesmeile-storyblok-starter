@@ -1,0 +1,63 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import LinkTo from "@storybook/addon-links/react";
+import * as PricingPlansStories from "./PricingPlans.stories";
+
+<Meta of={PricingPlansStories} />
+
+# PricingPlans
+
+Presents several pricing plans side by side, each with its price, a short
+description, a call to action and a list of what is included. One plan can be
+marked as recommended.
+
+<Canvas of={PricingPlansStories.ThreePlans} />
+
+## Properties
+
+<ArgTypes />
+
+## The recommended plan
+
+Setting `highlight: true` on a plan inverts its whole surface — background,
+border, text, feature icons and the button — through the design system's
+`ks-inverted` context, and puts a soft halo behind it. The button's variant
+follows: a highlighted plan defaults to `primary`, a regular one to `tertiary`.
+Both are overridable per plan via `cta.variant`.
+
+<Canvas of={PricingPlansStories.WithBadgeAndPeriod} />
+
+## Layout
+
+`layout: "equal"` splits the available width between however many plans there
+are, so a two-plan and a four-plan set both fill the row. `layout: "auto"` lets
+plans wrap at `--dsa-pricing-plans--plan-min-width` instead. Below 48em both
+collapse to a single column.
+
+<Canvas of={PricingPlansStories.TwoPlansAuto} />
+
+## Usage
+
+```jsx
+<PricingPlans
+  layout="equal"
+  plan={[
+    {
+      name: "Basic",
+      price: "$99",
+      pricePeriod: "per month",
+      description: "Best for small business owners.",
+      cta: { url: "/signup", label: "Get Started" },
+      featureListTitle: "What's included:",
+      featureList: [{ text: "130+ coded blocks" }],
+    },
+  ]}
+/>
+```
+
+## Design Tokens
+
+Every part of the card resolves through a component token that points at a
+semantic one, so a theme can restyle the plans without touching this component.
+The recommended plan's halo is
+`--dsa-pricing-plan_highlight--glow`, a gradient of the component's own semantic
+colors — change it to change the glow.

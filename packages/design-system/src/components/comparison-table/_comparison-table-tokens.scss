@@ -1,0 +1,67 @@
+// A custom property is substituted where it is *declared*, not where it is
+// used. This component inverts one column, so every token that carries a color
+// has to be declared on the element that inverts (or on its ancestor inside
+// the band), otherwise it would resolve against the light page and inherit the
+// light value into the dark column. Geometry and typography tokens do not
+// depend on the context and stay on the block.
+
+.dsa-comparison-table {
+  --dsa-comparison-table--font: var(--ks-font-copy-s);
+  --dsa-comparison-table--border-color: var(--ks-border-color-card-interactive);
+  --dsa-comparison-table--border-radius: var(--ks-border-radius-card);
+  --dsa-comparison-table--label-width: calc(var(--ks-font-size-copy-m) * 13);
+  --dsa-comparison-table--plan-width: calc(var(--ks-font-size-copy-m) * 7);
+  --dsa-comparison-table--cell-padding: var(--ks-spacing-inset-squish-s);
+}
+
+.dsa-comparison-table__label {
+  --dsa-comparison-table__label--color: var(--ks-text-color-default);
+  --dsa-comparison-table__label--font: var(--ks-font-copy-s);
+  --dsa-comparison-table__label--font-weight: var(--ks-font-weight-medium);
+}
+
+// Header cell of a column: the inverted one and its neighbours both resolve
+// their colors here, each in its own context.
+.dsa-comparison-table__plan {
+  --dsa-comparison-table__plan--color: var(--ks-text-color-default);
+  --dsa-comparison-table__plan--padding: var(--ks-spacing-inset-squish-m);
+  --dsa-comparison-table__name--color: var(--ks-text-color-primary);
+  --dsa-comparison-table__name--font: var(--ks-font-copy-m);
+  --dsa-comparison-table__name--font-weight: var(--ks-font-weight-semi-bold);
+  --dsa-comparison-table__price--color: var(--ks-text-color-display);
+  --dsa-comparison-table__price--font: var(--ks-font-display-m);
+  --dsa-comparison-table__price--font-family: var(--ks-font-family-display);
+  --dsa-comparison-table__price--font-weight: var(--ks-font-weight-bold);
+  --dsa-comparison-table__period--color: var(--ks-text-color-copy);
+  --dsa-comparison-table__period--font: var(--ks-font-copy-xs);
+  --dsa-comparison-table__badge--padding: var(--ks-spacing-inset-squish-xxs);
+  --dsa-comparison-table__badge--background-color: var(
+    --ks-background-color-primary-interactive
+  );
+  --dsa-comparison-table__badge--color: var(--ks-text-color-on-primary);
+  --dsa-comparison-table__badge--border-radius: var(--ks-border-radius-pill);
+  --dsa-comparison-table__badge--font: var(--ks-font-copy-xxs);
+  --dsa-comparison-table__badge--font-weight: var(--ks-font-weight-semi-bold);
+}
+
+// Value cell: likewise, the band and the columns beside it each resolve these
+// in their own context.
+.dsa-comparison-table__value {
+  --dsa-comparison-table__value--color: var(--ks-text-color-default);
+  --dsa-comparison-table__value--font: var(--ks-font-copy-s);
+  --dsa-comparison-table__empty--color: var(--ks-text-color-copy);
+  --dsa-comparison-table__value-icon--color: var(--ks-text-color-primary);
+  --dsa-comparison-table__value-icon--size: 1.25em;
+}
+
+// The surface of the recommended column, and the hairlines inside it, resolved
+// against the cell that carries `ks-inverted`.
+.dsa-comparison-table__plan--highlight,
+.dsa-comparison-table__value--highlight {
+  --dsa-comparison-table_highlight--background-color: var(
+    --ks-background-color-card-interactive
+  );
+  --dsa-comparison-table_highlight--border-color: var(
+    --ks-border-color-card-interactive
+  );
+}

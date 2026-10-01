@@ -1,0 +1,81 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import LinkTo from "@storybook/addon-links/react";
+import * as ComparisonTableStories from "./ComparisonTable.stories";
+
+<Meta of={ComparisonTableStories} />
+
+# ComparisonTable
+
+Compares what several plans include, feature by feature: one column per plan,
+one row per feature. One plan can be marked as recommended.
+
+<Canvas of={ComparisonTableStories.ThreePlans} />
+
+## Properties
+
+<ArgTypes />
+
+## Values
+
+Each row carries one `value` per plan, in the same order as `plans` — a `text`
+for a comparable value ("100 GB"), or an `icon` for included and not included
+("check", "close"). A value with neither renders as an empty cell. Combine
+`icon` and `text` to show an icon and still have the value announced by screen
+readers; on its own an icon is presentational, like every other icon in the
+design system.
+
+<Canvas of={ComparisonTableStories.IconValues} />
+
+## The recommended plan
+
+`highlight: true` inverts the whole column — one surface runs from its header
+down to its button, and the hairlines inside it flip with it. The button's
+variant follows: a highlighted plan defaults to `primary`, a regular one to
+`tertiary`.
+
+<Canvas of={ComparisonTableStories.FourPlans} />
+
+## Usage
+
+```jsx
+<ComparisonTable
+  plans={[
+    {
+      name: "Basic",
+      price: "$99",
+      pricePeriod: "Per month",
+      cta: { url: "#", label: "Get Started" },
+    },
+    {
+      name: "Premium",
+      price: "$199",
+      pricePeriod: "Per month",
+      highlight: true,
+      badge: "Popular",
+      cta: { url: "#", label: "Get Started" },
+    },
+  ]}
+  featureRow={[
+    { label: "Number of projects", value: [{ text: "01" }, { text: "10" }] },
+    {
+      label: "Custom domain",
+      value: [
+        { icon: "close", text: "Not included" },
+        { icon: "check", text: "Included" },
+      ],
+    },
+  ]}
+/>
+```
+
+## Narrow viewports
+
+The table keeps its intrinsic column widths and scrolls sideways rather than
+squeezing values into unreadable slivers.
+
+## Design Tokens
+
+Column widths, cell padding, the hairlines and the recommended column's surface
+are all component tokens pointing at semantic ones —
+`--dsa-comparison-table_highlight--background-color` is the one that makes the
+band, and it resolves to the dark surface inside the inverted column.

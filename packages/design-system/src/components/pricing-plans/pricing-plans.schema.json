@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.mydesignsystem.com/pricing-plans.schema.json",
+  "title": "PricingPlans",
+  "description": "Component used to present several pricing plans side by side, one of them optionally recommended",
+  "type": "object",
+  "properties": {
+    "layout": {
+      "type": "string",
+      "title": "Layout",
+      "description": "Whether the plans share the available width equally, or fill the row at their own minimum width",
+      "enum": ["equal", "auto"],
+      "default": "equal"
+    },
+    "plan": {
+      "type": "array",
+      "title": "Plans",
+      "description": "The plans to present, in the order they should be read",
+      "items": {
+        "type": "object",
+        "title": "Plan",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Name of the plan, e.g. \"Basic\""
+          },
+          "price": {
+            "type": "string",
+            "title": "Price",
+            "description": "Price of the plan, e.g. \"$99\" or \"On request\""
+          },
+          "pricePeriod": {
+            "type": "string",
+            "title": "Price period",
+            "description": "The period the price refers to, e.g. \"per month\". Leave empty for a one-off price"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "format": "markdown",
+            "description": "Short description of what the plan is for and who it suits"
+          },
+          "badge": {
+            "type": "string",
+            "title": "Badge",
+            "description": "Optional badge above the plan name, e.g. \"Popular\". Leave empty for no badge"
+          },
+          "highlight": {
+            "type": "boolean",
+            "title": "Highlight",
+            "description": "Present this plan as the recommended one, on an inverted surface",
+            "default": false
+          },
+          "cta": {
+            "type": "object",
+            "title": "Call to action",
+            "description": "The button that starts this plan",
+            "properties": {
+              "label": {
+                "$ref": "http://schema.mydesignsystem.com/button.schema.json#/properties/label"
+              },
+              "url": {
+                "$ref": "http://schema.mydesignsystem.com/button.schema.json#/properties/url"
+              },
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Variant of the button. Defaults to `primary` on a highlighted plan and `tertiary` on a regular one",
+                "enum": ["primary", "secondary", "tertiary"]
+              }
+            },
+            "additionalProperties": false
+          },
+          "featureListTitle": {
+            "type": "string",
+            "title": "Feature list title",
+            "description": "Heading above the list of what the plan includes",
+            "default": "What's included:"
+          },
+          "featureList": {
+            "type": "array",
+            "title": "Included features",
+            "description": "What the plan includes, one entry per line",
+            "items": {
+              "type": "object",
+              "title": "Included feature",
+              "properties": {
+                "text": {
+                  "$ref": "http://schema.mydesignsystem.com/feature.schema.json#/properties/text"
+                },
+                "icon": {
+                  "type": "string",
+                  "format": "icon",
+                  "title": "Icon",
+                  "description": "Optional icon in front of the entry, e.g. \"check\". Leave empty for a plain list"
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 4
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,81 @@
+.dsa-pricing-plans {
+  --dsa-pricing-plans--gap-vertical: var(--ks-spacing-stack-m);
+  --dsa-pricing-plans--gap-horizontal: var(--ks-spacing-inline-m);
+  --dsa-pricing-plans--plan-min-width: calc(var(--ks-font-size-copy-m) * 18);
+}
+
+.dsa-pricing-plan {
+  --dsa-pricing-plan--gap: var(--ks-spacing-stack-m);
+  --dsa-pricing-plan--padding: var(--ks-spacing-inset-l);
+  --dsa-pricing-plan--border-radius: var(--ks-border-radius-card);
+  // The card pair from the design system's own vocabulary: both resolve to the
+  // light surface on a light page and to the dark one inside `ks-inverted`,
+  // which is why the highlighted plan needs no surface of its own.
+  --dsa-pricing-plan--background-color: var(
+    --ks-background-color-card-interactive
+  );
+  --dsa-pricing-plan--border-color: var(--ks-border-color-card-interactive);
+  --dsa-pricing-plan--color: var(--ks-text-color-default);
+
+  --dsa-pricing-plan__badge--padding: var(--ks-spacing-inset-squish-xxs);
+  --dsa-pricing-plan__badge--background-color: var(
+    --ks-background-color-primary-interactive
+  );
+  --dsa-pricing-plan__badge--color: var(--ks-text-color-on-primary);
+  --dsa-pricing-plan__badge--border-radius: var(--ks-border-radius-pill);
+  --dsa-pricing-plan__badge--font: var(--ks-font-copy-xs);
+  --dsa-pricing-plan__badge--font-weight: var(--ks-font-weight-semi-bold);
+
+  --dsa-pricing-plan__header--gap: var(--ks-spacing-stack-xs);
+  --dsa-pricing-plan__price--gap: var(--ks-spacing-inline-xs);
+
+  --dsa-pricing-plan__name--color: var(--ks-text-color-display);
+  --dsa-pricing-plan__name--font: var(--ks-font-copy-l);
+  --dsa-pricing-plan__name--font-family: var(--ks-font-family-display);
+  --dsa-pricing-plan__name--font-weight: var(--ks-font-weight-semi-bold);
+
+  --dsa-pricing-plan__amount--color: var(--ks-text-color-display);
+  --dsa-pricing-plan__amount--font: var(--ks-font-display-xl);
+  --dsa-pricing-plan__amount--font-family: var(--ks-font-family-display);
+  --dsa-pricing-plan__amount--font-weight: var(--ks-font-weight-bold);
+
+  --dsa-pricing-plan__period--color: var(--ks-text-color-copy);
+  --dsa-pricing-plan__period--font: var(--ks-font-copy-s);
+
+  --dsa-pricing-plan__description--color: var(--ks-text-color-copy);
+  --dsa-pricing-plan__description--font: var(--ks-font-copy-m);
+  // Plans are compared by their prices and buttons, so the description holds
+  // its height for a few lines and keeps those aligned across the row.
+  --dsa-pricing-plan__description--lines: 3;
+
+  --dsa-pricing-plan__features--gap: var(--ks-spacing-stack-s);
+  --dsa-pricing-plan__features-title--color: var(--ks-text-color-display);
+  --dsa-pricing-plan__features-title--font: var(--ks-font-copy-m);
+  --dsa-pricing-plan__features-title--font-weight: var(
+    --ks-font-weight-semi-bold
+  );
+
+  --dsa-pricing-plan__feature-list--gap: var(--ks-spacing-stack-xs);
+  --dsa-pricing-plan__feature--gap: var(--ks-spacing-inline-xs);
+  --dsa-pricing-plan__feature-icon--color: var(--ks-text-color-primary);
+  --dsa-pricing-plan__feature-icon--margin-top: calc(
+    var(--ks-font-size-copy-s) * 0.25
+  );
+  --dsa-pricing-plan__feature-text--color: var(--ks-text-color-copy);
+  --dsa-pricing-plan__feature-text--font: var(--ks-font-copy-s);
+
+  // The halo behind the recommended plan. Deliberately a gradient of the
+  // component's own semantic colors rather than a fixed palette, so a theme
+  // that changes primary/informative recolors the glow with it.
+  --dsa-pricing-plan_highlight--box-shadow: var(--ks-box-shadow-card);
+  --dsa-pricing-plan_highlight--glow-spread: var(--ks-spacing-s);
+  --dsa-pricing-plan_highlight--glow-blur: var(--ks-spacing-xl);
+  --dsa-pricing-plan_highlight--glow-opacity: 0.9;
+  --dsa-pricing-plan_highlight--glow: linear-gradient(
+    150deg,
+    var(--ks-color-primary-alpha-5),
+    var(--ks-color-informative-alpha-5) 35%,
+    var(--ks-color-positive-alpha-5) 65%,
+    var(--ks-color-notice-alpha-5)
+  );
+}
