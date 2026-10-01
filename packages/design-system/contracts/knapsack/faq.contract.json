@@ -1,0 +1,20 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "faq",
+  "component": "Faq",
+  "description": "Component used to display a Faq section",
+  "props": {
+    "properties": {
+      "questions": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "questions"
+  ]
+}

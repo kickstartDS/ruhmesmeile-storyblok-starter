@@ -25,6 +25,7 @@ import { TOKENS_DIR } from "./constants.js";
 import { getTokenStats } from "./parser.js";
 import { getToolDefinitions } from "./tools.js";
 import { dispatch } from "./handlers.js";
+import { contractsDir } from "./contracts.js";
 import { resources, readResource } from "./resources.js";
 import { PROMPT_DEFINITIONS, getPromptMessages } from "./prompts.js";
 
@@ -53,6 +54,18 @@ function createMcpServer(): Server {
         resources: {},
         prompts: {},
       },
+      // Returned by `initialize`, before any tool call. `get_token_architecture`
+      // still opens the tool list; this is the one screen of context a model
+      // cannot skip.
+      instructions: [
+        "Design Tokens for the kickstartDS Design System.",
+        "Call get_token_architecture FIRST: the three layers (--ks-brand-* → --ks-* → --dsa-*) and the rules that decide which layer a value belongs in.",
+        contractsDir()
+          ? "get_token_usage reports which components, parts and props bind a token — use it before changing one, and to find the prop that selects a token."
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
     },
   );
 

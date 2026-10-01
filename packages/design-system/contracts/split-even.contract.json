@@ -1,0 +1,803 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-faq"
+                ],
+                "element": "div",
+                "instanceOf": "faq",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-even--faq-with-form"
+                ],
+                "path": "root/content/content-layout/faq",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-headline",
+                  "dsa-headline--align-left",
+                  "dsa-headline--h2",
+                  "dsa-headline--space-after-small"
+                ],
+                "element": "header",
+                "instanceOf": "headline",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-even--faq-with-form"
+                ],
+                "path": "root/content/content-layout/headline",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--storytelling"
+                ],
+                "element": "div",
+                "instanceOf": "storytelling",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-even--text-with-logos"
+                ],
+                "path": "root/content/content-layout/storytelling",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--teaser-card"
+                ],
+                "element": "div",
+                "instanceOf": "teaser-card",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-even--main-teaser-with-grid"
+                ],
+                "path": "root/content/content-layout/teaser-card",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "l-split-even__content-layout",
+              "l-split-even__content-layout--list"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/content/content-layout",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "l-split-even__content",
+          "l-split-even__content--first"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-spliteven--contract-default",
+          "layout-split-even--faq-with-form",
+          "layout-split-even--main-teaser-with-grid",
+          "layout-split-even--text-with-logos"
+        ],
+        "path": "root/content",
+        "presence": "repeated",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "l-split-even"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-split-even--h-gutter_default",
+      "--dsa-split-even--h-gutter_large",
+      "--dsa-split-even--h-gutter_small",
+      "--dsa-split-even--sticky-margin",
+      "--dsa-split-even--v-gutter_default",
+      "--dsa-split-even--v-gutter_large",
+      "--dsa-split-even--v-gutter_small",
+      "--dsa-split-even__content--flex-basis_medium",
+      "--dsa-split-even__content--flex-basis_narrow",
+      "--dsa-split-even__content--flex-basis_wide",
+      "--dsa-split-even__content--gutter_default",
+      "--dsa-split-even__content--gutter_large",
+      "--dsa-split-even__content--gutter_small"
+    ]
+  },
+  "api": {
+    "props": {
+      "contentGutter": {
+        "default": "default",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "small",
+          "default",
+          "large",
+          "none"
+        ]
+      },
+      "contentMinWidth": {
+        "default": "medium",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "narrow",
+          "medium",
+          "wide"
+        ]
+      },
+      "firstComponents": {
+        "role": "composition",
+        "type": "array"
+      },
+      "firstLayout": {
+        "role": "content",
+        "type": "object"
+      },
+      "horizontalGutter": {
+        "default": "default",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ]
+      },
+      "mobileReverse": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "secondComponents": {
+        "role": "composition",
+        "type": "array"
+      },
+      "secondLayout": {
+        "role": "content",
+        "type": "object"
+      },
+      "verticalAlign": {
+        "default": "top",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "top",
+          "center",
+          "bottom",
+          "sticky"
+        ]
+      },
+      "verticalGutter": {
+        "default": "default",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./split-even.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "mobileReverse",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "contentGutter",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "contentMinWidth",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "firstComponents"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "firstLayout",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "horizontalGutter",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "mobileReverse"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "secondComponents"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "secondLayout",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "verticalAlign",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "verticalGutter",
+      "proven": false
+    }
+  ],
+  "component": "Split Even",
+  "composition": {
+    "slots": [
+      {
+        "accepts": [
+          "blog-teaser",
+          "business-card",
+          "button",
+          "contact",
+          "content-nav",
+          "cta",
+          "divider",
+          "downloads",
+          "event-latest-teaser",
+          "event-list-teaser",
+          "faq",
+          "features",
+          "gallery",
+          "headline",
+          "hero",
+          "html",
+          "image-story",
+          "image-text",
+          "logos",
+          "mosaic",
+          "slider",
+          "stats",
+          "teaser-card",
+          "testimonials",
+          "text",
+          "video-curtain"
+        ],
+        "observedCounts": [
+          0
+        ],
+        "part": "root",
+        "prop": "firstComponents"
+      },
+      {
+        "accepts": [
+          "blog-teaser",
+          "business-card",
+          "button",
+          "contact",
+          "content-nav",
+          "cta",
+          "divider",
+          "downloads",
+          "event-latest-teaser",
+          "event-list-teaser",
+          "faq",
+          "features",
+          "gallery",
+          "headline",
+          "hero",
+          "html",
+          "image-story",
+          "image-text",
+          "logos",
+          "mosaic",
+          "slider",
+          "stats",
+          "teaser-card",
+          "testimonials",
+          "text",
+          "video-curtain"
+        ],
+        "observedCounts": [
+          0
+        ],
+        "part": "root",
+        "prop": "secondComponents"
+      }
+    ]
+  },
+  "contractId": "split-even",
+  "coverage": {
+    "axes": {
+      "mobileReverse": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "firstComponents",
+        "secondComponents"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 10
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 4,
+      "inDefault": 3,
+      "total": 7
+    },
+    "score": 0.5,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "contentGutter": {
+        "source": "schema-default",
+        "value": "default"
+      },
+      "contentMinWidth": {
+        "source": "schema-default",
+        "value": "medium"
+      },
+      "firstComponents": {
+        "source": "schema-default",
+        "value": []
+      },
+      "firstLayout": {
+        "source": "schema-default",
+        "value": {
+          "gutter": "default",
+          "layout": "list",
+          "stretchVertically": false
+        }
+      },
+      "horizontalGutter": {
+        "source": "schema-default",
+        "value": "default"
+      },
+      "mobileReverse": {
+        "source": "schema-default",
+        "value": false
+      },
+      "secondComponents": {
+        "source": "schema-default",
+        "value": []
+      },
+      "secondLayout": {
+        "source": "schema-default",
+        "value": {
+          "gutter": "default",
+          "layout": "list",
+          "stretchVertically": false
+        }
+      },
+      "verticalAlign": {
+        "source": "schema-default",
+        "value": "top"
+      },
+      "verticalGutter": {
+        "source": "schema-default",
+        "value": "default"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-spliteven--contract-default.png",
+      "story": "contract-defaults-spliteven--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "gap": "30.8032px"
+        }
+      },
+      "root/content": {
+        "box": {
+          "height": 0,
+          "width": 705
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/content/content-layout": {
+        "box": {
+          "height": 0,
+          "width": 705
+        },
+        "layout": {
+          "display": "grid",
+          "gap": "21.1438px"
+        }
+      }
+    }
+  },
+  "description": "Split even layout component for dividing content into two equal sections.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:7f89d01b5f883614",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-even--faq-with-form.png",
+        "story": "layout-split-even--faq-with-form"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 329,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "l-split-even--h-gutter-large",
+              "l-split-even--v-gutter-large"
+            ],
+            "remove": [
+              "l-split-even--h-gutter-default",
+              "l-split-even--v-gutter-default"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "30.8032px",
+              "to": "65.3768px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "329.484px"
+            },
+            "rowGap": {
+              "from": "30.8032px",
+              "to": "65.3768px"
+            }
+          }
+        },
+        "root/content": {
+          "box": {
+            "height": 329,
+            "width": 687
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "329.484px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "687.312px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 329,
+            "width": 687
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "687.312px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "329.484px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "687.312px"
+            }
+          }
+        },
+        "root/content/content-layout/faq": {
+          "box": {
+            "height": 249,
+            "width": 687
+          },
+          "classes": [
+            "dsa-faq"
+          ],
+          "introduced": true
+        },
+        "root/content/content-layout/headline": {
+          "box": {
+            "height": 38,
+            "width": 687
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--h2",
+            "dsa-headline--space-after-small"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "11.5626px"
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-even--main-teaser-with-grid.png",
+        "story": "layout-split-even--main-teaser-with-grid"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 399,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "l-split-even--align-stretch",
+              "l-split-even--h-gutter-small",
+              "l-split-even--v-gutter-small"
+            ],
+            "remove": [
+              "l-split-even--align-top",
+              "l-split-even--h-gutter-default",
+              "l-split-even--v-gutter-default"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "flex-start",
+              "to": "normal"
+            },
+            "columnGap": {
+              "from": "30.8032px",
+              "to": "21.1438px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "399.047px"
+            },
+            "rowGap": {
+              "from": "30.8032px",
+              "to": "13.7152px"
+            }
+          }
+        },
+        "root/content": {
+          "box": {
+            "height": 399,
+            "width": 709
+          },
+          "classes": {
+            "add": [
+              "l-split-even__content--stretch-vertically"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "normal",
+              "to": "stretch"
+            },
+            "height": {
+              "from": "0px",
+              "to": "399.047px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "709.422px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 399,
+            "width": 709
+          },
+          "classes": {
+            "add": [
+              "l-split-even__content-layout--gutter-small"
+            ],
+            "remove": [
+              "l-split-even__content-layout--gutter-default"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "21.1438px",
+              "to": "13.7152px"
+            },
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "709.422px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "399.047px"
+            },
+            "rowGap": {
+              "from": "21.1438px",
+              "to": "13.7152px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "709.422px"
+            }
+          }
+        },
+        "root/content/content-layout/teaser-card": {
+          "box": {
+            "height": 399,
+            "width": 709
+          },
+          "classes": [
+            "l-container",
+            "l-container--teaser-card"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-even--text-with-logos.png",
+        "story": "layout-split-even--text-with-logos"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 791,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "l-split-even--align-center",
+              "l-split-even--width-wide"
+            ],
+            "remove": [
+              "l-split-even--align-top",
+              "l-split-even--width-medium"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "flex-start",
+              "to": "center"
+            },
+            "height": {
+              "from": "0px",
+              "to": "791.078px"
+            }
+          }
+        },
+        "root/content": {
+          "box": {
+            "height": 273,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "272.734px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 273,
+            "width": 1440
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "1440px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "272.734px"
+            },
+            "width": {
+              "from": "704.594px",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/content/content-layout/storytelling": {
+          "box": {
+            "height": 273,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--storytelling"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

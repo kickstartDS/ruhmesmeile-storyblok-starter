@@ -1,0 +1,49 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Downloads",
+  "default": {
+    "description": "The Downloads component features a clean and simple design with a rectangular shape. It has a soft blue background with rounded corners, giving it a modern and approachable appearance. The component is minimalistic, focusing on functionality while maintaining a visually appealing look.",
+    "from": "img/screenshots/contract-defaults-downloads--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-downloads--complete",
+      "when": {},
+      "difference": "In this variant, the Downloads component has expanded to a height of 289.422px, revealing a list of downloadable items. Each item is neatly organized with an icon, title, file type, size, and a brief description, alongside a \"Download\" button with an icon, maintaining the component's clean and modern aesthetic.",
+      "from": "img/screenshots/corporate-downloads--complete.png"
+    },
+    {
+      "story": "corporate-downloads--description-only",
+      "when": {},
+      "difference": "The variant of the Downloads component differs from the default by having a significantly increased height, expanding to 289.422px. This change allows for more content to be displayed within the component, maintaining its clean and modern design with a soft blue background and rounded corners.",
+      "from": "img/screenshots/corporate-downloads--description-only.png"
+    },
+    {
+      "story": "corporate-downloads--mixed",
+      "when": {},
+      "difference": "The variant of the Downloads component differs from the default by having a defined height of 283.906px, which allows it to display content such as file names, descriptions, and download options. This change enhances its functionality by making the downloadable resources visible and accessible, while maintaining the same modern and approachable design with a soft blue background and rounded corners.",
+      "from": "img/screenshots/corporate-downloads--mixed.png"
+    },
+    {
+      "story": "corporate-downloads--technical-details-only",
+      "when": {},
+      "difference": "The variant of the Downloads component differs from the default by having a defined height of 289.422px, which allows it to display content such as file names, types, sizes, and download options. This change enhances its functionality by making the downloadable resources visible and accessible, while maintaining the same modern and approachable design with a soft blue background and rounded corners.",
+      "from": "img/screenshots/corporate-downloads--technical-details-only.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:46.168Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-downloads--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/corporate-downloads--complete.png": "sha256:d4c5c0f0eb6985f6",
+        "img/screenshots/corporate-downloads--description-only.png": "sha256:6cf9fca68b12aede",
+        "img/screenshots/corporate-downloads--mixed.png": "sha256:1c08dcaaee438b3d",
+        "img/screenshots/corporate-downloads--technical-details-only.png": "sha256:d475e82ff44267f3"
+      },
+      "contract": "sha256:fd32eefe6a2d63538e66bf5842fcc49ee6631d88455668b0848c02068371f192"
+    }
+  }
+}

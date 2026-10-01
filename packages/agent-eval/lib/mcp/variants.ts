@@ -6,6 +6,11 @@
  * entire point of the package.
  */
 
+import { createHash } from "node:crypto";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { stagePackage, type StagedPackage } from "./stage";
 
 export { VENDOR_DIR } from "./stage";
@@ -47,7 +52,8 @@ export type VariantKey =
   | "none"
   | "component-builder"
   | "design-tokens"
-  | "both";
+  | "both"
+  | "contracts";
 
 export interface McpServerSpec {
   /** Name the agent sees in tool identifiers (`mcp__<name>__<tool>`). */
@@ -79,7 +85,91 @@ const VARIANT_SERVERS: Record<VariantKey, McpServerSpec[]> = {
   "component-builder": [COMPONENT_BUILDER],
   "design-tokens": [DESIGN_TOKENS],
   both: [COMPONENT_BUILDER, DESIGN_TOKENS],
+  // The same two servers, additionally pointed at the generated contract set
+  // via `DESIGN_SYSTEM_CONTRACTS_DIR`. Without the variable both servers
+  // withhold their contract tools, so this is a real arm and not a relabelled
+  // `both`; the contract files are folded into the variant hash below.
+  contracts: [COMPONENT_BUILDER, DESIGN_TOKENS],
 };
+
+/**
+ * The variant keys, derived from the matrix above.
+ *
+ * Derived rather than listed, because a second list of variants is a second
+ * source of truth and one of them will be forgotten. `lib/graders/trial.ts`
+ * used to keep its own copy; adding `contracts` to the matrix left that copy
+ * behind, so `variantOf()` returned `"unknown"` for the contracts arm — which
+ * silently disabled the confound check in `lib/report/collect.ts`
+ * (`variant === "unknown"` ⇒ no verdict) for exactly the arm it was built to
+ * police.
+ */
+export const VARIANT_KEYS = Object.keys(VARIANT_SERVERS) as VariantKey[];
+
+/**
+ * The tools a server must advertise when the contract set is configured.
+ *
+ * Used by the in-sandbox probe. The `contracts` arm's only difference from
+ * `both` is a tool list, so the tool list is asserted before a single trial
+ * runs — otherwise a missing `DESIGN_SYSTEM_CONTRACTS_DIR` produces a
+ * full-price A/A that looks like a clean null result.
+ */
+export const EXPECTED_CONTRACT_TOOLS: Record<string, string[]> = {
+  "component-builder": [
+    "get_component_brief",
+    "get_prop_visual_impact",
+    "get_component_anatomy",
+    "get_component_contract",
+    "list_component_contracts",
+    "lint_component_contracts",
+  ],
+  "design-tokens": ["get_token_usage"],
+};
+
+/**
+ * The generated contract set (`packages/design-system/contracts`), served to
+ * the MCP servers in the `contracts` variant.
+ */
+export function contractsDir(): string {
+  return fileURLToPath(
+    new URL("../../../design-system/contracts", import.meta.url),
+  );
+}
+
+/**
+ * A content hash of the whole contract set.
+ *
+ * Folded into `variantVersion` for the `contracts` variant only, so regenerating
+ * the contracts invalidates results — otherwise a run would happily reuse
+ * results produced against a different contract set. Every other variant's
+ * fingerprint is untouched.
+ */
+export function contractsFingerprint(): string {
+  const dir = contractsDir();
+  if (!existsSync(join(dir, "index.json"))) {
+    throw new Error(
+      `Component contracts are not generated — ${dir}/index.json is missing.\n` +
+        `Run: node packages/design-system/scripts/contracts/bin/generate.mjs`,
+    );
+  }
+
+  const lines: string[] = [];
+  const walk = (current: string): void => {
+    for (const name of readdirSync(current).sort()) {
+      const full = join(current, name);
+      if (statSync(full).isDirectory()) {
+        walk(full);
+        continue;
+      }
+      const digest = createHash("sha256")
+        .update(readFileSync(full))
+        .digest("hex")
+        .slice(0, 16);
+      lines.push(`${full.slice(dir.length + 1)}:${digest}`);
+    }
+  };
+  walk(dir);
+  return lines.join("\n");
+}
 
 /** Where staged servers live inside the sandbox. */
 export function serversForVariant(variant: VariantKey): McpServerSpec[] {

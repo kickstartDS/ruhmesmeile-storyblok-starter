@@ -1,0 +1,239 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "dsa-event-location",
+          "dsa-event-location--spacious"
+        ],
+        "element": "div",
+        "instanceOf": "event-location--spacious",
+        "namedBy": "slot-boundary",
+        "path": "root/event-location--spacious",
+        "presence": "always",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--event-location"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "address": {
+        "role": "content",
+        "type": "string"
+      },
+      "dates": {
+        "role": "composition",
+        "type": "array"
+      },
+      "displayMode": {
+        "default": "spacious",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "spacious",
+          "compact"
+        ]
+      },
+      "links": {
+        "role": "composition",
+        "type": "array"
+      },
+      "locationName": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./event-location.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "address",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "dates"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "displayMode",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "links"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "locationName",
+      "proven": false
+    }
+  ],
+  "component": "Event Location",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "ariaLabel",
+          "date",
+          "label",
+          "newTab",
+          "time",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "dates"
+      },
+      {
+        "itemShape": [
+          "label",
+          "newTab",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "links"
+      }
+    ]
+  },
+  "contractId": "event-location",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "dates",
+        "links"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 2,
+      "total": 2
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "dates": {
+        "source": "schema-default",
+        "value": []
+      },
+      "displayMode": {
+        "source": "schema-default",
+        "value": "spacious"
+      },
+      "links": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventlocation--contract-default.png",
+      "story": "contract-defaults-eventlocation--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 64,
+          "width": 1440
+        }
+      },
+      "root/event-location--spacious": {
+        "box": {
+          "height": 64,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px",
+          "justifyContent": "space-between"
+        }
+      }
+    }
+  },
+  "description": "Event location component for displaying event dates, location details, and related links.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:bff771fadaa0d85f",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-location--default.png",
+        "story": "event-event-location--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 212,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "63.5938px",
+              "to": "212.109px"
+            }
+          }
+        },
+        "root/event-location--spacious": {
+          "box": {
+            "height": 212,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "63.5938px",
+              "to": "212.109px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

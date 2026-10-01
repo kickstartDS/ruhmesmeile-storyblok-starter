@@ -1,0 +1,105 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "section",
+  "component": "Section",
+  "description": "Component used to layout components into pages",
+  "props": {
+    "properties": {
+      "aiDraft": {
+        "type": "boolean",
+        "default": false
+      },
+      "backgroundColor": {
+        "type": "string",
+        "enum": [
+          "default",
+          "accent",
+          "bold"
+        ],
+        "default": "default"
+      },
+      "backgroundImage": {
+        "type": "string"
+      },
+      "buttons": {
+        "type": "array"
+      },
+      "components": {
+        "type": "array"
+      },
+      "content": {
+        "type": "object"
+      },
+      "headerSpacing": {
+        "type": "boolean",
+        "default": false
+      },
+      "headline": {
+        "type": "object"
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "spaceAfter": {
+        "type": "string",
+        "enum": [
+          "default",
+          "small",
+          "none"
+        ],
+        "default": "default"
+      },
+      "spaceBefore": {
+        "type": "string",
+        "enum": [
+          "default",
+          "small",
+          "none"
+        ],
+        "default": "default"
+      },
+      "spotlight": {
+        "type": "boolean",
+        "default": false
+      },
+      "style": {
+        "type": "string",
+        "enum": [
+          "default",
+          "framed",
+          "deko"
+        ],
+        "default": "default"
+      },
+      "transition": {
+        "type": "string",
+        "enum": [
+          "none",
+          "to-default",
+          "to-accent",
+          "to-bold",
+          "to-inverted"
+        ],
+        "default": "none"
+      },
+      "width": {
+        "type": "string",
+        "enum": [
+          "full",
+          "max",
+          "wide",
+          "default",
+          "narrow"
+        ],
+        "default": "default"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "components",
+    "buttons"
+  ]
+}

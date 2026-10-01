@@ -1,0 +1,220 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "dsa-event-appointment__infos"
+        ],
+        "element": "span",
+        "namedBy": "bem-class",
+        "path": "root/infos",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "classes": [
+              "icon"
+            ],
+            "element": "svg",
+            "namedBy": "tag",
+            "path": "root/label/icon",
+            "presence": "always",
+            "role": "glyph"
+          }
+        ],
+        "classes": [
+          "dsa-event-appointment__label"
+        ],
+        "element": "span",
+        "namedBy": "bem-class",
+        "path": "root/label",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-event-appointment"
+    ],
+    "element": "a",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "control"
+  },
+  "api": {
+    "props": {
+      "ariaLabel": {
+        "default": "Event Appointment",
+        "role": "behaviour",
+        "type": "string"
+      },
+      "date": {
+        "format": "date",
+        "role": "content",
+        "type": "string"
+      },
+      "label": {
+        "role": "content",
+        "type": "string"
+      },
+      "newTab": {
+        "default": true,
+        "role": "behaviour",
+        "type": "boolean"
+      },
+      "time": {
+        "role": "content",
+        "type": "string"
+      },
+      "url": {
+        "default": "#",
+        "format": "uri",
+        "role": "behaviour",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./event-appointment.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "ariaLabel"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "date",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "label",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "newTab"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "time",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "url"
+    }
+  ],
+  "component": "Event Appointment",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "event-appointment",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 1,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 4,
+      "total": 4
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 0
+    }
+  },
+  "default": {
+    "configuration": {
+      "ariaLabel": {
+        "source": "schema-default",
+        "value": "Event Appointment"
+      },
+      "newTab": {
+        "source": "schema-default",
+        "value": true
+      },
+      "url": {
+        "source": "schema-default",
+        "value": "#"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventappointment--contract-default.png",
+      "story": "contract-defaults-eventappointment--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 57,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/infos": {
+        "box": {
+          "height": 28,
+          "width": 0
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/label": {
+        "box": {
+          "height": 28,
+          "width": 28
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex"
+        }
+      },
+      "root/label/icon": {
+        "box": {
+          "height": 28,
+          "width": 28
+        }
+      }
+    }
+  },
+  "generated": {
+    "inputs": {
+      "schema": "sha256:804e3d306218aaec",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

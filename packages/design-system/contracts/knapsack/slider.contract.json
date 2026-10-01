@@ -1,0 +1,51 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "slider",
+  "component": "Slider",
+  "description": "Slider component for displaying a carousel of content components.",
+  "props": {
+    "properties": {
+      "arrows": {
+        "type": "boolean"
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": false
+      },
+      "className": {
+        "type": "string"
+      },
+      "components": {
+        "type": "array"
+      },
+      "equalHeight": {
+        "type": "boolean",
+        "default": true
+      },
+      "gap": {
+        "type": "number",
+        "default": 0
+      },
+      "nav": {
+        "type": "boolean"
+      },
+      "teaseNeighbours": {
+        "type": "boolean",
+        "default": false
+      },
+      "variant": {
+        "type": "string",
+        "enum": [
+          "slider",
+          "carousel"
+        ],
+        "default": "carousel"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "components"
+  ]
+}

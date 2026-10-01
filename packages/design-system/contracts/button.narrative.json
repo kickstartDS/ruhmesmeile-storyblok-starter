@@ -1,0 +1,56 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Button",
+  "default": {
+    "description": "The button has a soft gray background with rounded corners, giving it a subtle and approachable appearance. The text \"Book a meeting\" is centered in a dark, legible font, providing a clear contrast against the lighter background. The overall design is simple and functional, suitable for user interaction.",
+    "from": "img/screenshots/contract-defaults-button--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-button--primary-button",
+      "when": {
+        "variant": "primary"
+      },
+      "difference": "The variant button has a bold blue background, creating a more striking and prominent appearance compared to the default. The text is white, enhancing readability and contrast against the blue. The button is slightly narrower, giving it a more compact look.",
+      "from": "img/screenshots/components-button--primary-button.png"
+    },
+    {
+      "story": "components-button--primary-disabled-button",
+      "when": {
+        "disabled": true,
+        "variant": "primary"
+      },
+      "difference": "The variant button has a solid blue background, creating a more prominent and bold appearance compared to the default. The text is white, enhancing contrast and visibility, but the button appears slightly faded due to reduced opacity, indicating its disabled state. The overall size is marginally larger, giving it a more substantial presence.",
+      "from": "img/screenshots/components-button--primary-disabled-button.png"
+    },
+    {
+      "story": "components-button--secondary-button",
+      "when": {},
+      "difference": "The variant of the button is slightly wider, with the root element expanding from 202.094px to 222.094px. Additionally, the label inside the button has increased in width from 148px to 168px, allowing for more text or spacing within the button.",
+      "from": "img/screenshots/components-button--secondary-button.png"
+    },
+    {
+      "story": "components-button--tertiary-button",
+      "when": {
+        "variant": "tertiary"
+      },
+      "difference": "The tertiary variant of the button has a transparent background, giving it a lighter appearance compared to the default. It features a subtle, solid border that adds definition, and the button is slightly taller and narrower, with the label area also reduced in width.",
+      "from": "img/screenshots/components-button--tertiary-button.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:03.531Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-button--contract-default.png": "sha256:99cd566a6b93012f",
+        "img/screenshots/components-button--primary-button.png": "sha256:1d7401ee9c774bfa",
+        "img/screenshots/components-button--primary-disabled-button.png": "sha256:69f9b04bec032fd8",
+        "img/screenshots/components-button--secondary-button.png": "sha256:5b7b8cce8ddb449c",
+        "img/screenshots/components-button--tertiary-button.png": "sha256:ce8a822d55c8c38f"
+      },
+      "contract": "sha256:5f6d88f22ae605a801dc38c18ac695ce23b46c7fccbf0227cf8e8ddbb0b05f34"
+    }
+  }
+}

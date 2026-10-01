@@ -1,0 +1,1047 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-slider__slides"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-slider--contract-default"
+                ],
+                "path": "root/arrow/track/slides",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-slider__track"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-slider--contract-default"
+            ],
+            "path": "root/arrow/track",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-slider",
+          "c-slider--carousel",
+          "c-slider--disabled",
+          "c-slider--equal-height",
+          "c-slider--ltr",
+          "c-slider--swipeable",
+          "dsa-slider",
+          "lazyloaded"
+        ],
+        "element": "div",
+        "namedBy": "token-grammar",
+        "observedIn": [
+          "contract-defaults-slider--contract-default"
+        ],
+        "path": "root/arrow",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-slider--animation-duration",
+          "--dsa-slider--autoplay-duration",
+          "--dsa-slider__arrow--background-color",
+          "--dsa-slider__arrow--background-color_active",
+          "--dsa-slider__arrow--background-color_hover",
+          "--dsa-slider__arrow--color",
+          "--dsa-slider__bullet--background-color",
+          "--dsa-slider__bullet--background-color_active",
+          "--dsa-slider__bullet--background-color_hover",
+          "--dsa-slider__bullet--border-color",
+          "--dsa-slider__bullet--border-color_active",
+          "--dsa-slider__bullet--border-color_hover",
+          "--dsa-slider__bullet--size"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "gate": {
+                      "prop": "nav",
+                      "when": "truthy"
+                    },
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "layout-slider--with-arrows",
+                      "layout-slider--with-autoplay",
+                      "layout-slider--with-nav",
+                      "layout-slider--with-teased-neighbours"
+                    ],
+                    "path": "root/child-1/arrows/arrow/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "c-slider__arrow",
+                  "c-slider__arrow--prev"
+                ],
+                "element": "button",
+                "gate": {
+                  "prop": "nav",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "layout-slider--with-arrows",
+                  "layout-slider--with-autoplay",
+                  "layout-slider--with-nav",
+                  "layout-slider--with-teased-neighbours"
+                ],
+                "path": "root/child-1/arrows/arrow",
+                "presence": "repeated",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-slider__arrows"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "nav",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "layout-slider--with-arrows",
+              "layout-slider--with-autoplay",
+              "layout-slider--with-nav",
+              "layout-slider--with-teased-neighbours"
+            ],
+            "path": "root/child-1/arrows",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-slider__bullet"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "nav",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "layout-slider--with-arrows",
+                      "layout-slider--with-autoplay",
+                      "layout-slider--with-nav",
+                      "layout-slider--with-teased-neighbours"
+                    ],
+                    "path": "root/child-1/nav/nav-item/bullet",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-slider__nav-item",
+                  "c-slider__nav-item--active"
+                ],
+                "element": "button",
+                "gate": {
+                  "prop": "nav",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "layout-slider--with-arrows",
+                  "layout-slider--with-autoplay",
+                  "layout-slider--with-nav",
+                  "layout-slider--with-teased-neighbours"
+                ],
+                "path": "root/child-1/nav/nav-item",
+                "presence": "repeated",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-slider__nav"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "nav",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "layout-slider--with-arrows",
+              "layout-slider--with-autoplay",
+              "layout-slider--with-nav",
+              "layout-slider--with-teased-neighbours"
+            ],
+            "path": "root/child-1/nav",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--teaser-card"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "nav",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "teaser-card",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "layout-slider--with-arrows",
+                          "layout-slider--with-autoplay",
+                          "layout-slider--with-nav",
+                          "layout-slider--with-teased-neighbours"
+                        ],
+                        "path": "root/child-1/track/slides/slide/teaser-card",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-slider__slide",
+                      "c-slider__slide--clone"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "nav",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "layout-slider--with-arrows",
+                      "layout-slider--with-autoplay",
+                      "layout-slider--with-nav",
+                      "layout-slider--with-teased-neighbours"
+                    ],
+                    "path": "root/child-1/track/slides/slide",
+                    "presence": "repeated",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-slider__slides"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "nav",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "layout-slider--with-arrows",
+                  "layout-slider--with-autoplay",
+                  "layout-slider--with-nav",
+                  "layout-slider--with-teased-neighbours"
+                ],
+                "path": "root/child-1/track/slides",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-slider__track"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "nav",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "layout-slider--with-arrows",
+              "layout-slider--with-autoplay",
+              "layout-slider--with-nav",
+              "layout-slider--with-teased-neighbours"
+            ],
+            "path": "root/child-1/track",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-slider",
+          "c-slider--carousel",
+          "c-slider--equal-height",
+          "c-slider--ltr",
+          "c-slider--swipeable",
+          "dsa-slider",
+          "lazyloaded"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "nav",
+          "when": "truthy"
+        },
+        "namedBy": "position",
+        "observedIn": [
+          "layout-slider--with-arrows",
+          "layout-slider--with-autoplay",
+          "layout-slider--with-nav",
+          "layout-slider--with-teased-neighbours"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-slider--animation-duration",
+          "--dsa-slider--autoplay-duration",
+          "--dsa-slider__arrow--background-color",
+          "--dsa-slider__arrow--background-color_active",
+          "--dsa-slider__arrow--background-color_hover",
+          "--dsa-slider__arrow--color",
+          "--dsa-slider__bullet--background-color",
+          "--dsa-slider__bullet--background-color_active",
+          "--dsa-slider__bullet--background-color_hover",
+          "--dsa-slider__bullet--border-color",
+          "--dsa-slider__bullet--border-color_active",
+          "--dsa-slider__bullet--border-color_hover",
+          "--dsa-slider__bullet--size"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--slider"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "arrows": {
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "autoplay": {
+        "default": false,
+        "role": "behaviour",
+        "type": "boolean"
+      },
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "components": {
+        "role": "composition",
+        "type": "array"
+      },
+      "equalHeight": {
+        "default": true,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "gap": {
+        "default": 0,
+        "role": "appearance",
+        "type": "number"
+      },
+      "nav": {
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "teaseNeighbours": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "variant": {
+        "default": "carousel",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "slider",
+          "carousel"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./slider.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "prop": "nav",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "teaseNeighbours",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": true,
+      "prop": "equalHeight",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "prop": "arrows",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "carousel",
+      "prop": "variant",
+      "values": [
+        {
+          "api": "slider",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "carousel",
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "arrows"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "autoplay"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "components"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "equalHeight"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "gap"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/child-1",
+        "root/child-1/arrows",
+        "root/child-1/arrows/arrow",
+        "root/child-1/arrows/arrow/icon",
+        "root/child-1/nav",
+        "root/child-1/nav/nav-item",
+        "root/child-1/nav/nav-item/bullet",
+        "root/child-1/track",
+        "root/child-1/track/slides",
+        "root/child-1/track/slides/slide",
+        "root/child-1/track/slides/slide/teaser-card"
+      ],
+      "prop": "nav"
+    },
+    {
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/child-1"
+      ],
+      "prop": "teaseNeighbours"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "variant"
+    }
+  ],
+  "component": "Slider",
+  "composition": {
+    "slots": [
+      {
+        "accepts": [
+          "cta",
+          "features",
+          "gallery",
+          "hero",
+          "image-text",
+          "logos",
+          "stats",
+          "teaser-card",
+          "testimonials",
+          "text"
+        ],
+        "observedCounts": [
+          0
+        ],
+        "part": "root",
+        "prop": "components"
+      }
+    ]
+  },
+  "contractId": "slider",
+  "coverage": {
+    "axes": {
+      "arrows": {
+        "missing": [
+          false
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "equalHeight": {
+        "missing": [
+          false
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "nav": {
+        "missing": [
+          false
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "teaseNeighbours": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "variant": {
+        "missing": [
+          "slider"
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "components"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 32,
+      "proven": 5
+    },
+    "parts": {
+      "conditional": 14,
+      "inDefault": 4,
+      "total": 15
+    },
+    "score": 0.6,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "autoplay": {
+        "source": "schema-default",
+        "value": false
+      },
+      "components": {
+        "source": "schema-default",
+        "value": []
+      },
+      "equalHeight": {
+        "source": "schema-default",
+        "value": true
+      },
+      "gap": {
+        "source": "schema-default",
+        "value": 0
+      },
+      "teaseNeighbours": {
+        "source": "schema-default",
+        "value": false
+      },
+      "variant": {
+        "source": "schema-default",
+        "value": "carousel"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-slider--contract-default.png",
+      "story": "contract-defaults-slider--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/arrow": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "styles": {
+          "borderColor": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-border-color-default",
+            "token": "--dsa-slider__bullet--border-color"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-color-fg-inverted",
+            "token": "--dsa-slider__arrow--color"
+          }
+        }
+      },
+      "root/arrow/track": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/arrow/track/slides": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "stretch",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      }
+    }
+  },
+  "description": "Slider component for displaying a carousel of content components.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:f088b547722eef2b",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-slider--with-arrows.png",
+        "story": "layout-slider--with-arrows"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 597,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "596.953px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 597,
+            "width": 1440
+          },
+          "classes": [
+            "c-slider",
+            "c-slider--carousel",
+            "c-slider--equal-height",
+            "c-slider--ltr",
+            "c-slider--swipeable",
+            "dsa-slider",
+            "lazyloaded"
+          ],
+          "introduced": true,
+          "styles": {
+            "borderColor": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-border-color-default",
+              "token": "--dsa-slider__bullet--border-color"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-color-fg-inverted",
+              "token": "--dsa-slider__arrow--color"
+            }
+          }
+        },
+        "root/child-1/arrows": {
+          "box": {
+            "height": 0,
+            "width": 1440
+          },
+          "classes": [
+            "c-slider__arrows"
+          ],
+          "introduced": true
+        },
+        "root/child-1/arrows/arrow": {
+          "box": {
+            "height": 40,
+            "width": 40
+          },
+          "classes": [
+            "c-slider__arrow",
+            "c-slider__arrow--prev"
+          ],
+          "introduced": true
+        },
+        "root/child-1/arrows/arrow/icon": {
+          "box": {
+            "height": 40,
+            "width": 40
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/child-1/nav": {
+          "box": {
+            "height": 24,
+            "width": 1440
+          },
+          "classes": [
+            "c-slider__nav"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/child-1/nav/nav-item": {
+          "box": {
+            "height": 24,
+            "width": 32
+          },
+          "classes": [
+            "c-slider__nav-item",
+            "c-slider__nav-item--active"
+          ],
+          "introduced": true
+        },
+        "root/child-1/nav/nav-item/bullet": {
+          "box": {
+            "height": 16,
+            "width": 16
+          },
+          "classes": [
+            "c-slider__bullet"
+          ],
+          "introduced": true
+        },
+        "root/child-1/track": {
+          "box": {
+            "height": 552,
+            "width": 1440
+          },
+          "classes": [
+            "c-slider__track"
+          ],
+          "introduced": true
+        },
+        "root/child-1/track/slides": {
+          "box": {
+            "height": 552,
+            "width": 10185
+          },
+          "classes": [
+            "c-slider__slides"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "stretch",
+            "display": "flex"
+          }
+        },
+        "root/child-1/track/slides/slide": {
+          "box": {
+            "height": 552,
+            "width": 1440
+          },
+          "classes": [
+            "c-slider__slide",
+            "c-slider__slide--clone"
+          ],
+          "introduced": true
+        },
+        "root/child-1/track/slides/slide/teaser-card": {
+          "box": {
+            "height": 552,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--teaser-card"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        }
+      },
+      "when": {
+        "arrows": true,
+        "nav": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-slider--with-autoplay.png",
+        "story": "layout-slider--with-autoplay"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 597,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "596.953px"
+            }
+          }
+        },
+        "root/child-1": {
+          "classes": {
+            "add": [
+              "c-slider--autoplay"
+            ]
+          }
+        }
+      },
+      "when": {
+        "arrows": true,
+        "nav": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-slider--with-nav.png",
+        "story": "layout-slider--with-nav"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 597,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "596.953px"
+            }
+          }
+        }
+      },
+      "when": {
+        "arrows": true,
+        "nav": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-slider--with-teased-neighbours.png",
+        "story": "layout-slider--with-teased-neighbours"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 415,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "415.078px"
+            }
+          }
+        },
+        "root/child-1": {
+          "attrs": {
+            "data-tease-neighbours": {
+              "from": null,
+              "to": ""
+            }
+          },
+          "box": {
+            "height": 415,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "596.953px",
+              "to": "415.078px"
+            }
+          }
+        },
+        "root/child-1/track": {
+          "box": {
+            "height": 370,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "551.812px",
+              "to": "369.938px"
+            }
+          }
+        },
+        "root/child-1/track/slides": {
+          "box": {
+            "height": 370,
+            "width": 6790
+          },
+          "styles": {
+            "height": {
+              "from": "551.812px",
+              "to": "369.938px"
+            },
+            "width": {
+              "from": "10185px",
+              "to": "6790px"
+            }
+          }
+        },
+        "root/child-1/track/slides/slide": {
+          "box": {
+            "height": 370,
+            "width": 955
+          },
+          "styles": {
+            "height": {
+              "from": "551.812px",
+              "to": "369.938px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "955px"
+            }
+          }
+        },
+        "root/child-1/track/slides/slide/teaser-card": {
+          "box": {
+            "height": 370,
+            "width": 955
+          },
+          "styles": {
+            "height": {
+              "from": "551.812px",
+              "to": "369.938px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "955px"
+            }
+          }
+        }
+      },
+      "when": {
+        "arrows": true,
+        "nav": true,
+        "teaseNeighbours": true
+      }
+    }
+  ]
+}

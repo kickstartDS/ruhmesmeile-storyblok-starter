@@ -1,0 +1,32 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-appointment",
+  "component": "Event Appointment",
+  "props": {
+    "properties": {
+      "ariaLabel": {
+        "type": "string",
+        "default": "Event Appointment"
+      },
+      "date": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "newTab": {
+        "type": "boolean",
+        "default": true
+      },
+      "time": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string",
+        "default": "#"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

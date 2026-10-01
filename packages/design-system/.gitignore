@@ -30,9 +30,11 @@ src/token-*/storybook/tokens.css
 src/token-*/storybook/icons.svg
 src/components/**/*Defaults.ts
 src/contract-defaults
+.contract-observations
 static/*.css
 static/*.css.map
 dist
 
 # pagefind
 static/pagefind
+

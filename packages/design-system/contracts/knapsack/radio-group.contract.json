@@ -1,0 +1,35 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "radio-group",
+  "component": "Radio Group",
+  "description": "Radioes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "options": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "options"
+  ]
+}

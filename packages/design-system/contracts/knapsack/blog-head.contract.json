@@ -1,0 +1,32 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "blog-head",
+  "component": "Blog Head",
+  "description": "Intro portion of a singular blog entry",
+  "props": {
+    "properties": {
+      "alt": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "headline": {
+        "type": "string"
+      },
+      "image": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "headline"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "tags"
+  ]
+}

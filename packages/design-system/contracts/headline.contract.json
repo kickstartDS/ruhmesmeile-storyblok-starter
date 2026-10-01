@@ -1,0 +1,974 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "strong",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-headline--with-markdown"
+                    ],
+                    "path": "root/headline/inner/child-1/child-1",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [],
+                "element": "span",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-headline--with-markdown"
+                ],
+                "path": "root/headline/inner/child-1",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [],
+                "element": "span",
+                "namedBy": "content-match",
+                "observedIn": [
+                  "contract-defaults-headline--contract-default",
+                  "components-headline--h-1",
+                  "components-headline--h-2",
+                  "components-headline--h-3"
+                ],
+                "path": "root/headline/inner/text",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "dsa-headline__inner"
+            ],
+            "element": "span",
+            "namedBy": "bem-class",
+            "path": "root/headline/inner",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-headline__headline"
+        ],
+        "element": "h2",
+        "namedBy": "bem-class",
+        "path": "root/headline",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "em",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-headline--with-markdown"
+                ],
+                "path": "root/subheadline/child-1/child-1",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [],
+            "element": "span",
+            "namedBy": "position",
+            "observedIn": [
+              "components-headline--with-markdown"
+            ],
+            "path": "root/subheadline/child-1",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "classes": [],
+            "element": "span",
+            "namedBy": "content-match",
+            "observedIn": [
+              "components-headline--order-swapped",
+              "components-headline--with-subheadline"
+            ],
+            "path": "root/subheadline/sub",
+            "presence": "conditional",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "dsa-headline__subheadline"
+        ],
+        "element": "p",
+        "gate": {
+          "prop": "sub",
+          "when": "truthy"
+        },
+        "namedBy": "bem-class",
+        "observedIn": [
+          "components-headline--order-swapped",
+          "components-headline--with-markdown",
+          "components-headline--with-subheadline"
+        ],
+        "path": "root/subheadline",
+        "presence": "conditional",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-headline",
+      "dsa-headline--align-left",
+      "dsa-headline--space-after-small"
+    ],
+    "element": "header",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "align": {
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "left",
+          "center",
+          "right"
+        ]
+      },
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "id": {
+        "role": "behaviour",
+        "type": "string"
+      },
+      "level": {
+        "default": "h2",
+        "required": true,
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "p"
+        ]
+      },
+      "spaceAfter": {
+        "default": "small",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "minimum",
+          "small",
+          "large"
+        ]
+      },
+      "style": {
+        "default": "h2",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "p"
+        ]
+      },
+      "sub": {
+        "role": "content",
+        "type": "string"
+      },
+      "switchOrder": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "text": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "level",
+      "text"
+    ],
+    "schema": "./headline.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "switchOrder",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "prop": "align",
+      "values": [
+        {
+          "api": "left",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "center",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "right",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "h2",
+      "prop": "style",
+      "values": [
+        {
+          "api": "h1",
+          "class": "dsa-headline--h1",
+          "tokenSegment": "_h1"
+        },
+        {
+          "api": "h2",
+          "class": "dsa-headline--h2",
+          "tokenSegment": "_h2"
+        },
+        {
+          "api": "h3",
+          "class": "dsa-headline--h3",
+          "tokenSegment": "_h3"
+        },
+        {
+          "api": "h4",
+          "class": "dsa-headline--h4",
+          "tokenSegment": "_h4"
+        },
+        {
+          "api": "p",
+          "class": null,
+          "proven": false,
+          "tokenSegment": "_p"
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "align"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "id"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "level",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "spaceAfter",
+      "proven": false
+    },
+    {
+      "affects": [
+        "columnGap",
+        "fontSize",
+        "height",
+        "lineHeight",
+        "marginBottom",
+        "rowGap"
+      ],
+      "mechanism": "element-swap",
+      "parts": [
+        "root/headline"
+      ],
+      "prop": "style",
+      "tokens": [
+        "--dsa-headline_{style}--font",
+        "--dsa-headline_{style}--space-after_large",
+        "--dsa-headline_{style}--space-after_minimum",
+        "--dsa-headline_{style}--space-after_small",
+        "--dsa-headline_{style}__subheadline--font-size"
+      ]
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/subheadline"
+      ],
+      "prop": "sub"
+    },
+    {
+      "affects": [
+        "height"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root"
+      ],
+      "prop": "switchOrder"
+    },
+    {
+      "mechanism": "content",
+      "parts": [
+        "root/headline/inner/text"
+      ],
+      "prop": "text"
+    }
+  ],
+  "component": "Headline",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "headline",
+  "coverage": {
+    "axes": {
+      "align": {
+        "missing": [
+          "left",
+          "center",
+          "right"
+        ],
+        "proven": 0,
+        "total": 3
+      },
+      "style": {
+        "missing": [
+          "p"
+        ],
+        "proven": 4,
+        "total": 5
+      },
+      "switchOrder": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 1,
+      "values": 5
+    },
+    "combinations": {
+      "possible": 30,
+      "proven": 8
+    },
+    "parts": {
+      "conditional": 7,
+      "inDefault": 4,
+      "total": 10
+    },
+    "score": 0.6,
+    "stories": {
+      "failed": 0,
+      "observed": 7
+    }
+  },
+  "default": {
+    "configuration": {
+      "level": {
+        "source": "schema-default",
+        "value": "h2"
+      },
+      "spaceAfter": {
+        "source": "schema-default",
+        "value": "small"
+      },
+      "style": {
+        "source": "schema-default",
+        "value": "h2"
+      },
+      "switchOrder": {
+        "source": "schema-default",
+        "value": false
+      },
+      "text": {
+        "source": "placeholder",
+        "value": "Lorem ipsum dolor sit amet"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-headline--contract-default.png",
+      "story": "contract-defaults-headline--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 38,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "11.5626px"
+        }
+      },
+      "root/headline": {
+        "box": {
+          "height": 38,
+          "width": 1440
+        }
+      },
+      "root/headline/inner": {
+        "box": {
+          "height": 40,
+          "width": 474
+        }
+      },
+      "root/headline/inner/text": {
+        "box": {
+          "height": 40,
+          "width": 474
+        }
+      }
+    }
+  },
+  "description": "Component used for headlines",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:887fe3ecab2ffb9b",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--h-1.png",
+        "story": "components-headline--h-1"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 46,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-headline--h1"
+            ],
+            "remove": [
+              "dsa-headline--h2"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "11.5626px",
+              "to": "13.9982px"
+            },
+            "fontSize": {
+              "from": "33.036px",
+              "to": "39.9949px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "46px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "45.9942px"
+            },
+            "rowGap": {
+              "from": "11.5626px",
+              "to": "13.9982px"
+            }
+          }
+        },
+        "root/headline": {
+          "box": {
+            "height": 46,
+            "width": 1440
+          },
+          "element": {
+            "from": "h2",
+            "to": "h1"
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "39.9949px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "46px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "45.9942px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 49,
+            "width": 1094
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "39.9949px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "45.9942px"
+            }
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 49,
+            "width": 1094
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "39.9949px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "45.9942px"
+            }
+          }
+        }
+      },
+      "when": {
+        "style": "h1"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--h-2.png",
+        "story": "components-headline--h-2"
+      },
+      "parts": {
+        "root/headline/inner": {
+          "box": {
+            "height": 40,
+            "width": 445
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 40,
+            "width": 445
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--h-3.png",
+        "story": "components-headline--h-3"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 31,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-headline--h3"
+            ],
+            "remove": [
+              "dsa-headline--h2"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "11.5626px",
+              "to": "9.55074px"
+            },
+            "fontSize": {
+              "from": "33.036px",
+              "to": "27.2878px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "31.3594px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "31.381px"
+            },
+            "marginBottom": {
+              "from": "21.1438px",
+              "to": "13.7152px"
+            },
+            "rowGap": {
+              "from": "11.5626px",
+              "to": "9.55074px"
+            }
+          }
+        },
+        "root/headline": {
+          "box": {
+            "height": 31,
+            "width": 1440
+          },
+          "element": {
+            "from": "h2",
+            "to": "h3"
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "27.2878px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "31.3594px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "31.381px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 33,
+            "width": 353
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "27.2878px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "31.381px"
+            }
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 33,
+            "width": 353
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "27.2878px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "31.381px"
+            }
+          }
+        }
+      },
+      "when": {
+        "style": "h3"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--h-4.png",
+        "story": "components-headline--h-4"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 26,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-headline--h4"
+            ],
+            "remove": [
+              "dsa-headline--h2"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "11.5626px",
+              "to": "7.88895px"
+            },
+            "fontSize": {
+              "from": "33.036px",
+              "to": "22.5398px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "25.9219px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "25.9208px"
+            },
+            "marginBottom": {
+              "from": "21.1438px",
+              "to": "13.7152px"
+            },
+            "rowGap": {
+              "from": "11.5626px",
+              "to": "7.88895px"
+            }
+          }
+        },
+        "root/headline": {
+          "box": {
+            "height": 26,
+            "width": 1440
+          },
+          "element": {
+            "from": "h2",
+            "to": "h4"
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "22.5398px"
+            },
+            "height": {
+              "from": "37.9844px",
+              "to": "25.9219px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "25.9208px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 28,
+            "width": 214
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "22.5398px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "25.9208px"
+            }
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 28,
+            "width": 214
+          },
+          "styles": {
+            "fontSize": {
+              "from": "33.036px",
+              "to": "22.5398px"
+            },
+            "lineHeight": {
+              "from": "37.9914px",
+              "to": "25.9208px"
+            }
+          }
+        }
+      },
+      "when": {
+        "style": "h4"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--order-swapped.png",
+        "story": "components-headline--order-swapped"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 72,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "37.9844px",
+              "to": "72.3438px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 40,
+            "width": 486
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 40,
+            "width": 486
+          }
+        },
+        "root/subheadline": {
+          "box": {
+            "height": 23,
+            "width": 902
+          },
+          "classes": [
+            "dsa-headline__subheadline"
+          ],
+          "introduced": true
+        },
+        "root/subheadline/sub": {
+          "box": {
+            "height": 24,
+            "width": 412
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {
+        "switchOrder": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--with-markdown.png",
+        "story": "components-headline--with-markdown"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 72,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "37.9844px",
+              "to": "72.3438px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 40,
+            "width": 486
+          }
+        },
+        "root/headline/inner/child-1": {
+          "box": {
+            "height": 40,
+            "width": 486
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/headline/inner/child-1/child-1": {
+          "box": {
+            "height": 40,
+            "width": 223
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/subheadline/child-1": {
+          "box": {
+            "height": 24,
+            "width": 364
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/subheadline/child-1/child-1": {
+          "box": {
+            "height": 24,
+            "width": 106
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-headline--with-subheadline.png",
+        "story": "components-headline--with-subheadline"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 72,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "37.9844px",
+              "to": "72.3438px"
+            }
+          }
+        },
+        "root/headline/inner": {
+          "box": {
+            "height": 40,
+            "width": 486
+          }
+        },
+        "root/headline/inner/text": {
+          "box": {
+            "height": 40,
+            "width": 486
+          }
+        },
+        "root/subheadline/sub": {
+          "box": {
+            "height": 24,
+            "width": 364
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

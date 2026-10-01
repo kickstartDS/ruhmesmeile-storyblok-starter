@@ -1,0 +1,1997 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--headline"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "colorNeutral",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "headline",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-on-image-with-overlay"
+                        ],
+                        "path": "root/visual/hero--color-neutral/content/box/headline",
+                        "presence": "conditional",
+                        "role": "slot"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [
+                                  "c-button",
+                                  "c-button--clear",
+                                  "c-button-group__item",
+                                  "dsa-button"
+                                ],
+                                "element": "a",
+                                "gate": {
+                                  "prop": "colorNeutral",
+                                  "when": "truthy"
+                                },
+                                "instanceOf": "button",
+                                "namedBy": "slot-boundary",
+                                "observedIn": [
+                                  "components-hero--text-on-image-with-overlay"
+                                ],
+                                "path": "root/visual/hero--color-neutral/content/box/link/child-1/button",
+                                "presence": "conditional",
+                                "role": "slot"
+                              }
+                            ],
+                            "classes": [
+                              "c-button-group",
+                              "c-button-group--center"
+                            ],
+                            "element": "div",
+                            "gate": {
+                              "prop": "colorNeutral",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "components-hero--text-on-image-with-overlay"
+                            ],
+                            "path": "root/visual/hero--color-neutral/content/box/link/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "c-visual__link"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "colorNeutral",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-hero--text-on-image-with-overlay"
+                        ],
+                        "path": "root/visual/hero--color-neutral/content/box/link",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--rich-text"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "colorNeutral",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "rich-text",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-on-image-with-overlay"
+                        ],
+                        "path": "root/visual/hero--color-neutral/content/box/rich-text",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__box",
+                      "c-visual__box--transparent"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-on-image-with-overlay"
+                    ],
+                    "path": "root/visual/hero--color-neutral/content/box",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-visual__content",
+                  "c-visual__content--bottom",
+                  "c-visual__content--center"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-on-image-with-overlay"
+                ],
+                "path": "root/visual/hero--color-neutral/content",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-visual__image"
+                    ],
+                    "element": "picture",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-on-image-with-overlay"
+                    ],
+                    "path": "root/visual/hero--color-neutral/media/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  },
+                  {
+                    "classes": [
+                      "c-visual__overlay"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-on-image-with-overlay"
+                    ],
+                    "path": "root/visual/hero--color-neutral/media/overlay",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-visual__media"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-on-image-with-overlay"
+                ],
+                "path": "root/visual/hero--color-neutral/media",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-visual",
+              "c-visual--no-crop",
+              "dsa-hero",
+              "dsa-hero--color-neutral",
+              "dsa-hero--content-bottom",
+              "dsa-hero--overlay"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "colorNeutral",
+              "when": "truthy"
+            },
+            "instanceOf": "hero--color-neutral",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-hero--text-on-image-with-overlay"
+            ],
+            "path": "root/visual/hero--color-neutral",
+            "presence": "conditional",
+            "role": "slot",
+            "tokens": [
+              "--dsa-hero--min-height",
+              "--dsa-hero--min-height_small",
+              "--dsa-hero__copy--color",
+              "--dsa-hero__copy--font",
+              "--dsa-hero__headline--color",
+              "--dsa-hero__overlay--background",
+              "--dsa-hero__skip-button--color",
+              "--dsa-hero__skip-button--shadow",
+              "--dsa-hero__skip-button--transform_hover",
+              "--dsa-hero__subheadline--color",
+              "--dsa-hero__textbox--backdrop-filter",
+              "--dsa-hero__textbox--background-color",
+              "--dsa-hero__textbox--border-radius",
+              "--dsa-hero__textbox--box-shadow",
+              "--dsa-hero__textbox--max-width",
+              "--dsa-hero__textbox--padding",
+              "--dsa-hero_below__textbox--max-width",
+              "--dsa-hero_below__textbox--padding",
+              "--dsa-hero_color-neutral__copy--color",
+              "--dsa-hero_color-neutral__headline--color",
+              "--dsa-hero_color-neutral__subheadline--color",
+              "--dsa-hero_corner__overlay--background",
+              "--dsa-hero_highlight-text__copy--font",
+              "--dsa-hero_left__overlay--background",
+              "--dsa-hero_offset__overlay--background",
+              "--dsa-hero_offset__textbox--max-width",
+              "--dsa-hero_offset__textbox--offset",
+              "--dsa-hero_offset__textbox--padding",
+              "--dsa-hero_right__overlay--background"
+            ]
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--headline"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "highlightText",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "headline",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-below-image"
+                        ],
+                        "path": "root/visual/hero--content-below/content/box/headline",
+                        "presence": "conditional",
+                        "role": "slot"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [
+                                  "c-button",
+                                  "c-button--solid",
+                                  "c-button-group__item",
+                                  "dsa-button"
+                                ],
+                                "element": "a",
+                                "gate": {
+                                  "prop": "highlightText",
+                                  "when": "truthy"
+                                },
+                                "instanceOf": "button",
+                                "namedBy": "slot-boundary",
+                                "observedIn": [
+                                  "components-hero--text-below-image"
+                                ],
+                                "path": "root/visual/hero--content-below/content/box/link/child-1/button",
+                                "presence": "conditional",
+                                "role": "slot"
+                              }
+                            ],
+                            "classes": [
+                              "c-button-group",
+                              "c-button-group--center"
+                            ],
+                            "element": "div",
+                            "gate": {
+                              "prop": "highlightText",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "components-hero--text-below-image"
+                            ],
+                            "path": "root/visual/hero--content-below/content/box/link/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "c-visual__link"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "highlightText",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-hero--text-below-image"
+                        ],
+                        "path": "root/visual/hero--content-below/content/box/link",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--rich-text"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "highlightText",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "rich-text",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-below-image"
+                        ],
+                        "path": "root/visual/hero--content-below/content/box/rich-text",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__box",
+                      "c-visual__box--transparent"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "highlightText",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-below-image"
+                    ],
+                    "path": "root/visual/hero--content-below/content/box",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-visual__content",
+                  "c-visual__content--bottom",
+                  "c-visual__content--center"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "highlightText",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-below-image"
+                ],
+                "path": "root/visual/hero--content-below/content",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-visual__image"
+                    ],
+                    "element": "picture",
+                    "gate": {
+                      "prop": "highlightText",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-below-image"
+                    ],
+                    "path": "root/visual/hero--content-below/media/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  },
+                  {
+                    "classes": [
+                      "c-visual__overlay"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "highlightText",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-below-image"
+                    ],
+                    "path": "root/visual/hero--content-below/media/overlay",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-visual__media"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "highlightText",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-below-image"
+                ],
+                "path": "root/visual/hero--content-below/media",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-visual",
+              "dsa-hero",
+              "dsa-hero--content-below",
+              "dsa-hero--highlight-text",
+              "dsa-hero--overlay"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "highlightText",
+              "when": "truthy"
+            },
+            "instanceOf": "hero--content-below",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-hero--text-below-image"
+            ],
+            "path": "root/visual/hero--content-below",
+            "presence": "conditional",
+            "role": "slot",
+            "tokens": [
+              "--dsa-hero--min-height",
+              "--dsa-hero--min-height_small",
+              "--dsa-hero__copy--color",
+              "--dsa-hero__copy--font",
+              "--dsa-hero__headline--color",
+              "--dsa-hero__overlay--background",
+              "--dsa-hero__skip-button--color",
+              "--dsa-hero__skip-button--shadow",
+              "--dsa-hero__skip-button--transform_hover",
+              "--dsa-hero__subheadline--color",
+              "--dsa-hero__textbox--backdrop-filter",
+              "--dsa-hero__textbox--background-color",
+              "--dsa-hero__textbox--border-radius",
+              "--dsa-hero__textbox--box-shadow",
+              "--dsa-hero__textbox--max-width",
+              "--dsa-hero__textbox--padding",
+              "--dsa-hero_below__textbox--max-width",
+              "--dsa-hero_below__textbox--padding",
+              "--dsa-hero_color-neutral__copy--color",
+              "--dsa-hero_color-neutral__headline--color",
+              "--dsa-hero_color-neutral__subheadline--color",
+              "--dsa-hero_corner__overlay--background",
+              "--dsa-hero_highlight-text__copy--font",
+              "--dsa-hero_left__overlay--background",
+              "--dsa-hero_offset__overlay--background",
+              "--dsa-hero_offset__textbox--max-width",
+              "--dsa-hero_offset__textbox--offset",
+              "--dsa-hero_offset__textbox--padding",
+              "--dsa-hero_right__overlay--background"
+            ]
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--headline"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "skipButton",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "headline",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-box-on-full-screen"
+                        ],
+                        "path": "root/visual/hero--content-left/content/box/headline",
+                        "presence": "conditional",
+                        "role": "slot"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [
+                                  "c-button",
+                                  "c-button--solid",
+                                  "c-button-group__item",
+                                  "dsa-button"
+                                ],
+                                "element": "a",
+                                "gate": {
+                                  "prop": "skipButton",
+                                  "when": "truthy"
+                                },
+                                "instanceOf": "button",
+                                "namedBy": "slot-boundary",
+                                "observedIn": [
+                                  "components-hero--text-box-on-full-screen"
+                                ],
+                                "path": "root/visual/hero--content-left/content/box/link/child-1/button",
+                                "presence": "repeated",
+                                "role": "slot"
+                              }
+                            ],
+                            "classes": [
+                              "c-button-group",
+                              "c-button-group--left"
+                            ],
+                            "element": "div",
+                            "gate": {
+                              "prop": "skipButton",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "components-hero--text-box-on-full-screen"
+                            ],
+                            "path": "root/visual/hero--content-left/content/box/link/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "c-visual__link"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "skipButton",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-hero--text-box-on-full-screen"
+                        ],
+                        "path": "root/visual/hero--content-left/content/box/link",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--rich-text"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "skipButton",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "rich-text",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-hero--text-box-on-full-screen"
+                        ],
+                        "path": "root/visual/hero--content-left/content/box/rich-text",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__box",
+                      "c-visual__box--solid"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "skipButton",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-box-on-full-screen"
+                    ],
+                    "path": "root/visual/hero--content-left/content/box",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-visual__content",
+                  "c-visual__content--left"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "skipButton",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-box-on-full-screen"
+                ],
+                "path": "root/visual/hero--content-left/content",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "icon"
+                        ],
+                        "element": "svg",
+                        "gate": {
+                          "prop": "skipButton",
+                          "when": "truthy"
+                        },
+                        "namedBy": "tag",
+                        "observedIn": [
+                          "components-hero--text-box-on-full-screen"
+                        ],
+                        "path": "root/visual/hero--content-left/continue/continue-btn/icon",
+                        "presence": "conditional",
+                        "role": "glyph"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__continue-btn"
+                    ],
+                    "element": "button",
+                    "gate": {
+                      "prop": "skipButton",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-hero--text-box-on-full-screen"
+                    ],
+                    "path": "root/visual/hero--content-left/continue/continue-btn",
+                    "presence": "conditional",
+                    "role": "control"
+                  }
+                ],
+                "classes": [
+                  "c-visual__continue"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "skipButton",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-hero--text-box-on-full-screen"
+                ],
+                "path": "root/visual/hero--content-left/continue",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-visual__image"
+                    ],
+                    "element": "picture",
+                    "gate": {
+                      "prop": "textbox",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-hero--contract-default",
+                      "components-hero--text-box-on-full-screen"
+                    ],
+                    "path": "root/visual/hero--content-left/media/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "c-visual__media"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "textbox",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-hero--contract-default",
+                  "components-hero--text-box-on-full-screen"
+                ],
+                "path": "root/visual/hero--content-left/media",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-visual",
+              "dsa-hero",
+              "dsa-hero--content-left"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "textbox",
+              "when": "truthy"
+            },
+            "instanceOf": "hero--content-left",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "contract-defaults-hero--contract-default",
+              "components-hero--text-box-on-full-screen"
+            ],
+            "path": "root/visual/hero--content-left",
+            "presence": "conditional",
+            "role": "slot",
+            "tokens": [
+              "--dsa-hero--min-height",
+              "--dsa-hero--min-height_small",
+              "--dsa-hero__copy--color",
+              "--dsa-hero__copy--font",
+              "--dsa-hero__headline--color",
+              "--dsa-hero__overlay--background",
+              "--dsa-hero__skip-button--color",
+              "--dsa-hero__skip-button--shadow",
+              "--dsa-hero__skip-button--transform_hover",
+              "--dsa-hero__subheadline--color",
+              "--dsa-hero__textbox--backdrop-filter",
+              "--dsa-hero__textbox--background-color",
+              "--dsa-hero__textbox--border-radius",
+              "--dsa-hero__textbox--box-shadow",
+              "--dsa-hero__textbox--max-width",
+              "--dsa-hero__textbox--padding",
+              "--dsa-hero_below__textbox--max-width",
+              "--dsa-hero_below__textbox--padding",
+              "--dsa-hero_color-neutral__copy--color",
+              "--dsa-hero_color-neutral__headline--color",
+              "--dsa-hero_color-neutral__subheadline--color",
+              "--dsa-hero_corner__overlay--background",
+              "--dsa-hero_highlight-text__copy--font",
+              "--dsa-hero_left__overlay--background",
+              "--dsa-hero_offset__overlay--background",
+              "--dsa-hero_offset__textbox--max-width",
+              "--dsa-hero_offset__textbox--offset",
+              "--dsa-hero_offset__textbox--padding",
+              "--dsa-hero_right__overlay--background"
+            ]
+          }
+        ],
+        "classes": [
+          "l-container",
+          "l-container--visual"
+        ],
+        "element": "div",
+        "instanceOf": "visual",
+        "namedBy": "slot-boundary",
+        "path": "root/visual",
+        "presence": "always",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--hero"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "buttons": {
+        "role": "composition",
+        "type": "array"
+      },
+      "colorNeutral": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "headline": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "height": {
+        "default": "default",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "small",
+          "default",
+          "fullImage",
+          "fullScreen"
+        ]
+      },
+      "highlightText": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "invertText": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "mobileTextBelow": {
+        "default": true,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "overlay": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "skipButton": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "sub": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "text": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "textPosition": {
+        "default": "left",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "center",
+          "below",
+          "offset",
+          "left",
+          "right",
+          "corner",
+          "bottom"
+        ]
+      },
+      "textbox": {
+        "default": true,
+        "role": "appearance",
+        "type": "boolean"
+      }
+    },
+    "required": [],
+    "schema": "./hero.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "highlightText",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "colorNeutral",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "default",
+      "prop": "height",
+      "values": [
+        {
+          "api": "small",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "default",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "fullImage",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "fullScreen",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": true,
+      "prop": "textbox",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": true,
+      "prop": "mobileTextBelow",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "invertText",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "skipButton",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "overlay",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "buttons"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/visual/hero--color-neutral",
+        "root/visual/hero--color-neutral/content",
+        "root/visual/hero--color-neutral/content/box",
+        "root/visual/hero--color-neutral/content/box/headline",
+        "root/visual/hero--color-neutral/content/box/link",
+        "root/visual/hero--color-neutral/content/box/link/child-1",
+        "root/visual/hero--color-neutral/content/box/link/child-1/button",
+        "root/visual/hero--color-neutral/content/box/rich-text",
+        "root/visual/hero--color-neutral/media",
+        "root/visual/hero--color-neutral/media/image",
+        "root/visual/hero--color-neutral/media/overlay"
+      ],
+      "prop": "colorNeutral"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "headline",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "height"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/visual/hero--content-below",
+        "root/visual/hero--content-below/content",
+        "root/visual/hero--content-below/content/box",
+        "root/visual/hero--content-below/content/box/headline",
+        "root/visual/hero--content-below/content/box/link",
+        "root/visual/hero--content-below/content/box/link/child-1",
+        "root/visual/hero--content-below/content/box/link/child-1/button",
+        "root/visual/hero--content-below/content/box/rich-text",
+        "root/visual/hero--content-below/media",
+        "root/visual/hero--content-below/media/image",
+        "root/visual/hero--content-below/media/overlay"
+      ],
+      "prop": "highlightText"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "invertText"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "mobileTextBelow"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "overlay"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/visual/hero--content-left/content",
+        "root/visual/hero--content-left/content/box",
+        "root/visual/hero--content-left/content/box/headline",
+        "root/visual/hero--content-left/content/box/link",
+        "root/visual/hero--content-left/content/box/link/child-1",
+        "root/visual/hero--content-left/content/box/link/child-1/button",
+        "root/visual/hero--content-left/content/box/rich-text",
+        "root/visual/hero--content-left/continue",
+        "root/visual/hero--content-left/continue/continue-btn",
+        "root/visual/hero--content-left/continue/continue-btn/icon"
+      ],
+      "prop": "skipButton"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "sub",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "textPosition",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/visual/hero--content-left",
+        "root/visual/hero--content-left/media",
+        "root/visual/hero--content-left/media/image"
+      ],
+      "prop": "textbox"
+    }
+  ],
+  "component": "Hero",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "icon",
+          "label",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          1,
+          2
+        ],
+        "part": "root",
+        "prop": "buttons"
+      }
+    ]
+  },
+  "contractId": "hero",
+  "coverage": {
+    "axes": {
+      "colorNeutral": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "height": {
+        "missing": [
+          "small"
+        ],
+        "proven": 3,
+        "total": 4
+      },
+      "highlightText": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "invertText": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "mobileTextBelow": {
+        "missing": [
+          false
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "overlay": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "skipButton": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "textbox": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "buttons"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 11
+    },
+    "combinations": {
+      "possible": 512,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 35,
+      "inDefault": 5,
+      "total": 37
+    },
+    "score": 0.83,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "buttons": {
+        "source": "schema-default",
+        "value": []
+      },
+      "colorNeutral": {
+        "source": "schema-default",
+        "value": false
+      },
+      "height": {
+        "source": "schema-default",
+        "value": "default"
+      },
+      "highlightText": {
+        "source": "schema-default",
+        "value": false
+      },
+      "image": {
+        "source": "schema-default",
+        "value": {
+          "indent": "none"
+        }
+      },
+      "invertText": {
+        "source": "schema-default",
+        "value": false
+      },
+      "mobileTextBelow": {
+        "source": "schema-default",
+        "value": true
+      },
+      "overlay": {
+        "source": "schema-default",
+        "value": false
+      },
+      "skipButton": {
+        "source": "schema-default",
+        "value": false
+      },
+      "textPosition": {
+        "source": "schema-default",
+        "value": "left"
+      },
+      "textbox": {
+        "source": "schema-default",
+        "value": true
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-hero--contract-default.png",
+      "story": "contract-defaults-hero--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 576,
+          "width": 1440
+        }
+      },
+      "root/visual": {
+        "box": {
+          "height": 576,
+          "width": 1440
+        }
+      },
+      "root/visual/hero--content-left": {
+        "box": {
+          "height": 576,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-hero__overlay--background"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-default",
+            "token": "--dsa-hero__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-hero__copy--font"
+          },
+          "minHeight": {
+            "computed": "576px",
+            "resolves": null,
+            "token": "--dsa-hero--min-height"
+          }
+        }
+      },
+      "root/visual/hero--content-left/media": {
+        "box": {
+          "height": 576,
+          "width": 1440
+        }
+      },
+      "root/visual/hero--content-left/media/image": {
+        "box": {
+          "height": 576,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Hero component for displaying a prominent visual section with headline, subheadline, text, and call-to-action buttons.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:a5c8b385ef5d16e8",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-hero--text-below-image.png",
+        "story": "components-hero--text-below-image"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 962,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "961.766px"
+            }
+          }
+        },
+        "root/visual": {
+          "box": {
+            "height": 962,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "961.766px"
+            }
+          }
+        },
+        "root/visual/hero--content-below": {
+          "box": {
+            "height": 962,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual",
+            "dsa-hero",
+            "dsa-hero--content-below",
+            "dsa-hero--highlight-text",
+            "dsa-hero--overlay"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          },
+          "styles": {
+            "background": {
+              "computed": "rgba(0, 0, 0, 0) none",
+              "resolves": null,
+              "token": "--dsa-hero__overlay--background"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-default",
+              "token": "--dsa-hero__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-hero__copy--font"
+            },
+            "minHeight": {
+              "computed": "576px",
+              "resolves": null,
+              "token": "--dsa-hero--min-height"
+            }
+          }
+        },
+        "root/visual/hero--content-below/content": {
+          "box": {
+            "height": 386,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__content",
+            "c-visual__content--bottom",
+            "c-visual__content--center"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-end",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--content-below/content/box": {
+          "box": {
+            "height": 255,
+            "width": 902
+          },
+          "classes": [
+            "c-visual__box",
+            "c-visual__box--transparent"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/content/box/headline": {
+          "box": {
+            "height": 85,
+            "width": 902
+          },
+          "classes": [
+            "l-container",
+            "l-container--headline"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/content/box/link": {
+          "box": {
+            "height": 54,
+            "width": 902
+          },
+          "classes": [
+            "c-visual__link"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/content/box/link/child-1": {
+          "box": {
+            "height": 54,
+            "width": 902
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--center"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--content-below/content/box/link/child-1/button": {
+          "box": {
+            "height": 54,
+            "width": 195
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--content-below/content/box/rich-text": {
+          "box": {
+            "height": 65,
+            "width": 902
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/media": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__media"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/media/image": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__image"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-below/media/overlay": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__overlay"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "highlightText": true,
+        "overlay": true,
+        "textbox": false
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-hero--text-box-on-full-screen.png",
+        "story": "components-hero--text-box-on-full-screen"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "900px"
+            }
+          }
+        },
+        "root/visual": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "900px"
+            }
+          }
+        },
+        "root/visual/hero--content-left": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "c-visual--full"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "900px"
+            },
+            "minHeight": {
+              "from": "576px",
+              "to": "0px"
+            }
+          }
+        },
+        "root/visual/hero--content-left/content": {
+          "box": {
+            "height": 844,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__content",
+            "c-visual__content--left"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/visual/hero--content-left/content/box": {
+          "box": {
+            "height": 315,
+            "width": 613
+          },
+          "classes": [
+            "c-visual__box",
+            "c-visual__box--solid"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-left/content/box/headline": {
+          "box": {
+            "height": 72,
+            "width": 551
+          },
+          "classes": [
+            "l-container",
+            "l-container--headline"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-left/content/box/link": {
+          "box": {
+            "height": 54,
+            "width": 551
+          },
+          "classes": [
+            "c-visual__link"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-left/content/box/link/child-1": {
+          "box": {
+            "height": 54,
+            "width": 551
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--left"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/visual/hero--content-left/content/box/link/child-1/button": {
+          "box": {
+            "height": 54,
+            "width": 162
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--content-left/content/box/rich-text": {
+          "box": {
+            "height": 81,
+            "width": 551
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-left/continue": {
+          "box": {
+            "height": 56,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__continue"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--content-left/continue/continue-btn": {
+          "box": {
+            "height": 56,
+            "width": 56
+          },
+          "classes": [
+            "c-visual__continue-btn"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/visual/hero--content-left/continue/continue-btn/icon": {
+          "box": {
+            "height": 56,
+            "width": 56
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/visual/hero--content-left/media": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "900px"
+            },
+            "minHeight": {
+              "from": "576px",
+              "to": "min(100%, 576px)"
+            }
+          }
+        },
+        "root/visual/hero--content-left/media/image": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "900px"
+            },
+            "minHeight": {
+              "from": "576px",
+              "to": "min(100%, 576px)"
+            }
+          }
+        }
+      },
+      "when": {
+        "height": "fullScreen",
+        "skipButton": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-hero--text-on-image-with-overlay.png",
+        "story": "components-hero--text-on-image-with-overlay"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "955.922px"
+            }
+          }
+        },
+        "root/visual": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "576px",
+              "to": "955.922px"
+            }
+          }
+        },
+        "root/visual/hero--color-neutral": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual",
+            "c-visual--no-crop",
+            "dsa-hero",
+            "dsa-hero--color-neutral",
+            "dsa-hero--content-bottom",
+            "dsa-hero--overlay"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          },
+          "styles": {
+            "background": {
+              "computed": "rgba(0, 0, 0, 0) none",
+              "resolves": null,
+              "token": "--dsa-hero__overlay--background"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-default",
+              "token": "--dsa-hero__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-hero__copy--font"
+            }
+          }
+        },
+        "root/visual/hero--color-neutral/content": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__content",
+            "c-visual__content--bottom",
+            "c-visual__content--center"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-end",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--color-neutral/content/box": {
+          "box": {
+            "height": 192,
+            "width": 613
+          },
+          "classes": [
+            "c-visual__box",
+            "c-visual__box--transparent"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/content/box/headline": {
+          "box": {
+            "height": 38,
+            "width": 613
+          },
+          "classes": [
+            "l-container",
+            "l-container--headline"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/content/box/link": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "c-visual__link"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/content/box/link/child-1": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--center"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--color-neutral/content/box/link/child-1/button": {
+          "box": {
+            "height": 54,
+            "width": 269
+          },
+          "classes": [
+            "c-button",
+            "c-button--clear",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/visual/hero--color-neutral/content/box/rich-text": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/media": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__media"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/media/image": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__image"
+          ],
+          "introduced": true
+        },
+        "root/visual/hero--color-neutral/media/overlay": {
+          "box": {
+            "height": 956,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__overlay"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "colorNeutral": true,
+        "height": "fullImage",
+        "overlay": true,
+        "textbox": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Split Weighted",
+  "default": {
+    "description": "The Split Weighted component features a layout divided into two sections with customizable widths. The sections are aligned at the top, creating a balanced and organized appearance. The design is clean and functional, allowing for clear separation of content within the layout.",
+    "from": "img/screenshots/contract-defaults-splitweighted--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-split-weighted--text-with-contact",
+      "when": {},
+      "difference": "In this variant, the Split Weighted component features a larger vertical gutter, increasing the spacing between sections for a more open feel. The aside section is wider, allowing more space for content, while the main content area is slightly narrower, creating a more pronounced division between the two sections. This layout emphasizes the aside content, making it more prominent within the overall design.",
+      "from": "img/screenshots/layout-split-weighted--text-with-contact.png"
+    },
+    {
+      "story": "layout-split-weighted--text-with-teaser",
+      "when": {},
+      "difference": "In this variant, the Split Weighted component features a wider aside section, now measuring 505.297px, which includes a teaser card. The main content section is narrower at 903.906px, with smaller gutters and newly introduced headline and rich-text elements, creating a more compact and content-rich layout.",
+      "from": "img/screenshots/layout-split-weighted--text-with-teaser.png"
+    },
+    {
+      "story": "layout-split-weighted--text-with-teaser-tiles",
+      "when": {},
+      "difference": "In this variant, the layout is reversed, with the aside section appearing first. The sections are aligned at the bottom, and the overall height is increased, giving a more expansive feel. The aside section is wider, while the main content area is narrower, with smaller gaps between elements, creating a more compact and dense arrangement.",
+      "from": "img/screenshots/layout-split-weighted--text-with-teaser-tiles.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:21.677Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-splitweighted--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/layout-split-weighted--text-with-contact.png": "sha256:e0561d002af266a3",
+        "img/screenshots/layout-split-weighted--text-with-teaser.png": "sha256:8a915ee529cdf803",
+        "img/screenshots/layout-split-weighted--text-with-teaser-tiles.png": "sha256:6bb5115ea2f2c3a7"
+      },
+      "contract": "sha256:c218aa3161451390cec5d5efec801348a25d8d42bf5302138d4cd5236f274168"
+    }
+  }
+}

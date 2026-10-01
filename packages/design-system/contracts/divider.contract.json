@@ -1,0 +1,181 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "classes": [
+      "c-divider",
+      "dsa-divider"
+    ],
+    "element": "hr",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-divider--background",
+      "--dsa-divider--background_accent",
+      "--dsa-divider--height"
+    ]
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "component": {
+        "role": "content",
+        "type": "string"
+      },
+      "variant": {
+        "default": "default",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "default",
+          "accent"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./divider.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "default",
+      "prop": "variant",
+      "values": [
+        {
+          "api": "default",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "accent",
+          "class": "c-divider--accent",
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "component",
+      "proven": false
+    },
+    {
+      "mechanism": "class-toggle",
+      "parts": [
+        "root"
+      ],
+      "prop": "variant"
+    }
+  ],
+  "component": "Divider",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "divider",
+  "coverage": {
+    "axes": {
+      "variant": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 1,
+      "total": 1
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 2
+    }
+  },
+  "default": {
+    "configuration": {
+      "variant": {
+        "source": "schema-default",
+        "value": "default"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-divider--contract-default.png",
+      "story": "contract-defaults-divider--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 1,
+          "width": 1440
+        },
+        "styles": {
+          "background": {
+            "computed": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15) none",
+            "resolves": "--ks-border-color-default",
+            "token": "--dsa-divider--background"
+          },
+          "height": {
+            "computed": "1px",
+            "resolves": "--ks-border-width-default",
+            "token": "--dsa-divider--height"
+          }
+        }
+      }
+    }
+  },
+  "description": "Dividers bring clarity to a layout by grouping and dividing content in close proximity.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:8d329da9ba68762d",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-divider--accent.png",
+        "story": "layout-divider--accent"
+      },
+      "parts": {
+        "root": {
+          "classes": {
+            "add": [
+              "c-divider--accent"
+            ]
+          }
+        }
+      },
+      "when": {
+        "variant": "accent"
+      }
+    }
+  ]
+}

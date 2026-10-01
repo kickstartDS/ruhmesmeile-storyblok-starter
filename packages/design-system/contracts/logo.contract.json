@@ -1,0 +1,225 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [],
+        "element": "noscript",
+        "namedBy": "position",
+        "path": "root/child-2",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-logo__img",
+          "lazyloaded"
+        ],
+        "element": "img",
+        "namedBy": "bem-class",
+        "path": "root/img",
+        "presence": "always",
+        "role": "media"
+      }
+    ],
+    "classes": [
+      "dsa-logo"
+    ],
+    "element": "a",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "control"
+  },
+  "api": {
+    "props": {
+      "alt": {
+        "role": "content",
+        "type": "string"
+      },
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "height": {
+        "role": "appearance",
+        "type": "integer"
+      },
+      "homepageHref": {
+        "default": "/",
+        "format": "uri",
+        "role": "content",
+        "type": "string"
+      },
+      "inverted": {
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "src": {
+        "format": "image",
+        "role": "content",
+        "type": "string"
+      },
+      "srcInverted": {
+        "format": "image",
+        "role": "content",
+        "type": "string"
+      },
+      "width": {
+        "role": "appearance",
+        "type": "integer"
+      }
+    },
+    "required": [],
+    "schema": "./logo.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "prop": "inverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "alt",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "height"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "homepageHref",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "inverted"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "src",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "srcInverted",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "width"
+    }
+  ],
+  "component": "Logo",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "logo",
+  "coverage": {
+    "axes": {
+      "inverted": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 3,
+      "total": 3
+    },
+    "score": 0,
+    "stories": {
+      "failed": 0,
+      "observed": 0
+    }
+  },
+  "default": {
+    "configuration": {
+      "homepageHref": {
+        "source": "schema-default",
+        "value": "/"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-logo--contract-default.png",
+      "story": "contract-defaults-logo--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 40,
+          "width": 1440
+        }
+      },
+      "root/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/img": {
+        "box": {
+          "height": 40,
+          "width": 0
+        }
+      }
+    }
+  },
+  "generated": {
+    "inputs": {
+      "schema": "sha256:47eacf7c452bfcef",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

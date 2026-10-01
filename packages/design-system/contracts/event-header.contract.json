@@ -1,0 +1,323 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-tag-label__content"
+                ],
+                "element": "span",
+                "gate": {
+                  "prop": "title",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "event-event-header--default"
+                ],
+                "path": "root/categories/category/content",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "c-tag-label",
+              "c-tag-label--m",
+              "dsa-event__category"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "title",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "event-event-header--default"
+            ],
+            "path": "root/categories/category",
+            "presence": "repeated",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-event-header__categories"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "title",
+          "when": "truthy"
+        },
+        "namedBy": "bem-class",
+        "observedIn": [
+          "event-event-header--default"
+        ],
+        "path": "root/categories",
+        "presence": "conditional",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-headline",
+          "dsa-headline--align-left",
+          "dsa-headline--h2",
+          "dsa-headline--space-after-small"
+        ],
+        "element": "header",
+        "gate": {
+          "prop": "title",
+          "when": "truthy"
+        },
+        "instanceOf": "headline",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "event-event-header--default"
+        ],
+        "path": "root/headline",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "l-container",
+          "l-container--rich-text"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "title",
+          "when": "truthy"
+        },
+        "instanceOf": "rich-text",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "event-event-header--default"
+        ],
+        "path": "root/rich-text",
+        "presence": "conditional",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "dsa-event-header"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "categories": {
+        "role": "composition",
+        "type": "array"
+      },
+      "intro": {
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./event-header.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "categories"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "intro",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/categories",
+        "root/categories/category",
+        "root/categories/category/content",
+        "root/headline",
+        "root/rich-text"
+      ],
+      "prop": "title"
+    }
+  ],
+  "component": "Event Header",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "label"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "categories"
+      }
+    ]
+  },
+  "contractId": "event-header",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "categories"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 5,
+      "inDefault": 1,
+      "total": 6
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "categories": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventheader--contract-default.png",
+      "story": "contract-defaults-eventheader--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Event header component for displaying event title, categories, and introductory text.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:414b1d3e17701cf6",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-header--default.png",
+        "story": "event-event-header--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 175,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "175.031px"
+            }
+          }
+        },
+        "root/categories": {
+          "box": {
+            "height": 37,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-event-header__categories"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "8px"
+          }
+        },
+        "root/categories/category": {
+          "box": {
+            "height": 37,
+            "width": 144
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--m",
+            "dsa-event__category"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/categories/category/content": {
+          "box": {
+            "height": 37,
+            "width": 144
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/headline": {
+          "box": {
+            "height": 38,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--h2",
+            "dsa-headline--space-after-small"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "11.5626px"
+          }
+        },
+        "root/rich-text": {
+          "box": {
+            "height": 65,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

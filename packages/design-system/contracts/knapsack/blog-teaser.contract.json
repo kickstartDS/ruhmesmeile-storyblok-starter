@@ -1,0 +1,48 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "blog-teaser",
+  "component": "Blog Teaser",
+  "description": "Display a blog teaser with date, tags, headline, teaser text and author",
+  "props": {
+    "properties": {
+      "alt": {
+        "type": "string"
+      },
+      "author": {
+        "type": "object"
+      },
+      "className": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "headline": {
+        "type": "string"
+      },
+      "image": {
+        "type": "string"
+      },
+      "link": {
+        "type": "object"
+      },
+      "readingTime": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "array"
+      },
+      "teaserText": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "headline",
+      "teaserText"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "tags"
+  ]
+}

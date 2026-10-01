@@ -6,13 +6,19 @@
  * unreachable across the docker bridge fails here — costing a container start
  * rather than a trial.
  *
- * Usage: node probe-http.mjs <url>
+ * Usage: node probe-http.mjs <url> [expectedToolName...]
+ *
+ * Naming expected tools matters more than it looks. A `contracts` arm whose
+ * servers answered `tools/list` with the tools withheld — because
+ * `DESIGN_SYSTEM_CONTRACTS_DIR` did not reach them — passes an exit-code-only
+ * check and then measures an A/A, silently, at full price. The arm's whole
+ * difference is a tool list, so the tool list is what gets asserted.
  */
 
-const url = process.argv[2];
+const [url, ...expected] = process.argv.slice(2);
 
 if (!url) {
-  console.error("usage: node probe-http.mjs <url>");
+  console.error("usage: node probe-http.mjs <url> [expectedToolName...]");
   process.exit(2);
 }
 
@@ -54,6 +60,18 @@ try {
 
   if (!Array.isArray(tools) || tools.length === 0) {
     console.error(`${url} answered tools/list with no tools.`);
+    process.exit(1);
+  }
+
+  const names = tools
+    .map((tool) => (tool && typeof tool.name === "string" ? tool.name : ""))
+    .filter(Boolean);
+  const missing = expected.filter((name) => !names.includes(name));
+  if (missing.length) {
+    console.error(
+      `${url} is missing expected tool(s): ${missing.join(", ")}\n` +
+        `  it answered with ${names.length}: ${names.join(", ")}`,
+    );
     process.exit(1);
   }
 

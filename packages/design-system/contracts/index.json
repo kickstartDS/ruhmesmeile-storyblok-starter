@@ -1,0 +1,441 @@
+{
+  "$format": "kickstartds/component-contract-index@1",
+  "format": "kickstartds/component-contract@1",
+  "contractVersion": "2.2.1",
+  "artifacts": [
+    {
+      "contractId": "blog-aside",
+      "component": "Blog Aside",
+      "path": "blog-aside.contract.json",
+      "address": "sha256:62fefde96d11f7ef8a8cb6a01de6bd27864a35e4191553dc344f47dda77c175f",
+      "origin": "synced"
+    },
+    {
+      "contractId": "blog-author",
+      "component": "Blog Author",
+      "path": "blog-author.contract.json",
+      "address": "sha256:3f7b59a900635c55ce6777607689394a5b14220346ba3be5c6589e97a6a3f671",
+      "origin": "synced"
+    },
+    {
+      "contractId": "blog-head",
+      "component": "Blog Head",
+      "path": "blog-head.contract.json",
+      "address": "sha256:c4e87b7f27d1ca144c4b336a87ca94fac6fb335df23d57341f0cebd0f50d11d1",
+      "origin": "synced"
+    },
+    {
+      "contractId": "blog-teaser",
+      "component": "Blog Teaser",
+      "path": "blog-teaser.contract.json",
+      "address": "sha256:47cf51fe54e4d3a2151b14e2b69ef72a028926191fbf1ec07ae2efc03aaddc64",
+      "origin": "synced"
+    },
+    {
+      "contractId": "breadcrumb",
+      "component": "Breadcrumb",
+      "path": "breadcrumb.contract.json",
+      "address": "sha256:669dd3228aff13119520b258f10ffed08e7ce45c811f7478e68949fb00b8d206",
+      "origin": "synced"
+    },
+    {
+      "contractId": "business-card",
+      "component": "Business Card",
+      "path": "business-card.contract.json",
+      "address": "sha256:bba4d9717db9f8e82c386fc2c8e2527f2cd626615402284377d69d6291932c65",
+      "origin": "synced"
+    },
+    {
+      "contractId": "button",
+      "component": "Button",
+      "path": "button.contract.json",
+      "address": "sha256:5f6d88f22ae605a801dc38c18ac695ce23b46c7fccbf0227cf8e8ddbb0b05f34",
+      "origin": "synced"
+    },
+    {
+      "contractId": "checkbox",
+      "component": "Checkbox",
+      "path": "checkbox.contract.json",
+      "address": "sha256:7eb9b2cb0701489a8511be48acf6cb8da75c66b138f9c7b2730751d6a8def9ca",
+      "origin": "synced"
+    },
+    {
+      "contractId": "checkbox-group",
+      "component": "Checkbox Group",
+      "path": "checkbox-group.contract.json",
+      "address": "sha256:5e8aaf22ed75ad476266d7aa32c3f8dd1ebce30d65d0704cf13c9b632be36450",
+      "origin": "synced"
+    },
+    {
+      "contractId": "contact",
+      "component": "Contact",
+      "path": "contact.contract.json",
+      "address": "sha256:950dfcbf992412a395910dbb3023ec6684a000bb5791208a37fcc0c0591f278e",
+      "origin": "synced"
+    },
+    {
+      "contractId": "content-nav",
+      "component": "Content Nav",
+      "path": "content-nav.contract.json",
+      "address": "sha256:6e7ca615b7e49a700421e473e45218c1b19d897eafb298582ec4d69cbe58529c",
+      "origin": "synced"
+    },
+    {
+      "contractId": "cookie-consent",
+      "component": "Cookie Consent",
+      "path": "cookie-consent.contract.json",
+      "address": "sha256:dcb09586efa26c64ad3498e10bc545d503685f46a94a7a50aef237c0f267b0d2",
+      "origin": "synced"
+    },
+    {
+      "contractId": "cta",
+      "component": "Cta",
+      "path": "cta.contract.json",
+      "address": "sha256:278bb3d26fd4eb7b83d78ce935d06bea392d3654c0d75248ef891387f9b133b0",
+      "origin": "synced"
+    },
+    {
+      "contractId": "divider",
+      "component": "Divider",
+      "path": "divider.contract.json",
+      "address": "sha256:2bbc9e72fd242bd14a6c38ccbd53355abc8dc09a6e973a1d27a5913ac8f4b3a1",
+      "origin": "synced"
+    },
+    {
+      "contractId": "downloads",
+      "component": "Downloads",
+      "path": "downloads.contract.json",
+      "address": "sha256:fd32eefe6a2d63538e66bf5842fcc49ee6631d88455668b0848c02068371f192",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-appointment",
+      "component": "Event Appointment",
+      "path": "event-appointment.contract.json",
+      "address": "sha256:0d32c1441e1909116962877a21e9a60d76a0fa598d06c87f2ee487ff6909bb1c",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-filter",
+      "component": "Event Filter",
+      "path": "event-filter.contract.json",
+      "address": "sha256:dbf6782a80492ce2d91589aced65700338dc8c2a7fd9fee52defb5d3821bc710",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-header",
+      "component": "Event Header",
+      "path": "event-header.contract.json",
+      "address": "sha256:99020a9ac2e4e5912d89760c1d78e51dd00d44d36b49140c12b8ba79c565d523",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-latest",
+      "component": "Event Latest",
+      "path": "event-latest.contract.json",
+      "address": "sha256:1709bc1c9ed1bc620cbc07960e6386bd39d2abb5c504da457fa09e36dd58b93d",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-latest-teaser",
+      "component": "Event Latest Teaser",
+      "path": "event-latest-teaser.contract.json",
+      "address": "sha256:3c9fde34457619c979825dfc2f9d56d3a118d46a9de39d2eb49537655ff96a82",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-list-teaser",
+      "component": "Event List Teaser",
+      "path": "event-list-teaser.contract.json",
+      "address": "sha256:e639beb92d48975dae9fbd58143ef04504a68bcfa0940fb8ee06e936f2ff070a",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-location",
+      "component": "Event Location",
+      "path": "event-location.contract.json",
+      "address": "sha256:d08b35f2c35adadce4b142fdcd0eca538bf4eca8dc01a01e4540bf10efbafc30",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-login",
+      "component": "Event Login",
+      "path": "event-login.contract.json",
+      "address": "sha256:8fd0b8380e132a9345da3744c46864c1221f53f70d1d22421887d6665a3ff8ef",
+      "origin": "synced"
+    },
+    {
+      "contractId": "event-registration",
+      "component": "Event Registration",
+      "path": "event-registration.contract.json",
+      "address": "sha256:f180f21f8d68eb922443b063bebb0038849683779a8e51fe6765b42d69696332",
+      "origin": "synced"
+    },
+    {
+      "contractId": "faq",
+      "component": "Faq",
+      "path": "faq.contract.json",
+      "address": "sha256:ffd12bcce648abea26cb8b94c7e584c13967fecd92248bfdf6b3a6d778f1ef4c",
+      "origin": "synced"
+    },
+    {
+      "contractId": "feature",
+      "component": "Feature",
+      "path": "feature.contract.json",
+      "address": "sha256:fb0df44215aca5ec60ebc66be01da7227f359c154e1d10178b7614ef016719ec",
+      "origin": "synced"
+    },
+    {
+      "contractId": "features",
+      "component": "Features",
+      "path": "features.contract.json",
+      "address": "sha256:6890fddc2106c799ea32a5a55ce2849cb7fa8bc057bc922c32884217e9685c8a",
+      "origin": "synced"
+    },
+    {
+      "contractId": "footer",
+      "component": "Footer",
+      "path": "footer.contract.json",
+      "address": "sha256:17384f4fa532ff67d4d10c9da5a658b261767fe2751757248f6d000cc6d3e190",
+      "origin": "synced"
+    },
+    {
+      "contractId": "gallery",
+      "component": "Gallery",
+      "path": "gallery.contract.json",
+      "address": "sha256:055d4f61880566d2ab33421a06559efeb3002b1684631d4e9af8a18bf801a12c",
+      "origin": "synced"
+    },
+    {
+      "contractId": "header",
+      "component": "Header",
+      "path": "header.contract.json",
+      "address": "sha256:bd55bafe50bb6811af83aee3bd9a4b4b3d8de125b8fe59cae8f4b960e0f90c42",
+      "origin": "synced"
+    },
+    {
+      "contractId": "headline",
+      "component": "Headline",
+      "path": "headline.contract.json",
+      "address": "sha256:07f708a8d1fd0980dd58a27f4d1244752cb9088cbe45018a8761a41857caa856",
+      "origin": "synced"
+    },
+    {
+      "contractId": "hero",
+      "component": "Hero",
+      "path": "hero.contract.json",
+      "address": "sha256:e4ff1fc3ba174015c50bc8073d4f5befc290bb2839556597aad5333647677585",
+      "origin": "synced"
+    },
+    {
+      "contractId": "html",
+      "component": "Html",
+      "path": "html.contract.json",
+      "address": "sha256:7a032eb3afca00afbbdef3d4e69b55e4bae458657c3d2e9dad2e2f1f6763c0e0",
+      "origin": "synced"
+    },
+    {
+      "contractId": "image-story",
+      "component": "Image Story",
+      "path": "image-story.contract.json",
+      "address": "sha256:d6f5664ea5a98036f0c29c802103d0fffc0f7f3ca63102a1862c120c5d93e3ff",
+      "origin": "synced"
+    },
+    {
+      "contractId": "image-text",
+      "component": "Image Text",
+      "path": "image-text.contract.json",
+      "address": "sha256:32344f8fd55877e0b0cf6908ff8bb7626620352d673559b4d7bf4718cce30d24",
+      "origin": "synced"
+    },
+    {
+      "contractId": "logo",
+      "component": "Logo",
+      "path": "logo.contract.json",
+      "address": "sha256:1fffd85a22208977d5639228efe78497f7618c12560dedfa3f654518f670e685",
+      "origin": "synced"
+    },
+    {
+      "contractId": "logos",
+      "component": "Logos",
+      "path": "logos.contract.json",
+      "address": "sha256:e0ef3b2be8be6ceeb1313d2428ddef9269fd1ab7897ef3aa1d611a8286a77d1b",
+      "origin": "synced"
+    },
+    {
+      "contractId": "mosaic",
+      "component": "Mosaic",
+      "path": "mosaic.contract.json",
+      "address": "sha256:080b52d823f4b740434ec3d091de13233341226464e2e13dbaa4f444ccac94b0",
+      "origin": "synced"
+    },
+    {
+      "contractId": "nav-dropdown",
+      "component": "Nav Dropdown",
+      "path": "nav-dropdown.contract.json",
+      "address": "sha256:0a75dc426fd313a9e5b6093aff86f9384bb7cd9bd0830feeb677755f98e2294d",
+      "origin": "synced"
+    },
+    {
+      "contractId": "pagination",
+      "component": "Pagination",
+      "path": "pagination.contract.json",
+      "address": "sha256:a7364c73e533692d93d3f98eb45a3445254bbad978b534601d081059780714b8",
+      "origin": "synced"
+    },
+    {
+      "contractId": "radio",
+      "component": "Radio",
+      "path": "radio.contract.json",
+      "address": "sha256:922bb3d65cd1f85c4191e5f977a9da4bc3cc95f157171dd222df60e13681e5c5",
+      "origin": "synced"
+    },
+    {
+      "contractId": "radio-group",
+      "component": "Radio Group",
+      "path": "radio-group.contract.json",
+      "address": "sha256:6ecbe1aab8724752007527f9db7b5f3ef5f4c9a57cd4b11dfe918d1a1cbdcdf1",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-bar",
+      "component": "Search Bar",
+      "path": "search-bar.contract.json",
+      "address": "sha256:68a0010638901262e7131703ae3b302feb97e2ce89d57603df623d252d2e06bb",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-filter",
+      "component": "Search Filter",
+      "path": "search-filter.contract.json",
+      "address": "sha256:f4dd7ecdd1d9f012c88ef58f20f80b233e21732347a869e1c64de4b7421f7932",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-form",
+      "component": "Search Form",
+      "path": "search-form.contract.json",
+      "address": "sha256:7c2d947baa54ed763d0bac8cc72fdf774c32a1980deffb2dcead7f3d646e6413",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-modal",
+      "component": "Search Modal",
+      "path": "search-modal.contract.json",
+      "address": "sha256:e3e1eed5ba76dc98b97bfe43f404b72163bbcdd6e92352af89787016f7153d55",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-result",
+      "component": "Search Result",
+      "path": "search-result.contract.json",
+      "address": "sha256:e36d043db36a2183ccbb972f8cb60de3b2ff7ed486aac0851449a6e0811f88d8",
+      "origin": "synced"
+    },
+    {
+      "contractId": "search-result-match",
+      "component": "Search Result Match",
+      "path": "search-result-match.contract.json",
+      "address": "sha256:1bbd60c4bc2f29c66ce73c4050eb7ed8f37e6e836f820b5e5413fe9fc4c40032",
+      "origin": "synced"
+    },
+    {
+      "contractId": "section",
+      "component": "Section",
+      "path": "section.contract.json",
+      "address": "sha256:f8e0daad2c66e221cf935cdd1476040596bf1632e30fd3039b7980141b1cdaf1",
+      "origin": "synced"
+    },
+    {
+      "contractId": "select-field",
+      "component": "SelectField",
+      "path": "select-field.contract.json",
+      "address": "sha256:6766f03e44c1fa31fbb2f28591ed6a5e02b57dea893a1412db4d1f995baf7901",
+      "origin": "synced"
+    },
+    {
+      "contractId": "slider",
+      "component": "Slider",
+      "path": "slider.contract.json",
+      "address": "sha256:752fae57de2ed46ed59923a7c3d152ee6c2198621ddc96a76343402dcfd51ad4",
+      "origin": "synced"
+    },
+    {
+      "contractId": "split-even",
+      "component": "Split Even",
+      "path": "split-even.contract.json",
+      "address": "sha256:1b62a17b19aaf0b1873185257840f699fc4d9c22c891d277c0cd38ef6644b770",
+      "origin": "synced"
+    },
+    {
+      "contractId": "split-weighted",
+      "component": "Split Weighted",
+      "path": "split-weighted.contract.json",
+      "address": "sha256:c218aa3161451390cec5d5efec801348a25d8d42bf5302138d4cd5236f274168",
+      "origin": "synced"
+    },
+    {
+      "contractId": "stat",
+      "component": "Stat",
+      "path": "stat.contract.json",
+      "address": "sha256:359223c2c6a6f5f3624ae158882f6546d5a8d5398fedc5b29c0419434a37e01e",
+      "origin": "synced"
+    },
+    {
+      "contractId": "stats",
+      "component": "Stats",
+      "path": "stats.contract.json",
+      "address": "sha256:70f399354b401d3bc32bbcd4cd3c4e9cd50dc9a9318d856171c06ddeade24bba",
+      "origin": "synced"
+    },
+    {
+      "contractId": "teaser-card",
+      "component": "Teaser Card",
+      "path": "teaser-card.contract.json",
+      "address": "sha256:c41ff6db4ca2834689df5b2624bca2bdd6f54573dc252856f6cac087a4ddf9af",
+      "origin": "synced"
+    },
+    {
+      "contractId": "testimonial",
+      "component": "Testimonial",
+      "path": "testimonial.contract.json",
+      "address": "sha256:8a95785ec70a53485d1ab4f27d3febd0ffc9a2985cb8b487d61dd0e87624129d",
+      "origin": "synced"
+    },
+    {
+      "contractId": "testimonials",
+      "component": "Testimonials",
+      "path": "testimonials.contract.json",
+      "address": "sha256:fced778ba300935899641472759daada3946531ab03ea86227a3b97933429cd2",
+      "origin": "synced"
+    },
+    {
+      "contractId": "text",
+      "component": "Text",
+      "path": "text.contract.json",
+      "address": "sha256:f2361c57217813eea06e06eff4e903b39a0b39c62100ddf586dd3ededd28ce57",
+      "origin": "synced"
+    },
+    {
+      "contractId": "text-area",
+      "component": "TextArea",
+      "path": "text-area.contract.json",
+      "address": "sha256:9e21a846cd4d82b8c3330a0c76bc5e92ec4512956588da2ffc89292dfcbd783d",
+      "origin": "synced"
+    },
+    {
+      "contractId": "text-field",
+      "component": "TextField",
+      "path": "text-field.contract.json",
+      "address": "sha256:f51bfef2aa10c49a75227790f37d013d1f70a6abd7c45bccb517e101678f3c62",
+      "origin": "synced"
+    },
+    {
+      "contractId": "video-curtain",
+      "component": "Video Curtain",
+      "path": "video-curtain.contract.json",
+      "address": "sha256:157e05d31d8386b8bd91b6d2ff9e465a407d5100a4f5da839c0dae78d581e2d6",
+      "origin": "synced"
+    }
+  ]
+}

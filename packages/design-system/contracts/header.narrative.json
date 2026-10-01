@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Header",
+  "default": {
+    "description": "The header component features a clean, minimalist design with a white background and subtle rounded corners, giving it a modern and approachable appearance. It is framed by a soft shadow, which adds a sense of depth and separation from the content below. The overall look is simple and unobtrusive, allowing for easy integration with various content management systems.",
+    "from": "img/screenshots/contract-defaults-header--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-header--header",
+      "when": {},
+      "difference": "In this variant, the header now includes a logo on the left, adding a focal point and brand identity to the design. Additionally, a navigation menu appears, providing structured links across the header, which enhances functionality and user navigation.",
+      "from": "img/screenshots/layout-header--header.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:41.744Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-header--contract-default.png": "sha256:7d443588f3ffcd94",
+        "img/screenshots/layout-header--header.png": "sha256:b91e32e27f047641"
+      },
+      "contract": "sha256:bd55bafe50bb6811af83aee3bd9a4b4b3d8de125b8fe59cae8f4b960e0f90c42"
+    }
+  }
+}

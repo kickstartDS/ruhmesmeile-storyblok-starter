@@ -1,0 +1,41 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "business-card",
+  "component": "Business Card",
+  "description": "Business card component representing an individual's or company's contact information and branding.",
+  "props": {
+    "properties": {
+      "address": {
+        "type": "string"
+      },
+      "avatar": {
+        "type": "object"
+      },
+      "buttons": {
+        "type": "array"
+      },
+      "centered": {
+        "type": "boolean",
+        "default": false
+      },
+      "contactLinks": {
+        "type": "array"
+      },
+      "image": {
+        "type": "object"
+      },
+      "logo": {
+        "type": "object"
+      },
+      "topic": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "contactLinks",
+    "buttons"
+  ]
+}

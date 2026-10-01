@@ -1,0 +1,30 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Image Story",
+  "default": {
+    "description": "The Image Story component features a clean and structured layout, with an image prominently displayed alongside text content. The design is balanced, allowing for a harmonious presentation of both visual and textual elements. The overall appearance is modern and adaptable, with customizable options for headlines and text alignment to suit various storytelling needs.",
+    "from": "img/screenshots/contract-defaults-imagestory--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-image-story--sticky-image-next-to-scrolling-text",
+      "when": {
+        "largeHeadline": true
+      },
+      "difference": "In this variant, the Image Story component features a significantly larger layout, with the height expanded to accommodate more content. The headline is prominently displayed with increased height, enhancing its visual impact. Additionally, new elements such as rich text and a button have been introduced, alongside the image, creating a more dynamic and interactive presentation.",
+      "from": "img/screenshots/components-image-story--sticky-image-next-to-scrolling-text.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:06.288Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-imagestory--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/components-image-story--sticky-image-next-to-scrolling-text.png": "sha256:3a3c468ac818e5ce"
+      },
+      "contract": "sha256:d6f5664ea5a98036f0c29c802103d0fffc0f7f3ca63102a1862c120c5d93e3ff"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "logos",
+  "component": "Logos",
+  "description": "Component used to display a set of logos",
+  "props": {
+    "properties": {
+      "align": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "center"
+      },
+      "cta": {
+        "type": "object"
+      },
+      "logo": {
+        "type": "array"
+      },
+      "logosPerRow": {
+        "type": "integer"
+      },
+      "tagline": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "logo"
+  ]
+}

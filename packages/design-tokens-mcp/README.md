@@ -136,7 +136,21 @@ For **remote** use (Streamable HTTP):
 | `update-branding`          | Guided branding token modification      |
 | `explore-component-tokens` | Explore tokens for a specific component |
 
-## Available Tools (28 total)
+## Available Tools (30 total)
+
+29 base tools, plus `get_token_usage` — advertised only when
+`DESIGN_SYSTEM_CONTRACTS_DIR` points at a generated component-contract set, so
+a deployment without contracts does not advertise a tool that cannot answer.
+
+### `get_token_usage` _(contract set required)_
+
+Reverse lookup: which components, parts and props bind a token. Handles
+templated token names (`--dsa-button_{variant}--background-color`) and falls
+back to prefix near-matches when an exact name does not exist.
+
+```json
+{ "token": "--dsa-button_primary--background-color" }
+```
 
 ### Core Tools
 

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "pagination",
+  "component": "Pagination",
+  "description": "Pagination component for navigating through pages of content.",
+  "props": {
+    "properties": {
+      "ariaLabels": {
+        "type": "object"
+      },
+      "pages": {
+        "type": "array"
+      },
+      "truncate": {
+        "type": "boolean"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "pages"
+  ]
+}

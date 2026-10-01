@@ -1,0 +1,42 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Split Even",
+  "default": {
+    "description": "The Split Even component features a layout divided into two equal sections, each occupying half of the available space. The sections are separated by a subtle gutter, providing a balanced and symmetrical appearance. The overall design is clean and minimalistic, emphasizing equal distribution of content.",
+    "from": "img/screenshots/contract-defaults-spliteven--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-split-even--faq-with-form",
+      "when": {},
+      "difference": "In this variant, the Split Even component features larger horizontal and vertical gutters, creating more space between the two sections. The overall height of the component is increased, giving it a more substantial presence. Additionally, new content elements such as a FAQ section and a headline are introduced, adding depth and functionality to the layout.",
+      "from": "img/screenshots/layout-split-even--faq-with-form.png"
+    },
+    {
+      "story": "layout-split-even--main-teaser-with-grid",
+      "when": {},
+      "difference": "In this variant, the Split Even component features a reduced horizontal and vertical gutter, creating a more compact layout. The sections are now vertically stretched, giving them a taller appearance, and a teaser card is introduced, adding visual interest and content variety. The overall design maintains its clean and balanced look but with a slightly denser arrangement.",
+      "from": "img/screenshots/layout-split-even--main-teaser-with-grid.png"
+    },
+    {
+      "story": "layout-split-even--text-with-logos",
+      "when": {},
+      "difference": "In this variant, the Split Even component has a more expansive and centered layout compared to the default. The sections are wider, filling the available space more completely, and the content is vertically centered, creating a balanced and harmonious appearance. Additionally, the storytelling element is introduced, adding a narrative aspect to the design.",
+      "from": "img/screenshots/layout-split-even--text-with-logos.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:16.300Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-spliteven--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/layout-split-even--faq-with-form.png": "sha256:f2e557d077d74c0c",
+        "img/screenshots/layout-split-even--main-teaser-with-grid.png": "sha256:2ce7a42a688e9407",
+        "img/screenshots/layout-split-even--text-with-logos.png": "sha256:e1b76c538e3bc110"
+      },
+      "contract": "sha256:1b62a17b19aaf0b1873185257840f699fc4d9c22c891d277c0cd38ef6644b770"
+    }
+  }
+}

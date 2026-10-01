@@ -1,0 +1,62 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "teaser-card",
+  "component": "Teaser Card",
+  "description": "Component used to tease content",
+  "props": {
+    "properties": {
+      "button": {
+        "type": "object"
+      },
+      "centered": {
+        "type": "boolean",
+        "default": false
+      },
+      "headline": {
+        "type": "string"
+      },
+      "image": {
+        "type": "string"
+      },
+      "imageAlt": {
+        "type": "string"
+      },
+      "imageHoverEffect": {
+        "type": "boolean",
+        "default": true
+      },
+      "imageRatio": {
+        "type": "string",
+        "enum": [
+          "wide",
+          "landscape",
+          "square",
+          "unset"
+        ],
+        "default": "wide"
+      },
+      "label": {
+        "type": "string"
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "stack",
+          "row",
+          "compact"
+        ],
+        "default": "stack"
+      },
+      "text": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "url"
+    ],
+    "additionalProperties": false
+  }
+}

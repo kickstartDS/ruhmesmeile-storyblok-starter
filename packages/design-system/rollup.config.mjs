@@ -141,6 +141,10 @@ export default {
           src: "static",
           dest: "dist",
         },
+        {
+          src: "contracts",
+          dest: "dist",
+        },
       ],
     }),
   ],

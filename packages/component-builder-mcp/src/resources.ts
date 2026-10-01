@@ -16,6 +16,7 @@ import {
   handleGetTokenArchitecture,
   handleListExistingComponents,
 } from "./handlers.js";
+import { readContractResource } from "./contracts.js";
 
 // ---------------------------------------------------------------------------
 // Resource list
@@ -42,6 +43,20 @@ export const resources: Resource[] = [
     description:
       "All existing components in the Design System with descriptions, file structure, and client-behavior annotations.",
     mimeType: "text/markdown",
+  },
+  {
+    uri: "contracts://format-guide",
+    name: "Component Contract Format Guide",
+    description:
+      "How to read a Component Contract: the three-vocabulary axes join, variants as deltas, bindings and mechanisms, and coverage. Read once per session.",
+    mimeType: "text/markdown",
+  },
+  {
+    uri: "contracts://index",
+    name: "Component Contract Catalog",
+    description:
+      "The published contract set: format version and one record per component with its content address.",
+    mimeType: "application/json",
   },
 ];
 
@@ -90,7 +105,16 @@ export function readResource(uri: string): ReadResourceResult {
       };
     }
 
-    default:
+    default: {
+      const contract = readContractResource(uri);
+      if (contract) {
+        return {
+          contents: [
+            { uri, mimeType: contract.mimeType, text: contract.text },
+          ],
+        };
+      }
       throw new Error(`Unknown resource: ${uri}`);
+    }
   }
 }

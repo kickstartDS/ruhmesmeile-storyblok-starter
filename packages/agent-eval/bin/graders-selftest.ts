@@ -21,6 +21,7 @@ import { schemaConformance } from "../lib/graders/schema-conformance";
 import { tokenConformance } from "../lib/graders/token-conformance";
 import { bem } from "../lib/graders/bem";
 import { stylePlacement } from "../lib/graders/style-placement";
+import { typographyPairing } from "../lib/graders/typography-pairing";
 import { pascalCase } from "../lib/graders/contract";
 import type { Trial } from "../lib/graders/trial";
 import type { Target } from "../lib/graders/targets";
@@ -161,6 +162,103 @@ for (const [id, floor] of Object.entries(FLOORS)) {
       .slice(0, 8);
     for (const entry of offenders) {
       console.log(`        ${entry.slug.padEnd(24)} ${entry.score.toFixed(2)}`);
+    }
+  }
+}
+
+/**
+ * `typography-pairing` is scoped to one fixture component, so the design-system
+ * sweep above cannot exercise it — `article-teaser` exists only as the eval's
+ * reference answer. It is pinned here instead: the reference must pass, and each
+ * of the three assertions must reject a deliberate break of exactly one rule.
+ */
+{
+  const REFERENCE = new URL(
+    "../lib/eval-harness/reference/816-typography-pairing",
+    import.meta.url,
+  ).pathname;
+  const styles = readFileSync(join(REFERENCE, "article-teaser.scss"), "utf8");
+  const target: Target = {
+    slug: "article-teaser",
+    dir: "src/components/article-teaser",
+    requiresClientBehaviour: false,
+    schemaProperties: [],
+    delegatedElements: [],
+    mcpUseExpected: true,
+    diffTask: false,
+    tier: "extra",
+  };
+  const referenceTrial = (body: string): Trial => ({
+    experiment: "selftest",
+    variant: "unknown",
+    timestamp: "reference",
+    evalName: "816-typography-pairing",
+    run: 0,
+    runDir: REFERENCE,
+    projectDir: REFERENCE,
+    files: new Map([[`${target.dir}/article-teaser.scss`, body]]),
+    status: "passed",
+    duration: 0,
+    model: "n/a",
+    evalOutput: null,
+    transcript: null,
+    target,
+  });
+
+  const reference = typographyPairing(referenceTrial(styles));
+  if (!reference.applicable) {
+    console.log("  ✗ typography-pairing not applicable to its own reference");
+    failed = true;
+  } else if (!reference.passed) {
+    const broken = reference.checks
+      .filter((entry) => !entry.passed)
+      .map((entry) => `${entry.id}: ${entry.details ?? ""}`)
+      .join("; ");
+    console.log(`  ✗ typography-pairing rejects the reference answer — ${broken}`);
+    failed = true;
+  } else {
+    console.log(
+      `  ✓ typography-pairing reference answer passes (mean ${reference.score.toFixed(2)}, n=1)`,
+    );
+  }
+
+  const controls: Array<[string, string]> = [
+    [
+      "mis-paired colour",
+      styles.replace(/--ks-text-color-display/g, "--ks-text-color-copy"),
+    ],
+    [
+      "hand-set value",
+      styles.replace(
+        "font: var(--ks-font-display-m);",
+        "font: var(--ks-font-display-m);\n    font-size: 14px;",
+      ),
+    ],
+    [
+      "mixed categories",
+      styles.replace(
+        "font: var(--ks-font-interface-xs);",
+        "font: var(--ks-font-interface-xs);\n    font-family: var(--ks-font-family-copy);",
+      ),
+    ],
+  ];
+
+  for (const [label, body] of controls) {
+    if (body === styles) {
+      console.log(`  ✗ typography-pairing control "${label}" did not mutate — control vacuous`);
+      failed = true;
+      continue;
+    }
+    const outcome = typographyPairing(referenceTrial(body));
+    if (!outcome.applicable || outcome.passed) {
+      console.log(`  ✗ typography-pairing control "${label}" still passes — the rule does not bite`);
+      failed = true;
+    } else {
+      const which = outcome.checks
+        .filter((entry) => !entry.passed)
+        .map((entry) => entry.id)
+        .join(", ");
+      console.log(`  ✓ typography-pairing control "${label}" rejected (${which})`);
     }
   }
 }

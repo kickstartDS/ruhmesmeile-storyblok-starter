@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Stat",
+  "default": {
+    "description": "The component features a clean, minimalist design with a white background and a subtle drop shadow, giving it a slightly elevated appearance. At the center, a single number \"0\" is displayed in a dark, neutral font, providing a clear and straightforward presentation. The overall look is simple and modern, focusing attention on the numerical content.",
+    "from": "img/screenshots/contract-defaults-stat--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:27.201Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-stat--contract-default.png": "sha256:8a2f78253bb4caba"
+      },
+      "contract": "sha256:359223c2c6a6f5f3624ae158882f6546d5a8d5398fedc5b29c0419434a37e01e"
+    }
+  }
+}

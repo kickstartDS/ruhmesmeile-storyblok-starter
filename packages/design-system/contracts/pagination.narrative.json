@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Pagination",
+  "default": {
+    "description": "The pagination component is housed within a rounded rectangular container with a subtle shadow, giving it a slightly elevated appearance against the background. Inside, there are two navigation icons, a double arrow pointing left and a single arrow pointing left, both centered and spaced apart. The overall design is clean and minimalistic, with a focus on functionality and ease of navigation.",
+    "from": "img/screenshots/contract-defaults-pagination--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-pagination--default",
+      "when": {},
+      "difference": "In this variant, the pagination component includes numbered page links between the navigation icons, extending the functionality beyond just the arrows. The numbers are evenly spaced, with the current page highlighted in blue, adding a visual cue for the user's current position. This change enhances the component's usability by allowing direct access to specific pages.",
+      "from": "img/screenshots/corporate-pagination--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:28.545Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-pagination--contract-default.png": "sha256:8d6d2e8abdbd963d",
+        "img/screenshots/corporate-pagination--default.png": "sha256:25b3bda2da39fc5f"
+      },
+      "contract": "sha256:a7364c73e533692d93d3f98eb45a3445254bbad978b534601d081059780714b8"
+    }
+  }
+}

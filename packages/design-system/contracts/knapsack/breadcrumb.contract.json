@@ -1,0 +1,18 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "breadcrumb",
+  "component": "Breadcrumb",
+  "description": "Breadcrumb navigation component used to indicate the current page's location within a navigational hierarchy.",
+  "props": {
+    "properties": {
+      "pages": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "pages"
+  ]
+}

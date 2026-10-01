@@ -1,0 +1,40 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-latest-teaser",
+  "component": "Event Latest Teaser",
+  "description": "Display an event teaser with date, title and location",
+  "props": {
+    "properties": {
+      "ariaLabel": {
+        "type": "string"
+      },
+      "calendar": {
+        "type": "object"
+      },
+      "className": {
+        "type": "string"
+      },
+      "cta": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "date",
+      "location",
+      "title"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "cookie-consent",
+  "component": "Cookie Consent",
+  "description": "Cookie consent component for managing user consent regarding cookies and tracking technologies on a website.",
+  "props": {
+    "properties": {
+      "component": {
+        "type": "string",
+        "default": "dsa.cookie-consent"
+      },
+      "dialog": {
+        "type": "object"
+      },
+      "notice": {
+        "type": "object"
+      },
+      "revisitButton": {
+        "type": "object"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

@@ -58,7 +58,12 @@ Add to your VS Code settings:
 }
 ```
 
-## Available Tools (7)
+## Available Tools (10 base; 16 with a contract set)
+
+The six contract tools are advertised only when `DESIGN_SYSTEM_CONTRACTS_DIR`
+points at a generated `contracts/` directory — otherwise they are withheld
+rather than advertised and failing. See `scripts/contracts/README.md` in the
+design-system package for how to generate one.
 
 ### `get_ui_building_instructions`
 
@@ -88,13 +93,39 @@ Get SCSS templates with BEM naming and Design Token layers.
 
 Get Storybook story templates with schema integration.
 
-## Available Resources (3)
+### `list_component_contracts` _(contract set required)_
 
-| Resource                             | Description                   |
-| ------------------------------------ | ----------------------------- |
-| `design-system://instructions`       | UI building instructions      |
-| `design-system://token-architecture` | Token layer architecture docs |
-| `design-system://components`         | Component catalog listing     |
+List every component with a derived Component Contract, with coverage and issue counts.
+
+### `get_component_brief` _(contract set required)_
+
+The Markdown brief for one component — the token-cheap front door. Call this first for "what is this component and how do I configure it".
+
+### `get_component_contract` _(contract set required)_
+
+The full derived contract, or one section of it (`api`, `anatomy`, `axes`, `default`, `variants`, `bindings`, `composition`, `coverage`, `issues`).
+
+### `get_component_anatomy` _(contract set required)_
+
+Observed parts, their tokens, and composition/slots only.
+
+### `get_prop_visual_impact` _(contract set required)_
+
+`bindings` + `axes`: how a prop becomes visible (`mechanism`), which parts it touches, and the templated token names to reach for.
+
+### `lint_component_contracts` _(contract set required)_
+
+Every issue the contracts derived across the design system (e.g. an enum value with no matching token segment).
+
+## Available Resources (5)
+
+| Resource                       | Description                              |
+| ------------------------------ | ---------------------------------------- |
+| `design-system://instructions` | UI building instructions                 |
+| `design-system://token-architecture` | Token layer architecture docs      |
+| `design-system://components`   | Component catalog listing                |
+| `contracts://format-guide`     | How to read a Component Contract         |
+| `contracts://index`            | The published contract set and addresses |
 
 ## Design System Patterns
 

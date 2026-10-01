@@ -1,0 +1,55 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Text",
+  "default": {
+    "description": "The component features a block of text centered within a white, rounded rectangle that casts a subtle shadow, giving it a slightly elevated appearance against a light blue background. The text is neatly aligned to the left, using a clean, sans-serif font that enhances readability and provides a modern, professional look.",
+    "from": "img/screenshots/contract-defaults-text--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-text--centered",
+      "when": {
+        "align": "center"
+      },
+      "difference": "In this variant, the text is centered within the white, rounded rectangle, which has increased in height, giving it a more spacious appearance. The overall design maintains its modern and professional look, with the text alignment change enhancing the balance and symmetry of the component.",
+      "from": "img/screenshots/components-text--centered.png"
+    },
+    {
+      "story": "components-text--highlight",
+      "when": {
+        "highlightText": true
+      },
+      "difference": "In this variant, the component's height has increased, allowing for more content within the white, rounded rectangle. The text now includes highlighted elements, such as bold and italicized words, and a blue hyperlink, adding emphasis and interactivity to the content.",
+      "from": "img/screenshots/components-text--highlight.png"
+    },
+    {
+      "story": "components-text--multi-column",
+      "when": {
+        "layout": "multiColumn"
+      },
+      "difference": "In this variant, the text is organized into multiple columns, creating a more structured and segmented appearance compared to the default. The overall height of the component is slightly increased, accommodating the new layout while maintaining the same clean, sans-serif font and modern look. The multi-column format enhances readability by breaking up the text into more digestible sections.",
+      "from": "img/screenshots/components-text--multi-column.png"
+    },
+    {
+      "story": "components-text--single-column",
+      "when": {},
+      "difference": "The variant features a taller block of text within the same white, rounded rectangle, maintaining the subtle shadow and light blue background. The text now includes multiple paragraphs with varied formatting, such as bold and italic styles, and a blue hyperlink, adding visual interest and emphasis to certain parts of the content.",
+      "from": "img/screenshots/components-text--single-column.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:49.211Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-text--contract-default.png": "sha256:faf5219e1cae3c80",
+        "img/screenshots/components-text--centered.png": "sha256:0c98da568940f715",
+        "img/screenshots/components-text--highlight.png": "sha256:2e7f8a8f3c77d2bb",
+        "img/screenshots/components-text--multi-column.png": "sha256:15d65354c4494257",
+        "img/screenshots/components-text--single-column.png": "sha256:857de10e3f811718"
+      },
+      "contract": "sha256:f2361c57217813eea06e06eff4e903b39a0b39c62100ddf586dd3ededd28ce57"
+    }
+  }
+}

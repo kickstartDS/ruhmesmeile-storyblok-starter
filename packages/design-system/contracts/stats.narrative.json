@@ -1,0 +1,37 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Stats",
+  "default": {
+    "description": "The component features a rectangular box with a subtle shadow, giving it a slightly elevated appearance against the background. Inside, two numbers are centered and displayed in a simple, clean font with a blue color, creating a straightforward and modern look. The overall design is minimalistic, focusing on clarity and ease of reading.",
+    "from": "img/screenshots/contract-defaults-stats--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-stats--count-up-with-description",
+      "when": {
+        "align": "left"
+      },
+      "difference": "In this variant, the component's height is increased, giving it a more substantial presence. The numbers and accompanying text are aligned to the left, creating a more structured and organized appearance. Additionally, rich text and topic labels are introduced, adding context and depth to the displayed statistics.",
+      "from": "img/screenshots/components-stats--count-up-with-description.png"
+    },
+    {
+      "story": "components-stats--count-up-with-icons",
+      "when": {},
+      "difference": "In this variant, the component is significantly taller, giving it a more spacious appearance. Icons are introduced above each number, adding a visual element that enhances the informational aspect. Additionally, suffixes are now present next to the numbers, providing context and making the data more informative.",
+      "from": "img/screenshots/components-stats--count-up-with-icons.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:28.352Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-stats--contract-default.png": "sha256:110fb40d35d351aa",
+        "img/screenshots/components-stats--count-up-with-description.png": "sha256:708f4b43232a5e44",
+        "img/screenshots/components-stats--count-up-with-icons.png": "sha256:382d1934d0319098"
+      },
+      "contract": "sha256:70f399354b401d3bc32bbcd4cd3c4e9cd50dc9a9318d856171c06ddeade24bba"
+    }
+  }
+}

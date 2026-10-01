@@ -15,9 +15,14 @@ const preview = {
 
 function getAllStoryFiles() {
   const storyFiles = Object.entries(
-    import.meta.glob<Store_CSFExports<ReactRenderer>>(
-      "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-    )
+    import.meta.glob<Store_CSFExports<ReactRenderer>>([
+      "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+      // `src/contract-defaults/` holds the generated declared-default baseline
+      // stories the contract emitter renders. They are not documentation: they
+      // have no screenshot and no prose, and a component whose default renders
+      // nothing would contribute a suite with no test.
+      "!../src/contract-defaults/**",
+    ])
   );
 
   return storyFiles.map(([filePath, storyFile]) => {

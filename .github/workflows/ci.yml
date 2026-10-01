@@ -4,6 +4,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,6 +35,62 @@ jobs:
 
       - name: Lint
         run: pnpm -r run lint
+
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Fast: the fold/collision fixtures, the RFC 8785 worked example, and the
+      # projection mappings. No browser, no Storybook.
+      - name: Contract unit tests
+        run: pnpm --filter @kickstartds/design-system contracts:test
+
+      # Validates the committed contracts/ set in place: every contract against
+      # the format schema, every Knapsack projection against the target's own
+      # vendored schema, every content address recomputed. Catches a hand-edited
+      # contract or a schema that moved underneath the set.
+      - name: Validate the committed contract set
+        run: pnpm --filter @kickstartds/design-system contracts:validate
+
+  # The full regeneration-and-diff check. Needs Storybook and Playwright's
+  # Chromium, so it is manual — `workflow_dispatch` from the Actions tab — or
+  # run locally with `pnpm --filter @kickstartds/design-system contracts:verify`.
+  contracts-verify:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: true
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: packages/design-system
+
+      - name: Regenerate and diff the contract set
+        run: pnpm --filter @kickstartds/design-system contracts:verify
 
   chromatic:
     needs: build

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "image-text",
+  "component": "Image Text",
+  "description": "Component used to display an image beside or above/below a text block",
+  "props": {
+    "properties": {
+      "highlightText": {
+        "type": "boolean",
+        "default": false
+      },
+      "image": {
+        "type": "object"
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "above",
+          "below",
+          "beside-right",
+          "beside-left"
+        ],
+        "default": "above"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "image",
+      "layout",
+      "text"
+    ],
+    "additionalProperties": false
+  }
+}

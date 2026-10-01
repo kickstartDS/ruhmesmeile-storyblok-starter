@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Breadcrumb",
+  "default": {
+    "description": "The breadcrumb component appears as a horizontal bar with a light blue background, giving it a subtle and unobtrusive look. It has rounded corners, which add a touch of softness to its design. The overall appearance is clean and minimalistic, suitable for indicating navigation paths without drawing too much attention.",
+    "from": "img/screenshots/contract-defaults-breadcrumb--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-breadcrumb--default",
+      "when": {},
+      "difference": "In this variant, the breadcrumb component now has a visible height of 21.2031px, making it more prominent. It includes icons and labels for navigation, with links that enhance its functionality. The overall design remains clean but is now more informative and interactive.",
+      "from": "img/screenshots/corporate-breadcrumb--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:43:54.987Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-breadcrumb--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/corporate-breadcrumb--default.png": "sha256:d6e9a4340d3ae508"
+      },
+      "contract": "sha256:669dd3228aff13119520b258f10ffed08e7ce45c811f7478e68949fb00b8d206"
+    }
+  }
+}

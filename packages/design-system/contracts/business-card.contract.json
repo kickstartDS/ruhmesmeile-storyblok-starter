@@ -1,0 +1,2567 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "dsa-business-card__avatar",
+                          "lazyloaded",
+                          "ls-is-cached"
+                        ],
+                        "element": "img",
+                        "gate": {
+                          "prop": "centered",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--centered"
+                        ],
+                        "path": "root/business-card--centered/content/address/contact/avatar",
+                        "presence": "conditional",
+                        "role": "media"
+                      },
+                      {
+                        "classes": [],
+                        "element": "noscript",
+                        "gate": {
+                          "prop": "centered",
+                          "when": "truthy"
+                        },
+                        "namedBy": "position",
+                        "observedIn": [
+                          "corporate-business-card--centered"
+                        ],
+                        "path": "root/business-card--centered/content/address/contact/child-2",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [],
+                                "element": "span",
+                                "gate": {
+                                  "prop": "centered",
+                                  "when": "truthy"
+                                },
+                                "namedBy": "position",
+                                "observedIn": [
+                                  "corporate-business-card--centered"
+                                ],
+                                "path": "root/business-card--centered/content/address/contact/contact-items/contact-item/child-2",
+                                "presence": "conditional",
+                                "role": "text"
+                              },
+                              {
+                                "classes": [
+                                  "icon"
+                                ],
+                                "element": "svg",
+                                "gate": {
+                                  "prop": "centered",
+                                  "when": "truthy"
+                                },
+                                "namedBy": "tag",
+                                "observedIn": [
+                                  "corporate-business-card--centered"
+                                ],
+                                "path": "root/business-card--centered/content/address/contact/contact-items/contact-item/icon",
+                                "presence": "conditional",
+                                "role": "glyph"
+                              }
+                            ],
+                            "classes": [
+                              "dsa-business-card__contact-item"
+                            ],
+                            "element": "a",
+                            "gate": {
+                              "prop": "centered",
+                              "when": "truthy"
+                            },
+                            "namedBy": "bem-class",
+                            "observedIn": [
+                              "corporate-business-card--centered"
+                            ],
+                            "path": "root/business-card--centered/content/address/contact/contact-items/contact-item",
+                            "presence": "repeated",
+                            "role": "control"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__contact-items"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "centered",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--centered"
+                        ],
+                        "path": "root/business-card--centered/content/address/contact/contact-items",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__contact"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "centered",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "corporate-business-card--centered"
+                    ],
+                    "path": "root/business-card--centered/content/address/contact",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "gate": {
+                              "prop": "centered",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--centered"
+                            ],
+                            "path": "root/business-card--centered/content/address/infos/location/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          },
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "gate": {
+                              "prop": "centered",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--centered"
+                            ],
+                            "path": "root/business-card--centered/content/address/infos/location/child-2",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__location"
+                        ],
+                        "element": "span",
+                        "gate": {
+                          "prop": "centered",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--centered"
+                        ],
+                        "path": "root/business-card--centered/content/address/infos/location",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "span",
+                            "gate": {
+                              "prop": "centered",
+                              "when": "truthy"
+                            },
+                            "namedBy": "content-match",
+                            "observedIn": [
+                              "corporate-business-card--centered"
+                            ],
+                            "path": "root/business-card--centered/content/address/infos/topic/topic",
+                            "presence": "conditional",
+                            "role": "text"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__topic"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "centered",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--centered"
+                        ],
+                        "path": "root/business-card--centered/content/address/infos/topic",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__infos"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "centered",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "corporate-business-card--centered"
+                    ],
+                    "path": "root/business-card--centered/content/address/infos",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__address",
+                  "dsa-business-card__address--centered"
+                ],
+                "element": "address",
+                "gate": {
+                  "prop": "centered",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--centered"
+                ],
+                "path": "root/business-card--centered/content/address",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-button",
+                      "c-button--solid",
+                      "dsa-business-card__button",
+                      "dsa-button"
+                    ],
+                    "element": "a",
+                    "gate": {
+                      "prop": "centered",
+                      "when": "truthy"
+                    },
+                    "instanceOf": "button",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "corporate-business-card--centered"
+                    ],
+                    "path": "root/business-card--centered/content/buttons/button",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__buttons"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "centered",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--centered"
+                ],
+                "path": "root/business-card--centered/content/buttons",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "gate": {
+                      "prop": "centered",
+                      "when": "truthy"
+                    },
+                    "namedBy": "position",
+                    "observedIn": [
+                      "corporate-business-card--centered"
+                    ],
+                    "path": "root/business-card--centered/content/logo/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded",
+                      "ls-is-cached"
+                    ],
+                    "element": "img",
+                    "gate": {
+                      "prop": "centered",
+                      "when": "truthy"
+                    },
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "corporate-business-card--centered"
+                    ],
+                    "path": "root/business-card--centered/content/logo/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__logo",
+                  "dsa-business-card__logo-link"
+                ],
+                "element": "a",
+                "gate": {
+                  "prop": "centered",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--centered"
+                ],
+                "path": "root/business-card--centered/content/logo",
+                "presence": "conditional",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-business-card__content"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "centered",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-business-card--centered"
+            ],
+            "path": "root/business-card--centered/content",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "gate": {
+                  "prop": "centered",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "corporate-business-card--centered"
+                ],
+                "path": "root/business-card--centered/image/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "gate": {
+                  "prop": "centered",
+                  "when": "truthy"
+                },
+                "namedBy": "tag",
+                "observedIn": [
+                  "corporate-business-card--centered"
+                ],
+                "path": "root/business-card--centered/image/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-business-card__image"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "centered",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-business-card--centered"
+            ],
+            "path": "root/business-card--centered/image",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-business-card",
+          "dsa-business-card--centered"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "centered",
+          "when": "truthy"
+        },
+        "instanceOf": "business-card--centered",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "corporate-business-card--centered"
+        ],
+        "path": "root/business-card--centered",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-business-card--background-color",
+          "--dsa-business-card--border",
+          "--dsa-business-card--border-radius",
+          "--dsa-business-card--gap",
+          "--dsa-business-card--padding",
+          "--dsa-business-card__address--gap",
+          "--dsa-business-card__avatar--border-radius",
+          "--dsa-business-card__avatar--size",
+          "--dsa-business-card__contact--color",
+          "--dsa-business-card__contact--color_hover",
+          "--dsa-business-card__contact--font",
+          "--dsa-business-card__contact--font-weight",
+          "--dsa-business-card__contact--gap",
+          "--dsa-business-card__contact--icon-size",
+          "--dsa-business-card__contact-items--gap",
+          "--dsa-business-card__image--aspect-ratio",
+          "--dsa-business-card__image--border-radius",
+          "--dsa-business-card__infos--color",
+          "--dsa-business-card__infos--font",
+          "--dsa-business-card__logo--max-width",
+          "--dsa-business-card__topic--color",
+          "--dsa-business-card__topic--font",
+          "--dsa-business-card__topic--font-weight",
+          "--dsa-business-card__topic--margin-top"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "dsa-business-card__avatar",
+                          "lazyloaded",
+                          "ls-is-cached"
+                        ],
+                        "element": "img",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--default"
+                        ],
+                        "path": "root/child-1/content/address/contact/avatar",
+                        "presence": "conditional",
+                        "role": "media"
+                      },
+                      {
+                        "classes": [],
+                        "element": "noscript",
+                        "namedBy": "position",
+                        "observedIn": [
+                          "corporate-business-card--default"
+                        ],
+                        "path": "root/child-1/content/address/contact/child-2",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [],
+                                "element": "span",
+                                "namedBy": "position",
+                                "observedIn": [
+                                  "corporate-business-card--default"
+                                ],
+                                "path": "root/child-1/content/address/contact/contact-items/contact-item/child-2",
+                                "presence": "conditional",
+                                "role": "text"
+                              },
+                              {
+                                "classes": [
+                                  "icon"
+                                ],
+                                "element": "svg",
+                                "namedBy": "tag",
+                                "observedIn": [
+                                  "corporate-business-card--default"
+                                ],
+                                "path": "root/child-1/content/address/contact/contact-items/contact-item/icon",
+                                "presence": "conditional",
+                                "role": "glyph"
+                              }
+                            ],
+                            "classes": [
+                              "dsa-business-card__contact-item"
+                            ],
+                            "element": "a",
+                            "namedBy": "bem-class",
+                            "observedIn": [
+                              "corporate-business-card--default"
+                            ],
+                            "path": "root/child-1/content/address/contact/contact-items/contact-item",
+                            "presence": "repeated",
+                            "role": "control"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__contact-items"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--default"
+                        ],
+                        "path": "root/child-1/content/address/contact/contact-items",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__contact"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "corporate-business-card--default"
+                    ],
+                    "path": "root/child-1/content/address/contact",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--default"
+                            ],
+                            "path": "root/child-1/content/address/infos/location/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          },
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--default"
+                            ],
+                            "path": "root/child-1/content/address/infos/location/child-2",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__location"
+                        ],
+                        "element": "span",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--default"
+                        ],
+                        "path": "root/child-1/content/address/infos/location",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "span",
+                            "namedBy": "content-match",
+                            "observedIn": [
+                              "corporate-business-card--default"
+                            ],
+                            "path": "root/child-1/content/address/infos/topic/topic",
+                            "presence": "conditional",
+                            "role": "text"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__topic"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--default"
+                        ],
+                        "path": "root/child-1/content/address/infos/topic",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__infos"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "corporate-business-card--default"
+                    ],
+                    "path": "root/child-1/content/address/infos",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__address"
+                ],
+                "element": "address",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--default"
+                ],
+                "path": "root/child-1/content/address",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-button",
+                      "c-button--solid",
+                      "dsa-business-card__button",
+                      "dsa-button"
+                    ],
+                    "element": "a",
+                    "instanceOf": "button",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "corporate-business-card--default"
+                    ],
+                    "path": "root/child-1/content/buttons/button",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__buttons"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--default"
+                ],
+                "path": "root/child-1/content/buttons",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "corporate-business-card--default"
+                    ],
+                    "path": "root/child-1/content/logo/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded",
+                      "ls-is-cached"
+                    ],
+                    "element": "img",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "corporate-business-card--default"
+                    ],
+                    "path": "root/child-1/content/logo/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__logo",
+                  "dsa-business-card__logo-link"
+                ],
+                "element": "a",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--default"
+                ],
+                "path": "root/child-1/content/logo",
+                "presence": "conditional",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-business-card__content"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-business-card--default"
+            ],
+            "path": "root/child-1/content",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "corporate-business-card--default"
+                ],
+                "path": "root/child-1/image/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "namedBy": "tag",
+                "observedIn": [
+                  "corporate-business-card--default"
+                ],
+                "path": "root/child-1/image/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-business-card__image"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-business-card--default"
+            ],
+            "path": "root/child-1/image",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-business-card"
+        ],
+        "element": "div",
+        "namedBy": "position",
+        "observedIn": [
+          "corporate-business-card--default"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-business-card--background-color",
+          "--dsa-business-card--border",
+          "--dsa-business-card--border-radius",
+          "--dsa-business-card--gap",
+          "--dsa-business-card--padding",
+          "--dsa-business-card__address--gap",
+          "--dsa-business-card__avatar--border-radius",
+          "--dsa-business-card__avatar--size",
+          "--dsa-business-card__contact--color",
+          "--dsa-business-card__contact--color_hover",
+          "--dsa-business-card__contact--font",
+          "--dsa-business-card__contact--font-weight",
+          "--dsa-business-card__contact--gap",
+          "--dsa-business-card__contact--icon-size",
+          "--dsa-business-card__contact-items--gap",
+          "--dsa-business-card__image--aspect-ratio",
+          "--dsa-business-card__image--border-radius",
+          "--dsa-business-card__infos--color",
+          "--dsa-business-card__infos--font",
+          "--dsa-business-card__logo--max-width",
+          "--dsa-business-card__topic--color",
+          "--dsa-business-card__topic--font",
+          "--dsa-business-card__topic--font-weight",
+          "--dsa-business-card__topic--margin-top"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "dsa-business-card__avatar",
+                          "lazyloaded"
+                        ],
+                        "element": "img",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "contract-defaults-businesscard--contract-default",
+                          "corporate-business-card--without-image"
+                        ],
+                        "path": "root/image/content/address/contact/avatar",
+                        "presence": "conditional",
+                        "role": "media"
+                      },
+                      {
+                        "classes": [],
+                        "element": "noscript",
+                        "namedBy": "position",
+                        "observedIn": [
+                          "contract-defaults-businesscard--contract-default",
+                          "corporate-business-card--without-image"
+                        ],
+                        "path": "root/image/content/address/contact/child-2",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [],
+                                "element": "span",
+                                "namedBy": "position",
+                                "observedIn": [
+                                  "corporate-business-card--without-image"
+                                ],
+                                "path": "root/image/content/address/contact/contact-items/contact-item/child-2",
+                                "presence": "conditional",
+                                "role": "text"
+                              },
+                              {
+                                "classes": [
+                                  "icon"
+                                ],
+                                "element": "svg",
+                                "namedBy": "tag",
+                                "observedIn": [
+                                  "corporate-business-card--without-image"
+                                ],
+                                "path": "root/image/content/address/contact/contact-items/contact-item/icon",
+                                "presence": "conditional",
+                                "role": "glyph"
+                              }
+                            ],
+                            "classes": [
+                              "dsa-business-card__contact-item"
+                            ],
+                            "element": "a",
+                            "namedBy": "bem-class",
+                            "observedIn": [
+                              "corporate-business-card--without-image"
+                            ],
+                            "path": "root/image/content/address/contact/contact-items/contact-item",
+                            "presence": "repeated",
+                            "role": "control"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__contact-items"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "contract-defaults-businesscard--contract-default",
+                          "corporate-business-card--without-image"
+                        ],
+                        "path": "root/image/content/address/contact/contact-items",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__contact"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-businesscard--contract-default",
+                      "corporate-business-card--without-image"
+                    ],
+                    "path": "root/image/content/address/contact",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--without-image"
+                            ],
+                            "path": "root/image/content/address/infos/location/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          },
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "namedBy": "position",
+                            "observedIn": [
+                              "corporate-business-card--without-image"
+                            ],
+                            "path": "root/image/content/address/infos/location/child-2",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__location"
+                        ],
+                        "element": "span",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "contract-defaults-businesscard--contract-default",
+                          "corporate-business-card--without-image"
+                        ],
+                        "path": "root/image/content/address/infos/location",
+                        "presence": "conditional",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "span",
+                            "namedBy": "content-match",
+                            "observedIn": [
+                              "corporate-business-card--without-image"
+                            ],
+                            "path": "root/image/content/address/infos/topic/topic",
+                            "presence": "conditional",
+                            "role": "text"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-business-card__topic"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "corporate-business-card--without-image"
+                        ],
+                        "path": "root/image/content/address/infos/topic",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-business-card__infos"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-businesscard--contract-default",
+                      "corporate-business-card--without-image"
+                    ],
+                    "path": "root/image/content/address/infos",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__address"
+                ],
+                "element": "address",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-businesscard--contract-default",
+                  "corporate-business-card--without-image"
+                ],
+                "path": "root/image/content/address",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-button",
+                      "c-button--solid",
+                      "dsa-business-card__button",
+                      "dsa-button"
+                    ],
+                    "element": "a",
+                    "instanceOf": "button",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "corporate-business-card--without-image"
+                    ],
+                    "path": "root/image/content/buttons/button",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__buttons"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-business-card--without-image"
+                ],
+                "path": "root/image/content/buttons",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "contract-defaults-businesscard--contract-default"
+                ],
+                "path": "root/image/content/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "corporate-business-card--without-image"
+                    ],
+                    "path": "root/image/content/logo/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded",
+                      "ls-is-cached"
+                    ],
+                    "element": "img",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "corporate-business-card--without-image"
+                    ],
+                    "path": "root/image/content/logo/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "dsa-business-card__logo"
+                ],
+                "element": "img",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-businesscard--contract-default",
+                  "corporate-business-card--without-image"
+                ],
+                "path": "root/image/content/logo",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-business-card__content"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-businesscard--contract-default",
+              "corporate-business-card--without-image"
+            ],
+            "path": "root/image/content",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-business-card"
+        ],
+        "element": "div",
+        "namedBy": "token-grammar",
+        "observedIn": [
+          "contract-defaults-businesscard--contract-default",
+          "corporate-business-card--without-image"
+        ],
+        "path": "root/image",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-business-card--background-color",
+          "--dsa-business-card--border",
+          "--dsa-business-card--border-radius",
+          "--dsa-business-card--gap",
+          "--dsa-business-card--padding",
+          "--dsa-business-card__address--gap",
+          "--dsa-business-card__avatar--border-radius",
+          "--dsa-business-card__avatar--size",
+          "--dsa-business-card__contact--color",
+          "--dsa-business-card__contact--color_hover",
+          "--dsa-business-card__contact--font",
+          "--dsa-business-card__contact--font-weight",
+          "--dsa-business-card__contact--gap",
+          "--dsa-business-card__contact--icon-size",
+          "--dsa-business-card__contact-items--gap",
+          "--dsa-business-card__image--aspect-ratio",
+          "--dsa-business-card__image--border-radius",
+          "--dsa-business-card__infos--color",
+          "--dsa-business-card__infos--font",
+          "--dsa-business-card__logo--max-width",
+          "--dsa-business-card__topic--color",
+          "--dsa-business-card__topic--font",
+          "--dsa-business-card__topic--font-weight",
+          "--dsa-business-card__topic--margin-top"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--business-card"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "address": {
+        "role": "content",
+        "type": "string"
+      },
+      "avatar": {
+        "role": "content",
+        "type": "object"
+      },
+      "buttons": {
+        "role": "composition",
+        "type": "array"
+      },
+      "centered": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "contactLinks": {
+        "role": "composition",
+        "type": "array"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "logo": {
+        "role": "content",
+        "type": "object"
+      },
+      "topic": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./business-card.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "centered",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "address",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "avatar",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "buttons"
+    },
+    {
+      "affects": [
+        "backgroundColor",
+        "border",
+        "borderRadius",
+        "color",
+        "font",
+        "fontWeight",
+        "gap",
+        "height",
+        "padding"
+      ],
+      "mechanism": "presence",
+      "parts": [
+        "root/business-card--centered",
+        "root/business-card--centered/content",
+        "root/business-card--centered/content/address",
+        "root/business-card--centered/content/address/contact",
+        "root/business-card--centered/content/address/contact/avatar",
+        "root/business-card--centered/content/address/contact/child-2",
+        "root/business-card--centered/content/address/contact/contact-items",
+        "root/business-card--centered/content/address/contact/contact-items/contact-item",
+        "root/business-card--centered/content/address/contact/contact-items/contact-item/child-2",
+        "root/business-card--centered/content/address/contact/contact-items/contact-item/icon",
+        "root/business-card--centered/content/address/infos",
+        "root/business-card--centered/content/address/infos/location",
+        "root/business-card--centered/content/address/infos/location/child-1",
+        "root/business-card--centered/content/address/infos/location/child-2",
+        "root/business-card--centered/content/address/infos/topic",
+        "root/business-card--centered/content/address/infos/topic/topic",
+        "root/business-card--centered/content/buttons",
+        "root/business-card--centered/content/buttons/button",
+        "root/business-card--centered/content/logo",
+        "root/business-card--centered/content/logo/child-2",
+        "root/business-card--centered/content/logo/image",
+        "root/business-card--centered/image",
+        "root/business-card--centered/image/child-2",
+        "root/business-card--centered/image/image"
+      ],
+      "prop": "centered"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "contactLinks"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "logo",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [
+        "root/business-card--centered/content/address/infos/topic/topic",
+        "root/child-1/content/address/infos/topic/topic",
+        "root/image/content/address/infos/topic/topic"
+      ],
+      "prop": "topic"
+    }
+  ],
+  "component": "Business Card",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "icon",
+          "label",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          3
+        ],
+        "part": "root",
+        "prop": "contactLinks"
+      },
+      {
+        "itemShape": [
+          "label",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          1
+        ],
+        "part": "root",
+        "prop": "buttons"
+      }
+    ]
+  },
+  "contractId": "business-card",
+  "coverage": {
+    "axes": {
+      "centered": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "contactLinks",
+        "buttons"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 70,
+      "inDefault": 12,
+      "total": 71
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "avatar": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "buttons": {
+        "source": "schema-default",
+        "value": []
+      },
+      "centered": {
+        "source": "schema-default",
+        "value": false
+      },
+      "contactLinks": {
+        "source": "schema-default",
+        "value": []
+      },
+      "image": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "logo": {
+        "source": "schema-default",
+        "value": {}
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-businesscard--contract-default.png",
+      "story": "contract-defaults-businesscard--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 226,
+          "width": 1440
+        }
+      },
+      "root/image": {
+        "box": {
+          "height": 226,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "stretch",
+          "display": "flex",
+          "gap": "30.8032px",
+          "justifyContent": "center"
+        },
+        "styles": {
+          "backgroundColor": {
+            "computed": "color(srgb 0.188235 0.396078 0.752941 / 0.15)",
+            "resolves": "--ks-background-color-card",
+            "token": "--dsa-business-card--background-color"
+          },
+          "border": {
+            "computed": "1px solid color(srgb 0.0235294 0.0313726 0.121569 / 0.05)",
+            "resolves": "--ks-border-card",
+            "token": "--dsa-business-card--border"
+          },
+          "borderRadius": {
+            "computed": "15.8578px",
+            "resolves": "--ks-border-radius-card",
+            "token": "--dsa-business-card--border-radius"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-interface-interactive",
+            "token": "--dsa-business-card__contact--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-m",
+            "token": "--dsa-business-card__contact--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-business-card__contact--font-weight"
+          },
+          "gap": {
+            "computed": "30.8032px 30.8032px",
+            "resolves": "--ks-spacing-stack-l",
+            "token": "--dsa-business-card--gap"
+          },
+          "padding": {
+            "computed": "44.8756px",
+            "resolves": "--ks-spacing-inset-m",
+            "token": "--dsa-business-card--padding"
+          }
+        }
+      },
+      "root/image/content": {
+        "box": {
+          "height": 135,
+          "width": 1348
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "30.8032px"
+        }
+      },
+      "root/image/content/address": {
+        "box": {
+          "height": 104,
+          "width": 149
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "30.8032px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/image/content/address/contact": {
+        "box": {
+          "height": 104,
+          "width": 104
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/image/content/address/contact/avatar": {
+        "box": {
+          "height": 90,
+          "width": 90
+        }
+      },
+      "root/image/content/address/contact/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/image/content/address/contact/contact-items": {
+        "box": {
+          "height": 0,
+          "width": 100
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "5.77082px"
+        }
+      },
+      "root/image/content/address/infos": {
+        "box": {
+          "height": 104,
+          "width": 0
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/image/content/address/infos/location": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/image/content/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/image/content/logo": {
+        "box": {
+          "height": 0,
+          "width": 252
+        }
+      }
+    }
+  },
+  "description": "Business card component representing an individual's or company's contact information and branding.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:ced52cfa13b1c214",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-business-card--centered.png",
+        "story": "corporate-business-card--centered"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 632,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "226.406px",
+              "to": "631.75px"
+            }
+          }
+        },
+        "root/business-card--centered": {
+          "box": {
+            "height": 632,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-business-card",
+            "dsa-business-card--centered"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "gap": "30.8032px",
+            "justifyContent": "center"
+          },
+          "styles": {
+            "backgroundColor": {
+              "computed": "color(srgb 0.188235 0.396078 0.752941 / 0.15)",
+              "resolves": "--ks-background-color-card",
+              "token": "--dsa-business-card--background-color"
+            },
+            "border": {
+              "computed": "1px solid color(srgb 0.0235294 0.0313726 0.121569 / 0.05)",
+              "resolves": "--ks-border-card",
+              "token": "--dsa-business-card--border"
+            },
+            "borderRadius": {
+              "computed": "15.8578px",
+              "resolves": "--ks-border-radius-card",
+              "token": "--dsa-business-card--border-radius"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-interface-interactive",
+              "token": "--dsa-business-card__contact--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-interface-m",
+              "token": "--dsa-business-card__contact--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": "--ks-font-weight-semi-bold",
+              "token": "--dsa-business-card__contact--font-weight"
+            },
+            "gap": {
+              "computed": "30.8032px 30.8032px",
+              "resolves": "--ks-spacing-stack-l",
+              "token": "--dsa-business-card--gap"
+            },
+            "padding": {
+              "computed": "44.8756px",
+              "resolves": "--ks-spacing-inset-m",
+              "token": "--dsa-business-card--padding"
+            }
+          }
+        },
+        "root/business-card--centered/content": {
+          "box": {
+            "height": 414,
+            "width": 569
+          },
+          "classes": [
+            "dsa-business-card__content"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "30.8032px"
+          }
+        },
+        "root/business-card--centered/content/address": {
+          "box": {
+            "height": 239,
+            "width": 569
+          },
+          "classes": [
+            "dsa-business-card__address",
+            "dsa-business-card__address--centered"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "30.8032px",
+            "justifyContent": "center"
+          }
+        },
+        "root/business-card--centered/content/address/contact": {
+          "box": {
+            "height": 93,
+            "width": 326
+          },
+          "classes": [
+            "dsa-business-card__contact"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "center"
+          }
+        },
+        "root/business-card--centered/content/address/contact/avatar": {
+          "box": {
+            "height": 90,
+            "width": 90
+          },
+          "classes": [
+            "dsa-business-card__avatar",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/contact/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/contact/contact-items": {
+          "box": {
+            "height": 93,
+            "width": 222
+          },
+          "classes": [
+            "dsa-business-card__contact-items"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-start",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "5.77082px"
+          }
+        },
+        "root/business-card--centered/content/address/contact/contact-items/contact-item": {
+          "box": {
+            "height": 27,
+            "width": 162
+          },
+          "classes": [
+            "dsa-business-card__contact-item"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/business-card--centered/content/address/contact/contact-items/contact-item/child-2": {
+          "box": {
+            "height": 27,
+            "width": 133
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/contact/contact-items/contact-item/icon": {
+          "box": {
+            "height": 23,
+            "width": 23
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/infos": {
+          "box": {
+            "height": 116,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__infos"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/business-card--centered/content/address/infos/location": {
+          "box": {
+            "height": 81,
+            "width": 209
+          },
+          "classes": [
+            "dsa-business-card__location"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/infos/location/child-1": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/infos/location/child-2": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/infos/topic": {
+          "box": {
+            "height": 26,
+            "width": 247
+          },
+          "classes": [
+            "dsa-business-card__topic"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/content/address/infos/topic/topic": {
+          "box": {
+            "height": 28,
+            "width": 247
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/buttons": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "dsa-business-card__buttons"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "center"
+          }
+        },
+        "root/business-card--centered/content/buttons/button": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "dsa-business-card__button",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/business-card--centered/content/logo": {
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__logo",
+            "dsa-business-card__logo-link"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/content/logo/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/content/logo/image": {
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/image": {
+          "box": {
+            "height": 540,
+            "width": 748
+          },
+          "classes": [
+            "dsa-business-card__image"
+          ],
+          "introduced": true
+        },
+        "root/business-card--centered/image/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/business-card--centered/image/image": {
+          "box": {
+            "height": 540,
+            "width": 748
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "centered": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-business-card--default.png",
+        "story": "corporate-business-card--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 632,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "226.406px",
+              "to": "631.75px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 632,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-business-card"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "stretch",
+            "display": "flex",
+            "gap": "30.8032px",
+            "justifyContent": "center"
+          },
+          "styles": {
+            "backgroundColor": {
+              "computed": "color(srgb 0.188235 0.396078 0.752941 / 0.15)",
+              "resolves": "--ks-background-color-card",
+              "token": "--dsa-business-card--background-color"
+            },
+            "border": {
+              "computed": "1px solid color(srgb 0.0235294 0.0313726 0.121569 / 0.05)",
+              "resolves": "--ks-border-card",
+              "token": "--dsa-business-card--border"
+            },
+            "borderRadius": {
+              "computed": "15.8578px",
+              "resolves": "--ks-border-radius-card",
+              "token": "--dsa-business-card--border-radius"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-interface-interactive",
+              "token": "--dsa-business-card__contact--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-interface-m",
+              "token": "--dsa-business-card__contact--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": "--ks-font-weight-semi-bold",
+              "token": "--dsa-business-card__contact--font-weight"
+            },
+            "gap": {
+              "computed": "30.8032px 30.8032px",
+              "resolves": "--ks-spacing-stack-l",
+              "token": "--dsa-business-card--gap"
+            },
+            "padding": {
+              "computed": "44.8756px",
+              "resolves": "--ks-spacing-inset-m",
+              "token": "--dsa-business-card--padding"
+            }
+          }
+        },
+        "root/child-1/content": {
+          "box": {
+            "height": 540,
+            "width": 569
+          },
+          "classes": [
+            "dsa-business-card__content"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-start",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "30.8032px"
+          }
+        },
+        "root/child-1/content/address": {
+          "box": {
+            "height": 239,
+            "width": 569
+          },
+          "classes": [
+            "dsa-business-card__address"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "30.8032px",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/child-1/content/address/contact": {
+          "box": {
+            "height": 93,
+            "width": 326
+          },
+          "classes": [
+            "dsa-business-card__contact"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/child-1/content/address/contact/avatar": {
+          "box": {
+            "height": 90,
+            "width": 90
+          },
+          "classes": [
+            "dsa-business-card__avatar",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/address/contact/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/address/contact/contact-items": {
+          "box": {
+            "height": 93,
+            "width": 222
+          },
+          "classes": [
+            "dsa-business-card__contact-items"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-start",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "5.77082px"
+          }
+        },
+        "root/child-1/content/address/contact/contact-items/contact-item": {
+          "box": {
+            "height": 27,
+            "width": 162
+          },
+          "classes": [
+            "dsa-business-card__contact-item"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/child-1/content/address/contact/contact-items/contact-item/child-2": {
+          "box": {
+            "height": 27,
+            "width": 133
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/address/contact/contact-items/contact-item/icon": {
+          "box": {
+            "height": 23,
+            "width": 23
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/address/infos": {
+          "box": {
+            "height": 116,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__infos"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/child-1/content/address/infos/location": {
+          "box": {
+            "height": 81,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__location"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/address/infos/location/child-1": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/address/infos/location/child-2": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/address/infos/topic": {
+          "box": {
+            "height": 26,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__topic"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/address/infos/topic/topic": {
+          "box": {
+            "height": 28,
+            "width": 247
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/buttons": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "dsa-business-card__buttons"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "center"
+          }
+        },
+        "root/child-1/content/buttons/button": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "dsa-business-card__button",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/child-1/content/logo": {
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": [
+            "dsa-business-card__logo",
+            "dsa-business-card__logo-link"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/logo/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/logo/image": {
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        },
+        "root/child-1/image": {
+          "box": {
+            "height": 540,
+            "width": 748
+          },
+          "classes": [
+            "dsa-business-card__image"
+          ],
+          "introduced": true
+        },
+        "root/child-1/image/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/image/image": {
+          "box": {
+            "height": 540,
+            "width": 748
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-business-card--without-image.png",
+        "story": "corporate-business-card--without-image"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 382,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "226.406px",
+              "to": "382.328px"
+            }
+          }
+        },
+        "root/image": {
+          "box": {
+            "height": 382,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "226.406px",
+              "to": "382.328px"
+            }
+          }
+        },
+        "root/image/content": {
+          "box": {
+            "height": 291,
+            "width": 1348
+          },
+          "styles": {
+            "height": {
+              "from": "134.656px",
+              "to": "290.578px"
+            }
+          }
+        },
+        "root/image/content/address": {
+          "box": {
+            "height": 116,
+            "width": 618
+          },
+          "styles": {
+            "height": {
+              "from": "103.859px",
+              "to": "115.953px"
+            },
+            "width": {
+              "from": "148.734px",
+              "to": "617.562px"
+            }
+          }
+        },
+        "root/image/content/address/contact": {
+          "box": {
+            "height": 116,
+            "width": 326
+          },
+          "styles": {
+            "height": {
+              "from": "103.859px",
+              "to": "115.953px"
+            },
+            "width": {
+              "from": "103.859px",
+              "to": "325.688px"
+            }
+          }
+        },
+        "root/image/content/address/contact/avatar": {
+          "attrs": {
+            "data-src": {
+              "from": null,
+              "to": "img/placeholder/avatar-business-card-round.svg"
+            },
+            "src": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "classes": {
+            "add": [
+              "ls-is-cached"
+            ]
+          }
+        },
+        "root/image/content/address/contact/contact-items": {
+          "box": {
+            "height": 116,
+            "width": 222
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "115.953px"
+            },
+            "width": {
+              "from": "100px",
+              "to": "221.828px"
+            }
+          }
+        },
+        "root/image/content/address/contact/contact-items/contact-item": {
+          "box": {
+            "height": 27,
+            "width": 162
+          },
+          "classes": [
+            "dsa-business-card__contact-item"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/image/content/address/contact/contact-items/contact-item/child-2": {
+          "box": {
+            "height": 27,
+            "width": 133
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/image/content/address/contact/contact-items/contact-item/icon": {
+          "box": {
+            "height": 23,
+            "width": 23
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/image/content/address/infos": {
+          "box": {
+            "height": 116,
+            "width": 247
+          },
+          "styles": {
+            "height": {
+              "from": "103.859px",
+              "to": "115.953px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "247px"
+            }
+          }
+        },
+        "root/image/content/address/infos/location": {
+          "box": {
+            "height": 81,
+            "width": 247
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "81.1406px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "247px"
+            }
+          }
+        },
+        "root/image/content/address/infos/location/child-1": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/image/content/address/infos/location/child-2": {
+          "box": {
+            "height": 22,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/image/content/address/infos/topic": {
+          "box": {
+            "height": 26,
+            "width": 247
+          },
+          "classes": [
+            "dsa-business-card__topic"
+          ],
+          "introduced": true
+        },
+        "root/image/content/address/infos/topic/topic": {
+          "box": {
+            "height": 28,
+            "width": 247
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/image/content/buttons": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "dsa-business-card__buttons"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "center"
+          }
+        },
+        "root/image/content/buttons/button": {
+          "box": {
+            "height": 54,
+            "width": 163
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "dsa-business-card__button",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/image/content/logo": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": {
+            "add": [
+              "dsa-business-card__logo-link"
+            ],
+            "remove": [
+              "lazyloaded"
+            ]
+          },
+          "element": {
+            "from": "img",
+            "to": "a"
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "rgb(0, 0, 0)",
+              "to": "rgb(48, 101, 192)"
+            },
+            "color": {
+              "from": "rgb(0, 0, 0)",
+              "to": "rgb(48, 101, 192)"
+            },
+            "fontWeight": {
+              "from": "400",
+              "to": "500"
+            },
+            "height": {
+              "from": "0px",
+              "to": "50.0625px"
+            },
+            "overflowX": {
+              "from": "clip",
+              "to": "visible"
+            }
+          }
+        },
+        "root/image/content/logo/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/image/content/logo/image": {
+          "box": {
+            "height": 50,
+            "width": 252
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

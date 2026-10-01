@@ -1,0 +1,18 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "downloads",
+  "component": "Downloads",
+  "description": "Downloads component for providing users with downloadable files and resources.",
+  "props": {
+    "properties": {
+      "download": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "download"
+  ]
+}

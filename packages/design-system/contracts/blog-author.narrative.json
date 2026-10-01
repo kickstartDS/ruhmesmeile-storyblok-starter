@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Blog Author",
+  "default": {
+    "description": "The component features a clean, minimalist design with a white background and a subtle shadow, giving it a slightly elevated appearance. The author's name, \"John Doe,\" is displayed prominently in bold, dark text, while a placeholder image is absent, leaving a simple and uncluttered look. The overall impression is professional and straightforward, focusing on the author's identity.",
+    "from": "img/screenshots/contract-defaults-blogauthor--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "blog-blog-author--default",
+      "when": {},
+      "difference": "The variant features a significantly taller design, accommodating additional content such as a profile image and contact information. The author's name is still prominent, but now accompanied by a professional title and social media/contact details, creating a more detailed and engaging presentation. The overall look is more informative and visually rich compared to the minimalist default.",
+      "from": "img/screenshots/blog-blog-author--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:43:43.963Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-blogauthor--contract-default.png": "sha256:e3d38dd8f2e5bf68",
+        "img/screenshots/blog-blog-author--default.png": "sha256:ee0ee38543467be5"
+      },
+      "contract": "sha256:3f7b59a900635c55ce6777607689394a5b14220346ba3be5c6589e97a6a3f671"
+    }
+  }
+}

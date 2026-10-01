@@ -1,0 +1,33 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "radio",
+  "component": "Radio",
+  "description": "Radio buttons allow users to select a single option from a list of mutually exclusive options.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "hint": {
+        "type": "string"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  }
+}

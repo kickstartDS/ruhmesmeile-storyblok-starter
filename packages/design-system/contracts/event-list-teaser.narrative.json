@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event List Teaser",
+  "default": {
+    "description": "The Event List Teaser component features a clean and modern design with a white background and subtle shadow, giving it a slightly elevated appearance. The title is bold and prominent at the top, followed by icons and text indicating the date and location, which are neatly aligned and use a soft blue color for the icons. The overall layout is spacious and organized, providing a clear and concise preview of the event details.",
+    "from": "img/screenshots/contract-defaults-eventlistteaser--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-list-teaser--default",
+      "when": {},
+      "difference": "This variant of the Event List Teaser is more detailed and visually rich compared to the default. It includes a category label above the title, which remains bold and prominent. The layout is expanded to accommodate additional elements such as tags, a teaser text, and an image on the right. The date and location details are more comprehensive, with the location now displayed in a block format, enhancing the overall informational depth and visual appeal.",
+      "from": "img/screenshots/event-event-list-teaser--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:05.205Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventlistteaser--contract-default.png": "sha256:5d0b38cb333477f1",
+        "img/screenshots/event-event-list-teaser--default.png": "sha256:285f7036a31bd9d6"
+      },
+      "contract": "sha256:e639beb92d48975dae9fbd58143ef04504a68bcfa0940fb8ee06e936f2ff070a"
+    }
+  }
+}

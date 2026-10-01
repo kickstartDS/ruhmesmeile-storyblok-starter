@@ -1,0 +1,51 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Video Curtain",
+  "default": {
+    "description": "The Video Curtain component features a clean and minimalistic design with a large, central video background. Overlaying the video is a text area that includes a headline, subtext, and additional descriptive text, all aligned centrally. The overall appearance is sleek and modern, with a focus on the video content, enhanced by the overlay text and buttons for interaction.",
+    "from": "img/screenshots/contract-defaults-videocurtain--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-video-curtain--atmospheric-video-with-overlay",
+      "when": {
+        "overlay": true
+      },
+      "difference": "In this variant, the Video Curtain component introduces an overlay that adds a subtle layer over the video background, enhancing the text's visibility. The content box now has defined dimensions, providing structure to the headline, subtext, and additional descriptive text. A new interactive button appears, offering a call-to-action that complements the overall design.",
+      "from": "img/screenshots/components-video-curtain--atmospheric-video-with-overlay.png"
+    },
+    {
+      "story": "components-video-curtain--color-neutral-text",
+      "when": {
+        "colorNeutral": true,
+        "highlightText": true,
+        "overlay": true
+      },
+      "difference": "The variant of the Video Curtain component introduces a neutral color scheme, giving it a softer and more subdued appearance. The overlay is more pronounced, with highlighted text that stands out against the video background, enhancing readability. This version maintains the modern aesthetic but with a calmer, more balanced visual impact.",
+      "from": "img/screenshots/components-video-curtain--color-neutral-text.png"
+    },
+    {
+      "story": "components-video-curtain--color-neutral-video",
+      "when": {
+        "highlightText": true,
+        "overlay": true
+      },
+      "difference": "In this variant of the Video Curtain component, the overlay text area is more prominent, with increased dimensions for both the headline and the overall text box. The headline is now wider and taller, enhancing its visibility and impact. Additionally, the presence of the highlight text class adds emphasis to the text, making it stand out more against the video background.",
+      "from": "img/screenshots/components-video-curtain--color-neutral-video.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:58.975Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-videocurtain--contract-default.png": "sha256:19e7b924dba4bdec",
+        "img/screenshots/components-video-curtain--atmospheric-video-with-overlay.png": "sha256:3078c343796d6c21",
+        "img/screenshots/components-video-curtain--color-neutral-text.png": "sha256:79125c6238c0bcae",
+        "img/screenshots/components-video-curtain--color-neutral-video.png": "sha256:dc29ec4c8e47a2a7"
+      },
+      "contract": "sha256:157e05d31d8386b8bd91b6d2ff9e465a407d5100a4f5da839c0dae78d581e2d6"
+    }
+  }
+}

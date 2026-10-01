@@ -1,0 +1,327 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "classes": [
+              "dsa-checkbox"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "options",
+              "when": "non-empty"
+            },
+            "instanceOf": "checkbox",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "form-checkbox-group--default"
+            ],
+            "path": "root/group/checkbox",
+            "presence": "repeated",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "c-form-check-group__group"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/group",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "c-form-check-group__label"
+        ],
+        "element": "span",
+        "namedBy": "bem-class",
+        "path": "root/label",
+        "presence": "always",
+        "role": "text"
+      }
+    ],
+    "classes": [
+      "c-form-check-group",
+      "dsa-checkbox-group"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-checkbox-group__label--color",
+      "--dsa-checkbox-group__label--font",
+      "--dsa-checkbox-group__label--font-weight",
+      "--dsa-checkbox-group__label--padding-bottom"
+    ]
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "invalid": {
+        "role": "state",
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "role": "content",
+        "type": "string"
+      },
+      "label": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "name": {
+        "role": "behaviour",
+        "type": "string"
+      },
+      "options": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "schema": "./checkbox-group.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "prop": "invalid",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "invalid"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "invalidMessage",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "label",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "name"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/group/checkbox"
+      ],
+      "prop": "options"
+    }
+  ],
+  "component": "Checkbox Group",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "disabled",
+          "hint",
+          "label"
+        ],
+        "observedCounts": [
+          0,
+          3
+        ],
+        "part": "root/group/checkbox",
+        "prop": "options"
+      }
+    ]
+  },
+  "contractId": "checkbox-group",
+  "coverage": {
+    "axes": {
+      "invalid": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "options"
+      ],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 3,
+      "total": 4
+    },
+    "score": 0,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "label": {
+        "source": "example",
+        "value": "Est dolore a debitis"
+      },
+      "options": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-checkboxgroup--contract-default.png",
+      "story": "contract-defaults-checkboxgroup--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 26,
+          "width": 1440
+        },
+        "styles": {
+          "color": {
+            "computed": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+            "resolves": "--ks-text-color-interface",
+            "token": "--dsa-checkbox-group__label--color"
+          },
+          "font": {
+            "computed": "400 15.9696px 23.9544px Montserrat",
+            "resolves": "--ks-font-interface-s",
+            "token": "--dsa-checkbox-group__label--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-checkbox-group__label--font-weight"
+          }
+        }
+      },
+      "root/group": {
+        "box": {
+          "height": 0,
+          "width": 1464
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/label": {
+        "box": {
+          "height": 28,
+          "width": 158
+        },
+        "layout": {
+          "display": "inline-block"
+        }
+      }
+    }
+  },
+  "description": "Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:5047e103731cd3af",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/form-checkbox-group--default.png",
+        "story": "form-checkbox-group--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 110,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "25.9375px",
+              "to": "109.797px"
+            }
+          }
+        },
+        "root/group": {
+          "box": {
+            "height": 84,
+            "width": 1464
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "83.8594px"
+            }
+          }
+        },
+        "root/group/checkbox": {
+          "box": {
+            "height": 24,
+            "width": 185
+          },
+          "classes": [
+            "dsa-checkbox"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

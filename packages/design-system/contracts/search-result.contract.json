@@ -1,0 +1,585 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-search-result__title"
+                    ],
+                    "element": "a",
+                    "namedBy": "bem-class",
+                    "path": "root/child-1/content/header/title",
+                    "presence": "always",
+                    "role": "control"
+                  }
+                ],
+                "classes": [
+                  "dsa-search-result__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/header",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-search-result__link"
+                ],
+                "element": "a",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/link",
+                "presence": "always",
+                "role": "control"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-search-result-match"
+                    ],
+                    "element": "a",
+                    "gate": {
+                      "prop": "url",
+                      "when": "truthy"
+                    },
+                    "instanceOf": "search-result-match",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "corporate-search-result--default"
+                    ],
+                    "path": "root/child-1/content/matches/search-result-match",
+                    "presence": "repeated",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "dsa-search-result__matches"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/matches",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--rich-text"
+                ],
+                "element": "div",
+                "instanceOf": "rich-text",
+                "namedBy": "slot-boundary",
+                "path": "root/child-1/content/rich-text",
+                "presence": "always",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-search-result__content"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/content",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "namedBy": "position",
+                    "path": "root/child-1/preview-image-row/preview-image-wrapper/child-2",
+                    "presence": "always",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "dsa-search-result__preview-image",
+                      "lazyload"
+                    ],
+                    "element": "img",
+                    "namedBy": "bem-class",
+                    "path": "root/child-1/preview-image-row/preview-image-wrapper/preview-image",
+                    "presence": "always",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "dsa-search-result__preview-image-wrapper"
+                ],
+                "element": "a",
+                "namedBy": "bem-class",
+                "path": "root/child-1/preview-image-row/preview-image-wrapper",
+                "presence": "always",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-search-result__preview-image-row"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/preview-image-row",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-search-result"
+        ],
+        "element": "div",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--search-result"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "imageColSize": {
+        "default": "small",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "none",
+          "small",
+          "large"
+        ]
+      },
+      "initialMatch": {
+        "role": "content",
+        "type": "string"
+      },
+      "matches": {
+        "role": "composition",
+        "type": "array"
+      },
+      "previewImage": {
+        "role": "content",
+        "type": "string"
+      },
+      "showLink": {
+        "default": true,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      },
+      "url": {
+        "role": "behaviour",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./search-result.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": true,
+      "prop": "showLink",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "imageColSize",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "initialMatch",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "matches"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "previewImage",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "showLink"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/child-1/content/matches/search-result-match"
+      ],
+      "prop": "url"
+    }
+  ],
+  "component": "Search Result",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "snippet",
+          "title",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          3
+        ],
+        "part": "root",
+        "prop": "matches"
+      }
+    ]
+  },
+  "contractId": "search-result",
+  "coverage": {
+    "axes": {
+      "showLink": {
+        "missing": [
+          false
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "matches"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 12,
+      "total": 13
+    },
+    "score": 0.5,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "imageColSize": {
+        "source": "schema-default",
+        "value": "small"
+      },
+      "matches": {
+        "source": "schema-default",
+        "value": []
+      },
+      "showLink": {
+        "source": "schema-default",
+        "value": true
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-searchresult--contract-default.png",
+      "story": "contract-defaults-searchresult--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "21.1438px"
+        }
+      },
+      "root/child-1/content": {
+        "box": {
+          "height": 18,
+          "width": 1239
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/child-1/content/header": {
+        "box": {
+          "height": 0,
+          "width": 1239
+        }
+      },
+      "root/child-1/content/header/title": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/content/link": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/content/matches": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/content/rich-text": {
+        "box": {
+          "height": 0,
+          "width": 1239
+        }
+      },
+      "root/child-1/preview-image-row": {
+        "box": {
+          "height": 0,
+          "width": 180
+        }
+      },
+      "root/child-1/preview-image-row/preview-image-wrapper": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/preview-image-row/preview-image-wrapper/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/preview-image-row/preview-image-wrapper/preview-image": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      }
+    }
+  },
+  "description": "Search result component for displaying individual search results.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:70a3be2e82931eb0",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-search-result--default.png",
+        "story": "corporate-search-result--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 396,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "17.7812px",
+              "to": "396.109px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 396,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "17.7812px",
+              "to": "396.109px"
+            }
+          }
+        },
+        "root/child-1/content": {
+          "box": {
+            "height": 396,
+            "width": 1239
+          },
+          "styles": {
+            "height": {
+              "from": "17.7812px",
+              "to": "396.109px"
+            }
+          }
+        },
+        "root/child-1/content/header": {
+          "box": {
+            "height": 31,
+            "width": 1239
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "31.3594px"
+            }
+          }
+        },
+        "root/child-1/content/header/title": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 33,
+            "width": 339
+          }
+        },
+        "root/child-1/content/link": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 24,
+            "width": 421
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "23.9531px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "421px"
+            }
+          }
+        },
+        "root/child-1/content/matches": {
+          "box": {
+            "height": 260,
+            "width": 1239
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "260.031px"
+            },
+            "minHeight": {
+              "from": "0px",
+              "to": "auto"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1238.55px"
+            }
+          }
+        },
+        "root/child-1/content/matches/search-result-match": {
+          "box": {
+            "height": 83,
+            "width": 1216
+          },
+          "classes": [
+            "dsa-search-result-match"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/rich-text": {
+          "box": {
+            "height": 54,
+            "width": 1239
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "54.0938px"
+            }
+          }
+        },
+        "root/child-1/preview-image-row/preview-image-wrapper": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          }
+        },
+        "root/child-1/preview-image-row/preview-image-wrapper/preview-image": {
+          "attrs": {
+            "data-src": {
+              "from": null,
+              "to": "img/full-shot-different-people-working-together.png"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

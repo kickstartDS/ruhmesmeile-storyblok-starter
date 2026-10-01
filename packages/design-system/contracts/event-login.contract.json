@@ -1,0 +1,480 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-button",
+                  "c-button--small",
+                  "c-button--solid",
+                  "dsa-button"
+                ],
+                "element": "button",
+                "instanceOf": "button",
+                "namedBy": "slot-boundary",
+                "path": "root/form/actions/button",
+                "presence": "always",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-event-login__link"
+                ],
+                "element": "a",
+                "namedBy": "bem-class",
+                "path": "root/form/actions/link",
+                "presence": "always",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-event-login__actions"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/form/actions",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-text-field"
+                ],
+                "element": "div",
+                "instanceOf": "text-field",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-eventlogin--contract-default",
+                  "event-event-login--default"
+                ],
+                "path": "root/form/inputs/text-field",
+                "presence": "repeated",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-event-login__inputs"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/form/inputs",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-event-login__form"
+        ],
+        "element": "form",
+        "namedBy": "bem-class",
+        "path": "root/form",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-headline",
+          "dsa-headline--align-left",
+          "dsa-headline--h2",
+          "dsa-headline--space-after-minimum"
+        ],
+        "element": "header",
+        "gate": {
+          "prop": "headline",
+          "when": "truthy"
+        },
+        "instanceOf": "headline",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "event-event-login--default"
+        ],
+        "path": "root/headline",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "dsa-event-login__text"
+        ],
+        "element": "span",
+        "namedBy": "bem-class",
+        "path": "root/text",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-event-login"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "cta": {
+        "role": "content",
+        "type": "object"
+      },
+      "headline": {
+        "role": "content",
+        "type": "string"
+      },
+      "passwordInput": {
+        "role": "content",
+        "type": "object"
+      },
+      "resetPassword": {
+        "role": "content",
+        "type": "object"
+      },
+      "text": {
+        "role": "content",
+        "type": "string"
+      },
+      "usernameInput": {
+        "role": "content",
+        "type": "object"
+      }
+    },
+    "required": [],
+    "schema": "./event-login.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "cta",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/headline"
+      ],
+      "prop": "headline"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "passwordInput",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "resetPassword",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "usernameInput",
+      "proven": false
+    }
+  ],
+  "component": "Event Login",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "event-login",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 8,
+      "total": 9
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "cta": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "passwordInput": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "resetPassword": {
+        "source": "schema-default",
+        "value": {
+          "url": "#"
+        }
+      },
+      "usernameInput": {
+        "source": "schema-default",
+        "value": {}
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventlogin--contract-default.png",
+      "story": "contract-defaults-eventlogin--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 193,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/form": {
+        "box": {
+          "height": 163,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/form/actions": {
+        "box": {
+          "height": 24,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "gap": "21.1438px",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/form/actions/button": {
+        "box": {
+          "height": 24,
+          "width": 48
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/form/actions/link": {
+        "box": {
+          "height": 24,
+          "width": 188
+        }
+      },
+      "root/form/inputs": {
+        "box": {
+          "height": 118,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/form/inputs/text-field": {
+        "box": {
+          "height": 52,
+          "width": 1440
+        }
+      },
+      "root/text": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Event login component for user authentication to access event-related content.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:3224c736c3ec99d7",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-login--default.png",
+        "story": "event-event-login--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 310,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "192.703px",
+              "to": "309.547px"
+            }
+          }
+        },
+        "root/form": {
+          "box": {
+            "height": 214,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "162.672px",
+              "to": "214.484px"
+            }
+          }
+        },
+        "root/form/actions": {
+          "box": {
+            "height": 48,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "23.9531px",
+              "to": "47.8906px"
+            }
+          }
+        },
+        "root/form/actions/button": {
+          "attrs": {
+            "aria-label": {
+              "from": null,
+              "to": "Event Login"
+            },
+            "href": {
+              "from": null,
+              "to": "<set>"
+            },
+            "type": {
+              "from": "button",
+              "to": null
+            }
+          },
+          "box": {
+            "height": 48,
+            "width": 95
+          },
+          "element": {
+            "from": "button",
+            "to": "a"
+          },
+          "styles": {
+            "height": {
+              "from": "23.9375px",
+              "to": "47.8906px"
+            },
+            "width": {
+              "from": "47.9062px",
+              "to": "94.9062px"
+            }
+          }
+        },
+        "root/form/actions/link": {
+          "box": {
+            "height": 24,
+            "width": 140
+          },
+          "styles": {
+            "width": {
+              "from": "188px",
+              "to": "140px"
+            }
+          }
+        },
+        "root/form/inputs": {
+          "box": {
+            "height": 145,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "117.578px",
+              "to": "145.453px"
+            }
+          }
+        },
+        "root/form/inputs/text-field": {
+          "box": {
+            "height": 66,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "51.9375px",
+              "to": "65.875px"
+            }
+          }
+        },
+        "root/headline": {
+          "box": {
+            "height": 38,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--h2",
+            "dsa-headline--space-after-minimum"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "11.5626px"
+          }
+        },
+        "root/text": {
+          "box": {
+            "height": 27,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "27.0469px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Latest",
+  "default": {
+    "description": "The \"Event Latest\" component features a clean, modern design with a light background and rounded corners, giving it a soft, approachable look. Each event is displayed in a card-like format with a blue icon on the left, followed by the date and location in a simple, readable font. The use of shadows adds depth, and the small arrow on the right suggests interactivity or further navigation.",
+    "from": "img/screenshots/contract-defaults-eventlatest--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-latest--default",
+      "when": {},
+      "difference": "The variant of the \"Event Latest\" component is taller, with the root element's height increased from 257.328px to 528.359px. This change allows for more events to be displayed within the same space, maintaining the clean and modern design with a light background and rounded corners.",
+      "from": "img/screenshots/event-event-latest--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:59.505Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventlatest--contract-default.png": "sha256:2d26439fd49088b2",
+        "img/screenshots/event-event-latest--default.png": "sha256:a016c3329e9cf3ca"
+      },
+      "contract": "sha256:1709bc1c9ed1bc620cbc07960e6386bd39d2abb5c504da457fa09e36dd58b93d"
+    }
+  }
+}

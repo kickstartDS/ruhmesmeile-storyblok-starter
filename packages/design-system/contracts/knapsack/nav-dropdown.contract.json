@@ -1,0 +1,27 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "nav-dropdown",
+  "component": "Nav Dropdown",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "items": {
+        "type": "array"
+      },
+      "style": {
+        "type": "object"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "items"
+  ]
+}

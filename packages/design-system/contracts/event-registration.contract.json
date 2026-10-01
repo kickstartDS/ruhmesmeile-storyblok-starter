@@ -1,0 +1,876 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-button",
+                  "c-button--small",
+                  "c-button--solid",
+                  "dsa-button"
+                ],
+                "element": "a",
+                "instanceOf": "button",
+                "namedBy": "slot-boundary",
+                "path": "root/form/footer/button",
+                "presence": "always",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-event-registration__mandatory-text"
+                ],
+                "element": "em",
+                "namedBy": "bem-class",
+                "path": "root/form/footer/mandatory-text",
+                "presence": "always",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "dsa-event-registration__footer"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/form/footer",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-checkbox"
+                ],
+                "element": "div",
+                "instanceOf": "checkbox",
+                "namedBy": "slot-boundary",
+                "path": "root/form/inputs/checkbox",
+                "presence": "always",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-text-field"
+                ],
+                "element": "div",
+                "instanceOf": "text-field",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-eventregistration--contract-default",
+                  "event-event-registration--default"
+                ],
+                "path": "root/form/inputs/text-field",
+                "presence": "repeated",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-event-registration__inputs"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/form/inputs",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-event-registration__form"
+        ],
+        "element": "form",
+        "namedBy": "bem-class",
+        "path": "root/form",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-headline",
+          "dsa-headline--align-left",
+          "dsa-headline--h2",
+          "dsa-headline--space-after-minimum"
+        ],
+        "element": "header",
+        "gate": {
+          "prop": "label",
+          "when": "truthy"
+        },
+        "instanceOf": "headline",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "event-event-registration--default"
+        ],
+        "path": "root/headline",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "icon"
+                        ],
+                        "element": "svg",
+                        "namedBy": "tag",
+                        "path": "root/infos/details/date/info/icon",
+                        "presence": "always",
+                        "role": "glyph"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-event-registration__info"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-eventregistration--contract-default",
+                      "event-event-registration--default"
+                    ],
+                    "path": "root/infos/details/date/info",
+                    "presence": "repeated",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-registration__date"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/infos/details/date",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [],
+                            "element": "br",
+                            "gate": {
+                              "prop": "label",
+                              "when": "truthy"
+                            },
+                            "namedBy": "position",
+                            "observedIn": [
+                              "event-event-registration--default"
+                            ],
+                            "path": "root/infos/details/info/child-2/location-address/child-1",
+                            "presence": "conditional",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-event-registration__location-address"
+                        ],
+                        "element": "span",
+                        "namedBy": "bem-class",
+                        "path": "root/infos/details/info/child-2/location-address",
+                        "presence": "always",
+                        "role": "container"
+                      },
+                      {
+                        "classes": [
+                          "dsa-event-registration__location-name"
+                        ],
+                        "element": "span",
+                        "gate": {
+                          "prop": "label",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "event-event-registration--default"
+                        ],
+                        "path": "root/infos/details/info/child-2/location-name",
+                        "presence": "conditional",
+                        "role": "text"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "address",
+                    "namedBy": "position",
+                    "path": "root/infos/details/info/child-2",
+                    "presence": "always",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "path": "root/infos/details/info/icon",
+                    "presence": "always",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-registration__info",
+                  "dsa-event-registration__location"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/infos/details/info",
+                "presence": "always",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "dsa-event-registration__details"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/infos/details",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "dsa-event-registration__link"
+            ],
+            "element": "a",
+            "namedBy": "bem-class",
+            "path": "root/infos/link",
+            "presence": "always",
+            "role": "control"
+          }
+        ],
+        "classes": [
+          "dsa-event-registration__infos"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/infos",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-event-registration"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "confirmationCheckboxLabel": {
+        "role": "content",
+        "type": "string"
+      },
+      "cta": {
+        "role": "content",
+        "type": "object"
+      },
+      "date": {
+        "format": "date",
+        "role": "content",
+        "type": "string"
+      },
+      "emailInput": {
+        "role": "content",
+        "type": "object"
+      },
+      "label": {
+        "role": "content",
+        "type": "string"
+      },
+      "link": {
+        "role": "content",
+        "type": "object"
+      },
+      "location": {
+        "role": "content",
+        "type": "object"
+      },
+      "mandatoryText": {
+        "default": "_* Mandatory_",
+        "role": "content",
+        "type": "string"
+      },
+      "nameInput": {
+        "role": "content",
+        "type": "object"
+      },
+      "time": {
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./event-registration.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "confirmationCheckboxLabel",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "cta",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "date",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "emailInput",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/headline",
+        "root/infos/details/info/child-2/location-address/child-1",
+        "root/infos/details/info/child-2/location-name"
+      ],
+      "prop": "label"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "link",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "location",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "mandatoryText",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "nameInput",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "time",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    }
+  ],
+  "component": "Event Registration",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "event-registration",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 3,
+      "inDefault": 18,
+      "total": 21
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "cta": {
+        "source": "schema-default",
+        "value": {
+          "ariaLabel": "Event Registration",
+          "url": "#"
+        }
+      },
+      "emailInput": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "link": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "location": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "mandatoryText": {
+        "source": "schema-default",
+        "value": "_* Mandatory_"
+      },
+      "nameInput": {
+        "source": "schema-default",
+        "value": {}
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventregistration--contract-default.png",
+      "story": "contract-defaults-eventregistration--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 338,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/form": {
+        "box": {
+          "height": 193,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/form/footer": {
+        "box": {
+          "height": 24,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "gap": "8.8965px",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/form/footer/button": {
+        "box": {
+          "height": 24,
+          "width": 48
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/form/footer/mandatory-text": {
+        "box": {
+          "height": 21,
+          "width": 252
+        }
+      },
+      "root/form/inputs": {
+        "box": {
+          "height": 155,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/form/inputs/checkbox": {
+        "box": {
+          "height": 24,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex"
+        }
+      },
+      "root/form/inputs/text-field": {
+        "box": {
+          "height": 52,
+          "width": 1440
+        }
+      },
+      "root/infos": {
+        "box": {
+          "height": 131,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/infos/details": {
+        "box": {
+          "height": 54,
+          "width": 1396
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px"
+        }
+      },
+      "root/infos/details/date": {
+        "box": {
+          "height": 54,
+          "width": 24
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "5.77082px"
+        }
+      },
+      "root/infos/details/date/info": {
+        "box": {
+          "height": 24,
+          "width": 24
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "4.32812px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/infos/details/date/info/icon": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      },
+      "root/infos/details/info": {
+        "box": {
+          "height": 54,
+          "width": 1358
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "4.32812px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/infos/details/info/child-2": {
+        "box": {
+          "height": 54,
+          "width": 0
+        }
+      },
+      "root/infos/details/info/child-2/location-address": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/infos/details/info/icon": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      },
+      "root/infos/link": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      }
+    }
+  },
+  "description": "Event registration component for users to register for events.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:ec19d8ebb08c1ba6",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-registration--default.png",
+        "story": "event-event-registration--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 518,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "337.547px",
+              "to": "517.562px"
+            }
+          }
+        },
+        "root/form": {
+          "box": {
+            "height": 245,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "192.875px",
+              "to": "244.703px"
+            }
+          }
+        },
+        "root/form/footer": {
+          "box": {
+            "height": 48,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "23.9375px",
+              "to": "47.8906px"
+            }
+          }
+        },
+        "root/form/footer/button": {
+          "attrs": {
+            "aria-label": {
+              "from": "Event Registration",
+              "to": "Register for the event on 18th September 2026 from 09:00 to 17:00"
+            }
+          },
+          "box": {
+            "height": 48,
+            "width": 163
+          },
+          "styles": {
+            "height": {
+              "from": "23.9375px",
+              "to": "47.8906px"
+            },
+            "width": {
+              "from": "47.9062px",
+              "to": "162.906px"
+            }
+          }
+        },
+        "root/form/inputs": {
+          "box": {
+            "height": 183,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "155.234px",
+              "to": "183.109px"
+            }
+          }
+        },
+        "root/form/inputs/text-field": {
+          "box": {
+            "height": 66,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "51.9375px",
+              "to": "65.875px"
+            }
+          }
+        },
+        "root/headline": {
+          "box": {
+            "height": 72,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--h2",
+            "dsa-headline--space-after-minimum"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "11.5626px"
+          }
+        },
+        "root/infos": {
+          "box": {
+            "height": 173,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "130.969px",
+              "to": "173.109px"
+            }
+          }
+        },
+        "root/infos/details": {
+          "box": {
+            "height": 72,
+            "width": 1396
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            }
+          }
+        },
+        "root/infos/details/date": {
+          "box": {
+            "height": 72,
+            "width": 130
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "23.9531px",
+              "to": "130.266px"
+            }
+          }
+        },
+        "root/infos/details/date/info": {
+          "box": {
+            "height": 24,
+            "width": 130
+          },
+          "styles": {
+            "width": {
+              "from": "23.9531px",
+              "to": "130.266px"
+            }
+          }
+        },
+        "root/infos/details/info": {
+          "box": {
+            "height": 72,
+            "width": 1252
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "1358.06px",
+              "to": "1251.75px"
+            }
+          }
+        },
+        "root/infos/details/info/child-2": {
+          "box": {
+            "height": 72,
+            "width": 198
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "198px"
+            }
+          }
+        },
+        "root/infos/details/info/child-2/location-address": {
+          "box": {
+            "height": 43,
+            "width": 130
+          }
+        },
+        "root/infos/details/info/child-2/location-address/child-1": {
+          "box": {
+            "height": 19,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/infos/details/info/child-2/location-name": {
+          "box": {
+            "height": 24,
+            "width": 198
+          },
+          "classes": [
+            "dsa-event-registration__location-name"
+          ],
+          "introduced": true
+        },
+        "root/infos/link": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 24,
+            "width": 253
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "23.9531px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "253px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -92,8 +92,32 @@ export const DEFAULTS = {
   earlyExit: false,
 } as const;
 
-/** Runs per task, by suite (D9). */
+/**
+ * Runs per task, by suite (D9).
+ *
+ * `EVAL_RUNS` exists for power, not for convenience: at three runs a binary
+ * check has ±1-trial resolution, which is why a +2/60 gate difference and a
+ * +0.002 quality difference cannot be read at all. Spend the extra runs on the
+ * tasks with headroom rather than on the suite — `RUNS=6 bash bin/run-split.sh
+ * --arms …` propagates this to the experiment, so the count the batch verifier
+ * checks and the count the experiment records cannot diverge.
+ *
+ * `runs` is part of the framework's fingerprint, so changing it invalidates
+ * results rather than mixing 3-run and 6-run trials in one arm.
+ */
 export const RUNS = {
-  capability: 3,
+  capability: capabilityRuns(),
   regression: 5,
-} as const;
+};
+
+function capabilityRuns(): number {
+  const raw = process.env.EVAL_RUNS;
+  if (!raw) return 3;
+  const parsed = Number(raw);
+  if (!Number.isInteger(parsed) || parsed < 1) {
+    throw new Error(
+      `EVAL_RUNS must be a positive integer, got ${JSON.stringify(raw)}`,
+    );
+  }
+  return parsed;
+}

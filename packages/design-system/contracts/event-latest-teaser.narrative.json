@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Latest Teaser",
+  "default": {
+    "description": "The Event Latest Teaser component features a clean and modern design with a white background and subtle shadow, giving it a slightly elevated appearance. On the left, there's a blue square icon, likely representing a calendar. The event title is prominently displayed in bold, dark text, followed by the date and location in smaller, lighter text with corresponding icons. An arrow on the right suggests further interaction or navigation.",
+    "from": "img/screenshots/contract-defaults-eventlatestteaser--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-latest-teaser--default",
+      "when": {},
+      "difference": "In this variant, the overall width of the component is slightly reduced, giving it a more compact appearance. The text areas, including the title and information sections, are narrower, which may make the content feel more condensed. Additionally, the call-to-action area is significantly wider and now includes the text \"Go to event,\" enhancing its visibility and inviting interaction.",
+      "from": "img/screenshots/event-event-latest-teaser--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:02.364Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventlatestteaser--contract-default.png": "sha256:055569d045ec70e0",
+        "img/screenshots/event-event-latest-teaser--default.png": "sha256:358cbd10a952d4d3"
+      },
+      "contract": "sha256:3c9fde34457619c979825dfc2f9d56d3a118d46a9de39d2eb49537655ff96a82"
+    }
+  }
+}

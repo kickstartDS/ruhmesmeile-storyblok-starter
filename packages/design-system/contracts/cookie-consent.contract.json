@@ -1,0 +1,515 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "c-button",
+          "c-button--small",
+          "c-button--solid",
+          "dsa-button",
+          "dsa-cookie-consent-revisit"
+        ],
+        "element": "button",
+        "instanceOf": "button",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-cookieconsent--contract-default",
+          "corporate-cookie-consent--banner",
+          "corporate-cookie-consent--card"
+        ],
+        "path": "root/button",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [],
+        "element": "span",
+        "namedBy": "position",
+        "observedIn": [
+          "corporate-cookie-consent--c-15-t"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "text"
+      },
+      {
+        "classes": [
+          "dsa-cookie-consent-dialog"
+        ],
+        "element": "dialog",
+        "instanceOf": "cookie-consent-dialog",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-cookieconsent--contract-default",
+          "corporate-cookie-consent--banner",
+          "corporate-cookie-consent--card"
+        ],
+        "path": "root/cookie-consent-dialog",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "dsa-cookie-consent-notice"
+        ],
+        "element": "div",
+        "instanceOf": "cookie-consent-notice",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-cookieconsent--contract-default",
+          "corporate-cookie-consent--banner",
+          "corporate-cookie-consent--card"
+        ],
+        "path": "root/cookie-consent-notice",
+        "presence": "conditional",
+        "role": "slot"
+      }
+    ],
+    "classes": [],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-cookie-consent-dialog--background-color",
+      "--dsa-cookie-consent-dialog--border",
+      "--dsa-cookie-consent-dialog--border-radius",
+      "--dsa-cookie-consent-dialog--box-shadow",
+      "--dsa-cookie-consent-dialog--max-height",
+      "--dsa-cookie-consent-dialog--max-width",
+      "--dsa-cookie-consent-dialog--padding-horizontal",
+      "--dsa-cookie-consent-dialog--spacing-horizontal",
+      "--dsa-cookie-consent-dialog--spacing-vertical",
+      "--dsa-cookie-consent-dialog__block--padding-vertical",
+      "--dsa-cookie-consent-dialog__buttons--gap",
+      "--dsa-cookie-consent-dialog__close--background-color",
+      "--dsa-cookie-consent-dialog__close--background-color_hover",
+      "--dsa-cookie-consent-dialog__close--color",
+      "--dsa-cookie-consent-dialog__close--color_hover",
+      "--dsa-cookie-consent-dialog__close--padding",
+      "--dsa-cookie-consent-dialog__content--border",
+      "--dsa-cookie-consent-dialog__description--border-bottom",
+      "--dsa-cookie-consent-dialog__description--color",
+      "--dsa-cookie-consent-dialog__description--font",
+      "--dsa-cookie-consent-dialog__header--gap",
+      "--dsa-cookie-consent-dialog__header--padding",
+      "--dsa-cookie-consent-dialog__label--color",
+      "--dsa-cookie-consent-dialog__label--font",
+      "--dsa-cookie-consent-dialog__label--font-weight",
+      "--dsa-cookie-consent-dialog__option--border-bottom",
+      "--dsa-cookie-consent-dialog__option--gap",
+      "--dsa-cookie-consent-dialog__option--padding-vertical",
+      "--dsa-cookie-consent-dialog__toggle--gap",
+      "--dsa-cookie-consent-notice--gap",
+      "--dsa-cookie-consent-notice--max-height",
+      "--dsa-cookie-consent-notice__buttons--gap",
+      "--dsa-cookie-consent-notice_banner--background-color",
+      "--dsa-cookie-consent-notice_banner--border-top",
+      "--dsa-cookie-consent-notice_banner--box-shadow",
+      "--dsa-cookie-consent-notice_banner--padding",
+      "--dsa-cookie-consent-notice_card--background-color",
+      "--dsa-cookie-consent-notice_card--border",
+      "--dsa-cookie-consent-notice_card--border-radius",
+      "--dsa-cookie-consent-notice_card--bottom",
+      "--dsa-cookie-consent-notice_card--box-shadow",
+      "--dsa-cookie-consent-notice_card--left",
+      "--dsa-cookie-consent-notice_card--max-width",
+      "--dsa-cookie-consent-notice_card--padding",
+      "--dsa-cookie-consent-overlay--background-color",
+      "--dsa-cookie-consent-revisit--bottom",
+      "--dsa-cookie-consent-revisit--left",
+      "--dsa-cookie-consent-revisit__label--background-color",
+      "--dsa-cookie-consent-revisit__label--border-radius",
+      "--dsa-cookie-consent-revisit__label--padding"
+    ]
+  },
+  "api": {
+    "props": {
+      "component": {
+        "default": "dsa.cookie-consent",
+        "role": "content",
+        "type": "string"
+      },
+      "dialog": {
+        "role": "content",
+        "type": "object"
+      },
+      "notice": {
+        "role": "content",
+        "type": "object"
+      },
+      "revisitButton": {
+        "role": "content",
+        "type": "object"
+      }
+    },
+    "required": [],
+    "schema": "./cookie-consent.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "component",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "dialog",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "notice",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "revisitButton",
+      "proven": false
+    }
+  ],
+  "component": "Cookie Consent",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "cookie-consent",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 4,
+      "inDefault": 4,
+      "total": 5
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "component": {
+        "source": "schema-default",
+        "value": "dsa.cookie-consent"
+      },
+      "dialog": {
+        "source": "schema-default",
+        "value": {
+          "alwaysActiveLabel": "Always Active",
+          "buttons": {
+            "acceptLabel": "Accept All",
+            "rejectLabel": "Reject All",
+            "savePreferencesLabel": "Save Preferences"
+          },
+          "options": [],
+          "required": [],
+          "toggleLabels": {
+            "accept": "Accept",
+            "reject": "Reject"
+          }
+        }
+      },
+      "notice": {
+        "source": "schema-default",
+        "value": {
+          "acceptButton": {},
+          "customizeButton": {
+            "variant": "secondary"
+          },
+          "decisionButtonVariant": "secondary",
+          "displayMode": "card",
+          "rejectButton": {}
+        }
+      },
+      "revisitButton": {
+        "source": "schema-default",
+        "value": {
+          "label": "Manage Cookies"
+        }
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-cookieconsent--contract-default.png",
+      "story": "contract-defaults-cookieconsent--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/button": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "alignItems": "center",
+          "justifyContent": "center"
+        }
+      },
+      "root/cookie-consent-dialog": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/cookie-consent-notice": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      }
+    }
+  },
+  "description": "Cookie consent component for managing user consent regarding cookies and tracking technologies on a website.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:538539d1b148dfa2",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-cookie-consent--banner.png",
+        "story": "corporate-cookie-consent--banner"
+      },
+      "parts": {
+        "root/cookie-consent-notice": {
+          "box": {
+            "height": 205,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-cookie-consent-notice--banner"
+            ],
+            "remove": [
+              "dsa-cookie-consent-notice--card"
+            ]
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.05)",
+              "to": "rgb(0, 0, 0)"
+            },
+            "borderTopLeftRadius": {
+              "from": "15.8578px",
+              "to": "0px"
+            },
+            "borderTopStyle": {
+              "from": "solid",
+              "to": "none"
+            },
+            "borderTopWidth": {
+              "from": "1px",
+              "to": "0px"
+            },
+            "boxShadow": {
+              "from": "rgba(0, 0, 0, 0.25) 0px 10.5719px 31.7157px 0px",
+              "to": "rgba(0, 0, 0, 0.25) 0px 15.8578px 31.7157px 0px"
+            },
+            "display": {
+              "from": "none",
+              "to": "flex"
+            },
+            "height": {
+              "from": "auto",
+              "to": "205.031px"
+            },
+            "maxWidth": {
+              "from": "757.339px",
+              "to": "none"
+            },
+            "width": {
+              "from": "100%",
+              "to": "1440px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-cookie-consent--c-15-t.png",
+        "story": "corporate-cookie-consent--c-15-t"
+      },
+      "parts": {
+        "root": {
+          "attrs": {
+            "data-uid": {
+              "from": "<generated>",
+              "to": null
+            },
+            "type": {
+              "from": null,
+              "to": "button"
+            }
+          },
+          "box": {
+            "height": 48,
+            "width": 90
+          },
+          "classes": {
+            "add": [
+              "c-button",
+              "c-button--clear",
+              "c-button--small",
+              "dsa-button"
+            ],
+            "remove": [
+              "dsa-cookie-consent"
+            ]
+          },
+          "element": {
+            "from": "div",
+            "to": "button"
+          },
+          "styles": {
+            "alignItems": {
+              "from": "normal",
+              "to": "center"
+            },
+            "backgroundColor": {
+              "from": "rgba(0, 0, 0, 0)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)"
+            },
+            "borderTopColor": {
+              "from": "rgb(0, 0, 0)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)"
+            },
+            "borderTopLeftRadius": {
+              "from": "0px",
+              "to": "7.92892px"
+            },
+            "color": {
+              "from": "rgb(0, 0, 0)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)"
+            },
+            "display": {
+              "from": "block",
+              "to": "inline-flex"
+            },
+            "fontFamily": {
+              "from": "Times New Roman",
+              "to": "Montserrat"
+            },
+            "fontSize": {
+              "from": "16px",
+              "to": "15.9696px"
+            },
+            "fontWeight": {
+              "from": "400",
+              "to": "600"
+            },
+            "height": {
+              "from": "0px",
+              "to": "47.8906px"
+            },
+            "justifyContent": {
+              "from": "normal",
+              "to": "center"
+            },
+            "lineHeight": {
+              "from": "18.4px",
+              "to": "23.9544px"
+            },
+            "paddingBottom": {
+              "from": "0px",
+              "to": "11.9772px"
+            },
+            "paddingLeft": {
+              "from": "0px",
+              "to": "23.9544px"
+            },
+            "paddingRight": {
+              "from": "0px",
+              "to": "23.9544px"
+            },
+            "paddingTop": {
+              "from": "0px",
+              "to": "11.9772px"
+            },
+            "textAlign": {
+              "from": "start",
+              "to": "center"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "89.9062px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 24,
+            "width": 42
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-cookie-consent--card.png",
+        "story": "corporate-cookie-consent--card"
+      },
+      "parts": {
+        "root/cookie-consent-notice": {
+          "box": {
+            "height": 207,
+            "width": 757
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "flex"
+            },
+            "height": {
+              "from": "auto",
+              "to": "207.031px"
+            },
+            "width": {
+              "from": "100%",
+              "to": "757.328px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

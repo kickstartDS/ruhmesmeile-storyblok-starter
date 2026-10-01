@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.kickstartds.com/component-narrative.schema.json",
+  "title": "kickstartDS Component Narrative",
+  "description": "Model-generated prose describing what a component looks like, quarantined in its own file so the contract stays deterministic and verifiable (PRD §5.12). No lint rule and no tool contract may depend on this document.",
+  "type": "object",
+  "required": ["$format", "component", "variants", "generated"],
+  "additionalProperties": false,
+  "properties": {
+    "$format": { "const": "kickstartds/component-narrative@1" },
+    "component": { "type": "string", "minLength": 1 },
+    "default": { "$ref": "#/$defs/description" },
+    "variants": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/variant" }
+    },
+    "generated": { "$ref": "#/$defs/generated" }
+  },
+  "$defs": {
+    "description": {
+      "type": "object",
+      "description": "One or two sentences on what the default looks like. Omitted when its screenshot was not available.",
+      "required": ["description", "from"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "from": { "type": "string", "minLength": 1 }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "description": "A variant described as a DIFFERENCE from the default, grounded in the contract's derived delta.",
+      "required": ["story", "when", "difference", "from"],
+      "additionalProperties": false,
+      "properties": {
+        "story": {
+          "type": "string",
+          "description": "Story id of the variant this describes — the same id as `variants[].evidence.story`. Keying by story is unambiguous where two variants can share a `when`."
+        },
+        "when": {
+          "type": "object",
+          "description": "The variant's partial configuration, copied from the contract for readability."
+        },
+        "difference": { "type": "string", "minLength": 1 },
+        "from": { "type": "string", "minLength": 1 }
+      }
+    },
+    "generated": {
+      "type": "object",
+      "required": ["model", "promptVersion", "generatedAt", "inputs"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "promptVersion": { "type": "integer", "minimum": 1 },
+        "generatedAt": { "type": "string", "minLength": 1 },
+        "inputs": {
+          "type": "object",
+          "required": ["screenshots", "contract"],
+          "additionalProperties": false,
+          "properties": {
+            "screenshots": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "contract": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -417,6 +417,56 @@ export const TARGETS: Record<string, Target> = {
     diffTask: true,
     tier: "paste",
   },
+  "880-contract-lookup": {
+    slug: "contract-lookup",
+    // No component: the deliverable is `answers.json` at the repository root.
+    // Graders that need a component are not-applicable by construction, so the
+    // composite for this eval is `contract-lookup` plus the toolchain.
+    dir: "src",
+    requiresClientBehaviour: false,
+    schemaProperties: [],
+    delegatedElements: [],
+    // The answers exist only behind a tool call. A trial that never reached an
+    // MCP measured the baseline and guessed eight times; the confound
+    // classifier must exclude it rather than count the guesses.
+    mcpUseExpected: true,
+    diffTask: false,
+    // Cost-tiering only: this task reads tools and writes one small file, so it
+    // is cheap — but it is not an edit task, and `extra` keeps an unproven
+    // shape out of the routine campaign until its cost has been measured.
+    // Promote to `core` once it has.
+    tier: "extra",
+  },
+  "890-pricing-plans": {
+    slug: "pricing-plans",
+    dir: "src/components/pricing-plans",
+    requiresClientBehaviour: false,
+    schemaProperties: ["layout", "plan"],
+    // The fixture vendors Button and Icon under @kickstartds/ds. The call to
+    // action is where a hand-rolled control would otherwise appear, and the
+    // list entries are where a hand-rolled icon would.
+    delegatedElements: ["button", "a", "svg"],
+    // Build-from-scratch: the servers are the treatment. An arm that holds them
+    // and never calls one measured the baseline, so its trials do not count
+    // towards this task's result.
+    mcpUseExpected: true,
+    diffTask: false,
+    // `extra`: a greenfield component with a schema, styles and a component to
+    // write, priced like the other build tasks rather than the edit tasks.
+    tier: "extra",
+  },
+  "891-comparison-table": {
+    slug: "comparison-table",
+    dir: "src/components/comparison-table",
+    requiresClientBehaviour: false,
+    schemaProperties: ["plans", "featureRow"],
+    delegatedElements: ["button", "a", "svg"],
+    mcpUseExpected: true,
+    diffTask: false,
+    // The larger of the two greenfield tasks: more parts, a real table, and a
+    // per-cell inversion that a colour declared in the wrong place gets wrong.
+    tier: "extra",
+  },
 };
 
 export function targetFor(evalName: string): Target | null {

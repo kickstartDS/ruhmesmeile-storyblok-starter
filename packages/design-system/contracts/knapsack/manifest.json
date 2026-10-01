@@ -1,0 +1,316 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/manifest.schema.json",
+  "contractVersion": "2.2.1",
+  "artifacts": [
+    {
+      "path": "blog-aside.contract.json",
+      "address": "sha256:ef7f63eac00cc611073e719a8791e9a55b9e1d218bb41751e5ad0c9c93c6aed1",
+      "origin": "synced"
+    },
+    {
+      "path": "blog-author.contract.json",
+      "address": "sha256:f9c8116ad28b2a6407df1bc102bcb974ef2bcce7a60d363039b895570a94bc2e",
+      "origin": "synced"
+    },
+    {
+      "path": "blog-head.contract.json",
+      "address": "sha256:175acb5ca954758a05ce7eb7a5c0291562cb7cb973a3d043efaae1b5d6640bc7",
+      "origin": "synced"
+    },
+    {
+      "path": "blog-teaser.contract.json",
+      "address": "sha256:134a036e3080e5c5d61a8e85363779f5a75eddc52c97cc672340bb0c96a4d194",
+      "origin": "synced"
+    },
+    {
+      "path": "breadcrumb.contract.json",
+      "address": "sha256:8f191f5dba699d150f48ad3bdf8d7c35bbed1a2d766d347989175efda0e8e183",
+      "origin": "synced"
+    },
+    {
+      "path": "business-card.contract.json",
+      "address": "sha256:ef8c18819d336efdb467d91c926883131be4dc447c1cc726318e604e1ce92ea3",
+      "origin": "synced"
+    },
+    {
+      "path": "button.contract.json",
+      "address": "sha256:ca62eedc87ffffcaef1b6c1aaf3c970c05c175ff1d36fccbaa8755f2debf6882",
+      "origin": "synced"
+    },
+    {
+      "path": "checkbox-group.contract.json",
+      "address": "sha256:9fb112550cdbe0ed83b1ae81b1df1859eee37d14514ca5f3c31db1ea26fd50b3",
+      "origin": "synced"
+    },
+    {
+      "path": "checkbox.contract.json",
+      "address": "sha256:50d6f34c51021ca8ae07b224983b1ed8f1eae0577e246ae0ca7366007cb8c5b7",
+      "origin": "synced"
+    },
+    {
+      "path": "contact.contract.json",
+      "address": "sha256:b26b586eb0f0a646703ab2faa2d683453d3e243399b8253ee5d076155199ce83",
+      "origin": "synced"
+    },
+    {
+      "path": "content-nav.contract.json",
+      "address": "sha256:18928bc6b1e51da735fe2c8548e3186852f6a1f2b8088f1ddb25b186acd31e48",
+      "origin": "synced"
+    },
+    {
+      "path": "cookie-consent.contract.json",
+      "address": "sha256:3af26ac4c2b6101811d6ae43126ef1ce1fec48b70598a3f222acbaa402a08249",
+      "origin": "synced"
+    },
+    {
+      "path": "cta.contract.json",
+      "address": "sha256:1ff5182e1d898d2c20c06dd2f5ace52aa22c5fba37f852ed0e0e5c5a1dfb0494",
+      "origin": "synced"
+    },
+    {
+      "path": "divider.contract.json",
+      "address": "sha256:f007b1170cafc89082f365699f6a72deac93cf618979f5937cde0afb29d296d7",
+      "origin": "synced"
+    },
+    {
+      "path": "downloads.contract.json",
+      "address": "sha256:27d0e067851586d8ff488cf38c73f6d368c5f2539f4eeee337449e350342ff6e",
+      "origin": "synced"
+    },
+    {
+      "path": "event-appointment.contract.json",
+      "address": "sha256:34204075f69da41888438f4f7cdb68ddd1c57600a8628d262822b17f8e43ebb2",
+      "origin": "synced"
+    },
+    {
+      "path": "event-filter.contract.json",
+      "address": "sha256:0823ed506fb5a1304394077f52cf4beafaf61d70046d271f800a9c88f8756a12",
+      "origin": "synced"
+    },
+    {
+      "path": "event-header.contract.json",
+      "address": "sha256:9910daa749c8735b3e925e1089aa7f1d9fa5ec0e5974bd8d1d88c25fd73b6546",
+      "origin": "synced"
+    },
+    {
+      "path": "event-latest-teaser.contract.json",
+      "address": "sha256:b48de9e84c95689ba2f2ba3337296caee923366fcb5dcdf4815a5afb77e4aa84",
+      "origin": "synced"
+    },
+    {
+      "path": "event-latest.contract.json",
+      "address": "sha256:2e2841073740d7402b2335fd24f02b8a117db39e2c8996b18536f160cbc35d91",
+      "origin": "synced"
+    },
+    {
+      "path": "event-list-teaser.contract.json",
+      "address": "sha256:cba797194a5bcb1ab89dd71db5d8d3b42074e3a536778be5112f0541254023d2",
+      "origin": "synced"
+    },
+    {
+      "path": "event-location.contract.json",
+      "address": "sha256:c76dc07eaa98586c9410b47ea88e4421713452c1f5ce60fdd5d243e634a633a0",
+      "origin": "synced"
+    },
+    {
+      "path": "event-login.contract.json",
+      "address": "sha256:a874c02990fb044109074f9f0af503d25802d725cbbd39b5552c05c1746ef0a6",
+      "origin": "synced"
+    },
+    {
+      "path": "event-registration.contract.json",
+      "address": "sha256:94f8bc91843aab701975ebc8b68d7461666a02f3aacfc7917e7dee5b1b279e3d",
+      "origin": "synced"
+    },
+    {
+      "path": "faq.contract.json",
+      "address": "sha256:79127e2e2c5ecfee357f65b7fd66fe1b860962cffd01ded9f47af7c3dc6c7c86",
+      "origin": "synced"
+    },
+    {
+      "path": "feature.contract.json",
+      "address": "sha256:e51ed39d9f7646c57029e2a0431b8812a7d26d0928e74201ff2a0574944d33ff",
+      "origin": "synced"
+    },
+    {
+      "path": "features.contract.json",
+      "address": "sha256:2de0603ac6a6bc5ced9cd0074f6f75385ed489ba55f67a127ec831df545c5e2e",
+      "origin": "synced"
+    },
+    {
+      "path": "footer.contract.json",
+      "address": "sha256:8d55881e06d6ae393de2dd6c8c1199b82773b2803418cc2125aed3803fb84c6d",
+      "origin": "synced"
+    },
+    {
+      "path": "gallery.contract.json",
+      "address": "sha256:03af2303007ec23d57c60b176506572d3c97e9da09ab5ad5a73d50867d7152b6",
+      "origin": "synced"
+    },
+    {
+      "path": "header.contract.json",
+      "address": "sha256:312b5e0b4a89ea7944ca391d8b99927acfb1ff2cbec07084ec5c0dfe7ed39ae0",
+      "origin": "synced"
+    },
+    {
+      "path": "headline.contract.json",
+      "address": "sha256:7322676659e9c1b5ef28a063b596d9a4956b974f6725784c55021cff5f632f7d",
+      "origin": "synced"
+    },
+    {
+      "path": "hero.contract.json",
+      "address": "sha256:251027fc17f9b2ef9184d92a3a5608173908567e0aa7d8e3189cdcad4224c620",
+      "origin": "synced"
+    },
+    {
+      "path": "html.contract.json",
+      "address": "sha256:4f5aacb05a4477d9b7cc04619180891c8b61e80db4f8ed711abe141ed6e83064",
+      "origin": "synced"
+    },
+    {
+      "path": "image-story.contract.json",
+      "address": "sha256:d640b6fab7c0a7533c3432aba3244e74211ae483d10a20bb1902bc6a4e36277f",
+      "origin": "synced"
+    },
+    {
+      "path": "image-text.contract.json",
+      "address": "sha256:91c95c31e8e11bb452afaf9a677430c679a9061570f99c7536b43842231363e9",
+      "origin": "synced"
+    },
+    {
+      "path": "logo.contract.json",
+      "address": "sha256:2741083f966e7a4b0a9afb0a24509551f8a008c49b9e95716a321b94057d4651",
+      "origin": "synced"
+    },
+    {
+      "path": "logos.contract.json",
+      "address": "sha256:7711a6f6175a2c3796e950a892a07f12dee106540087118c75975045008d698d",
+      "origin": "synced"
+    },
+    {
+      "path": "mosaic.contract.json",
+      "address": "sha256:8ea8f9543797b2878dd58f6371f9b9642cc2e1bac800a948c98b1f94c87b05cc",
+      "origin": "synced"
+    },
+    {
+      "path": "nav-dropdown.contract.json",
+      "address": "sha256:8673a071c180630b2d7ed3f21a80dd6a34d6f7dc7bdc437acbf9a4305bad46d8",
+      "origin": "synced"
+    },
+    {
+      "path": "pagination.contract.json",
+      "address": "sha256:b2569eaccc03694a94ddb9f5fefb60d3dc6dcef9c409571886d3174b6950bee4",
+      "origin": "synced"
+    },
+    {
+      "path": "radio-group.contract.json",
+      "address": "sha256:e2a4c958eb9a658572ce67518ad3605ef60a60d7e2522ca10bf691a9f1a50075",
+      "origin": "synced"
+    },
+    {
+      "path": "radio.contract.json",
+      "address": "sha256:f0cf6a08b20ad4c80234c78e4185f81b3331c1b5efb68c739ee3db43434478f2",
+      "origin": "synced"
+    },
+    {
+      "path": "search-bar.contract.json",
+      "address": "sha256:b42fad23c94fd6a869b02fe70e622f84cef94468c72380ae9ebc36042784f320",
+      "origin": "synced"
+    },
+    {
+      "path": "search-filter.contract.json",
+      "address": "sha256:e618b44650bc2f2c0e11c92ba31ab330893aa84a0b446ff023c63bb0adb9f2b1",
+      "origin": "synced"
+    },
+    {
+      "path": "search-form.contract.json",
+      "address": "sha256:ee23f64c5236ca5b4cc05e2a999d17af4d1a492777b3cfcb6a8e8ff8a3899fc0",
+      "origin": "synced"
+    },
+    {
+      "path": "search-modal.contract.json",
+      "address": "sha256:38aba4b854776f9f3d283a73ab2ac883d922275925e7e491c6f69343fbb1c1c0",
+      "origin": "synced"
+    },
+    {
+      "path": "search-result-match.contract.json",
+      "address": "sha256:c597d412016876778cc44d703604c8e3c5e321500023c2d3601da6656b52beec",
+      "origin": "synced"
+    },
+    {
+      "path": "search-result.contract.json",
+      "address": "sha256:52cde1add31b0c32bda70151f80b3786e615ed2067702529b25eee6edd57903d",
+      "origin": "synced"
+    },
+    {
+      "path": "section.contract.json",
+      "address": "sha256:1425eaa1c3e04b73a3824fc5cc952e2da10e4c9a9faa7b0dcb8220377c1839a2",
+      "origin": "synced"
+    },
+    {
+      "path": "select-field.contract.json",
+      "address": "sha256:c37f6bef200ce2d716ed5778abd566b20fb009a21c2c70c30e366274e2e4d04f",
+      "origin": "synced"
+    },
+    {
+      "path": "slider.contract.json",
+      "address": "sha256:8e162a147dd5ffb0afa2776aabc2d65a349ab93801637ef9233b7e6772285464",
+      "origin": "synced"
+    },
+    {
+      "path": "split-even.contract.json",
+      "address": "sha256:cd3e97a0d831d5311dfef8242df79cebfcff1827b40dd5c45e3efb138efe1ba6",
+      "origin": "synced"
+    },
+    {
+      "path": "split-weighted.contract.json",
+      "address": "sha256:de054da137e74f5c4f4686c41d3370be9c2937244b18dc6e942810e12ae33aed",
+      "origin": "synced"
+    },
+    {
+      "path": "stat.contract.json",
+      "address": "sha256:fda0462081cf679d75b0d5f6c511b86372d982a998858b9223eba15f193e3e0c",
+      "origin": "synced"
+    },
+    {
+      "path": "stats.contract.json",
+      "address": "sha256:52dc33605b65f711062e87b8521d47110cae9e2cb36a779c9e0927668b2504af",
+      "origin": "synced"
+    },
+    {
+      "path": "teaser-card.contract.json",
+      "address": "sha256:c850fcc02c7196c4ac09d3a78a320f2fdc2681242724dd27c260d49403d90650",
+      "origin": "synced"
+    },
+    {
+      "path": "testimonial.contract.json",
+      "address": "sha256:f71077fe3e8b297168d49ebf7016f79d7473af5d71010c81d8508daf6b28a9a9",
+      "origin": "synced"
+    },
+    {
+      "path": "testimonials.contract.json",
+      "address": "sha256:08639201f672f44970fc67d8071435653905242f4ce3b42678324fcd7001f236",
+      "origin": "synced"
+    },
+    {
+      "path": "text-area.contract.json",
+      "address": "sha256:85a2acbb2db82b3ba1280bc81b7bcb703abb8ad7c9cf1ddf8627c59d8137ecae",
+      "origin": "synced"
+    },
+    {
+      "path": "text-field.contract.json",
+      "address": "sha256:c743b983f3379600da86862657bed96511fdf003db70b2db8328522dcc154c82",
+      "origin": "synced"
+    },
+    {
+      "path": "text.contract.json",
+      "address": "sha256:e847fd1143f91553ea52878723efcf8eca584035e72c96f3cb6178b8edca72d8",
+      "origin": "synced"
+    },
+    {
+      "path": "video-curtain.contract.json",
+      "address": "sha256:81f27ca5c499b41223868bd349dd4551205ef30b1ea525f4aa4a6f3f38ea8f92",
+      "origin": "synced"
+    }
+  ]
+}

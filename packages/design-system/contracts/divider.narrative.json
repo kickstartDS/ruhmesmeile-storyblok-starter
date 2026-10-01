@@ -1,0 +1,30 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Divider",
+  "default": {
+    "description": "The divider appears as a thin, light gray horizontal line that spans the width of its container. It has a subtle presence, providing a clear separation between sections without drawing too much attention to itself. The simplicity and neutrality of the design help maintain focus on the surrounding content.",
+    "from": "img/screenshots/contract-defaults-divider--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-divider--accent",
+      "when": {
+        "variant": "accent"
+      },
+      "difference": "The variant with `variant=accent` appears as a thin, dark gray horizontal line. This change gives it a more pronounced presence compared to the default, subtly drawing more attention while still maintaining its role as a separator.",
+      "from": "img/screenshots/layout-divider--accent.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:43.830Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-divider--contract-default.png": "sha256:4c320213272f5a7f",
+        "img/screenshots/layout-divider--accent.png": "sha256:4dc3b8901f05a7f6"
+      },
+      "contract": "sha256:2bbc9e72fd242bd14a6c38ccbd53355abc8dc09a6e973a1d27a5913ac8f4b3a1"
+    }
+  }
+}

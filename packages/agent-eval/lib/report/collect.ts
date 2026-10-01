@@ -29,6 +29,30 @@ export type FailureClass =
   | "confounded"
   | "none";
 
+/**
+ * The in-sandbox gate (`EVAL.ts`), taken apart.
+ *
+ * The gate is the only place some rules are enforced. `816-typography-pairing`
+ * fails an agent that colours display type with a copy token, and **no host
+ * grader sees it**: two runs both scored 0.9843 and one passed, one failed.
+ * Without this, the report renders two identical-looking pages and the reader
+ * has nothing to look at.
+ */
+export interface GateFailure {
+  test: string;
+  message: string;
+  expected: string | null;
+  received: string | null;
+  location: string | null;
+}
+
+export interface Gate {
+  passed: boolean;
+  /** e.g. `1 failed | 13 passed (14)`; null when the run produced no output. */
+  summary: string | null;
+  failures: GateFailure[];
+}
+
 export interface Outcome {
   experiment: string;
   variant: string;
@@ -38,6 +62,8 @@ export interface Outcome {
   runDir: string;
   /** The harness's own verdict — the in-sandbox vitest gate. */
   harnessPassed: boolean;
+  /** Why that verdict came out the way it did, assertion by assertion. */
+  gate: Gate;
   failureClass: FailureClass;
   failureReason: string | null;
   durationSeconds: number;
@@ -198,6 +224,86 @@ function classify(trial: Trial): {
   return { failureClass: "model", reason: null };
 }
 
+const GATE_FAIL = /^\s*FAIL\s+(\S.*?)\s*$/;
+const GATE_TOTALS = /^\s*Tests\s+(\S.*?)\s*$/;
+const GATE_ERROR = /^([A-Za-z]*Error):\s*(.*)$/;
+const GATE_EXPECTED = /^\s*Expected:\s*(.*)$/;
+const GATE_RECEIVED = /^\s*Received:\s*(.*)$/;
+const GATE_LOCATION = /❯\s+([^\s:]+):(\d+):\d+/;
+
+/**
+ * Parse vitest's output for the gate's verdict and its failing assertions.
+ *
+ * Deliberately tolerant: this reads a human-facing log, so anything it cannot
+ * match is dropped rather than thrown. `status` is authoritative for the
+ * verdict; the parse only supplies the reason.
+ */
+export function gateOf(trial: Trial): Gate {
+  const passed = trial.status === "passed";
+  const output = trial.evalOutput;
+  if (!output) return { passed, summary: null, failures: [] };
+
+  const failures: GateFailure[] = [];
+  let summary: string | null = null;
+  let current: GateFailure | null = null;
+
+  for (const line of output.split("\n")) {
+    const totals = line.match(GATE_TOTALS);
+    if (totals) {
+      summary = totals[1];
+      current = null;
+      continue;
+    }
+
+    const fail = line.match(GATE_FAIL);
+    if (fail) {
+      current = {
+        // `FAIL  EVAL.ts > the rule that was broken`
+        test: fail[1].replace(/^EVAL\.ts\s*>\s*/, ""),
+        message: "",
+        expected: null,
+        received: null,
+        location: null,
+      };
+      failures.push(current);
+      continue;
+    }
+
+    if (!current) continue;
+
+    const error = line.match(GATE_ERROR);
+    if (error && !current.message) {
+      current.message = `${error[1]}: ${error[2]}`.trim();
+      continue;
+    }
+    const expected = line.match(GATE_EXPECTED);
+    if (expected) {
+      current.expected = expected[1];
+      continue;
+    }
+    const received = line.match(GATE_RECEIVED);
+    if (received) {
+      current.received = received[1];
+      continue;
+    }
+    const location = line.match(GATE_LOCATION);
+    if (location && !current.location) {
+      current.location = `${location[1]}:${location[2]}`;
+      continue;
+    }
+    if (
+      current.message &&
+      !current.expected &&
+      /^\s{2,}\S/.test(line) &&
+      !/^[⎯─=]/.test(line.trim())
+    ) {
+      current.message = `${current.message} ${line.trim()}`;
+    }
+  }
+
+  return { passed, summary, failures };
+}
+
 export function collectTrial(trial: Trial): Outcome {
   const graders = runQualityGraders(trial);
   const mcp = mcpUsageOf(trial);
@@ -216,6 +322,7 @@ export function collectTrial(trial: Trial): Outcome {
     run: trial.run,
     runDir: trial.runDir,
     harnessPassed: trial.status === "passed",
+    gate: gateOf(trial),
     failureClass,
     failureReason: reason,
     durationSeconds: trial.duration,

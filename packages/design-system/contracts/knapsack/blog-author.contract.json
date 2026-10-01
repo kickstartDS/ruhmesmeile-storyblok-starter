@@ -1,0 +1,29 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "blog-author",
+  "component": "Blog Author",
+  "description": "The author of the blog post",
+  "props": {
+    "properties": {
+      "byline": {
+        "type": "string"
+      },
+      "image": {
+        "type": "object"
+      },
+      "links": {
+        "type": "array"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "links"
+  ]
+}

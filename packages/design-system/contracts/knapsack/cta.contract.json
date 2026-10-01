@@ -1,0 +1,72 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "cta",
+  "component": "Cta",
+  "description": "Call to Action (CTA) component for prompting users to take specific actions on a website.",
+  "props": {
+    "properties": {
+      "align": {
+        "type": "string",
+        "enum": [
+          "center",
+          "top",
+          "bottom"
+        ],
+        "default": "center"
+      },
+      "backgroundColor": {
+        "type": "string"
+      },
+      "backgroundImage": {
+        "type": "string"
+      },
+      "buttons": {
+        "type": "array"
+      },
+      "colorNeutral": {
+        "type": "boolean",
+        "default": false
+      },
+      "headline": {
+        "type": "string"
+      },
+      "highlightText": {
+        "type": "boolean",
+        "default": false
+      },
+      "image": {
+        "type": "object"
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "order": {
+        "type": "object"
+      },
+      "padding": {
+        "type": "boolean",
+        "default": false
+      },
+      "sub": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "textAlign": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "left"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "buttons"
+  ]
+}

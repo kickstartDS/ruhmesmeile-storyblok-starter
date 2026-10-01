@@ -6,6 +6,53 @@
 
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { toKebabCase } from "./helpers.js";
+import {
+  contractsDir,
+  handleGetComponentAnatomy,
+  handleGetComponentBrief,
+  handleGetComponentContract,
+  handleGetPropVisualImpact,
+  handleLintComponentContracts,
+  handleListComponentContracts,
+} from "./contracts.js";
+
+/**
+ * The contract section of the entry-point document.
+ *
+ * Emitted only when a contract set is configured. It is guidance for tools, and
+ * an agent told about tools it does not have will try them — measured: with the
+ * section unconditional, 50 of 60 baseline transcripts carried it and 8 calls
+ * came back `No such tool available`. That is a wasted turn in production and a
+ * confounded baseline in the eval, where the whole point is that one arm has
+ * the tools and the other does not.
+ */
+const CONTRACTS_SECTION = `
+### 9. Component Contracts — what a component looks like, and what a prop changes
+
+Use these BEFORE writing or restyling anything that has to match the existing
+design system. They carry the api ↔ DOM class ↔ token-segment join that neither
+the JSON Schema nor the token files express on their own:
+
+- **\`get_component_brief { name }\`** — start here. Anatomy, the props that
+  change appearance and by which mechanism, the token names to reach for, and
+  what the contract does not prove. Cheap; call it before reading source.
+- **\`get_prop_visual_impact { name, prop }\`** — "what happens if I set this?"
+  The mechanism (\`class-toggle\`, \`token-swap\`, \`presence\`, \`attribute\`,
+  \`element-swap\`, \`layout\`, \`content\`, \`none\`), the parts it touches, and the
+  templated token names (e.g. \`--dsa-button_{variant}--background-color\`).
+- **\`get_component_anatomy { name }\`** — parts with their tokens, and the
+  component's slots: cardinality, accepted child components, observed counts.
+- **\`get_component_contract { name, section? }\`** — the full evidence, or one
+  section (\`api\`, \`anatomy\`, \`axes\`, \`default\`, \`variants\`, \`bindings\`,
+  \`composition\`, \`coverage\`, \`issues\`).
+- **\`list_component_contracts\`** — which components have contracts, with
+  coverage; use it to find the component to reuse.
+- **\`lint_component_contracts\`** — derived defects, e.g. an enum value with no
+  matching token segment. Check it before trusting a token spelling.
+
+Rules of thumb: prefer these over guessing from a component's name; treat
+\`coverage\` as the boundary of what is proven; and when a prop's mechanism is
+\`token-swap\`, restyle through the templated token rather than the class.`;
 
 // ---------------------------------------------------------------------------
 // Argument interfaces
@@ -221,7 +268,9 @@ yarn token                  # Extract tokens to JSON
 yarn build-tokens           # Compile Design Tokens
 yarn start                  # Start Storybook with watchers
 yarn storybook              # Start Storybook only
-\`\`\``);
+\`\`\`
+
+${contractsDir() ? CONTRACTS_SECTION : ""}`);
 }
 
 export function handleGetComponentStructure(
@@ -1426,6 +1475,24 @@ export function dispatch(
       return handleListExistingComponents(
         args as unknown as ListExistingComponentsArgs,
       );
+    case "list_component_contracts":
+      return handleListComponentContracts(
+        args as unknown as { includeCoverage?: boolean },
+      );
+    case "get_component_brief":
+      return handleGetComponentBrief(args as unknown as { name: string });
+    case "get_component_contract":
+      return handleGetComponentContract(
+        args as unknown as { name: string; section?: string },
+      );
+    case "get_component_anatomy":
+      return handleGetComponentAnatomy(args as unknown as { name: string });
+    case "get_prop_visual_impact":
+      return handleGetPropVisualImpact(
+        args as unknown as { name: string; prop?: string },
+      );
+    case "lint_component_contracts":
+      return handleLintComponentContracts();
     default:
       throw new Error(`Unknown tool: ${name}`);
   }

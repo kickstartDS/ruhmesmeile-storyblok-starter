@@ -1,0 +1,27 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "search-bar",
+  "component": "Search Bar",
+  "description": "Search bar component for user input and search functionality.",
+  "props": {
+    "properties": {
+      "alternativeResult": {
+        "type": "string"
+      },
+      "alternativeText": {
+        "type": "string"
+      },
+      "buttonText": {
+        "type": "string"
+      },
+      "hint": {
+        "type": "string"
+      },
+      "placeholder": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

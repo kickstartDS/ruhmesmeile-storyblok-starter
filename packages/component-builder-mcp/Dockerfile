@@ -22,6 +22,10 @@ ARG CACHEBUST=0
 # Copy source code
 COPY packages/shared-auth/ ./packages/shared-auth/
 COPY packages/component-builder-mcp/ ./packages/component-builder-mcp/
+# The committed component contracts. `DESIGN_SYSTEM_CONTRACTS_DIR` (set in
+# config/deploy-component-builder-mcp.yml) points the server at these; without
+# it the contract tools are withheld rather than advertised and failing.
+COPY packages/design-system/contracts/ ./packages/design-system/contracts/
 
 # Build shared auth, then TypeScript
 RUN pnpm --filter @kickstartds/shared-auth run build
@@ -38,6 +42,9 @@ COPY --from=builder /app ./
 RUN pnpm --filter @kickstartds/component-builder-mcp deploy --prod /prod/component-builder-mcp
 
 WORKDIR /prod/component-builder-mcp
+
+# Runtime data: the component contracts the server serves.
+COPY --from=builder /app/packages/design-system/contracts ./contracts
 
 # Set environment variables
 ENV NODE_ENV=production

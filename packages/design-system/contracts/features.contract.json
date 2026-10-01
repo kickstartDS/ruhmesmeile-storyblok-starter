@@ -1,0 +1,621 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "dsa-feature"
+        ],
+        "element": "div",
+        "instanceOf": "feature",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-features--contract-default",
+          "components-features--icon-beside-with-link-in-text",
+          "components-features--icon-centered",
+          "components-features--icon-intext-with-link"
+        ],
+        "path": "root/feature",
+        "presence": "repeated",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "dsa-features"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-feature__copy--color",
+      "--dsa-feature__copy--font",
+      "--dsa-feature__icon--color",
+      "--dsa-feature__link--color",
+      "--dsa-feature__link--font",
+      "--dsa-feature__link--font-weight",
+      "--dsa-feature__link--gap",
+      "--dsa-feature__link--text-decoration",
+      "--dsa-feature__link--text-decoration_hover",
+      "--dsa-feature__title--color",
+      "--dsa-feature__title--font",
+      "--dsa-feature__title--font-family",
+      "--dsa-feature_large--gap",
+      "--dsa-feature_large__icon--gap",
+      "--dsa-feature_large__icon--size-multiplier",
+      "--dsa-feature_medium--gap",
+      "--dsa-feature_medium__icon--gap",
+      "--dsa-feature_medium__icon--size-multiplier",
+      "--dsa-feature_small--gap",
+      "--dsa-feature_small__icon--gap",
+      "--dsa-feature_small__icon--size",
+      "--dsa-features--gap-horizontal",
+      "--dsa-features--gap-vertical"
+    ]
+  },
+  "api": {
+    "props": {
+      "ctas": {
+        "role": "content",
+        "type": "object"
+      },
+      "feature": {
+        "role": "composition",
+        "type": "array"
+      },
+      "layout": {
+        "default": "largeTiles",
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "largeTiles",
+          "smallTiles",
+          "list"
+        ]
+      },
+      "style": {
+        "default": "stack",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "intext",
+          "stack",
+          "centered",
+          "besideLarge",
+          "besideSmall"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./features.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "largeTiles",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "largeTiles",
+          "class": "dsa-features--large-tiles",
+          "tokenSegment": null
+        },
+        {
+          "api": "smallTiles",
+          "class": "dsa-features--small-tiles",
+          "tokenSegment": null
+        },
+        {
+          "api": "list",
+          "class": "dsa-features--list",
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "stack",
+      "prop": "style",
+      "values": [
+        {
+          "api": "intext",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "stack",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "centered",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "besideLarge",
+          "class": "dsa-features--list",
+          "tokenSegment": null
+        },
+        {
+          "api": "besideSmall",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "ctas",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "feature"
+    },
+    {
+      "affects": [
+        "gridTemplateColumns",
+        "height",
+        "width"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root"
+      ],
+      "prop": "layout"
+    },
+    {
+      "affects": [
+        "gridTemplateColumns",
+        "height",
+        "width"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/feature"
+      ],
+      "prop": "style"
+    }
+  ],
+  "component": "Features",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "cta",
+          "icon",
+          "text",
+          "title"
+        ],
+        "max": 8,
+        "min": 1,
+        "observedCounts": [
+          2,
+          4,
+          6
+        ],
+        "part": "root",
+        "prop": "feature"
+      }
+    ]
+  },
+  "contractId": "features",
+  "coverage": {
+    "axes": {
+      "layout": {
+        "missing": [],
+        "proven": 3,
+        "total": 3
+      },
+      "style": {
+        "missing": [
+          "besideSmall"
+        ],
+        "proven": 4,
+        "total": 5
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 15,
+      "proven": 6
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 2,
+      "total": 2
+    },
+    "score": 0.88,
+    "stories": {
+      "failed": 0,
+      "observed": 5
+    }
+  },
+  "default": {
+    "configuration": {
+      "ctas": {
+        "source": "schema-default",
+        "value": {
+          "style": "link",
+          "toggle": true
+        }
+      },
+      "feature": {
+        "source": "example",
+        "value": [
+          {
+            "icon": "person",
+            "text": "This is a feature",
+            "title": "Feature 1"
+          },
+          {
+            "icon": "person",
+            "text": "This is a feature",
+            "title": "Feature 1"
+          }
+        ]
+      },
+      "layout": {
+        "source": "schema-default",
+        "value": "largeTiles"
+      },
+      "style": {
+        "source": "schema-default",
+        "value": "stack"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-features--contract-default.png",
+      "story": "contract-defaults-features--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 174,
+          "width": 1440
+        },
+        "layout": {
+          "display": "grid",
+          "gap": "30.8032px",
+          "gridTemplateColumns": "709.422px 709.438px 0px"
+        }
+      },
+      "root/feature": {
+        "box": {
+          "height": 174,
+          "width": 709
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      }
+    }
+  },
+  "description": "Component used to display a set of features",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:7d437f456acf7424",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-features--icon-beside-with-link-in-text.png",
+        "story": "components-features--icon-beside-with-link-in-text"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 414,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-features--small-tiles"
+            ],
+            "remove": [
+              "dsa-features--large-tiles"
+            ]
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px",
+              "to": "271.078px 271.094px 271.078px 271.094px 271.078px"
+            },
+            "height": {
+              "from": "174.047px",
+              "to": "414.062px"
+            }
+          }
+        },
+        "root/feature": {
+          "box": {
+            "height": 204,
+            "width": 271
+          },
+          "classes": {
+            "add": [
+              "dsa-feature--intext",
+              "dsa-feature--small"
+            ],
+            "remove": [
+              "dsa-feature--large",
+              "dsa-feature--stack"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "174.047px",
+              "to": "203.609px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "271.078px"
+            }
+          }
+        }
+      },
+      "when": {
+        "layout": "smallTiles",
+        "style": "intext"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-features--icon-centered.png",
+        "story": "components-features--icon-centered"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 499,
+            "width": 1440
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px",
+              "to": "465.906px 465.906px 465.906px"
+            },
+            "height": {
+              "from": "174.047px",
+              "to": "498.656px"
+            }
+          }
+        },
+        "root/feature": {
+          "box": {
+            "height": 246,
+            "width": 466
+          },
+          "classes": {
+            "add": [
+              "dsa-feature--centered"
+            ],
+            "remove": [
+              "dsa-feature--stack"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "174.047px",
+              "to": "245.906px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "465.906px"
+            }
+          }
+        }
+      },
+      "when": {
+        "style": "centered"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-features--icon-intext-with-link.png",
+        "story": "components-features--icon-intext-with-link"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 336,
+            "width": 1440
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px",
+              "to": "465.906px 465.906px 465.906px"
+            },
+            "height": {
+              "from": "174.047px",
+              "to": "336.031px"
+            }
+          }
+        },
+        "root/feature": {
+          "box": {
+            "height": 165,
+            "width": 466
+          },
+          "classes": {
+            "add": [
+              "dsa-feature--intext",
+              "dsa-feature--small"
+            ],
+            "remove": [
+              "dsa-feature--large",
+              "dsa-feature--stack"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "174.047px",
+              "to": "164.594px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "465.906px"
+            }
+          }
+        }
+      },
+      "when": {
+        "style": "intext"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-features--list-view.png",
+        "story": "components-features--list-view"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 618,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-features--list"
+            ],
+            "remove": [
+              "dsa-features--large-tiles"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "21.1438px",
+              "to": "30.8032px"
+            },
+            "display": {
+              "from": "grid",
+              "to": "flex"
+            },
+            "flexDirection": {
+              "from": "row",
+              "to": "column"
+            },
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px",
+              "to": "none"
+            },
+            "height": {
+              "from": "174.047px",
+              "to": "618.375px"
+            }
+          }
+        },
+        "root/feature": {
+          "box": {
+            "height": 97,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-feature--beside",
+              "dsa-feature--medium"
+            ],
+            "remove": [
+              "dsa-feature--large",
+              "dsa-feature--stack"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "174.047px",
+              "to": "97.3594px"
+            },
+            "paddingLeft": {
+              "from": "0px",
+              "to": "67.8108px"
+            },
+            "paddingTop": {
+              "from": "0px",
+              "to": "13.5239px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "1440px"
+            }
+          }
+        }
+      },
+      "when": {
+        "layout": "list",
+        "style": "besideLarge"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-features--stack-with-button.png",
+        "story": "components-features--stack-with-button"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 298,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-features--small-tiles"
+            ],
+            "remove": [
+              "dsa-features--large-tiles"
+            ]
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px",
+              "to": "344.141px 344.141px 344.141px 344.156px 0px"
+            },
+            "height": {
+              "from": "174.047px",
+              "to": "298.234px"
+            }
+          }
+        },
+        "root/feature": {
+          "box": {
+            "height": 298,
+            "width": 344
+          },
+          "styles": {
+            "height": {
+              "from": "174.047px",
+              "to": "298.234px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "344.141px"
+            }
+          }
+        }
+      },
+      "when": {
+        "layout": "smallTiles"
+      }
+    }
+  ]
+}

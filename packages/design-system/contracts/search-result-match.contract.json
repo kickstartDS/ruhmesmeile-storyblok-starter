@@ -1,0 +1,144 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "l-container",
+          "l-container--rich-text"
+        ],
+        "element": "div",
+        "instanceOf": "rich-text",
+        "namedBy": "slot-boundary",
+        "path": "root/rich-text",
+        "presence": "always",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "dsa-search-result-match__title"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/title",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-search-result-match"
+    ],
+    "element": "a",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "control"
+  },
+  "api": {
+    "props": {
+      "snippet": {
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      },
+      "url": {
+        "role": "behaviour",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./search-result-match.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "snippet",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "url"
+    }
+  ],
+  "component": "Search Result Match",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "search-result-match",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 0
+    },
+    "combinations": {
+      "possible": 1,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 3,
+      "total": 3
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 0
+    }
+  },
+  "default": {
+    "configuration": {},
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-searchresultmatch--contract-default.png",
+      "story": "contract-defaults-searchresultmatch--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 29,
+          "width": 1417
+        }
+      },
+      "root/rich-text": {
+        "box": {
+          "height": 0,
+          "width": 1417
+        }
+      },
+      "root/title": {
+        "box": {
+          "height": 0,
+          "width": 1417
+        }
+      }
+    }
+  },
+  "generated": {
+    "inputs": {
+      "schema": "sha256:1115d86d6a7b9aa2",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

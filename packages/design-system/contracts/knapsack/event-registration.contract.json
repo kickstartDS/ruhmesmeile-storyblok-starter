@@ -1,0 +1,46 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-registration",
+  "component": "Event Registration",
+  "description": "Event registration component for users to register for events.",
+  "props": {
+    "properties": {
+      "confirmationCheckboxLabel": {
+        "type": "string"
+      },
+      "cta": {
+        "type": "object"
+      },
+      "date": {
+        "type": "string"
+      },
+      "emailInput": {
+        "type": "object"
+      },
+      "label": {
+        "type": "string"
+      },
+      "link": {
+        "type": "object"
+      },
+      "location": {
+        "type": "object"
+      },
+      "mandatoryText": {
+        "type": "string",
+        "default": "_* Mandatory_"
+      },
+      "nameInput": {
+        "type": "object"
+      },
+      "time": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

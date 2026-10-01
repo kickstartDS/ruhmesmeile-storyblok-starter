@@ -1,0 +1,27 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "search-form",
+  "component": "Search Form",
+  "description": "Search form component for submitting search queries and displaying search results.",
+  "props": {
+    "properties": {
+      "component": {
+        "type": "string",
+        "default": "dsa.search-form"
+      },
+      "moreButtonLabel": {
+        "type": "string",
+        "default": "View all results"
+      },
+      "result": {
+        "type": "object"
+      },
+      "resultPerPage": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

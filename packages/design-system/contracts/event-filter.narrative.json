@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Filter",
+  "default": {
+    "description": "The Event Filter component has a clean and organized layout with a soft blue background. It features two date picker fields labeled \"From\" and \"To,\" each with a calendar icon for easy selection. Below the date fields, there's a text input for categories. The component includes two buttons: a prominent blue \"Filter Appointments\" button and a lighter gray \"Reset Filters\" button, both centered and clearly labeled for user interaction.",
+    "from": "img/screenshots/contract-defaults-eventfilter--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-filter--default",
+      "when": {},
+      "difference": "The variant of the Event Filter component is taller, with a height of 694.312px compared to the default. This additional space accommodates a list of checkboxes under the \"Categories\" section, allowing users to select from options like \"All,\" \"Buyers,\" \"Sellers,\" \"Renters,\" \"Landlords,\" and \"Tenants.\"",
+      "from": "img/screenshots/event-event-filter--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:54.255Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventfilter--contract-default.png": "sha256:cebc006edecc245a",
+        "img/screenshots/event-event-filter--default.png": "sha256:5a7b52a4300b2660"
+      },
+      "contract": "sha256:dbf6782a80492ce2d91589aced65700338dc8c2a7fd9fee52defb5d3821bc710"
+    }
+  }
+}

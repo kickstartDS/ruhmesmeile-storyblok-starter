@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Search Result",
+  "default": {
+    "description": "The search result component appears as a clean, structured layout with a light background. It features a prominent title area, likely intended for displaying the search result title, and a space for a preview image on the left. The overall design is simple and functional, focusing on clarity and ease of reading.",
+    "from": "img/screenshots/contract-defaults-searchresult--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-search-result--default",
+      "when": {},
+      "difference": "This variant of the search result component is significantly larger, with a more detailed and expanded layout. It includes a visible header and link area, and introduces a section for matches that displays prominently. The design now accommodates rich text content, enhancing the component's informational depth and visual complexity.",
+      "from": "img/screenshots/corporate-search-result--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:45.086Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-searchresult--contract-default.png": "sha256:7792daefeda1f421",
+        "img/screenshots/corporate-search-result--default.png": "sha256:0acab20edbdc0f44"
+      },
+      "contract": "sha256:e36d043db36a2183ccbb972f8cb60de3b2ff7ed486aac0851449a6e0811f88d8"
+    }
+  }
+}

@@ -1,0 +1,1311 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--headline"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "instanceOf": "headline",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-video-curtain--color-neutral-text"
+                    ],
+                    "path": "root/video-curtain--color-neutral/content/box/headline",
+                    "presence": "conditional",
+                    "role": "slot"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "c-button",
+                              "c-button--clear",
+                              "c-button-group__item",
+                              "dsa-button"
+                            ],
+                            "element": "button",
+                            "gate": {
+                              "prop": "colorNeutral",
+                              "when": "truthy"
+                            },
+                            "instanceOf": "button",
+                            "namedBy": "slot-boundary",
+                            "observedIn": [
+                              "components-video-curtain--color-neutral-text"
+                            ],
+                            "path": "root/video-curtain--color-neutral/content/box/link/child-1/button",
+                            "presence": "conditional",
+                            "role": "slot"
+                          }
+                        ],
+                        "classes": [
+                          "c-button-group",
+                          "c-button-group--left"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "colorNeutral",
+                          "when": "truthy"
+                        },
+                        "namedBy": "position",
+                        "observedIn": [
+                          "components-video-curtain--color-neutral-text"
+                        ],
+                        "path": "root/video-curtain--color-neutral/content/box/link/child-1",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__link"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-video-curtain--color-neutral-text"
+                    ],
+                    "path": "root/video-curtain--color-neutral/content/box/link",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--rich-text"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "instanceOf": "rich-text",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-video-curtain--color-neutral-text"
+                    ],
+                    "path": "root/video-curtain--color-neutral/content/box/rich-text",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "c-visual__box",
+                  "c-visual__box--transparent"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-video-curtain--color-neutral-text"
+                ],
+                "path": "root/video-curtain--color-neutral/content/box",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-visual__content",
+              "c-visual__content--bottom",
+              "c-visual__content--inbox",
+              "c-visual__content--left"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "colorNeutral",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-video-curtain--color-neutral-text"
+            ],
+            "path": "root/video-curtain--color-neutral/content",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "gate": {
+                      "prop": "colorNeutral",
+                      "when": "truthy"
+                    },
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "components-video-curtain--color-neutral-text"
+                    ],
+                    "path": "root/video-curtain--color-neutral/continue/continue-btn/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "c-visual__continue-btn"
+                ],
+                "element": "button",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-video-curtain--color-neutral-text"
+                ],
+                "path": "root/video-curtain--color-neutral/continue/continue-btn",
+                "presence": "conditional",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-visual__continue"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "colorNeutral",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-video-curtain--color-neutral-text"
+            ],
+            "path": "root/video-curtain--color-neutral/continue",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-visual__overlay"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-video-curtain--color-neutral-text"
+                ],
+                "path": "root/video-curtain--color-neutral/media/overlay",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "c-visual__video"
+                ],
+                "element": "video",
+                "gate": {
+                  "prop": "colorNeutral",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-video-curtain--color-neutral-text"
+                ],
+                "path": "root/video-curtain--color-neutral/media/video",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "c-visual__media",
+              "c-visual__media--inbox"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "colorNeutral",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-video-curtain--color-neutral-text"
+            ],
+            "path": "root/video-curtain--color-neutral/media",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-visual",
+          "c-visual--full",
+          "c-visual--inbox",
+          "dsa-video-curtain",
+          "dsa-video-curtain--color-neutral",
+          "dsa-video-curtain--content-corner",
+          "dsa-video-curtain--highlight-text"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "colorNeutral",
+          "when": "truthy"
+        },
+        "instanceOf": "video-curtain--color-neutral",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-video-curtain--color-neutral-text"
+        ],
+        "path": "root/video-curtain--color-neutral",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-video-curtain__copy--color",
+          "--dsa-video-curtain__copy--font",
+          "--dsa-video-curtain__headline--color",
+          "--dsa-video-curtain__subheadline--color",
+          "--dsa-video-curtain__textbox--background-color",
+          "--dsa-video-curtain__textbox--border-radius",
+          "--dsa-video-curtain__textbox--padding",
+          "--dsa-video-curtain_bottom__overlay--background",
+          "--dsa-video-curtain_color-neutral__copy--color",
+          "--dsa-video-curtain_color-neutral__headline--color",
+          "--dsa-video-curtain_color-neutral__subheadline--color",
+          "--dsa-video-curtain_corner__overlay--background",
+          "--dsa-video-curtain_highlight-text__copy--font"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--headline"
+                    ],
+                    "element": "div",
+                    "instanceOf": "headline",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "contract-defaults-videocurtain--contract-default",
+                      "components-video-curtain--atmospheric-video-with-overlay",
+                      "components-video-curtain--color-neutral-video"
+                    ],
+                    "path": "root/video-curtain--content-center/content/box/headline",
+                    "presence": "conditional",
+                    "role": "slot"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "c-button",
+                              "c-button--solid",
+                              "c-button-group__item",
+                              "dsa-button"
+                            ],
+                            "element": "button",
+                            "instanceOf": "button",
+                            "namedBy": "slot-boundary",
+                            "observedIn": [
+                              "components-video-curtain--atmospheric-video-with-overlay",
+                              "components-video-curtain--color-neutral-video"
+                            ],
+                            "path": "root/video-curtain--content-center/content/box/link/child-1/button",
+                            "presence": "conditional",
+                            "role": "slot"
+                          }
+                        ],
+                        "classes": [
+                          "c-button-group",
+                          "c-button-group--center"
+                        ],
+                        "element": "div",
+                        "namedBy": "position",
+                        "observedIn": [
+                          "components-video-curtain--atmospheric-video-with-overlay",
+                          "components-video-curtain--color-neutral-video"
+                        ],
+                        "path": "root/video-curtain--content-center/content/box/link/child-1",
+                        "presence": "conditional",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "c-visual__link"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-video-curtain--atmospheric-video-with-overlay",
+                      "components-video-curtain--color-neutral-video"
+                    ],
+                    "path": "root/video-curtain--content-center/content/box/link",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--rich-text"
+                    ],
+                    "element": "div",
+                    "instanceOf": "rich-text",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-video-curtain--atmospheric-video-with-overlay",
+                      "components-video-curtain--color-neutral-video"
+                    ],
+                    "path": "root/video-curtain--content-center/content/box/rich-text",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "c-visual__box",
+                  "c-visual__box--transparent"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-videocurtain--contract-default",
+                  "components-video-curtain--atmospheric-video-with-overlay",
+                  "components-video-curtain--color-neutral-video"
+                ],
+                "path": "root/video-curtain--content-center/content/box",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-visual__content",
+              "c-visual__content--center",
+              "c-visual__content--inbox"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-videocurtain--contract-default",
+              "components-video-curtain--atmospheric-video-with-overlay",
+              "components-video-curtain--color-neutral-video"
+            ],
+            "path": "root/video-curtain--content-center/content",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "contract-defaults-videocurtain--contract-default",
+                      "components-video-curtain--atmospheric-video-with-overlay",
+                      "components-video-curtain--color-neutral-video"
+                    ],
+                    "path": "root/video-curtain--content-center/continue/continue-btn/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "c-visual__continue-btn"
+                ],
+                "element": "button",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-videocurtain--contract-default",
+                  "components-video-curtain--atmospheric-video-with-overlay",
+                  "components-video-curtain--color-neutral-video"
+                ],
+                "path": "root/video-curtain--content-center/continue/continue-btn",
+                "presence": "conditional",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-visual__continue"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-videocurtain--contract-default",
+              "components-video-curtain--atmospheric-video-with-overlay",
+              "components-video-curtain--color-neutral-video"
+            ],
+            "path": "root/video-curtain--content-center/continue",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-visual__overlay"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-video-curtain--atmospheric-video-with-overlay",
+                  "components-video-curtain--color-neutral-video"
+                ],
+                "path": "root/video-curtain--content-center/media/overlay",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "c-visual__video"
+                ],
+                "element": "video",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-videocurtain--contract-default",
+                  "components-video-curtain--atmospheric-video-with-overlay",
+                  "components-video-curtain--color-neutral-video"
+                ],
+                "path": "root/video-curtain--content-center/media/video",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "c-visual__media",
+              "c-visual__media--inbox"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-videocurtain--contract-default",
+              "components-video-curtain--atmospheric-video-with-overlay",
+              "components-video-curtain--color-neutral-video"
+            ],
+            "path": "root/video-curtain--content-center/media",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-visual",
+          "c-visual--full",
+          "c-visual--inbox",
+          "dsa-video-curtain",
+          "dsa-video-curtain--content-center"
+        ],
+        "element": "div",
+        "instanceOf": "video-curtain--content-center",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-videocurtain--contract-default",
+          "components-video-curtain--atmospheric-video-with-overlay",
+          "components-video-curtain--color-neutral-video"
+        ],
+        "path": "root/video-curtain--content-center",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-video-curtain__copy--color",
+          "--dsa-video-curtain__copy--font",
+          "--dsa-video-curtain__headline--color",
+          "--dsa-video-curtain__subheadline--color",
+          "--dsa-video-curtain__textbox--background-color",
+          "--dsa-video-curtain__textbox--border-radius",
+          "--dsa-video-curtain__textbox--padding",
+          "--dsa-video-curtain_bottom__overlay--background",
+          "--dsa-video-curtain_color-neutral__copy--color",
+          "--dsa-video-curtain_color-neutral__headline--color",
+          "--dsa-video-curtain_color-neutral__subheadline--color",
+          "--dsa-video-curtain_corner__overlay--background",
+          "--dsa-video-curtain_highlight-text__copy--font"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--visual"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "buttons": {
+        "role": "composition",
+        "type": "array"
+      },
+      "colorNeutral": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "headline": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "highlightText": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "overlay": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "sub": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "text": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "textPosition": {
+        "default": "center",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "center",
+          "bottom",
+          "left",
+          "right",
+          "corner"
+        ]
+      },
+      "video": {
+        "role": "content",
+        "type": "object"
+      }
+    },
+    "required": [],
+    "schema": "./video-curtain.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "highlightText",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "colorNeutral",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "overlay",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "buttons"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/video-curtain--color-neutral",
+        "root/video-curtain--color-neutral/content",
+        "root/video-curtain--color-neutral/content/box",
+        "root/video-curtain--color-neutral/content/box/headline",
+        "root/video-curtain--color-neutral/content/box/link",
+        "root/video-curtain--color-neutral/content/box/link/child-1",
+        "root/video-curtain--color-neutral/content/box/link/child-1/button",
+        "root/video-curtain--color-neutral/content/box/rich-text",
+        "root/video-curtain--color-neutral/continue",
+        "root/video-curtain--color-neutral/continue/continue-btn",
+        "root/video-curtain--color-neutral/continue/continue-btn/icon",
+        "root/video-curtain--color-neutral/media",
+        "root/video-curtain--color-neutral/media/overlay",
+        "root/video-curtain--color-neutral/media/video"
+      ],
+      "prop": "colorNeutral"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "headline",
+      "proven": false
+    },
+    {
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/video-curtain--content-center"
+      ],
+      "prop": "highlightText"
+    },
+    {
+      "affects": [
+        "height",
+        "width"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root/video-curtain--content-center/content/box",
+        "root/video-curtain--content-center/content/box/headline"
+      ],
+      "prop": "overlay"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "sub",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "textPosition",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "video",
+      "proven": false
+    }
+  ],
+  "component": "Video Curtain",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "icon",
+          "label",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          1
+        ],
+        "part": "root",
+        "prop": "buttons"
+      }
+    ]
+  },
+  "contractId": "video-curtain",
+  "coverage": {
+    "axes": {
+      "colorNeutral": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "highlightText": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "overlay": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "buttons"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 8,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 28,
+      "inDefault": 10,
+      "total": 29
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "buttons": {
+        "source": "schema-default",
+        "value": []
+      },
+      "colorNeutral": {
+        "source": "schema-default",
+        "value": false
+      },
+      "highlightText": {
+        "source": "schema-default",
+        "value": false
+      },
+      "overlay": {
+        "source": "schema-default",
+        "value": false
+      },
+      "textPosition": {
+        "source": "schema-default",
+        "value": "center"
+      },
+      "video": {
+        "source": "schema-default",
+        "value": {}
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-videocurtain--contract-default.png",
+      "story": "contract-defaults-videocurtain--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "root/video-curtain--content-center": {
+        "box": {
+          "height": 900,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-default",
+            "token": "--dsa-video-curtain__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-video-curtain__copy--font"
+          }
+        }
+      },
+      "root/video-curtain--content-center/content": {
+        "box": {
+          "height": 900,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/video-curtain--content-center/content/box": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/video-curtain--content-center/content/box/headline": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/video-curtain--content-center/continue": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/video-curtain--content-center/continue/continue-btn": {
+        "box": {
+          "height": 56,
+          "width": 56
+        }
+      },
+      "root/video-curtain--content-center/continue/continue-btn/icon": {
+        "box": {
+          "height": 56,
+          "width": 56
+        },
+        "layout": {
+          "display": "inline-block"
+        }
+      },
+      "root/video-curtain--content-center/media": {
+        "box": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "root/video-curtain--content-center/media/video": {
+        "box": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Video curtain component for displaying a video background with overlay text and buttons.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:2c9669d23008543d",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-video-curtain--atmospheric-video-with-overlay.png",
+        "story": "components-video-curtain--atmospheric-video-with-overlay"
+      },
+      "parts": {
+        "root/video-curtain--content-center/content/box": {
+          "box": {
+            "height": 226,
+            "width": 800
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "226.141px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "800px"
+            }
+          }
+        },
+        "root/video-curtain--content-center/content/box/headline": {
+          "box": {
+            "height": 72,
+            "width": 800
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "72.3438px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "800px"
+            }
+          }
+        },
+        "root/video-curtain--content-center/content/box/link": {
+          "box": {
+            "height": 54,
+            "width": 800
+          },
+          "classes": [
+            "c-visual__link"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--content-center/content/box/link/child-1": {
+          "box": {
+            "height": 54,
+            "width": 800
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--center"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "center"
+          }
+        },
+        "root/video-curtain--content-center/content/box/link/child-1/button": {
+          "box": {
+            "height": 54,
+            "width": 147
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/video-curtain--content-center/content/box/rich-text": {
+          "box": {
+            "height": 54,
+            "width": 800
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--content-center/media/overlay": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__overlay"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "overlay": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-video-curtain--color-neutral-text.png",
+        "story": "components-video-curtain--color-neutral-text"
+      },
+      "parts": {
+        "root/video-curtain--color-neutral": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual",
+            "c-visual--full",
+            "c-visual--inbox",
+            "dsa-video-curtain",
+            "dsa-video-curtain--color-neutral",
+            "dsa-video-curtain--content-corner",
+            "dsa-video-curtain--highlight-text"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-default",
+              "token": "--dsa-video-curtain__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-video-curtain__copy--font"
+            }
+          }
+        },
+        "root/video-curtain--color-neutral/content": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__content",
+            "c-visual__content--bottom",
+            "c-visual__content--inbox",
+            "c-visual__content--left"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-end",
+            "display": "flex",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/video-curtain--color-neutral/content/box": {
+          "box": {
+            "height": 255,
+            "width": 800
+          },
+          "classes": [
+            "c-visual__box",
+            "c-visual__box--transparent"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/content/box/headline": {
+          "box": {
+            "height": 85,
+            "width": 800
+          },
+          "classes": [
+            "l-container",
+            "l-container--headline"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/content/box/link": {
+          "box": {
+            "height": 54,
+            "width": 800
+          },
+          "classes": [
+            "c-visual__link"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/content/box/link/child-1": {
+          "box": {
+            "height": 54,
+            "width": 800
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--left"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/video-curtain--color-neutral/content/box/link/child-1/button": {
+          "box": {
+            "height": 54,
+            "width": 147
+          },
+          "classes": [
+            "c-button",
+            "c-button--clear",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/video-curtain--color-neutral/content/box/rich-text": {
+          "box": {
+            "height": 65,
+            "width": 800
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/continue": {
+          "box": {
+            "height": 0,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__continue"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/continue/continue-btn": {
+          "box": {
+            "height": 56,
+            "width": 56
+          },
+          "classes": [
+            "c-visual__continue-btn"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/continue/continue-btn/icon": {
+          "box": {
+            "height": 56,
+            "width": 56
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/video-curtain--color-neutral/media": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__media",
+            "c-visual__media--inbox"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/media/overlay": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__overlay"
+          ],
+          "introduced": true
+        },
+        "root/video-curtain--color-neutral/media/video": {
+          "box": {
+            "height": 900,
+            "width": 1440
+          },
+          "classes": [
+            "c-visual__video"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "colorNeutral": true,
+        "highlightText": true,
+        "overlay": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-video-curtain--color-neutral-video.png",
+        "story": "components-video-curtain--color-neutral-video"
+      },
+      "parts": {
+        "root/video-curtain--content-center": {
+          "classes": {
+            "add": [
+              "dsa-video-curtain--highlight-text"
+            ]
+          }
+        },
+        "root/video-curtain--content-center/content/box": {
+          "box": {
+            "height": 255,
+            "width": 800
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "255.016px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "800px"
+            }
+          }
+        },
+        "root/video-curtain--content-center/content/box/headline": {
+          "box": {
+            "height": 85,
+            "width": 800
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "85.2812px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "800px"
+            }
+          }
+        },
+        "root/video-curtain--content-center/content/box/rich-text": {
+          "box": {
+            "height": 65,
+            "width": 800
+          },
+          "styles": {
+            "height": {
+              "from": "54.0938px",
+              "to": "65.4688px"
+            }
+          }
+        }
+      },
+      "when": {
+        "highlightText": true,
+        "overlay": true
+      }
+    }
+  ]
+}

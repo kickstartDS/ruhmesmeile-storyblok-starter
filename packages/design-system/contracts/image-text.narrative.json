@@ -1,0 +1,37 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Image Text",
+  "default": {
+    "description": "The component features a clean, minimalist design with a white text block set against a soft blue background. The text block has rounded corners and a subtle shadow, giving it a slightly elevated appearance. The sample text inside is simple and centered, contributing to an overall balanced and modern look.",
+    "from": "img/screenshots/contract-defaults-imagetext--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-image-text--above-layout",
+      "when": {},
+      "difference": "The variant features a significantly larger component, with the height of the root and its child elements expanded to accommodate a more substantial image and text block. The image now occupies a prominent space, with a width of 824px and a height of 547px, giving it a dominant presence beside the text. The overall design maintains its clean and modern aesthetic, but the increased size and inclusion of a placeholder image create a more visually engaging layout.",
+      "from": "img/screenshots/components-image-text--above-layout.png"
+    },
+    {
+      "story": "components-image-text--beside-right-layout",
+      "when": {
+        "layout": "beside-right"
+      },
+      "difference": "The variant displays the image beside the text block on the right, significantly increasing the overall height and creating a more expansive layout. The image area is now larger, occupying half the width, with the text aligned to the left, giving a more structured and balanced appearance. The padding adjustments and the image's new position enhance the visual separation between text and image, contributing to a more dynamic and engaging design.",
+      "from": "img/screenshots/components-image-text--beside-right-layout.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:09.416Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-imagetext--contract-default.png": "sha256:0599601a81bc5c3a",
+        "img/screenshots/components-image-text--above-layout.png": "sha256:5ab170715d189114",
+        "img/screenshots/components-image-text--beside-right-layout.png": "sha256:82a5da0f4cd7ef1e"
+      },
+      "contract": "sha256:32344f8fd55877e0b0cf6908ff8bb7626620352d673559b4d7bf4718cce30d24"
+    }
+  }
+}

@@ -25,6 +25,7 @@ import { stopHostServers } from "../lib/mcp/serve";
 import {
   MCP_RUNTIME_DIR_NAME,
   MCP_UPLOAD_DIR,
+  contractsDir,
   stageVariant,
   type VariantKey,
 } from "../lib/mcp/variants";
@@ -34,6 +35,7 @@ const VARIANTS: VariantKey[] = [
   "component-builder",
   "design-tokens",
   "both",
+  "contracts",
 ];
 
 const variant = (process.argv[2] ?? "both") as VariantKey;
@@ -80,8 +82,14 @@ try {
 
   // The real thing. A server that will not start on the host, or that the
   // container cannot reach across the bridge, throws here — which is the
-  // entire point.
-  await setupVariant(sandbox, packages);
+  // entire point. The `contracts` variant must rehearse with the same env the
+  // arm will use, or the rehearsal proves a different setup than the run.
+  await setupVariant(
+    sandbox,
+    packages,
+    undefined,
+    variant === "contracts" ? contractsDir() : undefined,
+  );
   console.log("setup() completed — every server answered tools/list.\n");
 
   assert(

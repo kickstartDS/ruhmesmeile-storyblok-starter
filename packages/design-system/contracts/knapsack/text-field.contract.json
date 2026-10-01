@@ -1,0 +1,82 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "text-field",
+  "component": "TextField",
+  "description": "TextField buttons allow users to select a single option from a list of mutually exclusive options.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "hideLabel": {
+        "type": "boolean"
+      },
+      "hint": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string"
+      },
+      "inputMode": {
+        "type": "string",
+        "enum": [
+          "none",
+          "text",
+          "search",
+          "url",
+          "tel",
+          "email",
+          "numeric",
+          "decimal"
+        ],
+        "default": "text"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "placeholder": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "color",
+          "date",
+          "datetime-local",
+          "email",
+          "file",
+          "month",
+          "number",
+          "password",
+          "search",
+          "tel",
+          "text",
+          "time",
+          "url",
+          "week"
+        ],
+        "default": "text"
+      },
+      "value": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  }
+}

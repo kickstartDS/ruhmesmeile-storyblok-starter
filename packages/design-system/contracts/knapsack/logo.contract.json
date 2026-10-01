@@ -1,0 +1,36 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "logo",
+  "component": "Logo",
+  "props": {
+    "properties": {
+      "alt": {
+        "type": "string"
+      },
+      "className": {
+        "type": "string"
+      },
+      "height": {
+        "type": "integer"
+      },
+      "homepageHref": {
+        "type": "string",
+        "default": "/"
+      },
+      "inverted": {
+        "type": "boolean"
+      },
+      "src": {
+        "type": "string"
+      },
+      "srcInverted": {
+        "type": "string"
+      },
+      "width": {
+        "type": "integer"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

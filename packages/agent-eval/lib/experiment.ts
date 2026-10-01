@@ -22,6 +22,9 @@ import type { ExperimentConfig, ModelTier, Sandbox } from "@vercel/agent-eval";
 
 import { DEFAULTS, PRIMARY_AGENT, PRIMARY_MODEL } from "../agent-eval.config";
 import {
+  EXPECTED_CONTRACT_TOOLS,
+  contractsDir,
+  contractsFingerprint,
   mcpConfigFor,
   mcpUrl,
   serverSpec,
@@ -144,6 +147,11 @@ export function defineExperiment(
           ),
         }
       : {}),
+    // Same rule: only the `contracts` variant folds in the contract set, so
+    // regenerating the contracts invalidates that arm and no other.
+    ...(options.variant === "contracts"
+      ? { contracts: shortHash(contractsFingerprint()) }
+      : {}),
   };
   const variantVersion = shortHash(Object.values(parts).join("\u0000"));
 
@@ -165,7 +173,13 @@ export function defineExperiment(
     sandbox: DEFAULTS.sandbox,
     copyFiles: DEFAULTS.copyFiles,
     agentOptions: options.effort ? { effort: options.effort } : undefined,
-    setup: (sandbox) => setupVariant(sandbox, packages, options.providerEnv),
+    setup: (sandbox) =>
+      setupVariant(
+        sandbox,
+        packages,
+        options.providerEnv,
+        options.variant === "contracts" ? contractsDir() : undefined,
+      ),
   };
 }
 
@@ -261,6 +275,7 @@ export async function setupVariant(
   sandbox: Sandbox,
   packages: StagedPackage[],
   providerEnv?: Record<string, string>,
+  contracts?: string,
 ): Promise<void> {
   // The fixture's own dependencies are NOT installed here. The framework's
   // agent definition already runs `npm install` in the workspace as its first
@@ -275,11 +290,18 @@ export async function setupVariant(
       ports[server.key] = await ensureHostServer(
         server.key,
         serverSpec(server.key).packageDir,
+        contracts ? { DESIGN_SYSTEM_CONTRACTS_DIR: contracts } : undefined,
       );
     }
 
     const hostAddress = await resolveHostAddress(sandbox);
-    await probeHostServers(sandbox, servers, hostAddress, ports);
+    await probeHostServers(
+      sandbox,
+      servers,
+      hostAddress,
+      ports,
+      contracts ? EXPECTED_CONTRACT_TOOLS : {},
+    );
 
     await sandbox.writeFiles({
       ".mcp.json": mcpConfigFor(packages, hostAddress, ports),
@@ -366,6 +388,7 @@ async function probeHostServers(
   servers: StagedPackage[],
   hostAddress: string,
   ports: Record<string, number>,
+  expectedByServer: Record<string, string[]> = {},
 ): Promise<void> {
   const probePath = "/tmp/mcp-probe.mjs";
   const uploadName = ".mcp-probe.mjs";
@@ -382,7 +405,11 @@ async function probeHostServers(
   try {
     for (const server of servers) {
       const url = mcpUrl(hostAddress, ports[server.key]);
-      const probe = await sandbox.runCommand("node", [probePath, url]);
+      const probe = await sandbox.runCommand("node", [
+        probePath,
+        url,
+        ...(expectedByServer[server.key] ?? []),
+      ]);
 
       if (probe.exitCode !== 0) {
         throw new Error(

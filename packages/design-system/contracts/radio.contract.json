@@ -1,0 +1,350 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-form-check__box"
+                ],
+                "element": "span",
+                "namedBy": "bem-class",
+                "path": "root/child-1/field/box",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "c-form-check__input"
+                ],
+                "element": "input",
+                "namedBy": "bem-class",
+                "path": "root/child-1/field/input",
+                "presence": "always",
+                "role": "control"
+              },
+              {
+                "classes": [
+                  "c-form-check__label"
+                ],
+                "element": "span",
+                "namedBy": "bem-class",
+                "path": "root/child-1/field/label",
+                "presence": "always",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "c-form-check__field"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/field",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-form-check",
+          "c-form-check--radio"
+        ],
+        "element": "label",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-radio"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-radio--background",
+      "--dsa-radio--background_active",
+      "--dsa-radio--background_checked",
+      "--dsa-radio--border",
+      "--dsa-radio--border-color",
+      "--dsa-radio--border-color_checked",
+      "--dsa-radio--border-color_focus",
+      "--dsa-radio--border-color_hover",
+      "--dsa-radio--border-radius",
+      "--dsa-radio--size",
+      "--dsa-radio__checkmark--size",
+      "--dsa-radio__label--color",
+      "--dsa-radio__label--font",
+      "--dsa-radio__label--font-weight",
+      "--dsa-radio__label--margin-left"
+    ]
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "disabled": {
+        "default": false,
+        "role": "state",
+        "type": "boolean"
+      },
+      "hint": {
+        "role": "content",
+        "type": "string"
+      },
+      "invalid": {
+        "role": "state",
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "role": "content",
+        "type": "string"
+      },
+      "label": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "schema": "./radio.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "disabled",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "prop": "invalid",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "disabled"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "hint",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "invalid"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "invalidMessage",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "label",
+      "proven": false
+    }
+  ],
+  "component": "Radio",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "radio",
+  "coverage": {
+    "axes": {
+      "disabled": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "invalid": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 6,
+      "total": 6
+    },
+    "score": 0.25,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "disabled": {
+        "source": "schema-default",
+        "value": false
+      },
+      "label": {
+        "source": "example",
+        "value": "Est dolore a debitis"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-radio--contract-default.png",
+      "story": "contract-defaults-radio--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 24,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-radio--background"
+          },
+          "border": {
+            "computed": "0px none rgb(0, 0, 0)",
+            "resolves": "--ks-border-width-default",
+            "token": "--dsa-radio--border"
+          },
+          "borderColor": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-border-color-interface-interactive",
+            "token": "--dsa-radio--border-color"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-interface",
+            "token": "--dsa-radio__label--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-s",
+            "token": "--dsa-radio__label--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-regular",
+            "token": "--dsa-radio__label--font-weight"
+          }
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 24,
+          "width": 185
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/child-1/field": {
+        "box": {
+          "height": 24,
+          "width": 185
+        },
+        "layout": {
+          "display": "flex"
+        }
+      },
+      "root/child-1/field/box": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      },
+      "root/child-1/field/input": {
+        "box": {
+          "height": 1,
+          "width": 1
+        }
+      },
+      "root/child-1/field/label": {
+        "box": {
+          "height": 24,
+          "width": 153
+        }
+      }
+    }
+  },
+  "description": "Radio buttons allow users to select a single option from a list of mutually exclusive options.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:f68a4579f54ffecf",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

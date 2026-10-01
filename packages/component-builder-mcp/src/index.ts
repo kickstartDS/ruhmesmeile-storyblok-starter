@@ -30,6 +30,7 @@ import {
 } from "@kickstartds/shared-auth";
 import { tools } from "./tools.js";
 import { dispatch } from "./handlers.js";
+import { contractsDir } from "./contracts.js";
 import { resources, readResource } from "./resources.js";
 
 const SERVER_NAME = "design-system-component-builder";
@@ -54,6 +55,19 @@ function createMcpServer(): Server {
         tools: {},
         resources: {},
       },
+      // Returned by `initialize`, so it reaches the model before any tool call.
+      // It names the contract tools only when they are actually advertised —
+      // telling a model to call a tool that is not in its list is worse than
+      // saying nothing.
+      instructions: [
+        "Component Builder for the kickstartDS Design System.",
+        "Call get_ui_building_instructions FIRST before creating or editing a component: it carries the file structure, the pure-component rules and the token layering.",
+        contractsDir()
+          ? "Six further tools describe existing components' anatomy, prop→visual mechanisms and tokens: get_component_brief (start here) and get_prop_visual_impact answer most questions; get_component_anatomy, get_component_contract, list_component_contracts and lint_component_contracts add detail. Prefer them over guessing a component's structure or reading source."
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
     },
   );
 

@@ -1,0 +1,138 @@
+@use "comparison-table-tokens.scss";
+
+.dsa-comparison-table {
+  // Below the table's intrinsic width the columns keep their minimum and the
+  // whole table scrolls sideways instead of squeezing the values.
+  overflow-x: auto;
+
+  &__table {
+    width: 100%;
+    font: var(--dsa-comparison-table--font);
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  &__label,
+  &__plan,
+  &__value {
+    padding: var(--dsa-comparison-table--cell-padding);
+    border-bottom: var(--ks-border-width-default) solid
+      var(--dsa-comparison-table--border-color);
+  }
+
+  &__label {
+    width: var(--dsa-comparison-table--label-width);
+    min-width: var(--dsa-comparison-table--label-width);
+    color: var(--dsa-comparison-table__label--color);
+    font: var(--dsa-comparison-table__label--font);
+    font-weight: var(--dsa-comparison-table__label--font-weight);
+    text-align: left;
+  }
+
+  &__plan {
+    min-width: var(--dsa-comparison-table--plan-width);
+    padding: var(--dsa-comparison-table__plan--padding);
+    color: var(--dsa-comparison-table__plan--color);
+    text-align: center;
+    vertical-align: bottom;
+
+    &--highlight {
+      border-radius: var(--dsa-comparison-table--border-radius)
+        var(--dsa-comparison-table--border-radius) 0 0;
+    }
+  }
+
+  &__name,
+  &__price,
+  &__period,
+  &__badge {
+    display: block;
+  }
+
+  &__badge {
+    width: fit-content;
+    margin: 0 auto var(--ks-spacing-stack-xs);
+    padding: var(--dsa-comparison-table__badge--padding);
+    color: var(--dsa-comparison-table__badge--color);
+    background-color: var(--dsa-comparison-table__badge--background-color);
+    border-radius: var(--dsa-comparison-table__badge--border-radius);
+    font: var(--dsa-comparison-table__badge--font);
+    font-weight: var(--dsa-comparison-table__badge--font-weight);
+  }
+
+  &__name {
+    color: var(--dsa-comparison-table__name--color);
+    font: var(--dsa-comparison-table__name--font);
+    font-weight: var(--dsa-comparison-table__name--font-weight);
+  }
+
+  &__price {
+    color: var(--dsa-comparison-table__price--color);
+    font: var(--dsa-comparison-table__price--font);
+    font-family: var(--dsa-comparison-table__price--font-family);
+    font-weight: var(--dsa-comparison-table__price--font-weight);
+  }
+
+  &__period {
+    color: var(--dsa-comparison-table__period--color);
+    font: var(--dsa-comparison-table__period--font);
+  }
+
+  &__value {
+    color: var(--dsa-comparison-table__value--color);
+    font: var(--dsa-comparison-table__value--font);
+    text-align: center;
+
+    &--highlight {
+      border-radius: 0;
+
+      &-end {
+        border-radius: 0 0 var(--dsa-comparison-table--border-radius)
+          var(--dsa-comparison-table--border-radius);
+      }
+    }
+
+    &--cta {
+      vertical-align: middle;
+    }
+  }
+
+  &__empty {
+    color: var(--dsa-comparison-table__empty--color);
+  }
+
+  &__value-icon {
+    width: var(--dsa-comparison-table__value-icon--size);
+    height: var(--dsa-comparison-table__value-icon--size);
+    color: var(--dsa-comparison-table__value-icon--color);
+  }
+
+  &__corner {
+    border-bottom: var(--ks-border-width-default) solid
+      var(--dsa-comparison-table--border-color);
+  }
+
+  // The buttons are the last row: nothing below them.
+  &__table tfoot {
+    .dsa-comparison-table__value,
+    .dsa-comparison-table__corner {
+      border-bottom: 0;
+    }
+  }
+
+  &__plan--highlight,
+  &__value--highlight {
+    background-color: var(--dsa-comparison-table_highlight--background-color);
+    border-bottom-color: var(--dsa-comparison-table_highlight--border-color);
+  }
+
+  // Read out, not shown: for a value whose meaning is carried by an icon.
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

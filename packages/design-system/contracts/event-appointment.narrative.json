@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Appointment",
+  "default": {
+    "description": "The Event Appointment component appears as a sleek, rectangular button with rounded corners, set against a subtle shadowed background that gives it a slightly elevated look. Inside, there's a simple arrow icon on the right, suggesting interactivity, while the rest of the space is reserved for displaying text content like date, label, and time. The overall design is clean and modern, with a focus on functionality and ease of use.",
+    "from": "img/screenshots/contract-defaults-eventappointment--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:52.819Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventappointment--contract-default.png": "sha256:ea87a1839ab5123d"
+      },
+      "contract": "sha256:0d32c1441e1909116962877a21e9a60d76a0fa598d06c87f2ee487ff6909bb1c"
+    }
+  }
+}

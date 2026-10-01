@@ -105,6 +105,7 @@ async function waitForHealth(port: number, child: ChildProcess): Promise<void> {
 export async function ensureHostServer(
   name: string,
   packageDir: string,
+  env?: Record<string, string>,
 ): Promise<number> {
   const existing = running.get(name);
   if (existing) {
@@ -134,7 +135,17 @@ export async function ensureHostServer(
     // is deliberately not set: auth off is the documented local-development
     // mode, and a bearer token would only be one more thing in `.mcp.json` for
     // an agent to find.
-    env: { ...process.env, MCP_TRANSPORT: "http", MCP_PORT: String(port) },
+    //
+    // `env` carries the variant's own configuration — for the `contracts`
+    // variant, `DESIGN_SYSTEM_CONTRACTS_DIR`. Servers are started once per run
+    // and shared, so a variant is one process; the caller must pass the env it
+    // wants for that run.
+    env: {
+      ...process.env,
+      MCP_TRANSPORT: "http",
+      MCP_PORT: String(port),
+      ...env,
+    },
     stdio: ["ignore", "ignore", "pipe"],
   });
 

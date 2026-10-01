@@ -716,6 +716,42 @@
       }
     }
   },
+  "comparison-table": {
+    "displayName": "Comparison Table",
+    "selector": ".dsa-comparison-table",
+    "tokens": {
+      "--dsa-comparison-table--font": {
+        "defaultValue": "var(--ks-font-copy-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-font-copy-s"
+      },
+      "--dsa-comparison-table--border-color": {
+        "defaultValue": "var(--ks-border-color-card-interactive)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-border-color-card-interactive"
+      },
+      "--dsa-comparison-table--border-radius": {
+        "defaultValue": "var(--ks-border-radius-card)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-border-radius-card"
+      },
+      "--dsa-comparison-table--label-width": {
+        "defaultValue": "calc(var(--ks-font-size-copy-m) * 13)",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-comparison-table--plan-width": {
+        "defaultValue": "calc(var(--ks-font-size-copy-m) * 7)",
+        "valueType": "literal",
+        "referencedToken": null
+      },
+      "--dsa-comparison-table--cell-padding": {
+        "defaultValue": "var(--ks-spacing-inset-squish-s)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-inset-squish-s"
+      }
+    }
+  },
   "contact": {
     "displayName": "Contact",
     "selector": ".dsa-contact",
@@ -2987,6 +3023,27 @@
           "valueType": "literal",
           "referencedToken": null
         }
+      }
+    }
+  },
+  "pricing-plans": {
+    "displayName": "Pricing Plans",
+    "selector": ".dsa-pricing-plans",
+    "tokens": {
+      "--dsa-pricing-plans--gap-vertical": {
+        "defaultValue": "var(--ks-spacing-stack-m)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-stack-m"
+      },
+      "--dsa-pricing-plans--gap-horizontal": {
+        "defaultValue": "var(--ks-spacing-inline-m)",
+        "valueType": "semantic-ref",
+        "referencedToken": "--ks-spacing-inline-m"
+      },
+      "--dsa-pricing-plans--plan-min-width": {
+        "defaultValue": "calc(var(--ks-font-size-copy-m) * 18)",
+        "valueType": "literal",
+        "referencedToken": null
       }
     }
   },

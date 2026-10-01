@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Search Result Match",
+  "default": {
+    "description": "The component appears as a rectangular card with a subtle shadow, giving it a slightly elevated look against the background. It features two horizontal lines, suggesting placeholders for text content such as a title and snippet. The overall design is clean and minimalistic, emphasizing clarity and readability.",
+    "from": "img/screenshots/contract-defaults-searchresultmatch--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:47.708Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-searchresultmatch--contract-default.png": "sha256:895909e0f01829bb"
+      },
+      "contract": "sha256:1bbd60c4bc2f29c66ce73c4050eb7ed8f37e6e836f820b5e5413fe9fc4c40032"
+    }
+  }
+}

@@ -1,0 +1,698 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "c-button",
+                          "c-button--solid",
+                          "c-button-group__item",
+                          "dsa-button"
+                        ],
+                        "element": "a",
+                        "gate": {
+                          "prop": "headline",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "button",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-image-story--sticky-image-next-to-scrolling-text"
+                        ],
+                        "path": "root/copy/box/content/child-3/button",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-button-group",
+                      "c-button-group--left"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "headline",
+                      "when": "truthy"
+                    },
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-image-story--sticky-image-next-to-scrolling-text"
+                    ],
+                    "path": "root/copy/box/content/child-3",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--headline"
+                    ],
+                    "element": "div",
+                    "instanceOf": "headline",
+                    "namedBy": "slot-boundary",
+                    "path": "root/copy/box/content/headline",
+                    "presence": "always",
+                    "role": "slot"
+                  },
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--rich-text"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "headline",
+                      "when": "truthy"
+                    },
+                    "instanceOf": "rich-text",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-image-story--sticky-image-next-to-scrolling-text"
+                    ],
+                    "path": "root/copy/box/content/rich-text",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "c-storytelling__box__content"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/copy/box/content",
+                "presence": "always",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-storytelling__box",
+              "c-storytelling__box--top"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/copy/box",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "gate": {
+                  "prop": "headline",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "components-image-story--sticky-image-next-to-scrolling-text"
+                ],
+                "path": "root/copy/image/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "gate": {
+                  "prop": "headline",
+                  "when": "truthy"
+                },
+                "namedBy": "tag",
+                "observedIn": [
+                  "components-image-story--sticky-image-next-to-scrolling-text"
+                ],
+                "path": "root/copy/image/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "c-storytelling__image",
+              "c-storytelling__image--top"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "headline",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-image-story--sticky-image-next-to-scrolling-text"
+            ],
+            "path": "root/copy/image",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-storytelling",
+          "c-storytelling--full",
+          "dsa-image-story"
+        ],
+        "element": "div",
+        "namedBy": "token-grammar",
+        "path": "root/copy",
+        "presence": "always",
+        "role": "container",
+        "tokens": [
+          "--dsa-image-story--gap",
+          "--dsa-image-story--horizontal-padding",
+          "--dsa-image-story--vertical-padding",
+          "--dsa-image-story__copy--color",
+          "--dsa-image-story__copy--font"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--storytelling"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "buttons": {
+        "role": "composition",
+        "type": "array"
+      },
+      "headline": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "largeHeadline": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "layout": {
+        "default": "imageLeft",
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "textLeft",
+          "imageLeft"
+        ]
+      },
+      "padding": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "sub": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "text": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "textAlign": {
+        "default": "left",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "left",
+          "center"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./image-story.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "largeHeadline",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "imageLeft",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "textLeft",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "imageLeft",
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "padding",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "buttons"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/copy/box/content/child-3",
+        "root/copy/box/content/child-3/button",
+        "root/copy/box/content/rich-text",
+        "root/copy/image",
+        "root/copy/image/child-2",
+        "root/copy/image/image"
+      ],
+      "prop": "headline"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "affects": [
+        "height",
+        "width"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root",
+        "root/copy",
+        "root/copy/box",
+        "root/copy/box/content",
+        "root/copy/box/content/headline"
+      ],
+      "prop": "largeHeadline"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "layout"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "padding"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "sub",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "textAlign",
+      "proven": false
+    }
+  ],
+  "component": "Image Story",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "disabled",
+          "icon",
+          "label",
+          "size",
+          "type",
+          "url",
+          "variant"
+        ],
+        "observedCounts": [
+          0,
+          1
+        ],
+        "part": "root",
+        "prop": "buttons"
+      }
+    ]
+  },
+  "contractId": "image-story",
+  "coverage": {
+    "axes": {
+      "largeHeadline": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "layout": {
+        "missing": [
+          "textLeft"
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "padding": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "buttons"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 8,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 6,
+      "inDefault": 5,
+      "total": 11
+    },
+    "score": 0.67,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "buttons": {
+        "source": "schema-default",
+        "value": []
+      },
+      "image": {
+        "source": "schema-default",
+        "value": {
+          "aspectRatio": "unset",
+          "vAlign": "top"
+        }
+      },
+      "largeHeadline": {
+        "source": "schema-default",
+        "value": false
+      },
+      "layout": {
+        "source": "schema-default",
+        "value": "imageLeft"
+      },
+      "padding": {
+        "source": "schema-default",
+        "value": false
+      },
+      "textAlign": {
+        "source": "schema-default",
+        "value": "left"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-imagestory--contract-default.png",
+      "story": "contract-defaults-imagestory--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/copy": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "44.8756px"
+        },
+        "styles": {
+          "color": {
+            "computed": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+            "resolves": "--ks-text-color-copy",
+            "token": "--dsa-image-story__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-image-story__copy--font"
+          },
+          "gap": {
+            "computed": "44.8756px 44.8756px",
+            "resolves": "--ks-spacing-m",
+            "token": "--dsa-image-story--gap"
+          }
+        }
+      },
+      "root/copy/box": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/copy/box/content": {
+        "box": {
+          "height": 0,
+          "width": 613
+        }
+      },
+      "root/copy/box/content/headline": {
+        "box": {
+          "height": 0,
+          "width": 613
+        }
+      }
+    }
+  },
+  "description": "Image story component for displaying an image alongside text content with customizable layout and buttons.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:ce775a3387fc4978",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-image-story--sticky-image-next-to-scrolling-text.png",
+        "story": "components-image-story--sticky-image-next-to-scrolling-text"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 1000,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "1000.02px"
+            }
+          }
+        },
+        "root/copy": {
+          "box": {
+            "height": 1000,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "1000.02px"
+            }
+          }
+        },
+        "root/copy/box": {
+          "box": {
+            "height": 1000,
+            "width": 698
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "1000.02px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "697.562px"
+            }
+          }
+        },
+        "root/copy/box/content": {
+          "box": {
+            "height": 1000,
+            "width": 613
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "1000.02px"
+            }
+          }
+        },
+        "root/copy/box/content/child-3": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "c-button-group",
+            "c-button-group--left"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px",
+            "justifyContent": "flex-start"
+          }
+        },
+        "root/copy/box/content/child-3/button": {
+          "box": {
+            "height": 54,
+            "width": 178
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "c-button-group__item",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/copy/box/content/headline": {
+          "box": {
+            "height": 116,
+            "width": 613
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "116.078px"
+            }
+          }
+        },
+        "root/copy/box/content/rich-text": {
+          "box": {
+            "height": 830,
+            "width": 613
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/copy/image": {
+          "box": {
+            "height": 1000,
+            "width": 698
+          },
+          "classes": [
+            "c-storytelling__image",
+            "c-storytelling__image--top"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-start",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/copy/image/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/copy/image/image": {
+          "box": {
+            "height": 795,
+            "width": 698
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "largeHeadline": true
+      }
+    }
+  ]
+}

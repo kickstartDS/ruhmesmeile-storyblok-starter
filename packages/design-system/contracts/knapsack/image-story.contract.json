@@ -1,0 +1,54 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "image-story",
+  "component": "Image Story",
+  "description": "Image story component for displaying an image alongside text content with customizable layout and buttons.",
+  "props": {
+    "properties": {
+      "buttons": {
+        "type": "array"
+      },
+      "headline": {
+        "type": "string"
+      },
+      "image": {
+        "type": "object"
+      },
+      "largeHeadline": {
+        "type": "boolean",
+        "default": false
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "textLeft",
+          "imageLeft"
+        ],
+        "default": "imageLeft"
+      },
+      "padding": {
+        "type": "boolean",
+        "default": false
+      },
+      "sub": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "textAlign": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "left"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "buttons"
+  ]
+}

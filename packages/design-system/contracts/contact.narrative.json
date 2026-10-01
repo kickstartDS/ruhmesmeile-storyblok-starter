@@ -1,0 +1,49 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Contact",
+  "default": {
+    "description": "The component features a clean and minimalistic design with a light blue background that provides a soft, calming effect. It includes a white, rounded rectangle that appears to be a text input field, giving it a modern and approachable look. The overall appearance is simple and functional, focusing on user interaction.",
+    "from": "img/screenshots/contract-defaults-contact--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-contact--circular-avatar",
+      "when": {},
+      "difference": "This variant of the component is significantly more detailed than the default. It features a larger height and includes additional elements such as a header with a title and subtitle, links with icons, and a rich text section. An image wrap with a placeholder image is also present, giving the component a more comprehensive and informative appearance.",
+      "from": "img/screenshots/components-contact--circular-avatar.png"
+    },
+    {
+      "story": "components-contact--full-image-width",
+      "when": {},
+      "difference": "This variant of the component is significantly larger, with a height of 507.797px compared to the default. It introduces a full-width image section on the left, accompanied by a header with a title and subtitle on the right. Below the header, there is rich text and a link with an icon, creating a more detailed and informative layout.",
+      "from": "img/screenshots/components-contact--full-image-width.png"
+    },
+    {
+      "story": "components-contact--vertical-image-with-paragraph",
+      "when": {},
+      "difference": "This variant of the component is significantly more detailed and visually engaging compared to the default. It features a larger height and includes an image placeholder on the left, with text elements such as a title, subtitle, and descriptive text on the right. Additionally, there are interactive link elements with icons, enhancing the component's functionality and providing a more comprehensive user interaction experience.",
+      "from": "img/screenshots/components-contact--vertical-image-with-paragraph.png"
+    },
+    {
+      "story": "components-contact--wide-image",
+      "when": {},
+      "difference": "This variant of the component is significantly larger, with a height increase to 135.234px. It introduces a structured layout featuring an image placeholder on the left and text elements on the right, including a bold title and a subtitle. Additionally, there are two links with icons, adding a more interactive and informative aspect compared to the default design.",
+      "from": "img/screenshots/components-contact--wide-image.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:13.492Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-contact--contract-default.png": "sha256:e405c9fff6a3134e",
+        "img/screenshots/components-contact--circular-avatar.png": "sha256:6c852c0d94cfcf68",
+        "img/screenshots/components-contact--full-image-width.png": "sha256:e0896b407966d258",
+        "img/screenshots/components-contact--vertical-image-with-paragraph.png": "sha256:4c2be1771fc803c5",
+        "img/screenshots/components-contact--wide-image.png": "sha256:d7a16975131ed04a"
+      },
+      "contract": "sha256:950dfcbf992412a395910dbb3023ec6684a000bb5791208a37fcc0c0591f278e"
+    }
+  }
+}

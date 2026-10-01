@@ -1,0 +1,35 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Faq",
+  "default": {
+    "description": "The FAQ component features a clean, minimalist design with a light background and rounded corners, giving it a soft appearance. Each question is presented in bold text, accompanied by a small blue arrow icon on the right, indicating interactivity. The questions are separated by thin horizontal lines, maintaining a neat and organized layout.",
+    "from": "img/screenshots/contract-defaults-faq--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-faq--dropdown-list",
+      "when": {},
+      "difference": "The variant of the FAQ component is taller, with the height increased from 141.812px to 212.219px. This change allows for more content or spacing between the questions, giving the component a more spacious and open appearance while maintaining its clean and organized design.",
+      "from": "img/screenshots/components-faq--dropdown-list.png"
+    },
+    {
+      "story": "components-faq--single-dropdown",
+      "when": {},
+      "difference": "The variant of the FAQ component is more compact, with a reduced height of 71.4062px compared to the default. This gives it a sleeker appearance while maintaining the same minimalist design and interactive elements.",
+      "from": "img/screenshots/components-faq--single-dropdown.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:17.060Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-faq--contract-default.png": "sha256:16f5dc5ce78d8dac",
+        "img/screenshots/components-faq--dropdown-list.png": "sha256:614704c98dc19515",
+        "img/screenshots/components-faq--single-dropdown.png": "sha256:4c3559ffc96b4aa6"
+      },
+      "contract": "sha256:ffd12bcce648abea26cb8b94c7e584c13967fecd92248bfdf6b3a6d778f1ef4c"
+    }
+  }
+}

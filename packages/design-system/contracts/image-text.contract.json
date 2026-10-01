@@ -1,0 +1,579 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "namedBy": "position",
+                    "path": "root/child-1/gallery/media/child-2",
+                    "presence": "always",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded"
+                    ],
+                    "element": "img",
+                    "namedBy": "tag",
+                    "path": "root/child-1/gallery/media/image",
+                    "presence": "always",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "text-media__media"
+                ],
+                "element": "figure",
+                "namedBy": "bem-class",
+                "path": "root/child-1/gallery/media",
+                "presence": "always",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "text-media__gallery"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/gallery",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "l-container",
+              "l-container--rich-text"
+            ],
+            "element": "div",
+            "instanceOf": "rich-text",
+            "namedBy": "slot-boundary",
+            "path": "root/child-1/rich-text",
+            "presence": "always",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "dsa-image-text",
+          "text-media"
+        ],
+        "element": "div",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "container",
+        "tokens": [
+          "--dsa-image-text--color",
+          "--dsa-image-text--font",
+          "--dsa-image-text_highlight--color",
+          "--dsa-image-text_highlight--font"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--text-media"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "highlightText": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "image": {
+        "required": true,
+        "role": "content",
+        "type": "object"
+      },
+      "layout": {
+        "default": "above",
+        "required": true,
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "above",
+          "below",
+          "beside-right",
+          "beside-left"
+        ]
+      },
+      "text": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "text",
+      "image",
+      "layout"
+    ],
+    "schema": "./image-text.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "highlightText",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "above",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "above",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "below",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "beside-right",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "beside-left",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "highlightText"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "affects": [
+        "height",
+        "justifyContent",
+        "maxWidth",
+        "paddingBottom",
+        "paddingLeft",
+        "width"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/child-1",
+        "root/child-1/gallery/media/image"
+      ],
+      "prop": "layout"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    }
+  ],
+  "component": "Image Text",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "image-text",
+  "coverage": {
+    "axes": {
+      "highlightText": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "layout": {
+        "missing": [
+          "below",
+          "beside-left"
+        ],
+        "proven": 2,
+        "total": 4
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 8,
+      "proven": 3
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 7,
+      "total": 7
+    },
+    "score": 0.5,
+    "stories": {
+      "failed": 0,
+      "observed": 2
+    }
+  },
+  "default": {
+    "configuration": {
+      "highlightText": {
+        "source": "schema-default",
+        "value": false
+      },
+      "image": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "layout": {
+        "source": "schema-default",
+        "value": "above"
+      },
+      "text": {
+        "source": "example",
+        "value": "This is a sample text"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-imagetext--contract-default.png",
+      "story": "contract-defaults-imagetext--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 59,
+          "width": 1440
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 59,
+          "width": 1440
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-copy",
+            "token": "--dsa-image-text--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-image-text--font"
+          }
+        }
+      },
+      "root/child-1/gallery": {
+        "box": {
+          "height": 32,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "gap": "21.1438px",
+          "justifyContent": "center"
+        }
+      },
+      "root/child-1/gallery/media": {
+        "box": {
+          "height": 18,
+          "width": 0
+        },
+        "layout": {
+          "display": "table"
+        }
+      },
+      "root/child-1/gallery/media/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/gallery/media/image": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/rich-text": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "display": "contents"
+        }
+      }
+    }
+  },
+  "description": "Component used to display an image beside or above/below a text block",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:5f622f564312aea6",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-image-text--above-layout.png",
+        "story": "components-image-text--above-layout"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 732,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "59.1406px",
+              "to": "732px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 732,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "59.1406px",
+              "to": "732px"
+            }
+          }
+        },
+        "root/child-1/gallery": {
+          "box": {
+            "height": 561,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "32.0938px",
+              "to": "560.703px"
+            }
+          }
+        },
+        "root/child-1/gallery/media": {
+          "box": {
+            "height": 547,
+            "width": 824
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "547px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "824px"
+            }
+          }
+        },
+        "root/child-1/gallery/media/image": {
+          "attrs": {
+            "data-src": {
+              "from": null,
+              "to": "img/placeholder/image-gallery-02.svg"
+            },
+            "src": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 547,
+            "width": 824
+          },
+          "classes": {
+            "add": [
+              "ls-is-cached"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "547px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "824px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-image-text--beside-right-layout.png",
+        "story": "components-image-text--beside-right-layout"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 473,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "59.1406px",
+              "to": "472.812px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 473,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "text-media--beside",
+              "text-media--intext",
+              "text-media--right"
+            ],
+            "remove": [
+              "text-media--above",
+              "text-media--center"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "59.1406px",
+              "to": "472.812px"
+            }
+          }
+        },
+        "root/child-1/gallery": {
+          "box": {
+            "height": 473,
+            "width": 720
+          },
+          "styles": {
+            "height": {
+              "from": "32.0938px",
+              "to": "472.812px"
+            },
+            "justifyContent": {
+              "from": "center",
+              "to": "flex-end"
+            },
+            "maxWidth": {
+              "from": "none",
+              "to": "50%"
+            },
+            "paddingBottom": {
+              "from": "13.7152px",
+              "to": "8.8965px"
+            },
+            "paddingLeft": {
+              "from": "0px",
+              "to": "21.1438px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "720px"
+            }
+          }
+        },
+        "root/child-1/gallery/media": {
+          "box": {
+            "height": 464,
+            "width": 699
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "463.922px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "698.859px"
+            }
+          }
+        },
+        "root/child-1/gallery/media/image": {
+          "attrs": {
+            "data-src": {
+              "from": null,
+              "to": "img/placeholder/image-gallery-02.svg"
+            },
+            "src": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 464,
+            "width": 699
+          },
+          "classes": {
+            "add": [
+              "ls-is-cached"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "463.922px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "698.859px"
+            }
+          }
+        }
+      },
+      "when": {
+        "layout": "beside-right"
+      }
+    }
+  ]
+}

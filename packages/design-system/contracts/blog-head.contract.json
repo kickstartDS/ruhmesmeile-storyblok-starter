@@ -1,0 +1,543 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "l-container",
+          "l-container--headline"
+        ],
+        "element": "div",
+        "instanceOf": "headline",
+        "namedBy": "slot-boundary",
+        "path": "root/headline",
+        "presence": "always",
+        "role": "slot"
+      },
+      {
+        "children": [
+          {
+            "classes": [],
+            "element": "noscript",
+            "namedBy": "position",
+            "path": "root/image/child-2",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "lazyloaded"
+            ],
+            "element": "img",
+            "namedBy": "tag",
+            "path": "root/image/image",
+            "presence": "always",
+            "role": "media"
+          }
+        ],
+        "classes": [
+          "c-post-head__image",
+          "c-post-head__image--undefined"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/image",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-tag-label__content"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-head--default"
+                    ],
+                    "path": "root/meta/child-2/child-1/content",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "c-tag-label",
+                  "c-tag-label--s"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "blog-blog-head--default"
+                ],
+                "path": "root/meta/child-2/child-1",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-tag-label__content"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-head--default"
+                    ],
+                    "path": "root/meta/child-2/child-2/content",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "c-tag-label",
+                  "c-tag-label--s"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "blog-blog-head--default"
+                ],
+                "path": "root/meta/child-2/child-2",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "tag-label-container"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "date",
+              "when": "truthy"
+            },
+            "namedBy": "position",
+            "observedIn": [
+              "blog-blog-head--default"
+            ],
+            "path": "root/meta/child-2",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "c-post-head__date"
+            ],
+            "element": "time",
+            "gate": {
+              "prop": "date",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "blog-blog-head--default"
+            ],
+            "path": "root/meta/date",
+            "presence": "conditional",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "c-post-head__meta"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/meta",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "c-post-head",
+      "dsa-blog-head"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-blog-head--margin-bottom",
+      "--dsa-blog-head__date--color",
+      "--dsa-blog-head__date--font",
+      "--dsa-blog-head__date--font-weight",
+      "--dsa-blog-head__headline--color",
+      "--dsa-blog-head__headline--font",
+      "--dsa-blog-head__headline--font-weight"
+    ]
+  },
+  "api": {
+    "props": {
+      "alt": {
+        "role": "content",
+        "type": "string"
+      },
+      "date": {
+        "format": "date",
+        "role": "content",
+        "type": "string"
+      },
+      "headline": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "format": "image",
+        "role": "content",
+        "type": "string"
+      },
+      "tags": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [
+      "headline"
+    ],
+    "schema": "./blog-head.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "alt",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/meta/child-2",
+        "root/meta/child-2/child-1",
+        "root/meta/child-2/child-1/content",
+        "root/meta/child-2/child-2",
+        "root/meta/child-2/child-2/content",
+        "root/meta/date"
+      ],
+      "prop": "date"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "headline",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "tags"
+    }
+  ],
+  "component": "Blog Head",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "entry"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "tags"
+      }
+    ]
+  },
+  "contractId": "blog-head",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "tags"
+      ],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 6,
+      "inDefault": 6,
+      "total": 12
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "headline": {
+        "source": "example",
+        "value": "This is a blog post headline"
+      },
+      "tags": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-bloghead--contract-default.png",
+      "story": "contract-defaults-bloghead--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 86,
+          "width": 1440
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-interface",
+            "token": "--dsa-blog-head__date--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-xs",
+            "token": "--dsa-blog-head__date--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-bold",
+            "token": "--dsa-blog-head__date--font-weight"
+          }
+        }
+      },
+      "root/headline": {
+        "box": {
+          "height": 59,
+          "width": 1440
+        }
+      },
+      "root/image": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        }
+      },
+      "root/image/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/image/image": {
+        "box": {
+          "height": 18,
+          "width": 192
+        }
+      },
+      "root/meta": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "baseline",
+          "display": "flex"
+        }
+      }
+    }
+  },
+  "description": "Intro portion of a singular blog entry",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:872ccd2ff53db046",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/blog-blog-head--default.png",
+        "story": "blog-blog-head--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 939,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "85.5156px",
+              "to": "938.703px"
+            }
+          }
+        },
+        "root/image": {
+          "box": {
+            "height": 840,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "840px"
+            }
+          }
+        },
+        "root/image/image": {
+          "attrs": {
+            "data-src": {
+              "from": null,
+              "to": "img/close-up-young-business-team-working.png"
+            },
+            "src": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 840,
+            "width": 1260
+          },
+          "classes": {
+            "add": [
+              "ls-is-cached"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "840px"
+            },
+            "width": {
+              "from": "191.531px",
+              "to": "1260px"
+            }
+          }
+        },
+        "root/meta": {
+          "box": {
+            "height": 32,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "31.5781px"
+            }
+          }
+        },
+        "root/meta/child-2": {
+          "box": {
+            "height": 32,
+            "width": 145
+          },
+          "classes": [
+            "tag-label-container"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "8px"
+          }
+        },
+        "root/meta/child-2/child-1": {
+          "box": {
+            "height": 32,
+            "width": 102
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/meta/child-2/child-1/content": {
+          "box": {
+            "height": 32,
+            "width": 102
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/meta/child-2/child-2": {
+          "box": {
+            "height": 32,
+            "width": 35
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/meta/child-2/child-2/content": {
+          "box": {
+            "height": 32,
+            "width": 35
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/meta/date": {
+          "box": {
+            "height": 21,
+            "width": 89
+          },
+          "classes": [
+            "c-post-head__date"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

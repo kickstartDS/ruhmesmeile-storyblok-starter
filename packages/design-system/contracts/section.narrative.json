@@ -1,0 +1,100 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Section",
+  "default": {
+    "description": "The section component has a clean and minimalistic design with a soft blue background that gives it a calm and professional appearance. It features a white rectangular area with rounded corners, creating a subtle contrast against the background. The overall look is simple and spacious, making it suitable for organizing content on a page.",
+    "from": "img/screenshots/contract-defaults-section--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-section--accent-background",
+      "when": {
+        "backgroundColor": "accent"
+      },
+      "difference": "This variant of the section component features a slightly darker, more muted background color, creating a subtle shift in tone. The section is significantly taller, providing ample space for additional content. It introduces a structured layout with a prominent headline and subheadline, enhancing its functionality for organizing and presenting information.",
+      "from": "img/screenshots/layout-section--accent-background.png"
+    },
+    {
+      "story": "layout-section--background-image",
+      "when": {},
+      "difference": "This variant of the section component features a significantly taller design, creating a more expansive space for content. The background now includes a subtle dotted pattern, adding visual interest while maintaining a professional look. Additionally, the content is aligned to the left, providing a structured and organized layout.",
+      "from": "img/screenshots/layout-section--background-image.png"
+    },
+    {
+      "story": "layout-section--bold-background",
+      "when": {
+        "backgroundColor": "bold"
+      },
+      "difference": "The variant differs from the default by having a more pronounced blue background, giving it a bolder appearance. Additionally, the section is significantly taller, providing more space for content.",
+      "from": "img/screenshots/layout-section--bold-background.png"
+    },
+    {
+      "story": "layout-section--dynamic-layout",
+      "when": {},
+      "difference": "The variant differs from the default by having a significantly increased height, expanding from 130.75px to 733.484px. This change creates a more spacious area, allowing for additional content and a more open layout while maintaining the clean and professional appearance.",
+      "from": "img/screenshots/layout-section--dynamic-layout.png"
+    },
+    {
+      "story": "layout-section--framed",
+      "when": {
+        "style": "framed",
+        "width": "wide"
+      },
+      "difference": "This variant of the section component is significantly larger, with a height that extends to 1755.84px, creating a more expansive and open layout. The width has increased to 1298.28px, providing a broader space for content. The design now includes a framed style, adding a structured and defined appearance to the section.",
+      "from": "img/screenshots/layout-section--framed.png"
+    },
+    {
+      "story": "layout-section--inverted",
+      "when": {
+        "inverted": true
+      },
+      "difference": "This variant of the section component features a dark blue background, creating a more dramatic and bold appearance compared to the default. The height is significantly increased, providing a more expansive space for content. Additionally, the content is aligned to the left, giving it a structured and organized look.",
+      "from": "img/screenshots/layout-section--inverted.png"
+    },
+    {
+      "story": "layout-section--list-layout",
+      "when": {},
+      "difference": "The variant differs from the default by having a significantly increased height, creating a more expansive area for content. This change allows for the inclusion of multiple content blocks, such as headlines and descriptive text, while maintaining the clean and professional appearance with a soft blue background and white content areas.",
+      "from": "img/screenshots/layout-section--list-layout.png"
+    },
+    {
+      "story": "layout-section--slider",
+      "when": {},
+      "difference": "This variant of the section component is significantly taller, providing more vertical space. It introduces a slider element containing teaser cards, which adds an interactive and dynamic aspect to the layout. The content is aligned to the left, enhancing the structured and organized appearance of the section.",
+      "from": "img/screenshots/layout-section--slider.png"
+    },
+    {
+      "story": "layout-section--tile-layout",
+      "when": {},
+      "difference": "The variant differs from the default by having a significantly increased height, creating a more expansive area for content. This change enhances the section's capacity to organize and display multiple elements, such as headlines and cards, while maintaining the clean and professional appearance.",
+      "from": "img/screenshots/layout-section--tile-layout.png"
+    },
+    {
+      "story": "layout-section--with-buttons",
+      "when": {},
+      "difference": "The variant differs from the default by having a significantly increased height, expanding from 130.75px to 1401.11px. This change creates a more extensive area for content, allowing for additional elements such as headlines and topic teasers, while maintaining the clean and professional appearance.",
+      "from": "img/screenshots/layout-section--with-buttons.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:49.024Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-section--contract-default.png": "sha256:ac77b31cf0e96e45",
+        "img/screenshots/layout-section--accent-background.png": "sha256:bb4eb652c2e725b6",
+        "img/screenshots/layout-section--background-image.png": "sha256:253ca9e0c56e13c0",
+        "img/screenshots/layout-section--bold-background.png": "sha256:bc74c5dcfcba7f00",
+        "img/screenshots/layout-section--dynamic-layout.png": "sha256:ff3da07a6ff49007",
+        "img/screenshots/layout-section--framed.png": "sha256:0712ad49eb06e9bf",
+        "img/screenshots/layout-section--inverted.png": "sha256:fb0823483dd225ca",
+        "img/screenshots/layout-section--list-layout.png": "sha256:f2815498b70a6a8a",
+        "img/screenshots/layout-section--slider.png": "sha256:a9d8754f6ed02d3d",
+        "img/screenshots/layout-section--tile-layout.png": "sha256:933cc489c4d5187f",
+        "img/screenshots/layout-section--with-buttons.png": "sha256:166230f42e1b162f"
+      },
+      "contract": "sha256:f8e0daad2c66e221cf935cdd1476040596bf1632e30fd3039b7980141b1cdaf1"
+    }
+  }
+}

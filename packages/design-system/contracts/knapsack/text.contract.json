@@ -1,0 +1,37 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "text",
+  "component": "Text",
+  "description": "Component used for displaying text in chapters",
+  "props": {
+    "properties": {
+      "align": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "left"
+      },
+      "highlightText": {
+        "type": "boolean",
+        "default": false
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "singleColumn",
+          "multiColumn"
+        ],
+        "default": "singleColumn"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "text"
+    ],
+    "additionalProperties": false
+  }
+}

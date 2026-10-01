@@ -1,0 +1,24 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-header",
+  "component": "Event Header",
+  "description": "Event header component for displaying event title, categories, and introductory text.",
+  "props": {
+    "properties": {
+      "categories": {
+        "type": "array"
+      },
+      "intro": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "categories"
+  ]
+}

@@ -348,6 +348,10 @@ Key env vars for deployment: `DOCKER_MCP_IMAGE_NAME`, `MCP_PUBLIC_DOMAIN`, `HOST
 - [packages/design-system/rollup.config.mjs](packages/design-system/rollup.config.mjs) - Design system Rollup build config (component bundling, token extraction)
 - [packages/design-system/.storybook/main.ts](packages/design-system/.storybook/main.ts) - Storybook configuration (addons, framework, stories)
 - [packages/design-system/sd.config.cjs](packages/design-system/sd.config.cjs) - Style Dictionary config (default theme token compilation)
+- [packages/design-system/scripts/contracts/README.md](packages/design-system/scripts/contracts/README.md) - Component contract generation, identity (fold), and projections
+- [packages/design-system/scripts/contracts/schema/contract.schema.json](packages/design-system/scripts/contracts/schema/contract.schema.json) - The component contract format schema
+- [packages/design-system/contracts/index.json](packages/design-system/contracts/index.json) - The published contract set (content-addressed)
+- [docs/adr/adr-component-contracts.md](docs/adr/adr-component-contracts.md) - Decisions for the contract format, identity, projections and eval arm
 - [packages/component-builder-mcp/src/index.ts](packages/component-builder-mcp/src/index.ts) - Component builder MCP server entry point
 - [packages/component-builder-mcp/src/handlers.ts](packages/component-builder-mcp/src/handlers.ts) - Template generators for component scaffolding
 - [packages/design-tokens-mcp/src/index.ts](packages/design-tokens-mcp/src/index.ts) - Design tokens MCP server entry point
@@ -444,6 +448,25 @@ to the website package's local components, not here.
 - **Storybook** (v10.2.x): Full component documentation with a11y audits, design token display, MCP addon
 - **Playroom** (port 9000): Interactive component prototyping with responsive previews (425/768/1440px)
 
+## Component Contracts
+
+The design system emits a **Component Contract** per component — a derived, verifiable JSON artifact joining the component's API, its rendered DOM, and its design tokens. It answers "what changes visually when I set this prop, and which token do I change" — a question no other artifact answers.
+
+- **Format:** `kickstartds/component-contract@1`; schema at [packages/design-system/scripts/contracts/schema/contract.schema.json](packages/design-system/scripts/contracts/schema/contract.schema.json). Identity is `contractId` (a normative fold of the component's declared name) plus `component` (verbatim display name).
+- **Generated, committed, shipped:** the set lives in `packages/design-system/contracts/` (committed, like screenshots) and Rollup copies it to `dist/contracts/`. Generation needs Storybook, so it is a pipeline step, not part of `build`:
+  ```bash
+  node packages/design-system/scripts/contracts/bin/generate.mjs --emit-stories
+  pnpm --filter @kickstartds/design-system build-storybook
+  node packages/design-system/scripts/contracts/bin/generate.mjs
+  ```
+- **Projections:** the same generator emits a [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) projection + content-addressed manifest (`contracts/knapsack/`) and a DSDS `specs[]`/`traits` projection (`contracts/dsds/`). They are derived outputs; the contract is the source.
+- **Served over MCP:** Component Builder MCP exposes `get_component_brief`, `get_component_contract`, `get_component_anatomy`, `get_prop_visual_impact`, `list_component_contracts`, `lint_component_contracts`; Design Tokens MCP exposes `get_token_usage`. All are advertised only when `DESIGN_SYSTEM_CONTRACTS_DIR` points at a generated set (baked into the MCP images and set in their Kamal configs).
+- **Keeping it honest:** `contracts:validate` (schema + content-address check of the committed set; runs in CI per PR) and `contracts:verify` (regenerate from a fresh Storybook + browser pass and diff; `workflow_dispatch`).
+- **Pass 4 narratives:** `contracts:narrate` describes what each component looks like from its screenshots with a vision model (`OPENAI_API_KEY`, `NARRATIVE_MODEL`), writing the quarantined `contracts/{id}.narrative.json` sidecar (`kickstartds/component-narrative@1`) and rewriting that component's brief. Model output is advisory, never inside the contract, and excluded from `contracts:verify`'s byte diff. Skip is content-addressed (`--force` overrides); `--dry-run` makes no calls.
+- **Eval:** the `contracts` variant in `packages/agent-eval` measures the contract tools against `both`.
+
+Decision record: [docs/adr/adr-component-contracts.md](docs/adr/adr-component-contracts.md) · PRD: [docs/internal/prd/kickstartds-component-contracts-prd.md](docs/internal/prd/kickstartds-component-contracts-prd.md)
+
 ## Design Tokens Editor
 
 The design tokens editor ([packages/design-tokens-editor/](packages/design-tokens-editor/)) is a **browser-based visual token editor** (Vite SPA + Express backend) for non-technical editors to modify design tokens with live preview. Token themes are stored as `token-theme` content type stories in Storyblok under `settings/themes/`.
@@ -463,7 +486,7 @@ pnpm --filter design-tokens-editor dev   # Dev server on port 5173 (Vite proxies
 
 The component builder MCP server ([packages/component-builder-mcp/](packages/component-builder-mcp/)) provides **component-building instructions and templates** to AI assistants. It is a read-only documentation server — no write operations.
 
-### Tools (7, all read-only)
+### Tools (10 base + 6 contract tools, all read-only)
 
 | Tool                           | Purpose                                                     |
 | ------------------------------ | ----------------------------------------------------------- |
@@ -474,12 +497,19 @@ The component builder MCP server ([packages/component-builder-mcp/](packages/com
 | `get_client_behavior_template` | Vanilla JS client-side behavior templates                   |
 | `get_scss_template`            | SCSS/BEM styling templates with token layers                |
 | `get_storybook_template`       | Storybook story template                                    |
+| `get_defaults_template`        | Defaults file template                                      |
+| `get_token_architecture`       | Token layer architecture documentation                      |
+| `list_existing_components`     | Component catalog listing                                   |
 
-### Resources (3)
+The **6 contract tools** (`list_component_contracts`, `get_component_brief`, `get_component_contract`, `get_component_anatomy`, `get_prop_visual_impact`, `lint_component_contracts`) are advertised only when `DESIGN_SYSTEM_CONTRACTS_DIR` points at a generated component-contract set. They answer "what changes visually when I set this prop, and which token do I change" — see [docs/internal/prd/kickstartds-component-contracts-prd.md](docs/internal/prd/kickstartds-component-contracts-prd.md).
+
+### Resources (5)
 
 - `design-system://instructions` — UI building instructions
 - `design-system://token-architecture` — Token layer architecture docs
 - `design-system://components` — Component catalog listing
+- `contracts://format-guide` — How to read a Component Contract
+- `contracts://index` — Published contract set and content addresses
 
 ### Transport
 
@@ -490,12 +520,13 @@ The component builder MCP server ([packages/component-builder-mcp/](packages/com
 
 The design tokens MCP server ([packages/design-tokens-mcp/](packages/design-tokens-mcp/)) enables AI assistants to **query, search, analyze, and update design tokens** across 12 global + 50 component token files.
 
-### Tools (29)
+### Tools (30; 29 base + `get_token_usage` when a contract set is configured)
 
 **Query/Search**: `get_token`, `list_tokens`, `search_tokens`, `get_tokens_by_type`, `list_files`, `get_token_stats`
 **Color**: `get_branding_color_palette`, color-specific analysis tools
 **Typography/Spacing**: `get_typography_tokens`, `get_spacing_tokens`
 **Component tokens**: Query tokens for any of 50+ individual components
+**Reverse lookup**: `get_token_usage` — which components, parts and props bind a token (requires a contract set)
 **Write**: `update_branding_token` — Modify token values
 **Analysis**: `audit_tokens` — Quality checks (naming, refs, governance)
 **Theme schema**: `get_theme_schema` — Returns W3C DTCG schema description with reference values for all branding token sections

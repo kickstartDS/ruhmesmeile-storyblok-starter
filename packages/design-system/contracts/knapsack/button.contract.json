@@ -1,0 +1,53 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "button",
+  "component": "Button",
+  "description": "Component used for user interaction",
+  "props": {
+    "properties": {
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "icon": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "size": {
+        "type": "string",
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "default": "medium"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "button",
+          "submit",
+          "reset"
+        ]
+      },
+      "url": {
+        "type": "string"
+      },
+      "variant": {
+        "type": "string",
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary"
+        ],
+        "default": "secondary"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  }
+}

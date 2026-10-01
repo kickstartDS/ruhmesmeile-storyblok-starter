@@ -25,6 +25,10 @@ COPY packages/design-tokens-mcp/ ./packages/design-tokens-mcp/
 # Copy tokens from design-system (sync-tokens reads from ../design-system)
 COPY packages/design-system/src/token/ ./packages/design-system/src/token/
 COPY packages/design-system/src/components/ ./packages/design-system/src/components/
+# The committed component contracts, for `get_token_usage`.
+# `DESIGN_SYSTEM_CONTRACTS_DIR` (set in config/deploy-design-tokens-mcp.yml)
+# points the server at these; without it the tool is withheld.
+COPY packages/design-system/contracts/ ./packages/design-system/contracts/
 
 # Build shared auth, then run token sync + TypeScript build
 RUN pnpm --filter @kickstartds/shared-auth run build
@@ -49,6 +53,8 @@ WORKDIR /prod/design-tokens-mcp
 # Copy runtime data (tokens and rules folders)
 COPY --from=builder /app/packages/design-tokens-mcp/tokens ./tokens
 COPY --from=builder /app/packages/design-tokens-mcp/rules ./rules
+# Runtime data: the component contracts, for `get_token_usage`.
+COPY --from=builder /app/packages/design-system/contracts ./contracts
 
 # Environment variables
 ENV NODE_ENV=production

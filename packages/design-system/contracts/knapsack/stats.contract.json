@@ -1,0 +1,26 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "stats",
+  "component": "Stats",
+  "description": "Component used to display stats with a number upcounter",
+  "props": {
+    "properties": {
+      "align": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "center"
+      },
+      "stat": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "stat"
+  ]
+}

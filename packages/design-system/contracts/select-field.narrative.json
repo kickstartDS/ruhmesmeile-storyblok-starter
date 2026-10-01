@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "SelectField",
+  "default": {
+    "description": "The SelectField component features a clean and simple design, with a rectangular input area that has slightly rounded corners. It includes a label above the input field, which is aligned to the left and presented in a bold font. The input area has a subtle shadow, giving it a slightly elevated appearance, and includes a small downward arrow on the right side, indicating a dropdown menu.",
+    "from": "img/screenshots/contract-defaults-selectfield--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "form-select-field--default",
+      "when": {},
+      "difference": "In this variant of the SelectField component, three new elements appear within the input area. These additions are subtle and do not significantly alter the overall clean and simple design, but they contribute additional functionality or information within the input field itself. The rest of the component retains its slightly elevated appearance with a shadow and a downward arrow on the right side.",
+      "from": "img/screenshots/form-select-field--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:07.094Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-selectfield--contract-default.png": "sha256:3525bb1ec85567df",
+        "img/screenshots/form-select-field--default.png": "sha256:8330d16188106756"
+      },
+      "contract": "sha256:6766f03e44c1fa31fbb2f28591ed6a5e02b57dea893a1412db4d1f995baf7901"
+    }
+  }
+}

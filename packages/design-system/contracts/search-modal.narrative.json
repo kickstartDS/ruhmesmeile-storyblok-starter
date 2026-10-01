@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Search Modal",
+  "default": {
+    "description": "The search modal component appears as a clean, minimalistic dialog with a soft blue background. It features a prominent search bar at the top, which is slightly rounded and stands out against the lighter backdrop. The overall design is simple and functional, focusing on providing a straightforward search interface.",
+    "from": "img/screenshots/contract-defaults-searchmodal--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-search-modal--pagefind",
+      "when": {},
+      "difference": "The variant differs from the default by transforming the dialog into a button with a more compact and centered layout. The background shifts to a subtle, semi-transparent dark color, and the text is now centered with a bolder font. The button has a slightly rounded top border, and the overall appearance is more structured and defined, with a new child element appearing within the design.",
+      "from": "img/screenshots/corporate-search-modal--pagefind.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:42.126Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-searchmodal--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/corporate-search-modal--pagefind.png": "sha256:3e61916286b45e51"
+      },
+      "contract": "sha256:e3e1eed5ba76dc98b97bfe43f404b72163bbcdd6e92352af89787016f7153d55"
+    }
+  }
+}

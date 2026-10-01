@@ -1,0 +1,174 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "classes": [
+              "c-count-up__nummber__value"
+            ],
+            "element": "span",
+            "namedBy": "bem-class",
+            "path": "root/number/value",
+            "presence": "always",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "c-count-up__number"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/number",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "c-count-up",
+      "dsa-stats__item",
+      "lazyload"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "description": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "icon": {
+        "format": "icon",
+        "role": "content",
+        "type": "string"
+      },
+      "number": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "number",
+      "label"
+    ],
+    "schema": "./stat.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "description",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "icon",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "number",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    }
+  ],
+  "component": "Stat",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "stat",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 1,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 3,
+      "total": 3
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 0
+    }
+  },
+  "default": {
+    "configuration": {
+      "number": {
+        "source": "example",
+        "value": "1"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-stat--contract-default.png",
+      "story": "contract-defaults-stat--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 53,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/number": {
+        "box": {
+          "height": 40,
+          "width": 1440
+        }
+      },
+      "root/number/value": {
+        "box": {
+          "height": 33,
+          "width": 18
+        }
+      }
+    }
+  },
+  "description": "Stat entry of Stats component",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:fd8ce6842b55611d",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

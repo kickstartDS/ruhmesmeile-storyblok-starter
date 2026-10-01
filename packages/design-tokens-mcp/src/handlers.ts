@@ -40,6 +40,8 @@ import {
   auditAllComponents,
 } from "./governance.js";
 
+import { contractsDir, findTokenUsage } from "./contracts.js";
+
 /** Helper to wrap a JSON object in an MCP text content block */
 function text(data: unknown): {
   content: Array<{ type: "text"; text: string }>;
@@ -328,6 +330,15 @@ export async function dispatch(
               "Semantic ordering within one category (text-color, elevation, spacing, …).",
             get_branding_tokens: "The branding layer in W3C DTCG form.",
             get_component_tokens: "Every token defined for one component.",
+            // Named here — and advertised at all — only when a contract set is
+            // configured. Pointing at a tool that is not in the list is worse
+            // than saying nothing.
+            ...(contractsDir()
+              ? {
+                  get_token_usage:
+                    "Which components, parts and props bind one token — the reverse lookup. Use it before changing a token, and to find the prop that selects a given token.",
+                }
+              : {}),
           },
         });
       }
@@ -1474,6 +1485,28 @@ export async function dispatch(
           (args.minSeverity as string) || "info",
         );
         return text(fullAudit);
+      }
+
+      case "get_token_usage": {
+        if (!contractsDir()) {
+          return text({
+            error: "no component contracts found",
+            hint: "Generate them with scripts/contracts/bin/generate.mjs in the design system, or point DESIGN_SYSTEM_CONTRACTS_DIR at a contracts/ directory.",
+          });
+        }
+        const usage = findTokenUsage((args.token as string) || "");
+        if (!usage || usage.components.length === 0) {
+          const nearMatches = usage?.nearMatches ?? [];
+          return text({
+            token: (args.token as string) || "",
+            used: false,
+            nearMatches,
+            note: nearMatches.length
+              ? "No exact or templated match. These tokens start with the query."
+              : "No component contract binds this token. It may be dead, or app-level, or the name may be spelled differently.",
+          });
+        }
+        return text(usage);
       }
 
       default:

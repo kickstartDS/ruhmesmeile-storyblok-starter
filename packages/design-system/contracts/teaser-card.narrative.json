@@ -1,0 +1,53 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Teaser Card",
+  "default": {
+    "description": "The Teaser Card component features a clean and structured design, with a prominent image at the top that captures attention. Below the image, there's a headline that stands out, followed by a brief text description that provides additional context. The overall layout is balanced, with a button at the bottom inviting interaction, all set against a light background that enhances readability and focus.",
+    "from": "img/screenshots/contract-defaults-teasercard--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-teaser-card--compact",
+      "when": {
+        "layout": "compact"
+      },
+      "difference": "The compact variant of the Teaser Card features a more condensed layout, with the image and text elements closely integrated. The image remains prominent, but the text and button are more tightly grouped, creating a cohesive and efficient use of space. This design maintains clarity and focus while offering a more streamlined appearance compared to the default.",
+      "from": "img/screenshots/components-teaser-card--compact.png"
+    },
+    {
+      "story": "components-teaser-card--page-navigation",
+      "when": {},
+      "difference": "The variant of the Teaser Card features a landscape layout, which alters the overall structure compared to the default. The image is positioned prominently, maintaining its attention-grabbing role, but the text and button are arranged to complement this new orientation. The design remains clean and inviting, with a clear emphasis on the headline and call-to-action button, set against a light background for enhanced readability.",
+      "from": "img/screenshots/components-teaser-card--page-navigation.png"
+    },
+    {
+      "story": "components-teaser-card--product-tiles",
+      "when": {},
+      "difference": "The variant of the Teaser Card differs from the default by having a significantly taller height, creating a more spacious layout. It introduces a new structure with additional elements such as a body section containing a link and button, as well as a rich-text area with a topic headline. The overall design maintains a clean and organized appearance, but with more detailed content presentation.",
+      "from": "img/screenshots/components-teaser-card--product-tiles.png"
+    },
+    {
+      "story": "components-teaser-card--showcase-preview",
+      "when": {
+        "layout": "row"
+      },
+      "difference": "The variant of the Teaser Card component features a horizontal layout, indicated by the addition of the \"dsa-teaser-card--row\" class. It includes a category label at the top right, which wasn't present in the default. The overall height of the card is reduced, creating a more compact appearance while maintaining the structured design.",
+      "from": "img/screenshots/components-teaser-card--showcase-preview.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:32.217Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-teasercard--contract-default.png": "sha256:18f232363212d64a",
+        "img/screenshots/components-teaser-card--compact.png": "sha256:51f05f8d822619c3",
+        "img/screenshots/components-teaser-card--page-navigation.png": "sha256:1725f357dd2d874e",
+        "img/screenshots/components-teaser-card--product-tiles.png": "sha256:26fcb4fb2d00db4d",
+        "img/screenshots/components-teaser-card--showcase-preview.png": "sha256:c3dfcc2f828d2313"
+      },
+      "contract": "sha256:c41ff6db4ca2834689df5b2624bca2bdd6f54573dc252856f6cac087a4ddf9af"
+    }
+  }
+}

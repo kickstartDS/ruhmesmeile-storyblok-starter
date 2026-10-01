@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Checkbox Group",
+  "default": {
+    "description": "The Checkbox Group component consists of a simple, clean layout with a label at the top. Below the label, there are multiple checkboxes aligned vertically, each accompanied by a text label. The design is straightforward, focusing on functionality and ease of use, with ample spacing to ensure clarity and accessibility.",
+    "from": "img/screenshots/contract-defaults-checkboxgroup--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "form-checkbox-group--default",
+      "when": {},
+      "difference": "In this variant, the Checkbox Group component has a significantly increased height, allowing for the inclusion of multiple checkboxes that were not present in the default. The checkboxes are aligned vertically beneath the label, maintaining a clean and organized appearance while enhancing functionality by enabling multiple selections.",
+      "from": "img/screenshots/form-checkbox-group--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:10.975Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-checkboxgroup--contract-default.png": "sha256:5b1f7f443699ffa1",
+        "img/screenshots/form-checkbox-group--default.png": "sha256:91f28332c25df771"
+      },
+      "contract": "sha256:5e8aaf22ed75ad476266d7aa32c3f8dd1ebce30d65d0704cf13c9b632be36450"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "testimonial",
+  "component": "Testimonial",
+  "description": "Testimonial entry of Testimonials component",
+  "props": {
+    "properties": {
+      "image": {
+        "type": "object"
+      },
+      "name": {
+        "type": "string"
+      },
+      "quote": {
+        "type": "string"
+      },
+      "quoteSigns": {
+        "type": "string",
+        "enum": [
+          "normal",
+          "large",
+          "none"
+        ],
+        "default": "normal"
+      },
+      "rating": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "image",
+      "name",
+      "quote"
+    ],
+    "additionalProperties": false
+  }
+}

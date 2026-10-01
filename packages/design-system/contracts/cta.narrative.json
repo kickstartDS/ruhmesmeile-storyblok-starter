@@ -1,0 +1,102 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Cta",
+  "default": {
+    "description": "The CTA component features a clean and minimalistic design with a light blue background that gives it a calm and inviting appearance. It includes a rounded rectangular button in the center, which stands out due to its white color and subtle shadow, suggesting interactivity. The overall look is simple yet effective, drawing attention to the call to action without overwhelming the viewer.",
+    "from": "img/screenshots/contract-defaults-cta--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-cta--align-bottom",
+      "when": {
+        "align": "bottom"
+      },
+      "difference": "This variant of the CTA component features a significantly larger height, creating a more spacious layout. The content is aligned towards the bottom, with a prominent image on the left and text elements, including a headline and subheading, on the right. The button is now positioned below the text, maintaining its interactive appearance, while the overall design remains clean and organized.",
+      "from": "img/screenshots/components-cta--align-bottom.png"
+    },
+    {
+      "story": "components-cta--angled-image",
+      "when": {
+        "padding": true
+      },
+      "difference": "This variant of the CTA component is more expansive, with a height of 640px, creating a more prominent presence. It introduces a structured layout with a headline, subheading, and descriptive text, accompanied by a \"Learn more\" button, enhancing its informational aspect. Additionally, an image area is included, adding visual interest and context to the call to action.",
+      "from": "img/screenshots/components-cta--angled-image.png"
+    },
+    {
+      "story": "components-cta--banner",
+      "when": {},
+      "difference": "This variant of the CTA component introduces a more structured and content-rich design compared to the default. The height is increased, allowing for the inclusion of a headline, subheading, and additional text, all centrally aligned. The presence of two buttons at the bottom enhances interactivity, providing clear options for user engagement.",
+      "from": "img/screenshots/components-cta--banner.png"
+    },
+    {
+      "story": "components-cta--colored-banner",
+      "when": {
+        "colorNeutral": true,
+        "highlightText": true,
+        "padding": true
+      },
+      "difference": "This variant of the CTA component features a more structured and content-rich design compared to the default. It includes a prominent headline and subheading, along with a descriptive text area, all set against a neutral, muted background that adds emphasis without being overwhelming. The buttons are now integrated within the content area, providing clear options for user interaction.",
+      "from": "img/screenshots/components-cta--colored-banner.png"
+    },
+    {
+      "story": "components-cta--contact-banner",
+      "when": {
+        "padding": true
+      },
+      "difference": "The variant of the CTA component features a more compact design with a reduced height, giving it a denser appearance. The button is slightly wider, enhancing its prominence. The layout adjustments, including the padding shift, create a more balanced and structured look compared to the default.",
+      "from": "img/screenshots/components-cta--contact-banner.png"
+    },
+    {
+      "story": "components-cta--highlighted",
+      "when": {
+        "highlightText": true
+      },
+      "difference": "This variant of the CTA component introduces a more structured and informative layout compared to the default. It features a prominent headline and subheading, providing context and drawing attention. The addition of rich text and a blue button enhances the interactive and engaging nature of the component, making it more visually dynamic and informative.",
+      "from": "img/screenshots/components-cta--highlighted.png"
+    },
+    {
+      "story": "components-cta--left-aligned",
+      "when": {},
+      "difference": "This variant of the CTA component is more structured and visually engaging compared to the default. It features a defined height, allowing for a more substantial presence on the page. The button is wider and aligned to the left, creating a more dynamic layout. The text alignment has shifted from center to start, giving the content a more organized and professional appearance.",
+      "from": "img/screenshots/components-cta--left-aligned.png"
+    },
+    {
+      "story": "components-cta--product-advertisement",
+      "when": {
+        "highlightText": true,
+        "padding": true
+      },
+      "difference": "This variant of the CTA component features a more dynamic design with a background image of a blue dot carpet pattern, adding visual interest. The layout shifts from a centered alignment to a left-aligned format, with text and buttons positioned to the left, creating a more structured and organized appearance. Additionally, an image is introduced on the left side, enhancing the component's visual appeal and providing a balanced composition.",
+      "from": "img/screenshots/components-cta--product-advertisement.png"
+    },
+    {
+      "story": "components-cta--split-banner",
+      "when": {
+        "colorNeutral": true,
+        "padding": true
+      },
+      "difference": "This variant of the CTA component features a taller design with a height of 640px, creating a more spacious layout. The background color shifts to a soft blue, providing a gentle contrast to the content. An image is introduced on the left side, balancing the text and adding visual interest, while the button slightly increases in width, maintaining its central role in prompting user interaction.",
+      "from": "img/screenshots/components-cta--split-banner.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:29.202Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-cta--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/components-cta--align-bottom.png": "sha256:243ca459ba4d076c",
+        "img/screenshots/components-cta--angled-image.png": "sha256:47ccc41b6de1f895",
+        "img/screenshots/components-cta--banner.png": "sha256:81e4fcc40c013bd7",
+        "img/screenshots/components-cta--colored-banner.png": "sha256:2ea6886196ee2006",
+        "img/screenshots/components-cta--contact-banner.png": "sha256:bbf553a79cff335a",
+        "img/screenshots/components-cta--highlighted.png": "sha256:3890e91c4b286576",
+        "img/screenshots/components-cta--left-aligned.png": "sha256:e75f2c6ec72b0981",
+        "img/screenshots/components-cta--product-advertisement.png": "sha256:f7171bff6c81a227",
+        "img/screenshots/components-cta--split-banner.png": "sha256:6bcab6c14a0608db"
+      },
+      "contract": "sha256:278bb3d26fd4eb7b83d78ce935d06bea392d3654c0d75248ef891387f9b133b0"
+    }
+  }
+}

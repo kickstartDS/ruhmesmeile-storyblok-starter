@@ -1,0 +1,41 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "features",
+  "component": "Features",
+  "description": "Component used to display a set of features",
+  "props": {
+    "properties": {
+      "ctas": {
+        "type": "object"
+      },
+      "feature": {
+        "type": "array"
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "largeTiles",
+          "smallTiles",
+          "list"
+        ],
+        "default": "largeTiles"
+      },
+      "style": {
+        "type": "string",
+        "enum": [
+          "intext",
+          "stack",
+          "centered",
+          "besideLarge",
+          "besideSmall"
+        ],
+        "default": "stack"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "feature"
+  ]
+}

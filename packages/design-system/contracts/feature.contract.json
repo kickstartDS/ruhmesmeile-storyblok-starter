@@ -1,0 +1,302 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "icon"
+                ],
+                "element": "svg",
+                "namedBy": "tag",
+                "path": "root/cta/link/icon",
+                "presence": "always",
+                "role": "glyph"
+              }
+            ],
+            "classes": [
+              "dsa-feature__link"
+            ],
+            "element": "a",
+            "namedBy": "bem-class",
+            "path": "root/cta/link",
+            "presence": "always",
+            "role": "control"
+          }
+        ],
+        "classes": [
+          "dsa-feature__cta"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/cta",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "classes": [
+              "dsa-feature__title"
+            ],
+            "element": "span",
+            "namedBy": "bem-class",
+            "path": "root/header/title",
+            "presence": "always",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "dsa-feature__header"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/header",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-feature",
+      "dsa-feature--large",
+      "dsa-feature--stack"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "cta": {
+        "role": "content",
+        "type": "object"
+      },
+      "icon": {
+        "format": "icon",
+        "role": "content",
+        "type": "string"
+      },
+      "style": {
+        "default": "stack",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "intext",
+          "stack",
+          "centered",
+          "besideLarge",
+          "besideSmall"
+        ]
+      },
+      "text": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "title"
+    ],
+    "schema": "./feature.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "stack",
+      "prop": "style",
+      "values": [
+        {
+          "api": "intext",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "stack",
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "centered",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "besideLarge",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "besideSmall",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "cta",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "icon",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "style"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    }
+  ],
+  "component": "Feature",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "feature",
+  "coverage": {
+    "axes": {
+      "style": {
+        "missing": [
+          "intext",
+          "centered",
+          "besideLarge",
+          "besideSmall"
+        ],
+        "proven": 1,
+        "total": 5
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 5,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 6,
+      "total": 6
+    },
+    "score": 0.2,
+    "stories": {
+      "failed": 0,
+      "observed": 0
+    }
+  },
+  "default": {
+    "configuration": {
+      "cta": {
+        "source": "schema-default",
+        "value": {
+          "icon": "arrow-right",
+          "label": "See more",
+          "style": "link",
+          "toggle": true,
+          "url": "#"
+        }
+      },
+      "style": {
+        "source": "schema-default",
+        "value": "stack"
+      },
+      "title": {
+        "source": "example",
+        "value": "Feature 1"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-feature--contract-default.png",
+      "story": "contract-defaults-feature--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 50,
+          "width": 1440
+        }
+      },
+      "root/cta": {
+        "box": {
+          "height": 32,
+          "width": 1440
+        }
+      },
+      "root/cta/link": {
+        "box": {
+          "height": 17,
+          "width": 92
+        }
+      },
+      "root/cta/link/icon": {
+        "box": {
+          "height": 32,
+          "width": 32
+        },
+        "layout": {
+          "display": "inline-block"
+        }
+      },
+      "root/header": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        }
+      },
+      "root/header/title": {
+        "box": {
+          "height": 17,
+          "width": 60
+        }
+      }
+    }
+  },
+  "description": "Partial Component used to display a feature",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:71f3efd1e28c104e",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

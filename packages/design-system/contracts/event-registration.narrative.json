@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Registration",
+  "default": {
+    "description": "The Event Registration component features a clean and organized layout with a soft blue header containing icons for date, location, and time. Below, there are two input fields with rounded edges, providing a modern and approachable feel. A checkbox is positioned to the left, accompanied by a subtle \"Mandatory\" label, and a small, rounded blue button is placed on the right, adding a touch of color and emphasis.",
+    "from": "img/screenshots/contract-defaults-eventregistration--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-registration--default",
+      "when": {},
+      "difference": "In this variant, the Event Registration component is more detailed and expanded. It includes a prominent headline and additional information such as the event date, location, and time, which are clearly displayed with increased dimensions. The input fields are larger, and the button is significantly wider, providing a more substantial and inviting appearance. A link for more information is also present, enhancing the component's functionality.",
+      "from": "img/screenshots/event-event-registration--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:13.584Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventregistration--contract-default.png": "sha256:0b5f39051dc42960",
+        "img/screenshots/event-event-registration--default.png": "sha256:7e65cc25cf0d9d40"
+      },
+      "contract": "sha256:f180f21f8d68eb922443b063bebb0038849683779a8e51fe6765b42d69696332"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "hero",
+  "component": "Hero",
+  "description": "Hero component for displaying a prominent visual section with headline, subheadline, text, and call-to-action buttons.",
+  "props": {
+    "properties": {
+      "buttons": {
+        "type": "array"
+      },
+      "colorNeutral": {
+        "type": "boolean",
+        "default": false
+      },
+      "headline": {
+        "type": "string"
+      },
+      "height": {
+        "type": "string",
+        "enum": [
+          "small",
+          "default",
+          "fullImage",
+          "fullScreen"
+        ],
+        "default": "default"
+      },
+      "highlightText": {
+        "type": "boolean",
+        "default": false
+      },
+      "image": {
+        "type": "object"
+      },
+      "invertText": {
+        "type": "boolean",
+        "default": false
+      },
+      "mobileTextBelow": {
+        "type": "boolean",
+        "default": true
+      },
+      "overlay": {
+        "type": "boolean",
+        "default": false
+      },
+      "skipButton": {
+        "type": "boolean",
+        "default": false
+      },
+      "sub": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "textPosition": {
+        "type": "string",
+        "enum": [
+          "center",
+          "below",
+          "offset",
+          "left",
+          "right",
+          "corner",
+          "bottom"
+        ],
+        "default": "left"
+      },
+      "textbox": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "buttons"
+  ]
+}

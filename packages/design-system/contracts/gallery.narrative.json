@@ -1,0 +1,60 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Gallery",
+  "default": {
+    "description": "The gallery component features a clean, minimalist design with a light background and rounded corners, giving it a soft, modern appearance. Images are displayed in a horizontal layout, each accompanied by a caption below, providing a straightforward and organized presentation. The overall look is simple and functional, focusing on the images themselves.",
+    "from": "img/screenshots/contract-defaults-gallery--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-gallery--free-aspect-ratio",
+      "when": {
+        "lightbox": true
+      },
+      "difference": "In this variant, the gallery shifts from a horizontal layout to a grid format, accommodating more images in a compact space. The images are resized to smaller dimensions, creating a more dense and organized appearance. This change enhances the gallery's functionality by allowing for a more comprehensive display of images within the same area.",
+      "from": "img/screenshots/components-gallery--free-aspect-ratio.png"
+    },
+    {
+      "story": "components-gallery--large-landscape-tiles",
+      "when": {
+        "aspectRatio": "landscape",
+        "layout": "largeTiles"
+      },
+      "difference": "In this variant, the gallery shifts to a larger, more spacious layout with images arranged in a grid of large tiles. The images adopt a landscape aspect ratio, creating a more expansive and visually engaging presentation. The overall height of the gallery and images increases significantly, allowing for a more immersive viewing experience.",
+      "from": "img/screenshots/components-gallery--large-landscape-tiles.png"
+    },
+    {
+      "story": "components-gallery--small-squares-with-lightbox",
+      "when": {
+        "aspectRatio": "square",
+        "lightbox": true
+      },
+      "difference": "In this variant, the gallery shifts from a horizontal to a grid layout, accommodating more images in a compact space. Each image is now square, creating a uniform appearance, and the overall height of the gallery is significantly increased, allowing for a more immersive viewing experience. The lightbox feature enhances interactivity, inviting users to engage more deeply with the images.",
+      "from": "img/screenshots/components-gallery--small-squares-with-lightbox.png"
+    },
+    {
+      "story": "components-gallery--stack-landscape",
+      "when": {
+        "aspectRatio": "landscape",
+        "layout": "stack"
+      },
+      "difference": "In this variant, the gallery shifts from a horizontal to a vertical stack layout, significantly increasing its height and creating a more elongated appearance. The images are now displayed in a column, each with a landscape aspect ratio, making them much larger and more prominent. This change emphasizes each image individually, providing a more immersive viewing experience.",
+      "from": "img/screenshots/components-gallery--stack-landscape.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:34.342Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-gallery--contract-default.png": "sha256:37a178e9a4041a82",
+        "img/screenshots/components-gallery--free-aspect-ratio.png": "sha256:67aa9f3bca6e2a4d",
+        "img/screenshots/components-gallery--large-landscape-tiles.png": "sha256:07db4be14194e38d",
+        "img/screenshots/components-gallery--small-squares-with-lightbox.png": "sha256:7d5d2acff718ac80",
+        "img/screenshots/components-gallery--stack-landscape.png": "sha256:7bdb82530347978e"
+      },
+      "contract": "sha256:055d4f61880566d2ab33421a06559efeb3002b1684631d4e9af8a18bf801a12c"
+    }
+  }
+}

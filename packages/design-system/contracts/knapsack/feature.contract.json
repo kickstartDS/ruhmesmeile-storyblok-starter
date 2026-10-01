@@ -1,0 +1,37 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "feature",
+  "component": "Feature",
+  "description": "Partial Component used to display a feature",
+  "props": {
+    "properties": {
+      "cta": {
+        "type": "object"
+      },
+      "icon": {
+        "type": "string"
+      },
+      "style": {
+        "type": "string",
+        "enum": [
+          "intext",
+          "stack",
+          "centered",
+          "besideLarge",
+          "besideSmall"
+        ],
+        "default": "stack"
+      },
+      "text": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "title"
+    ],
+    "additionalProperties": false
+  }
+}

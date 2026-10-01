@@ -1,0 +1,1030 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--contact"
+                ],
+                "element": "div",
+                "instanceOf": "contact",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-contact"
+                ],
+                "path": "root/aside/content-layout/contact",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--teaser-card"
+                ],
+                "element": "div",
+                "instanceOf": "teaser-card",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-teaser"
+                ],
+                "path": "root/aside/content-layout/teaser-card",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--text-media"
+                ],
+                "element": "div",
+                "instanceOf": "text-media",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-teaser-tiles"
+                ],
+                "path": "root/aside/content-layout/text-media",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "l-split-weighted__content-layout",
+              "l-split-weighted__content-layout--list"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/aside/content-layout",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "l-split-weighted__aside",
+          "l-split-weighted__content"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/aside",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-headline",
+                  "dsa-headline--align-left",
+                  "dsa-headline--h2",
+                  "dsa-headline--space-after-minimum"
+                ],
+                "element": "header",
+                "instanceOf": "headline",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-teaser"
+                ],
+                "path": "root/content/content-layout/headline",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--rich-text"
+                ],
+                "element": "div",
+                "instanceOf": "rich-text",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-teaser"
+                ],
+                "path": "root/content/content-layout/rich-text",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--storytelling"
+                ],
+                "element": "div",
+                "instanceOf": "storytelling",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-contact"
+                ],
+                "path": "root/content/content-layout/storytelling",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--teaser-card"
+                ],
+                "element": "div",
+                "instanceOf": "teaser-card",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "layout-split-weighted--text-with-teaser-tiles"
+                ],
+                "path": "root/content/content-layout/teaser-card",
+                "presence": "repeated",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "l-split-weighted__content-layout"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/content/content-layout",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "l-split-weighted__content",
+          "l-split-weighted__main"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/content",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "l-split-weighted",
+      "l-split-weighted--align-top"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-split-weighted--h-gutter_default",
+      "--dsa-split-weighted--h-gutter_large",
+      "--dsa-split-weighted--h-gutter_small",
+      "--dsa-split-weighted--sticky-margin",
+      "--dsa-split-weighted--v-gutter_default",
+      "--dsa-split-weighted--v-gutter_large",
+      "--dsa-split-weighted--v-gutter_small",
+      "--dsa-split-weighted__aside--flex-basis_default",
+      "--dsa-split-weighted__aside--flex-basis_narrow",
+      "--dsa-split-weighted__aside--flex-basis_wide",
+      "--dsa-split-weighted__aside--gutter_default",
+      "--dsa-split-weighted__aside--gutter_large",
+      "--dsa-split-weighted__aside--gutter_small",
+      "--dsa-split-weighted__main--flex-basis_default",
+      "--dsa-split-weighted__main--flex-basis_narrow",
+      "--dsa-split-weighted__main--flex-basis_wide",
+      "--dsa-split-weighted__main--gutter_default",
+      "--dsa-split-weighted__main--gutter_large",
+      "--dsa-split-weighted__main--gutter_small"
+    ]
+  },
+  "api": {
+    "props": {
+      "asideComponents": {
+        "role": "composition",
+        "type": "array"
+      },
+      "asideLayout": {
+        "role": "content",
+        "type": "object"
+      },
+      "horizontalGutter": {
+        "default": "default",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ]
+      },
+      "mainComponents": {
+        "role": "composition",
+        "type": "array"
+      },
+      "mainLayout": {
+        "role": "content",
+        "type": "object"
+      },
+      "order": {
+        "role": "layout",
+        "type": "object"
+      },
+      "verticalAlign": {
+        "default": "top",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "top",
+          "center",
+          "bottom",
+          "sticky"
+        ]
+      },
+      "verticalGutter": {
+        "default": "default",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ]
+      }
+    },
+    "required": [],
+    "schema": "./split-weighted.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "asideComponents"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "asideLayout",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "horizontalGutter",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "mainComponents"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "mainLayout",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "order"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "verticalAlign",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "verticalGutter",
+      "proven": false
+    }
+  ],
+  "component": "Split Weighted",
+  "composition": {
+    "slots": [
+      {
+        "accepts": [
+          "blog-teaser",
+          "business-card",
+          "button",
+          "contact",
+          "content-nav",
+          "cta",
+          "divider",
+          "downloads",
+          "event-latest-teaser",
+          "event-list-teaser",
+          "faq",
+          "features",
+          "gallery",
+          "headline",
+          "hero",
+          "html",
+          "image-story",
+          "image-text",
+          "logos",
+          "mosaic",
+          "slider",
+          "stats",
+          "teaser-card",
+          "testimonials",
+          "text",
+          "video-curtain"
+        ],
+        "observedCounts": [
+          0
+        ],
+        "part": "root",
+        "prop": "mainComponents"
+      },
+      {
+        "accepts": [
+          "blog-teaser",
+          "business-card",
+          "button",
+          "contact",
+          "content-nav",
+          "cta",
+          "divider",
+          "downloads",
+          "event-latest-teaser",
+          "event-list-teaser",
+          "faq",
+          "features",
+          "gallery",
+          "headline",
+          "hero",
+          "html",
+          "image-story",
+          "image-text",
+          "logos",
+          "mosaic",
+          "slider",
+          "stats",
+          "teaser-card",
+          "testimonials",
+          "text",
+          "video-curtain"
+        ],
+        "observedCounts": [
+          0
+        ],
+        "part": "root",
+        "prop": "asideComponents"
+      }
+    ]
+  },
+  "contractId": "split-weighted",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "mainComponents",
+        "asideComponents"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 8
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 7,
+      "inDefault": 5,
+      "total": 12
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "asideComponents": {
+        "source": "schema-default",
+        "value": []
+      },
+      "asideLayout": {
+        "source": "schema-default",
+        "value": {
+          "gutter": "default",
+          "layout": "list",
+          "minWidth": "default",
+          "stretchVertically": false
+        }
+      },
+      "horizontalGutter": {
+        "source": "schema-default",
+        "value": "default"
+      },
+      "mainComponents": {
+        "source": "schema-default",
+        "value": []
+      },
+      "mainLayout": {
+        "source": "schema-default",
+        "value": {
+          "gutter": "default",
+          "layout": "list",
+          "minWidth": "default",
+          "stretchVertically": false
+        }
+      },
+      "order": {
+        "source": "schema-default",
+        "value": {
+          "desktop": "mainFirst",
+          "mobile": "mainFirst"
+        }
+      },
+      "verticalAlign": {
+        "source": "schema-default",
+        "value": "top"
+      },
+      "verticalGutter": {
+        "source": "schema-default",
+        "value": "default"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-splitweighted--contract-default.png",
+      "story": "contract-defaults-splitweighted--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "gap": "30.8032px"
+        }
+      },
+      "root/aside": {
+        "box": {
+          "height": 0,
+          "width": 361
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/aside/content-layout": {
+        "box": {
+          "height": 0,
+          "width": 361
+        },
+        "layout": {
+          "display": "grid",
+          "gap": "13.7152px"
+        }
+      },
+      "root/content": {
+        "box": {
+          "height": 0,
+          "width": 1048
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/content/content-layout": {
+        "box": {
+          "height": 0,
+          "width": 1048
+        },
+        "layout": {
+          "display": "grid",
+          "gap": "30.8032px"
+        }
+      }
+    }
+  },
+  "description": "Split weighted layout component for dividing content into two sections with customizable widths.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:651bc89909d6bbfe",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-weighted--text-with-contact.png",
+        "story": "layout-split-weighted--text-with-contact"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 285,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted--v-gutter-large"
+            ],
+            "remove": [
+              "l-split-weighted--v-gutter-default"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "284.5px"
+            },
+            "rowGap": {
+              "from": "30.8032px",
+              "to": "65.3768px"
+            }
+          }
+        },
+        "root/aside": {
+          "box": {
+            "height": 135,
+            "width": 505
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__aside--width-wide"
+            ],
+            "remove": [
+              "l-split-weighted__aside--width-default"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "135.234px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.031px"
+            }
+          }
+        },
+        "root/aside/content-layout": {
+          "box": {
+            "height": 135,
+            "width": 505
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "505.031px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "135.234px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.031px"
+            }
+          }
+        },
+        "root/aside/content-layout/contact": {
+          "box": {
+            "height": 135,
+            "width": 505
+          },
+          "classes": [
+            "l-container",
+            "l-container--contact"
+          ],
+          "introduced": true
+        },
+        "root/content": {
+          "box": {
+            "height": 285,
+            "width": 904
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "284.5px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "904.172px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 285,
+            "width": 904
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "904.172px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "284.5px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "904.172px"
+            }
+          }
+        },
+        "root/content/content-layout/storytelling": {
+          "box": {
+            "height": 285,
+            "width": 904
+          },
+          "classes": [
+            "l-container",
+            "l-container--storytelling"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-weighted--text-with-teaser.png",
+        "story": "layout-split-weighted--text-with-teaser"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 408,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "407.859px"
+            }
+          }
+        },
+        "root/aside": {
+          "box": {
+            "height": 408,
+            "width": 505
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__aside--width-wide"
+            ],
+            "remove": [
+              "l-split-weighted__aside--width-default"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "407.859px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.297px"
+            }
+          }
+        },
+        "root/aside/content-layout": {
+          "box": {
+            "height": 408,
+            "width": 505
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "505.297px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "407.859px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.297px"
+            }
+          }
+        },
+        "root/aside/content-layout/teaser-card": {
+          "box": {
+            "height": 408,
+            "width": 505
+          },
+          "classes": [
+            "l-container",
+            "l-container--teaser-card"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        },
+        "root/content": {
+          "box": {
+            "height": 237,
+            "width": 904
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__main--width-narrow"
+            ],
+            "remove": [
+              "l-split-weighted__main--width-default"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "237.188px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "903.906px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 237,
+            "width": 904
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__content-layout--gutter-small"
+            ],
+            "remove": [
+              "l-split-weighted__content-layout--gutter-default"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "30.8032px",
+              "to": "13.7152px"
+            },
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "903.906px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "237.188px"
+            },
+            "rowGap": {
+              "from": "30.8032px",
+              "to": "13.7152px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "903.906px"
+            }
+          }
+        },
+        "root/content/content-layout/headline": {
+          "box": {
+            "height": 38,
+            "width": 904
+          },
+          "classes": [
+            "dsa-headline",
+            "dsa-headline--align-left",
+            "dsa-headline--h2",
+            "dsa-headline--space-after-minimum"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "11.5626px"
+          }
+        },
+        "root/content/content-layout/rich-text": {
+          "box": {
+            "height": 186,
+            "width": 904
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-split-weighted--text-with-teaser-tiles.png",
+        "story": "layout-split-weighted--text-with-teaser-tiles"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 604,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted--desktop-aside-first",
+              "l-split-weighted--h-gutter-small",
+              "l-split-weighted--mobile-aside-first"
+            ],
+            "remove": [
+              "l-split-weighted--h-gutter-default"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "flex-start",
+              "to": "flex-end"
+            },
+            "columnGap": {
+              "from": "30.8032px",
+              "to": "21.1438px"
+            },
+            "flexDirection": {
+              "from": "row",
+              "to": "row-reverse"
+            },
+            "height": {
+              "from": "0px",
+              "to": "604.484px"
+            }
+          }
+        },
+        "root/aside": {
+          "box": {
+            "height": 604,
+            "width": 505
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__aside--width-wide",
+              "l-split-weighted__content--stretch-vertically"
+            ],
+            "remove": [
+              "l-split-weighted__aside--width-default"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "normal",
+              "to": "stretch"
+            },
+            "height": {
+              "from": "0px",
+              "to": "604.484px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.297px"
+            }
+          }
+        },
+        "root/aside/content-layout": {
+          "box": {
+            "height": 604,
+            "width": 505
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__content-layout--gutter-small"
+            ],
+            "remove": [
+              "l-split-weighted__content-layout--gutter-default"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "13.7152px",
+              "to": "8.8965px"
+            },
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "505.297px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "604.484px"
+            },
+            "rowGap": {
+              "from": "13.7152px",
+              "to": "8.8965px"
+            },
+            "width": {
+              "from": "360.922px",
+              "to": "505.297px"
+            }
+          }
+        },
+        "root/aside/content-layout/text-media": {
+          "box": {
+            "height": 604,
+            "width": 505
+          },
+          "classes": [
+            "l-container",
+            "l-container--text-media"
+          ],
+          "introduced": true
+        },
+        "root/content": {
+          "box": {
+            "height": 604,
+            "width": 914
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__content--stretch-vertically",
+              "l-split-weighted__main--width-narrow"
+            ],
+            "remove": [
+              "l-split-weighted__main--width-default"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "normal",
+              "to": "stretch"
+            },
+            "height": {
+              "from": "0px",
+              "to": "604.484px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "913.562px"
+            }
+          }
+        },
+        "root/content/content-layout": {
+          "box": {
+            "height": 604,
+            "width": 914
+          },
+          "classes": {
+            "add": [
+              "l-split-weighted__content-layout--gutter-small",
+              "l-split-weighted__content-layout--smallTiles"
+            ],
+            "remove": [
+              "l-split-weighted__content-layout--gutter-default",
+              "l-split-weighted__content-layout--list"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "30.8032px",
+              "to": "13.7152px"
+            },
+            "gridTemplateColumns": {
+              "from": "none",
+              "to": "140.828px 140.828px 140.844px 140.844px 140.828px 140.828px"
+            },
+            "height": {
+              "from": "0px",
+              "to": "604.484px"
+            },
+            "rowGap": {
+              "from": "30.8032px",
+              "to": "13.7152px"
+            },
+            "width": {
+              "from": "1048.28px",
+              "to": "913.562px"
+            }
+          }
+        },
+        "root/content/content-layout/teaser-card": {
+          "box": {
+            "height": 295,
+            "width": 295
+          },
+          "classes": [
+            "l-container",
+            "l-container--teaser-card"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

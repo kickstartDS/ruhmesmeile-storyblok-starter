@@ -685,12 +685,20 @@ function armRow(
       const label = `run-${cell.trial.run} — ${
         cell.outcome.harnessPassed ? "passed" : "failed"
       }`;
+      // Why it failed, on hover. The frame colour says a run failed; without
+      // this the reader has to open the report to learn *what* rule broke,
+      // which is the difference between a scan and a click-through per run.
+      const firstFailure = cell.outcome.gate?.failures?.[0];
+      const reason =
+        !cell.outcome.harnessPassed && firstFailure
+          ? `${firstFailure.test}${firstFailure.message ? ` — ${firstFailure.message}` : ""}`
+          : null;
       const image = cell.shot
         ? `<img src="${escape(cell.shot)}" alt="${escape(label)}" loading="lazy">`
         : `<span class="ix-missing">not built</span>`;
       const inner = `<figure class="ix-shot ix-shot--${
         cell.outcome.harnessPassed ? "pass" : "fail"
-      }">${image}<figcaption>${escape(label)}</figcaption></figure>`;
+      }"${reason ? ` title="${escape(reason)}"` : ""}>${image}<figcaption>${escape(label)}</figcaption></figure>`;
 
       return cell.report
         ? `<a href="${escape(cell.report)}">${inner}</a>`

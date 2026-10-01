@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Logo",
+  "default": {
+    "description": "The logo component appears as a rectangular image with a soft, rounded border. It is set against a light blue background, giving it a clean and modern look. The overall design is simple and unobtrusive, allowing it to integrate seamlessly into various interfaces.",
+    "from": "img/screenshots/contract-defaults-logo--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:14.217Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-logo--contract-default.png": "sha256:9839649a4411dc9a"
+      },
+      "contract": "sha256:1fffd85a22208977d5639228efe78497f7618c12560dedfa3f654518f670e685"
+    }
+  }
+}

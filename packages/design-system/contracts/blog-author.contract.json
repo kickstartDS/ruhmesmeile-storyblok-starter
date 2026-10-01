@@ -1,0 +1,215 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "dsa-blog-aside__author",
+          "dsa-contact",
+          "dsa-contact--image-square"
+        ],
+        "element": "address",
+        "instanceOf": "contact",
+        "namedBy": "slot-boundary",
+        "path": "root/contact",
+        "presence": "always",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--contact"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "byline": {
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "links": {
+        "role": "composition",
+        "type": "array"
+      },
+      "name": {
+        "required": true,
+        "role": "behaviour",
+        "type": "string"
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "schema": "./blog-author.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "byline",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "links"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "name"
+    }
+  ],
+  "component": "Blog Author",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "ariaLabel",
+          "icon",
+          "label",
+          "newTab",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "links"
+      }
+    ]
+  },
+  "contractId": "blog-author",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "links"
+      ],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 2,
+      "total": 2
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "image": {
+        "source": "schema-default",
+        "value": {
+          "aspectRatio": "square",
+          "fullWidth": false
+        }
+      },
+      "links": {
+        "source": "schema-default",
+        "value": []
+      },
+      "name": {
+        "source": "example",
+        "value": "John Doe"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-blogauthor--contract-default.png",
+      "story": "contract-defaults-blogauthor--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 60,
+          "width": 1440
+        }
+      },
+      "root/contact": {
+        "box": {
+          "height": 60,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px"
+        }
+      }
+    }
+  },
+  "description": "The author of the blog post",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:83375b808cb50fae",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/blog-blog-author--default.png",
+        "story": "blog-blog-author--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 180,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "60.0156px",
+              "to": "180.312px"
+            }
+          }
+        },
+        "root/contact": {
+          "box": {
+            "height": 180,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "60.0156px",
+              "to": "180.312px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

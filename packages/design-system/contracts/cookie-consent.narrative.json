@@ -1,0 +1,42 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Cookie Consent",
+  "default": {
+    "description": "The cookie consent component features a sleek, rounded rectangular design with a soft blue background, giving it a calm and unobtrusive appearance. It has a subtle shadow effect, adding a sense of depth and making it stand out slightly from the page. The overall look is clean and modern, ensuring it integrates smoothly with various website designs.",
+    "from": "img/screenshots/contract-defaults-cookieconsent--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-cookie-consent--banner",
+      "when": {},
+      "difference": "The variant of the cookie consent component has a more expansive and structured appearance compared to the default. It features a wider layout with a defined width of 1440px, giving it a more prominent presence on the page. The border at the top is removed, and the shadow effect is slightly more pronounced, enhancing its visibility and emphasis.",
+      "from": "img/screenshots/corporate-cookie-consent--banner.png"
+    },
+    {
+      "story": "corporate-cookie-consent--c-15-t",
+      "when": {},
+      "difference": "The variant transforms the cookie consent component into a compact button with a semi-transparent dark overlay, giving it a more subtle and integrated appearance. The font changes to Montserrat, and the text is centered, enhancing readability and modernity. The button's rounded corners and increased padding create a more tactile and inviting look, while the overall size is significantly reduced, making it less intrusive on the page.",
+      "from": "img/screenshots/corporate-cookie-consent--c-15-t.png"
+    },
+    {
+      "story": "corporate-cookie-consent--card",
+      "when": {},
+      "difference": "The variant of the cookie consent component is more prominent, with the notice now displayed in a flexible layout. It has a defined height of 207.031px and a width of 757.328px, making it more substantial and noticeable compared to the default. The overall design remains clean and modern, maintaining its integration with various website designs.",
+      "from": "img/screenshots/corporate-cookie-consent--card.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:23.128Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-cookieconsent--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/corporate-cookie-consent--banner.png": "sha256:d21e534110f10f2f",
+        "img/screenshots/corporate-cookie-consent--c-15-t.png": "sha256:20685869213d2cef",
+        "img/screenshots/corporate-cookie-consent--card.png": "sha256:a50b381123db5774"
+      },
+      "contract": "sha256:dcb09586efa26c64ad3498e10bc545d503685f46a94a7a50aef237c0f267b0d2"
+    }
+  }
+}

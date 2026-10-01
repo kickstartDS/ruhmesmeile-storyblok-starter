@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Login",
+  "default": {
+    "description": "The Event Login component features a clean and simple design with a white background and rounded corners, set against a light blue backdrop. It includes two input fields for username and password, both outlined with subtle shadows. Below the inputs, there's a \"Forgot your password?\" link in blue, and a small blue button to the right, likely for submission. The overall look is minimalistic and user-friendly.",
+    "from": "img/screenshots/contract-defaults-eventlogin--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-login--default",
+      "when": {},
+      "difference": "This variant of the Event Login component is larger overall, with increased height for the root, form, and input sections. A headline now appears at the top, adding a welcoming message. The input fields are taller, providing more space for text entry. The \"Forgot your password?\" link is shorter in width, and the submission button is now a larger, blue link labeled \"Login,\" enhancing its prominence and accessibility.",
+      "from": "img/screenshots/event-event-login--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:10.824Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventlogin--contract-default.png": "sha256:e91b43c648da3b3b",
+        "img/screenshots/event-event-login--default.png": "sha256:493ccb839cf774a7"
+      },
+      "contract": "sha256:8fd0b8380e132a9345da3744c46864c1221f53f70d1d22421887d6665a3ff8ef"
+    }
+  }
+}

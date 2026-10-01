@@ -1,0 +1,62 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Slider",
+  "default": {
+    "description": "The slider component is housed within a light blue container that gives a soft, subtle appearance. It features a white track with rounded edges, creating a clean and modern look. The overall design is minimalistic, focusing on functionality while maintaining an elegant aesthetic.",
+    "from": "img/screenshots/contract-defaults-slider--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-slider--with-arrows",
+      "when": {
+        "arrows": true,
+        "nav": true
+      },
+      "difference": "This variant of the slider component introduces navigation arrows and a navigation bar with bullet indicators, enhancing interactivity and user control. The container height is significantly increased, allowing for a more spacious display of content. The addition of teaser cards within the slides provides a more engaging and informative experience.",
+      "from": "img/screenshots/layout-slider--with-arrows.png"
+    },
+    {
+      "story": "layout-slider--with-autoplay",
+      "when": {
+        "arrows": true,
+        "nav": true
+      },
+      "difference": "In this variant, the slider component is significantly taller, with a height of 596.953px, creating a more prominent presence. It includes navigation arrows on either side, enhancing interactivity and user control. Additionally, the component gains an autoplay feature, indicated by the presence of the class `c-slider--autoplay`, suggesting a dynamic and engaging user experience.",
+      "from": "img/screenshots/layout-slider--with-autoplay.png"
+    },
+    {
+      "story": "layout-slider--with-nav",
+      "when": {
+        "arrows": true,
+        "nav": true
+      },
+      "difference": "This variant of the slider component features a significantly increased height, giving it a more prominent and substantial presence. Additionally, navigation arrows are visible on either side of the content, enhancing interactivity and guiding user engagement. The overall design maintains its clean and modern aesthetic while offering more functionality.",
+      "from": "img/screenshots/layout-slider--with-nav.png"
+    },
+    {
+      "story": "layout-slider--with-teased-neighbours",
+      "when": {
+        "arrows": true,
+        "nav": true,
+        "teaseNeighbours": true
+      },
+      "difference": "In this variant, the slider component is more compact, with a reduced height and width for the overall container and individual slides. The presence of navigation arrows and indicators adds functionality, while the \"teaseNeighbours\" feature subtly reveals adjacent slides, enhancing the interactive experience. The design maintains its clean and modern aesthetic but feels more dynamic and engaging.",
+      "from": "img/screenshots/layout-slider--with-teased-neighbours.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:09.817Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-slider--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/layout-slider--with-arrows.png": "sha256:812bbf60d5d3f078",
+        "img/screenshots/layout-slider--with-autoplay.png": "sha256:812bbf60d5d3f078",
+        "img/screenshots/layout-slider--with-nav.png": "sha256:812bbf60d5d3f078",
+        "img/screenshots/layout-slider--with-teased-neighbours.png": "sha256:b4eb0789db36d417"
+      },
+      "contract": "sha256:752fae57de2ed46ed59923a7c3d152ee6c2198621ddc96a76343402dcfd51ad4"
+    }
+  }
+}

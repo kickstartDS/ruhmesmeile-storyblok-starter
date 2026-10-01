@@ -1,0 +1,37 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "footer",
+  "component": "Footer",
+  "description": "Footer component for displaying site logo, grouped navigation links, social links and a legal bottom bar at the bottom of the page.",
+  "props": {
+    "properties": {
+      "copyright": {
+        "type": "string"
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "legalLink": {
+        "type": "object"
+      },
+      "logo": {
+        "type": "object"
+      },
+      "navGroups": {
+        "type": "array"
+      },
+      "socialLinks": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "logo"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "navGroups",
+    "socialLinks"
+  ]
+}

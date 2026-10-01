@@ -1,0 +1,2051 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-contact__subtitle"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--full-image-width"
+                    ],
+                    "path": "root/contact--image-full-width/body/header/subtitle",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "dsa-contact__title"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--full-image-width"
+                    ],
+                    "path": "root/contact--image-full-width/body/header/title",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--full-image-width"
+                ],
+                "path": "root/contact--image-full-width/body/header",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--full-image-width"
+                            ],
+                            "path": "root/contact--image-full-width/body/links/child-1/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--full-image-width"
+                        ],
+                        "path": "root/contact--image-full-width/body/links/child-1/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--full-image-width"
+                    ],
+                    "path": "root/contact--image-full-width/body/links/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__links"
+                ],
+                "element": "ul",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--full-image-width"
+                ],
+                "path": "root/contact--image-full-width/body/links",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--rich-text"
+                ],
+                "element": "div",
+                "instanceOf": "rich-text",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "components-contact--full-image-width"
+                ],
+                "path": "root/contact--image-full-width/body/rich-text",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-contact__body"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--full-image-width"
+            ],
+            "path": "root/contact--image-full-width/body",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-contact--full-image-width"
+                ],
+                "path": "root/contact--image-full-width/image-wrap/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-contact__image",
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--full-image-width"
+                ],
+                "path": "root/contact--image-full-width/image-wrap/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-contact__image-wrap"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--full-image-width"
+            ],
+            "path": "root/contact--image-full-width/image-wrap",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-contact",
+          "dsa-contact--image-full-width",
+          "dsa-contact--image-wide"
+        ],
+        "element": "address",
+        "instanceOf": "contact--image-full-width",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-contact--full-image-width"
+        ],
+        "path": "root/contact--image-full-width",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-contact--gap-horizontal",
+          "--dsa-contact--gap-vertical",
+          "--dsa-contact__body--flex-basis",
+          "--dsa-contact__body--gap",
+          "--dsa-contact__copy--color",
+          "--dsa-contact__copy--font",
+          "--dsa-contact__header--gap",
+          "--dsa-contact__image--border-radius",
+          "--dsa-contact__image--flex-basis",
+          "--dsa-contact__link--color",
+          "--dsa-contact__link--color_hover",
+          "--dsa-contact__link--font",
+          "--dsa-contact__link--font-weight",
+          "--dsa-contact__link--padding-vertical",
+          "--dsa-contact__link--text-decoration",
+          "--dsa-contact__link--text-decoration_hover",
+          "--dsa-contact__link__icon--margin-right",
+          "--dsa-contact__link__icon--size",
+          "--dsa-contact__links--gap",
+          "--dsa-contact__subtitle--color",
+          "--dsa-contact__subtitle--font",
+          "--dsa-contact__subtitle--font-weight",
+          "--dsa-contact__title--color",
+          "--dsa-contact__title--font",
+          "--dsa-contact__title--font-weight"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-contact__subtitle"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--circular-avatar"
+                    ],
+                    "path": "root/contact--image-square/body/header/subtitle",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "dsa-contact__title"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--circular-avatar"
+                    ],
+                    "path": "root/contact--image-square/body/header/title",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--circular-avatar"
+                ],
+                "path": "root/contact--image-square/body/header",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--circular-avatar"
+                            ],
+                            "path": "root/contact--image-square/body/links/child-1/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--circular-avatar"
+                        ],
+                        "path": "root/contact--image-square/body/links/child-1/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--circular-avatar"
+                    ],
+                    "path": "root/contact--image-square/body/links/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--circular-avatar"
+                            ],
+                            "path": "root/contact--image-square/body/links/child-2/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--circular-avatar"
+                        ],
+                        "path": "root/contact--image-square/body/links/child-2/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--circular-avatar"
+                    ],
+                    "path": "root/contact--image-square/body/links/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__links"
+                ],
+                "element": "ul",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--circular-avatar"
+                ],
+                "path": "root/contact--image-square/body/links",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--rich-text"
+                ],
+                "element": "div",
+                "instanceOf": "rich-text",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "components-contact--circular-avatar"
+                ],
+                "path": "root/contact--image-square/body/rich-text",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-contact__body"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-contact--contract-default",
+              "components-contact--circular-avatar"
+            ],
+            "path": "root/contact--image-square/body",
+            "presence": "conditional",
+            "role": "text"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-contact--circular-avatar"
+                ],
+                "path": "root/contact--image-square/image-wrap/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-contact__image",
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--circular-avatar"
+                ],
+                "path": "root/contact--image-square/image-wrap/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-contact__image-wrap"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--circular-avatar"
+            ],
+            "path": "root/contact--image-square/image-wrap",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-contact",
+          "dsa-contact--image-square"
+        ],
+        "element": "address",
+        "instanceOf": "contact--image-square",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-contact--contract-default",
+          "components-contact--circular-avatar"
+        ],
+        "path": "root/contact--image-square",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-contact--gap-horizontal",
+          "--dsa-contact--gap-vertical",
+          "--dsa-contact__body--flex-basis",
+          "--dsa-contact__body--gap",
+          "--dsa-contact__copy--color",
+          "--dsa-contact__copy--font",
+          "--dsa-contact__header--gap",
+          "--dsa-contact__image--border-radius",
+          "--dsa-contact__image--flex-basis",
+          "--dsa-contact__link--color",
+          "--dsa-contact__link--color_hover",
+          "--dsa-contact__link--font",
+          "--dsa-contact__link--font-weight",
+          "--dsa-contact__link--padding-vertical",
+          "--dsa-contact__link--text-decoration",
+          "--dsa-contact__link--text-decoration_hover",
+          "--dsa-contact__link__icon--margin-right",
+          "--dsa-contact__link__icon--size",
+          "--dsa-contact__links--gap",
+          "--dsa-contact__subtitle--color",
+          "--dsa-contact__subtitle--font",
+          "--dsa-contact__subtitle--font-weight",
+          "--dsa-contact__title--color",
+          "--dsa-contact__title--font",
+          "--dsa-contact__title--font-weight"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-contact__subtitle"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--vertical-image-with-paragraph"
+                    ],
+                    "path": "root/contact--image-vertical/body/header/subtitle",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "dsa-contact__title"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--vertical-image-with-paragraph"
+                    ],
+                    "path": "root/contact--image-vertical/body/header/title",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--vertical-image-with-paragraph"
+                ],
+                "path": "root/contact--image-vertical/body/header",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--vertical-image-with-paragraph"
+                            ],
+                            "path": "root/contact--image-vertical/body/links/child-1/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--vertical-image-with-paragraph"
+                        ],
+                        "path": "root/contact--image-vertical/body/links/child-1/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--vertical-image-with-paragraph"
+                    ],
+                    "path": "root/contact--image-vertical/body/links/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--vertical-image-with-paragraph"
+                            ],
+                            "path": "root/contact--image-vertical/body/links/child-2/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--vertical-image-with-paragraph"
+                        ],
+                        "path": "root/contact--image-vertical/body/links/child-2/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--vertical-image-with-paragraph"
+                    ],
+                    "path": "root/contact--image-vertical/body/links/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__links"
+                ],
+                "element": "ul",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--vertical-image-with-paragraph"
+                ],
+                "path": "root/contact--image-vertical/body/links",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--rich-text"
+                ],
+                "element": "div",
+                "instanceOf": "rich-text",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "components-contact--vertical-image-with-paragraph"
+                ],
+                "path": "root/contact--image-vertical/body/rich-text",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-contact__body"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--vertical-image-with-paragraph"
+            ],
+            "path": "root/contact--image-vertical/body",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-contact--vertical-image-with-paragraph"
+                ],
+                "path": "root/contact--image-vertical/image-wrap/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-contact__image",
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--vertical-image-with-paragraph"
+                ],
+                "path": "root/contact--image-vertical/image-wrap/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-contact__image-wrap"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--vertical-image-with-paragraph"
+            ],
+            "path": "root/contact--image-vertical/image-wrap",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-contact",
+          "dsa-contact--image-vertical"
+        ],
+        "element": "address",
+        "instanceOf": "contact--image-vertical",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-contact--vertical-image-with-paragraph"
+        ],
+        "path": "root/contact--image-vertical",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-contact--gap-horizontal",
+          "--dsa-contact--gap-vertical",
+          "--dsa-contact__body--flex-basis",
+          "--dsa-contact__body--gap",
+          "--dsa-contact__copy--color",
+          "--dsa-contact__copy--font",
+          "--dsa-contact__header--gap",
+          "--dsa-contact__image--border-radius",
+          "--dsa-contact__image--flex-basis",
+          "--dsa-contact__link--color",
+          "--dsa-contact__link--color_hover",
+          "--dsa-contact__link--font",
+          "--dsa-contact__link--font-weight",
+          "--dsa-contact__link--padding-vertical",
+          "--dsa-contact__link--text-decoration",
+          "--dsa-contact__link--text-decoration_hover",
+          "--dsa-contact__link__icon--margin-right",
+          "--dsa-contact__link__icon--size",
+          "--dsa-contact__links--gap",
+          "--dsa-contact__subtitle--color",
+          "--dsa-contact__subtitle--font",
+          "--dsa-contact__subtitle--font-weight",
+          "--dsa-contact__title--color",
+          "--dsa-contact__title--font",
+          "--dsa-contact__title--font-weight"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-contact__subtitle"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--wide-image"
+                    ],
+                    "path": "root/contact--image-wide/body/header/subtitle",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "dsa-contact__title"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-contact--wide-image"
+                    ],
+                    "path": "root/contact--image-wide/body/header/title",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--wide-image"
+                ],
+                "path": "root/contact--image-wide/body/header",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--wide-image"
+                            ],
+                            "path": "root/contact--image-wide/body/links/child-1/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--wide-image"
+                        ],
+                        "path": "root/contact--image-wide/body/links/child-1/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--wide-image"
+                    ],
+                    "path": "root/contact--image-wide/body/links/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "observedIn": [
+                              "components-contact--wide-image"
+                            ],
+                            "path": "root/contact--image-wide/body/links/child-2/link/icon",
+                            "presence": "conditional",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-contact__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-contact--wide-image"
+                        ],
+                        "path": "root/contact--image-wide/body/links/child-2/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "li",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-contact--wide-image"
+                    ],
+                    "path": "root/contact--image-wide/body/links/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-contact__links"
+                ],
+                "element": "ul",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--wide-image"
+                ],
+                "path": "root/contact--image-wide/body/links",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "dsa-contact__body"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--wide-image"
+            ],
+            "path": "root/contact--image-wide/body",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-contact--wide-image"
+                ],
+                "path": "root/contact--image-wide/image-wrap/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-contact__image",
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-contact--wide-image"
+                ],
+                "path": "root/contact--image-wide/image-wrap/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-contact__image-wrap"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-contact--wide-image"
+            ],
+            "path": "root/contact--image-wide/image-wrap",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-contact",
+          "dsa-contact--image-wide"
+        ],
+        "element": "address",
+        "instanceOf": "contact--image-wide",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-contact--wide-image"
+        ],
+        "path": "root/contact--image-wide",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-contact--gap-horizontal",
+          "--dsa-contact--gap-vertical",
+          "--dsa-contact__body--flex-basis",
+          "--dsa-contact__body--gap",
+          "--dsa-contact__copy--color",
+          "--dsa-contact__copy--font",
+          "--dsa-contact__header--gap",
+          "--dsa-contact__image--border-radius",
+          "--dsa-contact__image--flex-basis",
+          "--dsa-contact__link--color",
+          "--dsa-contact__link--color_hover",
+          "--dsa-contact__link--font",
+          "--dsa-contact__link--font-weight",
+          "--dsa-contact__link--padding-vertical",
+          "--dsa-contact__link--text-decoration",
+          "--dsa-contact__link--text-decoration_hover",
+          "--dsa-contact__link__icon--margin-right",
+          "--dsa-contact__link__icon--size",
+          "--dsa-contact__links--gap",
+          "--dsa-contact__subtitle--color",
+          "--dsa-contact__subtitle--font",
+          "--dsa-contact__subtitle--font-weight",
+          "--dsa-contact__title--color",
+          "--dsa-contact__title--font",
+          "--dsa-contact__title--font-weight"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--contact"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "component": {
+        "role": "content",
+        "type": "string"
+      },
+      "copy": {
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "links": {
+        "role": "composition",
+        "type": "array"
+      },
+      "subtitle": {
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "schema": "./contact.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "component",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "copy",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "links"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "subtitle",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    }
+  ],
+  "component": "Contact",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "ariaLabel",
+          "icon",
+          "label",
+          "newTab",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          1,
+          2
+        ],
+        "part": "root",
+        "prop": "links"
+      }
+    ]
+  },
+  "contractId": "contact",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "links"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 5,
+      "proven": 5
+    },
+    "parts": {
+      "conditional": 60,
+      "inDefault": 3,
+      "total": 61
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "image": {
+        "source": "schema-default",
+        "value": {
+          "aspectRatio": "square",
+          "fullWidth": false
+        }
+      },
+      "links": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-contact--contract-default.png",
+      "story": "contract-defaults-contact--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        }
+      },
+      "root/contact--image-square": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px"
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-copy",
+            "token": "--dsa-contact__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-contact__copy--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": null,
+            "token": "--dsa-contact__link--font-weight"
+          },
+          "gap": {
+            "computed": "13.7152px 13.7152px",
+            "resolves": "--ks-spacing-stack-xs",
+            "token": "--dsa-contact__body--gap"
+          }
+        }
+      },
+      "root/contact--image-square/body": {
+        "box": {
+          "height": 18,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      }
+    }
+  },
+  "description": "Component used for user interaction",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:0bf5d24ed44560b7",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-contact--circular-avatar.png",
+        "story": "components-contact--circular-avatar"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 180,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "180.312px"
+            }
+          }
+        },
+        "root/contact--image-square": {
+          "box": {
+            "height": 180,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "180.312px"
+            }
+          }
+        },
+        "root/contact--image-square/body": {
+          "box": {
+            "height": 180,
+            "width": 1246
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "180.312px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "1245.98px"
+            }
+          }
+        },
+        "root/contact--image-square/body/header": {
+          "box": {
+            "height": 60,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__header"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          }
+        },
+        "root/contact--image-square/body/header/subtitle": {
+          "box": {
+            "height": 27,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__subtitle"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/body/header/title": {
+          "box": {
+            "height": 33,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__title"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/body/links": {
+          "box": {
+            "height": 66,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__links"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "2.88541px"
+          }
+        },
+        "root/contact--image-square/body/links/child-1": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-square/body/links/child-1/link": {
+          "box": {
+            "height": 32,
+            "width": 125
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-square/body/links/child-1/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/body/links/child-2": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-square/body/links/child-2/link": {
+          "box": {
+            "height": 32,
+            "width": 164
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-square/body/links/child-2/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/body/rich-text": {
+          "box": {
+            "height": 27,
+            "width": 1246
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/image-wrap": {
+          "box": {
+            "height": 180,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image-wrap"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-square/image-wrap/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/contact--image-square/image-wrap/image": {
+          "box": {
+            "height": 180,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-contact--full-image-width.png",
+        "story": "components-contact--full-image-width"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 508,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "507.797px"
+            }
+          }
+        },
+        "root/contact--image-full-width": {
+          "box": {
+            "height": 508,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-contact",
+            "dsa-contact--image-full-width",
+            "dsa-contact--image-wide"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-copy",
+              "token": "--dsa-contact__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-contact__copy--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": null,
+              "token": "--dsa-contact__link--font-weight"
+            },
+            "gap": {
+              "computed": "13.7152px 13.7152px",
+              "resolves": "--ks-spacing-stack-xs",
+              "token": "--dsa-contact__body--gap"
+            }
+          }
+        },
+        "root/contact--image-full-width/body": {
+          "box": {
+            "height": 508,
+            "width": 749
+          },
+          "classes": [
+            "dsa-contact__body"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/contact--image-full-width/body/header": {
+          "box": {
+            "height": 60,
+            "width": 749
+          },
+          "classes": [
+            "dsa-contact__header"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          }
+        },
+        "root/contact--image-full-width/body/header/subtitle": {
+          "box": {
+            "height": 27,
+            "width": 749
+          },
+          "classes": [
+            "dsa-contact__subtitle"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-full-width/body/header/title": {
+          "box": {
+            "height": 33,
+            "width": 749
+          },
+          "classes": [
+            "dsa-contact__title"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-full-width/body/links": {
+          "box": {
+            "height": 32,
+            "width": 749
+          },
+          "classes": [
+            "dsa-contact__links"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "2.88541px"
+          }
+        },
+        "root/contact--image-full-width/body/links/child-1": {
+          "box": {
+            "height": 32,
+            "width": 749
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-full-width/body/links/child-1/link": {
+          "box": {
+            "height": 32,
+            "width": 279
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-full-width/body/links/child-1/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-full-width/body/rich-text": {
+          "box": {
+            "height": 54,
+            "width": 749
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-full-width/image-wrap": {
+          "box": {
+            "height": 508,
+            "width": 677
+          },
+          "classes": [
+            "dsa-contact__image-wrap"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-full-width/image-wrap/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/contact--image-full-width/image-wrap/image": {
+          "box": {
+            "height": 508,
+            "width": 677
+          },
+          "classes": [
+            "dsa-contact__image",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-contact--vertical-image-with-paragraph.png",
+        "story": "components-contact--vertical-image-with-paragraph"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 240,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "240.406px"
+            }
+          }
+        },
+        "root/contact--image-vertical": {
+          "box": {
+            "height": 240,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-contact",
+            "dsa-contact--image-vertical"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-copy",
+              "token": "--dsa-contact__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-contact__copy--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": null,
+              "token": "--dsa-contact__link--font-weight"
+            },
+            "gap": {
+              "computed": "13.7152px 13.7152px",
+              "resolves": "--ks-spacing-stack-xs",
+              "token": "--dsa-contact__body--gap"
+            }
+          }
+        },
+        "root/contact--image-vertical/body": {
+          "box": {
+            "height": 240,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__body"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/contact--image-vertical/body/header": {
+          "box": {
+            "height": 60,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__header"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          }
+        },
+        "root/contact--image-vertical/body/header/subtitle": {
+          "box": {
+            "height": 27,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__subtitle"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/body/header/title": {
+          "box": {
+            "height": 33,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__title"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/body/links": {
+          "box": {
+            "height": 66,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__links"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "2.88541px"
+          }
+        },
+        "root/contact--image-vertical/body/links/child-1": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-vertical/body/links/child-1/link": {
+          "box": {
+            "height": 32,
+            "width": 145
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-vertical/body/links/child-1/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/body/links/child-2": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-vertical/body/links/child-2/link": {
+          "box": {
+            "height": 32,
+            "width": 199
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-vertical/body/links/child-2/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/body/rich-text": {
+          "box": {
+            "height": 54,
+            "width": 1246
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/image-wrap": {
+          "box": {
+            "height": 240,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image-wrap"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-vertical/image-wrap/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/contact--image-vertical/image-wrap/image": {
+          "box": {
+            "height": 240,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-contact--wide-image.png",
+        "story": "components-contact--wide-image"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 135,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "18.3906px",
+              "to": "135.234px"
+            }
+          }
+        },
+        "root/contact--image-wide": {
+          "box": {
+            "height": 135,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-contact",
+            "dsa-contact--image-wide"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "13.7152px"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-copy",
+              "token": "--dsa-contact__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-m",
+              "token": "--dsa-contact__copy--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": null,
+              "token": "--dsa-contact__link--font-weight"
+            },
+            "gap": {
+              "computed": "13.7152px 13.7152px",
+              "resolves": "--ks-spacing-stack-xs",
+              "token": "--dsa-contact__body--gap"
+            }
+          }
+        },
+        "root/contact--image-wide/body": {
+          "box": {
+            "height": 135,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__body"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/contact--image-wide/body/header": {
+          "box": {
+            "height": 60,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__header"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column"
+          }
+        },
+        "root/contact--image-wide/body/header/subtitle": {
+          "box": {
+            "height": 27,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__subtitle"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-wide/body/header/title": {
+          "box": {
+            "height": 33,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__title"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-wide/body/links": {
+          "box": {
+            "height": 66,
+            "width": 1246
+          },
+          "classes": [
+            "dsa-contact__links"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "2.88541px"
+          }
+        },
+        "root/contact--image-wide/body/links/child-1": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-wide/body/links/child-1/link": {
+          "box": {
+            "height": 32,
+            "width": 125
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-wide/body/links/child-1/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-wide/body/links/child-2": {
+          "box": {
+            "height": 32,
+            "width": 1246
+          },
+          "classes": [],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/contact--image-wide/body/links/child-2/link": {
+          "box": {
+            "height": 32,
+            "width": 164
+          },
+          "classes": [
+            "dsa-contact__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/contact--image-wide/body/links/child-2/link/icon": {
+          "box": {
+            "height": 27,
+            "width": 27
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-wide/image-wrap": {
+          "box": {
+            "height": 135,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image-wrap"
+          ],
+          "introduced": true
+        },
+        "root/contact--image-wide/image-wrap/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/contact--image-wide/image-wrap/image": {
+          "box": {
+            "height": 135,
+            "width": 180
+          },
+          "classes": [
+            "dsa-contact__image",
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import manifest from "virtual:trial";
 
-import { Badge, Code, Page, Section, Stat, num, seconds, usd } from "./ui";
+import { Badge, Code, Note, Page, Section, Stat, num, seconds, usd } from "./ui";
 
 function SummaryPage() {
   const { outcome } = manifest;
   const { quality, efficiency, mcp, cost } = outcome;
+  // Reports built before `gate` was recorded still exist on disk (the manifest
+  // is per-trial and only rebuilds when it moves). Read it defensively: an old
+  // manifest must render, minus the reason.
+  const gate = outcome.gate ?? { passed: outcome.harnessPassed, summary: null, failures: [] };
 
   return (
     <Page
@@ -20,11 +24,16 @@ function SummaryPage() {
       <Section heading="Outcome">
         <div className="rp-grid">
           <Stat
-            label="Harness verdict"
+            label="Task gate"
             value={
-              <Badge tone={outcome.harnessPassed ? "pass" : "fail"}>
-                {outcome.harnessPassed ? "passed" : "failed"}
-              </Badge>
+              <>
+                <Badge tone={outcome.harnessPassed ? "pass" : "fail"}>
+                  {outcome.harnessPassed ? "passed" : "failed"}
+                </Badge>
+                {gate.summary ? (
+                  <span className="rp-subtitle"> {gate.summary}</span>
+                ) : null}
+              </>
             }
           />
           <Stat label="Quality" value={quality.score.toFixed(2)} />
@@ -39,6 +48,44 @@ function SummaryPage() {
           </p>
         ) : null}
       </Section>
+
+      {gate.failures.length ? (
+        <Section
+          heading={`Task gate — ${gate.failures.length} failing assertion${
+            gate.failures.length === 1 ? "" : "s"
+          }`}
+        >
+          {gate.failures.map((failure, index) => (
+            <div
+              key={`${failure.test}-${index}`}
+              className="rp-note rp-note--warn"
+              style={{ marginBottom: 8 }}
+            >
+              <strong>{failure.test}</strong>
+              {failure.message ? (
+                <div style={{ marginTop: 4 }}>{failure.message}</div>
+              ) : null}
+              {failure.expected !== null || failure.received !== null ? (
+                <div className="rp-subtitle" style={{ marginTop: 4 }}>
+                  expected <code>{failure.expected ?? "—"}</code> · received{" "}
+                  <code>{failure.received ?? "—"}</code>
+                </div>
+              ) : null}
+              {failure.location ? (
+                <div className="rp-subtitle">{failure.location}</div>
+              ) : null}
+            </div>
+          ))}
+          {quality.score >= 0.8 ? (
+            <Note tone="warn">
+              The graders scored {quality.score.toFixed(2)} — their rules do not
+              cover the assertion above, so a high quality score here does not
+              mean the task was met. Read <strong>pass@1</strong> for this task,
+              not the mean quality.
+            </Note>
+          ) : null}
+        </Section>
+      ) : null}
 
       <Section heading="Quality by dimension">
         <table className="rp-table">

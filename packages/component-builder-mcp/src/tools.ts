@@ -10,6 +10,7 @@
  */
 
 import type { Tool } from "@modelcontextprotocol/sdk/types.js";
+import { contractsDir } from "./contracts.js";
 
 /** Shared annotations — all tools are read-only and idempotent. */
 const READ_ONLY_ANNOTATIONS = {
@@ -19,7 +20,7 @@ const READ_ONLY_ANNOTATIONS = {
   openWorldHint: false,
 } as const;
 
-export const tools: Tool[] = [
+const ALL_TOOLS: Tool[] = [
   {
     name: "get_ui_building_instructions",
     description: `Get comprehensive instructions for building UI components in this Design System.
@@ -334,4 +335,168 @@ Use this to:
     },
     annotations: READ_ONLY_ANNOTATIONS,
   },
+  {
+    name: "list_component_contracts",
+    description: `List every component that has a derived Component Contract, with its coverage score.
+
+Use this to:
+- Discover which components have contracts and how well evidenced they are
+- Pick a component before calling get_component_brief
+- See which components carry derived lint issues
+
+A contract joins the component's API, its rendered DOM, and its design tokens, and says what changes visually when a prop is set.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        includeCoverage: {
+          type: "boolean",
+          description: "Include coverage score, variant count and issue count per component",
+          default: true,
+        },
+      },
+      required: [],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
+  {
+    name: "get_component_brief",
+    description: `Get the Markdown brief for one component — the token-cheap front door to its contract.
+
+Use this FIRST when you need to know what a component is and how to configure it:
+- which props have a visual impact and by which mechanism
+- which token names to reach for
+- which parts exist and when
+- what the contract does and does not prove (coverage)
+
+The brief is generated from the contract and is never edited. Call get_component_contract only when you need the full evidence.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        name: {
+          type: "string",
+          description:
+            "Component contractId ('button', 'blog-aside') or display name ('Blog Aside')",
+        },
+      },
+      required: ["name"],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
+  {
+    name: "get_component_contract",
+    description: `Get the full derived Component Contract for one component, or one section of it.
+
+The contract contains: api (props with role/axis), anatomy (observed parts and their tokens), axes (the api ↔ DOM class ↔ token segment join), default (resolved styles per part), variants (deltas backed by stories), bindings (prop → mechanism → parts), composition (slots and what they accept), coverage (what is proven).
+
+Prefer get_component_brief for orientation; use this when you need specific evidence.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        name: {
+          type: "string",
+          description: "Component contractId or display name",
+        },
+        section: {
+          type: "string",
+          enum: [
+            "api",
+            "anatomy",
+            "axes",
+            "default",
+            "variants",
+            "bindings",
+            "composition",
+            "coverage",
+            "issues",
+            "generated",
+          ],
+          description: "Return only this section instead of the whole contract",
+        },
+      },
+      required: ["name"],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
+  {
+    name: "get_component_anatomy",
+    description: `Get only the anatomy and composition of a component contract.
+
+Anatomy is the observed DOM tree: each part has a path, element, classes, role, presence (always/conditional/repeated), a gate when conditional, and the design tokens bound to it. Composition describes the component's slots: cardinality, item shape, accepted child components, and observed counts.
+
+Use this for "what is this component made of" and "what can I put inside it" questions.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        name: {
+          type: "string",
+          description: "Component contractId or display name",
+        },
+      },
+      required: ["name"],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
+  {
+    name: "get_prop_visual_impact",
+    description: `Get the visual impact of a component's props: bindings (how each prop becomes visible) and axes (its value ↔ class ↔ token join).
+
+Use this to answer:
+- "what happens visually if I set variant=primary?"
+- "is this prop themeable, and which token do I change?"
+- "does this prop change the DOM or only a style?"
+
+mechanism is one of content | presence | class-toggle | token-swap | attribute | element-swap | layout | none. templatedTokens use the axis values, e.g. --dsa-button_{variant}--background-color. Pass a prop name to focus on one.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        name: {
+          type: "string",
+          description: "Component contractId or display name",
+        },
+        prop: {
+          type: "string",
+          description: "Restrict to a single prop (e.g. 'variant')",
+        },
+      },
+      required: ["name"],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
+  {
+    name: "lint_component_contracts",
+    description: `List every issue the contracts derived across the design system.
+
+An issue is a computed defect, not a style opinion: an enum value with no matching token segment (e.g. a misspelled token), two spellings of the same part, an unresolved component-token chain. These are invisible to every other artifact.
+
+Use this when auditing the design system or before trusting a token name.`,
+    inputSchema: {
+      type: "object" as const,
+      properties: {},
+      required: [],
+    },
+    annotations: READ_ONLY_ANNOTATIONS,
+  },
 ];
+
+/** Tools that only work when a contract set is configured. */
+const CONTRACT_TOOL_NAMES: Record<string, true> = {
+  list_component_contracts: true,
+  get_component_brief: true,
+  get_component_contract: true,
+  get_component_anatomy: true,
+  get_prop_visual_impact: true,
+  lint_component_contracts: true,
+};
+
+/**
+ * The advertised tool list.
+ *
+ * Contract tools are withheld entirely unless `DESIGN_SYSTEM_CONTRACTS_DIR` is
+ * set. Advertising a tool whose handler can only say "not available" would put
+ * the contract vocabulary into every arm's context and burn turns on calls that
+ * cannot succeed — which is both a worse product and a confounded experiment.
+ */
+export const tools: Tool[] = ALL_TOOLS.filter(
+  (tool) =>
+    contractsDir() !== null || !Object.hasOwn(CONTRACT_TOOL_NAMES, tool.name),
+);

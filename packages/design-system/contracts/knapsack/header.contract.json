@@ -1,0 +1,37 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "header",
+  "component": "Header",
+  "description": "Header layered on top by the CMS",
+  "props": {
+    "properties": {
+      "dropdownInverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "floating": {
+        "type": "boolean",
+        "default": false
+      },
+      "flyoutInverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      },
+      "logo": {
+        "type": "object"
+      },
+      "navItems": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "navItems"
+  ]
+}

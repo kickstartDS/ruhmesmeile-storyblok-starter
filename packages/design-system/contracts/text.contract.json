@@ -1,0 +1,625 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "strong",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-text--single-column"
+                    ],
+                    "path": "root/child-1/child-1/child-2/child-1",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "children": [
+                      {
+                        "classes": [],
+                        "element": "a",
+                        "namedBy": "position",
+                        "observedIn": [
+                          "components-text--single-column"
+                        ],
+                        "path": "root/child-1/child-1/child-2/child-2/child-1",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [],
+                    "element": "strong",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-text--single-column"
+                    ],
+                    "path": "root/child-1/child-1/child-2/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [],
+                "element": "p",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-text--single-column"
+                ],
+                "path": "root/child-1/child-1/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "em",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "components-text--single-column"
+                    ],
+                    "path": "root/child-1/child-1/child-3/child-1",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [],
+                "element": "p",
+                "namedBy": "position",
+                "observedIn": [
+                  "components-text--single-column"
+                ],
+                "path": "root/child-1/child-1/child-3",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [],
+                "element": "p",
+                "namedBy": "content-match",
+                "observedIn": [
+                  "components-text--single-column"
+                ],
+                "path": "root/child-1/child-1/text",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [],
+            "element": "div",
+            "namedBy": "position",
+            "observedIn": [
+              "components-text--single-column"
+            ],
+            "path": "root/child-1/child-1",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "classes": [],
+            "element": "span",
+            "namedBy": "content-match",
+            "observedIn": [
+              "contract-defaults-text--contract-default"
+            ],
+            "path": "root/child-1/text",
+            "presence": "conditional",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "c-rich-text",
+          "dsa-text"
+        ],
+        "element": "div",
+        "namedBy": "position",
+        "observedIn": [
+          "contract-defaults-text--contract-default",
+          "components-text--single-column"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "c-rich-text",
+          "dsa-text",
+          "dsa-text--center"
+        ],
+        "element": "div",
+        "instanceOf": "text--center",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-text--centered"
+        ],
+        "path": "root/text--center",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "c-rich-text",
+          "dsa-text",
+          "dsa-text--columns"
+        ],
+        "element": "div",
+        "instanceOf": "text--columns",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-text--multi-column"
+        ],
+        "path": "root/text--columns",
+        "presence": "conditional",
+        "role": "slot"
+      },
+      {
+        "classes": [
+          "c-rich-text",
+          "dsa-text",
+          "dsa-text--highlight"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "highlightText",
+          "when": "truthy"
+        },
+        "instanceOf": "text--highlight",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-text--highlight"
+        ],
+        "path": "root/text--highlight",
+        "presence": "conditional",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--rich-text"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "align": {
+        "default": "left",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "left",
+          "center"
+        ]
+      },
+      "highlightText": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "layout": {
+        "default": "singleColumn",
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "singleColumn",
+          "multiColumn"
+        ]
+      },
+      "text": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "text"
+    ],
+    "schema": "./text.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "singleColumn",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "singleColumn",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "multiColumn",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "left",
+      "prop": "align",
+      "values": [
+        {
+          "api": "left",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "center",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "highlightText",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "affects": [
+        "height"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root"
+      ],
+      "prop": "align"
+    },
+    {
+      "affects": [
+        "height"
+      ],
+      "mechanism": "presence",
+      "parts": [
+        "root/text--highlight"
+      ],
+      "prop": "highlightText"
+    },
+    {
+      "affects": [
+        "height"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root"
+      ],
+      "prop": "layout"
+    },
+    {
+      "mechanism": "content",
+      "parts": [
+        "root/child-1/child-1/text",
+        "root/child-1/text"
+      ],
+      "prop": "text"
+    }
+  ],
+  "component": "Text",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "text",
+  "coverage": {
+    "axes": {
+      "align": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "highlightText": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "layout": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 8,
+      "proven": 5
+    },
+    "parts": {
+      "conditional": 13,
+      "inDefault": 3,
+      "total": 14
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "align": {
+        "source": "schema-default",
+        "value": "left"
+      },
+      "highlightText": {
+        "source": "schema-default",
+        "value": false
+      },
+      "layout": {
+        "source": "schema-default",
+        "value": "singleColumn"
+      },
+      "text": {
+        "source": "example",
+        "value": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-text--contract-default.png",
+      "story": "contract-defaults-text--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 108,
+          "width": 1440
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 108,
+          "width": 1440
+        }
+      },
+      "root/child-1/text": {
+        "box": {
+          "height": 103,
+          "width": 1421
+        }
+      }
+    }
+  },
+  "description": "Component used for displaying text in chapters",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:26faa55718525869",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-text--centered.png",
+        "story": "components-text--centered"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 171,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "108.188px",
+              "to": "171.297px"
+            }
+          }
+        },
+        "root/text--center": {
+          "box": {
+            "height": 171,
+            "width": 1440
+          },
+          "classes": [
+            "c-rich-text",
+            "dsa-text",
+            "dsa-text--center"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "align": "center"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-text--highlight.png",
+        "story": "components-text--highlight"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 207,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "108.188px",
+              "to": "207.328px"
+            }
+          }
+        },
+        "root/text--highlight": {
+          "box": {
+            "height": 207,
+            "width": 1440
+          },
+          "classes": [
+            "c-rich-text",
+            "dsa-text",
+            "dsa-text--highlight"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "highlightText": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-text--multi-column.png",
+        "story": "components-text--multi-column"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 126,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "108.188px",
+              "to": "126.219px"
+            }
+          }
+        },
+        "root/text--columns": {
+          "box": {
+            "height": 126,
+            "width": 1440
+          },
+          "classes": [
+            "c-rich-text",
+            "dsa-text",
+            "dsa-text--columns"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "layout": "multiColumn"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-text--single-column.png",
+        "story": "components-text--single-column"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 171,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "108.188px",
+              "to": "171.297px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 171,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "108.188px",
+              "to": "171.297px"
+            }
+          }
+        },
+        "root/child-1/child-1": {
+          "box": {
+            "height": 171,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-2": {
+          "box": {
+            "height": 54,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-2/child-1": {
+          "box": {
+            "height": 22,
+            "width": 111
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-2/child-2": {
+          "box": {
+            "height": 22,
+            "width": 155
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-2/child-2/child-1": {
+          "box": {
+            "height": 22,
+            "width": 155
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-3": {
+          "box": {
+            "height": 27,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/child-3/child-1": {
+          "box": {
+            "height": 22,
+            "width": 578
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/child-1/text": {
+          "box": {
+            "height": 54,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

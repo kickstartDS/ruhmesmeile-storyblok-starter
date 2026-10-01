@@ -1,0 +1,1154 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "span",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "contract-defaults-eventlistteaser--contract-default"
+                    ],
+                    "path": "root/child-1/content/cta/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [],
+                    "element": "span",
+                    "gate": {
+                      "prop": "category",
+                      "when": "truthy"
+                    },
+                    "namedBy": "content-match",
+                    "observedIn": [
+                      "event-event-list-teaser--default"
+                    ],
+                    "path": "root/child-1/content/cta/ctaText",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "path": "root/child-1/content/cta/icon",
+                    "presence": "always",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-list-teaser__cta"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/cta",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-event-list-teaser__category"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "category",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "event-event-list-teaser--default"
+                    ],
+                    "path": "root/child-1/content/header/category",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "classes": [
+                      "dsa-event-list-teaser__title"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "path": "root/child-1/content/header/title",
+                    "presence": "always",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-list-teaser__header"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/header",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "classes": [
+                                  "icon"
+                                ],
+                                "element": "svg",
+                                "namedBy": "tag",
+                                "path": "root/child-1/content/infos/details/date/info/icon",
+                                "presence": "always",
+                                "role": "glyph"
+                              }
+                            ],
+                            "classes": [
+                              "dsa-event-list-teaser__info"
+                            ],
+                            "element": "span",
+                            "namedBy": "bem-class",
+                            "observedIn": [
+                              "contract-defaults-eventlistteaser--contract-default",
+                              "event-event-list-teaser--default"
+                            ],
+                            "path": "root/child-1/content/infos/details/date/info",
+                            "presence": "repeated",
+                            "role": "container"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-event-list-teaser__date"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "path": "root/child-1/content/infos/details/date",
+                        "presence": "always",
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "classes": [],
+                                    "element": "br",
+                                    "gate": {
+                                      "prop": "category",
+                                      "when": "truthy"
+                                    },
+                                    "namedBy": "position",
+                                    "observedIn": [
+                                      "event-event-list-teaser--default"
+                                    ],
+                                    "path": "root/child-1/content/infos/details/info/child-2/location-address/child-1",
+                                    "presence": "conditional",
+                                    "role": "container"
+                                  }
+                                ],
+                                "classes": [
+                                  "dsa-event-list-teaser__location-address"
+                                ],
+                                "element": "span",
+                                "namedBy": "bem-class",
+                                "path": "root/child-1/content/infos/details/info/child-2/location-address",
+                                "presence": "always",
+                                "role": "container"
+                              },
+                              {
+                                "classes": [
+                                  "dsa-event-list-teaser__location-name"
+                                ],
+                                "element": "span",
+                                "gate": {
+                                  "prop": "category",
+                                  "when": "truthy"
+                                },
+                                "namedBy": "bem-class",
+                                "observedIn": [
+                                  "event-event-list-teaser--default"
+                                ],
+                                "path": "root/child-1/content/infos/details/info/child-2/location-name",
+                                "presence": "conditional",
+                                "role": "text"
+                              }
+                            ],
+                            "classes": [],
+                            "element": "address",
+                            "namedBy": "position",
+                            "path": "root/child-1/content/infos/details/info/child-2",
+                            "presence": "always",
+                            "role": "container"
+                          },
+                          {
+                            "classes": [
+                              "icon"
+                            ],
+                            "element": "svg",
+                            "namedBy": "tag",
+                            "path": "root/child-1/content/infos/details/info/icon",
+                            "presence": "always",
+                            "role": "glyph"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-event-list-teaser__info",
+                          "dsa-event-list-teaser__location"
+                        ],
+                        "element": "div",
+                        "namedBy": "bem-class",
+                        "path": "root/child-1/content/infos/details/info",
+                        "presence": "always",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-event-list-teaser__details"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "path": "root/child-1/content/infos/details",
+                    "presence": "always",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-list-teaser__infos"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "path": "root/child-1/content/infos",
+                "presence": "always",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "c-tag-label__content"
+                        ],
+                        "element": "span",
+                        "gate": {
+                          "prop": "category",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "event-event-list-teaser--default"
+                        ],
+                        "path": "root/child-1/content/tags/child-1/content",
+                        "presence": "conditional",
+                        "role": "text"
+                      }
+                    ],
+                    "classes": [
+                      "c-tag-label",
+                      "c-tag-label--s"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "category",
+                      "when": "truthy"
+                    },
+                    "namedBy": "position",
+                    "observedIn": [
+                      "event-event-list-teaser--default"
+                    ],
+                    "path": "root/child-1/content/tags/child-1",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "c-tag-label__content"
+                        ],
+                        "element": "span",
+                        "gate": {
+                          "prop": "category",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "event-event-list-teaser--default"
+                        ],
+                        "path": "root/child-1/content/tags/child-2/content",
+                        "presence": "conditional",
+                        "role": "text"
+                      }
+                    ],
+                    "classes": [
+                      "c-tag-label",
+                      "c-tag-label--s"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "category",
+                      "when": "truthy"
+                    },
+                    "namedBy": "position",
+                    "observedIn": [
+                      "event-event-list-teaser--default"
+                    ],
+                    "path": "root/child-1/content/tags/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-event-list-teaser__tags"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "category",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "event-event-list-teaser--default"
+                ],
+                "path": "root/child-1/content/tags",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-event-list-teaser__teaser-text"
+                ],
+                "element": "p",
+                "gate": {
+                  "prop": "category",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "event-event-list-teaser--default"
+                ],
+                "path": "root/child-1/content/teaser-text",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "dsa-event-list-teaser__content"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/content",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [],
+                "element": "noscript",
+                "gate": {
+                  "prop": "category",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "event-event-list-teaser--default"
+                ],
+                "path": "root/child-1/image/child-2",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "lazyloaded",
+                  "ls-is-cached"
+                ],
+                "element": "img",
+                "gate": {
+                  "prop": "category",
+                  "when": "truthy"
+                },
+                "namedBy": "tag",
+                "observedIn": [
+                  "event-event-list-teaser--default"
+                ],
+                "path": "root/child-1/image/image",
+                "presence": "conditional",
+                "role": "media"
+              }
+            ],
+            "classes": [
+              "dsa-event-list-teaser__image"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "category",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "event-event-list-teaser--default"
+            ],
+            "path": "root/child-1/image",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-event-list-teaser"
+        ],
+        "element": "a",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "control"
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--event-list-teaser"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "ariaLabel": {
+        "role": "behaviour",
+        "type": "string"
+      },
+      "category": {
+        "role": "content",
+        "type": "string"
+      },
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "ctaText": {
+        "role": "content",
+        "type": "string"
+      },
+      "date": {
+        "format": "date",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "role": "content",
+        "type": "object"
+      },
+      "location": {
+        "required": true,
+        "role": "content",
+        "type": "object"
+      },
+      "tags": {
+        "default": [
+          "Topic 1",
+          "Topic 2"
+        ],
+        "role": "composition",
+        "type": "array"
+      },
+      "text": {
+        "format": "markdown",
+        "role": "content",
+        "type": "string"
+      },
+      "time": {
+        "role": "content",
+        "type": "string"
+      },
+      "title": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "url": {
+        "format": "uri",
+        "role": "behaviour",
+        "type": "string"
+      }
+    },
+    "required": [
+      "title",
+      "date",
+      "location"
+    ],
+    "schema": "./event-list-teaser.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "ariaLabel"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/child-1/content/cta/ctaText",
+        "root/child-1/content/header/category",
+        "root/child-1/content/infos/details/info/child-2/location-address/child-1",
+        "root/child-1/content/infos/details/info/child-2/location-name",
+        "root/child-1/content/tags",
+        "root/child-1/content/tags/child-1",
+        "root/child-1/content/tags/child-1/content",
+        "root/child-1/content/tags/child-2",
+        "root/child-1/content/tags/child-2/content",
+        "root/child-1/content/teaser-text",
+        "root/child-1/image",
+        "root/child-1/image/child-2",
+        "root/child-1/image/image"
+      ],
+      "prop": "category"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [
+        "root/child-1/content/cta/ctaText"
+      ],
+      "prop": "ctaText"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "date",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "location",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "tags"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "text",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "time",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "title",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "url"
+    }
+  ],
+  "component": "Event List Teaser",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "string"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "tags"
+      }
+    ]
+  },
+  "contractId": "event-list-teaser",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "tags"
+      ],
+      "fromExample": 2,
+      "placeholders": 0,
+      "values": 5
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 14,
+      "inDefault": 17,
+      "total": 30
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "date": {
+        "source": "example",
+        "value": "FRI, JAN 16"
+      },
+      "image": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "location": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "tags": {
+        "source": "schema-default",
+        "value": []
+      },
+      "title": {
+        "source": "example",
+        "value": "This is a event teaser title"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventlistteaser--contract-default.png",
+      "story": "contract-defaults-eventlistteaser--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 224,
+          "width": 1440
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 224,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "21.1438px",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/child-1/content": {
+        "box": {
+          "height": 160,
+          "width": 1376
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/child-1/content/cta": {
+        "box": {
+          "height": 24,
+          "width": 24
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex"
+        }
+      },
+      "root/child-1/content/cta/child-1": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/content/cta/icon": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      },
+      "root/child-1/content/header": {
+        "box": {
+          "height": 26,
+          "width": 1376
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/child-1/content/header/title": {
+        "box": {
+          "height": 26,
+          "width": 505
+        }
+      },
+      "root/child-1/content/infos": {
+        "box": {
+          "height": 83,
+          "width": 1376
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/child-1/content/infos/details": {
+        "box": {
+          "height": 54,
+          "width": 1376
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "13.7152px"
+        }
+      },
+      "root/child-1/content/infos/details/date": {
+        "box": {
+          "height": 54,
+          "width": 116
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "5.77082px"
+        }
+      },
+      "root/child-1/content/infos/details/date/info": {
+        "box": {
+          "height": 24,
+          "width": 116
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "4.32812px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/child-1/content/infos/details/date/info/icon": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      },
+      "root/child-1/content/infos/details/info": {
+        "box": {
+          "height": 54,
+          "width": 1246
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "4.32812px",
+          "justifyContent": "flex-start"
+        }
+      },
+      "root/child-1/content/infos/details/info/child-2": {
+        "box": {
+          "height": 54,
+          "width": 0
+        }
+      },
+      "root/child-1/content/infos/details/info/child-2/location-address": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-1/content/infos/details/info/icon": {
+        "box": {
+          "height": 24,
+          "width": 24
+        }
+      }
+    }
+  },
+  "description": "Display an event teaser with date, title and location",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:c956b5f413a3baa9",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-list-teaser--default.png",
+        "story": "event-event-list-teaser--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 379,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "223.953px",
+              "to": "379.125px"
+            }
+          }
+        },
+        "root/child-1": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          },
+          "box": {
+            "height": 379,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "223.953px",
+              "to": "379.125px"
+            }
+          }
+        },
+        "root/child-1/content": {
+          "box": {
+            "height": 316,
+            "width": 1103
+          },
+          "styles": {
+            "height": {
+              "from": "160.359px",
+              "to": "315.531px"
+            },
+            "width": {
+              "from": "1376.41px",
+              "to": "1102.83px"
+            }
+          }
+        },
+        "root/child-1/content/cta": {
+          "box": {
+            "height": 24,
+            "width": 118
+          },
+          "styles": {
+            "width": {
+              "from": "23.9531px",
+              "to": "117.953px"
+            }
+          }
+        },
+        "root/child-1/content/cta/ctaText": {
+          "box": {
+            "height": 24,
+            "width": 94
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/header": {
+          "box": {
+            "height": 56,
+            "width": 1103
+          },
+          "styles": {
+            "height": {
+              "from": "25.9219px",
+              "to": "56.0156px"
+            },
+            "width": {
+              "from": "1376.41px",
+              "to": "1102.83px"
+            }
+          }
+        },
+        "root/child-1/content/header/category": {
+          "box": {
+            "height": 21,
+            "width": 1103
+          },
+          "classes": [
+            "dsa-event-list-teaser__category"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/infos": {
+          "box": {
+            "height": 101,
+            "width": 1103
+          },
+          "styles": {
+            "height": {
+              "from": "83.0781px",
+              "to": "101.266px"
+            },
+            "width": {
+              "from": "1376.41px",
+              "to": "1102.83px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details": {
+          "box": {
+            "height": 72,
+            "width": 1103
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "1376.41px",
+              "to": "1102.83px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/date": {
+          "box": {
+            "height": 72,
+            "width": 109
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "116.266px",
+              "to": "109.266px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/date/info": {
+          "box": {
+            "height": 24,
+            "width": 109
+          },
+          "styles": {
+            "width": {
+              "from": "116.266px",
+              "to": "109.266px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/info": {
+          "box": {
+            "height": 72,
+            "width": 980
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "1246.44px",
+              "to": "979.859px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/info/child-2": {
+          "box": {
+            "height": 72,
+            "width": 198
+          },
+          "styles": {
+            "height": {
+              "from": "53.6719px",
+              "to": "71.8594px"
+            },
+            "width": {
+              "from": "0px",
+              "to": "198px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/info/child-2/location-address": {
+          "box": {
+            "height": 48,
+            "width": 198
+          },
+          "element": {
+            "from": "span",
+            "to": "p"
+          },
+          "styles": {
+            "display": {
+              "from": "inline",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "47.9062px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "198px"
+            }
+          }
+        },
+        "root/child-1/content/infos/details/info/child-2/location-address/child-1": {
+          "box": {
+            "height": 19,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/content/infos/details/info/child-2/location-name": {
+          "box": {
+            "height": 24,
+            "width": 198
+          },
+          "classes": [
+            "dsa-event-list-teaser__location-name"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/tags": {
+          "box": {
+            "height": 32,
+            "width": 252
+          },
+          "classes": [
+            "dsa-event-list-teaser__tags"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "5.77082px"
+          }
+        },
+        "root/child-1/content/tags/child-1": {
+          "box": {
+            "height": 32,
+            "width": 67
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/child-1/content/tags/child-1/content": {
+          "box": {
+            "height": 32,
+            "width": 67
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/tags/child-2": {
+          "box": {
+            "height": 32,
+            "width": 70
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/child-1/content/tags/child-2/content": {
+          "box": {
+            "height": 32,
+            "width": 70
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/child-1/content/teaser-text": {
+          "box": {
+            "height": 48,
+            "width": 1103
+          },
+          "classes": [
+            "dsa-event-list-teaser__teaser-text"
+          ],
+          "introduced": true
+        },
+        "root/child-1/image": {
+          "box": {
+            "height": 316,
+            "width": 252
+          },
+          "classes": [
+            "dsa-event-list-teaser__image"
+          ],
+          "introduced": true
+        },
+        "root/child-1/image/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/child-1/image/image": {
+          "box": {
+            "height": 189,
+            "width": 252
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

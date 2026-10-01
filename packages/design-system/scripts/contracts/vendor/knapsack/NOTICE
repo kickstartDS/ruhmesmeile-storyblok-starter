@@ -1,0 +1,25 @@
+Vendored third-party schemas
+===========================
+
+The files in this directory are copied verbatim from:
+
+  knapsack-oss/design-system-contract
+  https://github.com/knapsack-oss/design-system-contract
+  branch: main
+  format v0.1, spec v0.11.0 (2026-09-24)
+
+  - component.contract.schema.json
+  - manifest.schema.json
+
+They are vendored so that the projection in `scripts/contracts/` can validate
+its output against the target format's own published schema, offline, in CI.
+They are not modified. Where they and the projection disagree, the projection
+is wrong.
+
+Design System Contract - specification and JSON Schemas.
+Copyright 2026 The Design System Contract Authors.
+Licensed under the Apache License, Version 2.0.
+http://www.apache.org/licenses/LICENSE-2.0
+
+See the upstream NOTICE file for the full attribution and prior-art list:
+https://github.com/knapsack-oss/design-system-contract/blob/main/NOTICE

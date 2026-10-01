@@ -1,0 +1,21 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "search-filter",
+  "component": "Search Filter",
+  "description": "Search filter component for filtering search results by categories.",
+  "props": {
+    "properties": {
+      "categories": {
+        "type": "array"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "categories"
+  ]
+}

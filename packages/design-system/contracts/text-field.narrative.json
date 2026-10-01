@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "TextField",
+  "default": {
+    "description": "The TextField component is enclosed in a softly rounded rectangular container with a subtle shadow, giving it a slightly elevated appearance against the background. Inside, there's a label in bold, dark text above a long, narrow input field with rounded corners, which appears empty and ready for user input. The overall design is clean and minimalistic, emphasizing functionality and ease of use.",
+    "from": "img/screenshots/contract-defaults-textfield--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:57.799Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-textfield--contract-default.png": "sha256:32909575903110f9"
+      },
+      "contract": "sha256:f51bfef2aa10c49a75227790f37d013d1f70a6abd7c45bccb517e101678f3c62"
+    }
+  }
+}

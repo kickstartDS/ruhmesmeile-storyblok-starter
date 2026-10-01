@@ -15,6 +15,8 @@ import { schemaValidity } from "./schema-validity";
 import { bem } from "./bem";
 import { dsReuse } from "./ds-reuse";
 import { stylePlacement } from "./style-placement";
+import { typographyPairing } from "./typography-pairing";
+import { contractLookup } from "./contract-lookup";
 import { clientBehaviour } from "./client-behaviour";
 import { toolchain, a11y } from "./toolchain";
 import { judge } from "./judge";
@@ -35,6 +37,8 @@ export const QUALITY_GRADERS: Grader[] = [
   bem,
   dsReuse,
   stylePlacement,
+  typographyPairing,
+  contractLookup,
   clientBehaviour,
   toolchain,
   a11y,

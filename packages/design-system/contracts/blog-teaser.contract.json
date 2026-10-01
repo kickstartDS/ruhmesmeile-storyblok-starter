@@ -1,0 +1,1105 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "c-button",
+                          "c-button--clear",
+                          "dsa-button"
+                        ],
+                        "element": "button",
+                        "instanceOf": "button",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "contract-defaults-blogteaser--contract-default"
+                        ],
+                        "path": "root/avatar/child-1/body/link/button",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-teaser__link"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-blogteaser--contract-default"
+                    ],
+                    "path": "root/avatar/child-1/body/link",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--rich-text"
+                        ],
+                        "element": "div",
+                        "instanceOf": "rich-text",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "contract-defaults-blogteaser--contract-default"
+                        ],
+                        "path": "root/avatar/child-1/body/text/rich-text",
+                        "presence": "conditional",
+                        "role": "slot"
+                      },
+                      {
+                        "classes": [
+                          "c-teaser__topic"
+                        ],
+                        "element": "p",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "contract-defaults-blogteaser--contract-default"
+                        ],
+                        "path": "root/avatar/child-1/body/text/topic",
+                        "presence": "conditional",
+                        "role": "text"
+                      }
+                    ],
+                    "classes": [
+                      "c-teaser__text"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "contract-defaults-blogteaser--contract-default"
+                    ],
+                    "path": "root/avatar/child-1/body/text",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-teaser__body"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-blogteaser--contract-default"
+                ],
+                "path": "root/avatar/child-1/body",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "namedBy": "position",
+                    "observedIn": [
+                      "contract-defaults-blogteaser--contract-default"
+                    ],
+                    "path": "root/avatar/child-1/image/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded"
+                    ],
+                    "element": "img",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "contract-defaults-blogteaser--contract-default"
+                    ],
+                    "path": "root/avatar/child-1/image/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "c-post-teaser__image"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-blogteaser--contract-default"
+                ],
+                "path": "root/avatar/child-1/image",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-teaser"
+            ],
+            "element": "div",
+            "namedBy": "position",
+            "observedIn": [
+              "contract-defaults-blogteaser--contract-default"
+            ],
+            "path": "root/avatar/child-1",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-post-teaser",
+          "dsa-blog-teaser"
+        ],
+        "element": "article",
+        "namedBy": "token-grammar",
+        "observedIn": [
+          "contract-defaults-blogteaser--contract-default"
+        ],
+        "path": "root/avatar",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-blog-teaser--background",
+          "--dsa-blog-teaser--gap",
+          "--dsa-blog-teaser__avatar--size",
+          "--dsa-blog-teaser__copy--color",
+          "--dsa-blog-teaser__copy--color_hover",
+          "--dsa-blog-teaser__copy--font",
+          "--dsa-blog-teaser__copy--margin-top",
+          "--dsa-blog-teaser__image--border-radius",
+          "--dsa-blog-teaser__image--transform",
+          "--dsa-blog-teaser__image--transition",
+          "--dsa-blog-teaser__meta--color",
+          "--dsa-blog-teaser__meta--font",
+          "--dsa-blog-teaser__meta__author--font-weight",
+          "--dsa-blog-teaser__tag-label--font",
+          "--dsa-blog-teaser__topic--font",
+          "--dsa-blog-teaser__topic--font-size",
+          "--dsa-blog-teaser__topic--font-weight"
+        ]
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-tag-label__content"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-1/child-1/content",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "c-tag-label",
+                  "c-tag-label--s"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "blog-blog-teaser--default"
+                ],
+                "path": "root/copy/child-1/child-1",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-tag-label__content"
+                    ],
+                    "element": "span",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-1/child-2/content",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "c-tag-label",
+                  "c-tag-label--s"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "position",
+                "observedIn": [
+                  "blog-blog-teaser--default"
+                ],
+                "path": "root/copy/child-1/child-2",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "tag-label-container"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "date",
+              "when": "truthy"
+            },
+            "namedBy": "position",
+            "observedIn": [
+              "blog-blog-teaser--default"
+            ],
+            "path": "root/copy/child-1",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "c-button",
+                          "c-button--clear",
+                          "dsa-button"
+                        ],
+                        "element": "a",
+                        "gate": {
+                          "prop": "date",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "button",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "blog-blog-teaser--default"
+                        ],
+                        "path": "root/copy/child-2/body/link/button",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-teaser__link"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-2/body/link",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--rich-text"
+                        ],
+                        "element": "div",
+                        "gate": {
+                          "prop": "date",
+                          "when": "truthy"
+                        },
+                        "instanceOf": "rich-text",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "blog-blog-teaser--default"
+                        ],
+                        "path": "root/copy/child-2/body/text/rich-text",
+                        "presence": "conditional",
+                        "role": "slot"
+                      },
+                      {
+                        "classes": [
+                          "c-teaser__topic"
+                        ],
+                        "element": "p",
+                        "gate": {
+                          "prop": "date",
+                          "when": "truthy"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "blog-blog-teaser--default"
+                        ],
+                        "path": "root/copy/child-2/body/text/topic",
+                        "presence": "conditional",
+                        "role": "text"
+                      }
+                    ],
+                    "classes": [
+                      "c-teaser__text"
+                    ],
+                    "element": "div",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-2/body/text",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-teaser__body"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "blog-blog-teaser--default"
+                ],
+                "path": "root/copy/child-2/body",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "classes": [],
+                    "element": "noscript",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "position",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-2/image/child-2",
+                    "presence": "conditional",
+                    "role": "container"
+                  },
+                  {
+                    "classes": [
+                      "lazyloaded",
+                      "ls-is-cached"
+                    ],
+                    "element": "img",
+                    "gate": {
+                      "prop": "date",
+                      "when": "truthy"
+                    },
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "blog-blog-teaser--default"
+                    ],
+                    "path": "root/copy/child-2/image/image",
+                    "presence": "conditional",
+                    "role": "media"
+                  }
+                ],
+                "classes": [
+                  "c-post-teaser__image"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "date",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "blog-blog-teaser--default"
+                ],
+                "path": "root/copy/child-2/image",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-teaser",
+              "js-linked"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "date",
+              "when": "truthy"
+            },
+            "namedBy": "position",
+            "observedIn": [
+              "blog-blog-teaser--default"
+            ],
+            "path": "root/copy/child-2",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-post-teaser",
+          "dsa-blog-teaser"
+        ],
+        "element": "article",
+        "gate": {
+          "prop": "date",
+          "when": "truthy"
+        },
+        "namedBy": "token-grammar",
+        "observedIn": [
+          "blog-blog-teaser--default"
+        ],
+        "path": "root/copy",
+        "presence": "conditional",
+        "role": "container",
+        "tokens": [
+          "--dsa-blog-teaser--background",
+          "--dsa-blog-teaser--gap",
+          "--dsa-blog-teaser__avatar--size",
+          "--dsa-blog-teaser__copy--color",
+          "--dsa-blog-teaser__copy--color_hover",
+          "--dsa-blog-teaser__copy--font",
+          "--dsa-blog-teaser__copy--margin-top",
+          "--dsa-blog-teaser__image--border-radius",
+          "--dsa-blog-teaser__image--transform",
+          "--dsa-blog-teaser__image--transition",
+          "--dsa-blog-teaser__meta--color",
+          "--dsa-blog-teaser__meta--font",
+          "--dsa-blog-teaser__meta__author--font-weight",
+          "--dsa-blog-teaser__tag-label--font",
+          "--dsa-blog-teaser__topic--font",
+          "--dsa-blog-teaser__topic--font-size",
+          "--dsa-blog-teaser__topic--font-weight"
+        ]
+      }
+    ],
+    "classes": [
+      "l-container",
+      "l-container--blog-teaser"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "alt": {
+        "role": "content",
+        "type": "string"
+      },
+      "author": {
+        "role": "content",
+        "type": "object"
+      },
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "date": {
+        "format": "date",
+        "role": "content",
+        "type": "string"
+      },
+      "headline": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "image": {
+        "format": "image",
+        "role": "content",
+        "type": "string"
+      },
+      "link": {
+        "role": "content",
+        "type": "object"
+      },
+      "readingTime": {
+        "role": "content",
+        "type": "string"
+      },
+      "tags": {
+        "role": "composition",
+        "type": "array"
+      },
+      "teaserText": {
+        "format": "markdown",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "headline",
+      "teaserText"
+    ],
+    "schema": "./blog-teaser.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "alt",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "author",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/copy",
+        "root/copy/child-1",
+        "root/copy/child-1/child-1",
+        "root/copy/child-1/child-1/content",
+        "root/copy/child-1/child-2",
+        "root/copy/child-1/child-2/content",
+        "root/copy/child-2",
+        "root/copy/child-2/body",
+        "root/copy/child-2/body/link",
+        "root/copy/child-2/body/link/button",
+        "root/copy/child-2/body/text",
+        "root/copy/child-2/body/text/rich-text",
+        "root/copy/child-2/body/text/topic",
+        "root/copy/child-2/image",
+        "root/copy/child-2/image/child-2",
+        "root/copy/child-2/image/image"
+      ],
+      "prop": "date"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "headline",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "image",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "link",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "readingTime",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "tags"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "teaserText",
+      "proven": false
+    }
+  ],
+  "component": "Blog Teaser",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "entry"
+        ],
+        "observedCounts": [
+          0,
+          2
+        ],
+        "part": "root",
+        "prop": "tags"
+      }
+    ]
+  },
+  "contractId": "blog-teaser",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "tags"
+      ],
+      "fromExample": 2,
+      "placeholders": 0,
+      "values": 5
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 27,
+      "inDefault": 12,
+      "total": 28
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "author": {
+        "source": "schema-default",
+        "value": {}
+      },
+      "headline": {
+        "source": "example",
+        "value": "This is a blog post headline"
+      },
+      "link": {
+        "source": "schema-default",
+        "value": {
+          "text": "Read article"
+        }
+      },
+      "tags": {
+        "source": "schema-default",
+        "value": []
+      },
+      "teaserText": {
+        "source": "example",
+        "value": "This is a teaser text for the blog post"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-blogteaser--contract-default.png",
+      "story": "contract-defaults-blogteaser--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 401,
+          "width": 1440
+        }
+      },
+      "root/avatar": {
+        "box": {
+          "height": 401,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-blog-teaser--background"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-copy",
+            "token": "--dsa-blog-teaser__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-s",
+            "token": "--dsa-blog-teaser__copy--font"
+          },
+          "fontSize": {
+            "computed": "16px",
+            "resolves": "--ks-font-size-copy-l",
+            "token": "--dsa-blog-teaser__topic--font-size"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-blog-teaser__meta__author--font-weight"
+          },
+          "gap": {
+            "computed": "13.7152px 13.7152px",
+            "resolves": "--ks-spacing-stack-xs",
+            "token": "--dsa-blog-teaser--gap"
+          }
+        }
+      },
+      "root/avatar/child-1": {
+        "box": {
+          "height": 401,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "flexDirection": "row-reverse",
+          "gap": "13.7152px"
+        }
+      },
+      "root/avatar/child-1/body": {
+        "box": {
+          "height": 89,
+          "width": 713
+        },
+        "layout": {
+          "display": "flex"
+        }
+      },
+      "root/avatar/child-1/body/link": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/avatar/child-1/body/link/button": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "alignItems": "center",
+          "justifyContent": "center"
+        }
+      },
+      "root/avatar/child-1/body/text": {
+        "box": {
+          "height": 89,
+          "width": 713
+        }
+      },
+      "root/avatar/child-1/body/text/rich-text": {
+        "box": {
+          "height": 41,
+          "width": 713
+        }
+      },
+      "root/avatar/child-1/body/text/topic": {
+        "box": {
+          "height": 37,
+          "width": 713
+        }
+      },
+      "root/avatar/child-1/image": {
+        "box": {
+          "height": 401,
+          "width": 713
+        }
+      },
+      "root/avatar/child-1/image/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/avatar/child-1/image/image": {
+        "box": {
+          "height": 401,
+          "width": 713
+        }
+      }
+    }
+  },
+  "description": "Display a blog teaser with date, tags, headline, teaser text and author",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:cf50edb3e3878470",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/blog-blog-teaser--default.png",
+        "story": "blog-blog-teaser--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 449,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "401.141px",
+              "to": "449.172px"
+            }
+          }
+        },
+        "root/copy": {
+          "box": {
+            "height": 449,
+            "width": 1440
+          },
+          "classes": [
+            "c-post-teaser",
+            "dsa-blog-teaser"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "13.7152px"
+          },
+          "styles": {
+            "background": {
+              "computed": "rgba(0, 0, 0, 0) none",
+              "resolves": null,
+              "token": "--dsa-blog-teaser--background"
+            },
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-copy",
+              "token": "--dsa-blog-teaser__copy--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-copy-s",
+              "token": "--dsa-blog-teaser__copy--font"
+            },
+            "fontSize": {
+              "computed": "16px",
+              "resolves": "--ks-font-size-copy-l",
+              "token": "--dsa-blog-teaser__topic--font-size"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": "--ks-font-weight-semi-bold",
+              "token": "--dsa-blog-teaser__meta__author--font-weight"
+            },
+            "gap": {
+              "computed": "13.7152px 13.7152px",
+              "resolves": "--ks-spacing-stack-xs",
+              "token": "--dsa-blog-teaser--gap"
+            }
+          }
+        },
+        "root/copy/child-1": {
+          "box": {
+            "height": 34,
+            "width": 1440
+          },
+          "classes": [
+            "tag-label-container"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "8px"
+          }
+        },
+        "root/copy/child-1/child-1": {
+          "box": {
+            "height": 34,
+            "width": 114
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/copy/child-1/child-1/content": {
+          "box": {
+            "height": 34,
+            "width": 114
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-1/child-2": {
+          "box": {
+            "height": 34,
+            "width": 37
+          },
+          "classes": [
+            "c-tag-label",
+            "c-tag-label--s"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex"
+          }
+        },
+        "root/copy/child-1/child-2/content": {
+          "box": {
+            "height": 34,
+            "width": 37
+          },
+          "classes": [
+            "c-tag-label__content"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2": {
+          "box": {
+            "height": 401,
+            "width": 1440
+          },
+          "classes": [
+            "c-teaser",
+            "js-linked"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "flex-start",
+            "display": "flex",
+            "flexDirection": "row-reverse",
+            "gap": "13.7152px"
+          }
+        },
+        "root/copy/child-2/body": {
+          "box": {
+            "height": 206,
+            "width": 713
+          },
+          "classes": [
+            "c-teaser__body"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex"
+          }
+        },
+        "root/copy/child-2/body/link": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "c-teaser__link"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2/body/link/button": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "c-button",
+            "c-button--clear",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "justifyContent": "center"
+          }
+        },
+        "root/copy/child-2/body/text": {
+          "box": {
+            "height": 206,
+            "width": 713
+          },
+          "classes": [
+            "c-teaser__text"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2/body/text/rich-text": {
+          "box": {
+            "height": 158,
+            "width": 713
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2/body/text/topic": {
+          "box": {
+            "height": 37,
+            "width": 713
+          },
+          "classes": [
+            "c-teaser__topic"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2/image": {
+          "box": {
+            "height": 401,
+            "width": 713
+          },
+          "classes": [
+            "c-post-teaser__image"
+          ],
+          "introduced": true
+        },
+        "root/copy/child-2/image/child-2": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [],
+          "introduced": true
+        },
+        "root/copy/child-2/image/image": {
+          "box": {
+            "height": 401,
+            "width": 713
+          },
+          "classes": [
+            "lazyloaded",
+            "ls-is-cached"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

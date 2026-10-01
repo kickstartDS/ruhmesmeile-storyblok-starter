@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Location",
+  "default": {
+    "description": "The Event Location component features a clean and structured design with a white background and rounded corners, giving it a modern and approachable look. It includes a prominent blue bar that likely serves as a placeholder for text or links, adding a touch of color and emphasis. The overall appearance is minimalistic, focusing on clarity and ease of reading.",
+    "from": "img/screenshots/contract-defaults-eventlocation--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-location--default",
+      "when": {},
+      "difference": "The variant of the Event Location component is significantly taller, expanding from a height of 63.5938px to 212.109px. This increase in height allows for more content to be displayed, such as detailed location information and additional links, while maintaining the clean and structured design with a white background and rounded corners.",
+      "from": "img/screenshots/event-event-location--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:08.289Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventlocation--contract-default.png": "sha256:b69dcf09cf2e264f",
+        "img/screenshots/event-event-location--default.png": "sha256:2b1b9818101be80f"
+      },
+      "contract": "sha256:d08b35f2c35adadce4b142fdcd0eca538bf4eca8dc01a01e4540bf10efbafc30"
+    }
+  }
+}

@@ -1,0 +1,293 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-search-filter__category-amount"
+                ],
+                "element": "span",
+                "gate": {
+                  "prop": "title",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-search-filter--default"
+                ],
+                "path": "root/categories/category/category-amount",
+                "presence": "conditional",
+                "role": "text"
+              },
+              {
+                "classes": [
+                  "dsa-search-filter__category-title"
+                ],
+                "element": "a",
+                "gate": {
+                  "prop": "title",
+                  "when": "truthy"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "corporate-search-filter--default"
+                ],
+                "path": "root/categories/category/category-title",
+                "presence": "conditional",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-search-filter__category"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "title",
+              "when": "truthy"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-search-filter--default"
+            ],
+            "path": "root/categories/category",
+            "presence": "repeated",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-search-filter__categories"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/categories",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-search-filter__title"
+        ],
+        "element": "span",
+        "gate": {
+          "prop": "title",
+          "when": "truthy"
+        },
+        "namedBy": "bem-class",
+        "observedIn": [
+          "corporate-search-filter--default"
+        ],
+        "path": "root/title",
+        "presence": "conditional",
+        "role": "text"
+      }
+    ],
+    "classes": [
+      "dsa-search-filter"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "categories": {
+        "role": "composition",
+        "type": "array"
+      },
+      "title": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [],
+    "schema": "./search-filter.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "categories"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/categories/category",
+        "root/categories/category/category-amount",
+        "root/categories/category/category-title",
+        "root/title"
+      ],
+      "prop": "title"
+    }
+  ],
+  "component": "Search Filter",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "amount",
+          "title",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          3
+        ],
+        "part": "root",
+        "prop": "categories"
+      }
+    ]
+  },
+  "contractId": "search-filter",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "categories"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 4,
+      "inDefault": 2,
+      "total": 6
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "categories": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-searchfilter--contract-default.png",
+      "story": "contract-defaults-searchfilter--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 58,
+          "width": 1440
+        }
+      },
+      "root/categories": {
+        "box": {
+          "height": 0,
+          "width": 1396
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "5.77082px"
+        }
+      }
+    }
+  },
+  "description": "Search filter component for filtering search results by categories.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:05129686796dce19",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-search-filter--default.png",
+        "story": "corporate-search-filter--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 177,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "57.9844px",
+              "to": "176.578px"
+            }
+          }
+        },
+        "root/categories": {
+          "box": {
+            "height": 93,
+            "width": 1396
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "92.6719px"
+            }
+          }
+        },
+        "root/categories/category": {
+          "box": {
+            "height": 27,
+            "width": 1396
+          },
+          "classes": [
+            "dsa-search-filter__category"
+          ],
+          "introduced": true
+        },
+        "root/categories/category/category-amount": {
+          "box": {
+            "height": 22,
+            "width": 36
+          },
+          "classes": [
+            "dsa-search-filter__category-amount"
+          ],
+          "introduced": true
+        },
+        "root/categories/category/category-title": {
+          "box": {
+            "height": 22,
+            "width": 56
+          },
+          "classes": [
+            "dsa-search-filter__category-title"
+          ],
+          "introduced": true
+        },
+        "root/title": {
+          "box": {
+            "height": 28,
+            "width": 227
+          },
+          "classes": [
+            "dsa-search-filter__title"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

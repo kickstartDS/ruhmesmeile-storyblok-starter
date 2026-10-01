@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.kickstartds.com/base/comparison-table.schema.json",
+  "title": "ComparisonTable",
+  "description": "Component used to compare what several plans include, feature by feature",
+  "type": "object",
+  "properties": {
+    "plans": {
+      "type": "array",
+      "title": "Plans",
+      "description": "The plans that are compared, one per column",
+      "items": {
+        "type": "object",
+        "title": "Plan",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Name of the plan, e.g. \"Basic\""
+          },
+          "price": {
+            "type": "string",
+            "title": "Price",
+            "description": "Price of the plan, e.g. \"$99\" or \"On request\""
+          },
+          "pricePeriod": {
+            "type": "string",
+            "title": "Price period",
+            "description": "The period the price refers to, e.g. \"Per month\". Leave empty for a one-off price"
+          },
+          "badge": {
+            "type": "string",
+            "title": "Badge",
+            "description": "Optional badge above the plan name, e.g. \"Popular\". Leave empty for no badge"
+          },
+          "highlight": {
+            "type": "boolean",
+            "title": "Highlight",
+            "description": "Present this plan as the recommended one, on an inverted column",
+            "default": false
+          },
+          "cta": {
+            "type": "object",
+            "title": "Call to action",
+            "description": "The button that starts this plan",
+            "properties": {
+              "label": {
+                "type": "string",
+                "title": "Label",
+                "description": "Text content to display inside the button"
+              },
+              "url": {
+                "type": "string",
+                "title": "URL",
+                "description": "The URL to link to when the button is clicked",
+                "format": "uri"
+              },
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Variant of the button. Defaults to `primary` on a highlighted plan and `tertiary` on a regular one",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "tertiary"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 5
+    },
+    "featureRow": {
+      "type": "array",
+      "title": "Feature rows",
+      "description": "The features that are compared, one per row",
+      "items": {
+        "type": "object",
+        "title": "Feature row",
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Name of the feature this row compares"
+          },
+          "value": {
+            "type": "array",
+            "title": "Values",
+            "description": "One entry per plan, in the same order as `plans`. A `text` for a comparable value, an `icon` for included or not included, neither for an empty cell",
+            "items": {
+              "type": "object",
+              "title": "Value",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Text",
+                  "description": "The value itself, e.g. \"Unlimited\" or \"01\""
+                },
+                "icon": {
+                  "type": "string",
+                  "format": "icon",
+                  "title": "Icon",
+                  "description": "An icon instead of text, e.g. \"check\" for included or \"close\" for not included"
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 2,
+            "maxItems": 5
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 12
+    }
+  },
+  "additionalProperties": false
+}

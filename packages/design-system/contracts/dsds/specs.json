@@ -1,0 +1,1569 @@
+{
+  "$format": "kickstartds/component-contract-dsds@1",
+  "generatedFrom": "kickstartds/component-contract@1",
+  "components": [
+    {
+      "id": "blog-aside",
+      "contractId": "blog-aside",
+      "specs": [
+        {
+          "href": "../blog-aside.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/blog-aside.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "blog-author",
+      "contractId": "blog-author",
+      "specs": [
+        {
+          "href": "../blog-author.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/blog-author.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "blog-head",
+      "contractId": "blog-head",
+      "specs": [
+        {
+          "href": "../blog-head.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/blog-head.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "blog-teaser",
+      "contractId": "blog-teaser",
+      "specs": [
+        {
+          "href": "../blog-teaser.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/blog-teaser.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "breadcrumb",
+      "contractId": "breadcrumb",
+      "specs": [
+        {
+          "href": "../breadcrumb.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/breadcrumb.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "business-card",
+      "contractId": "business-card",
+      "specs": [
+        {
+          "href": "../business-card.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/business-card.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "centered",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "contractId": "button",
+      "specs": [
+        {
+          "href": "../button.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/button.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "size",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "medium",
+            "small",
+            "large"
+          ]
+        },
+        {
+          "name": "variant",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "secondary",
+            "primary",
+            "tertiary"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkbox",
+      "contractId": "checkbox",
+      "specs": [
+        {
+          "href": "../checkbox.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/checkbox.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "checkbox-group",
+      "contractId": "checkbox-group",
+      "specs": [
+        {
+          "href": "../checkbox-group.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/checkbox-group.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "contractId": "contact",
+      "specs": [
+        {
+          "href": "../contact.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/contact.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "content-nav",
+      "contractId": "content-nav",
+      "specs": [
+        {
+          "href": "../content-nav.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/content-nav.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "cookie-consent",
+      "contractId": "cookie-consent",
+      "specs": [
+        {
+          "href": "../cookie-consent.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/cookie-consent.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "cta",
+      "contractId": "cta",
+      "specs": [
+        {
+          "href": "../cta.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/cta.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "align",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "center",
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "colorNeutral",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "highlightText",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "padding",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "divider",
+      "contractId": "divider",
+      "specs": [
+        {
+          "href": "../divider.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/divider.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "variant",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "default",
+            "accent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "downloads",
+      "contractId": "downloads",
+      "specs": [
+        {
+          "href": "../downloads.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/downloads.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-appointment",
+      "contractId": "event-appointment",
+      "specs": [
+        {
+          "href": "../event-appointment.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-appointment.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-filter",
+      "contractId": "event-filter",
+      "specs": [
+        {
+          "href": "../event-filter.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-filter.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-header",
+      "contractId": "event-header",
+      "specs": [
+        {
+          "href": "../event-header.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-header.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-latest",
+      "contractId": "event-latest",
+      "specs": [
+        {
+          "href": "../event-latest.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-latest.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-latest-teaser",
+      "contractId": "event-latest-teaser",
+      "specs": [
+        {
+          "href": "../event-latest-teaser.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-latest-teaser.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-list-teaser",
+      "contractId": "event-list-teaser",
+      "specs": [
+        {
+          "href": "../event-list-teaser.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-list-teaser.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-location",
+      "contractId": "event-location",
+      "specs": [
+        {
+          "href": "../event-location.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-location.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-login",
+      "contractId": "event-login",
+      "specs": [
+        {
+          "href": "../event-login.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-login.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "event-registration",
+      "contractId": "event-registration",
+      "specs": [
+        {
+          "href": "../event-registration.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/event-registration.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "faq",
+      "contractId": "faq",
+      "specs": [
+        {
+          "href": "../faq.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/faq.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "feature",
+      "contractId": "feature",
+      "specs": [
+        {
+          "href": "../feature.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/feature.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "style",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "stack",
+            "intext",
+            "centered",
+            "besideLarge",
+            "besideSmall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "contractId": "features",
+      "specs": [
+        {
+          "href": "../features.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/features.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "style",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "stack",
+            "intext",
+            "centered",
+            "besideLarge",
+            "besideSmall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "contractId": "footer",
+      "specs": [
+        {
+          "href": "../footer.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/footer.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "contractId": "gallery",
+      "specs": [
+        {
+          "href": "../gallery.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/gallery.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "aspectRatio",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "unset",
+            "square",
+            "wide",
+            "landscape"
+          ]
+        },
+        {
+          "name": "lightbox",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "header",
+      "contractId": "header",
+      "specs": [
+        {
+          "href": "../header.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/header.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "dropdownInverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "floating",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "flyoutInverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "headline",
+      "contractId": "headline",
+      "specs": [
+        {
+          "href": "../headline.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/headline.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "align",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        {
+          "name": "style",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "h2",
+            "h1",
+            "h3",
+            "h4",
+            "p"
+          ]
+        },
+        {
+          "name": "switchOrder",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "contractId": "hero",
+      "specs": [
+        {
+          "href": "../hero.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/hero.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "colorNeutral",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "height",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "default",
+            "small",
+            "fullImage",
+            "fullScreen"
+          ]
+        },
+        {
+          "name": "highlightText",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invertText",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "mobileTextBelow",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "overlay",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "skipButton",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "textbox",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "html",
+      "contractId": "html",
+      "specs": [
+        {
+          "href": "../html.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/html.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "consent",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "image-story",
+      "contractId": "image-story",
+      "specs": [
+        {
+          "href": "../image-story.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/image-story.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "largeHeadline",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "padding",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "image-text",
+      "contractId": "image-text",
+      "specs": [
+        {
+          "href": "../image-text.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/image-text.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "highlightText",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "logo",
+      "contractId": "logo",
+      "specs": [
+        {
+          "href": "../logo.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/logo.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "logos",
+      "contractId": "logos",
+      "specs": [
+        {
+          "href": "../logos.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/logos.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "align",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "center",
+            "left"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mosaic",
+      "contractId": "mosaic",
+      "specs": [
+        {
+          "href": "../mosaic.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/mosaic.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "largeHeadlines",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "nav-dropdown",
+      "contractId": "nav-dropdown",
+      "specs": [
+        {
+          "href": "../nav-dropdown.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/nav-dropdown.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "pagination",
+      "contractId": "pagination",
+      "specs": [
+        {
+          "href": "../pagination.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/pagination.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "truncate",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "radio",
+      "contractId": "radio",
+      "specs": [
+        {
+          "href": "../radio.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/radio.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "radio-group",
+      "contractId": "radio-group",
+      "specs": [
+        {
+          "href": "../radio-group.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/radio-group.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "search-bar",
+      "contractId": "search-bar",
+      "specs": [
+        {
+          "href": "../search-bar.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-bar.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "search-filter",
+      "contractId": "search-filter",
+      "specs": [
+        {
+          "href": "../search-filter.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-filter.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "search-form",
+      "contractId": "search-form",
+      "specs": [
+        {
+          "href": "../search-form.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-form.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "search-modal",
+      "contractId": "search-modal",
+      "specs": [
+        {
+          "href": "../search-modal.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-modal.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "search-result",
+      "contractId": "search-result",
+      "specs": [
+        {
+          "href": "../search-result.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-result.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "showLink",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "search-result-match",
+      "contractId": "search-result-match",
+      "specs": [
+        {
+          "href": "../search-result-match.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/search-result-match.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "section",
+      "contractId": "section",
+      "specs": [
+        {
+          "href": "../section.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/section.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "aiDraft",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "backgroundColor",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "default",
+            "accent",
+            "bold"
+          ]
+        },
+        {
+          "name": "headerSpacing",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "inverted",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "spotlight",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "style",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "default",
+            "framed",
+            "deko"
+          ]
+        },
+        {
+          "name": "width",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "default",
+            "full",
+            "max",
+            "wide",
+            "narrow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "select-field",
+      "contractId": "select-field",
+      "specs": [
+        {
+          "href": "../select-field.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/select-field.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "hideLabel",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "slider",
+      "contractId": "slider",
+      "specs": [
+        {
+          "href": "../slider.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/slider.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "arrows",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "equalHeight",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "nav",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "teaseNeighbours",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "variant",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "carousel",
+            "slider"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "split-even",
+      "contractId": "split-even",
+      "specs": [
+        {
+          "href": "../split-even.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/split-even.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "mobileReverse",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "split-weighted",
+      "contractId": "split-weighted",
+      "specs": [
+        {
+          "href": "../split-weighted.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/split-weighted.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "stat",
+      "contractId": "stat",
+      "specs": [
+        {
+          "href": "../stat.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/stat.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "stats",
+      "contractId": "stats",
+      "specs": [
+        {
+          "href": "../stats.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/stats.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "align",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "center",
+            "left"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teaser-card",
+      "contractId": "teaser-card",
+      "specs": [
+        {
+          "href": "../teaser-card.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/teaser-card.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "centered",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "imageHoverEffect",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "testimonial",
+      "contractId": "testimonial",
+      "specs": [
+        {
+          "href": "../testimonial.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/testimonial.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "testimonials",
+      "contractId": "testimonials",
+      "specs": [
+        {
+          "href": "../testimonials.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/testimonials.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": []
+    },
+    {
+      "id": "text",
+      "contractId": "text",
+      "specs": [
+        {
+          "href": "../text.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/text.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "align",
+          "traitType": "variant",
+          "kind": "enum",
+          "values": [
+            "left",
+            "center"
+          ]
+        },
+        {
+          "name": "highlightText",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "text-area",
+      "contractId": "text-area",
+      "specs": [
+        {
+          "href": "../text-area.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/text-area.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "hideLabel",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "text-field",
+      "contractId": "text-field",
+      "specs": [
+        {
+          "href": "../text-field.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/text-field.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "disabled",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "hideLabel",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "invalid",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "video-curtain",
+      "contractId": "video-curtain",
+      "specs": [
+        {
+          "href": "../video-curtain.contract.json",
+          "rel": "contract",
+          "role": "kickstartds Component Contract"
+        },
+        {
+          "href": "../knapsack/video-curtain.contract.json",
+          "rel": "contract",
+          "role": "Design System Contract"
+        }
+      ],
+      "traits": [
+        {
+          "name": "colorNeutral",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "highlightText",
+          "traitType": "variant",
+          "kind": "boolean"
+        },
+        {
+          "name": "overlay",
+          "traitType": "variant",
+          "kind": "boolean"
+        }
+      ]
+    }
+  ]
+}

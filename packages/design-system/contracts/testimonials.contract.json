@@ -1,0 +1,1218 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "l-container",
+          "l-container--quote"
+        ],
+        "element": "div",
+        "instanceOf": "quote",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "components-testimonials--alternating-layout",
+          "components-testimonials--list-layout"
+        ],
+        "path": "root/quote",
+        "presence": "repeated",
+        "role": "slot"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "contract-defaults-testimonials--contract-default",
+                      "components-testimonials--simple",
+                      "components-testimonials--slider-layout",
+                      "components-testimonials--with-rating"
+                    ],
+                    "path": "root/slider/arrows/arrow/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "c-slider__arrow",
+                  "c-slider__arrow--prev"
+                ],
+                "element": "button",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-testimonials--contract-default",
+                  "components-testimonials--simple",
+                  "components-testimonials--slider-layout",
+                  "components-testimonials--with-rating"
+                ],
+                "path": "root/slider/arrows/arrow",
+                "presence": "repeated",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-slider__arrows"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-testimonials--contract-default",
+              "components-testimonials--simple",
+              "components-testimonials--slider-layout",
+              "components-testimonials--with-rating"
+            ],
+            "path": "root/slider/arrows",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-slider__bullet"
+                    ],
+                    "element": "span",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-testimonials--simple",
+                      "components-testimonials--slider-layout",
+                      "components-testimonials--with-rating",
+                      "components-testimonials--with-title"
+                    ],
+                    "path": "root/slider/nav/nav-item/bullet",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-slider__nav-item",
+                  "c-slider__nav-item--active"
+                ],
+                "element": "button",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-testimonials--simple",
+                  "components-testimonials--slider-layout",
+                  "components-testimonials--with-rating",
+                  "components-testimonials--with-title"
+                ],
+                "path": "root/slider/nav/nav-item",
+                "presence": "repeated",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-slider__nav"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-testimonials--contract-default",
+              "components-testimonials--simple",
+              "components-testimonials--slider-layout",
+              "components-testimonials--with-rating"
+            ],
+            "path": "root/slider/nav",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "l-container",
+                          "l-container--quote"
+                        ],
+                        "element": "div",
+                        "instanceOf": "quote",
+                        "namedBy": "slot-boundary",
+                        "observedIn": [
+                          "components-testimonials--simple",
+                          "components-testimonials--slider-layout",
+                          "components-testimonials--with-rating",
+                          "components-testimonials--with-title"
+                        ],
+                        "path": "root/slider/track/slides/slide/quote",
+                        "presence": "conditional",
+                        "role": "slot"
+                      }
+                    ],
+                    "classes": [
+                      "c-slider__slide",
+                      "c-slider__slide--clone"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-testimonials--simple",
+                      "components-testimonials--slider-layout",
+                      "components-testimonials--with-rating",
+                      "components-testimonials--with-title"
+                    ],
+                    "path": "root/slider/track/slides/slide",
+                    "presence": "repeated",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "c-slider__slides"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "contract-defaults-testimonials--contract-default",
+                  "components-testimonials--simple",
+                  "components-testimonials--slider-layout",
+                  "components-testimonials--with-rating"
+                ],
+                "path": "root/slider/track/slides",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "c-slider__track"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-testimonials--contract-default",
+              "components-testimonials--simple",
+              "components-testimonials--slider-layout",
+              "components-testimonials--with-rating"
+            ],
+            "path": "root/slider/track",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "c-slider",
+          "c-slider--carousel",
+          "c-slider--equal-height",
+          "c-slider--ltr",
+          "c-slider--swipeable",
+          "dsa-slider",
+          "dsa-testimonials",
+          "dsa-testimonials--slider",
+          "lazyloaded"
+        ],
+        "element": "div",
+        "instanceOf": "slider",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-testimonials--contract-default",
+          "components-testimonials--simple",
+          "components-testimonials--slider-layout",
+          "components-testimonials--with-rating"
+        ],
+        "path": "root/slider",
+        "presence": "conditional",
+        "role": "slot",
+        "tokens": [
+          "--dsa-testimonials--gap",
+          "--dsa-testimonials--padding-left",
+          "--dsa-testimonials--padding-top",
+          "--dsa-testimonials__byline--color",
+          "--dsa-testimonials__byline--font",
+          "--dsa-testimonials__byline--font-weight",
+          "--dsa-testimonials__icon--color",
+          "--dsa-testimonials__icon--content",
+          "--dsa-testimonials__icon--font-family",
+          "--dsa-testimonials__icon--font-size",
+          "--dsa-testimonials__icon--left",
+          "--dsa-testimonials__icon--transform",
+          "--dsa-testimonials__image--max-width",
+          "--dsa-testimonials__list--gap",
+          "--dsa-testimonials__quote--font",
+          "--dsa-testimonials__quote--font-weight",
+          "--dsa-testimonials__quote--margin-bottom",
+          "--dsa-testimonials__source--color",
+          "--dsa-testimonials__source--font",
+          "--dsa-testimonials__source--font-style",
+          "--dsa-testimonials__source--font-weight",
+          "--dsa-testimonials__source--text-transform"
+        ]
+      }
+    ],
+    "classes": [],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-testimonials--gap",
+      "--dsa-testimonials--padding-left",
+      "--dsa-testimonials--padding-top",
+      "--dsa-testimonials__byline--color",
+      "--dsa-testimonials__byline--font",
+      "--dsa-testimonials__byline--font-weight",
+      "--dsa-testimonials__icon--color",
+      "--dsa-testimonials__icon--content",
+      "--dsa-testimonials__icon--font-family",
+      "--dsa-testimonials__icon--font-size",
+      "--dsa-testimonials__icon--left",
+      "--dsa-testimonials__icon--transform",
+      "--dsa-testimonials__image--max-width",
+      "--dsa-testimonials__list--gap",
+      "--dsa-testimonials__quote--font",
+      "--dsa-testimonials__quote--font-weight",
+      "--dsa-testimonials__quote--margin-bottom",
+      "--dsa-testimonials__source--color",
+      "--dsa-testimonials__source--font",
+      "--dsa-testimonials__source--font-style",
+      "--dsa-testimonials__source--font-weight",
+      "--dsa-testimonials__source--text-transform"
+    ]
+  },
+  "api": {
+    "props": {
+      "layout": {
+        "default": "slider",
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "slider",
+          "list",
+          "alternating"
+        ]
+      },
+      "quoteSigns": {
+        "default": "normal",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "normal",
+          "large",
+          "none"
+        ]
+      },
+      "testimonial": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [],
+    "schema": "./testimonials.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "slider",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "slider",
+          "class": "l-container",
+          "tokenSegment": null
+        },
+        {
+          "api": "list",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "alternating",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "affects": [
+        "columnGap",
+        "display",
+        "flexDirection",
+        "height",
+        "rowGap"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root"
+      ],
+      "prop": "layout"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "quoteSigns",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "testimonial"
+    }
+  ],
+  "component": "Testimonials",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "image",
+          "name",
+          "quote",
+          "rating",
+          "title"
+        ],
+        "observedCounts": [
+          0,
+          1,
+          3
+        ],
+        "part": "root",
+        "prop": "testimonial"
+      }
+    ]
+  },
+  "contractId": "testimonials",
+  "coverage": {
+    "axes": {
+      "layout": {
+        "missing": [],
+        "proven": 3,
+        "total": 3
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "testimonial"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 7,
+      "proven": 7
+    },
+    "parts": {
+      "conditional": 12,
+      "inDefault": 8,
+      "total": 13
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 6
+    }
+  },
+  "default": {
+    "configuration": {
+      "layout": {
+        "source": "schema-default",
+        "value": "slider"
+      },
+      "quoteSigns": {
+        "source": "schema-default",
+        "value": "normal"
+      },
+      "testimonial": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-testimonials--contract-default.png",
+      "story": "contract-defaults-testimonials--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/slider": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-copy",
+            "token": "--dsa-testimonials__byline--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-testimonials__byline--font"
+          },
+          "fontFamily": {
+            "computed": "Times New Roman",
+            "resolves": "--ks-font-family-copy",
+            "token": "--dsa-testimonials__icon--font-family"
+          },
+          "fontSize": {
+            "computed": "16px",
+            "resolves": null,
+            "token": "--dsa-testimonials__icon--font-size"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-regular",
+            "token": "--dsa-testimonials__byline--font-weight"
+          },
+          "gap": {
+            "computed": "normal normal",
+            "resolves": "--ks-spacing-stack-s",
+            "token": "--dsa-testimonials--gap"
+          }
+        }
+      },
+      "root/slider/arrows": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/slider/arrows/arrow": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/slider/arrows/arrow/icon": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "display": "inline-block"
+        }
+      },
+      "root/slider/nav": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "justifyContent": "center"
+        }
+      },
+      "root/slider/track": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/slider/track/slides": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "stretch",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      }
+    }
+  },
+  "description": "Display testimonials with an optional image and rating",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:0dba4eaccf4a1e52",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--alternating-layout.png",
+        "story": "components-testimonials--alternating-layout"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 1818,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-testimonials",
+              "dsa-testimonials--list"
+            ],
+            "remove": [
+              "l-container",
+              "l-container--slider"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "normal",
+              "to": "44.8756px"
+            },
+            "display": {
+              "from": "block",
+              "to": "flex"
+            },
+            "flexDirection": {
+              "from": "row",
+              "to": "column"
+            },
+            "height": {
+              "from": "0px",
+              "to": "1817.75px"
+            },
+            "rowGap": {
+              "from": "normal",
+              "to": "44.8756px"
+            }
+          }
+        },
+        "root/quote": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--quote"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "layout": "alternating"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--list-layout.png",
+        "story": "components-testimonials--list-layout"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 1818,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-testimonials",
+              "dsa-testimonials--list"
+            ],
+            "remove": [
+              "l-container",
+              "l-container--slider"
+            ]
+          },
+          "styles": {
+            "columnGap": {
+              "from": "normal",
+              "to": "44.8756px"
+            },
+            "display": {
+              "from": "block",
+              "to": "flex"
+            },
+            "flexDirection": {
+              "from": "row",
+              "to": "column"
+            },
+            "height": {
+              "from": "0px",
+              "to": "1817.75px"
+            },
+            "rowGap": {
+              "from": "normal",
+              "to": "44.8756px"
+            }
+          }
+        }
+      },
+      "when": {
+        "layout": "list"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--simple.png",
+        "story": "components-testimonials--simple"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider/nav/nav-item": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "c-slider__nav-item",
+            "c-slider__nav-item--active"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "inline-block"
+          }
+        },
+        "root/slider/nav/nav-item/bullet": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "c-slider__bullet"
+          ],
+          "introduced": true
+        },
+        "root/slider/track": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider/track/slides": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider/track/slides/slide": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "c-slider__slide",
+            "c-slider__slide--clone"
+          ],
+          "introduced": true
+        },
+        "root/slider/track/slides/slide/quote": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "l-container",
+            "l-container--quote"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--slider-layout.png",
+        "story": "components-testimonials--slider-layout"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 621,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "621.141px"
+            }
+          }
+        },
+        "root/slider": {
+          "box": {
+            "height": 621,
+            "width": 1440
+          },
+          "classes": {
+            "remove": [
+              "c-slider--disabled"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "621.141px"
+            }
+          }
+        },
+        "root/slider/arrows": {
+          "box": {
+            "height": 0,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "0px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/slider/arrows/arrow": {
+          "box": {
+            "height": 40,
+            "width": 40
+          },
+          "styles": {
+            "height": {
+              "from": "auto",
+              "to": "40px"
+            },
+            "marginTop": {
+              "from": "0px",
+              "to": "-22px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "40px"
+            }
+          }
+        },
+        "root/slider/arrows/arrow/icon": {
+          "box": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "root/slider/nav": {
+          "box": {
+            "height": 24,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "flex"
+            },
+            "height": {
+              "from": "auto",
+              "to": "24px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/slider/nav/nav-item": {
+          "box": {
+            "height": 24,
+            "width": 32
+          },
+          "styles": {
+            "display": {
+              "from": "inline-block",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "24px"
+            },
+            "minHeight": {
+              "from": "0px",
+              "to": "auto"
+            },
+            "width": {
+              "from": "auto",
+              "to": "32px"
+            }
+          }
+        },
+        "root/slider/nav/nav-item/bullet": {
+          "box": {
+            "height": 16,
+            "width": 16
+          }
+        },
+        "root/slider/track": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "576px"
+            }
+          }
+        },
+        "root/slider/track/slides": {
+          "box": {
+            "height": 576,
+            "width": 10080
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "576px"
+            },
+            "justifyContent": {
+              "from": "center",
+              "to": "normal"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "10080px"
+            }
+          }
+        },
+        "root/slider/track/slides/slide": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "576px"
+            },
+            "minHeight": {
+              "from": "0px",
+              "to": "auto"
+            }
+          }
+        },
+        "root/slider/track/slides/slide/quote": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "100%",
+              "to": "576px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--with-rating.png",
+        "story": "components-testimonials--with-rating"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 621,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "621.141px"
+            }
+          }
+        },
+        "root/slider": {
+          "box": {
+            "height": 621,
+            "width": 1440
+          },
+          "classes": {
+            "remove": [
+              "c-slider--disabled"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "621.141px"
+            }
+          }
+        },
+        "root/slider/arrows": {
+          "box": {
+            "height": 0,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "0px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/slider/arrows/arrow": {
+          "box": {
+            "height": 40,
+            "width": 40
+          },
+          "styles": {
+            "height": {
+              "from": "auto",
+              "to": "40px"
+            },
+            "marginTop": {
+              "from": "0px",
+              "to": "-22px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "40px"
+            }
+          }
+        },
+        "root/slider/arrows/arrow/icon": {
+          "box": {
+            "height": 40,
+            "width": 40
+          }
+        },
+        "root/slider/nav": {
+          "box": {
+            "height": 24,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "flex"
+            },
+            "height": {
+              "from": "auto",
+              "to": "24px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/slider/nav/nav-item": {
+          "box": {
+            "height": 24,
+            "width": 32
+          },
+          "styles": {
+            "display": {
+              "from": "inline-block",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "24px"
+            },
+            "minHeight": {
+              "from": "0px",
+              "to": "auto"
+            },
+            "width": {
+              "from": "auto",
+              "to": "32px"
+            }
+          }
+        },
+        "root/slider/nav/nav-item/bullet": {
+          "box": {
+            "height": 16,
+            "width": 16
+          }
+        },
+        "root/slider/track": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "576px"
+            }
+          }
+        },
+        "root/slider/track/slides": {
+          "box": {
+            "height": 576,
+            "width": 10080
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "576px"
+            },
+            "justifyContent": {
+              "from": "center",
+              "to": "normal"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "10080px"
+            }
+          }
+        },
+        "root/slider/track/slides/slide": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "display": {
+              "from": "none",
+              "to": "block"
+            },
+            "height": {
+              "from": "auto",
+              "to": "576px"
+            },
+            "minHeight": {
+              "from": "0px",
+              "to": "auto"
+            }
+          }
+        },
+        "root/slider/track/slides/slide/quote": {
+          "box": {
+            "height": 576,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "100%",
+              "to": "576px"
+            },
+            "width": {
+              "from": "auto",
+              "to": "1440px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-testimonials--with-title.png",
+        "story": "components-testimonials--with-title"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider/track": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        },
+        "root/slider/track/slides": {
+          "box": {
+            "height": 101,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "100.531px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

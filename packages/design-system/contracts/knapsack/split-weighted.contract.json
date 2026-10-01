@@ -1,0 +1,61 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "split-weighted",
+  "component": "Split Weighted",
+  "description": "Split weighted layout component for dividing content into two sections with customizable widths.",
+  "props": {
+    "properties": {
+      "asideComponents": {
+        "type": "array"
+      },
+      "asideLayout": {
+        "type": "object"
+      },
+      "horizontalGutter": {
+        "type": "string",
+        "enum": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ],
+        "default": "default"
+      },
+      "mainComponents": {
+        "type": "array"
+      },
+      "mainLayout": {
+        "type": "object"
+      },
+      "order": {
+        "type": "object"
+      },
+      "verticalAlign": {
+        "type": "string",
+        "enum": [
+          "top",
+          "center",
+          "bottom",
+          "sticky"
+        ],
+        "default": "top"
+      },
+      "verticalGutter": {
+        "type": "string",
+        "enum": [
+          "large",
+          "default",
+          "small",
+          "none"
+        ],
+        "default": "default"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "mainComponents",
+    "asideComponents"
+  ]
+}

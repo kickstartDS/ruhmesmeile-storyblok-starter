@@ -1,0 +1,323 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "classes": [
+              "c-button",
+              "c-button--small",
+              "c-button--solid",
+              "dsa-button"
+            ],
+            "element": "button",
+            "instanceOf": "button",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "contract-defaults-eventfilter--contract-default",
+              "event-event-filter--default"
+            ],
+            "path": "root/buttons/button",
+            "presence": "repeated",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "dsa-event-filter__buttons"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/buttons",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-text-field"
+                ],
+                "element": "div",
+                "instanceOf": "text-field",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-eventfilter--contract-default",
+                  "event-event-filter--default"
+                ],
+                "path": "root/item/date-picker/text-field",
+                "presence": "repeated",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-event-filter__date-picker"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/item/date-picker",
+            "presence": "always",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-event-filter__item"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-eventfilter--contract-default",
+          "event-event-filter--default"
+        ],
+        "path": "root/item",
+        "presence": "repeated",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-event-filter__topic"
+        ],
+        "element": "span",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-eventfilter--contract-default",
+          "event-event-filter--default"
+        ],
+        "path": "root/topic",
+        "presence": "repeated",
+        "role": "text"
+      }
+    ],
+    "classes": [
+      "dsa-event-filter"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "applyButton": {
+        "role": "content",
+        "type": "object"
+      },
+      "categories": {
+        "role": "content",
+        "type": "object"
+      },
+      "datePicker": {
+        "role": "content",
+        "type": "object"
+      },
+      "resetButton": {
+        "role": "content",
+        "type": "object"
+      }
+    },
+    "required": [],
+    "schema": "./event-filter.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "applyButton",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "categories",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "datePicker",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "resetButton",
+      "proven": false
+    }
+  ],
+  "component": "Event Filter",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "event-filter",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 7,
+      "total": 7
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "applyButton": {
+        "source": "schema-default",
+        "value": {
+          "label": "Filter Appointments"
+        }
+      },
+      "categories": {
+        "source": "schema-default",
+        "value": {
+          "categoryCheckboxes": [],
+          "title": "Categories",
+          "toggle": true
+        }
+      },
+      "datePicker": {
+        "source": "schema-default",
+        "value": {
+          "dateFromInput": {
+            "label": "From",
+            "placeholder": "Select a date"
+          },
+          "dateToInput": {
+            "label": "To",
+            "placeholder": "Select a date"
+          },
+          "title": "Find Appointment",
+          "toggle": true
+        }
+      },
+      "resetButton": {
+        "source": "schema-default",
+        "value": {
+          "label": "Reset Filters"
+        }
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-eventfilter--contract-default.png",
+      "story": "contract-defaults-eventfilter--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 506,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/buttons": {
+        "box": {
+          "height": 109,
+          "width": 1398
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "13.7152px"
+        }
+      },
+      "root/buttons/button": {
+        "box": {
+          "height": 48,
+          "width": 1398
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/item": {
+        "box": {
+          "height": 178,
+          "width": 1398
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/item/date-picker": {
+        "box": {
+          "height": 136,
+          "width": 1336
+        }
+      },
+      "root/item/date-picker/text-field": {
+        "box": {
+          "height": 68,
+          "width": 1336
+        }
+      },
+      "root/topic": {
+        "box": {
+          "height": 26,
+          "width": 1398
+        }
+      }
+    }
+  },
+  "description": "Event filter component for filtering events based on date and categories.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:456c9c0d13031cfb",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/event-event-filter--default.png",
+        "story": "event-event-filter--default"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 694,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "506.141px",
+              "to": "694.312px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--search-result"
+                ],
+                "element": "div",
+                "instanceOf": "search-result",
+                "namedBy": "slot-boundary",
+                "path": "root/child-2/child-1/search-result",
+                "presence": "always",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "lazyload"
+            ],
+            "element": "li",
+            "namedBy": "position",
+            "path": "root/child-2/child-1",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "dsa-pagination__link"
+            ],
+            "element": "a",
+            "namedBy": "bem-class",
+            "path": "root/child-2/link",
+            "presence": "always",
+            "role": "control"
+          },
+          {
+            "classes": [
+              "dsa-search-result-match"
+            ],
+            "element": "a",
+            "instanceOf": "search-result-match",
+            "namedBy": "slot-boundary",
+            "path": "root/child-2/search-result-match",
+            "presence": "always",
+            "role": "slot"
+          }
+        ],
+        "classes": [],
+        "element": "div",
+        "namedBy": "position",
+        "path": "root/child-2",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "classes": [
+              "c-button",
+              "c-button--solid",
+              "dsa-button"
+            ],
+            "element": "button",
+            "instanceOf": "button",
+            "namedBy": "slot-boundary",
+            "path": "root/nav/button",
+            "presence": "always",
+            "role": "slot"
+          },
+          {
+            "classes": [
+              "dsa-pagination"
+            ],
+            "element": "div",
+            "instanceOf": "pagination",
+            "namedBy": "slot-boundary",
+            "path": "root/nav/pagination",
+            "presence": "always",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "dsa-search-form__nav"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/nav",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-search-form__results"
+        ],
+        "element": "ol",
+        "namedBy": "bem-class",
+        "path": "root/results",
+        "presence": "always",
+        "role": "container"
+      },
+      {
+        "classes": [
+          "dsa-search-bar"
+        ],
+        "element": "div",
+        "instanceOf": "search-bar",
+        "namedBy": "slot-boundary",
+        "path": "root/search-bar",
+        "presence": "always",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "dsa-search-form"
+    ],
+    "element": "form",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "component": {
+        "default": "dsa.search-form",
+        "role": "content",
+        "type": "string"
+      },
+      "moreButtonLabel": {
+        "default": "View all results",
+        "role": "content",
+        "type": "string"
+      },
+      "result": {
+        "role": "content",
+        "type": "object"
+      },
+      "resultPerPage": {
+        "default": 10,
+        "role": "content",
+        "type": "number"
+      }
+    },
+    "required": [],
+    "schema": "./search-form.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "component",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "moreButtonLabel",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "result",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "resultPerPage",
+      "proven": false
+    }
+  ],
+  "component": "Search Form",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "search-form",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 1,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 11,
+      "total": 11
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "component": {
+        "source": "schema-default",
+        "value": "dsa.search-form"
+      },
+      "moreButtonLabel": {
+        "source": "schema-default",
+        "value": "View all results"
+      },
+      "result": {
+        "source": "schema-default",
+        "value": {
+          "imageColSize": "small",
+          "showLink": true
+        }
+      },
+      "resultPerPage": {
+        "source": "schema-default",
+        "value": 10
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-searchform--contract-default.png",
+      "story": "contract-defaults-searchform--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 90,
+          "width": 1440
+        }
+      },
+      "root/child-2": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-2/child-1": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "display": "list-item"
+        }
+      },
+      "root/child-2/child-1/search-result": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/child-2/link": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/child-2/search-result-match": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/nav": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        }
+      },
+      "root/nav/button": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "alignItems": "center",
+          "justifyContent": "center"
+        }
+      },
+      "root/nav/pagination": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "gap": "8.8965px",
+          "justifyContent": "center"
+        }
+      },
+      "root/results": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "30.8032px"
+        }
+      },
+      "root/search-bar": {
+        "box": {
+          "height": 74,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Search form component for submitting search queries and displaying search results.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:86d1723c0891482e",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

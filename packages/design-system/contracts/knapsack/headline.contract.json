@@ -1,0 +1,70 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "headline",
+  "component": "Headline",
+  "description": "Component used for headlines",
+  "props": {
+    "properties": {
+      "align": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center",
+          "right"
+        ]
+      },
+      "className": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "level": {
+        "type": "string",
+        "enum": [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "p"
+        ],
+        "default": "h2"
+      },
+      "spaceAfter": {
+        "type": "string",
+        "enum": [
+          "minimum",
+          "small",
+          "large"
+        ],
+        "default": "small"
+      },
+      "style": {
+        "type": "string",
+        "enum": [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "p"
+        ],
+        "default": "h2"
+      },
+      "sub": {
+        "type": "string"
+      },
+      "switchOrder": {
+        "type": "boolean",
+        "default": false
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "level",
+      "text"
+    ],
+    "additionalProperties": false
+  }
+}

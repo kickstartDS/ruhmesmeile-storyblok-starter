@@ -1,8 +1,39 @@
 import { TOKEN_FILES } from "./constants.js";
 import type { Tool } from "./types.js";
+import { contractsDir } from "./contracts.js";
 
 /**
- * All 29 MCP tool definitions for the Design Tokens server.
+ * `get_token_usage` only works when a contract set is configured, so it is
+ * withheld from the advertised list otherwise. Advertising it would put the
+ * contract vocabulary into every arm's context and invite calls that can only
+ * report "not available".
+ */
+const TOKEN_USAGE_TOOL: Tool = {
+  name: "get_token_usage",
+  description: `Find where a design token is actually used: which components, which parts, and which props produce it.
+
+Use this when you need to:
+- Change a token safely, having seen everything it affects
+- Check whether a token is dead (exists but bound to nothing)
+- Work backwards from a token to the prop that selects it (e.g. which \`variant\` value yields --dsa-button_primary--background-color)
+
+Backed by the published Component Contracts, which join each component's API to its rendered DOM and its tokens. Matches exact token names and templated ones such as --dsa-button_{variant}--background-color.`,
+  inputSchema: {
+    type: "object" as const,
+    properties: {
+      token: {
+        type: "string",
+        description:
+          "Token name to look up, e.g. --dsa-button_primary--background-color",
+      },
+    },
+    required: ["token"],
+  },
+};
+
+/**
+ * All 30 MCP tool definitions for the Design Tokens server — 29 base plus
+ * `get_token_usage`, which is advertised only when a contract set is configured.
  *
  * `get_token_architecture` is deliberately first. Measured against the eval
  * campaign, this server was attached to 57 trials and called in 6 of them,
@@ -827,5 +858,6 @@ Returns the layer structure with live counts, examples, and the rules that decid
         },
       },
     },
+    ...(contractsDir() ? [TOKEN_USAGE_TOOL] : []),
   ];
 }

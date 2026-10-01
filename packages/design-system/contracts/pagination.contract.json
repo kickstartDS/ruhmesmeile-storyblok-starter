@@ -1,0 +1,339 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "classes": [
+              "icon"
+            ],
+            "element": "svg",
+            "namedBy": "tag",
+            "path": "root/link/icon",
+            "presence": "always",
+            "role": "glyph"
+          }
+        ],
+        "classes": [
+          "dsa-pagination__link",
+          "dsa-pagination__link--icon",
+          "dsa-pagination__link--skip-back"
+        ],
+        "element": "a",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-pagination--contract-default",
+          "corporate-pagination--default"
+        ],
+        "path": "root/link",
+        "presence": "repeated",
+        "role": "control"
+      },
+      {
+        "children": [
+          {
+            "classes": [
+              "dsa-pagination__link"
+            ],
+            "element": "a",
+            "gate": {
+              "prop": "pages",
+              "when": "non-empty"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "corporate-pagination--default"
+            ],
+            "path": "root/pages/link",
+            "presence": "repeated",
+            "role": "control"
+          }
+        ],
+        "classes": [
+          "dsa-pagination__pages"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/pages",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-pagination"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-pagination--background",
+      "--dsa-pagination--background_active",
+      "--dsa-pagination--background_active_hover",
+      "--dsa-pagination--background_hover",
+      "--dsa-pagination--border",
+      "--dsa-pagination--border-radius",
+      "--dsa-pagination--color",
+      "--dsa-pagination--color_active",
+      "--dsa-pagination--color_active_hover",
+      "--dsa-pagination--color_hover",
+      "--dsa-pagination--font",
+      "--dsa-pagination--gap",
+      "--dsa-pagination--padding",
+      "--dsa-pagination--width",
+      "--dsa-pagination__icon--size"
+    ]
+  },
+  "api": {
+    "props": {
+      "ariaLabels": {
+        "role": "content",
+        "type": "object"
+      },
+      "pages": {
+        "role": "composition",
+        "type": "array"
+      },
+      "truncate": {
+        "role": "appearance",
+        "type": "boolean"
+      }
+    },
+    "required": [],
+    "schema": "./pagination.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "prop": "truncate",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "ariaLabels",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/pages/link"
+      ],
+      "prop": "pages"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "truncate"
+    }
+  ],
+  "component": "Pagination",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "active",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          12
+        ],
+        "part": "root/pages/link",
+        "prop": "pages"
+      }
+    ]
+  },
+  "contractId": "pagination",
+  "coverage": {
+    "axes": {
+      "truncate": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "pages"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 4,
+      "total": 5
+    },
+    "score": 0,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "ariaLabels": {
+        "source": "schema-default",
+        "value": {
+          "goToPage": "Go to page",
+          "nextPage": "Go to next page",
+          "previousPage": "Go to previous page",
+          "skipToFirstPage": "Skip to first page",
+          "skipToLastPage": "Skip to last page"
+        }
+      },
+      "pages": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-pagination--contract-default.png",
+      "story": "contract-defaults-pagination--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 48,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "gap": "8.8965px",
+          "justifyContent": "center"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-pagination--background"
+          },
+          "border": {
+            "computed": "0px none rgb(0, 0, 0)",
+            "resolves": "--ks-border-width-default",
+            "token": "--dsa-pagination--border"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-interface-interactive",
+            "token": "--dsa-pagination--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-s",
+            "token": "--dsa-pagination--font"
+          },
+          "gap": {
+            "computed": "8.8965px 8.8965px",
+            "resolves": "--ks-spacing-stack-xs",
+            "token": "--dsa-pagination--gap"
+          },
+          "width": {
+            "computed": "1440px",
+            "resolves": null,
+            "token": "--dsa-pagination--width"
+          }
+        }
+      },
+      "root/link": {
+        "box": {
+          "height": 48,
+          "width": 48
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center"
+        }
+      },
+      "root/link/icon": {
+        "box": {
+          "height": 20,
+          "width": 20
+        }
+      },
+      "root/pages": {
+        "box": {
+          "height": 0,
+          "width": 0
+        },
+        "layout": {
+          "display": "contents"
+        }
+      }
+    }
+  },
+  "description": "Pagination component for navigating through pages of content.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:e285e619d28ac27b",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-pagination--default.png",
+        "story": "corporate-pagination--default"
+      },
+      "parts": {
+        "root/link": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          }
+        },
+        "root/pages/link": {
+          "box": {
+            "height": 48,
+            "width": 48
+          },
+          "classes": [
+            "dsa-pagination__link"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

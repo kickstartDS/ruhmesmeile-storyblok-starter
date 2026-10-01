@@ -42,5 +42,8 @@ env:
   clear:
     MCP_TRANSPORT: http
     MCP_PORT: 8080
+    # The component contracts the image carries at /prod/component-builder-mcp/contracts.
+    # Unset, the contract tools are withheld rather than advertised and failing.
+    DESIGN_SYSTEM_CONTRACTS_DIR: /prod/component-builder-mcp/contracts
   secret:
     - MCP_JWT_SECRET

@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Footer",
+  "default": {
+    "description": "The footer component has a clean and structured appearance, featuring a white background with rounded corners that give it a modern look. It includes subtle horizontal lines that likely separate different sections, such as navigation links or social media icons. The overall design is minimalistic, with a focus on clarity and organization.",
+    "from": "img/screenshots/contract-defaults-footer--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "layout-footer--footer",
+      "when": {},
+      "difference": "This variant of the footer component is significantly taller, allowing for more content. It now includes a visible logo, copyright information, and a legal link at the bottom. Additionally, there are new columns with headings and navigation links, enhancing the footer's functionality and informational capacity.",
+      "from": "img/screenshots/layout-footer--footer.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:31.543Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-footer--contract-default.png": "sha256:d197cb568c733810",
+        "img/screenshots/layout-footer--footer.png": "sha256:8d572573e38ffe26"
+      },
+      "contract": "sha256:17384f4fa532ff67d4d10c9da5a658b261767fe2751757248f6d000cc6d3e190"
+    }
+  }
+}

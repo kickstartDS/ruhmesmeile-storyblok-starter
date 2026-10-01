@@ -1,0 +1,28 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "content-nav",
+  "component": "Content Nav",
+  "description": "Content navigation component for navigating related topics or sections within content.",
+  "props": {
+    "properties": {
+      "image": {
+        "type": "object"
+      },
+      "initiallyShown": {
+        "type": "number",
+        "default": 4
+      },
+      "links": {
+        "type": "array"
+      },
+      "topic": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "links"
+  ]
+}

@@ -1,0 +1,552 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [],
+        "element": "p",
+        "gate": {
+          "prop": "html",
+          "when": "truthy"
+        },
+        "namedBy": "position",
+        "observedIn": [
+          "components-html--html",
+          "components-html--with-consent",
+          "components-html--with-script"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "text"
+      },
+      {
+        "children": [
+          {
+            "classes": [
+              "c-button",
+              "c-button--solid",
+              "dsa-button",
+              "dsa-html__consent-button"
+            ],
+            "element": "button",
+            "gate": {
+              "prop": "consent",
+              "when": "truthy"
+            },
+            "instanceOf": "button",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-html--with-consent",
+              "components-html--with-script"
+            ],
+            "path": "root/consent/button",
+            "presence": "conditional",
+            "role": "slot"
+          },
+          {
+            "classes": [
+              "l-container",
+              "l-container--rich-text"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "consentText",
+              "when": "truthy"
+            },
+            "instanceOf": "rich-text",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-html--with-consent"
+            ],
+            "path": "root/consent/rich-text",
+            "presence": "conditional",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "dsa-html__consent",
+          "dsa-html__consent--sixteen-to-nine"
+        ],
+        "element": "div",
+        "gate": {
+          "prop": "consent",
+          "when": "truthy"
+        },
+        "namedBy": "bem-class",
+        "observedIn": [
+          "components-html--with-consent",
+          "components-html--with-script"
+        ],
+        "path": "root/consent",
+        "presence": "conditional",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-html",
+      "dsa-html--sixteen-to-nine",
+      "test"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-html__consent--background",
+      "--dsa-html__consent--color",
+      "--dsa-html__consent--font",
+      "--dsa-html__consent--font-weight"
+    ]
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "component": {
+        "role": "content",
+        "type": "string"
+      },
+      "consent": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "consentAspectRatio": {
+        "default": "16:9",
+        "role": "content",
+        "type": "enum",
+        "values": [
+          "16:9",
+          "16:10",
+          "4:3",
+          "1:1"
+        ]
+      },
+      "consentBackgroundImage": {
+        "format": "image",
+        "role": "content",
+        "type": "string"
+      },
+      "consentButtonLabel": {
+        "role": "content",
+        "type": "string"
+      },
+      "consentText": {
+        "role": "content",
+        "type": "string"
+      },
+      "html": {
+        "role": "content",
+        "type": "string"
+      },
+      "inverted": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      }
+    },
+    "required": [],
+    "schema": "./html.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "consent",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "inverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "component",
+      "proven": false
+    },
+    {
+      "affects": [
+        "backgroundImage",
+        "borderTopColor",
+        "color",
+        "display",
+        "height",
+        "marginBottom",
+        "marginTop",
+        "width"
+      ],
+      "mechanism": "presence",
+      "parts": [
+        "root/consent",
+        "root/consent/button"
+      ],
+      "prop": "consent"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "consentAspectRatio",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "consentBackgroundImage",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "consentButtonLabel",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/consent/rich-text"
+      ],
+      "prop": "consentText"
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/child-1"
+      ],
+      "prop": "html"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "inverted"
+    }
+  ],
+  "component": "Html",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "html",
+  "coverage": {
+    "axes": {
+      "consent": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      },
+      "inverted": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 4,
+      "proven": 4
+    },
+    "parts": {
+      "conditional": 4,
+      "inDefault": 1,
+      "total": 5
+    },
+    "score": 0.75,
+    "stories": {
+      "failed": 0,
+      "observed": 3
+    }
+  },
+  "default": {
+    "configuration": {
+      "consent": {
+        "source": "schema-default",
+        "value": false
+      },
+      "consentAspectRatio": {
+        "source": "schema-default",
+        "value": "16:9"
+      },
+      "inverted": {
+        "source": "schema-default",
+        "value": false
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-html--contract-default.png",
+      "story": "contract-defaults-html--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 810,
+          "width": 1440
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": "--ks-color-fg-inverted-alpha-2",
+            "token": "--dsa-html__consent--background"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-display",
+            "token": "--dsa-html__consent--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-m",
+            "token": "--dsa-html__consent--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-regular",
+            "token": "--dsa-html__consent--font-weight"
+          }
+        }
+      }
+    }
+  },
+  "description": "Display raw HTML.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:d1b703f3131c735c",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-html--html.png",
+        "story": "components-html--html"
+      },
+      "parts": {
+        "root/child-1": {
+          "box": {
+            "height": 18,
+            "width": 1440
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-html--with-consent.png",
+        "story": "components-html--with-consent"
+      },
+      "parts": {
+        "root/child-1": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "element": {
+            "from": "p",
+            "to": "template"
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(0, 0, 0)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(0, 0, 0)"
+            },
+            "display": {
+              "from": "block",
+              "to": "none"
+            },
+            "height": {
+              "from": "18.3906px",
+              "to": "auto"
+            },
+            "marginBottom": {
+              "from": "16px",
+              "to": "0px"
+            },
+            "marginTop": {
+              "from": "16px",
+              "to": "0px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "auto"
+            }
+          }
+        },
+        "root/consent": {
+          "box": {
+            "height": 810,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-html__consent",
+            "dsa-html__consent--sixteen-to-nine"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "13.7152px",
+            "justifyContent": "center"
+          }
+        },
+        "root/consent/button": {
+          "box": {
+            "height": 54,
+            "width": 89
+          },
+          "classes": [
+            "c-button",
+            "c-button--solid",
+            "dsa-button",
+            "dsa-html__consent-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/consent/rich-text": {
+          "box": {
+            "height": 27,
+            "width": 393
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "consent": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-html--with-script.png",
+        "story": "components-html--with-script"
+      },
+      "parts": {
+        "root/child-1": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "element": {
+            "from": "p",
+            "to": "template"
+          },
+          "styles": {
+            "borderTopColor": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(0, 0, 0)"
+            },
+            "color": {
+              "from": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)",
+              "to": "rgb(0, 0, 0)"
+            },
+            "display": {
+              "from": "block",
+              "to": "none"
+            },
+            "height": {
+              "from": "18.3906px",
+              "to": "auto"
+            },
+            "marginBottom": {
+              "from": "16px",
+              "to": "0px"
+            },
+            "marginTop": {
+              "from": "16px",
+              "to": "0px"
+            },
+            "width": {
+              "from": "1440px",
+              "to": "auto"
+            }
+          }
+        },
+        "root/consent": {
+          "styles": {
+            "backgroundImage": {
+              "from": "url(\"/img/02.jpg\")",
+              "to": "none"
+            }
+          }
+        },
+        "root/consent/button": {
+          "box": {
+            "height": 54,
+            "width": 136
+          },
+          "styles": {
+            "width": {
+              "from": "89.0938px",
+              "to": "136.094px"
+            }
+          }
+        }
+      },
+      "when": {
+        "consent": true
+      }
+    }
+  ]
+}

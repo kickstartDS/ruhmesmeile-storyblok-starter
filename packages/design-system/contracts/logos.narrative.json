@@ -1,0 +1,51 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Logos",
+  "default": {
+    "description": "The component displays a set of logos centered within a rounded rectangular container. The background is a soft blue, and the logos are evenly spaced, giving a clean and organized appearance. Each logo features a colorful, circular design above the text \"Logoipsum NETWORK,\" creating a professional and cohesive look.",
+    "from": "img/screenshots/contract-defaults-logos--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-logos--centered-with-button",
+      "when": {},
+      "difference": "In this variant, the component is significantly taller, allowing for more content. A tagline and a call-to-action button have been added below the logos, providing additional context and interaction. The overall layout remains centered, maintaining a clean and organized appearance.",
+      "from": "img/screenshots/components-logos--centered-with-button.png"
+    },
+    {
+      "story": "components-logos--left-aligned-with-text-link",
+      "when": {
+        "align": "left"
+      },
+      "difference": "In this variant, the logos are aligned to the left within a taller container, creating a more spacious layout. A call-to-action text and link appear below the logos, along with a tagline, adding informative and interactive elements to the design. The overall appearance is more detailed and engaging compared to the default.",
+      "from": "img/screenshots/components-logos--left-aligned-with-text-link.png"
+    },
+    {
+      "story": "components-logos--logo-row",
+      "when": {},
+      "difference": "In this variant, the height of the container and its elements has increased, giving the component a more spacious appearance. The logos are still centered, but the additional height allows for a more open and less compact presentation, enhancing the overall visual impact.",
+      "from": "img/screenshots/components-logos--logo-row.png"
+    },
+    {
+      "story": "components-logos--logo-wall",
+      "when": {},
+      "difference": "In this variant, the component is significantly taller, allowing for a more extensive display of logos. The logos are arranged in a grid format with multiple rows, and a tagline \"Our Customers\" is added above them. This creates a more comprehensive and informative presentation compared to the default.",
+      "from": "img/screenshots/components-logos--logo-wall.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:15.461Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-logos--contract-default.png": "sha256:880acf5301c98ace",
+        "img/screenshots/components-logos--centered-with-button.png": "sha256:1c15f1c3563b16f3",
+        "img/screenshots/components-logos--left-aligned-with-text-link.png": "sha256:99210b703efefef6",
+        "img/screenshots/components-logos--logo-row.png": "sha256:631ad74ddc59371e",
+        "img/screenshots/components-logos--logo-wall.png": "sha256:6a55800a5603b045"
+      },
+      "contract": "sha256:e0ef3b2be8be6ceeb1313d2428ddef9269fd1ab7897ef3aa1d611a8286a77d1b"
+    }
+  }
+}

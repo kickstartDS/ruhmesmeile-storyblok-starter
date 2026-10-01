@@ -1,0 +1,24 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-filter",
+  "component": "Event Filter",
+  "description": "Event filter component for filtering events based on date and categories.",
+  "props": {
+    "properties": {
+      "applyButton": {
+        "type": "object"
+      },
+      "categories": {
+        "type": "object"
+      },
+      "datePicker": {
+        "type": "object"
+      },
+      "resetButton": {
+        "type": "object"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

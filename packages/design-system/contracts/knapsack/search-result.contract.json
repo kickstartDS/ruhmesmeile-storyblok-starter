@@ -1,0 +1,43 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "search-result",
+  "component": "Search Result",
+  "description": "Search result component for displaying individual search results.",
+  "props": {
+    "properties": {
+      "imageColSize": {
+        "type": "string",
+        "enum": [
+          "none",
+          "small",
+          "large"
+        ],
+        "default": "small"
+      },
+      "initialMatch": {
+        "type": "string"
+      },
+      "matches": {
+        "type": "array"
+      },
+      "previewImage": {
+        "type": "string"
+      },
+      "showLink": {
+        "type": "boolean",
+        "default": true
+      },
+      "title": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "matches"
+  ]
+}

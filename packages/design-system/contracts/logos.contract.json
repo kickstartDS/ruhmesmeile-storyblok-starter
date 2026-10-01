@@ -1,0 +1,803 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "c-button",
+                      "c-button--clear",
+                      "dsa-button"
+                    ],
+                    "element": "button",
+                    "instanceOf": "button",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-logos--centered-with-button"
+                    ],
+                    "path": "root/child-1/logos--align-center/cta/button",
+                    "presence": "conditional",
+                    "role": "slot"
+                  },
+                  {
+                    "classes": [
+                      "dsa-logos__cta__text"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-logos--centered-with-button"
+                    ],
+                    "path": "root/child-1/logos--align-center/cta/text",
+                    "presence": "conditional",
+                    "role": "text"
+                  }
+                ],
+                "classes": [
+                  "dsa-logos__cta"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-logos--centered-with-button"
+                ],
+                "path": "root/child-1/logos--align-center/cta",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--logo-tiles"
+                ],
+                "element": "div",
+                "instanceOf": "logo-tiles",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-logos--contract-default",
+                  "components-logos--centered-with-button",
+                  "components-logos--logo-row",
+                  "components-logos--logo-wall"
+                ],
+                "path": "root/child-1/logos--align-center/logo-tiles",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-logos__tagline"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-logos--centered-with-button",
+                  "components-logos--logo-row",
+                  "components-logos--logo-wall"
+                ],
+                "path": "root/child-1/logos--align-center/tagline",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "dsa-logos",
+              "dsa-logos--align-center"
+            ],
+            "element": "div",
+            "instanceOf": "logos--align-center",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "contract-defaults-logos--contract-default",
+              "components-logos--centered-with-button",
+              "components-logos--logo-row",
+              "components-logos--logo-wall"
+            ],
+            "path": "root/child-1/logos--align-center",
+            "presence": "conditional",
+            "role": "slot",
+            "tokens": [
+              "--dsa-logos-gap",
+              "--dsa-logos__grid--gap-horizontal",
+              "--dsa-logos__grid--gap-vertical",
+              "--dsa-logos__grid_mobile--cols",
+              "--dsa-logos__grid_tablet--cols",
+              "--dsa-logos__tagline--color",
+              "--dsa-logos__tagline--font",
+              "--dsa-logos__tagline--font-weight"
+            ]
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "classes": [
+                          "dsa-logos__cta__link"
+                        ],
+                        "element": "a",
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "components-logos--left-aligned-with-text-link"
+                        ],
+                        "path": "root/child-1/logos--align-left/cta/text/link",
+                        "presence": "conditional",
+                        "role": "control"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-logos__cta__text"
+                    ],
+                    "element": "div",
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "components-logos--left-aligned-with-text-link"
+                    ],
+                    "path": "root/child-1/logos--align-left/cta/text",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-logos__cta"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-logos--left-aligned-with-text-link"
+                ],
+                "path": "root/child-1/logos--align-left/cta",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--logo-tiles"
+                ],
+                "element": "div",
+                "instanceOf": "logo-tiles",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "components-logos--left-aligned-with-text-link"
+                ],
+                "path": "root/child-1/logos--align-left/logo-tiles",
+                "presence": "conditional",
+                "role": "slot"
+              },
+              {
+                "classes": [
+                  "dsa-logos__tagline"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-logos--left-aligned-with-text-link"
+                ],
+                "path": "root/child-1/logos--align-left/tagline",
+                "presence": "conditional",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "dsa-logos",
+              "dsa-logos--align-left"
+            ],
+            "element": "div",
+            "instanceOf": "logos--align-left",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-logos--left-aligned-with-text-link"
+            ],
+            "path": "root/child-1/logos--align-left",
+            "presence": "conditional",
+            "role": "slot",
+            "tokens": [
+              "--dsa-logos-gap",
+              "--dsa-logos__grid--gap-horizontal",
+              "--dsa-logos__grid--gap-vertical",
+              "--dsa-logos__grid_mobile--cols",
+              "--dsa-logos__grid_tablet--cols",
+              "--dsa-logos__tagline--color",
+              "--dsa-logos__tagline--font",
+              "--dsa-logos__tagline--font-weight"
+            ]
+          }
+        ],
+        "classes": [
+          "l-container",
+          "l-container--logos"
+        ],
+        "element": "div",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "align": {
+        "default": "center",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "left",
+          "center"
+        ]
+      },
+      "cta": {
+        "role": "content",
+        "type": "object"
+      },
+      "logo": {
+        "role": "composition",
+        "type": "array"
+      },
+      "logosPerRow": {
+        "role": "content",
+        "type": "integer"
+      },
+      "tagline": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "logos"
+    ],
+    "schema": "./logos.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "center",
+      "prop": "align",
+      "values": [
+        {
+          "api": "left",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "center",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "affects": [
+        "color",
+        "font",
+        "fontWeight",
+        "height"
+      ],
+      "mechanism": "token-swap",
+      "parts": [
+        "root",
+        "root/child-1"
+      ],
+      "prop": "align"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "cta",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "logo"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "logosPerRow",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "tagline",
+      "proven": false
+    }
+  ],
+  "component": "Logos",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "alt",
+          "src"
+        ],
+        "min": 1,
+        "observedCounts": [
+          2,
+          6,
+          12
+        ],
+        "part": "root",
+        "prop": "logo"
+      }
+    ]
+  },
+  "contractId": "logos",
+  "coverage": {
+    "axes": {
+      "align": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 3
+    },
+    "combinations": {
+      "possible": 5,
+      "proven": 5
+    },
+    "parts": {
+      "conditional": 12,
+      "inDefault": 4,
+      "total": 14
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "align": {
+        "source": "schema-default",
+        "value": "center"
+      },
+      "cta": {
+        "source": "schema-default",
+        "value": {
+          "link": "#",
+          "style": "text",
+          "toggle": false
+        }
+      },
+      "logo": {
+        "source": "example",
+        "value": [
+          {
+            "alt": "Logo 1",
+            "src": "img/logos/logoipsum-344.svg"
+          },
+          {
+            "alt": "Logo 1",
+            "src": "img/logos/logoipsum-344.svg"
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-logos--contract-default.png",
+      "story": "contract-defaults-logos--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 98,
+          "width": 1440
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 98,
+          "width": 1440
+        }
+      },
+      "root/child-1/logos--align-center": {
+        "box": {
+          "height": 98,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "21.1438px"
+        },
+        "styles": {
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-display",
+            "token": "--dsa-logos__tagline--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-display-l",
+            "token": "--dsa-logos__tagline--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-logos__tagline--font-weight"
+          }
+        }
+      },
+      "root/child-1/logos--align-center/logo-tiles": {
+        "box": {
+          "height": 98,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "Component used to display a set of logos",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:f366bddbbdb9ff3a",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-logos--centered-with-button.png",
+        "story": "components-logos--centered-with-button"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 475,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "474.5px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 475,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "474.5px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center": {
+          "box": {
+            "height": 475,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "474.5px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center/cta": {
+          "box": {
+            "height": 129,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-logos__cta"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "21.1438px"
+          }
+        },
+        "root/child-1/logos--align-center/cta/button": {
+          "box": {
+            "height": 54,
+            "width": 216
+          },
+          "classes": [
+            "c-button",
+            "c-button--clear",
+            "dsa-button"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/child-1/logos--align-center/cta/text": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "dsa-logos__cta__text"
+          ],
+          "introduced": true
+        },
+        "root/child-1/logos--align-center/logo-tiles": {
+          "box": {
+            "height": 272,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "271.547px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center/tagline": {
+          "box": {
+            "height": 31,
+            "width": 613
+          },
+          "classes": [
+            "dsa-logos__tagline"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-logos--left-aligned-with-text-link.png",
+        "story": "components-logos--left-aligned-with-text-link"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 399,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "399.281px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 399,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "399.281px"
+            }
+          }
+        },
+        "root/child-1/logos--align-left": {
+          "box": {
+            "height": 399,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-logos",
+            "dsa-logos--align-left"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "21.1438px"
+          },
+          "styles": {
+            "color": {
+              "computed": "rgb(0, 0, 0)",
+              "resolves": "--ks-text-color-display",
+              "token": "--dsa-logos__tagline--color"
+            },
+            "font": {
+              "computed": "400 16px 18.4px Times New Roman",
+              "resolves": "--ks-font-display-l",
+              "token": "--dsa-logos__tagline--font"
+            },
+            "fontWeight": {
+              "computed": "400",
+              "resolves": "--ks-font-weight-semi-bold",
+              "token": "--dsa-logos__tagline--font-weight"
+            }
+          }
+        },
+        "root/child-1/logos--align-left/cta": {
+          "box": {
+            "height": 54,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-logos__cta"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "21.1438px"
+          }
+        },
+        "root/child-1/logos--align-left/cta/text": {
+          "box": {
+            "height": 54,
+            "width": 613
+          },
+          "classes": [
+            "dsa-logos__cta__text"
+          ],
+          "introduced": true
+        },
+        "root/child-1/logos--align-left/cta/text/link": {
+          "box": {
+            "height": 22,
+            "width": 159
+          },
+          "classes": [
+            "dsa-logos__cta__link"
+          ],
+          "introduced": true
+        },
+        "root/child-1/logos--align-left/logo-tiles": {
+          "box": {
+            "height": 272,
+            "width": 1440
+          },
+          "classes": [
+            "l-container",
+            "l-container--logo-tiles"
+          ],
+          "introduced": true
+        },
+        "root/child-1/logos--align-left/tagline": {
+          "box": {
+            "height": 31,
+            "width": 613
+          },
+          "classes": [
+            "dsa-logos__tagline"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "align": "left"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-logos--logo-row.png",
+        "story": "components-logos--logo-row"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 151,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "150.703px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 151,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "150.703px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center": {
+          "box": {
+            "height": 151,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "150.703px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-logos--logo-wall.png",
+        "story": "components-logos--logo-wall"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 592,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "591.891px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 592,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "591.891px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center": {
+          "box": {
+            "height": 592,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "591.891px"
+            }
+          }
+        },
+        "root/child-1/logos--align-center/logo-tiles": {
+          "box": {
+            "height": 539,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "98.2031px",
+              "to": "539.391px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

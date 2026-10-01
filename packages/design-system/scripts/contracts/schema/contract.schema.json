@@ -1,0 +1,408 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.kickstartds.com/component-contract.schema.json",
+  "title": "kickstartDS Component Contract",
+  "description": "A derived, verifiable per-component artifact joining the API, DOM and token vocabularies. See docs/internal/prd/kickstartds-component-contracts-prd.md. Where this file and Appendix B of the PRD disagree, this file wins.",
+  "type": "object",
+  "required": ["$format", "contractId", "component", "generated", "api", "anatomy", "default"],
+  "additionalProperties": false,
+  "properties": {
+    "$format": { "const": "kickstartds/component-contract@1" },
+    "contractId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "component": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "generated": { "$ref": "#/$defs/Generated" },
+    "api": { "$ref": "#/$defs/Api" },
+    "anatomy": { "$ref": "#/$defs/Part" },
+    "axes": { "type": "array", "items": { "$ref": "#/$defs/Axis" } },
+    "default": { "$ref": "#/$defs/State" },
+    "variants": { "type": "array", "items": { "$ref": "#/$defs/Variant" } },
+    "bindings": { "type": "array", "items": { "$ref": "#/$defs/Binding" } },
+    "composition": { "$ref": "#/$defs/Composition" },
+    "coverage": { "$ref": "#/$defs/Coverage" },
+    "issues": { "type": "array", "items": { "$ref": "#/$defs/Issue" } }
+  },
+  "$defs": {
+    "Generated": {
+      "type": "object",
+      "required": ["inputs", "viewport", "theme"],
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "type": "object",
+          "additionalProperties": { "type": ["string", "null"] }
+        },
+        "viewport": {
+          "type": "object",
+          "required": ["width", "height"],
+          "additionalProperties": false,
+          "properties": {
+            "width": { "type": "integer" },
+            "height": { "type": "integer" }
+          }
+        },
+        "theme": { "type": "string" }
+      }
+    },
+    "Api": {
+      "type": "object",
+      "required": ["props"],
+      "additionalProperties": false,
+      "properties": {
+        "schema": { "type": "string" },
+        "required": { "type": "array", "items": { "type": "string" } },
+        "props": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/ApiProp" }
+        }
+      }
+    },
+    "ApiProp": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "enum": ["string", "number", "integer", "boolean", "array", "object", "enum"]
+        },
+        "role": {
+          "enum": ["content", "appearance", "state", "behaviour", "layout", "composition"]
+        },
+        "axis": { "type": "boolean" },
+        "required": { "type": "boolean" },
+        "format": { "type": "string" },
+        "values": { "type": "array" },
+        "default": {}
+      }
+    },
+    "Part": {
+      "type": "object",
+      "required": ["path", "element", "role", "presence"],
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string" },
+        "element": { "type": "string" },
+        "classes": { "type": "array", "items": { "type": "string" } },
+        "role": {
+          "enum": ["container", "text", "glyph", "media", "slot", "control"]
+        },
+        "presence": { "enum": ["always", "conditional", "repeated"] },
+        "gate": { "$ref": "#/$defs/Gate" },
+        "content": { "$ref": "#/$defs/ContentBinding" },
+        "tokens": { "type": "array", "items": { "type": "string" } },
+        "observedIn": { "type": "array", "items": { "type": "string" } },
+        "namedBy": { "type": "string" },
+        "instanceOf": { "type": "string" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Part" }
+        }
+      }
+    },
+    "Gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prop": { "type": "string" },
+        "slot": { "type": "string" },
+        "when": { "type": "string" }
+      }
+    },
+    "ContentBinding": {
+      "type": "object",
+      "required": ["$binding"],
+      "additionalProperties": false,
+      "properties": { "$binding": { "type": "string" } }
+    },
+    "Axis": {
+      "type": "object",
+      "required": ["prop", "values"],
+      "additionalProperties": false,
+      "properties": {
+        "prop": { "type": "string" },
+        "default": {},
+        "values": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AxisValue" }
+        }
+      }
+    },
+    "AxisValue": {
+      "type": "object",
+      "required": ["api"],
+      "additionalProperties": false,
+      "properties": {
+        "api": {},
+        "class": { "type": ["string", "null"] },
+        "tokenSegment": { "type": ["string", "null"] },
+        "attributes": { "type": "object" },
+        "proven": { "type": "boolean" },
+        "discriminated": { "type": "boolean" },
+        "issues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/IssueCode" }
+        }
+      }
+    },
+    "IssueCode": {
+      "enum": [
+        "token-vocabulary-mismatch",
+        "class-vocabulary-mismatch",
+        "no-visual-signature"
+      ]
+    },
+    "Issue": {
+      "type": "object",
+      "required": ["code"],
+      "additionalProperties": true,
+      "properties": {
+        "code": {
+          "enum": [
+            "token-vocabulary-mismatch",
+            "class-vocabulary-mismatch",
+            "token-segment-spelling-drift",
+            "no-visual-signature"
+          ]
+        },
+        "detail": { "type": "string" },
+        "segments": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "State": {
+      "type": "object",
+      "required": ["configuration", "parts", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/ConfigurationValue" }
+        },
+        "parts": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/PartState" }
+        },
+        "evidence": { "$ref": "#/$defs/Evidence" }
+      }
+    },
+    "ConfigurationValue": {
+      "type": "object",
+      "required": ["value", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {},
+        "source": { "enum": ["schema-default", "example", "placeholder"] }
+      }
+    },
+    "PartState": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "styles": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/StyleValue" }
+        },
+        "layout": { "type": "object" },
+        "attrs": { "type": "object" },
+        "element": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "required": ["from", "to"],
+              "additionalProperties": false,
+              "properties": {
+                "from": { "type": ["string", "null"] },
+                "to": { "type": ["string", "null"] }
+              }
+            }
+          ]
+        },
+        "box": { "$ref": "#/$defs/Box" },
+        "classes": {
+          "oneOf": [
+            { "type": "array", "items": { "type": "string" } },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "add": { "type": "array", "items": { "type": "string" } },
+                "remove": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          ]
+        },
+        "introduced": { "type": "boolean" }
+      }
+    },
+    "StyleValue": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["token", "resolves", "computed"],
+          "additionalProperties": false,
+          "properties": {
+            "token": { "type": ["string", "null"] },
+            "resolves": { "type": ["string", "null"] },
+            "computed": { "type": ["string", "null"] }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["from", "to"],
+          "additionalProperties": false,
+          "properties": {
+            "from": { "type": ["string", "null"] },
+            "to": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    "Box": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": { "type": "number" },
+        "height": { "type": "number" }
+      }
+    },
+    "Evidence": {
+      "type": "object",
+      "required": ["story"],
+      "additionalProperties": false,
+      "properties": {
+        "story": { "type": "string" },
+        "screenshot": { "type": ["string", "null"] }
+      }
+    },
+    "Variant": {
+      "type": "object",
+      "required": ["when", "parts", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "when": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "parts": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/PartState" }
+        },
+        "evidence": { "$ref": "#/$defs/Evidence" }
+      }
+    },
+    "Binding": {
+      "type": "object",
+      "required": ["prop", "mechanism", "parts"],
+      "additionalProperties": false,
+      "properties": {
+        "prop": { "type": "string" },
+        "mechanism": {
+          "enum": [
+            "content",
+            "presence",
+            "class-toggle",
+            "token-swap",
+            "attribute",
+            "element-swap",
+            "layout",
+            "none"
+          ]
+        },
+        "parts": { "type": "array", "items": { "type": "string" } },
+        "affects": { "type": "array", "items": { "type": "string" } },
+        "tokens": { "type": "array", "items": { "type": "string" } },
+        "detail": { "type": "string" },
+        "proven": { "type": "boolean" }
+      }
+    },
+    "Composition": {
+      "type": "object",
+      "required": ["slots"],
+      "additionalProperties": false,
+      "properties": {
+        "slots": { "type": "array", "items": { "$ref": "#/$defs/Slot" } }
+      }
+    },
+    "Slot": {
+      "type": "object",
+      "required": ["prop", "part"],
+      "additionalProperties": false,
+      "properties": {
+        "prop": { "type": "string" },
+        "part": { "type": "string" },
+        "min": { "type": ["integer", "null"] },
+        "max": { "type": ["integer", "null"] },
+        "itemShape": { "type": "array", "items": { "type": "string" } },
+        "accepts": { "type": "array", "items": { "type": "string" } },
+        "renders": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "component": { "type": "string" },
+            "perItem": { "type": "boolean" }
+          }
+        },
+        "observedCounts": { "type": "array", "items": { "type": "integer" } }
+      }
+    },
+    "Coverage": {
+      "type": ["object", "null"],
+      "required": ["parts", "combinations", "score", "baseline"],
+      "additionalProperties": false,
+      "properties": {
+        "axes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["total", "proven", "missing"],
+            "additionalProperties": false,
+            "properties": {
+              "total": { "type": "integer" },
+              "proven": { "type": "integer" },
+              "missing": { "type": "array" }
+            }
+          }
+        },
+        "parts": {
+          "type": "object",
+          "required": ["total", "inDefault", "conditional"],
+          "additionalProperties": false,
+          "properties": {
+            "total": { "type": "integer" },
+            "inDefault": { "type": "integer" },
+            "conditional": { "type": "integer" }
+          }
+        },
+        "combinations": {
+          "type": "object",
+          "required": ["proven", "possible"],
+          "additionalProperties": false,
+          "properties": {
+            "proven": { "type": "integer" },
+            "possible": { "type": "integer" }
+          }
+        },
+        "baseline": {
+          "type": "object",
+          "required": ["values", "fromExample", "placeholders", "emptySlots"],
+          "additionalProperties": false,
+          "properties": {
+            "values": { "type": "integer" },
+            "fromExample": { "type": "integer" },
+            "placeholders": { "type": "integer" },
+            "emptySlots": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "stories": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "observed": { "type": "integer" },
+            "failed": { "type": "integer" }
+          }
+        },
+        "score": { "type": ["number", "null"] }
+      }
+    }
+  }
+}

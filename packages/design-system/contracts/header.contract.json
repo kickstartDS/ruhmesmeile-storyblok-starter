@@ -1,0 +1,403 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "classes": [
+              "dsa-header__logo",
+              "dsa-logo"
+            ],
+            "element": "a",
+            "instanceOf": "logo",
+            "namedBy": "slot-boundary",
+            "path": "root/content/logo",
+            "presence": "always",
+            "role": "slot"
+          },
+          {
+            "classes": [
+              "dsa-nav-main"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "navItems",
+              "when": "non-empty"
+            },
+            "instanceOf": "nav-main",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "layout-header--header"
+            ],
+            "path": "root/content/nav-main",
+            "presence": "conditional",
+            "role": "slot"
+          }
+        ],
+        "classes": [
+          "dsa-header__content"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/content",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-header"
+    ],
+    "element": "header",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-header--background",
+      "--dsa-header--max-width",
+      "--dsa-header__logo--height",
+      "--dsa-header_floating--backdrop-filter",
+      "--dsa-header_floating--background"
+    ]
+  },
+  "api": {
+    "props": {
+      "dropdownInverted": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "floating": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "flyoutInverted": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "inverted": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "logo": {
+        "role": "content",
+        "type": "object"
+      },
+      "navItems": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [],
+    "schema": "./header.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "flyoutInverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "dropdownInverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "floating",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "inverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "dropdownInverted"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "floating"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "flyoutInverted"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "inverted"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "logo",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/content/nav-main"
+      ],
+      "prop": "navItems"
+    }
+  ],
+  "component": "Header",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "active",
+          "items",
+          "label",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          5
+        ],
+        "part": "root/content/nav-main",
+        "prop": "navItems"
+      }
+    ]
+  },
+  "contractId": "header",
+  "coverage": {
+    "axes": {
+      "dropdownInverted": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "floating": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "flyoutInverted": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "inverted": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "navItems"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 6
+    },
+    "combinations": {
+      "possible": 16,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 3,
+      "total": 4
+    },
+    "score": 0.5,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "dropdownInverted": {
+        "source": "schema-default",
+        "value": false
+      },
+      "floating": {
+        "source": "schema-default",
+        "value": false
+      },
+      "flyoutInverted": {
+        "source": "schema-default",
+        "value": false
+      },
+      "inverted": {
+        "source": "schema-default",
+        "value": false
+      },
+      "logo": {
+        "source": "schema-default",
+        "value": {
+          "homepageHref": "/"
+        }
+      },
+      "navItems": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-header--contract-default.png",
+      "story": "contract-defaults-header--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 82,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "justifyContent": "center"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgb(255, 255, 255) none",
+            "resolves": "--ks-background-color-default",
+            "token": "--dsa-header--background"
+          },
+          "height": {
+            "computed": "82.2812px",
+            "resolves": null,
+            "token": "--dsa-header__logo--height"
+          }
+        }
+      },
+      "root/content": {
+        "box": {
+          "height": 40,
+          "width": 1388
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/content/logo": {
+        "box": {
+          "height": 40,
+          "width": 0
+        }
+      }
+    }
+  },
+  "description": "Header layered on top by the CMS",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:df59e3cd9ed489d4",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-header--header.png",
+        "story": "layout-header--header"
+      },
+      "parts": {
+        "root/content/logo": {
+          "box": {
+            "height": 40,
+            "width": 202
+          },
+          "styles": {
+            "width": {
+              "from": "0px",
+              "to": "201.656px"
+            }
+          }
+        },
+        "root/content/nav-main": {
+          "box": {
+            "height": 38,
+            "width": 666
+          },
+          "classes": [
+            "dsa-nav-main"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -82,6 +82,28 @@ if [ "${#EVALS[@]}" -eq 0 ]; then
   exit 1
 fi
 
+# A focused chunk can name its own evals, and still gets the disk guards and the
+# per-batch completeness check that a bare `EVAL_ONLY=… pnpm eval …` drops. The
+# names are validated against the tier list, so a typo stops here rather than
+# running nothing and reporting a finished chunk.
+#
+#   EVALS_OVERRIDE=816-typography-pairing,818-component-token-layer \
+#     RUNS=8 bash bin/run-split.sh --arms cc-contracts-deepseek-default --apply
+if [ -n "${EVALS_OVERRIDE:-}" ]; then
+  IFS=',' read -r -a REQUESTED <<< "$EVALS_OVERRIDE"
+  for requested in "${REQUESTED[@]}"; do
+    found=0
+    for known in "${EVALS[@]}"; do
+      [ "$requested" = "$known" ] && { found=1; break; }
+    done
+    if [ "$found" -eq 0 ]; then
+      printf 'EVALS_OVERRIDE names an eval outside core+extra: %s\n' "$requested" >&2
+      exit 2
+    fi
+  done
+  EVALS=("${REQUESTED[@]}")
+fi
+
 free_gb() { df -BG --output=avail . | tail -1 | tr -dc '0-9'; }
 
 # How many evals the free disk can hold at peak, unclamped. This is the number
@@ -209,8 +231,8 @@ if [ "$APPLY" -eq 0 ]; then
     while [ "$i" -lt "${#EVALS[@]}" ]; do
       size="$(planned_size "$(( ${#EVALS[@]} - i ))" "$max_fit")"
       batch=("${EVALS[@]:i:size}")
-      printf 'EVAL_ONLY=%s pnpm eval %s --force\n' \
-        "$(IFS=,; printf '%s' "${batch[*]}")" "$arm"
+      printf 'EVAL_ONLY=%s EVAL_RUNS=%s pnpm eval %s --force\n' \
+        "$(IFS=,; printf '%s' "${batch[*]}")" "$RUNS" "$arm"
       i=$(( i + size ))
     done
   done
@@ -243,12 +265,15 @@ for arm in "${ARMS[@]}"; do
       "$arm" "$(( i + 1 ))" "$(( i + ${#batch[@]} ))" "${#EVALS[@]}" "$free_now"
 
     before_run="$(newest_run "$arm")"
-    EVAL_ONLY="$joined" pnpm eval "$arm" --force
+    # `RUNS` here and `EVAL_RUNS` in the experiment are the same number by
+    # construction: the batch verifier checks `$RUNS` runs per eval, so if the
+    # experiment ran a different count the check would fail on a green batch.
+    EVAL_ONLY="$joined" EVAL_RUNS="$RUNS" pnpm eval "$arm" --force
 
     if ! verify_batch "$arm" "$before_run" "${batch[@]}"; then
       printf '\nbatch incomplete on %s. stopping rather than spending into a\n' "$arm" >&2
-      printf 'broken setup. resume with:\n  EVAL_ONLY=%s pnpm eval %s --force\n' \
-        "$joined" "$arm" >&2
+      printf 'broken setup. resume with:\n  EVAL_ONLY=%s EVAL_RUNS=%s pnpm eval %s --force\n' \
+        "$joined" "$RUNS" "$arm" >&2
       exit 1
     fi
 

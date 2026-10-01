@@ -1,0 +1,26 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "search-modal",
+  "component": "Search Modal",
+  "description": "Search modal component for displaying a search interface in a modal dialog.",
+  "props": {
+    "properties": {
+      "closeAriaLabel": {
+        "type": "string",
+        "default": "close"
+      },
+      "form": {
+        "type": "object"
+      },
+      "headline": {
+        "type": "string",
+        "default": "Search"
+      }
+    },
+    "required": [
+      "closeAriaLabel",
+      "headline"
+    ],
+    "additionalProperties": false
+  }
+}

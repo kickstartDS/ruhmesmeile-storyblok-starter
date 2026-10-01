@@ -1,0 +1,54 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Hero",
+  "default": {
+    "description": "The Hero component in its default configuration appears as a large, empty white rectangle with a thin border, suggesting a placeholder for content. It lacks any visible text, images, or buttons, giving it a minimalistic and unadorned look. The absence of elements like a headline or call-to-action buttons makes it appear as a blank canvas ready for customization.",
+    "from": "img/screenshots/contract-defaults-hero--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-hero--text-below-image",
+      "when": {
+        "highlightText": true,
+        "overlay": true,
+        "textbox": false
+      },
+      "difference": "This variant of the Hero component is significantly more detailed and visually engaging than the default. It features a larger height, allowing for the inclusion of a headline, subheadline, descriptive text, and a call-to-action button, all positioned below a prominent image with an overlay effect. The overall design is more structured and informative, providing a clear focal point and inviting interaction.",
+      "from": "img/screenshots/components-hero--text-below-image.png"
+    },
+    {
+      "story": "components-hero--text-box-on-full-screen",
+      "when": {
+        "height": "fullScreen",
+        "skipButton": true
+      },
+      "difference": "In this variant, the Hero component is significantly taller, expanding from 576px to 900px, creating a more prominent visual presence. It now includes a headline, subheadline, descriptive text, and call-to-action buttons, all contained within a box that appears on the left side. Additionally, a \"continue\" button with an icon is present, enhancing interactivity and guiding user engagement.",
+      "from": "img/screenshots/components-hero--text-box-on-full-screen.png"
+    },
+    {
+      "story": "components-hero--text-on-image-with-overlay",
+      "when": {
+        "colorNeutral": true,
+        "height": "fullImage",
+        "overlay": true,
+        "textbox": false
+      },
+      "difference": "The variant of the Hero component is significantly more detailed and visually engaging compared to the default. It features a large, gradient background with a soft overlay, creating a more dynamic and inviting appearance. The addition of a headline, descriptive text, and a call-to-action button provides structure and focus, transforming the component from a blank canvas into a compelling visual section.",
+      "from": "img/screenshots/components-hero--text-on-image-with-overlay.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:54.537Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-hero--contract-default.png": "sha256:c4c900755f7e2d38",
+        "img/screenshots/components-hero--text-below-image.png": "sha256:cf5ea69c5e92aa32",
+        "img/screenshots/components-hero--text-box-on-full-screen.png": "sha256:48d97196f7f02a49",
+        "img/screenshots/components-hero--text-on-image-with-overlay.png": "sha256:af23ae8368dc7e9c"
+      },
+      "contract": "sha256:e4ff1fc3ba174015c50bc8073d4f5befc290bb2839556597aad5333647677585"
+    }
+  }
+}

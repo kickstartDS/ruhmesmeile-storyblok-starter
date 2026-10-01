@@ -1,0 +1,31 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "mosaic",
+  "component": "Mosaic",
+  "description": "Mosaic component for displaying a collection of tiles in various layouts.",
+  "props": {
+    "properties": {
+      "largeHeadlines": {
+        "type": "boolean",
+        "default": false
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "alternate",
+          "textLeft",
+          "textRight"
+        ],
+        "default": "alternate"
+      },
+      "tile": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "tile"
+  ]
+}

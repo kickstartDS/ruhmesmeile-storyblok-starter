@@ -1,0 +1,36 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "contact",
+  "component": "Contact",
+  "description": "Component used for user interaction",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "component": {
+        "type": "string"
+      },
+      "copy": {
+        "type": "string"
+      },
+      "image": {
+        "type": "object"
+      },
+      "links": {
+        "type": "array"
+      },
+      "subtitle": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "links"
+  ]
+}

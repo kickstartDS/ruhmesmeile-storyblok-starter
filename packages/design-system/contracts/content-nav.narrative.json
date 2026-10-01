@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Content Nav",
+  "default": {
+    "description": "The Content Nav component features a clean, minimalist design with a white background and rounded corners, giving it a modern and approachable look. It includes a central, elongated blue bar that stands out against the white, suggesting a focus area or interactive element. The overall appearance is sleek and unobtrusive, suitable for guiding users through related topics or sections.",
+    "from": "img/screenshots/contract-defaults-contentnav--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-content-nav--default",
+      "when": {},
+      "difference": "This variant of the Content Nav component is significantly larger, with a height of 404.281px, and includes additional elements such as an image placeholder and a descriptive topic section. It features a list of links related to the topic, each accompanied by an icon, and a \"Show more\" toggle that suggests expandable content. The design maintains a clean and organized look, with a light blue background that enhances readability and focus.",
+      "from": "img/screenshots/corporate-content-nav--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:19.922Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-contentnav--contract-default.png": "sha256:ac976227c481e09a",
+        "img/screenshots/corporate-content-nav--default.png": "sha256:c7a9f12fb252ecfe"
+      },
+      "contract": "sha256:6e7ca615b7e49a700421e473e45218c1b19d897eafb298582ec4d69cbe58529c"
+    }
+  }
+}

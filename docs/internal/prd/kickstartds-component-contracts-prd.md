@@ -2,9 +2,14 @@
 
 **Status:** 📐 Proposal — awaiting decision
 **Date:** 2026-08-03
+**Last revised:** 2026-09-26 — identity/fold adopted, Knapsack + DSDS interop added (§14.3)
 **Author:** Design System / Platform
-**Subject:** A kickstartDS-native component contract format that joins **anatomy**, **default + variants**, and **visual design** into one derived, verifiable artifact.
-**Relationship to prior work:** Supersedes the adoption path evaluated in [specs-component-contracts-prd.md](./specs-component-contracts-prd.md). We keep the _reasoning_ from Nathan Curtis' [Component Contracts and Schemas](https://nathanacurtis.substack.com/p/component-contracts-and-schemas); we reject the _shape_, because it is Figma-derived and we are DOM-derived.
+**Subject:** A kickstartDS-native component contract format that joins **anatomy**, **default + variants**, and **visual design** into one derived, verifiable artifact — plus mechanical projections of its API half to the **Knapsack Design System Contract** and **DSDS**.
+
+**Target scope.** The subjects of these contracts are the **Design System components in this monorepo** — `packages/design-system/src/components/{name}/` — not the upstream `kickstartDS` design system that those components are built on. The generated artifacts describe the components this repository ships.
+
+**Relationship to prior work:** Supersedes the adoption path evaluated in [specs-component-contracts-prd.md](./specs-component-contracts-prd.md). We keep the _reasoning_ from Nathan Curtis' [Component Contracts and Schemas](https://nathanacurtis.substack.com/p/component-contracts-and-schemas); we reject the _shape_, because it is Figma-derived and we are DOM-derived. The format **composes with two external formats** rather than competing with them: the [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) (API half, identity, manifest integrity) and [DSDS](https://designsystemdocspec.org) (component entry, traits) — see §10.4–§10.6.
+
 **Simplifying assumption:** Desktop-only. See §7.
 
 ---
@@ -23,7 +28,9 @@
 
 **How it's derived.** Three passes, all mechanical. Pass 1 reads schemas, defaults and token catalogs — no browser. Pass 2 piggybacks on `postVisit` in [.storybook/test-runner.tsx](../../../packages/design-system/.storybook/test-runner.tsx), the hook that already captures our 157 screenshots, and additionally records each story's DOM tree, computed styles, active custom properties and box geometry. Pass 3 reconciles: union the parts, diff every variant story against its default, attribute each delta to the prop that changed. **The marginal cost is one extra `page.evaluate()` in a pass we already run.**
 
-**Why not Specs.** The Phase 0 spike ([scripts/specs-spike/](../../../packages/design-system/scripts/specs-spike/)) proved the mechanics work — 5/5 contracts validated, 72% of props mapped natively — but also proved the shape fights us: `metadata` is all-or-nothing and demands Figma node IDs; `Component` has no `$extensions` so coverage cannot be declared in-band; flat `Anatomy` collapses `author > link` and `sharebar > link` into one element; and 6 of `faq`'s 10 tokens produce dangling references. We would be maintaining a translation layer to a model built for a source of truth we do not have.
+**Identity and interop.** Each contract is identified by a `contractId` derived by a normative fold from the component's declared name, kept separate from the verbatim `component` display name. The published set is catalogued in `index.json` with a content address per artifact, and the API/identity half is **projected** mechanically into the [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) format and into [DSDS](https://designsystemdocspec.org) `specs[]` / `traits` — see §10.4–§10.6. Those projections are derived outputs, never sources: the contract remains the only artifact anything reads.
+
+**Why not Specs.** The Phase 0 spike (since removed) proved the mechanics work — 5/5 contracts validated, 72% of props mapped natively — but also proved the shape fights us: `metadata` is all-or-nothing and demands Figma node IDs; `Component` has no `$extensions` so coverage cannot be declared in-band; flat `Anatomy` collapses `author > link` and `sharebar > link` into one element; and 6 of `faq`'s 10 tokens produce dangling references. We would be maintaining a translation layer to a model built for a source of truth we do not have.
 
 **Why this is worth doing anyway.** The spike's enum→token join, a five-line check, immediately surfaced two real defects invisible to every existing artifact: `--dsa-button_terciary--*` is misspelled against the `tertiary` enum (making that variant unthemeable via its documented name), and `blog-aside` uses both `share-bar` and `sharebar`. A contract that joins vocabularies makes an entire class of silent drift computable.
 
@@ -93,6 +100,8 @@ The [article](https://nathanacurtis.substack.com/p/component-contracts-and-schem
 
 Specs is excellent at what it is: a Figma-extraction contract. We evaluated adopting it in [specs-component-contracts-prd.md](./specs-component-contracts-prd.md) and built a working spike. The mismatch is structural, not cosmetic — see §10 for the full accounting. In one line: **Specs models a design file; we need to model a rendered DOM.**
 
+The same question was re-asked of the **Knapsack Design System Contract** (§10.4) and **DSDS** (§10.5), which did not exist in a published form when this PRD was written. The conclusion is different in kind: we do not adopt either as *the* format — neither models anatomy, axes, bindings, tokens or evidence — but both are **composition targets**. Their API/identity/integrity layer is a subset of ours, so we adopt their identity rules verbatim and **emit** their formats as mechanical projections (§10.6). Projections are derived outputs, never sources: the contract remains the only artifact anything reads. That keeps principle 8 intact — a projection that drifts is regenerated, not edited.
+
 ---
 
 ## 2. Principles
@@ -128,6 +137,8 @@ One principle of our own:
 7. Serve contracts to agents through MCP at a sane token cost.
 8. Provide a **linter** that turns the contract into drift detection over the existing codebase.
 9. Add **zero new authored files** and no new build stage beyond what `test-storybook` already runs.
+10. Establish a **stable identity**: `contractId` derived by a normative fold from the declared name, `component` carried verbatim, and collisions a hard failure at publish (§5.1.1–§5.1.3).
+11. **Emit projections** of the API/identity half to the Knapsack Design System Contract and to DSDS as derived outputs, with content-addressed integrity for the Knapsack manifest (§10.6).
 
 ### 3.2 Non-Goals
 
@@ -138,7 +149,7 @@ One principle of our own:
 5. **Not a rendering spec.** We do not aim to reconstruct the component from the contract.
 6. **Not multi-platform.** One implementation, one DOM.
 7. **Not authored prose.** No `notes` field. If it cannot be verified, it does not belong (Curtis #4).
-8. **Not a Specs producer** — though §10.3 notes the projection stays cheap if we ever want it.
+8. **Not a replacement for, or a fork of, an external format.** Knapsack's contract and DSDS are composition targets, not rivals: we adopt their identity/integrity rules and emit their shapes as derived projections (§10.4–§10.6), but we do not try to express anatomy, axes, bindings, tokens or evidence inside them, and we do not extend their schemas. The Specs projection stays a reference implementation and is not part of the build (§10.3).
 
 ---
 
@@ -148,14 +159,14 @@ Everything the contract needs, and where it already exists. **Nothing in the "Ne
 
 | Contract section                 | Derived from                          | Path                                                                         | New?         |
 | -------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------- | ------------ |
-| `id`, `title`, `description`     | JSON Schema + Storybook manifest      | `src/components/{n}/{n}.schema.json`, `experimental_manifests`               | no           |
+| `contractId`, `component`, `description` | Fold of folder id + JSON Schema `title`/`description` + Storybook manifest | `src/components/{n}/`, `{n}.schema.json`, `experimental_manifests` | no |
 | `api.props`                      | Dereferenced schema                   | `{n}.schema.dereffed.json`                                                   | no           |
 | `default.configuration`          | Generated defaults                    | `{Name}Defaults.ts` (via `kickstartDS schema defaults`)                      | no           |
 | `anatomy`                        | **Rendered DOM**                      | new capture in `postVisit`                                                   | capture only |
 | `anatomy[].tokens`               | Component token catalog               | `src/token/component-token-catalog.json` (50 components, 807 tokens)         | no           |
 | `anatomy[].styles`               | **Computed styles**                   | new capture in `postVisit`                                                   | capture only |
 | `axes[].values[].class`          | **Observed DOM classes**              | new capture in `postVisit`                                                   | capture only |
-| `axes[].values[].tokenSegment`   | Token grammar parser                  | `scripts/specs-spike/lib/tokenGrammar.mjs` (built, proven on 102/102 tokens) | reuse        |
+| `axes[].values[].tokenSegment`   | Token grammar parser                  | `scripts/contracts/lib/tokenGrammar.mjs` (built in the spike, proven on 102/102 tokens) | reuse        |
 | `variants[]`                     | Story args + DOM/style diff           | `snippets.json` (137), `index.json` (211)                                    | no           |
 | `variants[].evidence.screenshot` | Existing screenshots                  | `static/img/screenshots/{story-id}.png` (157)                                | no           |
 | `bindings[]`                     | Pass 3 reconciliation                 | derived                                                                      | derived      |
@@ -172,26 +183,155 @@ The only genuinely new thing is **what we record during a browser pass we alread
 ### 5.1 Naming and placement
 
 ```
-src/components/{name}/{name}.contract.json     # generated, gitignored
-dist/contracts/{name}.contract.json            # published
-dist/contracts/{name}.narrative.json           # published, LLM-generated (§5.12)
-dist/contracts/index.json                      # catalog + format version
-dist/contracts/{name}.brief.md                 # generated LLM projection (§8.2)
+.contract-observations/{story-id}.json         # Pass 2 capture, gitignored scratch
+src/contract-defaults/{name}.stories.tsx       # generated default story, gitignored
+
+contracts/{contractId}.contract.json           # generated, COMMITTED (like static/img/screenshots)
+contracts/{contractId}.brief.md                # generated LLM projection (§8.2)
+contracts/{contractId}.narrative.json          # LLM prose sidecar, when present (§5.12)
+contracts/index.json                           # catalog: format version + identity + integrity (§5.1.4)
+contracts/contracts-report.json                # derivation report
+
+contracts/knapsack/{contractId}.contract.json  # derived projection (§10.6)
+contracts/knapsack/manifest.json               # derived, content-addressed (§10.6)
+contracts/dsds/specs.json                      # derived DSDS specs[] + traits (§10.5)
+
+dist/contracts/…                               # published: Rollup copies contracts/ → dist/contracts
 ```
 
 Format identifier: `kickstartds/component-contract@1`.
 
+**Why committed, not generated at pack time.** Derivation needs a browser pass over
+`storybook-static` plus the generated default stories, which only exist after
+`build-storybook`; `build` (and therefore `pnpm prepack`) runs before that and begins with
+`rm -rf dist`. Generating at pack time is therefore impossible in a clean publish
+environment. Instead the contracts are generated by the post-Storybook pipeline and
+committed, exactly like the screenshots under `static/img/screenshots/`, and Rollup copies
+them into `dist/contracts/` — which is what keeps `build` browserless and deterministic.
+Regeneration is byte-identical on unchanged input (§6.4), so a committed contract set is
+verifiable: CI regenerates and diffs (see §14.4).
+
 The contract and the narrative are **separate files on purpose**. The contract is
 deterministic and verifiable; the narrative is model-generated and advisory. Keeping
 them apart is what lets us have both without one contaminating the other (§5.12).
+
+`dist/contracts/index.json` is not a passive list: per §5.1.4 it carries each
+contract's **content address** and **origin**, which is what makes the published artifact
+set verifiable after the fact.
+
+#### 5.1.1 Identity: `contractId` / `component`
+
+Two fields, deliberately distinct:
+
+- **`contractId`** is the contract's **normative identity** — the fold of the component's
+  declared name (§5.1.2). It matches `^[a-z0-9]+(-[a-z0-9]+)*$`, which is a subset of the
+  DSDS `id` pattern and of the Knapsack `contractId` pattern. It is not namespaced and not
+  versioned: owner and version live in `index.json`, not in the identifier.
+- **`component`** is the design system's **own display name**, carried **verbatim** and
+  never folded or derived from `contractId`. For us that is the JSON Schema `title`
+  (`"Button"`, `"Blog Aside"`), which is also the Storybook display name.
+
+The two are allowed to differ (`contractId: "blog-aside"`, `component: "Blog Aside"`),
+and a component whose display name collides after folding must be renamed or fail the
+publish (§5.1.3). We adopt this split because it decouples a stable machine identity
+from a human label that designers and CMS editors may legitimately want to change.
+
+**Our declared-name profile.** The fold's input — the "declared name" — is the component
+source identifier: the `{name}` in `src/components/{name}/{name}.schema.json` (the folder
+name). It is what every existing artifact already keys on, and it is stable across
+Storybook-title renames and display-name edits. The emitter MUST fold that same
+identifier on every publish, so `contractId` is stable (§14.3).
+
+#### 5.1.2 The fold (normative)
+
+The fold derives `contractId` from the declared name, as a sequence of Unicode code
+points. It is adopted verbatim from the Knapsack Design System Contract so that our
+identity is interoperable by construction (§10.4):
+
+1. Lowercase the ASCII letters `A`–`Z` only. Apply no other case mapping and no Unicode
+   normalization, before, during, or after. The result MUST NOT depend on the host's
+   locale or Unicode version.
+2. Replace every run of one or more characters from the set `{space, _, ., /}` with a
+   single hyphen. That four-character set is the entire separator class.
+3. Collapse every run of two or more hyphens to a single hyphen.
+4. Remove leading and trailing hyphens.
+5. Change nothing else. Do not truncate; do not impose a maximum length.
+
+Classify the result:
+
+- **empty** → reject, reason `empty after fold`;
+- **any character outside** `a`–`z`, `0`–`9`, hyphen → reject, reason
+  `carries residual character`. Never transliterate, strip, or decompose — `Café` is
+  rejected naming `é`, not mapped to `cafe`;
+- otherwise the result **is** the identifier.
+
+Consequences worth stating: `iconBadge` folds to `iconbadge` (no hyphenation at case
+boundaries), `Button--primary` folds to `button-primary` (hyphen runs collapse), and
+`forms/Button` folds to `forms-button`. Every result matches `^[a-z0-9]+(-[a-z0-9]+)*$`.
+
+#### 5.1.3 Collision rule
+
+`contractId` is unique within one manifest. Two or more declared names contributing to
+one publish — whatever their source — that fold to the same identifier are a
+**collision** and a **hard failure**: no partial manifest is written, and no contract is
+written for any of them. The publish reports **every** rejection and **one collision
+report per identifier** naming every declared name that folded to it, in a single
+collect-all failure, rather than stopping at the first finding. Previously published
+manifests are not consulted.
+
+This is what makes the `share-bar` / `sharebar` class of defect (§1.2) a build failure
+rather than a silent divergence. The scope of a publish is the whole design-system
+component set, so a fold collision can only be resolved by renaming a component, not by
+picking a winner.
+
+#### 5.1.4 `index.json` — catalog, identity, integrity
+
+`index.json` carries the format version, the publish-wide identity facts, and one record
+per contract:
+
+```jsonc
+{
+  "$format": "kickstartds/component-contract-index@1",
+  "format": "kickstartds/component-contract@1",
+  "contractVersion": "…",                 // version of the published contract set
+  "artifacts": [
+    { "contractId": "button", "component": "Button",
+      "path": "button.contract.json",
+      "address": "sha256:<64 hex>",       // RFC 8785 canonical form, §5.1.5
+      "origin": "synced" },
+    // …
+  ]
+}
+```
+
+- **`address`** proves the integrity of the published bytes — parse the file as JSON,
+  serialize per RFC 8785 (JSON Canonicalization Scheme) as UTF-8, hash with SHA-256. A
+  mismatch makes the artifact invalid. This is separate from `generated.inputs`, which
+  proves *derivation reproducibility*; the two answer different questions.
+- **`origin`** is `synced` for every kickstartDS contract, because every one is derived
+  from this repository's own source of truth. (`inferred` is reserved for artifacts whose
+  owner has not confirmed them.)
+- **`contractId`** appears here as well as in the contract because uniqueness and
+  collision detection are manifest-scoped (§5.1.3), and because a consumer resolving a
+  usage needs the identity without parsing every contract.
+
+#### 5.1.5 Determinism and the canonical form
+
+RFC 8785 is used for two different jobs and both are required:
+
+- the contract is emitted **byte-identical** across runs on unchanged input (§6.4) — this
+  is a property of the emitter;
+- the content address is computed over the **canonical form** of the parsed value, so a
+  consumer can verify a file that was reformatted, pretty-printed, or re-serialized by a
+  different tool.
 
 ### 5.2 Top-level shape
 
 ```jsonc
 {
   "$format": "kickstartds/component-contract@1",
-  "id": "button",
-  "title": "Button",
+  "contractId": "button",
+  "component": "Button",
   "description": "Component used for user interaction",
 
   "generated": {
@@ -199,10 +339,10 @@ them apart is what lets us have both without one contaminating the other (§5.12
       // content hashes — determinism check
       "schema": "sha256:…",
       "tokens": "sha256:…",
-      "stories": "sha256:…",
+      "stories": "sha256:…"
     },
     "viewport": { "width": 1440, "height": 900 },
-    "theme": "default",
+    "theme": "default"
   },
 
   "api": {
@@ -228,7 +368,7 @@ them apart is what lets us have both without one contaminating the other (§5.12
   },
   "coverage": {
     /* §5.10 */
-  },
+  }
 }
 ```
 
@@ -315,6 +455,8 @@ The contract does **not** copy titles, descriptions or examples — those stay i
 - **`role`** ∈ `content | appearance | state | behaviour | layout | composition` — answers "will changing this change how it looks?"
 - **`axis`** — true when the prop produces an observable visual delta (proven in Pass 3, not asserted). `type: submit` is a behaviour prop with no visual signature, so `axis: false`. This alone is useful: it tells an agent which props are worth reasoning about visually.
 
+`api.props` is the **source of truth** for the API half and is never restated in another format. The Knapsack projection (§10.6.1) is generated *from* it: `role`/`axis` are dropped, `type: "enum"` becomes a JSON Schema `type` + `enum`, and a boolean axis becomes `type: "boolean"`. That direction is one-way — the projection can be regenerated from the contract, and a change to the contract is the only way to change it.
+
 ### 5.5 `axes` — the three-vocabulary join
 
 **This is the section that does not exist anywhere today.**
@@ -356,7 +498,7 @@ Three vocabularies, joined, as data:
 
 - **`api`** — what a developer or CMS editor writes.
 - **`class`** — what appears in the DOM. Observed by diffing the class list of a story that sets the value against the default story. `null` means the value produces no class (it is the base case — note `size: medium` correctly resolves to `null`).
-- **`tokenSegment`** — the `_<variant>` segment in the token grammar that themes this value, matched against `component-token-catalog.json` via the parser already built in [tokenGrammar.mjs](../../../packages/design-system/scripts/specs-spike/lib/tokenGrammar.mjs).
+- **`tokenSegment`** — the `_<variant>` segment in the token grammar that themes this value, matched against `component-token-catalog.json` via the parser at [tokenGrammar.mjs](../../../packages/design-system/scripts/contracts/lib/tokenGrammar.mjs).
 
 **`issues` is the payoff.** `tertiary` has a class but no matching token segment, because the tokens are spelled `_terciary`. Today that is invisible in all three files. Here it is a single computed flag, and a CI failure.
 
@@ -599,7 +741,8 @@ Abbreviated, showing the structural payoff:
 
 ```jsonc
 {
-  "id": "faq",
+  "contractId": "faq",
+  "component": "Faq",
   "anatomy": {
     "path": "root",
     "element": "div",
@@ -704,6 +847,9 @@ to have. The resolution is quarantine, not compromise:
   },
   "variants": [
     {
+      // Keyed by story, not by `when`: two variants can share a `when` (e.g.
+      // `{}`), and the story is the evidence both files already point at.
+      "story": "components-button--tertiary-button",
       "when": { "variant": "tertiary" },
       "difference": "Loses the filled surface for a thin outline on a transparent background. Same size and weight, noticeably quieter — an alternative action rather than the expected one.",
       "from": "img/screenshots/components-button--tertiary-button.png",
@@ -717,6 +863,27 @@ to have. The resolution is quarantine, not compromise:
   },
 }
 ```
+
+Implemented in `scripts/contracts/lib/narrative.mjs` + `bin/narrate.mjs`:
+
+- **Grounded, not asked.** The variant prompt carries the facts (component, root element and
+  classes, appearance-changing props) and the contract's **derived delta verbatim**
+  (`gains classes …`, `backgroundColor rgb(0,0,0) → rgb(48,101,192)`), plus the default's
+  own prose. The model is told to describe only those differences. An `introduced` part is
+  stated as such rather than as a delta.
+- **Two images per variant** — the default and the variant — so the model sees what changed.
+- **The captioner is injected.** Production wires OpenAI chat completions (image parts,
+  `temperature: 0`, model overridable via `NARRATIVE_MODEL`); tests wire a stub. Nothing
+  else in the pipeline knows a model exists, which is what makes the rest unit-testable.
+- **Skip is content-addressed.** `generated.inputs` holds a hash per screenshot and the
+  contract's canonical address; regeneration happens only when those change, the model
+  changes, or `promptVersion` is bumped.
+- **Degrades honestly.** An item whose screenshot is missing is omitted rather than
+  invented; the CLI reports how many were skipped. The declared-default screenshots come
+  from the same `test-storybook` pass as every other screenshot — the generated default
+  stories carry the `contract-default` tag, so that pass can be scoped to them.
+- **`narrate` also rewrites the affected `brief.md`**, because the brief is derived from the
+  contract plus the narrative and needs no re-derivation of the contract.
 
 Two prompts only: one describes the default from its screenshot; one describes each
 variant as a **difference** from the default, given both screenshots plus the contract's
@@ -744,7 +911,7 @@ Reads only files already on disk. Produces a partial contract: `api`, `compositi
 | `semantic-token-catalog.json` + `token-graph.json` | `resolves` chains                                                |
 | `tokenGrammar.mjs`                                 | BEM path, variant segment, state, modifier per token             |
 
-The token grammar parser is **already built and proven**: 102/102 tokens across five components parsed with zero misses. See [scripts/specs-spike/lib/tokenGrammar.mjs](../../../packages/design-system/scripts/specs-spike/lib/tokenGrammar.mjs).
+The token grammar parser is **already built and proven**: 102/102 tokens across five components parsed with zero misses. It lives at [scripts/contracts/lib/tokenGrammar.mjs](../../../packages/design-system/scripts/contracts/lib/tokenGrammar.mjs).
 
 ### 6.2 Pass 2 — Rendered observation
 
@@ -785,6 +952,22 @@ async postVisit(page, story) {
 ```
 
 `OBSERVED_PROPERTIES` is a fixed, ordered list (~40 CSS properties covering colour, typography, spacing, border, layout, effects). Fixed and ordered is what makes Pass 3 diffs deterministic (Curtis #5).
+
+**Readiness is observed, not assumed.** Some components are still changing after they are
+readable — a count-up animates its digits, so both the captured text and the box width
+depend on when the walk ran. `reducedMotion: "reduce"` does not stop a JS-driven
+count-up, so Pass 2 **samples until the tree stops changing** (200 ms apart, capped)
+rather than guessing a settle time. A story that never settles is recorded with
+`unstable: true`, counted in `contracts-report.json`, and warned about in the run
+summary — an unstable capture is a weaker contract, and saying so is the point (§5.10).
+Verified against committed output: a full fresh pass reproduces the set byte-for-byte
+(`contracts:verify`).
+
+**Schemas must be current.** `composition.slots[].accepts` is read from the dereferenced
+schemas, so generation must follow `pnpm build-storybook` (which runs `schema:*`) rather
+than a bare `storybook build` — otherwise contracts embed references to components that
+no longer exist. `contracts:verify` runs the full sequence, which is how this was caught:
+a stale set carried a `dealer-finder` entry that the current schema no longer declares.
 
 **Cost:** one DOM walk per story on a run we already perform for screenshots. No new browser launch, no new CI job.
 
@@ -886,6 +1069,8 @@ absolute URL from its own env at request time. This pairs directly with §5.12: 
 images that ground the narrative are the ones a vision-capable agent can look at itself.
 
 The Design Tokens MCP gains a reverse lookup — `get_token_usage(token)` → which components and parts bind it — because contracts finally make that computable.
+
+**This surface is the eval's third arm.** Phase 5 measures `cc-contracts` (contract tools added to the existing pair) separately from `cc-both`, so the contract tools must be exposed by an MCP server that `packages/agent-eval` can stage like any other. The intended shape is to extend **Component Builder MCP** with the tools above rather than stand up a fourth server — it already owns "how to build UI here", so it is where an agent looks first — and to add the reverse lookup to Design Tokens MCP. Both servers are staged from the workspace build by the eval harness ([adr-ui-generation-eval.md](../../adr/adr-ui-generation-eval.md), Decision 6), so a contract change is measurable in the same commit. Sequencing matters: the format and its projections land first (Phases 1–4), then the MCP surface, then the A/B — an arm that ships a half-derived contract would measure the wrong thing.
 
 ### 8.2 The `brief` projection
 
@@ -993,11 +1178,13 @@ Stated so nobody has to guess, per Curtis #7.
 
 ---
 
-## 10. Relationship to the Specs Evaluation
+## 10. Relationship to External Contract Formats
+
+This section asks the same question — "does a published format change our build/compose calculus?" — of three open formats: Specs (the Figma-extraction contract evaluated at authoring time), the Knapsack Design System Contract, and DSDS. The answer for Specs is "no, but interop is cheap"; the answer for Knapsack and DSDS is "compose, and emit a projection".
 
 ### 10.1 What the spike proved
 
-[Phase 0](../../../packages/design-system/scripts/specs-spike/README.md) built a working Specs emitter: 5/5 components validated against `component.schema.json@0.28.0`, 72% of props mapped natively. The mechanics are not the problem.
+Phase 0 (since removed) built a working Specs emitter: 5/5 components validated against `component.schema.json@0.28.0`, 72% of props mapped natively. The mechanics are not the problem.
 
 ### 10.2 Why the shape is wrong for us
 
@@ -1019,6 +1206,81 @@ Our format is a **superset in the dimensions we care about** (mechanisms, vocabu
 
 If a Figma library ever becomes a goal, contracts are a _better_ input than our current artifacts: `anatomy` gives layer structure, `axes` gives the variant matrix, `default` + `variants` give the property deltas, and `screenshot` gives visual truth to check against.
 
+### 10.4 Knapsack Design System Contract — evaluated, composed with
+
+The [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) (Apache-2.0, format v0.1, spec v0.11.0, 2026-09-24) was published **after** this PRD was written, so it never appears in the original evaluation. It is a **specification with a schema**, where this PRD was (at authoring time) an unbuilt plan. The comparison is recorded in full in [component-contracts-prd-vs-knapsack-design-system-contract.md](../research/component-contracts-prd-vs-knapsack-design-system-contract.md).
+
+| | This PRD | Knapsack v0.1 |
+| --- | --- | --- |
+| Covers | anatomy, axes join, default + variants, bindings, tokens, composition, coverage, evidence | props (inline JSON Schema 2020-12), slots, states, identity, manifest |
+| Identity | (was) `id` + `title` | `contractId` (fold) + `component` (verbatim) |
+| Integrity | derivation input hashes | **content address over RFC 8785 canonical form** |
+| DSDS | cited as related doc | **normative `specs[]` + trait mapping** |
+| Provenance | everything derived (principle 8) | `origin ∈ {inferred, synced}` |
+
+**Verdict: a subset of our intent, a superset of our portability and governance.** It models none of the dimensions this PRD exists to deliver (anatomy, axes, bindings, tokens, evidence), so adopting it *as the contract format* would fail our own motivating test. But its API/identity/integrity layer is stricter than ours in three places where "free and better" applies:
+
+1. **Identity.** Its five-step fold with two rejection classes and collision-as-hard-failure produces identifiers that are a subset of the DSDS `id` pattern. Our `id` pattern `^[a-z0-9-]+$` would accept `button--primary` and `-button`, both of which it rejects. We adopt the fold verbatim (§5.1.2–§5.1.3).
+2. **`contractId` / `component` split.** Identity and display name are deliberately allowed to differ (D-75). We adopt it (§5.1.1).
+3. **Manifest integrity.** `sha256` over the RFC 8785 canonical form, a mismatch making the artifact invalid (INV-5). We adopt it for `index.json` (§5.1.4), complementing our derivation hashes.
+
+Its `props`-as-JSON-Schema shape is also adopted as the *projection* target, not the source: `api.props` remains the source of truth and is projected mechanically (§10.6). We do **not** fork Knapsack's constitution by extending its schema to hold anatomy/tokens/bindings — that would violate its own prior-art rule (PROH-4) and defeat the point of composing.
+
+**Recorded caveats.** Knapsack's own known-limitations list says its fold has no executable test and that its publish-time checks (required∉properties, default∉enum, collisions) exist in prose only, with no tool running them. If we adopt the rules, we own the fixtures (§11 Phase 1) — we should be the implementation that tests them. Its DSDS trait mapping has uncovered cases (`disabled` as both a prop and a state; `type: [boolean]`); our PRD resolves `disabled` more precisely as a boolean axis with `mechanism: attribute` (§5.5, §5.8), and the projection must not double-emit it.
+
+### 10.5 DSDS interop
+
+[DSDS](https://designsystemdocspec.org) (Design System Documentation Specification) removed its own `api` block and left a `specs[]` pointer for any contract format to fill. That is the integration point, and it costs nothing:
+
+1. **Pointer.** A DSDS component entry lists
+   `specs: [{ "href": "./contracts/knapsack/button.contract.json", "rel": "contract", "role": "Design System Contract" }]` — one entry per component per format.
+2. **Identity join.** `contractId` SHOULD equal the DSDS component entry `id`. Adopting the fold (§5.1.2) makes this true by construction, because every fold result is a valid DSDS `id`.
+3. **Trait projection.** A consumer projects the API half onto DSDS `traits`, per the normative table below.
+
+| Contract | DSDS `traits` entry | Note |
+| --- | --- | --- |
+| prop with `enum`, `role: appearance`/`state` | `traitType: variant`, `kind: enum`, `values` = default first, then remaining `enum` values in declared order | DSDS reads the first value as default |
+| prop with `type: boolean`, `role: appearance`/`state` | `traitType: variant`, `kind: boolean` | |
+| entry in `states` | `traitType: state`, `kind: boolean` | a state is present or absent |
+| any prop with `role: content`/`behaviour`/`layout`/`composition` | no trait | Knapsack's raw rule is "any enum or boolean"; our `role` classification is more discriminating, so `type: "submit"` (behaviour) and `label` (content) are not documented variants |
+| cross-prop rules | not in v1 | DSDS `combos` is the prior art, deferred |
+
+Two deliberate refinements over Knapsack's mechanical mapping, both recorded rather than silent:
+
+- **`role` gates the trait.** Knapsack maps *any* enum or boolean prop. We map only `appearance`/`state` props, because `type: "submit" | "reset"` is a behavioural enum that DSDS should not document as a design variant. Where `role` is absent the projection falls back to the mechanical rule.
+- **`disabled` is emitted once**, as the boolean prop trait — not also as a state — because §5.5 models it as a boolean axis whose binding mechanism is `attribute`. This is the one case where our model is more discriminating than Knapsack's, and the projection honours ours.
+
+Interop is therefore: DSDS gets the variant/state record it deliberately no longer owns; our anatomy/tokens/bindings/evidence stay ours; and nothing is forked or shadowed.
+
+### 10.6 Projections (Specs, Knapsack, DSDS)
+
+A projection is a **derived output**: the contract is the source, the projection is a mechanical, lossy view of its API/identity half. Projections are generated as part of the build (Knapsack, DSDS) or kept as a reference implementation (Specs) — they are never edited, and drift is impossible because they have no independent existence.
+
+| projection | emitted | mapping | lossy in |
+| --- | --- | --- | --- |
+| Specs `api.yaml` | **reference only** (§10.3), not in the build | the removed Phase-0 spike's Specs emitter | anatomy (flat), styles, coverage |
+| Knapsack contract + manifest | **in the build**, `dist/contracts/knapsack/` | §10.6.1 | `role`/`axis`, rich prop schemas, anatomy, tokens, evidence |
+| DSDS `specs[]` + `traits` | **in the build**, `dist/contracts/dsds/specs.json` | §10.5 | everything DSDS does not model |
+
+#### 10.6.1 The Knapsack projection
+
+| contract | → Knapsack contract |
+| --- | --- |
+| `contractId` | `contractId` (already the fold output §5.1.1) |
+| `component` | `component` (verbatim) |
+| `description` | `description` |
+| `api.required` | `props.required` |
+| `api.props[*].type`/`values`/`default` | `props.properties[*]` with `type`/`enum`/`default`, plus `description` when present |
+| — | `props.additionalProperties: false` (required whenever `props` is present) |
+| `composition.slots[*].prop` | `slots` (bare names; `a11y` only where we have it) |
+| states — deferred (§9) | omitted |
+| `anatomy` / `axes` / `bindings` / `default` / `variants` / `coverage` / `narrative` | dropped — the exclusive value of this format |
+| all contracts | `manifest.json` with `{ path, address, origin: "synced" }` per contract |
+
+Type mapping is mechanical: our non-standard `type: "enum"` becomes `type: "string"` + `enum` (or the inferred scalar type of the values), and a boolean axis (`values: [false, true]`) becomes `type: "boolean"`. Knapsack caps a prop's members to `type`/`default`/`description`/`enum`, so a prop using `anyOf`/`items`/`$ref` cannot be fully represented; the projection emits the narrowest correct `type` (or `["string","number","boolean","array","object"]` when genuinely unknown) and records the loss in the projection report rather than inventing structure. This is the same "lossy but mechanical" posture as §10.3 — the difference is that the Knapsack projection is cheap, deterministic, and has a real consumer.
+
+The projection is emitted by `packages/design-system/scripts/contracts/` and validated against Knapsack's published JSON Schemas before being written; a projection that fails its own target schema is a build failure, not a warning.
+
 ---
 
 ## 11. Phased Plan
@@ -1026,13 +1288,18 @@ If a Figma library ever becomes a goal, contracts are a _better_ input than our 
 ### Phase 1 — Foundation (schema + baseline + static pass + capture)
 
 1. Author `contract.schema.json` for `kickstartds/component-contract@1`, seeded from
-   Appendix B. **This lands first**, before any emitter — the format is defined by a
-   validatable schema, not by whatever the generator happens to produce.
+   Appendix B — including the `contractId`/`component` identity (§5.1.1) and the
+   `^[a-z0-9]+(-[a-z0-9]+)*$` pattern. **This lands first**, before any emitter — the
+   format is defined by a validatable schema, not by whatever the generator happens to
+   produce.
 2. Author `narrative.schema.json` for `kickstartds/component-narrative@1`.
 3. Backfill `examples` on the **41 content fields** that lack them (§5.6.1); add a lint
    rule requiring `examples` on content-typed string props.
 4. Generate the `__contract-default` story per component from schema + defaults (§5.6.2).
-5. Build Pass 1 (`scripts/contracts/static.mjs`), reusing `tokenGrammar.mjs`.
+5. Build Pass 1 (`scripts/contracts/static.mjs`), reusing `tokenGrammar.mjs`. Implement
+   the fold + collision check (§5.1.2–§5.1.3) and the RFC 8785 content address
+   (§5.1.5) here — both are pure functions over the component set and must be covered by
+   the Knapsack SCN-014/015 fixtures before the emitter runs.
 6. Extend `postVisit` with the observation capture; write `.observations/{story-id}.json`.
 7. Verify: observations produced for all 137 authored stories **+ 77 generated defaults**;
    screenshots unchanged; build time delta measured.
@@ -1061,7 +1328,12 @@ Screenshot pipeline provably unaffected.
 
 ### Phase 4 — Delivery
 
-15. Ship contracts in `dist/contracts/`; add to the design-system `build` script.
+15. Generate the committed contract set into `contracts/` and copy it to `dist/contracts/`
+    from Rollup, so `build` stays browserless (§5.1). The **Knapsack projection +
+    manifest** and the **DSDS projection** are emitted by the same generator;
+    `index.json` carries `contractId`, `component`, `address` (RFC 8785) and
+    `origin: "synced"` (§5.1.4). Add a `contracts:verify` CI step that regenerates into
+    a temp dir and fails on any diff (§14.4).
 16. Build Pass 4 (narrative) as an on-demand script; generate and commit narratives.
 17. Add the MCP tools + resources from §8.1, including `get-component-screenshots` and the
     `format-guide` / `worked-example` resources from §8.4.
@@ -1072,9 +1344,22 @@ Screenshot pipeline provably unaffected.
 
 ### Phase 5 — Evaluation
 
-20. A/B a set of realistic UI-building tasks with and without contracts in context.
-21. Measure: correct token usage, correct prop usage, hallucinated props, iterations to correct output. Include a brief-only vs. full-contract arm to test §8.4.
-22. ADR recording the outcome and any `@2` changes.
+20. A/B a set of realistic UI-building tasks with and without contracts in context,
+    using the existing `packages/agent-eval` harness (see [adr-ui-generation-eval.md](../../adr/adr-ui-generation-eval.md)
+    and [ui-generation-eval-prd.md](./ui-generation-eval-prd.md)). This is the goal of the
+    whole exercise, so it is specified as arms, not as a slogan:
+    - **`cc-none`** — today's baseline (no MCP server).
+    - **`cc-both`** — today's Component Builder MCP + Design Tokens MCP, unchanged.
+    - **`cc-contracts`** — the new contract MCP surface (§8.1) added as a third arm, so
+      lift is attributable to contracts specifically rather than to "more context".
+    - **`cc-brief-only`** — `get-component-brief` only, testing §8.4's delivery thesis.
+21. Measure: correct token usage, correct prop usage, hallucinated props, iterations to
+    correct output, and the contract-specific questions — does the agent follow
+    `bindings[].mechanism`, does it reach for templated token names, does it respect
+    `coverage` gaps. Include the brief-only vs. full-contract arm to test §8.4.
+22. ADR recording the outcome and any `@2` changes. The eval therefore gates the format,
+    not just the delivery layer: if `cc-contracts` does not beat `cc-both`, the format's
+    value is unproven and the format changes before it ships further.
 
 ---
 
@@ -1113,6 +1398,11 @@ Screenshot pipeline provably unaffected.
 | Mean `coverage.score` across components                 | > 0.6 initially, ratcheting                                              |
 | Lint issues at Phase 3 exit                             | 0 untriaged `axis-token-mismatch`, 0 untriaged `part-name-inconsistency` |
 | Hand-authored bytes in any contract                     | **0**                                                                    |
+| Fold fixture cases passing (Knapsack SCN-014/015)       | 100%                                                                     |
+| Fold collisions across the published component set      | 0                                                                        |
+| `index.json` addresses verifying against RFC 8785       | 100%                                                                     |
+| Knapsack projections validating against its JSON Schema | 100%                                                                     |
+| DSDS `specs[]` entries resolving to a valid contract    | 100%                                                                     |
 | `brief` size per component                              | < 400 tokens                                                             |
 | Agent tasks: hallucinated props (A/B)                   | reduced                                                                  |
 | Agent tasks: correct token selected first try (A/B)     | improved                                                                 |
@@ -1201,6 +1491,33 @@ reports both gap kinds:
 }
 ```
 
+### 14.3 Additions accepted 2026-09-26 (Knapsack + DSDS review)
+
+Reviewing the formal comparison in [component-contracts-prd-vs-knapsack-design-system-contract.md](../research/component-contracts-prd-vs-knapsack-design-system-contract.md) against the published [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) (v0.1, which post-dates this PRD) settled four additions. All four are format-level and are reflected in §5.1 and §10.
+
+| # | Question | Decision | Consequence |
+| --- | --- | --- | --- |
+| **11** | Our `id` is looser than DSDS and has no collision handling. Adopt a fold? | **Yes — adopt Knapsack's five-step fold verbatim**, with its two rejection classes and collision-as-hard-failure; tighten the pattern to `^[a-z0-9]+(-[a-z0-9]+)*$` | §5.1.2–§5.1.3; `id`/`title` become `contractId`/`component`; collisions in the component set are a build failure |
+| **12** | Identity is a display name today. Split it? | **Yes — `contractId` (folded, normative) / `component` (verbatim display name)**; declared-name profile is the `src/components/{name}/` folder id | §5.1.1; decouples machine identity from Storybook/CMS labels; DSDS `id` join becomes true by construction |
+| **13** | Knapsack's `manifest` and DSDS `specs[]` are cheap interop wins. Adopt? | **Yes — `index.json` gains `address` (RFC 8785 sha256) + `origin: "synced"` + `contractId`; DSDS gets a `specs[]` pointer and the trait mapping** | §5.1.4, §10.5; published artifacts become integrity-verifiable, and DSDS gets the variant/state record it no longer owns |
+| **14** | Do we adopt Knapsack as the format, or emit it as a projection? | **Emit a projection only.** The contract stays the source; Knapsack + DSDS projections are derived build outputs, validated against Knapsack's own schema before they are written | §10.4–§10.6; no fork of Knapsack's constitution (PROH-4), no second source of truth |
+
+Two things deliberately **not** adopted: Knapsack's `authoring` model (it leaves extraction out of scope; we derive everything, principle 8 — we are `synced`), and any attempt to carry anatomy/tokens/bindings inside its schema (that would be a fork, not composition).
+
+One framing correction recorded at the same review: the **target of these contracts is the components in this monorepo**, not the upstream `kickstartDS` design system. The format is ours; the subjects are `packages/design-system/src/components/*`.
+
+### 14.4 Where generation happens — decided during Phase 1 implementation (2026-09-26)
+
+Authoring the generator forced a sequencing question the phased plan had left implicit: §5.1 said contracts are generated and gitignored, Phase 4 said "add to the design-system `build` script". Both cannot hold, because derivation needs a browser pass over `storybook-static`, which does not exist during `build` (and `build` begins with `rm -rf dist`, so anything generated into `dist/` beforehand is destroyed; `prepack` → `build` in a clean publish environment has no Storybook at all).
+
+| # | Question | Decision | Consequence |
+| --- | --- | --- | --- |
+| **15** | Where are contracts generated? | **In a post-Storybook pipeline step, into a committed `contracts/` directory** — the same pattern as the screenshots under `static/img/screenshots/` | `contracts:generate` is a standalone script; the sequence is `--emit-stories` → `build-storybook` → `contracts:generate` |
+| **16** | How do they reach the published package? | **Rollup copies `contracts/` → `dist/contracts/`** — `build` never generates them | `build` stays browserless and deterministic; the committed set is the source the package ships |
+| **17** | How is the committed set kept honest? | **Two levels: `contracts:validate` (schema + address check of the committed set, in CI per PR) and `contracts:verify` (regenerate from a fresh Storybook + browser pass into a temp dir and fail on any diff, on `workflow_dispatch`)** | Drift between committed contracts and derivable contracts is a CI failure, not a silent staleness; the expensive check stays off the default path |
+
+Consequences for scope: the component set is **66 subjects** — directories with a renderable component, a schema and defaults. `cms/` (root content types), `lightbox/` and `rich-text/` (style-only partials), `tile/` and `blog-tag/` (schema-only), `page-wrapper/`, and `seo/` (data-only, renders nothing) are skipped and reported, never guessed at. That supersedes §9's `archetypes-*` exclusion, which does not apply in this repository.
+
 ---
 
 ## Appendix A — Verified Inspection Record
@@ -1225,7 +1542,7 @@ Facts below were verified directly in this repository on 2026-08-03.
 | Token graph                  | `token-graph.json`                                      | `full` 3,091 nodes / 5,179 edges; `design-system` 1,219 / 1,738                                                                                                                           |
 | Defaults                     | `{Name}Defaults.ts` via `kickstartDS schema defaults`   | `DeepPartial<{Name}Props>`                                                                                                                                                                |
 | Branding themes              | `dist/tokens/branding-tokens-{theme}.json`              | 9, W3C DTCG                                                                                                                                                                               |
-| Token grammar parser         | `scripts/specs-spike/lib/tokenGrammar.mjs`              | 102/102 tokens parsed across 5 components, 0 misses                                                                                                                                       |
+| Token grammar parser         | `scripts/contracts/lib/tokenGrammar.mjs`                | 102/102 tokens parsed across 5 components, 0 misses                                                                                                                                       |
 
 **The motivating defect, verified:**
 
@@ -1246,6 +1563,10 @@ Per §14.1, this is no longer illustrative. It is the seed for a real, committed
 is defined by something validatable rather than by whatever the generator happens to
 produce. All contracts validate against it; validation is a Phase 2 exit criterion.
 
+The committed schema lands at `packages/design-system/scripts/contracts/schema/contract.schema.json`
+and is the authority. This appendix is the seed; where the two disagree, the committed
+file wins.
+
 ```jsonc
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1253,8 +1574,8 @@ produce. All contracts validate against it; validation is a Phase 2 exit criteri
   "type": "object",
   "required": [
     "$format",
-    "id",
-    "title",
+    "contractId",
+    "component",
     "generated",
     "api",
     "anatomy",
@@ -1263,8 +1584,8 @@ produce. All contracts validate against it; validation is a Phase 2 exit criteri
   "additionalProperties": false,
   "properties": {
     "$format": { "const": "kickstartds/component-contract@1" },
-    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-    "title": { "type": "string" },
+    "contractId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "component": { "type": "string", "minLength": 1 },
     "description": { "type": "string" },
     "generated": { "$ref": "#/definitions/Generated" },
     "api": { "$ref": "#/definitions/Api" },
@@ -1371,12 +1692,17 @@ produce. All contracts validate against it; validation is a Phase 2 exit criteri
 ## Appendix C — Related Documents
 
 - [specs-component-contracts-prd.md](./specs-component-contracts-prd.md) — the Specs adoption evaluation this supersedes
-- [packages/design-system/scripts/specs-spike/README.md](../../../packages/design-system/scripts/specs-spike/README.md) — Phase 0 spike results and findings
+- The Phase-0 spikes (`packages/design-system/scripts/specs-spike/`, `scripts/contract-spike/`) — results and findings — were removed once their work landed in `scripts/contracts/`. Section 10 above and Decision 8 of [adr-component-contracts.md](../../adr/adr-component-contracts.md) record what they settled.
+- [packages/design-system/scripts/contract-spike/README.md](../../../packages/design-system/scripts/contract-spike/README.md) — Phase 0 contract spike (validation of this format)
+- [packages/design-system/scripts/contract-spike/COMPARISON.md](../../../packages/design-system/scripts/contract-spike/COMPARISON.md) — contract vs. Specs, side by side
+- [component-contracts-prd-vs-knapsack-design-system-contract.md](../research/component-contracts-prd-vs-knapsack-design-system-contract.md) — the Knapsack comparison this PRD's §10.4–§10.6 consolidates
+- [Knapsack Design System Contract](https://github.com/knapsack-oss/design-system-contract) — format v0.1, spec v0.11.0; source of the fold, identity split, manifest integrity and DSDS mapping
 - [design-tokens-mcp-prd-component-tokens.md](./design-tokens-mcp-prd-component-tokens.md) — component token surfacing
 - [design-tokens-mcp-prd-intent-governance.md](./design-tokens-mcp-prd-intent-governance.md) — token governance rules
 - [schema-layers-prd.md](./schema-layers-prd.md) — JSON Schema layering
 - [cosmos-token-graph-prd.md](./cosmos-token-graph-prd.md) — token dependency graph
+- [ui-generation-eval-prd.md](./ui-generation-eval-prd.md) — the eval harness Phase 5 runs on
 - Nathan Curtis, [Component Contracts and Schemas](https://nathanacurtis.substack.com/p/component-contracts-and-schemas)
 - Nathan Curtis, [Slots in Design Systems](https://nathanacurtis.substack.com/p/slots-in-design-systems)
 - [Specs schema documentation](https://www.specsplugin.com/schema/)
-- [Design System Doc spec](https://designsystemdocspec.org/)
+- [Design System Doc spec (DSDS)](https://designsystemdocspec.org/)

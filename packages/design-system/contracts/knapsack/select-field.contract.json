@@ -1,0 +1,52 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "select-field",
+  "component": "SelectField",
+  "description": "SelectField buttons allow users to select a single option from a list of mutually exclusive options.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "hideLabel": {
+        "type": "boolean"
+      },
+      "hint": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string",
+        "default": "chevron-down"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "options": {
+        "type": "array"
+      },
+      "value": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "options"
+  ]
+}

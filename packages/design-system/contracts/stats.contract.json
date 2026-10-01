@@ -1,0 +1,574 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "icon"
+                ],
+                "element": "svg",
+                "namedBy": "tag",
+                "observedIn": [
+                  "components-stats--count-up-with-icons"
+                ],
+                "path": "root/item/icon/icon",
+                "presence": "conditional",
+                "role": "glyph"
+              }
+            ],
+            "classes": [
+              "c-count-up__icon"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-stats--count-up-with-icons"
+            ],
+            "path": "root/item/icon",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-count-up__nummber__suffix"
+                ],
+                "element": "span",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-stats--count-up-with-icons"
+                ],
+                "path": "root/item/number/suffix",
+                "presence": "conditional",
+                "role": "text"
+              },
+              {
+                "classes": [
+                  "c-count-up__nummber__value"
+                ],
+                "element": "span",
+                "namedBy": "bem-class",
+                "path": "root/item/number/value",
+                "presence": "always",
+                "role": "text"
+              }
+            ],
+            "classes": [
+              "c-count-up__number"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/item/number",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "l-container",
+              "l-container--rich-text"
+            ],
+            "element": "div",
+            "instanceOf": "rich-text",
+            "namedBy": "slot-boundary",
+            "observedIn": [
+              "components-stats--count-up-with-description"
+            ],
+            "path": "root/item/rich-text",
+            "presence": "conditional",
+            "role": "slot"
+          },
+          {
+            "classes": [
+              "c-count-up__topic"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-stats--count-up-with-description",
+              "components-stats--count-up-with-icons"
+            ],
+            "path": "root/item/topic",
+            "presence": "conditional",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "c-count-up",
+          "dsa-stats__item"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-stats--contract-default",
+          "components-stats--count-up-with-description",
+          "components-stats--count-up-with-icons"
+        ],
+        "path": "root/item",
+        "presence": "repeated",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-stats"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-stats--gap-horizontal",
+      "--dsa-stats--gap-vertical",
+      "--dsa-stats__copy--color",
+      "--dsa-stats__copy--font",
+      "--dsa-stats__icon--color",
+      "--dsa-stats__icon--size",
+      "--dsa-stats__item--gap",
+      "--dsa-stats__number--background",
+      "--dsa-stats__number--font",
+      "--dsa-stats__number--font-weight",
+      "--dsa-stats__topic--color",
+      "--dsa-stats__topic--font",
+      "--dsa-stats__topic--font-family",
+      "--dsa-stats__topic--font-weight"
+    ]
+  },
+  "api": {
+    "props": {
+      "align": {
+        "default": "center",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "left",
+          "center"
+        ]
+      },
+      "stat": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [
+      "stats"
+    ],
+    "schema": "./stats.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "center",
+      "prop": "align",
+      "values": [
+        {
+          "api": "left",
+          "class": "dsa-stats--align-left",
+          "tokenSegment": null
+        },
+        {
+          "api": "center",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "affects": [
+        "alignItems",
+        "height",
+        "textAlign",
+        "width"
+      ],
+      "mechanism": "class-toggle",
+      "parts": [
+        "root",
+        "root/item"
+      ],
+      "prop": "align"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "stat"
+    }
+  ],
+  "component": "Stats",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "description",
+          "icon",
+          "number",
+          "title"
+        ],
+        "max": 4,
+        "min": 1,
+        "observedCounts": [
+          2,
+          3
+        ],
+        "part": "root",
+        "prop": "stat"
+      }
+    ]
+  },
+  "contractId": "stats",
+  "coverage": {
+    "axes": {
+      "align": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 3,
+      "proven": 3
+    },
+    "parts": {
+      "conditional": 5,
+      "inDefault": 4,
+      "total": 9
+    },
+    "score": 1,
+    "stories": {
+      "failed": 0,
+      "observed": 2
+    }
+  },
+  "default": {
+    "configuration": {
+      "align": {
+        "source": "schema-default",
+        "value": "center"
+      },
+      "stat": {
+        "source": "example",
+        "value": [
+          {
+            "label": "Stat 1",
+            "number": 1
+          },
+          {
+            "label": "Stat 1",
+            "number": 1
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-stats--contract-default.png",
+      "story": "contract-defaults-stats--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 48,
+          "width": 1440
+        },
+        "layout": {
+          "alignItems": "flex-start",
+          "display": "flex",
+          "gap": "30.8032px",
+          "justifyContent": "center"
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-stats__number--background"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-default",
+            "token": "--dsa-stats__copy--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-copy-s",
+            "token": "--dsa-stats__copy--font"
+          },
+          "fontFamily": {
+            "computed": "Times New Roman",
+            "resolves": "--ks-font-family-display",
+            "token": "--dsa-stats__topic--font-family"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-stats__number--font-weight"
+          },
+          "gap": {
+            "computed": "30.8032px 21.1438px",
+            "resolves": "--ks-spacing-stack-xs",
+            "token": "--dsa-stats__item--gap"
+          }
+        }
+      },
+      "root/item": {
+        "box": {
+          "height": 48,
+          "width": 400
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px"
+        }
+      },
+      "root/item/number": {
+        "box": {
+          "height": 48,
+          "width": 22
+        }
+      },
+      "root/item/number/value": {
+        "box": {
+          "height": 39,
+          "width": 22
+        }
+      }
+    }
+  },
+  "description": "Component used to display stats with a number upcounter",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:95fde71a87c4d0cc",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-stats--count-up-with-description.png",
+        "story": "components-stats--count-up-with-description"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 146,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-stats--align-left"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "48px",
+              "to": "146.422px"
+            }
+          }
+        },
+        "root/item": {
+          "box": {
+            "height": 146,
+            "width": 400
+          },
+          "classes": {
+            "add": [
+              "lazyloaded"
+            ],
+            "remove": [
+              "lazyload"
+            ]
+          },
+          "styles": {
+            "alignItems": {
+              "from": "center",
+              "to": "flex-start"
+            },
+            "height": {
+              "from": "48px",
+              "to": "146.422px"
+            },
+            "textAlign": {
+              "from": "center",
+              "to": "left"
+            }
+          }
+        },
+        "root/item/number": {
+          "box": {
+            "height": 48,
+            "width": 83
+          },
+          "styles": {
+            "textAlign": {
+              "from": "center",
+              "to": "left"
+            },
+            "width": {
+              "from": "22px",
+              "to": "83px"
+            }
+          }
+        },
+        "root/item/number/value": {
+          "box": {
+            "height": 39,
+            "width": 83
+          },
+          "styles": {
+            "textAlign": {
+              "from": "center",
+              "to": "left"
+            }
+          }
+        },
+        "root/item/rich-text": {
+          "box": {
+            "height": 48,
+            "width": 400
+          },
+          "classes": [
+            "l-container",
+            "l-container--rich-text"
+          ],
+          "introduced": true
+        },
+        "root/item/topic": {
+          "box": {
+            "height": 33,
+            "width": 62
+          },
+          "classes": [
+            "c-count-up__topic"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {
+        "align": "left"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-stats--count-up-with-icons.png",
+        "story": "components-stats--count-up-with-icons"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 179,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "48px",
+              "to": "178.516px"
+            }
+          }
+        },
+        "root/item": {
+          "box": {
+            "height": 179,
+            "width": 400
+          },
+          "classes": {
+            "add": [
+              "lazyloaded"
+            ],
+            "remove": [
+              "lazyload"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "48px",
+              "to": "178.516px"
+            }
+          }
+        },
+        "root/item/icon": {
+          "box": {
+            "height": 80,
+            "width": 80
+          },
+          "classes": [
+            "c-count-up__icon"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/item/icon/icon": {
+          "box": {
+            "height": 80,
+            "width": 80
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/item/number": {
+          "box": {
+            "height": 48,
+            "width": 76
+          },
+          "styles": {
+            "width": {
+              "from": "22px",
+              "to": "76px"
+            }
+          }
+        },
+        "root/item/number/suffix": {
+          "box": {
+            "height": 39,
+            "width": 23
+          },
+          "classes": [
+            "c-count-up__nummber__suffix"
+          ],
+          "introduced": true
+        },
+        "root/item/number/value": {
+          "box": {
+            "height": 39,
+            "width": 53
+          }
+        },
+        "root/item/topic": {
+          "box": {
+            "height": 33,
+            "width": 69
+          },
+          "styles": {
+            "width": {
+              "from": "62px",
+              "to": "69px"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "gallery",
+  "component": "Gallery",
+  "description": "Component used to display a gallery of images",
+  "props": {
+    "properties": {
+      "aspectRatio": {
+        "type": "string",
+        "enum": [
+          "unset",
+          "square",
+          "wide",
+          "landscape"
+        ],
+        "default": "unset"
+      },
+      "images": {
+        "type": "array"
+      },
+      "layout": {
+        "type": "string",
+        "enum": [
+          "stack",
+          "smallTiles",
+          "largeTiles",
+          "slider"
+        ],
+        "default": "smallTiles"
+      },
+      "lightbox": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "images"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "images"
+  ]
+}

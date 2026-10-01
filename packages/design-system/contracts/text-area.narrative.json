@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "TextArea",
+  "default": {
+    "description": "The TextArea component is enclosed within a softly rounded rectangular container with a subtle shadow, giving it a slightly elevated appearance. Inside, there's a label in bold, dark text above a large, white text area with rounded corners, which is outlined in a light gray, providing a clean and minimalistic look. The overall design is simple and functional, focusing on clarity and ease of use.",
+    "from": "img/screenshots/contract-defaults-textarea--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:47:56.186Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-textarea--contract-default.png": "sha256:d71e7b7555eb31c2"
+      },
+      "contract": "sha256:9e21a846cd4d82b8c3330a0c76bc5e92ec4512956588da2ffc89292dfcbd783d"
+    }
+  }
+}

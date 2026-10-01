@@ -1,0 +1,36 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-location",
+  "component": "Event Location",
+  "description": "Event location component for displaying event dates, location details, and related links.",
+  "props": {
+    "properties": {
+      "address": {
+        "type": "string"
+      },
+      "dates": {
+        "type": "array"
+      },
+      "displayMode": {
+        "type": "string",
+        "enum": [
+          "spacious",
+          "compact"
+        ],
+        "default": "spacious"
+      },
+      "links": {
+        "type": "array"
+      },
+      "locationName": {
+        "type": "string"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "dates",
+    "links"
+  ]
+}

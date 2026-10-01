@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Search Filter",
+  "default": {
+    "description": "The search filter component features a clean, minimalist design with a rounded rectangular shape. It has a soft blue background that gives it a calm and approachable appearance. The component is bordered by a subtle shadow, adding a slight depth to its overall look.",
+    "from": "img/screenshots/contract-defaults-searchfilter--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-search-filter--default",
+      "when": {},
+      "difference": "In this variant, the search filter component is taller, allowing for additional content. It now includes a title and a list of categories, each with a title and amount, enhancing its functionality and providing a more informative interface.",
+      "from": "img/screenshots/corporate-search-filter--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:38.268Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-searchfilter--contract-default.png": "sha256:ac976227c481e09a",
+        "img/screenshots/corporate-search-filter--default.png": "sha256:c3d700d6c4ee7ec9"
+      },
+      "contract": "sha256:f4dd7ecdd1d9f012c88ef58f20f80b233e21732347a869e1c64de4b7421f7932"
+    }
+  }
+}

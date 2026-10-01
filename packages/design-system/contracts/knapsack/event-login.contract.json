@@ -1,0 +1,30 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-login",
+  "component": "Event Login",
+  "description": "Event login component for user authentication to access event-related content.",
+  "props": {
+    "properties": {
+      "cta": {
+        "type": "object"
+      },
+      "headline": {
+        "type": "string"
+      },
+      "passwordInput": {
+        "type": "object"
+      },
+      "resetPassword": {
+        "type": "object"
+      },
+      "text": {
+        "type": "string"
+      },
+      "usernameInput": {
+        "type": "object"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

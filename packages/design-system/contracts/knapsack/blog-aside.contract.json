@@ -1,0 +1,33 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "blog-aside",
+  "component": "Blog Aside",
+  "description": "Meta info for a singular blog entry",
+  "props": {
+    "properties": {
+      "author": {
+        "type": "object"
+      },
+      "className": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "readingTime": {
+        "type": "string"
+      },
+      "socialSharing": {
+        "type": "array"
+      }
+    },
+    "required": [
+      "author",
+      "date"
+    ],
+    "additionalProperties": false
+  },
+  "slots": [
+    "socialSharing"
+  ]
+}

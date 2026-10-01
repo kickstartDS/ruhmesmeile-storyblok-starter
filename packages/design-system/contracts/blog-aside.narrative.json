@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Blog Aside",
+  "default": {
+    "description": "The Blog Aside component is a neatly organized section with a light background and rounded corners, giving it a clean and modern appearance. It features bold text for the author's name, followed by their role in a lighter font, and includes icons for contact information, date, and social sharing options. The overall design is minimalistic, with a focus on readability and easy access to meta information.",
+    "from": "img/screenshots/contract-defaults-blogaside--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "blog-blog-aside--default",
+      "when": {},
+      "difference": "This variant of the Blog Aside component is taller and includes a profile image, adding a more personal touch. It features additional icons for social media sharing, enhancing interactivity. The layout remains clean, but the added elements provide more detailed meta information and engagement options.",
+      "from": "img/screenshots/blog-blog-aside--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:43:38.955Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-blogaside--contract-default.png": "sha256:1a129276d0320566",
+        "img/screenshots/blog-blog-aside--default.png": "sha256:96dcdbfefd7c8523"
+      },
+      "contract": "sha256:62fefde96d11f7ef8a8cb6a01de6bd27864a35e4191553dc344f47dda77c175f"
+    }
+  }
+}

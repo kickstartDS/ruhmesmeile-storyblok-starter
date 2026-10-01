@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Radio Group",
+  "default": {
+    "description": "The Radio Group component appears as a vertical list of options, each accompanied by a circular radio button. The layout is clean and organized, with each option clearly separated, allowing for easy selection. The overall design is simple and functional, focusing on usability and clarity.",
+    "from": "img/screenshots/contract-defaults-radiogroup--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "form-radio-group--default",
+      "when": {},
+      "difference": "In this variant, the Radio Group component is expanded to accommodate a vertical list of radio buttons, each aligned with corresponding text options. The layout is more spacious, with a clear separation between each option, enhancing visibility and selection ease. The design maintains a clean and organized appearance, focusing on functionality and user interaction.",
+      "from": "img/screenshots/form-radio-group--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:32.567Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-radiogroup--contract-default.png": "sha256:5b1f7f443699ffa1",
+        "img/screenshots/form-radio-group--default.png": "sha256:0c901bf1c9900af3"
+      },
+      "contract": "sha256:6ecbe1aab8724752007527f9db7b5f3ef5f4c9a57cd4b11dfe918d1a1cbdcdf1"
+    }
+  }
+}

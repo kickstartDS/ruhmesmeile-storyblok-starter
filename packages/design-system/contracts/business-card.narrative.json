@@ -1,0 +1,44 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Business Card",
+  "default": {
+    "description": "The business card component has a clean and professional appearance, featuring a white background with rounded corners. It includes a light blue rectangular area that likely serves as a placeholder for content, such as text or images. The overall design is minimalistic, with a subtle shadow that adds depth and a sense of elegance.",
+    "from": "img/screenshots/contract-defaults-businesscard--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-business-card--centered",
+      "when": {
+        "centered": true
+      },
+      "difference": "This variant of the business card component is significantly taller, with a height of 631.75px compared to the default. It features a centered layout with additional elements such as a logo, contact information, and a button, all arranged neatly within the light blue area. The design maintains its professional and minimalistic style, but with more detailed content and a structured presentation.",
+      "from": "img/screenshots/corporate-business-card--centered.png"
+    },
+    {
+      "story": "corporate-business-card--default",
+      "when": {},
+      "difference": "The variant of the business card component is significantly taller, expanding from a height of 226.406px to 631.75px. It introduces several new elements, including a logo, contact information, and an avatar, all arranged within a light blue area. The design maintains its clean and professional look, but now includes additional content such as an address, contact details, and a button, enhancing its functionality and visual interest.",
+      "from": "img/screenshots/corporate-business-card--default.png"
+    },
+    {
+      "story": "corporate-business-card--without-image",
+      "when": {},
+      "difference": "This variant of the business card component is taller and more detailed than the default. It features additional elements such as contact information, a logo, and a button, all arranged within a larger light blue area. The logo now has a blue color scheme, and the overall design includes more text and icons, giving it a more comprehensive and informative appearance.",
+      "from": "img/screenshots/corporate-business-card--without-image.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:43:57.414Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-businesscard--contract-default.png": "sha256:dc3c6008607d1249",
+        "img/screenshots/corporate-business-card--centered.png": "sha256:dd7f9fd27630f780",
+        "img/screenshots/corporate-business-card--default.png": "sha256:97ae348435093dbb",
+        "img/screenshots/corporate-business-card--without-image.png": "sha256:663a01e7f0307e23"
+      },
+      "contract": "sha256:bba4d9717db9f8e82c386fc2c8e2527f2cd626615402284377d69d6291932c65"
+    }
+  }
+}

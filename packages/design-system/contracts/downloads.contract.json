@@ -1,0 +1,292 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [
+          "dsa-downloads-item"
+        ],
+        "element": "a",
+        "gate": {
+          "prop": "download",
+          "when": "non-empty"
+        },
+        "instanceOf": "downloads-item",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "corporate-downloads--complete",
+          "corporate-downloads--description-only",
+          "corporate-downloads--mixed",
+          "corporate-downloads--technical-details-only"
+        ],
+        "path": "root/downloads-item",
+        "presence": "repeated",
+        "role": "slot"
+      }
+    ],
+    "classes": [
+      "dsa-downloads"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-downloads--gap",
+      "--dsa-downloads-item--background",
+      "--dsa-downloads-item--background-color_hover",
+      "--dsa-downloads-item--background-hover",
+      "--dsa-downloads-item--border-radius",
+      "--dsa-downloads-item--gap",
+      "--dsa-downloads-item--padding",
+      "--dsa-downloads-item--transition",
+      "--dsa-downloads-item__button--color",
+      "--dsa-downloads-item__button--color_hover",
+      "--dsa-downloads-item__button--font",
+      "--dsa-downloads-item__button--font-weight",
+      "--dsa-downloads-item__button--gap",
+      "--dsa-downloads-item__description--color",
+      "--dsa-downloads-item__description--font",
+      "--dsa-downloads-item__download-icon--size",
+      "--dsa-downloads-item__header-flex-basis",
+      "--dsa-downloads-item__infos--border",
+      "--dsa-downloads-item__infos--color",
+      "--dsa-downloads-item__infos--font",
+      "--dsa-downloads-item__infos--gap",
+      "--dsa-downloads-item__link--color",
+      "--dsa-downloads-item__link--color_hover",
+      "--dsa-downloads-item__name--color",
+      "--dsa-downloads-item__name--font",
+      "--dsa-downloads-item__name--font-weight",
+      "--dsa-downloads-item__placeholder-icon--background-color",
+      "--dsa-downloads-item__placeholder-icon--border-radius",
+      "--dsa-downloads-item__placeholder-icon--color",
+      "--dsa-downloads-item__placeholder-icon--size"
+    ]
+  },
+  "api": {
+    "props": {
+      "download": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [],
+    "schema": "./downloads.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/downloads-item"
+      ],
+      "prop": "download"
+    }
+  ],
+  "component": "Downloads",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "description",
+          "format",
+          "name",
+          "previewImage",
+          "size",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          4
+        ],
+        "part": "root/downloads-item",
+        "prop": "download"
+      }
+    ]
+  },
+  "contractId": "downloads",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [
+        "download"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 1
+    },
+    "combinations": {
+      "possible": 5,
+      "proven": 5
+    },
+    "parts": {
+      "conditional": 1,
+      "inDefault": 1,
+      "total": 2
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 4
+    }
+  },
+  "default": {
+    "configuration": {
+      "download": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-downloads--contract-default.png",
+      "story": "contract-defaults-downloads--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "8.8965px",
+          "justifyContent": "stretch"
+        },
+        "styles": {
+          "gap": {
+            "computed": "8.8965px 8.8965px",
+            "resolves": "--ks-spacing-stack-xs",
+            "token": "--dsa-downloads--gap"
+          }
+        }
+      }
+    }
+  },
+  "description": "Downloads component for providing users with downloadable files and resources.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:50462f1b8050ec71",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-downloads--complete.png",
+        "story": "corporate-downloads--complete"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 289,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "289.422px"
+            }
+          }
+        },
+        "root/downloads-item": {
+          "box": {
+            "height": 66,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-downloads-item"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "stretch",
+            "display": "flex",
+            "gap": "13.7152px",
+            "justifyContent": "flex-end"
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-downloads--description-only.png",
+        "story": "corporate-downloads--description-only"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 289,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "289.422px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-downloads--mixed.png",
+        "story": "corporate-downloads--mixed"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 284,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "283.906px"
+            }
+          }
+        }
+      },
+      "when": {}
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-downloads--technical-details-only.png",
+        "story": "corporate-downloads--technical-details-only"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 289,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "0px",
+              "to": "289.422px"
+            }
+          }
+        },
+        "root/downloads-item": {
+          "attrs": {
+            "href": {
+              "from": null,
+              "to": "<set>"
+            }
+          }
+        }
+      },
+      "when": {}
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "c-form-field__input"
+                ],
+                "element": "textarea",
+                "namedBy": "bem-class",
+                "path": "root/child-1/field/input",
+                "presence": "always",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "c-form-field__field"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/child-1/field",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "classes": [
+              "c-form-field__label"
+            ],
+            "element": "span",
+            "namedBy": "bem-class",
+            "path": "root/child-1/label",
+            "presence": "always",
+            "role": "text"
+          }
+        ],
+        "classes": [
+          "c-form-field"
+        ],
+        "element": "label",
+        "namedBy": "position",
+        "path": "root/child-1",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-text-area"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-text-area--background",
+      "--dsa-text-area--background_focus",
+      "--dsa-text-area--border",
+      "--dsa-text-area--border-color",
+      "--dsa-text-area--border-color_active",
+      "--dsa-text-area--border-color_focus",
+      "--dsa-text-area--border-color_hover",
+      "--dsa-text-area--color",
+      "--dsa-text-area--font",
+      "--dsa-text-area--padding",
+      "--dsa-text-area__label--color",
+      "--dsa-text-area__label--font",
+      "--dsa-text-area__label--font-weight",
+      "--dsa-text-area__label--padding-bottom",
+      "--dsa-text-area__placeholder--color"
+    ]
+  },
+  "api": {
+    "props": {
+      "className": {
+        "role": "content",
+        "type": "string"
+      },
+      "disabled": {
+        "default": false,
+        "role": "state",
+        "type": "boolean"
+      },
+      "hideLabel": {
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "hint": {
+        "role": "content",
+        "type": "string"
+      },
+      "icon": {
+        "role": "content",
+        "type": "string"
+      },
+      "invalid": {
+        "role": "state",
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "role": "content",
+        "type": "string"
+      },
+      "label": {
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "name": {
+        "role": "behaviour",
+        "type": "string"
+      },
+      "placeholder": {
+        "role": "content",
+        "type": "string"
+      },
+      "value": {
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "schema": "./text-area.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "disabled",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "prop": "hideLabel",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "prop": "invalid",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "className",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "disabled"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "hideLabel"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "hint",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "icon",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "invalid"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "invalidMessage",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "label",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "name"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "placeholder",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "value",
+      "proven": false
+    }
+  ],
+  "component": "TextArea",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "text-area",
+  "coverage": {
+    "axes": {
+      "disabled": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      },
+      "hideLabel": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      },
+      "invalid": {
+        "missing": [
+          false,
+          true
+        ],
+        "proven": 0,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 8,
+      "proven": 1
+    },
+    "parts": {
+      "conditional": 0,
+      "inDefault": 5,
+      "total": 5
+    },
+    "score": 0.17,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "disabled": {
+        "source": "schema-default",
+        "value": false
+      },
+      "label": {
+        "source": "example",
+        "value": "Est dolore a debitis"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-textarea--contract-default.png",
+      "story": "contract-defaults-textarea--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 90,
+          "width": 1440
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": null,
+            "token": "--dsa-text-area--background"
+          },
+          "border": {
+            "computed": "0px none rgb(0, 0, 0)",
+            "resolves": "--ks-border-width-default",
+            "token": "--dsa-text-area--border"
+          },
+          "borderColor": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-border-color-interface-interactive",
+            "token": "--dsa-text-area--border-color"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-interface",
+            "token": "--dsa-text-area--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-s",
+            "token": "--dsa-text-area--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-semi-bold",
+            "token": "--dsa-text-area__label--font-weight"
+          }
+        }
+      },
+      "root/child-1": {
+        "box": {
+          "height": 90,
+          "width": 1440
+        },
+        "layout": {
+          "display": "inline-flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/child-1/field": {
+        "box": {
+          "height": 62,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column"
+        }
+      },
+      "root/child-1/field/input": {
+        "box": {
+          "height": 62,
+          "width": 1440
+        }
+      },
+      "root/child-1/label": {
+        "box": {
+          "height": 28,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "description": "TextArea buttons allow users to select a single option from a list of mutually exclusive options.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:133e07c0c79b96de",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": []
+}

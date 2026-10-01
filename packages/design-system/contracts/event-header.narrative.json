@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Event Header",
+  "default": {
+    "description": "The Event Header component features a clean and minimal design with a light blue background that gives it a calm and professional appearance. It includes a rounded rectangular area that likely serves as a placeholder for the event title, categories, or introductory text. The overall look is simple and unobtrusive, focusing on clarity and readability.",
+    "from": "img/screenshots/contract-defaults-eventheader--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "event-event-header--default",
+      "when": {},
+      "difference": "In this variant, the Event Header component has expanded to include additional elements such as categories and a headline, giving it a more informative and structured appearance. The categories are displayed as rounded tags above the bold event title, followed by introductory text, all set against the same light blue background. This version is more content-rich and visually engaging compared to the default.",
+      "from": "img/screenshots/event-event-header--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:44:56.861Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-eventheader--contract-default.png": "sha256:fbaf08664e76a2ed",
+        "img/screenshots/event-event-header--default.png": "sha256:61b8d3833952a99e"
+      },
+      "contract": "sha256:99020a9ac2e4e5912d89760c1d78e51dd00d44d36b49140c12b8ba79c565d523"
+    }
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "classes": [],
+        "element": "span",
+        "gate": {
+          "prop": "form",
+          "when": "truthy"
+        },
+        "namedBy": "position",
+        "observedIn": [
+          "corporate-search-modal--pagefind"
+        ],
+        "path": "root/child-1",
+        "presence": "conditional",
+        "role": "text"
+      },
+      {
+        "classes": [
+          "dsa-section",
+          "l-section",
+          "l-section--space-after-small",
+          "l-section--space-before-small"
+        ],
+        "element": "section",
+        "instanceOf": "section",
+        "namedBy": "slot-boundary",
+        "observedIn": [
+          "contract-defaults-searchmodal--contract-default"
+        ],
+        "path": "root/section",
+        "presence": "conditional",
+        "role": "slot"
+      }
+    ],
+    "classes": [],
+    "element": "dialog",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container"
+  },
+  "api": {
+    "props": {
+      "closeAriaLabel": {
+        "default": "close",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      },
+      "form": {
+        "role": "content",
+        "type": "object"
+      },
+      "headline": {
+        "default": "Search",
+        "required": true,
+        "role": "content",
+        "type": "string"
+      }
+    },
+    "required": [
+      "headline",
+      "closeAriaLabel"
+    ],
+    "schema": "./search-modal.schema.dereffed.json"
+  },
+  "axes": [],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "closeAriaLabel",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/child-1"
+      ],
+      "prop": "form"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "headline",
+      "proven": false
+    }
+  ],
+  "component": "Search Modal",
+  "composition": {
+    "slots": []
+  },
+  "contractId": "search-modal",
+  "coverage": {
+    "axes": {},
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 2
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 2,
+      "inDefault": 2,
+      "total": 3
+    },
+    "score": null,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "closeAriaLabel": {
+        "source": "schema-default",
+        "value": "close"
+      },
+      "headline": {
+        "source": "schema-default",
+        "value": "Search"
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-searchmodal--contract-default.png",
+      "story": "contract-defaults-searchmodal--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      },
+      "root/section": {
+        "box": {
+          "height": 0,
+          "width": 0
+        }
+      }
+    }
+  },
+  "description": "Search modal component for displaying a search interface in a modal dialog.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:190f2f76cb4400a3",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/corporate-search-modal--pagefind.png",
+        "story": "corporate-search-modal--pagefind"
+      },
+      "parts": {
+        "root": {
+          "attrs": {
+            "data-topic": {
+              "from": null,
+              "to": "dsa.search-modal.open"
+            },
+            "type": {
+              "from": null,
+              "to": "button"
+            }
+          },
+          "box": {
+            "height": 48,
+            "width": 93
+          },
+          "classes": {
+            "add": [
+              "c-button",
+              "c-button--clear",
+              "c-button--small",
+              "dsa-button"
+            ],
+            "remove": [
+              "dsa-search-modal"
+            ]
+          },
+          "element": {
+            "from": "dialog",
+            "to": "button"
+          },
+          "styles": {
+            "alignItems": {
+              "from": "normal",
+              "to": "center"
+            },
+            "backgroundColor": {
+              "from": "rgb(255, 255, 255)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.15)"
+            },
+            "borderTopColor": {
+              "from": "rgb(0, 0, 0)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)"
+            },
+            "borderTopLeftRadius": {
+              "from": "0px",
+              "to": "7.92892px"
+            },
+            "borderTopStyle": {
+              "from": "solid",
+              "to": "none"
+            },
+            "borderTopWidth": {
+              "from": "3px",
+              "to": "0px"
+            },
+            "color": {
+              "from": "rgb(0, 0, 0)",
+              "to": "color(srgb 0.0235294 0.0313726 0.121569 / 0.73)"
+            },
+            "display": {
+              "from": "none",
+              "to": "inline-flex"
+            },
+            "fontFamily": {
+              "from": "Times New Roman",
+              "to": "Montserrat"
+            },
+            "fontSize": {
+              "from": "16px",
+              "to": "15.9696px"
+            },
+            "fontWeight": {
+              "from": "400",
+              "to": "600"
+            },
+            "height": {
+              "from": "fit-content",
+              "to": "47.8906px"
+            },
+            "justifyContent": {
+              "from": "normal",
+              "to": "center"
+            },
+            "lineHeight": {
+              "from": "18.4px",
+              "to": "23.9544px"
+            },
+            "marginBottom": {
+              "from": "auto",
+              "to": "0px"
+            },
+            "marginTop": {
+              "from": "auto",
+              "to": "0px"
+            },
+            "paddingBottom": {
+              "from": "16px",
+              "to": "11.9772px"
+            },
+            "paddingLeft": {
+              "from": "16px",
+              "to": "23.9544px"
+            },
+            "paddingRight": {
+              "from": "16px",
+              "to": "23.9544px"
+            },
+            "paddingTop": {
+              "from": "16px",
+              "to": "11.9772px"
+            },
+            "position": {
+              "from": "absolute",
+              "to": "static"
+            },
+            "textAlign": {
+              "from": "start",
+              "to": "center"
+            },
+            "width": {
+              "from": "fit-content",
+              "to": "92.9062px"
+            }
+          }
+        },
+        "root/child-1": {
+          "box": {
+            "height": 24,
+            "width": 45
+          },
+          "classes": [],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

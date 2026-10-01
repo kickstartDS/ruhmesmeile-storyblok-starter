@@ -1,0 +1,48 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "html",
+  "component": "Html",
+  "description": "Display raw HTML.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "component": {
+        "type": "string"
+      },
+      "consent": {
+        "type": "boolean",
+        "default": false
+      },
+      "consentAspectRatio": {
+        "type": "string",
+        "enum": [
+          "16:9",
+          "16:10",
+          "4:3",
+          "1:1"
+        ],
+        "default": "16:9"
+      },
+      "consentBackgroundImage": {
+        "type": "string"
+      },
+      "consentButtonLabel": {
+        "type": "string"
+      },
+      "consentText": {
+        "type": "string"
+      },
+      "html": {
+        "type": "string"
+      },
+      "inverted": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

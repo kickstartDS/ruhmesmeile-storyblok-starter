@@ -193,3 +193,18 @@ Treat the Knapsack format as a **composition target for the API/identity/integri
 4. **Do not** try to express anatomy/tokens/bindings/variants in Knapsack's schema — that's the PRD's exclusive value and would require forking its constitution.
 
 That yields DSDS interop, integrity verification, and a portable API contract for free, while the PRD keeps owning the three-vocabulary join it was written to deliver.
+
+---
+
+## 10. Outcome (2026-09-26)
+
+All four recommendations were accepted and are reflected in the PRD (§5.1.1–§5.1.5, §10.4–§10.6, §14.3) and recorded as decisions in [adr-component-contracts.md](../../adr/adr-component-contracts.md):
+
+1. Knapsack added as a second evaluation in PRD §10.4, alongside Specs.
+2. The fold + collision rule, the `contractId`/`component` split, manifest content addressing, and the DSDS `specs`/trait mapping adopted verbatim (`packages/design-system/scripts/contracts/lib/`).
+3. A Knapsack-compatible projection emitted from each contract, validated against Knapsack's own published schema before it is written.
+4. Anatomy/tokens/bindings/variants deliberately not expressed in Knapsack's schema — the projection is lossy and one-way.
+
+Two deviations worth recording: the DSDS trait projection gates on our `role` classification rather than Knapsack's raw enum/boolean rule, and the fold fixture suite is ours — Knapsack's spec states its fold has no executable test, which `scripts/contracts/lib/fold.test.mjs` now supplies.
+
+The remaining recommendations stand open: the emitter port (PRD Phases 1–4), the MCP surface, and the `cc-contracts` eval arm (Phase 5).

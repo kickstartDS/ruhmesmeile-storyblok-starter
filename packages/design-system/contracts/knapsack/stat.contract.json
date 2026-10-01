@@ -1,0 +1,26 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "stat",
+  "component": "Stat",
+  "description": "Stat entry of Stats component",
+  "props": {
+    "properties": {
+      "description": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string"
+      },
+      "number": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "number"
+    ],
+    "additionalProperties": false
+  }
+}

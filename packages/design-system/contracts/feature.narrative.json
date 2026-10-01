@@ -1,0 +1,20 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Feature",
+  "default": {
+    "description": "The component features a clean, minimalist design with a white background and rounded corners, giving it a modern and approachable look. The title \"Feature 1\" is displayed in a straightforward, black font, while the call-to-action \"See more\" is highlighted in blue, accompanied by a right-pointing arrow, adding a touch of interactivity. The overall appearance is simple yet effective, focusing on clarity and ease of use.",
+    "from": "img/screenshots/contract-defaults-feature--contract-default.png"
+  },
+  "variants": [],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:21.056Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-feature--contract-default.png": "sha256:e506f6d8ca1486a7"
+      },
+      "contract": "sha256:fb0df44215aca5ec60ebc66be01da7227f359c154e1d10178b7614ef016719ec"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "event-latest",
+  "component": "Event Latest",
+  "description": "Display a list of latest events, ordered chronologically",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "events": {
+        "type": "array"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "slots": [
+    "events"
+  ]
+}

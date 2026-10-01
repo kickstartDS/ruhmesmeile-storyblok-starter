@@ -13,7 +13,7 @@ import { join, resolve, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { targetFor, type Target } from "./targets";
-import type { VariantKey } from "../mcp/variants";
+import { VARIANT_KEYS, type VariantKey } from "../mcp/variants";
 
 const PACKAGE_ROOT = resolve(
   fileURLToPath(new URL(".", import.meta.url)),
@@ -140,13 +140,6 @@ function readProjectFiles(dir: string): Map<string, string> {
   walk(dir);
   return files;
 }
-
-const VARIANT_KEYS: VariantKey[] = [
-  "none",
-  "component-builder",
-  "design-tokens",
-  "both",
-];
 
 /**
  * Which MCP set an experiment ran with.

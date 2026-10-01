@@ -1,0 +1,68 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Features",
+  "default": {
+    "description": "The component displays a clean, organized layout with a light blue background and rounded corners, giving it a modern and approachable feel. Each feature is presented in a white card with a simple icon at the top, followed by bold text for the feature title and lighter text for the description. A \"See more\" link in blue with an arrow icon adds an interactive element, inviting further exploration.",
+    "from": "img/screenshots/contract-defaults-features--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-features--icon-beside-with-link-in-text",
+      "when": {
+        "layout": "smallTiles",
+        "style": "intext"
+      },
+      "difference": "In this variant, the component shifts to a more compact and dense layout, displaying five smaller feature tiles in a grid format. Each feature is now presented in a narrower card, allowing more features to be visible at once, which enhances the sense of information richness. The overall height of the component has increased, accommodating the additional features while maintaining the modern and approachable design with a light blue background and rounded corners.",
+      "from": "img/screenshots/components-features--icon-beside-with-link-in-text.png"
+    },
+    {
+      "story": "components-features--icon-centered",
+      "when": {
+        "style": "centered"
+      },
+      "difference": "The variant displays a more compact and centered layout, with three features per row instead of two. Each feature card is smaller in width and taller, creating a denser and more balanced appearance. The overall height of the component is increased, allowing for more content to be visible within each feature card.",
+      "from": "img/screenshots/components-features--icon-centered.png"
+    },
+    {
+      "story": "components-features--icon-intext-with-link",
+      "when": {
+        "style": "intext"
+      },
+      "difference": "In this variant, the component shifts to a more compact and dense layout, accommodating three features per row instead of two. The individual feature cards are smaller in width and slightly reduced in height, creating a tighter and more efficient use of space. This configuration gives the component a more structured and information-rich appearance, while maintaining its modern and approachable feel.",
+      "from": "img/screenshots/components-features--icon-intext-with-link.png"
+    },
+    {
+      "story": "components-features--list-view",
+      "when": {
+        "layout": "list",
+        "style": "besideLarge"
+      },
+      "difference": "In this variant, the component shifts to a vertical layout with features stacked in a single column, creating a more elongated appearance. The features are presented with increased padding on the left, and the overall height of the component is significantly taller, allowing for more detailed descriptions. The icons remain prominent, but the layout feels more spacious and less compact compared to the default.",
+      "from": "img/screenshots/components-features--list-view.png"
+    },
+    {
+      "story": "components-features--stack-with-button",
+      "when": {
+        "layout": "smallTiles"
+      },
+      "difference": "In this variant, the component shifts to a more compact and dense layout with smaller tiles. The features are now displayed in a grid of four narrower columns, each feature card being taller and slimmer compared to the default. This arrangement creates a more structured and space-efficient presentation, allowing more features to be visible at once.",
+      "from": "img/screenshots/components-features--stack-with-button.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:22.589Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-features--contract-default.png": "sha256:18ca136f1d778ee7",
+        "img/screenshots/components-features--icon-beside-with-link-in-text.png": "sha256:648659142b32aa36",
+        "img/screenshots/components-features--icon-centered.png": "sha256:49ec0ec3a735b254",
+        "img/screenshots/components-features--icon-intext-with-link.png": "sha256:ab0db6401b1758fc",
+        "img/screenshots/components-features--list-view.png": "sha256:8d1d8b12d86b135d",
+        "img/screenshots/components-features--stack-with-button.png": "sha256:56aac2401e4907db"
+      },
+      "contract": "sha256:6890fddc2106c799ea32a5a55ce2849cb7fa8bc057bc922c32884217e9685c8a"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Headline",
+  "default": {
+    "description": "The headline component features a bold, dark text aligned to the left, set against a clean white background. It is enclosed within a rounded rectangle with a subtle shadow, giving it a slightly elevated appearance. The overall design is simple and modern, with a small amount of space following the headline, ensuring clarity and emphasis.",
+    "from": "img/screenshots/contract-defaults-headline--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "components-headline--h-1",
+      "when": {
+        "style": "h1"
+      },
+      "difference": "The variant headline is larger and more prominent, with an increased font size and line height, enhancing its visibility and impact. The spacing around the text is slightly expanded, contributing to a more spacious and open feel while maintaining the modern and clean design.",
+      "from": "img/screenshots/components-headline--h-1.png"
+    },
+    {
+      "story": "components-headline--h-2",
+      "when": {},
+      "difference": "The variant differs from the default by having a different text content, \"Headline text placeholder,\" instead of \"Lorem ipsum dolor sit amet.\" The overall design, including the bold, dark text and the clean white background with a subtle shadow, remains consistent with the default.",
+      "from": "img/screenshots/components-headline--h-2.png"
+    },
+    {
+      "story": "components-headline--h-3",
+      "when": {
+        "style": "h3"
+      },
+      "difference": "The variant headline is slightly smaller and more compact compared to the default. The text size and line height are reduced, giving it a more subtle presence. Additionally, the space following the headline is decreased, resulting in a tighter overall appearance.",
+      "from": "img/screenshots/components-headline--h-3.png"
+    },
+    {
+      "story": "components-headline--h-4",
+      "when": {
+        "style": "h4"
+      },
+      "difference": "The variant headline is smaller and more compact compared to the default. The text size is reduced, giving it a more subtle presence, and the spacing around the text is tighter, resulting in a less pronounced elevation effect. The overall appearance is more understated while maintaining the clean and modern design.",
+      "from": "img/screenshots/components-headline--h-4.png"
+    },
+    {
+      "story": "components-headline--order-swapped",
+      "when": {
+        "switchOrder": true
+      },
+      "difference": "In this variant, the headline component is taller, allowing for the inclusion of a subheadline above the main text. The subheadline is presented in a lighter, smaller font, adding context to the bold, prominent main headline below. This configuration enhances the informational hierarchy and visual interest of the component.",
+      "from": "img/screenshots/components-headline--order-swapped.png"
+    },
+    {
+      "story": "components-headline--with-markdown",
+      "when": {},
+      "difference": "This variant of the headline component is taller, allowing for more content. It introduces a subheadline beneath the main headline, adding depth and context. The main headline includes a portion in blue, creating a visual hierarchy and drawing attention to specific text.",
+      "from": "img/screenshots/components-headline--with-markdown.png"
+    },
+    {
+      "story": "components-headline--with-subheadline",
+      "when": {},
+      "difference": "The variant differs from the default by having a taller height, which allows for additional content such as a subheading beneath the main headline. This change enhances the component's capacity to convey more information while maintaining its modern and clean design.",
+      "from": "img/screenshots/components-headline--with-subheadline.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:45:44.119Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-headline--contract-default.png": "sha256:0653e21fbe8b26de",
+        "img/screenshots/components-headline--h-1.png": "sha256:73850d40f124f9f5",
+        "img/screenshots/components-headline--h-2.png": "sha256:d4bacd9f5a1064a7",
+        "img/screenshots/components-headline--h-3.png": "sha256:06d4c00019768858",
+        "img/screenshots/components-headline--h-4.png": "sha256:c1710afec8d8f5ce",
+        "img/screenshots/components-headline--order-swapped.png": "sha256:0698cc1bebad7cd6",
+        "img/screenshots/components-headline--with-markdown.png": "sha256:031fc8f8b95ed5a2",
+        "img/screenshots/components-headline--with-subheadline.png": "sha256:4dcd74a1dcaf937a"
+      },
+      "contract": "sha256:07f708a8d1fd0980dd58a27f4d1244752cb9088cbe45018a8761a41857caa856"
+    }
+  }
+}

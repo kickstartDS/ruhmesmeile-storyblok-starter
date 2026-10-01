@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Search Bar",
+  "default": {
+    "description": "The search bar component features a sleek, rounded rectangular input field with a subtle shadow, giving it a slightly elevated appearance. It includes a placeholder text that reads \"Search...\" accompanied by a magnifying glass icon, enhancing its intuitive design. Below the input field, there is a hint text that instructs users to press \"Enter\" to search, adding a functional touch to the overall clean and modern look.",
+    "from": "img/screenshots/contract-defaults-searchbar--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "corporate-search-bar--default",
+      "when": {},
+      "difference": "In this variant, the search bar component is taller, with the height increased to 114.828px. Additionally, there is new text below the input field that reads \"Did you mean AI Conference,\" providing an alternative suggestion. This addition enhances the component's functionality by offering potential search corrections or suggestions.",
+      "from": "img/screenshots/corporate-search-bar--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:46:35.268Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-searchbar--contract-default.png": "sha256:554ec5acb6595431",
+        "img/screenshots/corporate-search-bar--default.png": "sha256:2e789ed28aab34c0"
+      },
+      "contract": "sha256:68a0010638901262e7131703ae3b302feb97e2ce89d57603df623d252d2e06bb"
+    }
+  }
+}

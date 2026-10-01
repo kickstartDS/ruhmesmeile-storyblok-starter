@@ -1,0 +1,26 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "divider",
+  "component": "Divider",
+  "description": "Dividers bring clarity to a layout by grouping and dividing content in close proximity.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "component": {
+        "type": "string"
+      },
+      "variant": {
+        "type": "string",
+        "enum": [
+          "default",
+          "accent"
+        ],
+        "default": "default"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

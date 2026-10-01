@@ -1,0 +1,1018 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "classes": [
+                  "l-container",
+                  "l-container--text-media"
+                ],
+                "element": "div",
+                "instanceOf": "text-media",
+                "namedBy": "slot-boundary",
+                "observedIn": [
+                  "contract-defaults-gallery--contract-default",
+                  "components-gallery--free-aspect-ratio",
+                  "components-gallery--large-landscape-tiles",
+                  "components-gallery--small-squares-with-lightbox"
+                ],
+                "path": "root/grid/image/text-media",
+                "presence": "conditional",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-gallery__image"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "contract-defaults-gallery--contract-default",
+              "components-gallery--free-aspect-ratio",
+              "components-gallery--large-landscape-tiles",
+              "components-gallery--small-squares-with-lightbox"
+            ],
+            "path": "root/grid/image",
+            "presence": "repeated",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-gallery__grid"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "contract-defaults-gallery--contract-default",
+          "components-gallery--free-aspect-ratio",
+          "components-gallery--large-landscape-tiles",
+          "components-gallery--small-squares-with-lightbox"
+        ],
+        "path": "root/grid",
+        "presence": "conditional",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "l-container",
+                      "l-container--text-media"
+                    ],
+                    "element": "div",
+                    "instanceOf": "text-media",
+                    "namedBy": "slot-boundary",
+                    "observedIn": [
+                      "components-gallery--slider-gallery"
+                    ],
+                    "path": "root/slider/slider-track/slider-item/text-media",
+                    "presence": "conditional",
+                    "role": "slot"
+                  }
+                ],
+                "classes": [
+                  "dsa-gallery__slider-item"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-gallery--slider-gallery"
+                ],
+                "path": "root/slider/slider-track/slider-item",
+                "presence": "repeated",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "dsa-gallery__slider-track"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-gallery--slider-gallery"
+            ],
+            "path": "root/slider/slider-track",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-gallery__slider"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "components-gallery--slider-gallery"
+        ],
+        "path": "root/slider",
+        "presence": "conditional",
+        "role": "container"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "icon"
+                    ],
+                    "element": "svg",
+                    "namedBy": "tag",
+                    "observedIn": [
+                      "components-gallery--slider-gallery"
+                    ],
+                    "path": "root/slider-controls/slider-nav/slider-arrow/icon",
+                    "presence": "conditional",
+                    "role": "glyph"
+                  }
+                ],
+                "classes": [
+                  "dsa-gallery__slider-arrow",
+                  "dsa-gallery__slider-arrow--back"
+                ],
+                "element": "button",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-gallery--slider-gallery"
+                ],
+                "path": "root/slider-controls/slider-nav/slider-arrow",
+                "presence": "repeated",
+                "role": "control"
+              }
+            ],
+            "classes": [
+              "dsa-gallery__slider-nav"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-gallery--slider-gallery"
+            ],
+            "path": "root/slider-controls/slider-nav",
+            "presence": "conditional",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "classes": [
+                  "dsa-gallery__slider-progress-bar"
+                ],
+                "element": "div",
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "components-gallery--slider-gallery"
+                ],
+                "path": "root/slider-controls/slider-progress/slider-progress-bar",
+                "presence": "conditional",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "dsa-gallery__slider-progress"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "observedIn": [
+              "components-gallery--slider-gallery"
+            ],
+            "path": "root/slider-controls/slider-progress",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-gallery__slider-controls"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "observedIn": [
+          "components-gallery--slider-gallery"
+        ],
+        "path": "root/slider-controls",
+        "presence": "conditional",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-gallery"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-gallery--gap-horizontal",
+      "--dsa-gallery--gap-vertical",
+      "--dsa-gallery--image-ratio-landscape",
+      "--dsa-gallery--image-ratio-square",
+      "--dsa-gallery--image-ratio-wide",
+      "--dsa-gallery--slider-gap",
+      "--dsa-gallery--slider-height",
+      "--dsa-gallery--tile-min-width-large",
+      "--dsa-gallery--tile-min-width-small",
+      "--dsa-gallery__slider-arrow--background",
+      "--dsa-gallery__slider-arrow--color",
+      "--dsa-gallery__slider-arrow--opacity",
+      "--dsa-gallery__slider-arrow--opacity_disabled",
+      "--dsa-gallery__slider-arrow--opacity_hover",
+      "--dsa-gallery__slider-arrow--padding",
+      "--dsa-gallery__slider-arrow--shadow",
+      "--dsa-gallery__slider-arrow--size",
+      "--dsa-gallery__slider-progress--background",
+      "--dsa-gallery__slider-progress--height",
+      "--dsa-gallery__slider-progress-bar--background"
+    ]
+  },
+  "api": {
+    "props": {
+      "aspectRatio": {
+        "default": "unset",
+        "role": "appearance",
+        "type": "enum",
+        "values": [
+          "unset",
+          "square",
+          "wide",
+          "landscape"
+        ]
+      },
+      "images": {
+        "required": true,
+        "role": "composition",
+        "type": "array"
+      },
+      "layout": {
+        "default": "smallTiles",
+        "role": "layout",
+        "type": "enum",
+        "values": [
+          "stack",
+          "smallTiles",
+          "largeTiles",
+          "slider"
+        ]
+      },
+      "lightbox": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "images"
+    ],
+    "schema": "./gallery.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": "smallTiles",
+      "prop": "layout",
+      "values": [
+        {
+          "api": "stack",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "smallTiles",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "largeTiles",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "slider",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": "unset",
+      "prop": "aspectRatio",
+      "values": [
+        {
+          "api": "unset",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "square",
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": "wide",
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        },
+        {
+          "api": "landscape",
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    },
+    {
+      "default": false,
+      "prop": "lightbox",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/grid/image"
+      ],
+      "prop": "aspectRatio"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "images"
+    },
+    {
+      "mechanism": "class-toggle",
+      "parts": [
+        "root/grid"
+      ],
+      "prop": "layout"
+    },
+    {
+      "affects": [
+        "gridTemplateColumns",
+        "height",
+        "width"
+      ],
+      "mechanism": "layout",
+      "parts": [
+        "root/grid"
+      ],
+      "prop": "lightbox"
+    }
+  ],
+  "component": "Gallery",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "alt",
+          "caption",
+          "src"
+        ],
+        "max": 10,
+        "min": 1,
+        "observedCounts": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "part": "root",
+        "prop": "images"
+      }
+    ]
+  },
+  "contractId": "gallery",
+  "coverage": {
+    "axes": {
+      "aspectRatio": {
+        "missing": [
+          "wide"
+        ],
+        "proven": 3,
+        "total": 4
+      },
+      "layout": {
+        "missing": [],
+        "proven": 4,
+        "total": 4
+      },
+      "lightbox": {
+        "missing": [],
+        "proven": 2,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [],
+      "fromExample": 1,
+      "placeholders": 0,
+      "values": 4
+    },
+    "combinations": {
+      "possible": 32,
+      "proven": 6
+    },
+    "parts": {
+      "conditional": 13,
+      "inDefault": 4,
+      "total": 14
+    },
+    "score": 0.9,
+    "stories": {
+      "failed": 0,
+      "observed": 5
+    }
+  },
+  "default": {
+    "configuration": {
+      "aspectRatio": {
+        "source": "schema-default",
+        "value": "unset"
+      },
+      "images": {
+        "source": "example",
+        "value": [
+          {
+            "alt": "https://example.com/image1.jpg",
+            "caption": "Caption Image",
+            "src": "https://example.com/image1.jpg"
+          },
+          {
+            "alt": "https://example.com/image1.jpg",
+            "caption": "Caption Image",
+            "src": "https://example.com/image1.jpg"
+          }
+        ]
+      },
+      "layout": {
+        "source": "schema-default",
+        "value": "smallTiles"
+      },
+      "lightbox": {
+        "source": "schema-default",
+        "value": false
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-gallery--contract-default.png",
+      "story": "contract-defaults-gallery--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 58,
+          "width": 1440
+        },
+        "styles": {
+          "background": {
+            "computed": "rgba(0, 0, 0, 0) none",
+            "resolves": "--ks-background-color-default",
+            "token": "--dsa-gallery__slider-arrow--background"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-color-fg",
+            "token": "--dsa-gallery__slider-arrow--color"
+          },
+          "height": {
+            "computed": "58.2344px",
+            "resolves": null,
+            "token": "--dsa-gallery__slider-progress--height"
+          }
+        }
+      },
+      "root/grid": {
+        "box": {
+          "height": 58,
+          "width": 1440
+        },
+        "layout": {
+          "display": "grid",
+          "gap": "21.1438px",
+          "gridTemplateColumns": "709.422px 709.438px 0px 0px 0px 0px"
+        }
+      },
+      "root/grid/image": {
+        "box": {
+          "height": 58,
+          "width": 709
+        }
+      },
+      "root/grid/image/text-media": {
+        "box": {
+          "height": 58,
+          "width": 709
+        }
+      }
+    }
+  },
+  "description": "Component used to display a gallery of images",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:22a0b3460a1aabec",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-gallery--free-aspect-ratio.png",
+        "story": "components-gallery--free-aspect-ratio"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 694,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "693.844px"
+            }
+          }
+        },
+        "root/grid": {
+          "box": {
+            "height": 694,
+            "width": 1440
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px 0px 0px 0px",
+              "to": "222.375px 222.391px 222.375px 222.391px 222.375px 222.391px"
+            },
+            "height": {
+              "from": "58.2344px",
+              "to": "693.844px"
+            }
+          }
+        },
+        "root/grid/image": {
+          "box": {
+            "height": 336,
+            "width": 222
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "336.359px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "222.375px"
+            }
+          }
+        },
+        "root/grid/image/text-media": {
+          "box": {
+            "height": 336,
+            "width": 222
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "336.344px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "222.375px"
+            }
+          }
+        }
+      },
+      "when": {
+        "lightbox": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-gallery--large-landscape-tiles.png",
+        "story": "components-gallery--large-landscape-tiles"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 625,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "624.953px"
+            }
+          }
+        },
+        "root/grid": {
+          "box": {
+            "height": 625,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-gallery__grid--large-tiles"
+            ],
+            "remove": [
+              "dsa-gallery__grid--small-tiles"
+            ]
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px 0px 0px 0px",
+              "to": "465.906px 465.906px 465.906px"
+            },
+            "height": {
+              "from": "58.2344px",
+              "to": "624.953px"
+            }
+          }
+        },
+        "root/grid/image": {
+          "box": {
+            "height": 302,
+            "width": 466
+          },
+          "classes": {
+            "add": [
+              "dsa-gallery__image--landscape"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "301.906px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "465.906px"
+            }
+          }
+        },
+        "root/grid/image/text-media": {
+          "box": {
+            "height": 302,
+            "width": 466
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "301.906px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "465.906px"
+            }
+          }
+        }
+      },
+      "when": {
+        "aspectRatio": "landscape",
+        "layout": "largeTiles"
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-gallery--slider-gallery.png",
+        "story": "components-gallery--slider-gallery"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 401,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "400.984px"
+            }
+          }
+        },
+        "root/slider": {
+          "box": {
+            "height": 340,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-gallery__slider"
+          ],
+          "introduced": true
+        },
+        "root/slider-controls": {
+          "box": {
+            "height": 40,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-gallery__slider-controls"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "gap": "13.7152px"
+          }
+        },
+        "root/slider-controls/slider-nav": {
+          "box": {
+            "height": 40,
+            "width": 89
+          },
+          "classes": [
+            "dsa-gallery__slider-nav"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "8.8965px"
+          }
+        },
+        "root/slider-controls/slider-nav/slider-arrow": {
+          "box": {
+            "height": 40,
+            "width": 40
+          },
+          "classes": [
+            "dsa-gallery__slider-arrow",
+            "dsa-gallery__slider-arrow--back"
+          ],
+          "introduced": true,
+          "layout": {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "root/slider-controls/slider-nav/slider-arrow/icon": {
+          "box": {
+            "height": 32,
+            "width": 22
+          },
+          "classes": [
+            "icon"
+          ],
+          "introduced": true
+        },
+        "root/slider-controls/slider-progress": {
+          "box": {
+            "height": 4,
+            "width": 1337
+          },
+          "classes": [
+            "dsa-gallery__slider-progress"
+          ],
+          "introduced": true
+        },
+        "root/slider-controls/slider-progress/slider-progress-bar": {
+          "box": {
+            "height": 4,
+            "width": 0
+          },
+          "classes": [
+            "dsa-gallery__slider-progress-bar"
+          ],
+          "introduced": true
+        },
+        "root/slider/slider-track": {
+          "box": {
+            "height": 340,
+            "width": 1440
+          },
+          "classes": [
+            "dsa-gallery__slider-track"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "gap": "21.1438px"
+          }
+        },
+        "root/slider/slider-track/slider-item": {
+          "box": {
+            "height": 340,
+            "width": 225
+          },
+          "classes": [
+            "dsa-gallery__slider-item"
+          ],
+          "introduced": true
+        },
+        "root/slider/slider-track/slider-item/text-media": {
+          "box": {
+            "height": 0,
+            "width": 0
+          },
+          "classes": [
+            "l-container",
+            "l-container--text-media"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "contents"
+          }
+        }
+      },
+      "when": {
+        "layout": "slider",
+        "lightbox": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-gallery--small-squares-with-lightbox.png",
+        "story": "components-gallery--small-squares-with-lightbox"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 546,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "545.594px"
+            }
+          }
+        },
+        "root/grid": {
+          "box": {
+            "height": 546,
+            "width": 1440
+          },
+          "styles": {
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px 0px 0px 0px",
+              "to": "222.375px 222.391px 222.375px 222.391px 222.375px 222.391px"
+            },
+            "height": {
+              "from": "58.2344px",
+              "to": "545.594px"
+            }
+          }
+        },
+        "root/grid/image": {
+          "box": {
+            "height": 262,
+            "width": 222
+          },
+          "classes": {
+            "add": [
+              "dsa-gallery__image--square"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "262.234px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "222.375px"
+            }
+          }
+        },
+        "root/grid/image/text-media": {
+          "box": {
+            "height": 262,
+            "width": 222
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "262.219px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "222.375px"
+            }
+          }
+        }
+      },
+      "when": {
+        "aspectRatio": "square",
+        "lightbox": true
+      }
+    },
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/components-gallery--stack-landscape.png",
+        "story": "components-gallery--stack-landscape"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 1552,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "1552.31px"
+            }
+          }
+        },
+        "root/grid": {
+          "box": {
+            "height": 1552,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-gallery__grid--stack"
+            ],
+            "remove": [
+              "dsa-gallery__grid--small-tiles"
+            ]
+          },
+          "styles": {
+            "display": {
+              "from": "grid",
+              "to": "flex"
+            },
+            "flexDirection": {
+              "from": "row",
+              "to": "column"
+            },
+            "gridTemplateColumns": {
+              "from": "709.422px 709.438px 0px 0px 0px 0px",
+              "to": "none"
+            },
+            "height": {
+              "from": "58.2344px",
+              "to": "1552.31px"
+            }
+          }
+        },
+        "root/grid/image": {
+          "box": {
+            "height": 503,
+            "width": 1440
+          },
+          "classes": {
+            "add": [
+              "dsa-gallery__image--landscape"
+            ]
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "503.344px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "1440px"
+            }
+          }
+        },
+        "root/grid/image/text-media": {
+          "box": {
+            "height": 503,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "58.2344px",
+              "to": "503.344px"
+            },
+            "width": {
+              "from": "709.422px",
+              "to": "1440px"
+            }
+          }
+        }
+      },
+      "when": {
+        "aspectRatio": "landscape",
+        "layout": "stack"
+      }
+    }
+  ]
+}

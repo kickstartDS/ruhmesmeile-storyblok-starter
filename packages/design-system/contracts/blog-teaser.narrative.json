@@ -1,0 +1,28 @@
+{
+  "$format": "kickstartds/component-narrative@1",
+  "component": "Blog Teaser",
+  "default": {
+    "description": "The Blog Teaser component features a clean and minimal design with a prominent headline in bold, dark text, creating a strong focal point. Below the headline, there is a lighter, smaller teaser text that provides a brief introduction to the blog post. The overall layout is spacious, with a soft background that enhances readability and gives a modern, professional impression.",
+    "from": "img/screenshots/contract-defaults-blogteaser--contract-default.png"
+  },
+  "variants": [
+    {
+      "story": "blog-blog-teaser--default",
+      "when": {},
+      "difference": "This variant of the Blog Teaser component includes additional elements that enhance its informational depth. Tags are displayed above the headline, adding context to the content. An image is included on the right, providing a visual element that complements the text. The author, date, and reading time are now present below the teaser text, offering more detailed metadata about the blog post.",
+      "from": "img/screenshots/blog-blog-teaser--default.png"
+    }
+  ],
+  "generated": {
+    "model": "gpt-4o-2024-08-06",
+    "promptVersion": 1,
+    "generatedAt": "2026-09-26T20:43:51.608Z",
+    "inputs": {
+      "screenshots": {
+        "img/screenshots/contract-defaults-blogteaser--contract-default.png": "sha256:4ab3814529dbe0d4",
+        "img/screenshots/blog-blog-teaser--default.png": "sha256:407be38c54f0bfaa"
+      },
+      "contract": "sha256:47cf51fe54e4d3a2151b14e2b69ef72a028926191fbf1ec07ae2efc03aaddc64"
+    }
+  }
+}

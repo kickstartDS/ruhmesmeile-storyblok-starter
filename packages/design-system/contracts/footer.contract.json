@@ -1,0 +1,649 @@
+{
+  "$format": "kickstartds/component-contract@1",
+  "anatomy": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-footer__legal-link"
+                    ],
+                    "element": "a",
+                    "gate": {
+                      "prop": "navGroups",
+                      "when": "non-empty"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "layout-footer--footer"
+                    ],
+                    "path": "root/content/bottom/copyright/legal-link",
+                    "presence": "conditional",
+                    "role": "control"
+                  }
+                ],
+                "classes": [
+                  "dsa-footer__copyright"
+                ],
+                "element": "p",
+                "gate": {
+                  "prop": "navGroups",
+                  "when": "non-empty"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "layout-footer--footer"
+                ],
+                "path": "root/content/bottom/copyright",
+                "presence": "conditional",
+                "role": "container"
+              },
+              {
+                "classes": [
+                  "dsa-logo"
+                ],
+                "element": "a",
+                "instanceOf": "logo",
+                "namedBy": "slot-boundary",
+                "path": "root/content/bottom/logo",
+                "presence": "always",
+                "role": "slot"
+              }
+            ],
+            "classes": [
+              "dsa-footer__bottom"
+            ],
+            "element": "div",
+            "namedBy": "bem-class",
+            "path": "root/content/bottom",
+            "presence": "always",
+            "role": "container"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "classes": [
+                      "dsa-footer__column-heading"
+                    ],
+                    "element": "h3",
+                    "gate": {
+                      "prop": "navGroups",
+                      "when": "non-empty"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "layout-footer--footer"
+                    ],
+                    "path": "root/content/columns/column/column-heading",
+                    "presence": "conditional",
+                    "role": "text"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "classes": [
+                              "dsa-footer__link"
+                            ],
+                            "element": "a",
+                            "gate": {
+                              "prop": "navGroups",
+                              "when": "non-empty"
+                            },
+                            "namedBy": "bem-class",
+                            "observedIn": [
+                              "layout-footer--footer"
+                            ],
+                            "path": "root/content/columns/column/nav-list/nav-item/link",
+                            "presence": "conditional",
+                            "role": "control"
+                          }
+                        ],
+                        "classes": [
+                          "dsa-footer__nav-item"
+                        ],
+                        "element": "li",
+                        "gate": {
+                          "prop": "navGroups",
+                          "when": "non-empty"
+                        },
+                        "namedBy": "bem-class",
+                        "observedIn": [
+                          "layout-footer--footer"
+                        ],
+                        "path": "root/content/columns/column/nav-list/nav-item",
+                        "presence": "repeated",
+                        "role": "container"
+                      }
+                    ],
+                    "classes": [
+                      "dsa-footer__nav-list"
+                    ],
+                    "element": "ul",
+                    "gate": {
+                      "prop": "navGroups",
+                      "when": "non-empty"
+                    },
+                    "namedBy": "bem-class",
+                    "observedIn": [
+                      "layout-footer--footer"
+                    ],
+                    "path": "root/content/columns/column/nav-list",
+                    "presence": "conditional",
+                    "role": "container"
+                  }
+                ],
+                "classes": [
+                  "dsa-footer__column"
+                ],
+                "element": "div",
+                "gate": {
+                  "prop": "navGroups",
+                  "when": "non-empty"
+                },
+                "namedBy": "bem-class",
+                "observedIn": [
+                  "layout-footer--footer"
+                ],
+                "path": "root/content/columns/column",
+                "presence": "repeated",
+                "role": "container"
+              }
+            ],
+            "classes": [
+              "dsa-footer__columns"
+            ],
+            "element": "div",
+            "gate": {
+              "prop": "navGroups",
+              "when": "non-empty"
+            },
+            "namedBy": "bem-class",
+            "observedIn": [
+              "layout-footer--footer"
+            ],
+            "path": "root/content/columns",
+            "presence": "conditional",
+            "role": "container"
+          }
+        ],
+        "classes": [
+          "dsa-footer__content"
+        ],
+        "element": "div",
+        "namedBy": "bem-class",
+        "path": "root/content",
+        "presence": "always",
+        "role": "container"
+      }
+    ],
+    "classes": [
+      "dsa-footer"
+    ],
+    "element": "div",
+    "namedBy": "root",
+    "path": "root",
+    "presence": "always",
+    "role": "container",
+    "tokens": [
+      "--dsa-footer--background-color",
+      "--dsa-footer--border-top",
+      "--dsa-footer--gap-vertical",
+      "--dsa-footer--max-width",
+      "--dsa-footer__bottom--border-top",
+      "--dsa-footer__bottom--gap",
+      "--dsa-footer__bottom--padding-top",
+      "--dsa-footer__column--gap",
+      "--dsa-footer__column-heading--color",
+      "--dsa-footer__column-heading--font",
+      "--dsa-footer__column-heading--font-weight",
+      "--dsa-footer__column-heading--letter-spacing",
+      "--dsa-footer__column-heading--text-transform",
+      "--dsa-footer__columns--gap",
+      "--dsa-footer__copyright--color",
+      "--dsa-footer__copyright--font",
+      "--dsa-footer__legal-link--color",
+      "--dsa-footer__legal-link--color_hover",
+      "--dsa-footer__legal-link--text-decoration",
+      "--dsa-footer__link--color",
+      "--dsa-footer__link--color_hover",
+      "--dsa-footer__link--font",
+      "--dsa-footer__link--font-weight",
+      "--dsa-footer__link--text-decoration",
+      "--dsa-footer__link--text-decoration_hover",
+      "--dsa-footer__nav-list--gap",
+      "--dsa-footer__social--gap",
+      "--dsa-footer__social-link--color",
+      "--dsa-footer__social-link--color_hover",
+      "--dsa-footer__social-link--size"
+    ]
+  },
+  "api": {
+    "props": {
+      "copyright": {
+        "role": "content",
+        "type": "string"
+      },
+      "inverted": {
+        "default": false,
+        "role": "appearance",
+        "type": "boolean"
+      },
+      "legalLink": {
+        "role": "content",
+        "type": "object"
+      },
+      "logo": {
+        "required": true,
+        "role": "content",
+        "type": "object"
+      },
+      "navGroups": {
+        "role": "composition",
+        "type": "array"
+      },
+      "socialLinks": {
+        "role": "composition",
+        "type": "array"
+      }
+    },
+    "required": [
+      "logo"
+    ],
+    "schema": "./footer.schema.dereffed.json"
+  },
+  "axes": [
+    {
+      "default": false,
+      "prop": "inverted",
+      "values": [
+        {
+          "api": false,
+          "class": null,
+          "discriminated": false,
+          "tokenSegment": null
+        },
+        {
+          "api": true,
+          "class": null,
+          "proven": false,
+          "tokenSegment": null
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "copyright",
+      "proven": false
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "inverted"
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "legalLink",
+      "proven": false
+    },
+    {
+      "mechanism": "content",
+      "parts": [],
+      "prop": "logo",
+      "proven": false
+    },
+    {
+      "mechanism": "presence",
+      "parts": [
+        "root/content/bottom/copyright",
+        "root/content/bottom/copyright/legal-link",
+        "root/content/columns",
+        "root/content/columns/column",
+        "root/content/columns/column/column-heading",
+        "root/content/columns/column/nav-list",
+        "root/content/columns/column/nav-list/nav-item",
+        "root/content/columns/column/nav-list/nav-item/link"
+      ],
+      "prop": "navGroups"
+    },
+    {
+      "mechanism": "none",
+      "parts": [],
+      "prop": "socialLinks"
+    }
+  ],
+  "component": "Footer",
+  "composition": {
+    "slots": [
+      {
+        "itemShape": [
+          "heading",
+          "items"
+        ],
+        "observedCounts": [
+          0,
+          3
+        ],
+        "part": "root/content/columns",
+        "prop": "navGroups"
+      },
+      {
+        "itemShape": [
+          "ariaLabel",
+          "icon",
+          "url"
+        ],
+        "observedCounts": [
+          0,
+          4
+        ],
+        "part": "root",
+        "prop": "socialLinks"
+      }
+    ]
+  },
+  "contractId": "footer",
+  "coverage": {
+    "axes": {
+      "inverted": {
+        "missing": [
+          true
+        ],
+        "proven": 1,
+        "total": 2
+      }
+    },
+    "baseline": {
+      "emptySlots": [
+        "navGroups",
+        "socialLinks"
+      ],
+      "fromExample": 0,
+      "placeholders": 0,
+      "values": 5
+    },
+    "combinations": {
+      "possible": 2,
+      "proven": 2
+    },
+    "parts": {
+      "conditional": 8,
+      "inDefault": 4,
+      "total": 12
+    },
+    "score": 0.5,
+    "stories": {
+      "failed": 0,
+      "observed": 1
+    }
+  },
+  "default": {
+    "configuration": {
+      "inverted": {
+        "source": "schema-default",
+        "value": false
+      },
+      "legalLink": {
+        "source": "schema-default",
+        "value": {
+          "label": "Legal"
+        }
+      },
+      "logo": {
+        "source": "schema-default",
+        "value": {
+          "homepageHref": "/"
+        }
+      },
+      "navGroups": {
+        "source": "schema-default",
+        "value": []
+      },
+      "socialLinks": {
+        "source": "schema-default",
+        "value": []
+      }
+    },
+    "evidence": {
+      "screenshot": "img/screenshots/contract-defaults-footer--contract-default.png",
+      "story": "contract-defaults-footer--contract-default"
+    },
+    "parts": {
+      "root": {
+        "box": {
+          "height": 129,
+          "width": 1440
+        },
+        "layout": {
+          "display": "flex"
+        },
+        "styles": {
+          "backgroundColor": {
+            "computed": "rgb(255, 255, 255)",
+            "resolves": "--ks-background-color-default",
+            "token": "--dsa-footer--background-color"
+          },
+          "color": {
+            "computed": "rgb(0, 0, 0)",
+            "resolves": "--ks-text-color-default",
+            "token": "--dsa-footer__column-heading--color"
+          },
+          "font": {
+            "computed": "400 16px 18.4px Times New Roman",
+            "resolves": "--ks-font-interface-s",
+            "token": "--dsa-footer__column-heading--font"
+          },
+          "fontWeight": {
+            "computed": "400",
+            "resolves": "--ks-font-weight-bold",
+            "token": "--dsa-footer__column-heading--font-weight"
+          },
+          "gap": {
+            "computed": "normal normal",
+            "resolves": "--ks-spacing-stack-s",
+            "token": "--dsa-footer__bottom--gap"
+          }
+        }
+      },
+      "root/content": {
+        "box": {
+          "height": 129,
+          "width": 1298
+        },
+        "layout": {
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "30.8032px"
+        }
+      },
+      "root/content/bottom": {
+        "box": {
+          "height": 62,
+          "width": 1209
+        },
+        "layout": {
+          "alignItems": "center",
+          "display": "flex",
+          "gap": "13.7152px",
+          "justifyContent": "space-between"
+        }
+      },
+      "root/content/bottom/logo": {
+        "box": {
+          "height": 40,
+          "width": 0
+        }
+      }
+    }
+  },
+  "description": "Footer component for displaying site logo, grouped navigation links, social links and a legal bottom bar at the bottom of the page.",
+  "generated": {
+    "inputs": {
+      "schema": "sha256:7336541ff30ca2fa",
+      "stories": "sha256:f55ecaa5ec5b7634",
+      "tokens": "sha256:89c2f0dc7d4f152b"
+    },
+    "theme": "default",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    }
+  },
+  "issues": [],
+  "variants": [
+    {
+      "evidence": {
+        "screenshot": "img/screenshots/layout-footer--footer.png",
+        "story": "layout-footer--footer"
+      },
+      "parts": {
+        "root": {
+          "box": {
+            "height": 319,
+            "width": 1440
+          },
+          "styles": {
+            "height": {
+              "from": "128.516px",
+              "to": "319.453px"
+            }
+          }
+        },
+        "root/content": {
+          "box": {
+            "height": 319,
+            "width": 1298
+          },
+          "styles": {
+            "height": {
+              "from": "128.516px",
+              "to": "319.453px"
+            }
+          }
+        },
+        "root/content/bottom/copyright": {
+          "box": {
+            "height": 21,
+            "width": 330
+          },
+          "classes": [
+            "dsa-footer__copyright"
+          ],
+          "introduced": true
+        },
+        "root/content/bottom/copyright/legal-link": {
+          "box": {
+            "height": 18,
+            "width": 38
+          },
+          "classes": [
+            "dsa-footer__legal-link"
+          ],
+          "introduced": true
+        },
+        "root/content/bottom/logo": {
+          "box": {
+            "height": 40,
+            "width": 202
+          },
+          "styles": {
+            "width": {
+              "from": "0px",
+              "to": "201.656px"
+            }
+          }
+        },
+        "root/content/columns": {
+          "box": {
+            "height": 160,
+            "width": 1209
+          },
+          "classes": [
+            "dsa-footer__columns"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "grid",
+            "gap": "30.8032px",
+            "gridTemplateColumns": "268.469px 268.484px 268.469px 268.484px"
+          }
+        },
+        "root/content/columns/column": {
+          "box": {
+            "height": 160,
+            "width": 268
+          },
+          "classes": [
+            "dsa-footer__column"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "13.7152px"
+          }
+        },
+        "root/content/columns/column/column-heading": {
+          "box": {
+            "height": 24,
+            "width": 268
+          },
+          "classes": [
+            "dsa-footer__column-heading"
+          ],
+          "introduced": true
+        },
+        "root/content/columns/column/nav-list": {
+          "box": {
+            "height": 122,
+            "width": 268
+          },
+          "classes": [
+            "dsa-footer__nav-list"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8.8965px"
+          }
+        },
+        "root/content/columns/column/nav-list/nav-item": {
+          "box": {
+            "height": 24,
+            "width": 268
+          },
+          "classes": [
+            "dsa-footer__nav-item"
+          ],
+          "introduced": true,
+          "layout": {
+            "display": "list-item"
+          }
+        },
+        "root/content/columns/column/nav-list/nav-item/link": {
+          "box": {
+            "height": 19,
+            "width": 73
+          },
+          "classes": [
+            "dsa-footer__link"
+          ],
+          "introduced": true
+        }
+      },
+      "when": {}
+    }
+  ]
+}

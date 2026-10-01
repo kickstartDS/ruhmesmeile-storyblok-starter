@@ -1,0 +1,33 @@
+{
+  "$schema": "https://knapsack-oss.github.io/design-system-contract/schemas/v0/component.contract.schema.json",
+  "contractId": "checkbox",
+  "component": "Checkbox",
+  "description": "Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.",
+  "props": {
+    "properties": {
+      "className": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "hint": {
+        "type": "string"
+      },
+      "invalid": {
+        "type": "boolean"
+      },
+      "invalidMessage": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ],
+    "additionalProperties": false
+  }
+}
